@@ -1,0 +1,4 @@
+controller/jobs/tests/tmp
+*.junit.xml
+*.log
+*.ser

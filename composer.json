@@ -1,0 +1,25 @@
+{
+	"name": "aimeos/ai-controller-jobs",
+	"description": "Aimeos ai-controller-jobs extension",
+	"keywords": ["aimeos", "extension", "controller" "jobs"],
+	"type": "aimeos-extension",
+	"license": "LGPL-3.0",
+	"prefer-stable": true,
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.3.3",
+		"composer/installers": "^1.0",
+		"aimeos/aimeos-core": "dev-master",
+		"aimeos/ai-client-html": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Aimeos\\Controller\\Common\\": "controller/jobs/src/Controller/Common/"
+			"Aimeos\\Controller\\Jobs\\": "controller/jobs/src/Controller/Jobs/"
+		},
+		"classmap": [
+			"controller/common/src",
+			"controller/jobs/src"
+		]
+	}
+}
