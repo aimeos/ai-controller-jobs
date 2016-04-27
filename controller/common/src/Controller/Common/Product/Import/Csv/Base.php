@@ -242,7 +242,7 @@ class Base
 	/**
 	 * Returns the processor object for saving the product related information
 	 *
-	 * @param array $mapping Associative list of processor types as keys and index/data mappings as values
+	 * @param array $mappings Associative list of processor types as keys and index/data mappings as values
 	 * @return \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface Processor object
 	 */
 	protected function getProcessors( array $mappings )

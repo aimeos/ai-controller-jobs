@@ -140,7 +140,7 @@ class Standard
 		 * @see controller/jobs/product/export/location
 		 * @see controller/jobs/product/export/max-items
 		 * @see controller/jobs/product/export/max-query
-		*/
+		 */
 		$container = $config->get( 'controller/jobs/product/export/standard/container/type', 'Directory' );
 
 		/** controller/jobs/product/export/standard/container/content

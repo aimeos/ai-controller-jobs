@@ -193,7 +193,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/max-items
 		 * @see controller/jobs/product/export/sitemap/max-query
 		 * @see controller/jobs/product/export/sitemap/changefreq
-		*/
+		 */
 		$options = $config->get( 'controller/jobs/product/export/sitemap/container/options', array() );
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, 'Directory', 'Gzip', $options );

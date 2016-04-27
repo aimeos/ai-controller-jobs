@@ -425,7 +425,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/container/type
 		 * @see controller/jobs/product/import/csv/container/content
 		 * @see controller/jobs/product/import/csv/container/options
-		*/
+		 */
 		$location = $config->get( 'controller/jobs/product/import/csv/location', '.' );
 
 		/** controller/jobs/product/import/csv/container/type
@@ -448,7 +448,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/container/content
 		 * @see controller/jobs/product/import/csv/container/options
-		*/
+		 */
 		$container = $config->get( 'controller/jobs/product/import/csv/container/type', 'Directory' );
 
 		/** controller/jobs/product/import/csv/container/content
@@ -469,7 +469,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/container/type
 		 * @see controller/jobs/product/import/csv/container/options
-		*/
+		 */
 		$content = $config->get( 'controller/jobs/product/import/csv/container/content', 'CSV' );
 
 		/** controller/jobs/product/import/csv/container/options
@@ -487,7 +487,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/container/content
 		 * @see controller/jobs/product/import/csv/container/type
-		*/
+		 */
 		$options = $config->get( 'controller/jobs/product/import/csv/container/options', array() );
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
