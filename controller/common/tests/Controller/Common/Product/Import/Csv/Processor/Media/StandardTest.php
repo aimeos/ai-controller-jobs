@@ -301,6 +301,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	/**
+	 * @param string $code
+	 */
 	protected function create( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
@@ -340,6 +343,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	/**
+	 * @param string $code
+	 */
 	protected function get( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
