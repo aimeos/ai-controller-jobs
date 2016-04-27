@@ -47,6 +47,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testSet()
 	{
 		$item = $this->object->get( 'black', 'color' );
+
+		$this->assertInstanceOf( '\\Aimeos\\MShop\\Attribute\\Item\\Iface', $item );
+
 		$item->setCode( 'cache-test' );
 
 		$this->object->set( $item );

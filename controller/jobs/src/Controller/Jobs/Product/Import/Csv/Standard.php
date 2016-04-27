@@ -499,7 +499,7 @@ class Standard
 	 *
 	 * @param array $products List of products items implementing \Aimeos\MShop\Product\Item\Iface
 	 * @param array $data Associative list of import data as index/value pairs
-	 * @param array $mappings Associative list of positions and domain item keys
+	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor Processor object
 	 * @param boolean $strict Log columns not mapped or silently ignore them
 	 * @return integer Number of products that couldn't be imported

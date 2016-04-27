@@ -98,9 +98,7 @@ class Standard
 	 * Sends the account creation e-mail to the e-mail address of the customer
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
-	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Payment address item of the customer
-	 * @param string $code Customer login name
-	 * @param string $password Customer clear text password
+	 * @param \Aimeos\MShop\Customer\Item\Iface $item Customer item object
 	 */
 	protected function sendEmail( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Customer\Item\Iface $item )
 	{
