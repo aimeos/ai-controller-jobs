@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$category = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( self::$product, $data );
+		$object->process( self::$product, $data );
 
 		$category = $this->get( 'job_csv_test' );
 		$this->delete( $category );
@@ -126,7 +126,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$category2 = $this->create( 'job_csv_test2' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( self::$product, $data );
+		$object->process( self::$product, $data );
 
 		$category = $this->get( 'job_csv_test' );
 		$category2 = $this->get( 'job_csv_test2' );
@@ -174,8 +174,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$category = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( self::$product, $data );
-		$result = $object->process( self::$product, $dataUpdate );
+		$object->process( self::$product, $data );
+		$object->process( self::$product, $dataUpdate );
 
 		$category = $this->get( 'job_csv_test' );
 		$this->delete( $category );
@@ -206,10 +206,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$category = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( self::$product, $data );
+		$object->process( self::$product, $data );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, array(), $this->endpoint );
-		$result = $object->process( self::$product, array() );
+		$object->process( self::$product, array() );
 
 		$category = $this->get( 'job_csv_test' );
 		$this->delete( $category );
@@ -240,7 +240,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$category = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( self::$product, $data );
+		$object->process( self::$product, $data );
 
 		$category = $this->get( 'job_csv_test' );
 		$this->delete( $category );
@@ -273,7 +273,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$category = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( self::$product, $data );
+		$object->process( self::$product, $data );
 
 		$category = $this->get( 'job_csv_test' );
 		$this->delete( $category );

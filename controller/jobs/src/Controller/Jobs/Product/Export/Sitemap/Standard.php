@@ -209,8 +209,6 @@ class Standard
 	 */
 	protected function createContent( \Aimeos\MW\Container\Iface $container, $filenum )
 	{
-		$config = $this->getContext()->getConfig();
-
 		/** controller/jobs/product/export/sitemap/standard/template-header
 		 * Relative path to the XML site map header template of the product site map job controller.
 		 *
@@ -253,8 +251,6 @@ class Standard
 	 */
 	protected function closeContent( \Aimeos\MW\Container\Content\Iface $content )
 	{
-		$config = $this->getContext()->getConfig();
-
 		/** controller/jobs/product/export/sitemap/standard/template-footer
 		 * Relative path to the XML site map footer template of the product site map job controller.
 		 *
@@ -294,8 +290,6 @@ class Standard
 	 */
 	protected function createSitemapIndex( \Aimeos\MW\Container\Iface $container, array $files )
 	{
-		$config = $this->getContext()->getConfig();
-
 		/** controller/jobs/product/export/sitemap/standard/template-index
 		 * Relative path to the XML site map index template of the product site map job controller.
 		 *

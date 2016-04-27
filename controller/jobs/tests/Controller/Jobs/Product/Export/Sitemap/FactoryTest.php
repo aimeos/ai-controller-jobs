@@ -25,7 +25,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$object = \Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'Wrong$$$Name' );
+		\Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'Wrong$$$Name' );
 	}
 
 
@@ -35,7 +35,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$object = \Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'WrongClass' );
+		\Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'WrongClass' );
 	}
 
 
@@ -45,6 +45,6 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$object = \Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'Factory' );
+		\Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'Factory' );
 	}
 }

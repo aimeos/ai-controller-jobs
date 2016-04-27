@@ -45,7 +45,7 @@ abstract class Base
 	 * @param \Aimeos\Controller\Jobs\Iface $controller Controller object
 	 * @param array $decorators List of decorator names that should be wrapped around the controller object
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Controller\Jobs\Attribute\Decorator\"
-	 * @return \Aimeos\Controller\Jobs\Common\Iface Controller object
+	 * @return \Aimeos\Controller\Jobs\Iface Controller object
 	 */
 	protected static function addDecorators( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos,
 		\Aimeos\Controller\Jobs\Iface $controller, array $decorators, $classprefix )
@@ -84,7 +84,7 @@ abstract class Base
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 * @param \Aimeos\Controller\Jobs\Iface $controller Controller object
 	 * @param string $domain Domain name in lower case, e.g. "product"
-	 * @return \Aimeos\Controller\Jobs\Common\Iface Controller object
+	 * @return \Aimeos\Controller\Jobs\Iface Controller object
 	 */
 	protected static function addControllerDecorators( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos,
 		\Aimeos\Controller\Jobs\Iface $controller, $domain )
@@ -150,7 +150,7 @@ abstract class Base
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 * @param string $classname Name of the controller class
 	 * @param string $interface Name of the controller interface
-	 * @return \Aimeos\Controller\Jobs\Common\Iface Controller object
+	 * @return \Aimeos\Controller\Jobs\Iface Controller object
 	 */
 	protected static function createControllerBase( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos,
 		$classname, $interface )

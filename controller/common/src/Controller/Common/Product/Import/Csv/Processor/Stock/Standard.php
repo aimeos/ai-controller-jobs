@@ -65,8 +65,6 @@ class Standard
 
 		try
 		{
-			$pos = 0;
-			$delete = array();
 			$map = $this->getMappedChunk( $data );
 			$items = $this->getStockItems( $product->getId() );
 

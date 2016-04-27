@@ -92,7 +92,7 @@ class Standard
 		try
 		{
 			$pos = 0;
-			$delete = $attrcodes = array();
+			$delete = array();
 			$map = $this->getMappedChunk( $data );
 			$listItems = $product->getListItems( 'attribute', $this->listTypes );
 

@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( $product, $data );
+		$object->process( $product, $data );
 
 		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
@@ -79,7 +79,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( $product, $data );
+		$object->process( $product, $data );
 
 		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
@@ -111,8 +111,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
 
-		$result = $object->process( $product, $data );
-		$result = $object->process( $product, $dataUpdate );
+		$object->process( $product, $data );
+		$object->process( $product, $dataUpdate );
 
 		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
@@ -138,10 +138,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( $product, $data );
+		$object->process( $product, $data );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, array(), $this->endpoint );
-		$result = $object->process( $product, array() );
+		$object->process( $product, array() );
 
 		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
@@ -168,7 +168,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( $product, $data );
+		$object->process( $product, $data );
 
 		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );

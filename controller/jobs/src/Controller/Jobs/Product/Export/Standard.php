@@ -64,8 +64,6 @@ class Standard
 	 */
 	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, array $items )
 	{
-		$config = $this->getContext()->getConfig();
-
 		/** controller/jobs/product/export/standard/template-items
 		 * Relative path to the XML items template of the product site map job controller.
 		 *
@@ -190,8 +188,6 @@ class Standard
 	 */
 	protected function createContent( \Aimeos\MW\Container\Iface $container, $filenum )
 	{
-		$config = $this->getContext()->getConfig();
-
 		/** controller/jobs/product/export/standard/template-header
 		 * Relative path to the XML site map header template of the product site map job controller.
 		 *
@@ -234,8 +230,6 @@ class Standard
 	 */
 	protected function closeContent( \Aimeos\MW\Container\Content\Iface $content )
 	{
-		$config = $this->getContext()->getConfig();
-
 		/** controller/jobs/product/export/standard/template-footer
 		 * Relative path to the XML site map footer template of the product site map job controller.
 		 *
