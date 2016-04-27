@@ -20,7 +20,6 @@ namespace Aimeos\Controller\Common\Product\Import\Csv\Processor;
 class Base
 	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 {
-	private static $types = array();
 	private $context;
 	private $mapping;
 	private $object;

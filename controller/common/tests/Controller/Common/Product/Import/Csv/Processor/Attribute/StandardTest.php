@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( $product, $data );
+		$object->process( $product, $data );
 
 		$product = $this->get( 'job_csv_test' );
 		$this->delete( $product );
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$result = $object->process( $product, $data );
+		$object->process( $product, $data );
 
 		$product = $this->get( 'job_csv_test' );
 

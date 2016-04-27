@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			3 => 'job_csv_test',
 		);
 
-		$category = $this->create( 'job_csv_test' );
+		$this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -122,8 +122,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			3 => "job_csv_test\njob_csv_test2",
 		);
 
-		$category = $this->create( 'job_csv_test' );
-		$category2 = $this->create( 'job_csv_test2' );
+		$this->create( 'job_csv_test' );
+		$this->create( 'job_csv_test2' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -171,7 +171,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			1 => 'job_csv_test',
 		);
 
-		$category = $this->create( 'job_csv_test' );
+		$this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -203,7 +203,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			1 => 'job_csv_test',
 		);
 
-		$category = $this->create( 'job_csv_test' );
+		$this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -237,7 +237,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			3 => 'job_csv_test',
 		);
 
-		$category = $this->create( 'job_csv_test' );
+		$this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -270,7 +270,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/catalog/listtypes', array( 'default' ) );
 
-		$category = $this->create( 'job_csv_test' );
+		$this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
