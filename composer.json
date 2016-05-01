@@ -9,8 +9,7 @@
 	"require": {
 		"php": ">=5.3.3",
 		"composer/installers": "^1.0",
-		"aimeos/aimeos-core": "dev-master",
-		"aimeos/ai-client-html": "dev-master"
+		"aimeos/aimeos-core": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
