@@ -106,13 +106,8 @@ class Standard
 						continue;
 					}
 
-					$refItem = $listItem->getRefItem();
-
-					if( $refItem !== null && $map[$pos]['attribute.code'] === $refItem->getCode()
-						&& $map[$pos]['attribute.type'] === $refItem->getType()
-						&& ( !isset( $map[$pos]['product.lists.type'] ) || isset( $map[$pos]['product.lists.type'] )
-						&& $map[$pos]['product.lists.type'] === $listItem->getType() )
-					) {
+					if( $this->checkMatch( $listItem, $map[$pos] ) === true )
+					{
 						$pos++;
 						continue;
 					}
@@ -127,10 +122,7 @@ class Standard
 
 			foreach( $map as $pos => $list )
 			{
-				if( !isset( $list['attribute.code'] ) || $list['attribute.code'] === '' || $list['attribute.type'] === ''
-					|| isset( $list['product.lists.type'] ) && $this->listTypes !== null
-					&& !in_array( $list['product.lists.type'], (array) $this->listTypes )
-				) {
+				if( $this->checkEntry( $list ) === false ) {
 					continue;
 				}
 
@@ -147,7 +139,7 @@ class Standard
 						$listItem = $listManager->createItem();
 					}
 
-					$typecode = ( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+					$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
 					$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'attribute', $typecode );
 					$list['product.lists.refid'] = $attrItem->getId();
 					$list['product.lists.parentid'] = $product->getId();
@@ -169,6 +161,48 @@ class Standard
 		}
 
 		return $remaining;
+	}
+
+
+	/**
+	 * Checks if the entry from the mapped data is valid
+	 *
+	 * @param array $list Associative list of key/value pairs from the mapped data
+	 * @return boolean True if the entry is valid, false if not
+	 */
+	protected function checkEntry( array $list )
+	{
+		if( !isset( $list['attribute.code'] ) || $list['attribute.code'] === '' || $list['attribute.type'] === ''
+			|| isset( $list['product.lists.type'] ) && $this->listTypes !== null
+			&& !in_array( $list['product.lists.type'], (array) $this->listTypes )
+		) {
+			return false;
+		}
+
+		return true;
+	}
+
+
+	/**
+	 * Checks if the list item matches the values from the list
+	 *
+	 * @param \Aimeos\MShop\Common\Item\Lists\Iface $listItem List item object
+	 * @param array $list Associative list of key/value pairs from the mapped data
+	 * @return boolean True if the list item matches the values in the list, false if not
+	 */
+	protected function checkMatch( \Aimeos\MShop\Common\Item\Lists\Iface $listItem, array $list )
+	{
+		$refItem = $listItem->getRefItem();
+
+		if( $refItem !== null && $list['attribute.code'] === $refItem->getCode()
+			&& $list['attribute.type'] === $refItem->getType()
+			&& ( !isset( $list['product.lists.type'] ) || isset( $list['product.lists.type'] )
+			&& $list['product.lists.type'] === $listItem->getType() )
+		) {
+			return true;
+		}
+
+		return false;
 	}
 
 
