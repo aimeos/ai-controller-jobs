@@ -98,9 +98,12 @@ class Standard
 				}
 
 				$urls = explode( $separator, $list['media.url'] );
-				$type = ( isset( $list['media.type'] ) ? $list['media.type'] : 'default' );
-				$typecode = ( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
-				$langid = ( isset( $list['media.languageid'] ) && $list['media.languageid'] !== '' ? $list['media.languageid'] : null );
+				$type = $this->getValue( $list, 'media.type', 'default' );
+				$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
+
+				if( ( $langid = $this->getValue( $list, 'media.languageid', null ) ) === '' ) {
+					$langid = null;
+				}
 
 				foreach( $urls as $url )
 				{
