@@ -93,9 +93,7 @@ class Standard
 
 			foreach( $map as $pos => $list )
 			{
-				if( !isset( $list['media.url'] ) || $list['media.url'] === '' || isset( $list['product.lists.type'] )
-					&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
-				) {
+				if( $this->checkEntry( $list ) === false ) {
 					continue;
 				}
 
@@ -172,5 +170,23 @@ class Standard
 		}
 
 		return $list;
+	}
+
+
+	/**
+	 * Checks if an entry can be used for updating a media item
+	 *
+	 * @param array $list Associative list of key/value pairs from the mapping
+	 * @return boolean True if valid, false if not
+	 */
+	protected function checkEntry( array $list )
+	{
+		if( !isset( $list['media.url'] ) || $list['media.url'] === '' || isset( $list['product.lists.type'] )
+				&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
+		) {
+			return false;
+		}
+
+		return true;
 	}
 }
