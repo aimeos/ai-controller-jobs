@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-03 16:55+0200\n"
-"PO-Revision-Date: 2016-06-07 09:37+0000\n"
+"PO-Revision-Date: 2016-06-10 10:53+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
+"Language-Team: Slovak (http://www.transifex.com/aimeos/aimeos-core/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 msgid "Admin interface jobs"
 msgstr ""
@@ -42,19 +42,19 @@ msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "类\"%1$s\"没有实现接口\"%2$s\""
+msgstr "Trieda  \"%1$s\" neimplementuje rozhranie  \"%2$s\""
 
 #, php-format
 msgid "Class \"%1$s\" not available"
-msgstr "不存在可用的类\"%1$s\""
+msgstr "Trieda  \"%1$s\" nie je dostupná"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr "类\"%1$s\"没有找到"
+msgstr "Trieda \"%1$s\" nenájdená"
 
 #, php-format
 msgid "Controller path is empty"
-msgstr "控制器路径为空"
+msgstr "Cesta ovládača je prázdná"
 
 msgid "Creates a product site map for search engines"
 msgstr ""
@@ -66,10 +66,10 @@ msgid "Customer account e-mails"
 msgstr ""
 
 msgid "Decreases the counts of successfully redeemed coupons"
-msgstr "Decreases the counts of successfully redeemed coupons"
+msgstr ""
 
 msgid "Decreases the stock levels of products in completed orders"
-msgstr "Decreases the stock levels of products in completed orders"
+msgstr ""
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
@@ -80,10 +80,10 @@ msgid "Deletes unpaid orders to keep the database clean"
 msgstr ""
 
 msgid "Deprecated: Use \"Remove unfinised orders\""
-msgstr "Deprecated: Use \"Remove unfinised orders\""
+msgstr ""
 
 msgid "Deprecated: Use order/service/delivery"
-msgstr "Deprecated: Use order/service/delivery"
+msgstr ""
 
 msgid "Executes payment or delivery service providers that uses batch updates"
 msgstr ""
@@ -104,7 +104,7 @@ msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr "类名称\"%1$s\"存在无效的字符"
+msgstr "Neplatné znaky v triede  \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in job name \"%1$s\""
@@ -112,15 +112,15 @@ msgstr ""
 
 #, php-format
 msgid "Invalid controller \"%1$s\" in \"%2$s\""
-msgstr ""
+msgstr "Invalid controller \"%1$s\" in \"%2$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr "无效的域名\"%1$s\""
+msgstr "Neplatná doména  \"%1$s\""
 
 #, php-format
 msgid "Invalid factory \"%1$s\""
-msgstr "无效的工厂\"%1$s\""
+msgstr "Neplatná továreň \"%1$s\""
 
 #, php-format
 msgid "Invalid job method \"%1$s\""
@@ -132,7 +132,7 @@ msgstr ""
 
 #, php-format
 msgid "List type for domain \"%1$s\" and code \"%2$s\" not found"
-msgstr "列表类型没有找到：针对域\"%1$s\"和代码\"%2$s\""
+msgstr "Typ záznamu nenájdený pre doménu \"%1$s\" a kód \"%2$s\""
 
 msgid "Log cleanup"
 msgstr ""
@@ -147,7 +147,7 @@ msgstr ""
 
 #, php-format
 msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "未找到类型条目\"%1$s/%2$s\" 于 \"%3$s\""
+msgstr "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
 
 #, php-format
 msgid "No warehouse \"%1$s\" found"
@@ -221,7 +221,7 @@ msgstr ""
 
 #, php-format
 msgid "Template \"%1$s\" not available"
-msgstr "模板 \"%1$s\" 不可用"
+msgstr "Šablóna \"%1$s\" nie je dostupná"
 
 #, php-format
 msgid "Unable to call factory method \"%1$s\""
@@ -229,7 +229,7 @@ msgstr ""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr "不能调用方法\"%1$s\""
+msgstr "Nepodarilo sa zavolať metódu \"%1$s\""
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"

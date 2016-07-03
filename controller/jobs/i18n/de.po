@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Aimeos <aimeos@aimeos.org>, 2015-2016
 # Daniel Hoffmann <d.hoffmann@metaways.de>, 2013
@@ -10,21 +10,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-27 11:04+0200\n"
-"PO-Revision-Date: 2016-04-21 21:12+0000\n"
+"POT-Creation-Date: 2016-07-03 16:55+0200\n"
+"PO-Revision-Date: 2016-06-09 12:23+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Admin interface jobs"
 msgstr "Aufgaben aus der Administrationsoberfläche"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
-msgstr "Authorisierte Zahlungen für Bestellungen werden eingezogen nachdem die Ware versandt wurde oder nach einer konfigurierbaren Zeitspanne"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
+msgstr "Autorisierte Zahlungen für Bestellungen werden eingezogen nachdem die Ware versandt wurde oder nach einer konfigurierbaren Zeitspanne"
 
 msgid "Batch update of payment/delivery status"
 msgstr "Blockweise Aktualisierung von Liefer- und Zahlungsstatus"
@@ -33,7 +35,7 @@ msgid "Cache cleanup"
 msgstr "Cache aufräumen"
 
 msgid "Capture authorized payments"
-msgstr "Authorisierte Zahlungen einziehen"
+msgstr "Autorisierte Zahlungen einziehen"
 
 msgid "Catalog index optimization"
 msgstr "Optimieren des Katalogindexes"
@@ -72,7 +74,9 @@ msgstr "Erfolgreich eingelöste Gutscheine werden ungültig gemacht"
 msgid "Decreases the stock levels of products in completed orders"
 msgstr "Der Lagerbestand für Produkte aus abgeschlossenen Bestellungen wird reduziert"
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr "Löscht nicht abgeschlossene Bestellungen und stellt die Produkte und Gutscheincodes wieder zur Verfügung"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -87,7 +91,8 @@ msgstr "Veraltet: Verwenden Sie order/service/delivery"
 msgid "Executes payment or delivery service providers that uses batch updates"
 msgstr "Verarbeitet Statusänderungen von Liefer- und Zahlungsdiensten, die eine stapelweise Bearbeitung benötigen"
 
-msgid "Executes the jobs created by the admin interface, e.g. the text exports"
+msgid ""
+"Executes the jobs created by the admin interface, e.g. the text exports"
 msgstr "Führt die Aufgaben aus, die in der Administrationsoberfläche erstellt wurden, z.B. Textexporte"
 
 msgid "Exports all available products"
@@ -184,7 +189,8 @@ msgstr "Aktualisiert den Katalogindex für die Produktsuche"
 msgid "Removes the expired entries from the cache"
 msgstr "Löscht die alten Cache-Einträge"
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr "Entfernt alte Logeinträge aus der Datenbank und archiviert diese (optional)"
 
 msgid "Removes unfinished orders"
