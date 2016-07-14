@@ -91,7 +91,6 @@ class Standard
 					$serviceProvider = $serviceManager->getProvider( $serviceItem );
 
 					$expr = array(
-						$orderSearch->compare( '==', 'order.siteid', $serviceItem->getSiteId() ),
 						$orderSearch->compare( '>', 'order.datepayment', $date ),
 						$orderSearch->compare( '>', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING ),
 						$orderSearch->compare( '==', 'order.statusdelivery', \Aimeos\MShop\Order\Item\Base::STAT_UNFINISHED ),

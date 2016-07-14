@@ -113,7 +113,6 @@ class Standard
 
 
 					$expr = array();
-					$expr[] = $orderSearch->compare( '==', 'order.siteid', $serviceItem->getSiteId() );
 					$expr[] = $orderSearch->compare( '>', 'order.datepayment', $date );
 
 					if( $capDays !== null )
