@@ -1,23 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-06-10 10:53+0000\n"
+"PO-Revision-Date: 2016-07-16 21:36+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/aimeos/aimeos-core/language/sk/)\n"
-"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr ""
 
 msgid "Batch update of payment/delivery status"
@@ -41,7 +43,9 @@ msgstr ""
 msgid "Creates bought together product suggestions"
 msgstr ""
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr ""
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -95,7 +99,8 @@ msgstr ""
 msgid "Removes the expired entries from the cache"
 msgstr ""
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr ""
 
 msgid "Removes unfinished orders"
@@ -130,36 +135,3 @@ msgstr ""
 #, php-format
 msgid "aimeos-sitemap-%d.xml"
 msgstr ""
-
-#~ msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-#~ msgstr "Trieda  \"%1$s\" neimplementuje rozhranie  \"%2$s\""
-
-#~ msgid "Class \"%1$s\" not available"
-#~ msgstr "Trieda  \"%1$s\" nie je dostupná"
-
-#~ msgid "Class \"%1$s\" not found"
-#~ msgstr "Trieda \"%1$s\" nenájdená"
-
-#~ msgid "Controller path is empty"
-#~ msgstr "Cesta ovládača je prázdná"
-
-#~ msgid "Invalid controller \"%1$s\" in \"%2$s\""
-#~ msgstr "Invalid controller \"%1$s\" in \"%2$s\""
-
-#~ msgid "Invalid domain \"%1$s\""
-#~ msgstr "Neplatná doména  \"%1$s\""
-
-#~ msgid "Invalid factory \"%1$s\""
-#~ msgstr "Neplatná továreň \"%1$s\""
-
-#~ msgid "List type for domain \"%1$s\" and code \"%2$s\" not found"
-#~ msgstr "Typ záznamu nenájdený pre doménu \"%1$s\" a kód \"%2$s\""
-
-#~ msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-#~ msgstr "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-
-#~ msgid "Template \"%1$s\" not available"
-#~ msgstr "Šablóna \"%1$s\" nie je dostupná"
-
-#~ msgid "Unable to call method \"%1$s\""
-#~ msgstr "Nepodarilo sa zavolať metódu \"%1$s\""

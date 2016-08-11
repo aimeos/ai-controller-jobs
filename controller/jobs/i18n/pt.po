@@ -3,35 +3,34 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Maurice Lourens <mlourens@gmail.com>, 2015
-# Sten Pelzer <pelzersten@gmail.com>, 2015
+# Tadeu Pagliarini <tadeu_up@hotmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
-"Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
+"PO-Revision-Date: 2016-08-09 19:18+0000\n"
+"Last-Translator: Tadeu Pagliarini <tadeu_up@hotmail.com>\n"
+"Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "Pagamentos autorizados de pedidos serão capturados após o envio ou depois de um período de tempo configurável"
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Atualização em lote de status de pagamento/entrega"
 
 msgid "Cache cleanup"
-msgstr "Cache opschonen"
+msgstr "Limpeza de cache"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Captura pagamentos autorizados"
 
 msgid "Catalog index optimization"
 msgstr ""
@@ -40,48 +39,48 @@ msgid "Catalog index rebuild"
 msgstr ""
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Cria um mapa do site dos produtos para motores de busca"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Cria sugestoões para compra de produtos em conjunto"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr "Verwijderd onvoltooide bestellingen en maakt hun producten en coupon codes weer beschikbaar"
+msgstr "Remove pedidos não-concluídos tornando seus produtos e cupons disponíveis novamente"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr "Verwijderd onbetaalde orders om de database schoon te houden"
+msgstr "Deleta os pedidos sem pagamento para manter a base de dados limpa"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
 msgstr ""
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Exportar todos os produtos disponíveis"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr "Ongeldige karakters in klasse naam \"%1$s\""
+msgstr "Caracteres inválidos no nome da classe \"%1$s\""
 
 #, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
 msgstr ""
 
 msgid "Log cleanup"
-msgstr "Log opschonen"
+msgstr "Limpeza de registros"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Nenhuma coluna \"product.code\" foi encontrada no mapeamento do CSV"
 
 msgid "Optimizes the catalog index for searching products"
-msgstr ""
+msgstr "Otimiza o índice do catálogo de produtos pesquisados"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Processa serviços de entrega de pedidos"
 
 msgid "Product export"
 msgstr ""
@@ -93,7 +92,7 @@ msgid "Product site map"
 msgstr ""
 
 msgid "Products bought together"
-msgstr "Producten welke samen zijn gekocht"
+msgstr "Produtos comprados juntos"
 
 msgid "Rebuilds the catalog index for searching products"
 msgstr ""
@@ -103,20 +102,20 @@ msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr "Verwijder verouderde logs van de database en archiveer deze (optioneel)"
+msgstr "Remove registros antigos da base de dados e arquiva-os (opcional)"
 
 msgid "Removes unfinished orders"
-msgstr "Verwijder onvoltooide bestellingen"
+msgstr "Remover pedidos não concluídos"
 
 msgid "Removes unpaid orders"
-msgstr "Verwijder onbetaalde orders"
+msgstr "Remover pedidos sem pagamento"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
 msgstr ""
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Envia os pedidos pagos para o ERP ou empresa de logística"
 
 #, php-format
 msgid "Started product import from \"%1$s\" (%2$s)"
@@ -124,16 +123,16 @@ msgstr ""
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Incapaz de importar o produto com o código \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to move imported file"
-msgstr ""
+msgstr "Incapaz de mover o arquivo importado"
 
 #, php-format
 msgid "aimeos-products-%d.xml"
-msgstr ""
+msgstr "aimeos-products-%d.xml"
 
 #, php-format
 msgid "aimeos-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-sitemap-%d.xml"
