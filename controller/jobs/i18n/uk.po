@@ -1,23 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-06-07 09:37+0000\n"
+"PO-Revision-Date: 2016-07-16 21:36+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/aimeos/aimeos-core/language/uk/)\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr ""
 
 msgid "Batch update of payment/delivery status"
@@ -41,7 +43,9 @@ msgstr ""
 msgid "Creates bought together product suggestions"
 msgstr ""
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr ""
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -95,7 +99,8 @@ msgstr ""
 msgid "Removes the expired entries from the cache"
 msgstr ""
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr ""
 
 msgid "Removes unfinished orders"
@@ -130,15 +135,3 @@ msgstr ""
 #, php-format
 msgid "aimeos-sitemap-%d.xml"
 msgstr ""
-
-#~ msgid "Decreases the counts of successfully redeemed coupons"
-#~ msgstr "Decreases the counts of successfully redeemed coupons"
-
-#~ msgid "Decreases the stock levels of products in completed orders"
-#~ msgstr "Decreases the stock levels of products in completed orders"
-
-#~ msgid "Deprecated: Use \"Remove unfinised orders\""
-#~ msgstr "Deprecated: Use \"Remove unfinised orders\""
-
-#~ msgid "Deprecated: Use order/service/delivery"
-#~ msgstr "Deprecated: Use order/service/delivery"

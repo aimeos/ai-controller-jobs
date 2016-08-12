@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-08-09 19:18+0000\n"
+"PO-Revision-Date: 2016-08-11 18:50+0000\n"
 "Last-Translator: Tadeu Pagliarini <tadeu_up@hotmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -33,10 +33,10 @@ msgid "Capture authorized payments"
 msgstr "Captura pagamentos autorizados"
 
 msgid "Catalog index optimization"
-msgstr ""
+msgstr "Otimização do índice do catálogo"
 
 msgid "Catalog index rebuild"
-msgstr ""
+msgstr "Recriar índice do catálogo"
 
 msgid "Creates a product site map for search engines"
 msgstr "Cria um mapa do site dos produtos para motores de busca"
@@ -53,13 +53,13 @@ msgid "Deletes unpaid orders to keep the database clean"
 msgstr "Deleta os pedidos sem pagamento para manter a base de dados limpa"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Executa provedores de serviço de pagamento ou entrega que usam atualização em lotes"
 
 msgid "Exports all available products"
 msgstr "Exportar todos os produtos disponíveis"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Importa novos e atualiza produtos existentes a partir de arquivos CSV"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -67,7 +67,7 @@ msgstr "Caracteres inválidos no nome da classe \"%1$s\""
 
 #, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
-msgstr ""
+msgstr "Linhas de produtos inválidas em \"%1$s\": %2$d/%3$d"
 
 msgid "Log cleanup"
 msgstr "Limpeza de registros"
@@ -83,22 +83,22 @@ msgid "Process order delivery services"
 msgstr "Processa serviços de entrega de pedidos"
 
 msgid "Product export"
-msgstr ""
+msgstr "Exportação de produto"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Importação de produto CSV"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Mapa do site de produtos"
 
 msgid "Products bought together"
 msgstr "Produtos comprados juntos"
 
 msgid "Rebuilds the catalog index for searching products"
-msgstr ""
+msgstr "Recria o índice de catalogo para busca de produtos"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Remove entradas expiradas do cache"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -112,14 +112,14 @@ msgstr "Remover pedidos sem pagamento"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Chave de mapeamento obrigatória \"%1$s\" não existe ou está vazia"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
 msgstr "Envia os pedidos pagos para o ERP ou empresa de logística"
 
 #, php-format
 msgid "Started product import from \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Iniciar importação de produto de \"%1$s\" (%2$s)"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
