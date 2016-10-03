@@ -13,7 +13,7 @@ namespace Aimeos\Controller\Jobs\Admin\Cache;
 
 
 /**
- * Jobs admin job controller for admin interfaces.
+ * Cache admin job controller for admin interfaces.
  *
  * @package Controller
  * @subpackage Jobs

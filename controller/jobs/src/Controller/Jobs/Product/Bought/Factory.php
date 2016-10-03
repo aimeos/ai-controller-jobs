@@ -96,7 +96,7 @@ class Factory
 		 *
 		 * This would remove the decorator named "decorator1" from the list of
 		 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
-		 * "controller/jobs/common/decorators/default" for the admin job controller.
+		 * "controller/jobs/common/decorators/default" to the job controller.
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.03
