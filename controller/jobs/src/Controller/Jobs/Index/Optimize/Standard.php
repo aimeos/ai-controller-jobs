@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Catalog index optimization' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Index optimization' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Optimizes the catalog index for searching products' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Optimizes the index for searching products faster' );
 	}
 
 

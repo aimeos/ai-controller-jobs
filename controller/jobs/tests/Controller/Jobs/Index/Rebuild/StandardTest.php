@@ -42,13 +42,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetName()
 	{
-		$this->assertEquals( 'Catalog index rebuild', $this->object->getName() );
+		$this->assertEquals( 'Index rebuild', $this->object->getName() );
 	}
 
 
 	public function testGetDescription()
 	{
-		$text = 'Rebuilds the catalog index for searching products';
+		$text = 'Rebuilds the index for searching products';
 		$this->assertEquals( $text, $this->object->getDescription() );
 	}
 

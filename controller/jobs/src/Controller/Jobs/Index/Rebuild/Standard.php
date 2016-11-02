@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Catalog index rebuild' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Index rebuild' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rebuilds the catalog index for searching products' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rebuilds the index for searching products' );
 	}
 
 
