@@ -239,7 +239,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$config->set( 'controller/jobs/product/import/csv/backup', 'tmp/test-%Y-%m-%d.zip' );
 
 		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false ) {
-			throw new \Exception( 'Unable to copy test file' );
+			throw new \RuntimeException( 'Unable to copy test file' );
 		}
 
 		$this->object->run();
@@ -259,7 +259,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$config->set( 'controller/jobs/product/import/csv/backup', 'tmp/notexist/import.zip' );
 
 		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false ) {
-			throw new \Exception( 'Unable to copy test file' );
+			throw new \RuntimeException( 'Unable to copy test file' );
 		}
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );

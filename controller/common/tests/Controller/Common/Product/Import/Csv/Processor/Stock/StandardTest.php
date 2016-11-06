@@ -196,7 +196,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$typeResult = $typeManager->searchItems( $typeSearch );
 
 		if( ( $typeItem = reset( $typeResult ) ) === false ) {
-			throw new \Exception( 'No product type "default" found' );
+			throw new \RuntimeException( 'No product type "default" found' );
 		}
 
 		$item = $manager->createItem();

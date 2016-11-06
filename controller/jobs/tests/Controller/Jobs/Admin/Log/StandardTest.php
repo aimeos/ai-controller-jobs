@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		\Aimeos\MAdmin\Log\Manager\Factory::injectManager( '\\Aimeos\\MAdmin\\Log\\Manager\\' . $name, $mock );
 
 		if( !is_dir( $tmppath ) && mkdir( $tmppath ) === false ) {
-			throw new \Exception( sprintf( 'Unable to create temporary path "%1$s"', $tmppath ) );
+			throw new \RuntimeException( sprintf( 'Unable to create temporary path "%1$s"', $tmppath ) );
 		}
 
 		$this->object->run();
