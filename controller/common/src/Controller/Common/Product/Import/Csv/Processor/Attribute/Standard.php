@@ -221,8 +221,9 @@ class Standard
 
 			$item = $manager->createItem();
 			$item->setTypeId( $this->getTypeId( 'attribute/type', 'product', $type ) );
-			$item->setCode( $code );
+			$item->setDomain( 'product' );
 			$item->setLabel( $type . ' ' . $code );
+			$item->setCode( $code );
 			$item->setStatus( 1 );
 
 			$manager->saveItem( $item );
