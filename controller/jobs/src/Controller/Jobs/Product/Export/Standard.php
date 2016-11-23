@@ -89,11 +89,12 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/standard/template-items';
 		$default = 'product/export/items-body-default.xml';
 
-		$view = $this->getContext()->getView();
+		$context = $this->getContext();
+		$view = $context->getView();
 
 		$view->exportItems = $items;
 
-		$content->add( $view->render( $view->config( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 	}
 
 
@@ -213,10 +214,11 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/standard/template-header';
 		$default = 'product/export/items-header-default.xml';
 
-		$view = $this->getContext()->getView();
+		$context = $this->getContext();
+		$view = $context->getView();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
-		$content->add( $view->render( $view->config( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 		$container->add( $content );
 
 		return $content;
@@ -255,9 +257,10 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/standard/template-footer';
 		$default = 'product/export/items-footer-default.xml';
 
-		$view = $this->getContext()->getView();
+		$context = $this->getContext();
+		$view = $context->getView();
 
-		$content->add( $view->render( $view->config( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 	}
 
 
