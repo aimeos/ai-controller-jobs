@@ -123,12 +123,13 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-items';
 		$default = 'product/export/sitemap-items-body-default.xml';
 
-		$view = $this->getContext()->getView();
+		$context = $this->getContext();
+		$view = $context->getView();
 
 		$view->siteItems = $items;
 		$view->siteFreq = $changefreq;
 
-		$content->add( $view->render( $view->config( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 	}
 
 
@@ -234,10 +235,11 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-header';
 		$default = 'product/export/sitemap-items-header-default.xml';
 
-		$view = $this->getContext()->getView();
+		$context = $this->getContext();
+		$view = $context->getView();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
-		$content->add( $view->render( $view->config( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 		$container->add( $content );
 
 		return $content;
@@ -276,9 +278,10 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-footer';
 		$default = 'product/export/sitemap-items-footer-default.xml';
 
-		$view = $this->getContext()->getView();
+		$context = $this->getContext();
+		$view = $context->getView();
 
-		$content->add( $view->render( $view->config( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 	}
 
 
@@ -315,11 +318,13 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-index';
 		$default = 'product/export/sitemap-index-default.xml';
 
-		$view = $this->getContext()->getView();
+		$context = $this->getContext();
+		$view = $context->getView();
+
 		$view->siteFiles = $files;
 
 		$content = $container->create( 'aimeos-sitemap-index.xml' );
-		$content->add( $view->render( $view->config( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 		$container->add( $content );
 	}
 
