@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Aimeos <aimeos@aimeos.org>, 2015-2016
 # Daniel Hoffmann <d.hoffmann@metaways.de>, 2013
@@ -10,19 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
+"POT-Creation-Date: 2016-12-02 10:44+0100\n"
 "PO-Revision-Date: 2016-07-16 21:36+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "Autorisierte Zahlungen für Bestellungen werden eingezogen nachdem die Ware versandt wurde oder nach einer konfigurierbaren Zeitspanne"
 
 msgid "Batch update of payment/delivery status"
@@ -46,9 +44,7 @@ msgstr "Erzeugt eine Sitemap der Produkte für Suchmaschinen"
 msgid "Creates bought together product suggestions"
 msgstr "Erstellt Vorschläge für zusammen gekaufte Produkte"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "Löscht nicht abgeschlossene Bestellungen und stellt die Produkte und Gutscheincodes wieder zur Verfügung"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -62,6 +58,14 @@ msgstr "Exportiert alle verfügbaren Produkte"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Importiert neue und aktualisiert existierende Produkte aus CSV Dateien"
+
+#, fuzzy
+msgid "Index optimization"
+msgstr "Optimieren des Katalogindexes"
+
+#, fuzzy
+msgid "Index rebuild"
+msgstr "Aktualisieren des Katalogindex"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -79,6 +83,10 @@ msgid "No \"product.code\" column in CSV mapping found"
 msgstr "In der CSV-Zuordnung fehlt die Spalte \"product.code\""
 
 msgid "Optimizes the catalog index for searching products"
+msgstr "Optimiert den Katalogindex für die Produktsuche"
+
+#, fuzzy
+msgid "Optimizes the index for searching products faster"
 msgstr "Optimiert den Katalogindex für die Produktsuche"
 
 msgid "Process order delivery services"
@@ -99,11 +107,14 @@ msgstr "Zusammen gekaufte Produkte"
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Aktualisiert den Katalogindex für die Produktsuche"
 
+#, fuzzy
+msgid "Rebuilds the index for searching products"
+msgstr "Aktualisiert den Katalogindex für die Produktsuche"
+
 msgid "Removes the expired entries from the cache"
 msgstr "Löscht die alten Cache-Einträge"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "Entfernt alte Logeinträge aus der Datenbank und archiviert diese (optional)"
 
 msgid "Removes unfinished orders"

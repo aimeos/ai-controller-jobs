@@ -1,26 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Metal <meteoramic@yahoo.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
+"POT-Creation-Date: 2016-12-02 10:44+0100\n"
 "PO-Revision-Date: 2016-07-16 21:36+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "Sevkiyattan veya yapılandırılabilir bir zaman zarfından sonra siparişlerin yetkili ödemeleri çekilecektir"
 
 msgid "Batch update of payment/delivery status"
@@ -44,9 +42,7 @@ msgstr "Arama motorları için bir ürün site haritası oluşturur"
 msgid "Creates bought together product suggestions"
 msgstr "Beraber satın alınan ürün önerileri oluşturur"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "Bitmemiş siparişleri siler ve onların ürünlerini ve kupon kodlarını kullanılabilir hale getirir"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -60,6 +56,14 @@ msgstr "Mevcut tüm ürünleri dışa aktarır"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "CSV dosyasından yeni ürün içe aktarır veya mevcut ürünleri günceller"
+
+#, fuzzy
+msgid "Index optimization"
+msgstr "Katalog dizin optimizasyonu"
+
+#, fuzzy
+msgid "Index rebuild"
+msgstr "Katalog dizin yeniden oluşturma"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -77,6 +81,10 @@ msgid "No \"product.code\" column in CSV mapping found"
 msgstr "CSV mapping'de \"product.code\" sütunu bulunamadı"
 
 msgid "Optimizes the catalog index for searching products"
+msgstr "Arama ürünleri için katalog dizinini optimize eder"
+
+#, fuzzy
+msgid "Optimizes the index for searching products faster"
 msgstr "Arama ürünleri için katalog dizinini optimize eder"
 
 msgid "Process order delivery services"
@@ -97,11 +105,14 @@ msgstr "Beraber satın alınan ürünler"
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Arama ürünleri için katalog dizinini yeniden oluşturur"
 
+#, fuzzy
+msgid "Rebuilds the index for searching products"
+msgstr "Arama ürünleri için katalog dizinini yeniden oluşturur"
+
 msgid "Removes the expired entries from the cache"
 msgstr "Süresi dolan girişleri önbellekten kaldırır"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "Eski günlük girişlerini veri tabanından kaldırır ve arşivler (isteğe bağlı)"
 
 msgid "Removes unfinished orders"

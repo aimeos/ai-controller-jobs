@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
+"POT-Creation-Date: 2016-12-02 10:44+0100\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -56,6 +56,12 @@ msgstr ""
 msgid "Imports new and updates existing products from CSV files"
 msgstr ""
 
+msgid "Index optimization"
+msgstr ""
+
+msgid "Index rebuild"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr ""
@@ -74,6 +80,9 @@ msgstr ""
 msgid "Optimizes the catalog index for searching products"
 msgstr ""
 
+msgid "Optimizes the index for searching products faster"
+msgstr ""
+
 msgid "Process order delivery services"
 msgstr ""
 
@@ -90,6 +99,9 @@ msgid "Products bought together"
 msgstr ""
 
 msgid "Rebuilds the catalog index for searching products"
+msgstr ""
+
+msgid "Rebuilds the index for searching products"
 msgstr ""
 
 msgid "Removes the expired entries from the cache"
