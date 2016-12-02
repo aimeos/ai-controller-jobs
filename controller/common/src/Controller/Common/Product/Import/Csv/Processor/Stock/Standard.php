@@ -47,7 +47,7 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		$this->cache = $this->getCache( 'warehouse' );
+		$this->cache = $this->getCache( 'stocktype' );
 	}
 
 
@@ -74,10 +74,10 @@ class Standard
 					continue;
 				}
 
-				$whcode = ( isset( $list['product.stock.warehouse'] ) ? $list['product.stock.warehouse'] : 'default' );
+				$stockType = ( isset( $list['product.stock.type'] ) ? $list['product.stock.type'] : 'default' );
 
-				if( !isset( $list['product.stock.warehouseid'] ) ) {
-					$list['product.stock.warehouseid'] = $this->cache->get( $whcode );
+				if( !isset( $list['product.stock.typeid'] ) ) {
+					$list['product.stock.typeid'] = $this->cache->get( $stockType );
 				}
 
 				if( isset( $list['product.stock.dateback'] ) && $list['product.stock.dateback'] === '' ) {

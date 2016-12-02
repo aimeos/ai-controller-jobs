@@ -63,16 +63,16 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcessMultiple()
 	{
 		$mapping = array(
-			0 => 'product.stock.warehouse',
+			0 => 'product.stock.type',
 			1 => 'product.stock.stocklevel',
-			2 => 'product.stock.warehouse',
+			2 => 'product.stock.type',
 			3 => 'product.stock.stocklevel',
 		);
 
 		$data = array(
-			0 => 'unit_warehouse1',
+			0 => 'unit_type1',
 			1 => '200',
-			2 => 'unit_warehouse2',
+			2 => 'unit_type2',
 			3 => '200',
 		);
 
@@ -154,13 +154,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcessEmpty()
 	{
 		$mapping = array(
-			0 => 'product.stock.warehouse',
+			0 => 'product.stock.type',
 			1 => 'product.stock.stocklevel',
 			2 => 'product.stock.dateback',
 		);
 
 		$data = array(
-			0 => 'unit_warehouse1',
+			0 => 'unit_type1',
 			1 => '',
 			2 => '',
 		);

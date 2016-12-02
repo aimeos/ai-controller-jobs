@@ -8,11 +8,11 @@
  */
 
 
-namespace Aimeos\Controller\Common\Product\Import\Csv\Cache\Warehouse;
+namespace Aimeos\Controller\Common\Product\Import\Csv\Cache\Stocktype;
 
 
 /**
- * Warehouse cache for CSV imports
+ * Stock type cache for CSV imports
  *
  * @package Controller
  * @subpackage Common
@@ -21,18 +21,18 @@ class Standard
 	extends \Aimeos\Controller\Common\Product\Import\Csv\Cache\Base
 	implements \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface
 {
-	/** controller/common/product/import/csv/cache/warehouse/name
-	 * Name of the warehouse cache implementation
+	/** controller/common/product/import/csv/cache/stocktype/name
+	 * Name of the stock type cache implementation
 	 *
-	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Product\Import\Csv\Cache\Warehouse\Myname".
+	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Product\Import\Csv\Cache\Stocktype\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the cache class name
-	 * @since 2015.10
+	 * @since 2017.01
 	 * @category Developer
 	 */
 
-	private $warehouses = array();
+	private $types = array();
 
 
 	/**
@@ -44,38 +44,38 @@ class Standard
 	{
 		parent::__construct( $context );
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/stock/warehouse' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/stock/type' );
 		$search = $manager->createSearch();
 		$search->setSlice( 0, 1000 );
 
 		foreach( $manager->searchItems( $search ) as $id => $item ) {
-			$this->warehouses[ $item->getCode() ] = $id;
+			$this->types[ $item->getCode() ] = $id;
 		}
 	}
 
 
 	/**
-	 * Returns the warehouse ID for the given code
+	 * Returns the type ID for the given code
 	 *
-	 * @param string $code Warehouse code
+	 * @param string $code Stock type
 	 * @param string|null $type Attribute type
-	 * @return string|null Warehouse ID or null if not found
+	 * @return string|null Stock type ID or null if not found
 	 */
 	public function get( $code, $type = null )
 	{
-		if( isset( $this->warehouses[$code] ) ) {
-			return $this->warehouses[$code];
+		if( isset( $this->types[$code] ) ) {
+			return $this->types[$code];
 		}
 	}
 
 
 	/**
-	 * Adds the warehouse ID to the cache
+	 * Adds the type ID to the cache
 	 *
-	 * @param \Aimeos\MShop\Common\Item\Iface $item Warehouse object
+	 * @param \Aimeos\MShop\Common\Item\Iface $item Stock type object
 	 */
 	public function set( \Aimeos\MShop\Common\Item\Iface $item )
 	{
-		$this->warehouses[ $item->getCode() ] = $item->getId();
+		$this->types[ $item->getCode() ] = $item->getId();
 	}
 }
