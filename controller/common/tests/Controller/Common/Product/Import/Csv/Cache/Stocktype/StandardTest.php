@@ -1,12 +1,14 @@
 <?php
 
-namespace Aimeos\Controller\Common\Product\Import\Csv\Cache\Stocktype;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
+
+
+namespace Aimeos\Controller\Common\Product\Import\Csv\Cache\Stocktype;
+
+
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
@@ -44,7 +46,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testSet()
 	{
-		$item = \Aimeos\MShop\Factory::createManager( \TestHelperCntl::getContext(), 'product/stock/type' )->createItem();
+		$item = \Aimeos\MShop\Factory::createManager( \TestHelperCntl::getContext(), 'stock/type' )->createItem();
 		$item->setCode( 'cache-test' );
 		$item->setId( 1 );
 

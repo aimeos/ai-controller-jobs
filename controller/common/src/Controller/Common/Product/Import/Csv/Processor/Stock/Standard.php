@@ -60,35 +60,35 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/stock' );
+		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'stock' );
 		$manager->begin();
 
 		try
 		{
 			$map = $this->getMappedChunk( $data );
-			$items = $this->getStockItems( $product->getId() );
+			$items = $this->getStockItems( $product->getCode() );
 
 			foreach( $map as $pos => $list )
 			{
-				if( !array_key_exists( 'product.stock.stocklevel', $list ) ) {
+				if( !array_key_exists( 'stock.stocklevel', $list ) ) {
 					continue;
 				}
 
-				$stockType = ( isset( $list['product.stock.type'] ) ? $list['product.stock.type'] : 'default' );
+				$stockType = ( isset( $list['stock.type'] ) ? $list['stock.type'] : 'default' );
 
-				if( !isset( $list['product.stock.typeid'] ) ) {
-					$list['product.stock.typeid'] = $this->cache->get( $stockType );
+				if( !isset( $list['stock.typeid'] ) ) {
+					$list['stock.typeid'] = $this->cache->get( $stockType );
 				}
 
-				if( isset( $list['product.stock.dateback'] ) && $list['product.stock.dateback'] === '' ) {
-					$list['product.stock.dateback'] = null;
+				if( isset( $list['stock.dateback'] ) && $list['stock.dateback'] === '' ) {
+					$list['stock.dateback'] = null;
 				}
 
-				if( $list['product.stock.stocklevel'] === '' ) {
-					$list['product.stock.stocklevel'] = null;
+				if( $list['stock.stocklevel'] === '' ) {
+					$list['stock.stocklevel'] = null;
 				}
 
-				$list['product.stock.parentid'] = $product->getId();
+				$list['stock.productcode'] = $product->getCode();
 
 				if( ( $item = array_pop( $items ) ) === null ) {
 					$item = $manager->createItem();
@@ -115,17 +115,17 @@ class Standard
 
 
 	/**
-	 * Returns the product properties for the given product ID
+	 * Returns the stock items for the given product code
 	 *
-	 * @param string $prodid Unique product ID
-	 * @return array Associative list of product stock items
+	 * @param string $code Unique product code
+	 * @return \Aimeos\MShop\Stock\Item\Iface[] Associative list of stock items
 	 */
-	protected function getStockItems( $prodid )
+	protected function getStockItems( $code )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/stock' );
+		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'stock' );
 
 		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'product.stock.parentid', $prodid ) );
+		$search->setConditions( $search->compare( '==', 'stock.productcoce', $code ) );
 
 		return $manager->searchItems( $search );
 	}

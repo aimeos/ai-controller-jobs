@@ -44,9 +44,9 @@ class Standard
 	{
 		parent::__construct( $context );
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/stock/type' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'stock/type' );
 		$search = $manager->createSearch();
-		$search->setSlice( 0, 1000 );
+		$search->setSlice( 0, 0x7fffffff );
 
 		foreach( $manager->searchItems( $search ) as $id => $item ) {
 			$this->types[ $item->getCode() ] = $id;
