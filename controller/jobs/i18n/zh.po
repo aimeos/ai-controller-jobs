@@ -1,24 +1,26 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Bruce Liu <zcon.bruce@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 10:44+0100\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-03 11:21+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
-"Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr "已授權的訂單付款將會在dispatching或是配置時間過後被獲取"
 
 msgid "Batch update of payment/delivery status"
@@ -42,7 +44,9 @@ msgstr "創建供搜尋引擎使用的商品網站地圖"
 msgid "Creates bought together product suggestions"
 msgstr "創建一起購買商品推薦"
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr "刪除未完成的訂單讓商品以及優惠券可再次使用"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -57,13 +61,11 @@ msgstr "匯出所有可用商品"
 msgid "Imports new and updates existing products from CSV files"
 msgstr "從CSV匯入新的商品並更新既有商品"
 
-#, fuzzy
 msgid "Index optimization"
-msgstr "型錄索引最佳化"
+msgstr ""
 
-#, fuzzy
 msgid "Index rebuild"
-msgstr "型錄索引重新建立"
+msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -83,9 +85,8 @@ msgstr "在CSV找不到 \"product.code\" 欄位"
 msgid "Optimizes the catalog index for searching products"
 msgstr "最佳化搜尋商品的型錄索引"
 
-#, fuzzy
 msgid "Optimizes the index for searching products faster"
-msgstr "最佳化搜尋商品的型錄索引"
+msgstr ""
 
 msgid "Process order delivery services"
 msgstr "處理訂單配送服務"
@@ -105,14 +106,14 @@ msgstr "一起購買商品"
 msgid "Rebuilds the catalog index for searching products"
 msgstr "重建搜尋商品用的型錄索引"
 
-#, fuzzy
 msgid "Rebuilds the index for searching products"
-msgstr "重建搜尋商品用的型錄索引"
+msgstr ""
 
 msgid "Removes the expired entries from the cache"
 msgstr "從快取中移除過期的條目"
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr "從資料庫移除舊的log條目並將其封存(選用)"
 
 msgid "Removes unfinished orders"

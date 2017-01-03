@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Dimitri <doleiynyk@metaways.de>, 2013
 # Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
@@ -9,17 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 10:44+0100\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-03 11:21+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr "Авторизация платежей по заказам будет получена после отправки, либо после определённого промежутка времени"
 
 msgid "Batch update of payment/delivery status"
@@ -43,7 +45,9 @@ msgstr "Создание карты сайта с товарами для пои
 msgid "Creates bought together product suggestions"
 msgstr "Создание подсказок по сопутствующим товарам"
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr "Удаление незавершённых заказов делает снова доступными товары и коды купонов из них"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -58,13 +62,11 @@ msgstr "Экспорт всех доступных товаров"
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Импорт новых и обновление существующих товаров из файлов CSV"
 
-#, fuzzy
 msgid "Index optimization"
-msgstr "Оптимизация индекса каталога"
+msgstr ""
 
-#, fuzzy
 msgid "Index rebuild"
-msgstr "Перестроение индекса каталога"
+msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -84,9 +86,8 @@ msgstr ""
 msgid "Optimizes the catalog index for searching products"
 msgstr "Оптимизация индекса каталога для поиска товаров"
 
-#, fuzzy
 msgid "Optimizes the index for searching products faster"
-msgstr "Оптимизация индекса каталога для поиска товаров"
+msgstr ""
 
 msgid "Process order delivery services"
 msgstr "Обработка служб доставки заказов"
@@ -106,14 +107,14 @@ msgstr "Сопутствующие друг другу товары"
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Перестроение индекса каталога для поиска товаров"
 
-#, fuzzy
 msgid "Rebuilds the index for searching products"
-msgstr "Перестроение индекса каталога для поиска товаров"
+msgstr ""
 
 msgid "Removes the expired entries from the cache"
 msgstr "Удаление устаревших записей из кеша"
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr "Удаление старых записей журнала из базы данных и их архивирование (по выбору)"
 
 msgid "Removes unfinished orders"
