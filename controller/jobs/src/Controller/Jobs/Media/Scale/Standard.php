@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rescale images' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rescale product images' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rescales images to the new sizes' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rescales product images to the new sizes' );
 	}
 
 
@@ -54,7 +54,11 @@ class Standard
 		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'media' );
 
 		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '=~', 'media.mimetype', 'image/' ) );
+		$expr = array(
+			$search->compare( '==', 'media.domain', 'product' ),
+			$search->compare( '=~', 'media.mimetype', 'image/' ),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSortations( array( $search->sort( '+', 'media.id' ) ) );
 
 		$start = 0;

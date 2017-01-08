@@ -31,13 +31,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetName()
 	{
-		$this->assertEquals( 'Rescale images', $this->object->getName() );
+		$this->assertEquals( 'Rescale product images', $this->object->getName() );
 	}
 
 
 	public function testGetDescription()
 	{
-		$text = 'Rescales images to the new sizes';
+		$text = 'Rescales product images to the new sizes';
 		$this->assertEquals( $text, $this->object->getDescription() );
 	}
 
