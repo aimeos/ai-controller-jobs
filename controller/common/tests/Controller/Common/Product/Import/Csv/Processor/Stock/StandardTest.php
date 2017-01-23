@@ -194,7 +194,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$typeManager = $manager->getSubManager( 'type' );
 
 		$typeSearch = $typeManager->createSearch();
-		$typeSearch->setConditions( $typeSearch->compare( '==', 'type.code', 'default' ) );
+		$typeSearch->setConditions( $typeSearch->compare( '==', 'product.type.code', 'default' ) );
 		$typeResult = $typeManager->searchItems( $typeSearch );
 
 		if( ( $typeItem = reset( $typeResult ) ) === false ) {
@@ -223,7 +223,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'stock' );
 
 		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'stock.prodcode', $code ) );
+		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );
 
 		return $manager->searchItems( $search );
 	}
