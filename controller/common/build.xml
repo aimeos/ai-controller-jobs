@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ai-admin-extadm extension - common controller" default="all">
+<project name="ai-controller-jobs - common controller" default="all">
 
 	<target name="test" description="Executes unit tests">
 		<echo msg="Executing unit tests" />
 		<delete file="tests/unittest.log" quiet="true" failonerror="false" />
-		<exec command="${bindir}phpunit --configuration=phpunit.xml"
+		<exec command="${bindir}phpunit -d memory_limit=-1 --include-path ${coredir} --configuration=phpunit.xml"
 			  dir="tests" checkreturn="true" logoutput="true"/>
 	</target>
 
@@ -13,7 +13,7 @@
 		<echo msg="Generating code coverage report" />
 		<delete file="tests/unittest.log" quiet="true" failonerror="false" />
 		<delete file="tests/coverage.xml" quiet="true" failonerror="false" />
-		<exec command="${bindir}phpunit --configuration=phpunit-coverage.xml"
+		<exec command="${bindir}phpunit -d memory_limit=-1 --include-path ${coredir} --configuration=phpunit-coverage.xml"
 			  dir="tests" checkreturn="true" logoutput="true"/>
 	</target>
 
@@ -47,7 +47,7 @@
 	<target name="i18n-update" description="Updates translation message files">
 		<fail unless="po-filename" message="Missing file name" />
 		<echo msg="File: ${po-filename}" />
-		<exec command="msgmerge --no-wrap -s -U --backup=none ${po-filename} i18n/core-controller-common.pot" checkreturn="true" logoutput="true" /> 
+		<exec command="msgmerge --no-wrap -s -U --backup=none ${po-filename} i18n/core-controller-common.pot" checkreturn="true" logoutput="true" />
   </target>
 
 	<target name="build" description="Builds package for deployment">
@@ -61,7 +61,7 @@
 	<target name="build-mo" description="Generates binary translation files">
 		<fail unless="po-filename" message="Missing file name" />
 		<echo msg="File: ${po-filename}" />
-		<exec command="msgfmt --statistics -c -o `echo ${po-filename} | sed s/\.po//` ${po-filename}" checkreturn="true" logoutput="true" /> 
+		<exec command="msgfmt --statistics -c -o `echo ${po-filename} | sed s/\.po//` ${po-filename}" checkreturn="true" logoutput="true" />
     </target>
 
 	<target name="all" depends="coverage" description="Builds all parts of the package">
