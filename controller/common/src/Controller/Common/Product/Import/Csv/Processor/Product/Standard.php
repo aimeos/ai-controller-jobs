@@ -104,9 +104,7 @@ class Standard
 
 			foreach( $this->getMappedChunk( $data ) as $list )
 			{
-				if( !isset( $list['product.code'] ) || $list['product.code'] === '' || isset( $list['product.lists.type'] )
-					&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
-				) {
+				if( $this->checkEntry( $list ) === false ) {
 					continue;
 				}
 
@@ -141,6 +139,24 @@ class Standard
 		}
 
 		return $remaining;
+	}
+
+
+	/**
+	 * Checks if an entry can be used for updating a media item
+	 *
+	 * @param array $list Associative list of key/value pairs from the mapping
+	 * @return boolean True if valid, false if not
+	 */
+	protected function checkEntry( array $list )
+	{
+		if( !isset( $list['product.code'] ) || $list['product.code'] === '' || isset( $list['product.lists.type'] )
+			&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
+		) {
+			return false;
+		}
+
+		return true;
 	}
 
 

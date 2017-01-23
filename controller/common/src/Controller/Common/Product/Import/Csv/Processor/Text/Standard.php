@@ -85,32 +85,44 @@ class Standard
 
 		try
 		{
-			$listItems = $product->getListItems( 'text' );
+			$delete = $listMap = array();
 			$map = $this->getMappedChunk( $data );
+			$listItems = $product->getListItems( 'text', $this->listTypes );
+
+			foreach( $listItems as $listItem )
+			{
+				if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+					$listMap[ $refItem->getContent() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
+				}
+			}
 
 			foreach( $map as $pos => $list )
 			{
-				if( !isset( $list['text.content'] ) || $list['text.content'] === '' || isset( $list['product.lists.type'] )
-					&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
-				) {
+				if( $this->checkEntry( $list ) === false ) {
 					continue;
 				}
 
-				if( ( $listItem = array_shift( $listItems ) ) !== null ) {
+				$type = ( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
+				$typecode = ( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+
+				if( isset( $listMap[ $list['text.content'] ][$type][$typecode] ) )
+				{
+					$listItem = $listMap[ $list['text.content'] ][$type][$typecode];
 					$refItem = $listItem->getRefItem();
-				} else {
+					unset( $listItems[ $listItem->getId() ] );
+				}
+				else
+				{
 					$listItem = $listManager->createItem();
 					$refItem = $manager->createItem();
 				}
 
-				$typecode = ( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
-				$list['text.typeid'] = $this->getTypeId( 'text/type', 'product', $typecode );
+				$list['text.typeid'] = $this->getTypeId( 'text/type', 'product', $type );
 				$list['text.domain'] = 'product';
 
 				$refItem->fromArray( $this->addItemDefaults( $list ) );
 				$manager->saveItem( $refItem );
 
-				$typecode = ( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 				$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'text', $typecode );
 				$list['product.lists.parentid'] = $product->getId();
 				$list['product.lists.refid'] = $refItem->getId();
@@ -120,11 +132,12 @@ class Standard
 				$listManager->saveItem( $listItem );
 			}
 
-			foreach( $listItems as $listItem )
-			{
-				$manager->deleteItem( $listItem->getRefItem()->getId() );
-				$listManager->deleteItem( $listItem->getId() );
+			foreach( $listItems as $listItem ) {
+				$delete[] = $listItem->getRefId();
 			}
+
+			$manager->deleteItems( $delete );
+			$listManager->deleteItems( array_keys( $listItems ) );
 
 			$remaining = $this->getObject()->process( $product, $data );
 
@@ -161,5 +174,23 @@ class Standard
 		}
 
 		return $list;
+	}
+
+
+	/**
+	 * Checks if an entry can be used for updating a media item
+	 *
+	 * @param array $list Associative list of key/value pairs from the mapping
+	 * @return boolean True if valid, false if not
+	 */
+	protected function checkEntry( array $list )
+	{
+		if( !isset( $list['text.content'] ) || $list['text.content'] === '' || isset( $list['product.lists.type'] )
+			&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
+		) {
+			return false;
+		}
+
+		return true;
 	}
 }

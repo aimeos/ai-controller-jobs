@@ -91,34 +91,16 @@ class Standard
 
 		try
 		{
-			$pos = 0;
-			$delete = array();
+			$listMap = array();
 			$map = $this->getMappedChunk( $data );
 			$listItems = $product->getListItems( 'attribute', $this->listTypes );
 
-			foreach( $listItems as $listId => $listItem )
+			foreach( $listItems as $listItem )
 			{
-				if( isset( $map[$pos] ) )
-				{
-					if( !isset( $map[$pos]['attribute.code'] ) || !isset( $map[$pos]['attribute.type'] ) )
-					{
-						unset( $map[$pos] );
-						continue;
-					}
-
-					if( $this->checkMatch( $listItem, $map[$pos] ) === true )
-					{
-						$pos++;
-						continue;
-					}
+				if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+					$listMap[ $refItem->getCode() ][ $listItem->getType() ] = $listItem;
 				}
-
-				$listItems[$listId] = null;
-				$delete[] = $listId;
-				$pos++;
 			}
-
-			$listManager->deleteItems( $delete );
 
 			foreach( $map as $pos => $list )
 			{
@@ -135,20 +117,28 @@ class Standard
 					$attrItem->setCode( $code );
 					$manager->saveItem( $attrItem );
 
-					if( ( $listItem = array_shift( $listItems ) ) === null ) {
-						$listItem = $listManager->createItem();
-					}
-
 					$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
 					$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'attribute', $typecode );
 					$list['product.lists.refid'] = $attrItem->getId();
 					$list['product.lists.parentid'] = $product->getId();
 					$list['product.lists.domain'] = 'attribute';
 
+					if( isset( $listMap[$code][$typecode] ) )
+					{
+						$listItem = $listMap[$code][$typecode];
+						unset( $listItems[ $listItem->getId() ] );
+					}
+					else
+					{
+						$listItem = $listManager->createItem();
+					}
+
 					$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
 					$listManager->saveItem( $listItem );
 				}
 			}
+
+			$listManager->deleteItems( array_keys( $listItems ) );
 
 			$remaining = $this->getObject()->process( $product, $data );
 
@@ -180,29 +170,6 @@ class Standard
 		}
 
 		return true;
-	}
-
-
-	/**
-	 * Checks if the list item matches the values from the list
-	 *
-	 * @param \Aimeos\MShop\Common\Item\Lists\Iface $listItem List item object
-	 * @param array $list Associative list of key/value pairs from the mapped data
-	 * @return boolean True if the list item matches the values in the list, false if not
-	 */
-	protected function checkMatch( \Aimeos\MShop\Common\Item\Lists\Iface $listItem, array $list )
-	{
-		$refItem = $listItem->getRefItem();
-
-		if( $refItem !== null && $list['attribute.code'] === $refItem->getCode()
-			&& $list['attribute.type'] === $refItem->getType()
-			&& ( !isset( $list['product.lists.type'] ) || isset( $list['product.lists.type'] )
-			&& $list['product.lists.type'] === $listItem->getType() )
-		) {
-			return true;
-		}
-
-		return false;
 	}
 
 
