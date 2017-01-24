@@ -98,7 +98,7 @@ class Standard
 			foreach( $listItems as $listItem )
 			{
 				if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-					$listMap[ $refItem->getCode() ][ $refItem->getType() ] = $listItem;
+					$listMap[ $refItem->getCode() ][ $listItem->getType() ] = $listItem;
 				}
 			}
 
@@ -123,9 +123,9 @@ class Standard
 					$list['product.lists.parentid'] = $product->getId();
 					$list['product.lists.domain'] = 'attribute';
 
-					if( isset( $listMap[$code][ $list['attribute.type'] ] ) )
+					if( isset( $listMap[$code][$typecode] ) )
 					{
-						$listItem = $listMap[$code][ $list['attribute.type'] ];
+						$listItem = $listMap[$code][$typecode];
 						unset( $listItems[ $listItem->getId() ] );
 					}
 					else
@@ -139,6 +139,7 @@ class Standard
 			}
 
 			$listManager->deleteItems( array_keys( $listItems ) );
+
 			$remaining = $this->getObject()->process( $product, $data );
 
 			$manager->commit();
