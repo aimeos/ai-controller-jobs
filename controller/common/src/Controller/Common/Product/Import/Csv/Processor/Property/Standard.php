@@ -48,7 +48,7 @@ class Standard
 		try
 		{
 			$propMap = array();
-			$map = $this->getMappedChunk( $data );
+			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$items = $this->getPropertyItems( $product->getId() );
 
 			foreach( $items as $item ) {
@@ -81,7 +81,7 @@ class Standard
 
 			$manager->deleteItems( array_keys( $items ) );
 
-			$remaining = $this->getObject()->process( $product, $data );
+			$data = $this->getObject()->process( $product, $data );
 
 			$manager->commit();
 		}
@@ -91,7 +91,7 @@ class Standard
 			throw $e;
 		}
 
-		return $remaining;
+		return $data;
 	}
 
 

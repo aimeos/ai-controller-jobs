@@ -514,8 +514,6 @@ class Standard
 
 		foreach( $data as $code => $list )
 		{
-			$remaining = array();
-
 			$manager->begin();
 
 			try
@@ -526,15 +524,20 @@ class Standard
 					$product = $manager->createItem();
 				}
 
-				$map = $this->getMappedData( $mapping, $list );
+				$map = $this->getMappedChunk( $list, $mapping );
 
-				$typecode = ( isset( $map['product.type'] ) ? $map['product.type'] : 'default' );
-				$map['product.typeid'] = $this->getTypeId( 'product/type', 'product', $typecode );
+				if( isset( $map[0] ) )
+				{
+					$map = $map[0]; // there can only be one chunk for the base product data
 
-				$product->fromArray( $this->addItemDefaults( $map ) );
-				$manager->saveItem( $product );
+					$typecode = ( isset( $map['product.type'] ) ? $map['product.type'] : 'default' );
+					$map['product.typeid'] = $this->getTypeId( 'product/type', 'product', $typecode );
 
-				$remaining = $processor->process( $product, $list );
+					$product->fromArray( $this->addItemDefaults( $map ) );
+					$manager->saveItem( $product );
+
+					$list = $processor->process( $product, $list );
+				}
 
 				$manager->commit();
 			}
@@ -548,8 +551,8 @@ class Standard
 				$errors++;
 			}
 
-			if( $strict && !empty( $remaining ) ) {
-				$context->getLogger()->log( 'Not imported: ' . print_r( $remaining, true ) );
+			if( $strict && !empty( $list ) ) {
+				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ) );
 			}
 		}
 

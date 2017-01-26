@@ -65,7 +65,7 @@ class Standard
 
 		try
 		{
-			$map = $this->getMappedChunk( $data );
+			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$items = $this->getStockItems( $product->getCode() );
 
 			foreach( $map as $pos => $list )
@@ -100,7 +100,7 @@ class Standard
 
 			$manager->deleteItems( array_keys( $items ) );
 
-			$remaining = $this->getObject()->process( $product, $data );
+			$data = $this->getObject()->process( $product, $data );
 
 			$manager->commit();
 		}
@@ -110,7 +110,7 @@ class Standard
 			throw $e;
 		}
 
-		return $remaining;
+		return $data;
 	}
 
 

@@ -218,21 +218,26 @@ class Base
 	/**
 	 * Returns the mapped data from the CSV line
 	 *
+	 * @param array $data List of CSV fields with position as key and domain item key as value (mapped data is removed)
 	 * @param array $mapping List of domain item keys with the CSV field position as key
-	 * @param array $list List of CSV fields with the CSV field position as key
-	 * @return Associative list of domain item keys and the converted values
+	 * @return array List of associative arrays containing the chunked properties
 	 */
-	protected function getMappedData( array $mapping, array $list )
+	protected function getMappedChunk( array &$data, array $mapping )
 	{
+		$idx = 0;
 		$map = array();
 
-		foreach( $mapping as $idx => $key )
+		foreach( $mapping as $pos => $key )
 		{
-			if( !isset( $list[$idx] ) ) {
-				break;
+			if( isset( $map[$idx][$key] ) ) {
+				$idx++;
 			}
 
-			$map[$key] = $list[$idx];
+			if( isset( $data[$pos] ) )
+			{
+				$map[$idx][$key] = $data[$pos];
+				unset( $data[$pos] );
+			}
 		}
 
 		return $map;

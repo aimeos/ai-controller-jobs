@@ -92,7 +92,7 @@ class Standard
 		try
 		{
 			$listMap = array();
-			$map = $this->getMappedChunk( $data );
+			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$listItems = $product->getListItems( 'attribute', $this->listTypes );
 
 			foreach( $listItems as $listItem )
@@ -140,7 +140,7 @@ class Standard
 
 			$listManager->deleteItems( array_keys( $listItems ) );
 
-			$remaining = $this->getObject()->process( $product, $data );
+			$data = $this->getObject()->process( $product, $data );
 
 			$manager->commit();
 		}
@@ -150,7 +150,7 @@ class Standard
 			throw $e;
 		}
 
-		return $remaining;
+		return $data;
 	}
 
 

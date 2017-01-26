@@ -102,7 +102,7 @@ class Standard
 		{
 			$types = array();
 
-			foreach( $this->getMappedChunk( $data ) as $list )
+			foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
 			{
 				if( $this->checkEntry( $list ) === false ) {
 					continue;
@@ -128,7 +128,7 @@ class Standard
 
 			$this->deleteListItems( $product->getId(), $types );
 
-			$remaining = $this->getObject()->process( $product, $data );
+			$data = $this->getObject()->process( $product, $data );
 
 			$manager->commit();
 		}
@@ -138,7 +138,7 @@ class Standard
 			throw $e;
 		}
 
-		return $remaining;
+		return $data;
 	}
 
 

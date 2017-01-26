@@ -101,34 +101,6 @@ class Base
 
 
 	/**
-	 * Returns the chunked data with text and product list properties in each chunk
-	 *
-	 * @param array $data List of CSV fields with position as key and domain item key as value
-	 * @return array List of associative arrays containing the chunked properties
-	 */
-	protected function getMappedChunk( array &$data )
-	{
-		$idx = 0;
-		$map = array();
-
-		foreach( $this->getMapping() as $pos => $key )
-		{
-			if( isset( $map[$idx][$key] ) ) {
-				$idx++;
-			}
-
-			if( isset( $data[$pos] ) )
-			{
-				$map[$idx][$key] = $data[$pos];
-				unset( $data[$pos] );
-			}
-		}
-
-		return $map;
-	}
-
-
-	/**
 	 * Returns the value from the list or the default value
 	 *
 	 * @param array $list Associative list of key/value pairs
