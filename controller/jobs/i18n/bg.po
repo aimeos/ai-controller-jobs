@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-03 11:21+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,12 @@ msgstr "Експортира всички налични продукти"
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Въвежда нови и актуализира съществуващи продукти от CSV файлове"
 
+msgid "Index optimization"
+msgstr ""
+
+msgid "Index rebuild"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Недопустими символи в името на класа \"%1$s\""
@@ -80,6 +86,9 @@ msgstr "Не е намерена колона \"код на продукт\" в 
 msgid "Optimizes the catalog index for searching products"
 msgstr "Оптимизира индекса на стоките за търсене на продукти"
 
+msgid "Optimizes the index for searching products faster"
+msgstr ""
+
 msgid "Process order delivery services"
 msgstr "Обработка на услуги за доставка на поръчка"
 
@@ -97,6 +106,9 @@ msgstr "Продукти закупени заедно"
 
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Възстановява индекса на стоките за търсене на продукти"
+
+msgid "Rebuilds the index for searching products"
+msgstr ""
 
 msgid "Removes the expired entries from the cache"
 msgstr "Премахва записи от кеша с изтекъл срок "

@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-03 11:21+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Polish (http://www.transifex.com/aimeos/aimeos-core/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
@@ -62,6 +62,12 @@ msgstr ""
 msgid "Imports new and updates existing products from CSV files"
 msgstr ""
 
+msgid "Index optimization"
+msgstr ""
+
+msgid "Index rebuild"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Niepoprawny znak w nazwie klasy \"%1$s\""
@@ -80,6 +86,9 @@ msgstr ""
 msgid "Optimizes the catalog index for searching products"
 msgstr "Optymalizacja indeksów katalogów ułatwiających wyszukiwanie produktów"
 
+msgid "Optimizes the index for searching products faster"
+msgstr ""
+
 msgid "Process order delivery services"
 msgstr "Przetwarzanie usług dostawy zamówienia"
 
@@ -97,6 +106,9 @@ msgstr "Produkty kupione razem"
 
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Przebudowa indeksów katalogów ułatwiających wyszukiwanie produktów"
+
+msgid "Rebuilds the index for searching products"
+msgstr ""
 
 msgid "Removes the expired entries from the cache"
 msgstr "Usuwa rekordy z pamięci podręcznej, których ważność minęła"

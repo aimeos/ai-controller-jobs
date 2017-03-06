@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos <aimeos@aimeos.org>, 2015-2016
+# Aimeos <aimeos@aimeos.org>, 2015-2017
 # Daniel Hoffmann <d.hoffmann@metaways.de>, 2013
 # Janosch Ott <janosch.ott@bluewin.ch>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-03 11:48+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,12 @@ msgstr "Exportiert alle verfügbaren Produkte"
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Importiert neue und aktualisiert existierende Produkte aus CSV Dateien"
 
+msgid "Index optimization"
+msgstr "Optimieren des Produktindex"
+
+msgid "Index rebuild"
+msgstr "Aktualisieren des Produktindex"
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Klassenname \"%1$s\" enthält unerlaubte Zeichen"
@@ -81,6 +87,9 @@ msgstr "In der CSV-Zuordnung fehlt die Spalte \"product.code\""
 msgid "Optimizes the catalog index for searching products"
 msgstr "Optimiert den Katalogindex für die Produktsuche"
 
+msgid "Optimizes the index for searching products faster"
+msgstr "Optimiert den Produktindex für die Suche"
+
 msgid "Process order delivery services"
 msgstr "Verarbeitung der Bestellungen"
 
@@ -98,6 +107,9 @@ msgstr "Zusammen gekaufte Produkte"
 
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Aktualisiert den Katalogindex für die Produktsuche"
+
+msgid "Rebuilds the index for searching products"
+msgstr "Aktualisiert den Produktindex für die Suche"
 
 msgid "Removes the expired entries from the cache"
 msgstr "Löscht die alten Cache-Einträge"

@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Guillaume STEIN <guillaume.stein@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-03 11:21+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -60,9 +61,15 @@ msgstr ""
 msgid "Imports new and updates existing products from CSV files"
 msgstr ""
 
+msgid "Index optimization"
+msgstr ""
+
+msgid "Index rebuild"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr "Caractères non valides dans le nom de classe \"%1$s\""
+msgstr "Caractères non valides dans le nom de la classe \"%1$s\""
 
 #, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
@@ -76,6 +83,9 @@ msgid "No \"product.code\" column in CSV mapping found"
 msgstr ""
 
 msgid "Optimizes the catalog index for searching products"
+msgstr ""
+
+msgid "Optimizes the index for searching products faster"
 msgstr ""
 
 msgid "Process order delivery services"
@@ -94,6 +104,9 @@ msgid "Products bought together"
 msgstr ""
 
 msgid "Rebuilds the catalog index for searching products"
+msgstr ""
+
+msgid "Rebuilds the index for searching products"
 msgstr ""
 
 msgid "Removes the expired entries from the cache"

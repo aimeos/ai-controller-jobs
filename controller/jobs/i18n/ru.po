@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-03 11:21+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,12 @@ msgstr "Экспорт всех доступных товаров"
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Импорт новых и обновление существующих товаров из файлов CSV"
 
+msgid "Index optimization"
+msgstr ""
+
+msgid "Index rebuild"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Недопустимые символы в названии класса \"%1$s\""
@@ -80,6 +86,9 @@ msgstr ""
 msgid "Optimizes the catalog index for searching products"
 msgstr "Оптимизация индекса каталога для поиска товаров"
 
+msgid "Optimizes the index for searching products faster"
+msgstr ""
+
 msgid "Process order delivery services"
 msgstr "Обработка служб доставки заказов"
 
@@ -97,6 +106,9 @@ msgstr "Сопутствующие друг другу товары"
 
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Перестроение индекса каталога для поиска товаров"
+
+msgid "Rebuilds the index for searching products"
+msgstr ""
 
 msgid "Removes the expired entries from the cache"
 msgstr "Удаление устаревших записей из кеша"

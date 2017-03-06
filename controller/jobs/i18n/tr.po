@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Metal <meteoramic@yahoo.com>, 2015-2016
+# Metal <meteoramic@yahoo.com>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-07-16 21:36+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"POT-Creation-Date: 2017-01-03 12:08+0100\n"
+"PO-Revision-Date: 2017-01-11 01:35+0000\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,6 +61,12 @@ msgstr "Mevcut tüm ürünleri dışa aktarır"
 msgid "Imports new and updates existing products from CSV files"
 msgstr "CSV dosyasından yeni ürün içe aktarır veya mevcut ürünleri günceller"
 
+msgid "Index optimization"
+msgstr "Dizin optimizasyonu"
+
+msgid "Index rebuild"
+msgstr "Dizin yeniden oluşturma"
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "\"%1$s\" class adında geçersiz karakterler"
@@ -78,6 +84,9 @@ msgstr "CSV mapping'de \"product.code\" sütunu bulunamadı"
 
 msgid "Optimizes the catalog index for searching products"
 msgstr "Arama ürünleri için katalog dizinini optimize eder"
+
+msgid "Optimizes the index for searching products faster"
+msgstr "Ürünleri daha hızlı aramak için dizini optimize eder"
 
 msgid "Process order delivery services"
 msgstr "Sipariş dağıtım hizmetlerini işleme tabi tut"
@@ -97,6 +106,9 @@ msgstr "Beraber satın alınan ürünler"
 msgid "Rebuilds the catalog index for searching products"
 msgstr "Arama ürünleri için katalog dizinini yeniden oluşturur"
 
+msgid "Rebuilds the index for searching products"
+msgstr "Ürünleri aramak için dizini yeniden oluşturur"
+
 msgid "Removes the expired entries from the cache"
 msgstr "Süresi dolan girişleri önbellekten kaldırır"
 
@@ -105,7 +117,7 @@ msgid ""
 msgstr "Eski günlük girişlerini veri tabanından kaldırır ve arşivler (isteğe bağlı)"
 
 msgid "Removes unfinished orders"
-msgstr "bitmemiş siparişleri kaldırır"
+msgstr "Tamamlanmamış siparişleri kaldırır"
 
 msgid "Removes unpaid orders"
 msgstr "Ödenmemiş siparişleri kaldırır"
@@ -115,7 +127,7 @@ msgid "Required mapping key \"%1$s\" is missing or contains no array"
 msgstr "Gerekli haritalama anahtarı \"%1$s\" eksik veya hiçbir dizi içermiyor"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr "ERP sistemine veya lojistik ortağa ödenen siparişleri gönderir"
+msgstr "Ödemesi yapılmış siparişleri ERP sistemine veya lojistik ortağa gönderir"
 
 #, php-format
 msgid "Started product import from \"%1$s\" (%2$s)"
