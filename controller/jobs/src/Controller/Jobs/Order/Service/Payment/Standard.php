@@ -112,7 +112,7 @@ class Standard
 					}
 
 
-					$expr = array();
+					$expr = [];
 					$expr[] = $orderSearch->compare( '>', 'order.datepayment', $date );
 
 					if( $capDays !== null )

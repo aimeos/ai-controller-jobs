@@ -177,7 +177,7 @@ class Standard
 
 			$type = $config->get( 'controller/jobs/admin/log/standard/container/type', 'Zip' );
 			$format = $config->get( 'controller/jobs/admin/log/standard/container/format', 'CSV' );
-			$options = $config->get( 'controller/jobs/admin/log/standard/container/options', array() );
+			$options = $config->get( 'controller/jobs/admin/log/standard/container/options', [] );
 
 			$path .= DIRECTORY_SEPARATOR . str_replace( ' ', '_', $limitDate );
 			$container = \Aimeos\MW\Container\Factory::getContainer( $path, $type, $format, $options );
@@ -190,11 +190,11 @@ class Standard
 		$search->setSortations( array( $search->sort( '+', 'log.timestamp' ) ) );
 
 		$start = 0;
-		$contents = array();
+		$contents = [];
 
 		do
 		{
-			$ids = array();
+			$ids = [];
 			$items = $manager->searchItems( $search );
 
 			foreach( $items as $id => $item )

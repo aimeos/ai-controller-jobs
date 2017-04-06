@@ -47,7 +47,7 @@ class Standard
 
 		try
 		{
-			$propMap = array();
+			$propMap = [];
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$items = $this->getPropertyItems( $product->getId() );
 

@@ -57,7 +57,7 @@ class TestHelperCntl
 		$paths[] = __DIR__ . DIRECTORY_SEPARATOR . 'config';
 		$file = __DIR__ . DIRECTORY_SEPARATOR . 'confdoc.ser';
 
-		$conf = new \Aimeos\MW\Config\PHPArray( array(), $paths );
+		$conf = new \Aimeos\MW\Config\PHPArray( [], $paths );
 		$conf = new \Aimeos\MW\Config\Decorator\Memory( $conf );
 		$conf = new \Aimeos\MW\Config\Decorator\Documentor( $conf, $file );
 		$ctx->setConfig( $conf );

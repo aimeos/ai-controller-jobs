@@ -85,7 +85,7 @@ class Standard
 
 		try
 		{
-			$delete = $listMap = array();
+			$delete = $listMap = [];
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$listItems = $product->getListItems( 'price', $this->listTypes );
 

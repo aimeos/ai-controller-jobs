@@ -32,7 +32,7 @@ class Standard
 	 * @category Developer
 	 */
 
-	private $types = array();
+	private $types = [];
 
 
 	/**

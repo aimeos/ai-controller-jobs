@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		{
 			if( $file->isFile() && $file->getExtension() === 'zip' )
 			{
-				$container = \Aimeos\MW\Container\Factory::getContainer( $file->getPathName(), 'Zip', 'CSV', array() );
+				$container = \Aimeos\MW\Container\Factory::getContainer( $file->getPathName(), 'Zip', 'CSV', [] );
 				$container->get( 'unittest facility.csv' );
 				unlink( $file->getPathName() );
 				return;

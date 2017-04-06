@@ -22,13 +22,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$config->set( 'controller/jobs/product/import/csv/container/content', 'CSV' );
 		$config->set( 'controller/jobs/product/import/csv/mapping', $this->getMapping() );
 
-		$container = \Aimeos\MW\Container\Factory::getContainer( 'tmp/product-import.zip', 'Zip', 'CSV', array() );
+		$container = \Aimeos\MW\Container\Factory::getContainer( 'tmp/product-import.zip', 'Zip', 'CSV', [] );
 
 		$content = $container->create( 'product.csv' );
 
 		for( $i = 0; $i < 1000; $i++ )
 		{
-			$data = array();
+			$data = [];
 
 			$data = $this->addProduct( $data, $i );
 			$data = $this->addText( $data, $i );

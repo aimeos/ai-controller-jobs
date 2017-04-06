@@ -174,7 +174,7 @@ class Standard
 		 * @see controller/jobs/product/export/max-items
 		 * @see controller/jobs/product/export/max-query
 		 */
-		$options = $config->get( 'controller/jobs/product/export/standard/container/options', array() );
+		$options = $config->get( 'controller/jobs/product/export/standard/container/options', [] );
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
 	}
@@ -279,7 +279,7 @@ class Standard
 		$maxQuery = $this->getConfig( 'max-query', 1000 );
 
 		$start = 0; $filenum = 1;
-		$names = array();
+		$names = [];
 
 		$productManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product' );
 

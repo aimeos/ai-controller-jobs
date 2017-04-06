@@ -32,7 +32,7 @@ class Standard
 	 * @category Developer
 	 */
 
-	private $attributes = array();
+	private $attributes = [];
 
 
 	/**
@@ -95,7 +95,7 @@ class Standard
 		$code = $item->getCode();
 
 		if( !isset( $this->attributes[$code] ) || !is_array( $this->attributes[$code] ) ) {
-			$this->attributes[$code] = array();
+			$this->attributes[$code] = [];
 		}
 
 		$this->attributes[$code][ $item->getType() ] = $item;

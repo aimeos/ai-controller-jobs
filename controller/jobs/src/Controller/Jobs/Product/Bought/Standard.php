@@ -161,7 +161,7 @@ class Standard
 		$search->setConditions( $search->compare( '>', 'order.base.ctime', $date ) );
 		$search->setSlice( 0, 0 );
 		$totalOrders = 0;
-		$baseManager->searchItems( $search, array(), $totalOrders );
+		$baseManager->searchItems( $search, [], $totalOrders );
 
 		$baseProductManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/product' );
 		$search = $baseProductManager->createSearch();
@@ -207,7 +207,7 @@ class Standard
 	 */
 	protected function getSuggestions( $id, $prodIds, $count, $total, $maxItems, $minSupport, $minConfidence, $date )
 	{
-		$refIds = array();
+		$refIds = [];
 		$context = $this->getContext();
 
 		$catalogListManager = \Aimeos\MShop\Factory::createManager( $context, 'catalog/lists' );
@@ -240,7 +240,7 @@ class Standard
 
 		unset( $relativeCounts[$id] );
 		$supportA = $count / $total;
-		$products = array();
+		$products = [];
 
 		foreach( $relativeCounts as $prodId => $relCnt )
 		{

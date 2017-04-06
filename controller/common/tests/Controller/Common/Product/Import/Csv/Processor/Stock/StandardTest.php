@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		\Aimeos\MShop\Factory::setCache( true );
 
 		$this->context = \TestHelperCntl::getContext();
-		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, array() );
+		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
 	}
 
 
@@ -142,8 +142,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, array(), $this->endpoint );
-		$object->process( $product, array() );
+		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, [], $this->endpoint );
+		$object->process( $product, [] );
 
 		$items = $this->getStockItems( $product->getCode() );
 		$this->delete( $product );

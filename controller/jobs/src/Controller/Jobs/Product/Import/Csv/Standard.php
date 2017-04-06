@@ -184,7 +184,7 @@ class Standard
 		 * @see controller/common/product/import/csv/mapping
 		 * @see controller/common/product/import/csv/max-size
 		 */
-		$converters = $config->get( 'controller/common/product/import/csv/converter', array() );
+		$converters = $config->get( 'controller/common/product/import/csv/converter', [] );
 
 		/** controller/jobs/product/import/csv/converter
 		 * List of converter names for the values at the position in the CSV file
@@ -334,7 +334,7 @@ class Standard
 					$content->next();
 				}
 
-				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== array() )
+				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
 				{
 					$data = $this->convertData( $convlist, $data );
 					$products = $this->getProducts( array_keys( $data ), $domains );
@@ -488,7 +488,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/container/content
 		 * @see controller/jobs/product/import/csv/container/type
 		 */
-		$options = $config->get( 'controller/jobs/product/import/csv/container/options', array() );
+		$options = $config->get( 'controller/jobs/product/import/csv/container/options', [] );
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
 	}

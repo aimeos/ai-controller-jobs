@@ -87,13 +87,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 
 		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $serviceItem ), array() ) );
+			->will( $this->onConsecutiveCalls( array( $serviceItem ), [] ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->returnValue( $serviceProviderStub ) );
 
 		$orderManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $orderItem ), array() ) );
+			->will( $this->onConsecutiveCalls( array( $orderItem ), [] ) );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'process' );
 
@@ -139,13 +139,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 
 		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $serviceItem ), array() ) );
+			->will( $this->onConsecutiveCalls( array( $serviceItem ), [] ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->returnValue( $serviceProviderStub ) );
 
 		$orderManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $orderItem ), array() ) );
+			->will( $this->onConsecutiveCalls( array( $orderItem ), [] ) );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'process' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test order service delivery: process' ) ) );
@@ -186,7 +186,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$serviceItem = $serviceManagerStub->createItem();
 
 		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $serviceItem ), array() ) );
+			->will( $this->onConsecutiveCalls( array( $serviceItem ), [] ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test sorder service delivery: getProvider' ) ) );

@@ -85,7 +85,7 @@ class Standard
 
 		do
 		{
-			$baseIds = array();
+			$baseIds = [];
 			$items = $manager->searchItems( $search );
 
 			foreach( $items as $item )

@@ -20,7 +20,7 @@ namespace Aimeos\Controller\Common\Product\Import\Csv;
 class Base
 	extends \Aimeos\Controller\Jobs\Base
 {
-	private static $types = array();
+	private static $types = [];
 
 
 	/**
@@ -99,7 +99,7 @@ class Base
 	 */
 	protected function getConverterList( array $convmap )
 	{
-		$convlist = array();
+		$convlist = [];
 
 		foreach( $convmap as $idx => $name ) {
 			$convlist[$idx] = \Aimeos\MW\Convert\Factory::createConverter( $name );
@@ -120,7 +120,7 @@ class Base
 	protected function getData( \Aimeos\MW\Container\Content\Iface $content, $maxcnt, $codePos )
 	{
 		$count = 0;
-		$data = array();
+		$data = [];
 
 		while( $content->valid() && $count++ < $maxcnt )
 		{
@@ -225,7 +225,7 @@ class Base
 	protected function getMappedChunk( array &$data, array $mapping )
 	{
 		$idx = 0;
-		$map = array();
+		$map = [];
 
 		foreach( $mapping as $pos => $key )
 		{
@@ -255,7 +255,7 @@ class Base
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$iface = '\\Aimeos\\Controller\\Common\\Product\\Import\\Csv\\Processor\\Iface';
-		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $context, array() );
+		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $context, [] );
 
 		foreach( $mappings as $type => $mapping )
 		{
@@ -299,7 +299,7 @@ class Base
 	 */
 	protected function getProducts( array $codes, array $domains )
 	{
-		$result = array();
+		$result = [];
 		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product' );
 
 		$search = $manager->createSearch();

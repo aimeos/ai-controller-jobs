@@ -24,7 +24,7 @@ class DoneTest extends \PHPUnit_Framework_TestCase
 		\Aimeos\MShop\Factory::setCache( true );
 
 		$this->context = \TestHelperCntl::getContext();
-		$this->object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, array() );
+		$this->object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
 	}
 
 

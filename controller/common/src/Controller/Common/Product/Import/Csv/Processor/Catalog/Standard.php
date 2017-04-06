@@ -110,7 +110,7 @@ class Standard
 
 		try
 		{
-			$listMap = array();
+			$listMap = [];
 			$prodid = $product->getId();
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$listItems = $this->getListItems( $prodid, $this->listTypes );

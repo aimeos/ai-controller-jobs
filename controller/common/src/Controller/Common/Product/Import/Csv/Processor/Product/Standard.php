@@ -100,7 +100,7 @@ class Standard
 
 		try
 		{
-			$types = array();
+			$types = [];
 
 			foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
 			{
@@ -108,7 +108,7 @@ class Standard
 					continue;
 				}
 
-				$listMap = array();
+				$listMap = [];
 				$type = ( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 				$types[] = $type;
 
