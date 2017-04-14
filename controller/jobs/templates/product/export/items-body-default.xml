@@ -9,7 +9,7 @@ $enc = $this->encoder();
 
 ?>
 <productlist>
-    <?php foreach( $this->get( 'exportItems', array() ) as $id => $item ) : ?>
+    <?php foreach( $this->get( 'exportItems', [] ) as $id => $item ) : ?>
 
         <product-content id="<?php echo $enc->attr( $id ); ?>" >
             <productitem id="<?php echo $enc->attr( $id ); ?>" siteid="<?php echo $enc->attr( $item->getSiteId() ); ?>" typeid="<?php echo $enc->attr( $item->getTypeId() ); ?>" ctime="<?php echo $enc->attr( $item->getTimeCreated() ); ?>" mtime="<?php echo $enc->attr( $item->getTimeModified() ); ?>" editor="<?php echo $enc->attr( $item->getEditor() ); ?>">

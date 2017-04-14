@@ -13,7 +13,7 @@ $date = date( 'c' );
 
 
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<?php foreach( $this->get( 'siteFiles', array() ) as $name ) : ?>
+<?php foreach( $this->get( 'siteFiles', [] ) as $name ) : ?>
 	<sitemap>
 		<loc><?php echo $enc->xml( basename( $name ) ); ?></loc>
 		<lastmod><?php echo $date; ?></lastmod>
