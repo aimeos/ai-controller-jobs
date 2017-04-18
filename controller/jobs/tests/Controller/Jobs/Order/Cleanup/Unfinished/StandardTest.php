@@ -9,7 +9,7 @@ namespace Aimeos\Controller\Jobs\Order\Cleanup\Unfinished;
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 class StandardTest
-	extends \PHPUnit_Framework_TestCase
+	extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 

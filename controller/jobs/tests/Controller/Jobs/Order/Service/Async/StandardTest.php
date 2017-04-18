@@ -8,7 +8,7 @@ namespace Aimeos\Controller\Jobs\Order\Service\Async;
  * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 

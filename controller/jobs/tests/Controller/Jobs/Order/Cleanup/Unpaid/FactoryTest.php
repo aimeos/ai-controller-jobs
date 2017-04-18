@@ -9,7 +9,7 @@ namespace Aimeos\Controller\Jobs\Order\Cleanup\Unpaid;
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 class FactoryTest
-	extends \PHPUnit_Framework_TestCase
+	extends \PHPUnit\Framework\TestCase
 {
 	public function testCreateController()
 	{
