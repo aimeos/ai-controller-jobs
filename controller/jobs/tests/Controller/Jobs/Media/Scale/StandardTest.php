@@ -9,7 +9,7 @@
 namespace Aimeos\Controller\Jobs\Media\Scale;
 
 
-class StandardTest extends \PHPUnit\Framework\TestCase
+class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
 

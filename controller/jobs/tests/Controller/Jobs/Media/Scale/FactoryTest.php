@@ -9,7 +9,7 @@
 namespace Aimeos\Controller\Jobs\Media\Scale;
 
 
-class FactoryTest extends \PHPUnit\Framework\TestCase
+class FactoryTest extends \PHPUnit_Framework_TestCase
 {
 	public function testCreateController()
 	{
