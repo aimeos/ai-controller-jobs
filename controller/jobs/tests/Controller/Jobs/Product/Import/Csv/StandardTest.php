@@ -178,7 +178,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context->getConfig()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 
@@ -226,7 +226,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object = new \Aimeos\Controller\Jobs\Product\Import\Csv\Standard( $this->context, $this->aimeos );
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 
@@ -262,7 +262,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Unable to copy test file' );
 		}
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 

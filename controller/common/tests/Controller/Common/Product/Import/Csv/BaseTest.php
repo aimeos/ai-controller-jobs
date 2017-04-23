@@ -40,21 +40,21 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetCacheInvalidType()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( '$' );
 	}
 
 
 	public function testGetCacheInvalidClass()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( 'unknown' );
 	}
 
 
 	public function testGetCacheInvalidInterface()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( 'attribute', 'unknown' );
 	}
 
@@ -69,21 +69,21 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetProcessorsInvalidType()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( '$' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidClass()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidInterface()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 
@@ -98,7 +98,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetTypeIdUnknown()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getTypeIdPublic( 'attribute/type', 'product', 'unknown' );
 	}
 }
