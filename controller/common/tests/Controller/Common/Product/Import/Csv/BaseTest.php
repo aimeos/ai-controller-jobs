@@ -7,7 +7,7 @@ namespace Aimeos\Controller\Common\Product\Import\Csv;
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
-class BaseTest extends \PHPUnit_Framework_TestCase
+class BaseTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 
@@ -40,21 +40,21 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetCacheInvalidType()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( '$' );
 	}
 
 
 	public function testGetCacheInvalidClass()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( 'unknown' );
 	}
 
 
 	public function testGetCacheInvalidInterface()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( 'attribute', 'unknown' );
 	}
 
@@ -69,21 +69,21 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetProcessorsInvalidType()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( '$' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidClass()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidInterface()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 
@@ -98,7 +98,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetTypeIdUnknown()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getTypeIdPublic( 'attribute/type', 'product', 'unknown' );
 	}
 }

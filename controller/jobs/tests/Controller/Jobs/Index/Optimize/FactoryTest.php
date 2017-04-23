@@ -8,7 +8,7 @@ namespace Aimeos\Controller\Jobs\Index\Optimize;
  * @copyright Metaways Infosystems GmbH, 2013
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
-class FactoryTest extends \PHPUnit_Framework_TestCase
+class FactoryTest extends \PHPUnit\Framework\TestCase
 {
 	public function testCreateController()
 	{
@@ -25,7 +25,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Index\Optimize\Factory::createController( $context, $aimeos, 'Wrong$$$Name' );
 	}
 
@@ -35,7 +35,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Index\Optimize\Factory::createController( $context, $aimeos, 'WrongClass' );
 	}
 
@@ -45,7 +45,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Index\Optimize\Factory::createController( $context, $aimeos, 'Factory' );
 	}
 

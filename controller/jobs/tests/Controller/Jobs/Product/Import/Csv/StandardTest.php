@@ -7,7 +7,7 @@ namespace Aimeos\Controller\Jobs\Product\Import\Csv;
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -178,7 +178,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->context->getConfig()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 
@@ -226,7 +226,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->object = new \Aimeos\Controller\Jobs\Product\Import\Csv\Standard( $this->context, $this->aimeos );
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 
@@ -262,7 +262,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			throw new \RuntimeException( 'Unable to copy test file' );
 		}
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 

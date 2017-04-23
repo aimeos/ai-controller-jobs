@@ -9,7 +9,7 @@ namespace Aimeos\Controller\Jobs\Order\Cleanup\Unpaid;
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 class FactoryTest
-	extends \PHPUnit_Framework_TestCase
+	extends \PHPUnit\Framework\TestCase
 {
 	public function testCreateController()
 	{
@@ -26,7 +26,7 @@ class FactoryTest
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Order\Cleanup\Unpaid\Factory::createController( $context, $aimeos, 'Wrong$$$Name' );
 	}
 
@@ -36,7 +36,7 @@ class FactoryTest
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Order\Cleanup\Unpaid\Factory::createController( $context, $aimeos, 'WrongClass' );
 	}
 
@@ -46,7 +46,7 @@ class FactoryTest
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Order\Cleanup\Unpaid\Factory::createController( $context, $aimeos, 'Factory' );
 	}
 
