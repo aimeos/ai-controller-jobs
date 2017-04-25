@@ -186,6 +186,7 @@ class Standard
 		 * support some options:
 		 * * dir-perm (default: 0755): Permissions if the directory must be created
 		 * * gzip-level (default: 5): GZip compression level from 0 to 9 (0 = fast, 9 = best)
+		 * * gzip-mode (default: "wb"): Overwrite existing files in binary mode
 		 *
 		 * @param array Associative list of option name/value pairs
 		 * @since 2015.01
@@ -195,7 +196,8 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/max-query
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 */
-		$options = $config->get( 'controller/jobs/product/export/sitemap/container/options', [] );
+		$default = array( 'gzip-mode' => 'wb' );
+		$options = $config->get( 'controller/jobs/product/export/sitemap/container/options', $default );
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, 'Directory', 'Gzip', $options );
 	}
