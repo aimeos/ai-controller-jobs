@@ -128,7 +128,7 @@ class Standard
 					$list['media.url'] = $url;
 
 					$refItem->fromArray( $this->addItemDefaults( $list ) );
-					$manager->saveItem( $refItem );
+					$refItem = $manager->saveItem( $refItem );
 
 					$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'media', $typecode );
 					$list['product.lists.parentid'] = $product->getId();
@@ -136,7 +136,7 @@ class Standard
 					$list['product.lists.domain'] = 'media';
 
 					$listItem->fromArray( $this->addListItemDefaults( $list, $pos++ ) );
-					$listManager->saveItem( $listItem );
+					$listManager->saveItem( $listItem, false );
 				}
 			}
 

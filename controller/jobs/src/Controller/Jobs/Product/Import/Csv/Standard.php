@@ -534,7 +534,7 @@ class Standard
 					$map['product.typeid'] = $this->getTypeId( 'product/type', 'product', $typecode );
 
 					$product->fromArray( $this->addItemDefaults( $map ) );
-					$manager->saveItem( $product );
+					$product = $manager->saveItem( $product );
 
 					$list = $processor->process( $product, $list );
 				}

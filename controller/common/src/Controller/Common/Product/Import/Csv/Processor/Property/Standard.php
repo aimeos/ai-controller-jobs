@@ -76,7 +76,7 @@ class Standard
 				}
 
 				$item->fromArray( $list );
-				$manager->saveItem( $item );
+				$manager->saveItem( $item, false );
 			}
 
 			$manager->deleteItems( array_keys( $items ) );

@@ -321,9 +321,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setTypeid( $typeItem->getId() );
 		$item->setCode( $code );
 
-		$manager->saveItem( $item );
-
-		return $item;
+		return $manager->saveItem( $item );
 	}
 
 

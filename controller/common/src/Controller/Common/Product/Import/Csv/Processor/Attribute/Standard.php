@@ -115,7 +115,7 @@ class Standard
 					$attrItem = $this->getAttributeItem( $code, $list['attribute.type'] );
 					$attrItem->fromArray( $list );
 					$attrItem->setCode( $code );
-					$manager->saveItem( $attrItem );
+					$attrItem = $manager->saveItem( $attrItem );
 
 					$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
 					$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'attribute', $typecode );
@@ -134,7 +134,7 @@ class Standard
 					}
 
 					$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
-					$listManager->saveItem( $listItem );
+					$listManager->saveItem( $listItem, false );
 				}
 			}
 
@@ -193,7 +193,7 @@ class Standard
 			$item->setCode( $code );
 			$item->setStatus( 1 );
 
-			$manager->saveItem( $item );
+			$item = $manager->saveItem( $item );
 
 			$this->cache->set( $item );
 		}

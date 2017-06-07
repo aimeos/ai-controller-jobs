@@ -32,9 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setTypeId( $typeItem->getId() );
 		$item->setStatus( 1 );
 
-		$manager->saveItem( $item );
-
-		self::$product = $item;
+		self::$product = $manager->saveItem( $item );
 	}
 
 

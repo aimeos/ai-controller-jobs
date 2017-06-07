@@ -121,7 +121,7 @@ class Standard
 				$list['text.domain'] = 'product';
 
 				$refItem->fromArray( $this->addItemDefaults( $list ) );
-				$manager->saveItem( $refItem );
+				$refItem = $manager->saveItem( $refItem );
 
 				$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'text', $typecode );
 				$list['product.lists.parentid'] = $product->getId();
@@ -129,7 +129,7 @@ class Standard
 				$list['product.lists.domain'] = 'text';
 
 				$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
-				$listManager->saveItem( $listItem );
+				$listManager->saveItem( $listItem, false );
 			}
 
 			foreach( $listItems as $listItem ) {
