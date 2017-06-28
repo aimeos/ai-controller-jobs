@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 10:44+0100\n"
+"POT-Creation-Date: 2017-06-28 11:29+0200\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -118,6 +118,12 @@ msgstr ""
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
+msgstr ""
+
+msgid "Rescale product images"
+msgstr ""
+
+msgid "Rescales product images to the new sizes"
 msgstr ""
 
 msgid "Sends paid orders to the ERP system or logistic partner"
