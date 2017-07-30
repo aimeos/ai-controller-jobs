@@ -24,37 +24,28 @@ class Base
 	 * Returns the default mapping for the CSV fields to the domain item keys
 	 *
 	 * Example:
-	 *  'item' => array(
-	 *  	0 => 'order.code', // e.g. unique EAN code
-	 *  	1 => 'order.label', // UTF-8 encoded text, also used as order name
-	 *  ),
-	 *  'text' => array(
-	 *  	3 => 'text.type', // e.g. "short" for short description
-	 *  	4 => 'text.content', // UTF-8 encoded text
-	 *  ),
-	 *  'media' => array(
-	 *  	5 => 'media.url', // relative URL of the order image on the server
-	 *  ),
-	 *  'price' => array(
-	 *  	6 => 'price.value', // price with decimals separated by a dot, no thousand separator
-	 *  	7 => 'price.taxrate', // tax rate with decimals separated by a dot
-	 *  ),
-	 *  'attribute' => array(
-	 *  	8 => 'attribute.type', // e.g. "size", "length", "width", "color", etc.
-	 *  	9 => 'attribute.code', // code of an existing attribute, new ones will be created automatically
-	 *  ),
-	 *  'order' => array(
-	 *  	10 => 'order.code', // e.g. EAN code of another order
-	 *  	11 => 'order.lists.type', // e.g. "suggestion" for suggested order
-	 *  ),
-	 *  'property' => array(
-	 *  	12 => 'order.property.type', // e.g. "package-weight"
-	 *  	13 => 'order.property.value', // arbitrary value for the corresponding type
-	 *  ),
-	 *  'catalog' => array(
-	 *  	14 => 'catalog.code', // e.g. Unique category code
-	 *  	15 => 'catalog.lists.type', // e.g. "promotion" for top seller orders
-	 *  ),
+	 * 'invoice' => array(
+	 *     0 => 'order.type',
+	 *     1 => 'order.datepayment',
+	 *     2 => 'order.statuspayment',
+	 * ),
+	 * 'address' => array(
+	 *     0 => 'order.base.address.type',
+	 *     1 => 'order.base.address.firstname',
+	 *     2 => 'order.base.address.lastname',
+	 * ),
+	 * 'service' => array(
+	 *     0 => 'order.base.service.type',
+	 *     1 => 'order.base.service.code',
+	 * ),
+	 * 'coupon' => array(
+	 *     0 => 'order.base.coupon.code',
+	 * ),
+	 * 'product' => array(
+	 *     0 => 'order.base.product.type',
+	 *     1 => 'order.base.product.prodcode',
+	 *     2 => 'order.base.product.quantity',
+	 * ),
 	 *
 	 * @return array Associative list of domains as keys ("item" is special for the order itself) and a list of
 	 * 	positions and the domain item keys as values.
