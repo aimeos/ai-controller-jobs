@@ -287,7 +287,7 @@ class Standard
 				foreach( $processors as $type => $processor )
 				{
 					foreach( $processor->process( $item, $baseItems[$item->getBaseId()] ) as $line ) {
-						$content->add( array_merge( [$type, $id], $line ) );
+						$content->add( [0 => $type, 1 => $id] + $line );
 					}
 				}
 			}
