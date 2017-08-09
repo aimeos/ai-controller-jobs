@@ -35,7 +35,7 @@ class Base
 		$search->setConditions( $search->compare( '==', 'coupon.code.code', $codes ) );
 		$search->setSlice( 0, count( $codes ) );
 
-		foreach( $manager->searchItems( $search, $domains ) as $item ) {
+		foreach( $manager->searchItems( $search ) as $item ) {
 			$result[ $item->getCode() ] = $item;
 		}
 
