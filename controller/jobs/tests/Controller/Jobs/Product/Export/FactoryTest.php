@@ -1,12 +1,14 @@
 <?php
 
-namespace Aimeos\Controller\Jobs\Product\Export;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
+
+
+namespace Aimeos\Controller\Jobs\Product\Export;
+
+
 class FactoryTest extends \PHPUnit\Framework\TestCase
 {
 	public function testCreateController()

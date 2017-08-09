@@ -1,13 +1,15 @@
 <?php
 
-namespace Aimeos\Controller\Jobs\Product\Bought;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
+
+
+namespace Aimeos\Controller\Jobs\Product\Bought;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
@@ -15,12 +17,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		\Aimeos\MShop\Factory::setCache( true );
@@ -32,12 +28,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		\Aimeos\MShop\Factory::setCache( false );
