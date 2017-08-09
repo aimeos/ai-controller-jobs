@@ -96,7 +96,6 @@ jobccimport2,5,,';
 	public function testRunException()
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'coupon' );
-		$coupon = $manager->saveItem( $manager->createItem()->setProvider( 'Example' ) );
 
 		$dir = 'tmp/import/couponcode/unittest';
 		$filepath = $dir . '/0.csv';
