@@ -105,8 +105,8 @@ class Base
 				8 => 'order.base.service.rebate',
 				9 => 'order.base.service.taxrate',
 				10 => 'order.base.service.attribute.type',
-				11 => 'order.base.service.attribute.name',
-				12 => 'order.base.service.attribute.code',
+				11 => 'order.base.service.attribute.code',
+				12 => 'order.base.service.attribute.name',
 				13 => 'order.base.service.attribute.value',
 			),
 			'coupon' => array(
@@ -128,8 +128,8 @@ class Base
 				14 => 'order.base.product.status',
 				15 => 'order.base.product.position',
 				16 => 'order.base.product.attribute.type',
-				17 => 'order.base.product.attribute.name',
-				18 => 'order.base.product.attribute.code',
+				17 => 'order.base.product.attribute.code',
+				18 => 'order.base.product.attribute.name',
 				19 => 'order.base.product.attribute.value',
 			),
 		);

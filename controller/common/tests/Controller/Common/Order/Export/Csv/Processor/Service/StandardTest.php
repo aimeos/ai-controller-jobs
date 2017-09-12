@@ -23,8 +23,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			6 => 'order.base.service.rebate',
 			7 => 'order.base.service.taxrate',
 			8 => 'order.base.service.attribute.type',
-			9 => 'order.base.service.attribute.name',
-			10 => 'order.base.service.attribute.code',
+			9 => 'order.base.service.attribute.code',
+			10 => 'order.base.service.attribute.name',
 			11 => 'order.base.service.attribute.value',
 		);
 
@@ -48,10 +48,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '0.00', $data[0][5] );
 		$this->assertEquals( '0.00', $data[0][6] );
 		$this->assertEquals( '0.0000', $data[0][7] );
-		$this->assertEquals( '', $data[0][8] );
-		$this->assertEquals( '', $data[0][9] );
-		$this->assertEquals( '', $data[0][10] );
-		$this->assertEquals( '', $data[0][11] );
+		$this->assertEquals( "payment\npayment\npayment\npayment\npayment\npayment\npayment\npayment\npayment", $data[0][8] );
+		$this->assertEquals( "ACOWNER\nACSTRING\nNAME\nOgone-alias-name\nOgone-alias-value\nREFID\nTXDATE\nX-ACCOUNT\nX-STATUS", $data[0][9] );
+		$this->assertEquals( "account owner\naccount number\npayment method\nogone alias name\nogone alias value\nreference id\ntransaction date\ntransaction account\ntransaction status", $data[0][10] );
+		$this->assertEquals( "test user\n9876543\nCreditCard\naliasName\naliasValue\n12345678\n2009-08-18\nKraft02\n9", $data[0][11] );
 
 		$this->assertEquals( 12, count( $data[1] ) );
 		$this->assertEquals( 'delivery', $data[1][0] );

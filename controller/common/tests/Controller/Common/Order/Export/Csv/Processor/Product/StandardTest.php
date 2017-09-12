@@ -29,8 +29,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			12 => 'order.base.product.status',
 			13 => 'order.base.product.position',
 			14 => 'order.base.product.attribute.type',
-			15 => 'order.base.product.attribute.name',
-			16 => 'order.base.product.attribute.code',
+			15 => 'order.base.product.attribute.code',
+			16 => 'order.base.product.attribute.name',
 			17 => 'order.base.product.attribute.value',
 		);
 
@@ -60,10 +60,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '0.0000', $data[0][11] );
 		$this->assertEquals( '1', $data[0][12] );
 		$this->assertEquals( '1', $data[0][13] );
-		$this->assertEquals( '', $data[0][14] );
-		$this->assertEquals( '', $data[0][15] );
-		$this->assertEquals( '', $data[0][16] );
-		$this->assertEquals( '', $data[0][17] );
+		$this->assertEquals( "default\ndefault", $data[0][14] );
+		$this->assertEquals( "width\nlength", $data[0][15] );
+		$this->assertEquals( "33\n36", $data[0][16] );
+		$this->assertEquals( "33\n36", $data[0][17] );
 	}
 
 

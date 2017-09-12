@@ -52,6 +52,18 @@ class Standard
 			$data = [];
 			$list = $item->toArray();
 
+			foreach( $item->getAttributes() as $attrItem )
+			{
+				foreach( $attrItem->toArray() as $key => $value )
+				{
+					if( isset( $list[$key] ) ) {
+						$list[$key] .= "\n" . $value;
+					} else {
+						$list[$key] = $value;
+					}
+				}
+			}
+
 			foreach( $this->getMapping() as $pos => $key )
 			{
 				if( array_key_exists( $key, $list ) ) {
