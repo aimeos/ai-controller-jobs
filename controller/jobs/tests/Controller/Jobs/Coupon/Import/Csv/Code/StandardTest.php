@@ -75,8 +75,6 @@ jobccimport2,5,,';
 		$this->object->run();
 
 
-		unlink( $filepath );
-
 		$codeManager = \Aimeos\MShop\Factory::createManager( $this->context, 'coupon/code' );
 		$code1 = $codeManager->findItem( 'jobccimport1' );
 		$code2 = $codeManager->findItem( 'jobccimport2' );
@@ -112,7 +110,5 @@ jobccimport1,,,';
 		}
 
 		$this->object->run();
-
-		unlink( $filepath );
 	}
 }

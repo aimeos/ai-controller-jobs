@@ -155,7 +155,8 @@ class Standard
 					}
 				}
 
-				$this->closeContainer( $container );
+				$container->close();
+				$fs->rm( $dir . '/' . $filename );
 
 				$msg = 'Finished coupon import: %1$d successful, %2$s errors, %3$s total (%4$s)';
 				$logger->log( sprintf( $msg, $total - $errors, $errors, $total, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
@@ -168,18 +169,6 @@ class Standard
 
 			throw $e;
 		}
-	}
-
-
-	/**
-	 * Closes the container and removes the temporary files
-	 *
-	 * @param \Aimeos\MW\Container\Iface $container Container object
-	 */
-	protected function closeContainer( \Aimeos\MW\Container\Iface $container )
-	{
-		$container->close();
-		unlink( $container->getName() );
 	}
 
 
