@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 18:59+0200\n"
+"POT-Creation-Date: 2017-10-02 17:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,17 @@ msgstr ""
 msgid "Catalog index rebuild"
 msgstr ""
 
+#, php-format
+msgid "Class \"%1$s\" does not implement interface \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Class \"%1$s\" not found"
+msgstr ""
+
+msgid "Coupon code import CSV"
+msgstr ""
+
 msgid "Creates a product site map for search engines"
 msgstr ""
 
@@ -53,6 +64,12 @@ msgstr ""
 msgid "Exports all available products"
 msgstr ""
 
+msgid "Exports orders to CSV file"
+msgstr ""
+
+msgid "Imports new and updates existing coupon code from CSV files"
+msgstr ""
+
 msgid "Imports new and updates existing products from CSV files"
 msgstr ""
 
@@ -67,10 +84,18 @@ msgid "Invalid characters in class name \"%1$s\""
 msgstr ""
 
 #, php-format
+msgid "Invalid message: %2$s"
+msgstr ""
+
+#, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
 msgstr ""
 
 msgid "Log cleanup"
+msgstr ""
+
+#, php-format
+msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr ""
 
 #, php-format
@@ -81,6 +106,9 @@ msgid "Optimizes the catalog index for searching products"
 msgstr ""
 
 msgid "Optimizes the index for searching products faster"
+msgstr ""
+
+msgid "Order export CSV"
 msgstr ""
 
 msgid "Process order delivery services"
@@ -130,7 +158,15 @@ msgid "Sends paid orders to the ERP system or logistic partner"
 msgstr ""
 
 #, php-format
+msgid "Started coupon import from \"%1$s\" (%2$s)"
+msgstr ""
+
+#, php-format
 msgid "Started product import from \"%1$s\" (%2$s)"
+msgstr ""
+
+#, php-format
+msgid "Unable to import coupon with code \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format

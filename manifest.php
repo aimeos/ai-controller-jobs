@@ -10,6 +10,7 @@ return array(
 		'controller/jobs/src',
 	),
 	'i18n' => array(
+		'controller/common' => 'controller/common/i18n',
 		'controller/jobs' => 'controller/jobs/i18n',
 	),
 	'custom' => array(
