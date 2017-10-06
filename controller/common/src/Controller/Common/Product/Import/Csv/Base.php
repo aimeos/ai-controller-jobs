@@ -149,24 +149,25 @@ class Base
 	 *  	5 => 'media.url', // relative URL of the product image on the server
 	 *  ),
 	 *  'price' => array(
-	 *  	6 => 'price.value', // price with decimals separated by a dot, no thousand separator
-	 *  	7 => 'price.taxrate', // tax rate with decimals separated by a dot
+	 *		6 => 'price.currencyid', // three letter ISO currency code
+	 *  	7 => 'price.value', // price with decimals separated by a dot, no thousand separator
+	 *  	8 => 'price.taxrate', // tax rate with decimals separated by a dot
 	 *  ),
 	 *  'attribute' => array(
-	 *  	8 => 'attribute.type', // e.g. "size", "length", "width", "color", etc.
-	 *  	9 => 'attribute.code', // code of an existing attribute, new ones will be created automatically
+	 *  	9 => 'attribute.type', // e.g. "size", "length", "width", "color", etc.
+	 *  	10 => 'attribute.code', // code of an existing attribute, new ones will be created automatically
 	 *  ),
 	 *  'product' => array(
-	 *  	10 => 'product.code', // e.g. EAN code of another product
-	 *  	11 => 'product.lists.type', // e.g. "suggestion" for suggested product
+	 *  	11 => 'product.code', // e.g. EAN code of another product
+	 *  	12 => 'product.lists.type', // e.g. "suggestion" for suggested product
 	 *  ),
 	 *  'property' => array(
-	 *  	12 => 'product.property.type', // e.g. "package-weight"
-	 *  	13 => 'product.property.value', // arbitrary value for the corresponding type
+	 *  	13 => 'product.property.type', // e.g. "package-weight"
+	 *  	14 => 'product.property.value', // arbitrary value for the corresponding type
 	 *  ),
 	 *  'catalog' => array(
-	 *  	14 => 'catalog.code', // e.g. Unique category code
-	 *  	15 => 'catalog.lists.type', // e.g. "promotion" for top seller products
+	 *  	15 => 'catalog.code', // e.g. Unique category code
+	 *  	16 => 'catalog.lists.type', // e.g. "promotion" for top seller products
 	 *  ),
 	 *
 	 * @return array Associative list of domains as keys ("item" is special for the product itself) and a list of
@@ -191,25 +192,26 @@ class Base
 				8 => 'media.url',
 			),
 			'price' => array(
-				9 => 'price.quantity',
-				10 => 'price.value',
-				11 => 'price.taxrate',
+				9 => 'price.currencyid',
+				10 => 'price.quantity',
+				11 => 'price.value',
+				12 => 'price.taxrate',
 			),
 			'attribute' => array(
-				12 => 'attribute.code',
-				13 => 'attribute.type',
+				13 => 'attribute.code',
+				14 => 'attribute.type',
 			),
 			'product' => array(
-				14 => 'product.code',
-				15 => 'product.lists.type',
+				15 => 'product.code',
+				16 => 'product.lists.type',
 			),
 			'property' => array(
-				16 => 'product.property.value',
-				17 => 'product.property.type',
+				17 => 'product.property.value',
+				18 => 'product.property.type',
 			),
 			'catalog' => array(
-				18 => 'catalog.code',
-				19 => 'catalog.lists.type',
+				19 => 'catalog.code',
+				20 => 'catalog.lists.type',
 			),
 		);
 	}
