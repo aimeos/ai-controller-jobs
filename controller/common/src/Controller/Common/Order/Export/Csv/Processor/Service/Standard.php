@@ -47,34 +47,37 @@ class Standard
 
 		krsort( $services );
 
-		foreach( $services as $item )
+		foreach( $services as $list )
 		{
-			$data = [];
-			$list = $item->toArray();
-
-			foreach( $item->getAttributes() as $attrItem )
+			foreach( $list as $item )
 			{
-				foreach( $attrItem->toArray() as $key => $value )
+				$data = [];
+				$list = $item->toArray();
+
+				foreach( $item->getAttributes() as $attrItem )
 				{
-					if( isset( $list[$key] ) ) {
-						$list[$key] .= "\n" . $value;
-					} else {
-						$list[$key] = $value;
+					foreach( $attrItem->toArray() as $key => $value )
+					{
+						if( isset( $list[$key] ) ) {
+							$list[$key] .= "\n" . $value;
+						} else {
+							$list[$key] = $value;
+						}
 					}
 				}
-			}
 
-			foreach( $this->getMapping() as $pos => $key )
-			{
-				if( array_key_exists( $key, $list ) ) {
-					$data[$pos] = $list[$key];
-				} else {
-					$data[$pos] = '';
+				foreach( $this->getMapping() as $pos => $key )
+				{
+					if( array_key_exists( $key, $list ) ) {
+						$data[$pos] = $list[$key];
+					} else {
+						$data[$pos] = '';
+					}
 				}
-			}
 
-			ksort( $data );
-			$result[] = $data;
+				ksort( $data );
+				$result[] = $data;
+			}
 		}
 
 		return $result;
