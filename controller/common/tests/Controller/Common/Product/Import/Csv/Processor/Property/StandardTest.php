@@ -109,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = reset( $items );
 
 		$this->assertEquals( 1, count( $items ) );
-		$this->assertInstanceOf( '\\Aimeos\\MShop\\Product\\Item\\Property\\Iface', $item );
+		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Property\\Iface', $item );
 
 		$this->assertEquals( 'package-height', $item->getType() );
 		$this->assertEquals( '10', $item->getValue() );
