@@ -88,7 +88,7 @@ class Standard
 			{
 				try
 				{
-					$serviceProvider = $serviceManager->getProvider( $serviceItem );
+					$serviceProvider = $serviceManager->getProvider( $serviceItem, $serviceItem->getType() );
 
 					$expr = array(
 						$orderSearch->compare( '>', 'order.datepayment', $date ),

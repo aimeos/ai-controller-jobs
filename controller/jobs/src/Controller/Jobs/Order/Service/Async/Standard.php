@@ -65,7 +65,7 @@ class Standard
 			{
 				try
 				{
-					$serviceManager->getProvider( $serviceItem )->updateAsync();
+					$serviceManager->getProvider( $serviceItem, $serviceItem->getType() )->updateAsync();
 				}
 				catch( \Exception $e )
 				{

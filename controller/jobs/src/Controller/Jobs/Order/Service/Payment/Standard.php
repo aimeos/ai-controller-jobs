@@ -105,7 +105,7 @@ class Standard
 			{
 				try
 				{
-					$serviceProvider = $serviceManager->getProvider( $serviceItem );
+					$serviceProvider = $serviceManager->getProvider( $serviceItem, $serviceItem->getType() );
 
 					if( !$serviceProvider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_CAPTURE ) ) {
 						continue;
