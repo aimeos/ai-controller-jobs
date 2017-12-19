@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-02 17:58+0200\n"
-"PO-Revision-Date: 2017-10-02 15:59+0000\n"
+"PO-Revision-Date: 2017-11-28 16:52+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr ""
+msgstr "La classe \"%1$s\" non implementa l'interfaccia \"%2$s\""
 
 #, php-format
 msgid "Class \"%1$s\" not available"
