@@ -121,7 +121,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-items';
-		$default = 'product/export/sitemap-items-body-default.xml';
+		$default = 'product/export/sitemap-items-body-standard.xml';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -235,7 +235,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-header';
-		$default = 'product/export/sitemap-items-header-default.xml';
+		$default = 'product/export/sitemap-items-header-standard.xml';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -278,7 +278,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-footer';
-		$default = 'product/export/sitemap-items-footer-default.xml';
+		$default = 'product/export/sitemap-items-footer-standard.xml';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -318,7 +318,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/standard/template-footer
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-index';
-		$default = 'product/export/sitemap-index-default.xml';
+		$default = 'product/export/sitemap-index-standard.xml';
 
 		$context = $this->getContext();
 		$view = $context->getView();

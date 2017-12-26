@@ -87,7 +87,7 @@ class Standard
 		 * @see controller/jobs/product/export/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/product/export/standard/template-items';
-		$default = 'product/export/items-body-default.xml';
+		$default = 'product/export/items-body-standard.xml';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -212,7 +212,7 @@ class Standard
 		 * @see controller/jobs/product/export/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/product/export/standard/template-header';
-		$default = 'product/export/items-header-default.xml';
+		$default = 'product/export/items-header-standard.xml';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -255,7 +255,7 @@ class Standard
 		 * @see controller/jobs/product/export/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/product/export/standard/template-footer';
-		$default = 'product/export/items-footer-default.xml';
+		$default = 'product/export/items-footer-standard.xml';
 
 		$context = $this->getContext();
 		$view = $context->getView();
