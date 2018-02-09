@@ -51,6 +51,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
+		$this->context->getConfig()->set( 'controller/jobs/product/export/filename', 'aimeos-products-%1$d.xml' );
+
 		$this->object->run();
 
 		$ds = DIRECTORY_SEPARATOR;
