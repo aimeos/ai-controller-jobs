@@ -343,6 +343,7 @@ class Standard
 				 * @see controller/jobs/product/export/standard/container/type
 				 * @see controller/jobs/product/export/standard/container/content
 				 * @see controller/jobs/product/export/standard/container/options
+				 * @see controller/jobs/product/export/filename
 				 * @see controller/jobs/product/export/location
 				 * @see controller/jobs/product/export/max-items
 				 * @see controller/jobs/product/export/max-query
@@ -365,6 +366,7 @@ class Standard
 				 * @see controller/jobs/product/export/standard/container/type
 				 * @see controller/jobs/product/export/standard/container/content
 				 * @see controller/jobs/product/export/standard/container/options
+				 * @see controller/jobs/product/export/filename
 				 * @see controller/jobs/product/export/location
 				 * @see controller/jobs/product/export/max-query
 				 * @see controller/jobs/product/export/domains
@@ -387,11 +389,33 @@ class Standard
 				 * @see controller/jobs/product/export/standard/container/type
 				 * @see controller/jobs/product/export/standard/container/content
 				 * @see controller/jobs/product/export/standard/container/options
+				 * @see controller/jobs/product/export/filename
 				 * @see controller/jobs/product/export/location
 				 * @see controller/jobs/product/export/max-items
 				 * @see controller/jobs/product/export/domains
 				 */
 				return $config->get( 'controller/jobs/product/export/max-query', $default );
+
+			case 'filename':
+				/** controller/jobs/product/export/filename
+				 * Template for the generated file names
+				 *
+				 * The generated export files will be named according to the given
+				 * string which can contain two place holders: The number of the
+				 * exported product and the ISO date/time when the file was created.
+				 *
+				 * @param string File name template
+				 * @since 2018.04
+				 * @category Developer
+				 * @see controller/jobs/product/export/standard/container/type
+				 * @see controller/jobs/product/export/standard/container/content
+				 * @see controller/jobs/product/export/standard/container/options
+				 * @see controller/jobs/product/export/location
+				 * @see controller/jobs/product/export/max-items
+				 * @see controller/jobs/product/export/max-query
+				 * @see controller/jobs/product/export/domains
+				 */
+				return $config->get( 'controller/jobs/product/export/filename', $default );
 		}
 
 		return $default;
@@ -406,6 +430,6 @@ class Standard
 	 */
 	protected function getFilename( $number )
 	{
-		return sprintf( 'aimeos-products-%d.xml', $number );
+		return sprintf( $this->getConfig( 'filename', 'aimeos-products-%1$d_%2$s.xml' ), $number, date( 'Y-m-d_H:i:s' ) );
 	}
 }
