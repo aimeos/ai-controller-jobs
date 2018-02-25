@@ -1,0 +1,6 @@
+"item code","item parent","item label","item status","text type","text content","media url"
+"job_csv_test","","job csv test category",1,"short","short description","path/to/image.jpg"
+"job_csv_test2","job_csv_test","job csv test category 2. level",1,"short","short category
+description","path/to/image2.jpg"
+"job_csv_test3","job_csv_test2","job csv test category 3. level",1,"short","short subsubnode description","path/to/image3.jpg"
+"job_csv_test4","job_csv_test","job csv test category 2. level 2. node",0,"short","short subnode description","path/to/image4.jpg"
