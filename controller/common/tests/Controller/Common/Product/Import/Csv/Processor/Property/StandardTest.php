@@ -1,12 +1,14 @@
 <?php
 
-namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Property;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2015-2017
  */
+
+
+namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Property;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
