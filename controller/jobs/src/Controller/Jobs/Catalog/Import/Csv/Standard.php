@@ -581,12 +581,12 @@ class Standard
 
 					if( isset( $catalogMap[$code] ) )
 					{
-		                $manager->moveItem( $catalogItem->getId(), $catalogItem->getParentId(), $parentid );
+						$manager->moveItem( $catalogItem->getId(), $catalogItem->getParentId(), $parentid );
 						$catalogItem = $manager->saveItem( $catalogItem );
 					}
 					else
 					{
-		                $catalogItem = $manager->insertItem( $catalogItem, $parentid );
+						$catalogItem = $manager->insertItem( $catalogItem, $parentid );
 					}
 
 					$list = $processor->process( $catalogItem, $list );
