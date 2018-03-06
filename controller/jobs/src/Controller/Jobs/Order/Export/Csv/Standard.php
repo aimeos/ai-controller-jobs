@@ -263,7 +263,7 @@ class Standard
 
 		$container = $this->getContainer();
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
-		$search = $this->initCriteria( $manager->createSearch(), $msg );
+		$search = $this->initCriteria( $manager->createSearch()->setSlice( 0, 0x7fffffff ), $msg );
 		$start = 0;
 
 		do
