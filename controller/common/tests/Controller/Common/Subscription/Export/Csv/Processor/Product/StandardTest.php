@@ -60,10 +60,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '0.0000', $data[0][11] );
 		$this->assertEquals( '1', $data[0][12] );
 		$this->assertEquals( '1', $data[0][13] );
-		$this->assertEquals( "default\ndefault", $data[0][14] );
-		$this->assertEquals( "width\nlength", $data[0][15] );
-		$this->assertEquals( "33\n36", $data[0][16] );
-		$this->assertEquals( "33\n36", $data[0][17] );
+		$this->assertEquals( "default\ndefault\nsubscription", $data[0][14] );
+		$this->assertEquals( "width\nlength\ninterval", $data[0][15] );
+		$this->assertEquals( "33\n36\nP0Y1M0W0D", $data[0][16] );
+		$this->assertEquals( "33\n36\nP0Y1M0W0D", $data[0][17] );
 	}
 
 
