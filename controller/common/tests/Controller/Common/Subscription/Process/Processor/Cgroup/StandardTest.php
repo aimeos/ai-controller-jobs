@@ -41,11 +41,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( $customerItem ) );
 
 		$customerStub->expects( $this->once() )->method( 'saveItem' )
-			->with( $this->callback(
-				function( $subject ){
-					return $subject->getGroups() === ['1', '2'];
-				}
-			) );
+			->with( $this->callback( function( $subject ){
+				return $subject->getGroups() === ['1', '2'];
+			} ) );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $context );
 		$object->begin( $this->getSubscription( $context ) );
@@ -71,11 +69,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( $customerItem ) );
 
 		$customerStub->expects( $this->once() )->method( 'saveItem' )
-			->with( $this->callback(
-				function( $subject ){
-					return $subject->getGroups() === [];
-				}
-			) );
+			->with( $this->callback( function( $subject ){
+				return $subject->getGroups() === [];
+			} ) );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $context );
 		$object->end( $this->getSubscription( $context ) );
