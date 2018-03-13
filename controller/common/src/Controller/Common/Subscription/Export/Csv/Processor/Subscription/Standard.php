@@ -21,7 +21,7 @@ class Standard
 	extends \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Base
 	implements \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Iface
 {
-	/** controller/common/subscription/export/csv/processor/invoice/name
+	/** controller/common/subscription/export/csv/processor/subscription/name
 	 * Name of the invoice processor implementation
 	 *
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Subscription\Myname".
