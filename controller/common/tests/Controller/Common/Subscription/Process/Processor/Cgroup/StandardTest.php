@@ -28,6 +28,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$context->getConfig()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1', '2'] );
 
+		$fcn = function( $subject ){
+			return $subject->getGroups() === ['1', '2'];
+		};
+
 		$customerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
 			->setConstructorArgs( [$context] )
 			->setMethods( ['getItem', 'saveItem'] )
@@ -41,9 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( $customerItem ) );
 
 		$customerStub->expects( $this->once() )->method( 'saveItem' )
-			->with( $this->callback( function( $subject ){
-				return $subject->getGroups() === ['1', '2'];
-			} ) );
+			->with( $this->callback( $fcn ) );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $context );
 		$object->begin( $this->getSubscription( $context ) );
@@ -55,6 +57,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelperCntl::getContext();
 
 		$context->getConfig()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1', '2'] );
+
+		$fcn = function( $subject ){
+			return $subject->getGroups() === [];
+		};
 
 		$customerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
 			->setConstructorArgs( [$context] )
@@ -69,9 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( $customerItem ) );
 
 		$customerStub->expects( $this->once() )->method( 'saveItem' )
-			->with( $this->callback( function( $subject ){
-				return $subject->getGroups() === [];
-			} ) );
+			->with( $this->callback( $fcn ) );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $context );
 		$object->end( $this->getSubscription( $context ) );
