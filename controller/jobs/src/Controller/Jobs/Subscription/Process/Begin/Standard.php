@@ -100,7 +100,6 @@ class Standard
 				}
 				catch( \Exception $e )
 				{
-echo $e->getMessage() . PHP_EOL;
 					$msg = 'Unable to process subscription with ID "%1$S": %2$s';
 					$logger->log( sprintf( $msg, $item->getId(), $e->getMessage() ) );
 				}
