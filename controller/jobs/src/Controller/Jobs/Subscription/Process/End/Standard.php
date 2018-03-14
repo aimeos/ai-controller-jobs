@@ -8,11 +8,11 @@
  */
 
 
-namespace Aimeos\Controller\Jobs\Subscription\Process\Begin;
+namespace Aimeos\Controller\Jobs\Subscription\Process\End;
 
 
 /**
- * Job controller for subscription processs start.
+ * Job controller for subscription processs end.
  *
  * @package Controller
  * @subpackage Jobs
@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Subscription process start' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Subscription process end' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription()
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Process subscriptions initially' );
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Terminates expired subscriptions' );
 	}
 
 
@@ -72,7 +72,7 @@ class Standard
 
 		$search = $manager->createSearch( true );
 		$expr = [
-			$search->compare( '==', 'subscription.datenext', null ),
+			$search->compare( '<', 'subscription.dateend', date( 'Y-m-d' ) ),
 			$search->getConditions(),
 		];
 		$search->setConditions( $search->combine( '&&', $expr ) );
@@ -90,12 +90,10 @@ class Standard
 				try
 				{
 					foreach( $processors as $processor ) {
-						$processor->begin( $item );
+						$processor->end( $item );
 					}
 
-					$interval = \DateInterval::createFromDateString( $item->getInterval() );
-					$item->setDateNext( date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' ) );
-
+					$item->setStatus( 0 );
 					$manager->saveItem( $item );
 				}
 				catch( \Exception $e )
