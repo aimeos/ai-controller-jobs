@@ -39,8 +39,9 @@ interface Iface
 	 * Processes the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order invoice item
 	 */
-	public function renew( \Aimeos\MShop\Subscription\Item\Iface $subscription );
+	public function renew( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
 
 
 	/**
