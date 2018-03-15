@@ -49,6 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
+		$this->context->getConfig()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
 		$item = $this->getSubscription();
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
@@ -69,7 +70,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
-		$item = $this->getSubscription();
+		$this->context->getConfig()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
+		$this->context->getConfig()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1'] );
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -79,10 +81,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::injectManager( $this->context, 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( [$item] ) );
+			->will( $this->returnValue( [$managerStub->createItem()] ) );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' )
-			->will( $this->throwException( new \Exception() ) );
+		$managerStub->expects( $this->never() )->method( 'saveItem' );
 
 		$this->object->run();
 	}
