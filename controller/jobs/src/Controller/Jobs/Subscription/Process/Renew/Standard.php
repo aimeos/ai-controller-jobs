@@ -199,7 +199,7 @@ class Standard
 
 		$item = $manager->createItem();
 		$item->setBaseId( $basket->getId() );
-		$item->setType( 'renewal');
+		$item->setType( 'subscription' );
 
 		return $manager->saveItem( $item );
 	}
