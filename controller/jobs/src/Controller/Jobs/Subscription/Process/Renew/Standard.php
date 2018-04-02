@@ -159,14 +159,16 @@ class Standard
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
 
-		$basket = $manager->load( $subscription->getOrderBaseId(), true );
+		$basket = $manager->load( $subscription->getOrderBaseId() );
 
 		$newBasket = $manager->createItem();
 		$newBasket->setCustomerId( $basket->getCustomerId() );
 
 		foreach( $basket->getProducts() as $orderProduct )
 		{
-			if( $orderProduct->getId() === $subscription->getOrderProductId() ) {
+			if( $orderProduct->getId() === $subscription->getOrderProductId() )
+			{
+				$orderProduct->setId( null );
 				$newBasket->addProduct( $orderProduct );
 			}
 		}
@@ -215,16 +217,14 @@ class Standard
 	protected function createPayment( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket,
 		\Aimeos\MShop\Order\Item\Iface $invoice )
 	{
-		$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
-
-		if( ( $service = reset( $services ) ) === false ) {
-			return;
-		}
-
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
-		$item = $manager->getItem( $service->getServiceId() );
-		$provider = $manager->getProvider( $item, 'payment' );
 
-		$provider->repay( $invoice );
+		foreach( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) as $service )
+		{
+			$item = $manager->getItem( $service->getServiceId() );
+			$provider = $manager->getProvider( $item, 'payment' );
+
+			$provider->repay( $invoice );
+		}
 	}
 }
