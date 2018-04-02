@@ -159,7 +159,7 @@ class Standard
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
 
-		$basket = $manager->load( $subscription->getOrderBaseId() );
+		$basket = $manager->load( $subscription->getOrderBaseId(), true );
 
 		$newBasket = $manager->createItem();
 		$newBasket->setCustomerId( $basket->getCustomerId() );
