@@ -93,7 +93,7 @@ class Standard
 						$processor->begin( $item );
 					}
 
-					$interval = \DateInterval::createFromDateString( $item->getInterval() );
+					$interval = \DateInterval( $item->getInterval() );
 					$item->setDateNext( date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' ) );
 
 					$manager->saveItem( $item );
