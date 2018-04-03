@@ -62,7 +62,7 @@ class Standard
 
 		$search = $manager->createSearch( true );
 		$expr = [
-			$search->compare( '<', 'subscription.datenext', $date ),
+			$search->compare( '<=', 'subscription.datenext', $date ),
 			$search->combine( '||', [
 				$search->compare( '==', 'subscription.dateend', null ),
 				$search->compare( '>', 'subscription.dateend', $date ),
