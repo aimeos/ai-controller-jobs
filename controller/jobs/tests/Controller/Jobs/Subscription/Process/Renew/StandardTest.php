@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Subscription\\Process\\Renew\\Standard' )
 			->setConstructorArgs( [$this->context, $this->aimeos] )
-			->setMethods( ['createOrderBase', 'createOrderInvoice'] )
+			->setMethods( ['createOrderBase', 'createOrderInvoice', 'createPayment'] )
 			->getMock();
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
@@ -70,6 +70,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->expects( $this->once() )->method( 'createOrderInvoice' )
 			->will( $this->returnValue( $this->getOrderItem() ) );
+
+		$object->expects( $this->once() )->method( 'createPayment' );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( [$item] ) );
@@ -132,6 +134,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
 		$this->access( 'createOrderInvoice' )->invokeArgs( $this->object, [$this->context, $baseItem] );
+	}
+
+
+	public function testCreatePayment()
+	{
+		$item = $this->getSubscription();
+		$invoice = $this->getOrderItem();
+		$baseItem = $this->getOrderBaseItem( $item->getOrderBaseId() );
+
+		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['saveItem'] )
+			->getMock();
+
+		\Aimeos\MShop\Factory::injectManager( $this->context, 'order', $managerStub );
+
+		$managerStub->expects( $this->once() )->method( 'saveItem' );
+
+		$this->access( 'createPayment' )->invokeArgs( $this->object, [$this->context, $baseItem, $invoice] );
 	}
 
 
