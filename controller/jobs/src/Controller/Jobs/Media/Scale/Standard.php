@@ -50,8 +50,9 @@ class Standard
 	 */
 	public function run()
 	{
-		$cntl = \Aimeos\Controller\Common\Media\Factory::createController( $this->getContext() );
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'media' );
+		$context = $this->getContext();
+		$cntl = \Aimeos\Controller\Common\Media\Factory::createController( $context );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'media' );
 
 		$search = $manager->createSearch();
 		$expr = array(
@@ -70,8 +71,16 @@ class Standard
 
 			foreach( $items as $item )
 			{
-				$cntl->scale( $item, 'fs-media' );
-				$manager->saveItem( $item );
+				try
+				{
+					$cntl->scale( $item, 'fs-media' );
+					$manager->saveItem( $item );
+				}
+				catch( \Exception $e )
+				{
+					$msg = sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() );
+					$context->getLogger()->log( $msg );
+				}
 			}
 
 			$count = count( $items );
