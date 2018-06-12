@@ -102,9 +102,9 @@ class Standard
 					continue;
 				}
 
-				$value = ( isset( $list['price.value'] ) ? $list['price.value'] : '0.00' );
-				$type = ( isset( $list['price.type'] ) ? $list['price.type'] : 'default' );
-				$typecode = ( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+				$value = trim( isset( $list['price.value'] ) ? $list['price.value'] : '0.00' );
+				$type = trim( isset( $list['price.type'] ) ? $list['price.type'] : 'default' );
+				$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 
 				if( isset( $listMap[$value][$type][$typecode] ) )
 				{
@@ -186,8 +186,8 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['price.value'] ) || $list['price.value'] === '' || isset( $list['product.lists.type'] )
-			&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
+		if( !isset( $list['price.value'] ) || trim( $list['price.value'] ) === '' || isset( $list['product.lists.type'] )
+			&& $this->listTypes !== null && !in_array( trim( $list['product.lists.type'] ), (array) $this->listTypes )
 		) {
 			return false;
 		}

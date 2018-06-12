@@ -47,7 +47,7 @@ class Standard
 
 		foreach( $map as $list )
 		{
-			if( $list['coupon.code.code'] == '' ) {
+			if( trim( $list['coupon.code.code'] ) == '' ) {
 				continue;
 			}
 

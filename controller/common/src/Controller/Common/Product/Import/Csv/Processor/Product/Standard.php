@@ -109,11 +109,13 @@ class Standard
 				}
 
 				$listMap = [];
-				$type = ( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+				$type = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 				$types[] = $type;
 
-				foreach( explode( $separator, $list['product.code'] ) as $code )
+				foreach( explode( $separator, trim( $list['product.code'] ) ) as $code )
 				{
+					$code = trim( $code );
+
 					if( ( $prodid = $this->cache->get( $code ) ) === null )
 					{
 						$msg = 'No product for code "%1$s" available when importing product with code "%2$s"';
@@ -150,8 +152,8 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['product.code'] ) || $list['product.code'] === '' || isset( $list['product.lists.type'] )
-			&& $this->listTypes !== null && !in_array( $list['product.lists.type'], (array) $this->listTypes )
+		if( !isset( $list['product.code'] ) || trim( $list['product.code'] ) === '' || isset( $list['product.lists.type'] )
+			&& $this->listTypes !== null && !in_array( trim( $list['product.lists.type'] ), (array) $this->listTypes )
 		) {
 			return false;
 		}

@@ -125,11 +125,13 @@ class Standard
 					continue;
 				}
 
-				$codes = explode( $separator, $list['catalog.code'] );
-				$type = ( isset( $list['catalog.lists.type'] ) ? $list['catalog.lists.type'] : 'default' );
+				$codes = explode( $separator, trim( $list['catalog.code'] ) );
+				$type = trim( isset( $list['catalog.lists.type'] ) ? $list['catalog.lists.type'] : 'default' );
 
 				foreach( $codes as $code )
 				{
+					$code = trim( $code );
+
 					if( ( $catid = $this->cache->get( $code ) ) === null )
 					{
 						$msg = 'No category for code "%1$s" available when importing product with code "%2$s"';
@@ -200,8 +202,8 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['catalog.code'] ) || $list['catalog.code'] === '' || isset( $list['catalog.lists.type'] )
-			&& $this->listTypes !== null && !in_array( $list['catalog.lists.type'], (array) $this->listTypes )
+		if( !isset( $list['catalog.code'] ) || trim( $list['catalog.code'] ) === '' || isset( $list['catalog.lists.type'] )
+			&& $this->listTypes !== null && !in_array( trim( $list['catalog.lists.type'] ), (array) $this->listTypes )
 		) {
 			return false;
 		}

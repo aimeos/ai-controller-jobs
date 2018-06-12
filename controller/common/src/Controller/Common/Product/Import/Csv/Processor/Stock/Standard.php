@@ -74,17 +74,17 @@ class Standard
 					continue;
 				}
 
-				$stockType = ( isset( $list['stock.type'] ) ? $list['stock.type'] : 'default' );
+				$stockType = trim( isset( $list['stock.type'] ) ? $list['stock.type'] : 'default' );
 
 				if( !isset( $list['stock.typeid'] ) ) {
 					$list['stock.typeid'] = $this->cache->get( $stockType );
 				}
 
-				if( isset( $list['stock.dateback'] ) && $list['stock.dateback'] === '' ) {
+				if( isset( $list['stock.dateback'] ) && trim( $list['stock.dateback'] ) === '' ) {
 					$list['stock.dateback'] = null;
 				}
 
-				if( $list['stock.stocklevel'] === '' ) {
+				if( trim( $list['stock.stocklevel'] ) === '' ) {
 					$list['stock.stocklevel'] = null;
 				}
 

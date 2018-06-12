@@ -518,6 +518,8 @@ class Standard
 
 			try
 			{
+				$code = trim( $code );
+
 				if( isset( $products[$code] ) ) {
 					$product = $products[$code];
 				} else {
@@ -530,7 +532,7 @@ class Standard
 				{
 					$map = $map[0]; // there can only be one chunk for the base product data
 
-					$typecode = ( isset( $map['product.type'] ) ? $map['product.type'] : 'default' );
+					$typecode = trim( isset( $map['product.type'] ) ? $map['product.type'] : 'default' );
 					$map['product.typeid'] = $this->getTypeId( 'product/type', 'product', $typecode );
 
 					$product->fromArray( $this->addItemDefaults( $map ) );

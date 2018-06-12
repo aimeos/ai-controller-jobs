@@ -105,9 +105,9 @@ class Standard
 					continue;
 				}
 
-				$urls = explode( $separator, $list['media.url'] );
-				$type = $this->getValue( $list, 'media.type', 'default' );
-				$typecode = $this->getValue( $list, 'catalog.lists.type', 'default' );
+				$urls = explode( $separator, trim( $list['media.url'] ) );
+				$type = trim( $this->getValue( $list, 'media.type', 'default' ) );
+				$typecode = trim( $this->getValue( $list, 'catalog.lists.type', 'default' ) );
 
 				foreach( $urls as $url )
 				{
@@ -193,8 +193,8 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['media.url'] ) || $list['media.url'] === '' || isset( $list['catalog.lists.type'] )
-				&& $this->listTypes !== null && !in_array( $list['catalog.lists.type'], (array) $this->listTypes )
+		if( !isset( $list['media.url'] ) || trim( $list['media.url'] ) === '' || isset( $list['catalog.lists.type'] )
+				&& $this->listTypes !== null && !in_array( trim( $list['catalog.lists.type'] ), (array) $this->listTypes )
 		) {
 			return false;
 		}

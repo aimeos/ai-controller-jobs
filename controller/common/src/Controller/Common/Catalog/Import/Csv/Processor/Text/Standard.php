@@ -102,12 +102,13 @@ class Standard
 					continue;
 				}
 
-				$type = ( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
-				$typecode = ( isset( $list['catalog.lists.type'] ) ? $list['catalog.lists.type'] : 'default' );
+				$content = trim( $list['text.content'] );
+				$type = trim( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
+				$typecode = trim( isset( $list['catalog.lists.type'] ) ? $list['catalog.lists.type'] : 'default' );
 
-				if( isset( $listMap[ $list['text.content'] ][$type][$typecode] ) )
+				if( isset( $listMap[$content][$type][$typecode] ) )
 				{
-					$listItem = $listMap[ $list['text.content'] ][$type][$typecode];
+					$listItem = $listMap[$content][$type][$typecode];
 					$refItem = $listItem->getRefItem();
 					unset( $listItems[ $listItem->getId() ] );
 				}
@@ -162,7 +163,7 @@ class Standard
 	protected function addItemDefaults( array $list )
 	{
 		if( !isset( $list['text.label'] ) ) {
-			$list['text.label'] = mb_strcut( $list['text.content'], 0, 255 );
+			$list['text.label'] = mb_strcut( trim( $list['text.content'] ), 0, 255 );
 		}
 
 		if( !isset( $list['text.languageid'] ) ) {
@@ -185,8 +186,8 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['text.content'] ) || $list['text.content'] === '' || isset( $list['catalog.lists.type'] )
-			&& $this->listTypes !== null && !in_array( $list['catalog.lists.type'], (array) $this->listTypes )
+		if( !isset( $list['text.content'] ) || trim( $list['text.content'] ) === '' || isset( $list['catalog.lists.type'] )
+			&& $this->listTypes !== null && !in_array( trim( $list['catalog.lists.type'] ), (array) $this->listTypes )
 		) {
 			return false;
 		}

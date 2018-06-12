@@ -108,16 +108,18 @@ class Standard
 					continue;
 				}
 
-				$codes = explode( $separator, $list['attribute.code'] );
+				$codes = explode( $separator, trim( $list['attribute.code'] ) );
 
 				foreach( $codes as $code )
 				{
-					$attrItem = $this->getAttributeItem( $code, $list['attribute.type'] );
+					$code = trim( $code );
+
+					$attrItem = $this->getAttributeItem( $code, trim( $list['attribute.type'] ) );
 					$attrItem->fromArray( $list );
 					$attrItem->setCode( $code );
 					$attrItem = $manager->saveItem( $attrItem );
 
-					$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
+					$typecode = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
 					$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'attribute', $typecode );
 					$list['product.lists.refid'] = $attrItem->getId();
 					$list['product.lists.parentid'] = $product->getId();
@@ -162,9 +164,9 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['attribute.code'] ) || $list['attribute.code'] === '' || $list['attribute.type'] === ''
-			|| isset( $list['product.lists.type'] ) && $this->listTypes !== null
-			&& !in_array( $list['product.lists.type'], (array) $this->listTypes )
+		if( !isset( $list['attribute.code'] ) || trim( $list['attribute.code'] ) === ''
+			|| trim( $list['attribute.type'] ) === '' || isset( $list['product.lists.type'] )
+			&& $this->listTypes !== null && !in_array( trim( $list['product.lists.type'] ), (array) $this->listTypes )
 		) {
 			return false;
 		}

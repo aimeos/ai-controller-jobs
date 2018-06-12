@@ -531,13 +531,15 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		if( $map['catalog.parent'] != '' && !isset( $catalogMap[$map['catalog.parent']] ) )
+		$parent = trim( $map['catalog.parent'] );
+
+		if( $parent != '' && !isset( $catalogMap[$parent] ) )
 		{
-			$msg = sprintf( 'Parent node for code "%1$s" not found', $map['catalog.parent'] );
+			$msg = sprintf( 'Parent node for code "%1$s" not found', $parent );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		return ( $map['catalog.parent'] != '' ? $catalogMap[$map['catalog.parent']]->getId() : null );
+		return ( $parent != '' ? $catalogMap[$parent]->getId() : null );
 	}
 
 
@@ -565,6 +567,8 @@ class Standard
 
 			try
 			{
+				$code = trim( $code );
+
 				if( isset( $catalogMap[$code] )  ) {
 					$catalogItem = $catalogMap[$code];
 				} else {

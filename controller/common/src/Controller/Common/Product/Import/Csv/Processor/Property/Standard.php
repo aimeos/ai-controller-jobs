@@ -57,17 +57,19 @@ class Standard
 
 			foreach( $map as $list )
 			{
-				if( $list['product.property.type'] == '' || $list['product.property.value'] == '' ) {
+				$typecode = trim( $list['product.property.type'] );
+				$value = trim( $list['product.property.value'] );
+
+				if( $typecode == '' || $value == '' ) {
 					continue;
 				}
 
-				$typecode = $list['product.property.type'];
 				$list['product.property.typeid'] = $this->getTypeId( 'product/property/type', 'product', $typecode );
 				$list['product.property.parentid'] = $product->getId();
 
-				if( isset( $propMap[ $list['product.property.value'] ][$typecode] ) )
+				if( isset( $propMap[$value][$typecode] ) )
 				{
-					$item = $propMap[ $list['product.property.value'] ][$typecode];
+					$item = $propMap[$value][$typecode];
 					unset( $items[ $item->getId() ] );
 				}
 				else
