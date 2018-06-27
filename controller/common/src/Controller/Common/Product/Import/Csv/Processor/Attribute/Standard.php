@@ -191,7 +191,7 @@ class Standard
 			$item = $manager->createItem();
 			$item->setTypeId( $this->getTypeId( 'attribute/type', 'product', $type ) );
 			$item->setDomain( 'product' );
-			$item->setLabel( $type . ' ' . $code );
+			$item->setLabel( $code );
 			$item->setCode( $code );
 			$item->setStatus( 1 );
 
