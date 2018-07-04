@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 18:08+0200\n"
+"POT-Creation-Date: 2018-07-04 10:09+0200\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -97,7 +97,7 @@ msgid "Invalid characters in class name \"%1$s\""
 msgstr ""
 
 #, php-format
-msgid "Invalid message: %2$s"
+msgid "Invalid message: %1$s"
 msgstr ""
 
 #, php-format
@@ -176,6 +176,10 @@ msgid "Required column \"%1$s\" not found for code \"%2$s\""
 msgstr ""
 
 #, php-format
+msgid "Required configuration for \"%1$s\" is missing"
+msgstr ""
+
+#, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
 msgstr ""
 
@@ -183,6 +187,10 @@ msgid "Rescale product images"
 msgstr ""
 
 msgid "Rescales product images to the new sizes"
+msgstr ""
+
+#, php-format
+msgid "Scaling media item \"%1$s\" failed: %2$s"
 msgstr ""
 
 msgid "Sends paid orders to the ERP system or logistic partner"

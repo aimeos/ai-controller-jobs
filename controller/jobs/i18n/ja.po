@@ -3,8 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aldemar Hernández <napalm-beach@lycos.com>, 2016
-# Daniel Vega <danielvega131990@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -12,66 +10,66 @@ msgstr ""
 "POT-Creation-Date: 2018-07-04 09:52+0200\n"
 "PO-Revision-Date: 2018-07-04 07:54+0000\n"
 "Last-Translator: Aimeos\n"
-"Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
+"Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr "Los pagos autorizados de los pedidos serán capturados luego de enviar los mismos o después de un límite de tiempo configurable"
+msgstr ""
 
 msgid "Batch update of payment/delivery status"
-msgstr "Actualización por lotes del estado de los pagos y las entregas"
+msgstr ""
 
 msgid "Cache cleanup"
-msgstr "Limpiar caché"
+msgstr ""
 
 msgid "Capture authorized payments"
-msgstr "Obtener pagos autorizados"
+msgstr ""
 
 msgid "Catalog import CSV"
 msgstr ""
 
 msgid "Catalog index optimization"
-msgstr "Optimizar índice del catálogo"
+msgstr ""
 
 msgid "Catalog index rebuild"
-msgstr "Reconstruir índice del catálogo"
+msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "La clase \"%1$s\" no implementa la interfaz \"%2$s\""
+msgstr "クラス \"%1$s\"はインターフェイス \"2 %2$s\"を実行しません"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr "Clase \"%1$s\" no encontrada"
+msgstr "クラス \"1 %1$s\"が見つかりません"
 
 msgid "Coupon code import CSV"
 msgstr ""
 
 msgid "Creates a product site map for search engines"
-msgstr "Crea un mapa de producto para los motores de búsqueda"
+msgstr ""
 
 msgid "Creates bought together product suggestions"
-msgstr "Crea sugerencias de productos comprados juntos"
+msgstr ""
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr "Elimina las órdenes sin terminar y hace que sus productos y bonos de descuento estén disponibles de nuevo"
+msgstr ""
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr "Elimina las órdenes pendientes de pago para mantener la base de datos limpia"
+msgstr ""
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr "Ejecuta el pago o la entrega de servicios de proveedores que utilizan actualizaciones por lotes"
+msgstr ""
 
 msgid "Exports all available products"
-msgstr "Exporta todos los productos disponibles"
+msgstr ""
 
 msgid "Exports orders to CSV file"
 msgstr ""
@@ -86,7 +84,7 @@ msgid "Imports new and updates existing coupon code from CSV files"
 msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr "Importa nuevos y actualiza los productos existentes a partir de archivos CSV"
+msgstr ""
 
 msgid "Index optimization"
 msgstr ""
@@ -100,7 +98,7 @@ msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr "Hay caracteres no válidos en el nombre de clase \"%1$s\""
+msgstr ""
 
 #, php-format
 msgid "Invalid message: %1$s"
@@ -108,10 +106,10 @@ msgstr ""
 
 #, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
-msgstr "Líneas de productos no válidas en \"%1$s\": %2$d/%3$d"
+msgstr ""
 
 msgid "Log cleanup"
-msgstr "Limpiar registro"
+msgstr ""
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
@@ -123,10 +121,10 @@ msgstr ""
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr "No se ha encntrado la columna \"product.code\" en el mapeo CSV"
+msgstr ""
 
 msgid "Optimizes the catalog index for searching products"
-msgstr "Optimiza el índice del catálogo para la búsqueda de productos"
+msgstr ""
 
 msgid "Optimizes the index for searching products faster"
 msgstr ""
@@ -139,41 +137,41 @@ msgid "Parent node for code \"%1$s\" not found"
 msgstr ""
 
 msgid "Process order delivery services"
-msgstr "Servicios de proceso de la entrega de pedidos"
+msgstr ""
 
 msgid "Process subscriptions initially"
 msgstr ""
 
 msgid "Product export"
-msgstr "Exportar producto"
+msgstr ""
 
 msgid "Product import CSV"
-msgstr "Importar CSV de producto"
+msgstr ""
 
 msgid "Product site map"
-msgstr "Mapa de producto"
+msgstr ""
 
 msgid "Products bought together"
-msgstr "Productos comprados juntos"
+msgstr ""
 
 msgid "Rebuilds the catalog index for searching products"
-msgstr "Reconstruye el índice del catálogo para la búsqueda de productos"
+msgstr ""
 
 msgid "Rebuilds the index for searching products"
 msgstr ""
 
 msgid "Removes the expired entries from the cache"
-msgstr "Elimina las entradas caducadas de la caché"
+msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr "Elimina las entradas antiguas del registro de la base de datos y las archiva (opcional)"
+msgstr ""
 
 msgid "Removes unfinished orders"
-msgstr "Elimina los pedidos sin terminar"
+msgstr ""
 
 msgid "Removes unpaid orders"
-msgstr "Elimina los pedidos sin pagar"
+msgstr ""
 
 msgid "Renews subscriptions at next date"
 msgstr ""
@@ -188,7 +186,7 @@ msgstr ""
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr "La clave de mapeo obligatoria \"%1$s\" no se encuentra o no contiene una matriz"
+msgstr ""
 
 msgid "Rescale product images"
 msgstr ""
@@ -201,7 +199,7 @@ msgid "Scaling media item \"%1$s\" failed: %2$s"
 msgstr ""
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr "Envía los pedidos pagados al sistema ERP o socio logístico"
+msgstr ""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\" (%2$s)"
@@ -213,7 +211,7 @@ msgstr ""
 
 #, php-format
 msgid "Started product import from \"%1$s\" (%2$s)"
-msgstr "Iniciada la importación de productos de \"%1$s\" (%2$s)"
+msgstr ""
 
 msgid "Subscription export CSV"
 msgstr ""
@@ -240,16 +238,16 @@ msgstr ""
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr "No se puede importar el producto con código \"%1$s\": %2$s"
+msgstr ""
 
 #, php-format
 msgid "Unable to move imported file"
-msgstr "No se puede mover el archivo importado"
+msgstr ""
 
 #, php-format
 msgid "aimeos-products-%d.xml"
-msgstr "productos-aimeos-%d.xml"
+msgstr ""
 
 #, php-format
 msgid "aimeos-sitemap-%d.xml"
-msgstr "mapa-de-sitio-aimeos-%d.xml"
+msgstr ""
