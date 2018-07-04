@@ -117,7 +117,7 @@ class Standard
 			try
 			{
 				if( ( $data = json_decode( $msg->getBody(), true ) ) === null ) {
-					throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid message: %2$s', $msg->getBody() ) );
+					throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid message: %1$s', $msg->getBody() ) );
 				}
 
 				$this->export( $processors, $data, $maxcnt );
