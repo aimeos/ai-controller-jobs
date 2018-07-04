@@ -175,7 +175,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/max-query
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 */
-		$location = $config->get( 'controller/jobs/product/export/sitemap/location', sys_get_temp_dir() );
+		$location = $config->get( 'controller/jobs/product/export/sitemap/location' );
 
 		/** controller/jobs/product/export/sitemap/container/options
 		 * List of file container options for the site map files
@@ -198,6 +198,12 @@ class Standard
 		 */
 		$default = array( 'gzip-mode' => 'wb' );
 		$options = $config->get( 'controller/jobs/product/export/sitemap/container/options', $default );
+
+		if( $location === null )
+		{
+			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/product/export/sitemap/location' );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, 'Directory', 'Gzip', $options );
 	}

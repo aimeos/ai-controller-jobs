@@ -426,7 +426,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/container/content
 		 * @see controller/jobs/product/import/csv/container/options
 		 */
-		$location = $config->get( 'controller/jobs/product/import/csv/location', '.' );
+		$location = $config->get( 'controller/jobs/product/import/csv/location' );
 
 		/** controller/jobs/product/import/csv/container/type
 		 * Nave of the container type to read the data from
@@ -489,6 +489,12 @@ class Standard
 		 * @see controller/jobs/product/import/csv/container/type
 		 */
 		$options = $config->get( 'controller/jobs/product/import/csv/container/options', [] );
+
+		if( $location === null )
+		{
+			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/product/import/csv/location' );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
 	}

@@ -123,7 +123,7 @@ class Standard
 		 * @see controller/jobs/product/export/max-items
 		 * @see controller/jobs/product/export/max-query
 		 */
-		$location = $config->get( 'controller/jobs/product/export/location', sys_get_temp_dir() );
+		$location = $config->get( 'controller/jobs/product/export/location' );
 
 		/** controller/jobs/product/export/standard/container/type
 		 * List of file container options for the export files
@@ -175,6 +175,12 @@ class Standard
 		 * @see controller/jobs/product/export/max-query
 		 */
 		$options = $config->get( 'controller/jobs/product/export/standard/container/options', [] );
+
+		if( $location === null )
+		{
+			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/product/export/location' );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
 
 		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
 	}
