@@ -162,10 +162,6 @@ class Standard
 	 */
 	protected function addItemDefaults( array $list )
 	{
-		if( !isset( $list['price.currencyid'] ) ) {
-			$list['price.currencyid'] = $this->getContext()->getLocale()->getCurrencyId();
-		}
-
 		if( !isset( $list['price.label'] ) ) {
 			$list['price.label'] = $list['price.currencyid'] . ' ' . $list['price.value'];
 		}

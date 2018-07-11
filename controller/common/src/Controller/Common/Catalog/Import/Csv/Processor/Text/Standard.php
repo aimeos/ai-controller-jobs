@@ -166,10 +166,6 @@ class Standard
 			$list['text.label'] = mb_strcut( trim( $list['text.content'] ), 0, 255 );
 		}
 
-		if( !isset( $list['text.languageid'] ) ) {
-			$list['text.languageid'] = $this->getContext()->getLocale()->getLanguageId();
-		}
-
 		if( !isset( $list['text.status'] ) ) {
 			$list['text.status'] = 1;
 		}
