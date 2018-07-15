@@ -89,14 +89,14 @@ class Standard
 
 					$this->createPayment( $context, $newOrder, $newInvoice );
 
-					foreach( $processors as $processor ) {
-						$processor->renew( $item, $newInvoice );
-					}
-
 					$interval = new \DateInterval( $item->getInterval() );
 					$item->setDateNext( date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' ) );
 
 					$manager->saveItem( $item );
+
+					foreach( $processors as $processor ) {
+						$processor->renew( $item, $newInvoice );
+					}
 				}
 				catch( \Exception $e )
 				{
