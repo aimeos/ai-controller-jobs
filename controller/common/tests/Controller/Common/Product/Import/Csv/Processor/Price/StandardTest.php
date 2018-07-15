@@ -95,17 +95,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessMultiple()
 	{
 		$mapping = array(
-			0 => 'price.value',
+			0 => 'price.currencyid',
 			1 => 'price.value',
-			2 => 'price.value',
+			2 => 'price.currencyid',
 			3 => 'price.value',
+			4 => 'price.currencyid',
+			5 => 'price.value',
+			6 => 'price.currencyid',
+			7 => 'price.value',
 		);
 
 		$data = array(
-			0 => '1.00',
-			1 => '2.00',
-			2 => '3.00',
-			3 => '4.00',
+			0 => 'EUR',
+			1 => '1.00',
+			2 => 'EUR',
+			3 => '2.00',
+			4 => 'EUR',
+			5 => '3.00',
+			6 => 'EUR',
+			7 => '4.00',
 		);
 
 		$product = $this->create( 'job_csv_test' );
@@ -124,8 +132,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		foreach( $listItems as $listItem )
 		{
-			$this->assertEquals( $data[$pos], $listItem->getRefItem()->getValue() );
-			$pos++;
+			$this->assertEquals( $data[$pos++], $listItem->getRefItem()->getCurrencyId() );
+			$this->assertEquals( $data[$pos++], $listItem->getRefItem()->getValue() );
 		}
 	}
 
@@ -133,15 +141,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessUpdate()
 	{
 		$mapping = array(
-			0 => 'price.value',
+			0 => 'price.currencyid',
+			1 => 'price.value',
 		);
 
 		$data = array(
-			0 => '1.00',
+			0 => 'EUR',
+			1 => '1.00',
 		);
 
 		$dataUpdate = array(
-			0 => '2.00',
+			0 => 'EUR',
+			1 => '2.00',
 		);
 
 		$product = $this->create( 'job_csv_test' );
@@ -170,11 +181,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessDelete()
 	{
 		$mapping = array(
-			0 => 'price.value',
+			0 => 'price.currencyid',
+			1 => 'price.value',
 		);
 
 		$data = array(
-			0 => '1.00',
+			0 => 'EUR',
+			1 => '1.00',
 		);
 
 		$product = $this->create( 'job_csv_test' );
@@ -200,13 +213,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessEmpty()
 	{
 		$mapping = array(
-			0 => 'price.value',
+			0 => 'price.currencyid',
 			1 => 'price.value',
+			2 => 'price.currencyid',
+			3 => 'price.value',
 		);
 
 		$data = array(
-			0 => '1.00',
-			1 => '',
+			0 => 'EUR',
+			1 => '1.00',
+			2 => 'EUR',
+			3 => '',
 		);
 
 		$product = $this->create( 'job_csv_test' );
@@ -227,17 +244,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessListtypes()
 	{
 		$mapping = array(
-			0 => 'price.value',
-			1 => 'product.lists.type',
-			2 => 'price.value',
-			3 => 'product.lists.type',
+			0 => 'price.currencyid',
+			1 => 'price.value',
+			2 => 'product.lists.type',
+			3 => 'price.currencyid',
+			4 => 'price.value',
+			5 => 'product.lists.type',
 		);
 
 		$data = array(
-			0 => '1.00',
-			1 => 'test',
-			2 => '2.00',
-			3 => 'default',
+			0 => 'EUR',
+			1 => '1.00',
+			2 => 'test',
+			3 => 'EUR',
+			4 => '2.00',
+			5 => 'default',
 		);
 
 		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/price/listtypes', array( 'default' ) );
