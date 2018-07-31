@@ -17,9 +17,11 @@ namespace Aimeos\Controller\Common\Product\Import\Csv\Processor;
  * @package Controller
  * @subpackage Common
  */
-class Base
-	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
+abstract class Base
 {
+	use \Aimeos\Controller\Common\Product\Import\Csv\Traits;
+
+
 	private $context;
 	private $mapping;
 	private $object;

@@ -18,9 +18,12 @@ namespace Aimeos\Controller\Jobs\Product\Import\Csv;
  * @subpackage Jobs
  */
 class Standard
-	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
+	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	use \Aimeos\Controller\Common\Product\Import\Csv\Traits;
+
+
 	/**
 	 * Returns the localized name of the job.
 	 *

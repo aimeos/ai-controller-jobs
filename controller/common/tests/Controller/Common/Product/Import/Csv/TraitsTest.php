@@ -9,7 +9,7 @@
 namespace Aimeos\Controller\Common\Product\Import\Csv;
 
 
-class BaseTest extends \PHPUnit\Framework\TestCase
+class TraitsTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 
@@ -107,8 +107,14 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 
 class TestAbstract
-	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 {
+	use \Aimeos\Controller\Common\Product\Import\Csv\Traits;
+
+	public function getContext()
+	{
+		return \TestHelperCntl::getContext();
+	}
+
 	public function getCachePublic( $type, $name = null )
 	{
 		return $this->getCache( $type, $name );

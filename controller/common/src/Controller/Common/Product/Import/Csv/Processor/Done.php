@@ -36,11 +36,11 @@ class Done
 	/**
 	 * Saves the product related data to the storage
 	 *
-	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item with associated items
+	 * @param \Aimeos\MShop\Product\Item\Iface $item Product item with associated items
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
+	public function process( \Aimeos\MShop\Product\Item\Iface $item, array $data )
 	{
 		return $data;
 	}
