@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		unlink( 'tmp' . $ds . 'aimeos-products-1.xml' );
 		unlink( 'tmp' . $ds . 'aimeos-products-2.xml' );
 
-		$this->assertContains( 'CNE', $file1 );
+		$this->assertContains( 'CNE', $file2 );
 		$this->assertContains( 'U:BUNDLE', $file2 );
 	}
 }
