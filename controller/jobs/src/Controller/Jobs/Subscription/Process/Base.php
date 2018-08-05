@@ -32,7 +32,6 @@ abstract class Base
 		$list = [];
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$iface = '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\Iface';
 
 		foreach( $pnames as $pname )
 		{
@@ -58,9 +57,7 @@ abstract class Base
 
 			$object = new $classname( $context );
 
-			if( !( $object instanceof $iface ) ) {
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" does not implement interface "%2$s"', $classname, $iface ) );
-			}
+			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\Iface', $object );
 
 			$list[$pname] = $object;
 		}

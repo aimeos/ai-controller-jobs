@@ -64,7 +64,6 @@ trait Traits
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$iface = '\\Aimeos\\Controller\\Common\\Product\\Import\\Csv\\Cache\\Iface';
 
 		if( ctype_alnum( $type ) === false )
 		{
@@ -90,9 +89,7 @@ trait Traits
 
 		$object = new $classname( $context );
 
-		if( !( $object instanceof $iface ) ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" does not implement interface "%2$s"', $classname, $iface ) );
-		}
+		\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Product\\Import\\Csv\\Cache\\Iface', $object );
 
 		return $object;
 	}
@@ -263,7 +260,6 @@ trait Traits
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$iface = '\\Aimeos\\Controller\\Common\\Product\\Import\\Csv\\Processor\\Iface';
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $context, [] );
 
 		foreach( $mappings as $type => $mapping )
@@ -290,9 +286,7 @@ trait Traits
 
 			$object = new $classname( $context, $mapping, $object );
 
-			if( !( $object instanceof $iface ) ) {
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" does not implement interface "%2$s"', $classname, $iface ) );
-			}
+			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Product\\Import\\Csv\\Processor\\Iface', $object );
 		}
 
 		return $object;

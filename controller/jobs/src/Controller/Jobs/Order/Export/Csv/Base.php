@@ -147,7 +147,6 @@ class Base
 		$list = [];
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$iface = '\\Aimeos\\Controller\\Common\\Order\\Export\\Csv\\Processor\\Iface';
 
 		foreach( $mappings as $type => $mapping )
 		{
@@ -173,9 +172,7 @@ class Base
 
 			$object = new $classname( $context, $mapping );
 
-			if( !( $object instanceof $iface ) ) {
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" does not implement interface "%2$s"', $classname, $iface ) );
-			}
+			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Order\\Export\\Csv\\Processor\\Iface', $object );
 
 			$list[$type] = $object;
 		}
