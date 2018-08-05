@@ -51,7 +51,7 @@ class Standard
 	public function run()
 	{
 		$container = $this->createContainer();
-		$this->export( $container );
+		$this->export( $container, false );
 		$container->close();
 	}
 
@@ -274,13 +274,14 @@ class Standard
 	 * Exports the products into the given container
 	 *
 	 * @param \Aimeos\MW\Container\Iface $container Container object
+	 * @param boolean $default True to filter exported products by default criteria
 	 * @return array List of content (file) names
 	 */
-	protected function export( \Aimeos\MW\Container\Iface $container )
+	protected function export( \Aimeos\MW\Container\Iface $container, $default = true )
 	{
-		$default = array( 'attribute', 'media', 'price', 'product', 'text' );
+		$domains = array( 'attribute', 'media', 'price', 'product', 'text' );
 
-		$domains = $this->getConfig( 'domains', $default );
+		$domains = $this->getConfig( 'domains', $domains );
 		$maxItems = $this->getConfig( 'max-items', 10000 );
 		$maxQuery = $this->getConfig( 'max-query', 1000 );
 
@@ -289,7 +290,7 @@ class Standard
 
 		$productManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product' );
 
-		$search = $productManager->createSearch( true );
+		$search = $productManager->createSearch( $default );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
 		$search->setSlice( 0, $maxQuery );
 
