@@ -87,16 +87,23 @@ class Standard
 					$newOrder = $this->createOrderBase( $context, $item );
 					$newInvoice = $this->createOrderInvoice( $context, $newOrder );
 
-					$this->createPayment( $context, $newOrder, $newInvoice );
+					try
+					{
+						$this->createPayment( $context, $newOrder, $newInvoice );
 
-					$interval = new \DateInterval( $item->getInterval() );
-					$item->setDateNext( date_create()->add( $interval )->format( 'Y-m-d' ) );
+						$interval = new \DateInterval( $item->getInterval() );
+						$item->setDateNext( date_create()->add( $interval )->format( 'Y-m-d' ) );
+
+						foreach( $processors as $processor ) {
+							$processor->renew( $item, $newInvoice );
+						}
+					}
+					catch( \Exception $e )
+					{
+						$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
+					}
 
 					$manager->saveItem( $item );
-
-					foreach( $processors as $processor ) {
-						$processor->renew( $item, $newInvoice );
-					}
 				}
 				catch( \Exception $e )
 				{
