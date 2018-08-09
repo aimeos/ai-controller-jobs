@@ -93,8 +93,11 @@ class Standard
 						$processor->end( $item );
 					}
 
-					$item->setStatus( 0 );
-					$manager->saveItem( $item );
+					if( ( $reason = $item->getReason() ) === null ) {
+						$reason = \Aimeos\MShop\Subscription\Item\Iface::REASON_END;
+					}
+
+					$manager->saveItem( $item->setReason( $reason )->setStatus( 0 ) );
 				}
 				catch( \Exception $e )
 				{
