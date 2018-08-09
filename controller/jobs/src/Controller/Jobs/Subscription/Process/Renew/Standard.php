@@ -93,17 +93,21 @@ class Standard
 
 						$interval = new \DateInterval( $item->getInterval() );
 						$item->setDateNext( date_create()->add( $interval )->format( 'Y-m-d' ) );
-
-						foreach( $processors as $processor ) {
-							$processor->renew( $item, $newInvoice );
-						}
 					}
 					catch( \Exception $e )
 					{
+						$item->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
 						$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
+						$manager->saveItem( $item );
+
+						throw $e;
 					}
 
 					$manager->saveItem( $item );
+
+					foreach( $processors as $processor ) {
+						$processor->renew( $item, $newInvoice );
+					}
 				}
 				catch( \Exception $e )
 				{
