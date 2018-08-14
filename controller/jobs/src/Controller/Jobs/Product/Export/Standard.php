@@ -289,7 +289,7 @@ class Standard
 		$names = [];
 
 		$indexManager = \Aimeos\MShop\Index\Manager\Factory::createManager($this->getContext());
-
+		
        		$search = $indexManager->createSearch($default);
         	$search->setSlice(0, $maxQuery);
         	$search->setConditions(
@@ -298,6 +298,9 @@ class Standard
         	$search->setSortations(
             		[$search->sort('+', 'product.id')]
         	);
+		
+		$content = $this->createContent($container, $filenum);
+        	$names[] = basename($content->getResource());
 
 		do
 		{
