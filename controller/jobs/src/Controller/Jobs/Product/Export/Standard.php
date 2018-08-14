@@ -300,7 +300,7 @@ class Standard
         	);
 		
 		$content = $this->createContent($container, $filenum);
-        	$names[] = basename($content->getResource());
+        	$names[] = $content->getResource();
 
 		do
 		{
