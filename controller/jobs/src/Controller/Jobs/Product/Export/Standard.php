@@ -288,18 +288,20 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$productManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product' );
+		$indexManager = \Aimeos\MShop\Index\Manager\Factory::createManager($this->getContext());
 
-		$search = $productManager->createSearch( $default );
-		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
-		$search->setSlice( 0, $maxQuery );
-
-		$content = $this->createContent( $container, $filenum );
-		$names[] = $content->getResource();
+       		$search = $indexManager->createSearch($default);
+        	$search->setSlice(0, $maxQuery);
+        	$search->setConditions(
+            		$search->compare('!=', 'index.catalog.id', null)
+        	);
+        	$search->setSortations(
+            		[$search->sort('+', 'product.id')]
+        	);
 
 		do
 		{
-			$items = $productManager->searchItems( $search, $domains );
+			$items = $indexManager->searchItems( $search, $domains );
 			$this->addItems( $content, $items );
 
 			$count = count( $items );
