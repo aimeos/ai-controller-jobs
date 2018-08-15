@@ -300,11 +300,11 @@ class Standard
        		);
 
 		$content = $this->createContent( $container, $filenum );
-		$names[] = $content->getResource();
+		$names[] = basename($content->getResource());
 
 		do
 		{
-			$items = $productManager->searchItems( $search, $domains );
+			$items = $indexManager->searchItems( $search, $domains );
 			$this->addItems( $content, $items );
 
 			$count = count( $items );
@@ -315,7 +315,7 @@ class Standard
 			{
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
-				$names[] = $content->getResource();
+				$names[] = basename($content->getResource());
 			}
 		}
 		while( $count >= $search->getSliceSize() );
