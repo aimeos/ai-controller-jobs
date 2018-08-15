@@ -179,8 +179,10 @@ class Standard
 		{
 			if( $orderProduct->getId() === $subscription->getOrderProductId() )
 			{
-				$orderProduct->setId( null );
-				$newBasket->addProduct( $orderProduct );
+				foreach( $orderProduct->getAttributeItems() as $attrItem ) {
+					$attrItem->setId( null );
+				}
+				$newBasket->addProduct( $orderProduct->setId( null ) );
 			}
 		}
 
