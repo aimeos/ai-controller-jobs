@@ -279,7 +279,7 @@ class Standard
 	 */
 	protected function export( \Aimeos\MW\Container\Iface $container, $default = true )
 	{
-		$domains = array( 'attribute', 'media', 'price', 'product', 'text' );
+		$domains = [ 'attribute', 'media', 'price', 'product', 'text' ];
 
 		$domains = $this->getConfig( 'domains', $domains );
 		$maxItems = $this->getConfig( 'max-items', 10000 );
@@ -288,18 +288,23 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$productManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product' );
+		$indexManager =  \Aimeos\MShop\Index\Manager\Factory::createManager($this->getContext());
 
-		$search = $productManager->createSearch( $default );
-		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
-		$search->setSlice( 0, $maxQuery );
+        	$search = $indexManager->createSearch($default);
+        	$search->setSlice( 0, $maxQuery );
+       		$search->setConditions(
+          		$search->compare('!=', 'index.catalog.id', null)
+        	);
+      		$search->setSortations(
+           		[$search->sort( '+', 'product.id' )]
+       		);
 
 		$content = $this->createContent( $container, $filenum );
-		$names[] = $content->getResource();
+		$names[] = basename($content->getResource());
 
 		do
 		{
-			$items = $productManager->searchItems( $search, $domains );
+			$items = $indexManager->searchItems( $search, $domains );
 			$this->addItems( $content, $items );
 
 			$count = count( $items );
@@ -310,7 +315,7 @@ class Standard
 			{
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
-				$names[] = $content->getResource();
+				$names[] = basename($content->getResource());
 			}
 		}
 		while( $count >= $search->getSliceSize() );
