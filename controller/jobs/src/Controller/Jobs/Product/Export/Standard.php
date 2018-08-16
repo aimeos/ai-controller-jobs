@@ -288,19 +288,19 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$indexManager = \Aimeos\MShop\Index\Manager\Factory::createManager($this->getContext());
-		
-       		$search = $indexManager->createSearch($default);
-        	$search->setSlice(0, $maxQuery);
-        	$search->setConditions(
-            		$search->compare('!=', 'index.catalog.id', null)
-        	);
-        	$search->setSortations(
-            		[$search->sort('+', 'product.id')]
-        	);
-		
-		$content = $this->createContent($container, $filenum);
-        	$names[] = $content->getResource();
+        $indexManager = \Aimeos\MShop\Index\Manager\Factory::createManager($this->getContext());
+
+        $search = $indexManager->createSearch($default);
+        $search->setSlice(0, $maxQuery);
+        $search->setConditions(
+            $search->compare('!=', 'index.catalog.id', null)
+        );
+        $search->setSortations(
+            [$search->sort('+', 'product.id')]
+        );
+
+        $content = $this->createContent($container, $filenum);
+        $names[] = basename($content->getResource());
 
 		do
 		{
@@ -315,7 +315,7 @@ class Standard
 			{
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
-				$names[] = $content->getResource();
+				$names[] = basename($content->getResource());
 			}
 		}
 		while( $count >= $search->getSliceSize() );
