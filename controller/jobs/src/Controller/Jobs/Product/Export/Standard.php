@@ -283,7 +283,7 @@ class Standard
 
 		$domains = $this->getConfig( 'domains', $domains );
 		$maxItems = $this->getConfig( 'max-items', 10000 );
-		$maxQuery = $this->getConfig( 'max-query', 200 );
+		$maxQuery = $this->getConfig( 'max-query', 100 );
 
 		$start = 0; $filenum = 1;
 		$names = [];
