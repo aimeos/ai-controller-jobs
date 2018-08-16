@@ -298,7 +298,7 @@ class Standard
         	$search->setSortations(
                 	[$search->sort('+', 'product.id')]
         	);
-
+		
         	$content = $this->createContent($container, $filenum);
         	$names[] = basename($content->getResource());
 
