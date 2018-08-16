@@ -283,24 +283,29 @@ class Standard
 
 		$domains = $this->getConfig( 'domains', $domains );
 		$maxItems = $this->getConfig( 'max-items', 10000 );
-		$maxQuery = $this->getConfig( 'max-query', 1000 );
+		$maxQuery = $this->getConfig( 'max-query', 50 );
 
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$productManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product' );
+		$indexManager = \Aimeos\MShop\Index\Manager\Factory::createManager( $this->getContext() );
 
-		$search = $productManager->createSearch( $default );
-		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
+		$search = $indexManager->createSearch( $default );
 		$search->setSlice( 0, $maxQuery );
+		$search->setConditions(
+			$search->compare( '!=', 'index.catalog.id', null )
+		);
+		$search->setSortations(
+			[ $search->sort('+', 'product.id') ]
+		);
 
-		$content = $this->createContent( $container, $filenum );
-		$names[] = $content->getResource();
+		$content = $this->createContent($container, $filenum);
+		$names[] = basename( $content->getResource() );
 
 		do
 		{
-			$items = $productManager->searchItems( $search, $domains );
-			$this->addItems( $content, $items );
+			$items = $indexManager->searchItems($search, $domains);
+			$this->addItems($content, $items);
 
 			$count = count( $items );
 			$start += $count;
@@ -310,7 +315,7 @@ class Standard
 			{
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
-				$names[] = $content->getResource();
+				$names[] = basename($content->getResource());
 			}
 		}
 		while( $count >= $search->getSliceSize() );

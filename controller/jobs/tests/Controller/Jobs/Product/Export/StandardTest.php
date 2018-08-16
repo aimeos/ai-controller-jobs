@@ -56,6 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$ds = DIRECTORY_SEPARATOR;
+
 		$this->assertFileExists( 'tmp' . $ds . 'aimeos-products-1.xml' );
 		$this->assertFileExists( 'tmp' . $ds . 'aimeos-products-2.xml' );
 
