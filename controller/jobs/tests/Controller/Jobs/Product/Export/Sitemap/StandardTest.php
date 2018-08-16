@@ -58,9 +58,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
 		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz' );
 
-		$file1 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz', 'rb' ), 0x1000 );
-		$file2 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz', 'rb' ), 0x1000 );
-		$index = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz', 'rb' ), 0x1000 );
+		$file1 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz', 'rb' ), 0x100 );
+		$file2 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz', 'rb' ), 0x100 );
+		$index = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz', 'rb' ), 0x100 );
 
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz' );
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
