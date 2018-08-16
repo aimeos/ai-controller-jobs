@@ -56,13 +56,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$ds = DIRECTORY_SEPARATOR;
+
 		$this->assertFileExists( 'tmp' . $ds . 'aimeos-products-1.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-products-2.xml' );
 
 		$file1 = file_get_contents( 'tmp' . $ds . 'aimeos-products-1.xml' );
+		$file2 = file_get_contents( 'tmp' . $ds . 'aimeos-products-2.xml' );
 
 		unlink( 'tmp' . $ds . 'aimeos-products-1.xml' );
+		unlink( 'tmp' . $ds . 'aimeos-products-2.xml' );
 
 		$this->assertContains( 'CNE', $file1 );
-		$this->assertContains( 'U:BUNDLE', $file1 );
+		$this->assertContains( 'U:BUNDLE', $file2 );
 	}
 }

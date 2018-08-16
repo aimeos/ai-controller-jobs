@@ -55,16 +55,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$ds = DIRECTORY_SEPARATOR;
 		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
 		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz' );
 
 		$file1 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz', 'rb' ), 0x1000 );
+		$file2 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz', 'rb' ), 0x1000 );
 		$index = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz', 'rb' ), 0x1000 );
 
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz' );
+		unlink( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz' );
 
-		$this->assertContains( 'Cafe_Noire_Expresso', $file1 );
+		$this->assertContains( 'Cafe_Noire_Expresso', $file2 );
+		$this->assertContains( 'Unittest%3A_Bundle', $file2 );
 
 		$this->assertContains( 'aimeos-sitemap-1.xml.gz', $index );
+		$this->assertContains( 'aimeos-sitemap-2.xml.gz', $index );
 	}
 }
