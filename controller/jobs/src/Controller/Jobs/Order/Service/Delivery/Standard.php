@@ -67,9 +67,26 @@ class Standard
 		 * @category Developer
 		 * @see controller/jobs/order/email/payment/standard/limit-days
 		 * @see controller/jobs/order/email/delivery/standard/limit-days
+		 * @see controller/jobs/order/service/delivery/batch-max
 		 */
 		$days = $context->getConfig()->get( 'controller/jobs/order/service/delivery/limit-days', 90 );
 		$date = date( 'Y-m-d 00:00:00', time() - 86400 * $days );
+
+		/** controller/jobs/order/service/delivery/batch-max
+		 * Maximum number of orders processed at once by the delivery service provider
+		 *
+		 * Orders are sent in batches if the delivery service provider supports it.
+		 * This setting configures the maximum orders that will be handed over to
+		 * the delivery service provider at once. Bigger batches an improve the
+		 * performance but requires more memory.
+		 *
+		 * @param integer Number of orders
+		 * @since 2018.07
+		 * @category Developer
+		 * @see controller/jobs/order/service/delivery/limit-days
+		 */
+		$maxItems = $context->getConfig()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
+
 
 		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $context );
 		$serviceSearch = $serviceManager->createSearch();
@@ -103,25 +120,22 @@ class Standard
 
 					do
 					{
+						$orderSearch->setSlice( $orderStart, $maxItems );
 						$orderItems = $orderManager->searchItems( $orderSearch );
 
-						foreach( $orderItems as $orderItem )
+						try
 						{
-							try
-							{
-								$serviceProvider->process( $orderItem );
-								$orderManager->saveItem( $orderItem );
-							}
-							catch( \Exception $e )
-							{
-								$str = 'Error while processing order with ID "%1$s": %2$s';
-								$context->getLogger()->log( sprintf( $str, $orderItem->getId(), $e->getMessage() ) );
-							}
+							$serviceProvider->processBatch( $orderItems );
+							$orderManager->saveItems( $orderItems );
+						}
+						catch( \Exception $e )
+						{
+							$str = 'Error while processing order with ID "%1$s": %2$s';
+							$context->getLogger()->log( sprintf( $str, $orderItem->getId(), $e->getMessage() ) );
 						}
 
 						$orderCount = count( $orderItems );
 						$orderStart += $orderCount;
-						$orderSearch->setSlice( $orderStart );
 					}
 					while( $orderCount >= $orderSearch->getSliceSize() );
 				}
