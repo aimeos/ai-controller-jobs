@@ -68,6 +68,7 @@ class Standard
 		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
 
 		$processors = $this->getProcessors( $names );
+		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
 
 		$search = $manager->createSearch( true );
@@ -78,23 +79,44 @@ class Standard
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
 
+		$status = \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;
 		$start = 0;
 
 		do
 		{
+			$ordBaseIds = $payStatus = [];
+
 			$search->setSlice( $start, 100 );
 			$items = $manager->searchItems( $search );
+
+			foreach( $items as $item ) {
+				$ordBaseIds[] = $item->getOrderBaseId();
+			}
+
+			$orderSearch = $orderManager->createSearch()->setSlice( 0, $search->getSliceSize() );
+			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.base.id', $ordBaseIds ) );
+
+			foreach( $orderManager->searchItems( $orderSearch ) as $orderItem ) {
+				$payStatus[$orderItem->getBaseId()] = $orderItem->getPaymentStatus();
+			}
 
 			foreach( $items as $item )
 			{
 				try
 				{
-					foreach( $processors as $processor ) {
-						$processor->begin( $item );
-					}
+					if( isset( $payStatus[$item->getOrderBaseId()] ) && $payStatus[$item->getOrderBaseId()] >= $status )
+					{
+						foreach( $processors as $processor ) {
+							$processor->begin( $item );
+						}
 
-					$interval = new \DateInterval( $item->getInterval() );
-					$item->setDateNext( date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' ) );
+						$interval = new \DateInterval( $item->getInterval() );
+						$item->setDateNext( date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' ) );
+					}
+					else
+					{
+						$item->setStatus( 0 );
+					}
 
 					$manager->saveItem( $item );
 				}
