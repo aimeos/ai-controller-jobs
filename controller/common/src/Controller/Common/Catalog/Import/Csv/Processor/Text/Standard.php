@@ -82,7 +82,7 @@ class Standard
 		$listManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'catalog/lists' );
 		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'text' );
 
-		$delete = $listMap = [];
+		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$listItems = $catalog->getListItems( 'text', $this->listTypes );
 

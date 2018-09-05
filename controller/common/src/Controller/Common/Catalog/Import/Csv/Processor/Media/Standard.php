@@ -84,7 +84,7 @@ class Standard
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'catalog/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/catalog/import/csv/separator', "\n" );
 
-		$delete = $listMap = [];
+		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$listItems = $catalog->getListItems( 'media', $this->listTypes );
 
