@@ -601,6 +601,8 @@ class Standard
 
 					$list = $processor->process( $catalogItem, $list );
 					$catalogMap[$code] = $catalogItem;
+
+					$manager->saveItem( $catalogItem );
 				}
 
 				$manager->commit();

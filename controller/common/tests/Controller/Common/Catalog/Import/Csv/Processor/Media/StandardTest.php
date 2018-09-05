@@ -56,9 +56,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $catalog, $data );
 
-		$catalog = $this->get( 'job_csv_test' );
-		$this->delete( $catalog );
-
 
 		$listItems = $catalog->getListItems();
 		$listItem = reset( $listItems );
@@ -75,7 +72,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 1, $refItem->getStatus() );
 		$this->assertEquals( 'default', $refItem->getType() );
-		$this->assertEquals( 'catalog', $refItem->getDomain() );
 		$this->assertEquals( 'test image', $refItem->getLabel() );
 		$this->assertEquals( 'image/jpeg', $refItem->getMimetype() );
 		$this->assertEquals( 'path/to/preview', $refItem->getPreview() );
@@ -98,9 +94,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $catalog, $data );
-
-		$catalog = $this->get( 'job_csv_test' );
-		$this->delete( $catalog );
 
 
 		$pos = 0;
@@ -138,9 +131,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $catalog, $data );
 
-		$catalog = $this->get( 'job_csv_test' );
-		$this->delete( $catalog );
-
 
 		$pos = 0;
 		$listItems = $catalog->getListItems();
@@ -176,13 +166,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $catalog, $data );
-
-		$catalog = $this->get( 'job_csv_test' );
-
 		$object->process( $catalog, $dataUpdate );
-
-		$catalog = $this->get( 'job_csv_test' );
-		$this->delete( $catalog );
 
 
 		$listItems = $catalog->getListItems();
@@ -211,13 +195,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $catalog, $data );
 
-		$catalog = $this->get( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, [], $this->endpoint );
 		$object->process( $catalog, [] );
-
-		$catalog = $this->get( 'job_csv_test' );
-		$this->delete( $catalog );
 
 
 		$listItems = $catalog->getListItems();
@@ -242,9 +221,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $catalog, $data );
-
-		$catalog = $this->get( 'job_csv_test' );
-		$this->delete( $catalog );
 
 
 		$listItems = $catalog->getListItems();
@@ -276,9 +252,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $catalog, $data );
 
-		$catalog = $this->get( 'job_csv_test' );
-		$this->delete( $catalog );
-
 
 		$listItems = $catalog->getListItems();
 		$listItem = reset( $listItems );
@@ -301,32 +274,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = $manager->createItem();
 		$item->setCode( $code );
 
-		return $manager->insertItem( $item );
-	}
-
-
-	protected function delete( \Aimeos\MShop\Catalog\Item\Iface $catalog )
-	{
-		$mediaManager = \Aimeos\MShop\Media\Manager\Factory::createManager( $this->context );
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
-		$listManager = $manager->getSubManager( 'lists' );
-
-		foreach( $catalog->getListItems('media') as $listItem )
-		{
-			$mediaManager->deleteItem( $listItem->getRefItem()->getId() );
-			$listManager->deleteItem( $listItem->getId() );
-		}
-
-		$manager->deleteItem( $catalog->getId() );
-	}
-
-
-	/**
-	 * @param string $code
-	 */
-	protected function get( $code )
-	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
-		return $manager->findItem( $code, array('media') );
+		return $item;
 	}
 }

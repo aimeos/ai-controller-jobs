@@ -81,76 +81,49 @@ class Standard
 	{
 		$listManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'catalog/lists' );
 		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'text' );
-		$manager->begin();
 
-		try
+		$delete = $listMap = [];
+		$map = $this->getMappedChunk( $data, $this->getMapping() );
+		$listItems = $catalog->getListItems( 'text', $this->listTypes );
+
+		foreach( $listItems as $listItem )
 		{
-			$delete = $listMap = [];
-			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$listItems = $catalog->getListItems( 'text', $this->listTypes );
-
-			foreach( $listItems as $listItem )
-			{
-				if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-					$listMap[ $refItem->getContent() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
-				}
+			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+				$listMap[ $refItem->getContent() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
 			}
-
-			foreach( $map as $pos => $list )
-			{
-				if( $this->checkEntry( $list ) === false ) {
-					continue;
-				}
-
-				$content = trim( $list['text.content'] );
-				$type = trim( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
-				$typecode = trim( isset( $list['catalog.lists.type'] ) ? $list['catalog.lists.type'] : 'default' );
-
-				if( isset( $listMap[$content][$type][$typecode] ) )
-				{
-					$listItem = $listMap[$content][$type][$typecode];
-					$refItem = $listItem->getRefItem();
-					unset( $listItems[ $listItem->getId() ] );
-				}
-				else
-				{
-					$listItem = $listManager->createItem();
-					$refItem = $manager->createItem();
-				}
-
-				$list['text.typeid'] = $this->getTypeId( 'text/type', 'catalog', $type );
-				$list['text.domain'] = 'catalog';
-
-				$refItem->fromArray( $this->addItemDefaults( $list ) );
-				$refItem = $manager->saveItem( $refItem );
-
-				$list['catalog.lists.typeid'] = $this->getTypeId( 'catalog/lists/type', 'text', $typecode );
-				$list['catalog.lists.parentid'] = $catalog->getId();
-				$list['catalog.lists.refid'] = $refItem->getId();
-				$list['catalog.lists.domain'] = 'text';
-
-				$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
-				$listManager->saveItem( $listItem, false );
-			}
-
-			foreach( $listItems as $listItem ) {
-				$delete[] = $listItem->getRefId();
-			}
-
-			$manager->deleteItems( $delete );
-			$listManager->deleteItems( array_keys( $listItems ) );
-
-			$data = $this->getObject()->process( $catalog, $data );
-
-			$manager->commit();
-		}
-		catch( \Exception $e )
-		{
-			$manager->rollback();
-			throw $e;
 		}
 
-		return $data;
+		foreach( $map as $pos => $list )
+		{
+			if( $this->checkEntry( $list ) === false ) {
+				continue;
+			}
+
+			$content = trim( $list['text.content'] );
+			$type = trim( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
+			$typecode = trim( isset( $list['catalog.lists.type'] ) ? $list['catalog.lists.type'] : 'default' );
+
+			if( isset( $listMap[$content][$type][$typecode] ) )
+			{
+				$listItem = $listMap[$content][$type][$typecode];
+				$refItem = $listItem->getRefItem();
+				unset( $listItems[ $listItem->getId() ] );
+			}
+			else
+			{
+				$listItem = $listManager->createItem( $typecode, 'text' );
+				$refItem = $manager->createItem( $type, 'catalog' );
+			}
+
+			$refItem->fromArray( $this->addItemDefaults( $list ) );
+			$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
+
+			$catalog->addListItem( 'text', $listItem, $refItem );
+		}
+
+		$catalog->deleteListItems( $listItems, true );
+
+		return $this->getObject()->process( $catalog, $data );
 	}
 
 
