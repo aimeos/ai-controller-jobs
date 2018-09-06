@@ -338,6 +338,58 @@ class Standard
 
 
 	/**
+	 * Exports the products into the given container
+	 *
+	 * @param \Aimeos\MW\Container\Iface $container Container object
+	 * @param boolean $default True to filter exported products by default criteria
+	 * @return array List of content (file) names
+	 */
+	protected function export( \Aimeos\MW\Container\Iface $container, $default = true )
+	{
+		$domains = array( 'attribute', 'media', 'price', 'product', 'text' );
+
+		$domains = $this->getConfig( 'domains', $domains );
+		$maxItems = $this->getConfig( 'max-items', 10000 );
+		$maxQuery = $this->getConfig( 'max-query', 1000 );
+
+		$start = 0; $filenum = 1;
+		$names = [];
+
+		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'index' );
+
+		$search = $manager->createSearch( $default );
+		$search->setConditions( $search->compare( '!=', 'index.catalog.id', null ) );
+		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
+		$search->setSlice( 0, $maxQuery );
+
+		$content = $this->createContent( $container, $filenum );
+		$names[] = $content->getResource();
+
+		do
+		{
+			$items = $manager->searchItems( $search, $domains );
+			$this->addItems( $content, $items );
+
+			$count = count( $items );
+			$start += $count;
+			$search->setSlice( $start, $maxQuery );
+
+			if( $start + $maxQuery > $maxItems * $filenum )
+			{
+				$this->closeContent( $content );
+				$content = $this->createContent( $container, ++$filenum );
+				$names[] = $content->getResource();
+			}
+		}
+		while( $count >= $search->getSliceSize() );
+
+		$this->closeContent( $content );
+
+		return $names;
+	}
+
+
+	/**
 	 * Returns the configuration value for the given name
 	 *
 	 * @param string $name One of "domain", "max-items" or "max-query"
