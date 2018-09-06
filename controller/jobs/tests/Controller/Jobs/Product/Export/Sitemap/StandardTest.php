@@ -51,6 +51,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
+		$this->context->getConfig()->set( 'controller/jobs/product/export/sitemap/max-items', 5 );
+
 		$this->object->run();
 
 		$ds = DIRECTORY_SEPARATOR;
