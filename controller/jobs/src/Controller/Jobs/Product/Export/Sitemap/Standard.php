@@ -346,9 +346,7 @@ class Standard
 	 */
 	protected function export( \Aimeos\MW\Container\Iface $container, $default = true )
 	{
-		$domains = array( 'attribute', 'media', 'price', 'product', 'text' );
-
-		$domains = $this->getConfig( 'domains', $domains );
+		$domains = $this->getConfig( 'domains', [] );
 		$maxItems = $this->getConfig( 'max-items', 10000 );
 		$maxQuery = $this->getConfig( 'max-query', 1000 );
 
@@ -403,7 +401,25 @@ class Standard
 		switch( $name )
 		{
 			case 'domain':
-				return [];
+				/** controller/jobs/product/export/sitemap/domains
+				 * List of associated items from other domains that should be fetched for the sitemap
+				 *
+				 * Products consist not only of the base data but also of texts, media
+				 * files, prices, attrbutes and other details. Those information is
+				 * associated to the products via their lists. Using the "domains" option
+				 * you can make more or less associated items available in the template.
+				 *
+				 * @param array List of domain names
+				 * @since 2018.07
+				 * @category Developer
+				 * @category User
+				 * @see controller/jobs/product/export/sitemap/container/options
+				 * @see controller/jobs/product/export/sitemap/location
+				 * @see controller/jobs/product/export/sitemap/max-items
+				 * @see controller/jobs/product/export/sitemap/max-query
+				 * @see controller/jobs/product/export/sitemap/changefreq
+				 */
+				return $config->get( 'controller/jobs/product/export/sitemap/domains', $default );
 
 			case 'max-items':
 				/** controller/jobs/product/export/sitemap/max-items
@@ -426,6 +442,7 @@ class Standard
 				 * @see controller/jobs/product/export/sitemap/location
 				 * @see controller/jobs/product/export/sitemap/max-query
 				 * @see controller/jobs/product/export/sitemap/changefreq
+				 * @see controller/jobs/product/export/sitemap/domains
 				 */
 				return $config->get( 'controller/jobs/product/export/sitemap/max-items', 50000 );
 
@@ -446,6 +463,7 @@ class Standard
 				 * @see controller/jobs/product/export/sitemap/location
 				 * @see controller/jobs/product/export/sitemap/max-items
 				 * @see controller/jobs/product/export/sitemap/changefreq
+				 * @see controller/jobs/product/export/sitemap/domains
 				 */
 				return $config->get( 'controller/jobs/product/export/sitemap/max-query', 1000 );
 		}
