@@ -43,73 +43,41 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/property' );
-		$manager->begin();
 
-		try
+		$propMap = [];
+		$items = $product->getPropertyItems( null, false );
+		$map = $this->getMappedChunk( $data, $this->getMapping() );
+
+		foreach( $items as $item ) {
+			$propMap[ $item->getValue() ][ $item->getType() ] = $item;
+		}
+
+		foreach( $map as $list )
 		{
-			$propMap = [];
-			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$items = $this->getPropertyItems( $product->getId() );
+			$typecode = trim( $list['product.property.type'] );
+			$value = trim( $list['product.property.value'] );
 
-			foreach( $items as $item ) {
-				$propMap[ $item->getValue() ][ $item->getType() ] = $item;
+			if( $typecode == '' || $value == '' ) {
+				continue;
 			}
 
-			foreach( $map as $list )
+			if( isset( $propMap[$value][$typecode] ) )
 			{
-				$typecode = trim( $list['product.property.type'] );
-				$value = trim( $list['product.property.value'] );
-
-				if( $typecode == '' || $value == '' ) {
-					continue;
-				}
-
-				$list['product.property.typeid'] = $this->getTypeId( 'product/property/type', 'product', $typecode );
-				$list['product.property.parentid'] = $product->getId();
-
-				if( isset( $propMap[$value][$typecode] ) )
-				{
-					$item = $propMap[$value][$typecode];
-					unset( $items[ $item->getId() ] );
-				}
-				else
-				{
-					$item = $manager->createItem();
-				}
-
-				$item->fromArray( $list );
-				$manager->saveItem( $item, false );
+				$item = $propMap[$value][$typecode];
+				unset( $items[ $item->getId() ] );
+			}
+			else
+			{
+				$item = $manager->createItem( $typecode, 'product' );
 			}
 
-			$manager->deleteItems( array_keys( $items ) );
+			$item->fromArray( $list );
 
-			$data = $this->getObject()->process( $product, $data );
-
-			$manager->commit();
-		}
-		catch( \Exception $e )
-		{
-			$manager->rollback();
-			throw $e;
+			$product->addPropertyItem( $item );
 		}
 
-		return $data;
-	}
+		$product->deletePropertyItems( $items );
 
-
-	/**
-	 * Returns the product properties for the given product ID
-	 *
-	 * @param string $prodid Unique product ID
-	 * @return array Associative list of product property items
-	 */
-	protected function getPropertyItems( $prodid )
-	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/property' );
-
-		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'product.property.parentid', $prodid ) );
-
-		return $manager->searchItems( $search );
+		return $this->getObject()->process( $product, $data );
 	}
 }

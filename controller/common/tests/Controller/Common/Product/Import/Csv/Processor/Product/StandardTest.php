@@ -13,6 +13,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 	private $endpoint;
+	private $products;
 
 
 	protected function setUp()
@@ -21,6 +22,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context = \TestHelperCntl::getContext();
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
+
+		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'product' );
+		$search = $manager->createSearch();
+		$search->setConditions( $search->compare( '==', 'product.code', ['CNC', 'CNE'] ) );
+
+		$this->products = [];
+		foreach( $manager->searchItems( $search ) as $id => $item ) {
+			$this->products[$item->getCode()] = $id;
+		}
 	}
 
 
@@ -52,9 +62,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
-
 
 		$listItems1 = $product->getListItems( 'product', 'default' );
 		$listItems2 = $product->getListItems( 'product', 'suggestion' );
@@ -65,8 +72,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, reset( $listItems1 )->getStatus() );
 		$this->assertEquals( 1, reset( $listItems2 )->getStatus() );
 
-		$this->assertEquals( 'CNC', reset( $listItems1 )->getRefItem()->getCode() );
-		$this->assertEquals( 'CNE', reset( $listItems2 )->getRefItem()->getCode() );
+		$this->assertEquals( $this->products['CNC'], reset( $listItems1 )->getRefId() );
+		$this->assertEquals( $this->products['CNE'], reset( $listItems2 )->getRefId() );
 	}
 
 
@@ -87,13 +94,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
-
 
 		$pos = 0;
-		$codes = array( 'CNC', 'CNE' );
 		$listItems = $product->getListItems();
+		$prodIds = array( $this->products['CNC'], $this->products['CNE'] );
 
 		$this->assertEquals( 2, count( $listItems ) );
 
@@ -102,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$this->assertEquals( 1, $listItem->getStatus() );
 			$this->assertEquals( 'product', $listItem->getDomain() );
 			$this->assertEquals( 'default', $listItem->getType() );
-			$this->assertEquals( $codes[$pos], $listItem->getRefItem()->getCode() );
+			$this->assertEquals( $prodIds[$pos], $listItem->getRefId() );
 			$pos++;
 		}
 	}
@@ -129,13 +133,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
-
-		$product = $this->get( 'job_csv_test' );
-
 		$object->process( $product, $dataUpdate );
-
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
 
 
 		$listItems = $product->getListItems();
@@ -144,7 +142,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $listItems ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
 
-		$this->assertEquals( 'CNE', $listItem->getRefItem()->getCode() );
+		$this->assertEquals( $this->products['CNE'], $listItem->getRefId() );
 	}
 
 
@@ -165,13 +163,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, [], $this->endpoint );
 		$object->process( $product, [] );
-
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
 
 
 		$this->assertEquals( 0, count( $product->getListItems() ) );
@@ -198,9 +191,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
-
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
 
 
 		$listItems = $product->getListItems();
@@ -232,9 +222,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
-
 
 		$listItems = $product->getListItems();
 		$listItem = reset( $listItems );
@@ -243,7 +230,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
 
 		$this->assertEquals( 'default', $listItem->getType() );
-		$this->assertEquals( 'CNE', $listItem->getRefItem()->getCode() );
+		$this->assertEquals( $this->products['CNE'], $listItem->getRefId() );
 	}
 
 
@@ -253,53 +240,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function create( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-		$typeManager = $manager->getSubManager( 'type' );
-
-		$typeSearch = $typeManager->createSearch();
-		$typeSearch->setConditions( $typeSearch->compare( '==', 'product.type.code', 'default' ) );
-		$typeResult = $typeManager->searchItems( $typeSearch );
-
-		if( ( $typeItem = reset( $typeResult ) ) === false ) {
-			throw new \RuntimeException( 'No product type "default" found' );
-		}
-
-		$item = $manager->createItem();
-		$item->setTypeid( $typeItem->getId() );
-		$item->setCode( $code );
-
-		return $manager->saveItem( $item );
-	}
-
-
-	protected function delete( \Aimeos\MShop\Product\Item\Iface $product )
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-		$listManager = $manager->getSubManager( 'lists' );
-
-		foreach( $product->getListItems('product') as $listItem ) {
-			$listManager->deleteItem( $listItem->getId() );
-		}
-
-		$manager->deleteItem( $product->getId() );
-	}
-
-
-	/**
-	 * @param string $code
-	 */
-	protected function get( $code )
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-
-		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
-
-		$result = $manager->searchItems( $search, array('product') );
-
-		if( ( $item = reset( $result ) ) === false ) {
-			throw new \RuntimeException( sprintf( 'No product item for code "%1$s"', $code ) );
-		}
-
-		return $item;
+		return $manager->createItem()->setCode( $code );
 	}
 }

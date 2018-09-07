@@ -84,82 +84,55 @@ class Standard
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
 
-		$manager->begin();
+		$listMap = [];
+		$map = $this->getMappedChunk( $data, $this->getMapping() );
+		$listItems = $product->getListItems( 'media', $this->listTypes );
 
-		try
+		foreach( $listItems as $listItem )
 		{
-			$delete = $listMap = [];
-			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$listItems = $product->getListItems( 'media', $this->listTypes );
+			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+				$listMap[ $refItem->getUrl() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
+			}
+		}
 
-			foreach( $listItems as $listItem )
-			{
-				if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-					$listMap[ $refItem->getUrl() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
-				}
+		foreach( $map as $pos => $list )
+		{
+			if( $this->checkEntry( $list ) === false ) {
+				continue;
 			}
 
-			foreach( $map as $pos => $list )
+			$urls = explode( $separator, trim( $list['media.url'] ) );
+			$type = trim( $this->getValue( $list, 'media.type', 'default' ) );
+			$typecode = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
+
+			foreach( $urls as $url )
 			{
-				if( $this->checkEntry( $list ) === false ) {
-					continue;
-				}
+				$url = trim( $url );
 
-				$urls = explode( $separator, trim( $list['media.url'] ) );
-				$type = trim( $this->getValue( $list, 'media.type', 'default' ) );
-				$typecode = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
-
-				foreach( $urls as $url )
+				if( isset( $listMap[$url][$type][$typecode] ) )
 				{
-					$url = trim( $url );
-
-					if( isset( $listMap[$url][$type][$typecode] ) )
-					{
-						$listItem = $listMap[$url][$type][$typecode];
-						$refItem = $listItem->getRefItem();
-						unset( $listItems[ $listItem->getId() ] );
-					}
-					else
-					{
-						$listItem = $listManager->createItem();
-						$refItem = $manager->createItem();
-					}
-
-					$list['media.typeid'] = $this->getTypeId( 'media/type', 'product', $type );
-					$list['media.domain'] = 'product';
-					$list['media.url'] = $url;
-
-					$refItem->fromArray( $this->addItemDefaults( $list ) );
-					$refItem = $manager->saveItem( $refItem );
-
-					$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'media', $typecode );
-					$list['product.lists.parentid'] = $product->getId();
-					$list['product.lists.refid'] = $refItem->getId();
-					$list['product.lists.domain'] = 'media';
-
-					$listItem->fromArray( $this->addListItemDefaults( $list, $pos++ ) );
-					$listManager->saveItem( $listItem, false );
+					$listItem = $listMap[$url][$type][$typecode];
+					$refItem = $listItem->getRefItem();
+					unset( $listItems[ $listItem->getId() ] );
 				}
+				else
+				{
+					$listItem = $listManager->createItem( $typecode, 'media' );
+					$refItem = $manager->createItem( $type, 'product' );
+				}
+
+				$list['media.url'] = $url;
+
+				$refItem->fromArray( $this->addItemDefaults( $list ) );
+				$listItem->fromArray( $this->addListItemDefaults( $list, $pos++ ) );
+
+				$product->addListItem( 'media', $listItem, $refItem );
 			}
-
-			foreach( $listItems as $listItem ) {
-				$delete[] = $listItem->getRefId();
-			}
-
-			$manager->deleteItems( $delete );
-			$listManager->deleteItems( array_keys( $listItems ) );
-
-			$data = $this->getObject()->process( $product, $data );
-
-			$manager->commit();
-		}
-		catch( \Exception $e )
-		{
-			$manager->rollback();
-			throw $e;
 		}
 
-		return $data;
+		$product->deleteListItems( $listItems, true );
+
+		return $this->getObject()->process( $product, $data );
 	}
 
 

@@ -83,76 +83,56 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'attribute' );
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
 
-		$manager->begin();
+		$listMap = [];
+		$map = $this->getMappedChunk( $data, $this->getMapping() );
+		$listItems = $product->getListItems( 'attribute', $this->listTypes );
 
-		try
+		foreach( $listItems as $listItem )
 		{
-			$listMap = [];
-			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$listItems = $product->getListItems( 'attribute', $this->listTypes );
+			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+				$listMap[ $refItem->getCode() ][ $listItem->getType() ] = $listItem;
+			}
+		}
 
-			foreach( $listItems as $listItem )
-			{
-				if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-					$listMap[ $refItem->getCode() ][ $listItem->getType() ] = $listItem;
-				}
+		foreach( $map as $pos => $list )
+		{
+			if( $this->checkEntry( $list ) === false ) {
+				continue;
 			}
 
-			foreach( $map as $pos => $list )
+			$codes = explode( $separator, trim( $list['attribute.code'] ) );
+
+			foreach( $codes as $code )
 			{
-				if( $this->checkEntry( $list ) === false ) {
-					continue;
-				}
+				$code = trim( $code );
+				$typecode = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
 
-				$codes = explode( $separator, trim( $list['attribute.code'] ) );
-
-				foreach( $codes as $code )
+				if( isset( $listMap[$code][$typecode] ) )
 				{
-					$code = trim( $code );
-
-					$attrItem = $this->getAttributeItem( $code, trim( $list['attribute.type'] ) );
-					$attrItem->fromArray( $list );
-					$attrItem->setCode( $code );
-					$attrItem = $manager->saveItem( $attrItem );
-
-					$typecode = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
-					$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'attribute', $typecode );
-					$list['product.lists.refid'] = $attrItem->getId();
-					$list['product.lists.parentid'] = $product->getId();
-					$list['product.lists.domain'] = 'attribute';
-
-					if( isset( $listMap[$code][$typecode] ) )
-					{
-						$listItem = $listMap[$code][$typecode];
-						unset( $listItems[ $listItem->getId() ] );
-					}
-					else
-					{
-						$listItem = $listManager->createItem();
-					}
-
-					$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
-					$listManager->saveItem( $listItem, false );
+					$listItem = $listMap[$code][$typecode];
+					unset( $listItems[ $listItem->getId() ] );
 				}
+				else
+				{
+					$listItem = $listManager->createItem( $typecode, 'attribute' );
+				}
+
+				$attrItem = $this->getAttributeItem( $code, trim( $list['attribute.type'] ) );
+				$attrItem->fromArray( $list );
+				$attrItem->setCode( $code );
+
+				$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
+
+				$product->addListItem( 'attribute', $listItem, $attrItem );
 			}
-
-			$listManager->deleteItems( array_keys( $listItems ) );
-
-			$data = $this->getObject()->process( $product, $data );
-
-			$manager->commit();
-		}
-		catch( \Exception $e )
-		{
-			$manager->rollback();
-			throw $e;
 		}
 
-		return $data;
+		$product->deleteListItems( $listItems );
+
+		return $this->getObject()->process( $product, $data );
 	}
 
 

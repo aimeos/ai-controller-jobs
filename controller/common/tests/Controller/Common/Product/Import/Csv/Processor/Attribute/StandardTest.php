@@ -62,9 +62,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
-
 
 		$pos = 0;
 		$listItems = $product->getListItems();
@@ -107,10 +104,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-
-		$this->delete( $product );
-
 
 		$pos = 0;
 		$codes = array( 'white', 'black', 'aimeos' );
@@ -152,13 +145,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
-
-		$product = $this->get( 'job_csv_test' );
-
 		$object->process( $product, $dataUpdate );
-
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
 
 
 		$listItems = $product->getListItems();
@@ -189,13 +176,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, [], $this->endpoint );
 		$object->process( $product, [] );
-
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
 
 
 		$listItems = $product->getListItems();
@@ -225,9 +207,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
-
 
 		$listItems = $product->getListItems();
 
@@ -254,11 +233,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		try {
 			$object->process( $product, $data );
 		} catch( \Exception $e ) {
-			$this->delete( $product );
 			return;
 		}
 
-		$this->delete( $product );
 		$this->markTestFail( 'No exception thrown' );
 	}
 
@@ -290,9 +267,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$product = $this->get( 'job_csv_test' );
-		$this->delete( $product );
-
 
 		$listItems = $product->getListItems();
 		$listItem = reset( $listItems );
@@ -312,53 +286,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function create( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-		$typeManager = $manager->getSubManager( 'type' );
-
-		$typeSearch = $typeManager->createSearch();
-		$typeSearch->setConditions( $typeSearch->compare( '==', 'product.type.code', 'default' ) );
-		$typeResult = $typeManager->searchItems( $typeSearch );
-
-		if( ( $typeItem = reset( $typeResult ) ) === false ) {
-			throw new \RuntimeException( 'No product type "default" found' );
-		}
-
-		$item = $manager->createItem();
-		$item->setTypeid( $typeItem->getId() );
-		$item->setCode( $code );
-
-		return $manager->saveItem( $item );
-	}
-
-
-	protected function delete( \Aimeos\MShop\Product\Item\Iface $product )
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-		$listManager = $manager->getSubManager( 'lists' );
-
-		foreach( $product->getListItems('attribute') as $listItem ) {
-			$listManager->deleteItem( $listItem->getId() );
-		}
-
-		$manager->deleteItem( $product->getId() );
-	}
-
-
-	/**
-	 * @param string $code
-	 */
-	protected function get( $code )
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-
-		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
-
-		$result = $manager->searchItems( $search, array('attribute') );
-
-		if( ( $item = reset( $result ) ) === false ) {
-			throw new \RuntimeException( sprintf( 'No product item for code "%1$s"', $code ) );
-		}
-
-		return $item;
+		return $manager->createItem()->setCode( $code );
 	}
 }

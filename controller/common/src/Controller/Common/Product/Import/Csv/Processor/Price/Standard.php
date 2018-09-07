@@ -81,76 +81,50 @@ class Standard
 	{
 		$listManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
 		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'price' );
-		$manager->begin();
 
-		try
+		$listMap = [];
+		$map = $this->getMappedChunk( $data, $this->getMapping() );
+		$listItems = $product->getListItems( 'price', $this->listTypes );
+
+		foreach( $listItems as $listItem )
 		{
-			$delete = $listMap = [];
-			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$listItems = $product->getListItems( 'price', $this->listTypes );
-
-			foreach( $listItems as $listItem )
-			{
-				if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-					$listMap[ $refItem->getValue() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
-				}
+			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+				$listMap[ $refItem->getValue() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
 			}
-
-			foreach( $map as $pos => $list )
-			{
-				if( $this->checkEntry( $list ) === false ) {
-					continue;
-				}
-
-				$value = trim( isset( $list['price.value'] ) ? $list['price.value'] : '0.00' );
-				$type = trim( isset( $list['price.type'] ) ? $list['price.type'] : 'default' );
-				$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
-
-				if( isset( $listMap[$value][$type][$typecode] ) )
-				{
-					$listItem = $listMap[$value][$type][$typecode];
-					$refItem = $listItem->getRefItem();
-					unset( $listItems[ $listItem->getId() ] );
-				}
-				else
-				{
-					$listItem = $listManager->createItem();
-					$refItem = $manager->createItem();
-				}
-
-				$list['price.typeid'] = $this->getTypeId( 'price/type', 'product', $type );
-				$list['price.domain'] = 'product';
-
-				$refItem->fromArray( $this->addItemDefaults( $list ) );
-				$refItem = $manager->saveItem( $refItem );
-
-				$list['product.lists.typeid'] = $this->getTypeId( 'product/lists/type', 'price', $typecode );
-				$list['product.lists.parentid'] = $product->getId();
-				$list['product.lists.refid'] = $refItem->getId();
-				$list['product.lists.domain'] = 'price';
-
-				$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
-				$listManager->saveItem( $listItem, false );
-			}
-
-			foreach( $listItems as $listItem ) {
-				$delete[] = $listItem->getRefId();
-			}
-
-			$manager->deleteItems( $delete );
-			$listManager->deleteItems( array_keys( $listItems ) );
-
-			$data = $this->getObject()->process( $product, $data );
-
-			$manager->commit();
-		}
-		catch( \Exception $e )
-		{
-			$manager->rollback();
-			throw $e;
 		}
 
-		return $data;
+		foreach( $map as $pos => $list )
+		{
+			if( $this->checkEntry( $list ) === false ) {
+				continue;
+			}
+
+			$value = trim( isset( $list['price.value'] ) ? $list['price.value'] : '0.00' );
+			$type = trim( isset( $list['price.type'] ) ? $list['price.type'] : 'default' );
+			$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+
+			if( isset( $listMap[$value][$type][$typecode] ) )
+			{
+				$listItem = $listMap[$value][$type][$typecode];
+				$refItem = $listItem->getRefItem();
+				unset( $listItems[ $listItem->getId() ] );
+			}
+			else
+			{
+				$listItem = $listManager->createItem( $typecode, 'price' );
+				$refItem = $manager->createItem( $type, 'product' );
+			}
+
+
+			$refItem->fromArray( $this->addItemDefaults( $list ) );
+			$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
+
+			$product->addListItem( 'price', $listItem, $refItem );
+		}
+
+		$product->deleteListItems( $listItems, true );
+
+		return $this->getObject()->process( $product, $data );
 	}
 
 

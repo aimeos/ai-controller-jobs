@@ -57,7 +57,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
-		$domains = array( 'attribute', 'media', 'price', 'product', 'text' );
+		$domains = array( 'attribute', 'media', 'price', 'product', 'product/property', 'text' );
 		$mappings = $this->getDefaultMapping();
 
 
@@ -548,6 +548,8 @@ class Standard
 					$product = $manager->saveItem( $product );
 
 					$list = $processor->process( $product, $list );
+
+					$product = $manager->saveItem( $product );
 				}
 
 				$manager->commit();

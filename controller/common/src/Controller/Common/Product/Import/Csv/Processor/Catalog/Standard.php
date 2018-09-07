@@ -138,7 +138,6 @@ class Standard
 						throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
 					}
 
-					$list['catalog.lists.typeid'] = $this->getTypeId( 'catalog/lists/type', 'product', $type );
 					$list['catalog.lists.parentid'] = $catid;
 					$list['catalog.lists.refid'] = $prodid;
 					$list['catalog.lists.domain'] = 'product';
@@ -150,7 +149,7 @@ class Standard
 					}
 					else
 					{
-						$listItem = $listManager->createItem();
+						$listItem = $listManager->createItem( $type, 'product' );
 					}
 
 					$listItem->fromArray( $this->addListItemDefaults( $list, $pos++ ) );

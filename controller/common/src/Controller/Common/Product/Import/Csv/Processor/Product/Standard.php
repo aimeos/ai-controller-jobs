@@ -91,56 +91,46 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
 
+		$listItems = $product->getListItems( 'product', null, null, false );
 		$this->cache->set( $product );
 
-		$manager->begin();
-
-		try
+		foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
 		{
-			$types = [];
-
-			foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
-			{
-				if( $this->checkEntry( $list ) === false ) {
-					continue;
-				}
-
-				$listMap = [];
-				$type = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
-				$types[] = $type;
-
-				foreach( explode( $separator, trim( $list['product.code'] ) ) as $code )
-				{
-					$code = trim( $code );
-
-					if( ( $prodid = $this->cache->get( $code ) ) === null )
-					{
-						$msg = 'No product for code "%1$s" available when importing product with code "%2$s"';
-						throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
-					}
-
-					$listMap[$prodid] = $list;
-				}
-
-				$manager->updateListItems( $product, $listMap, 'product', $type );
+			if( $this->checkEntry( $list ) === false ) {
+				continue;
 			}
 
-			$this->deleteListItems( $product->getId(), $types );
+			$type = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 
-			$data = $this->getObject()->process( $product, $data );
+			foreach( explode( $separator, trim( $list['product.code'] ) ) as $code )
+			{
+				$code = trim( $code );
 
-			$manager->commit();
+				if( ( $prodid = $this->cache->get( $code ) ) === null )
+				{
+					$msg = 'No product for code "%1$s" available when importing product with code "%2$s"';
+					throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
+				}
+
+				if( ( $listItem = $product->getListItem( 'product', $type, $prodid ) ) === null ) {
+					$listItem = $manager->createItem( $type, 'product' );
+				} else {
+					unset( $listItems[$listItem->getId()] );
+				}
+
+				$listItem->fromArray( $list );
+				$listItem->setRefId( $prodid );
+
+				$product->addListItem( 'product', $listItem );
+			}
 		}
-		catch( \Exception $e )
-		{
-			$manager->rollback();
-			throw $e;
-		}
 
-		return $data;
+		$product->deleteListItems( $listItems );
+
+		return $this->getObject()->process( $product, $data );
 	}
 
 
@@ -159,28 +149,5 @@ class Standard
 		}
 
 		return true;
-	}
-
-
-	/**
-	 * Deletes all list items whose types aren't in the given list
-	 *
-	 * @param string $prodId Unique product ID
-	 * @param array $types List of types that have been updated
-	 */
-	protected function deleteListItems( $prodId, array $types )
-	{
-		$codes = array_diff( $this->listTypes, $types );
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
-
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'product.lists.parentid', $prodId ),
-			$search->compare( '==', 'product.lists.domain', 'product' ),
-			$search->compare( '==', 'product.lists.type.code', $codes ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$manager->deleteItems( array_keys( $manager->searchItems( $search ) ) );
 	}
 }
