@@ -124,6 +124,41 @@ class Standard
 
 
 	/**
+	 * Adds a matching delivery service to the basket
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Order including product and addresses
+	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with delivery service added
+	 */
+	protected function addDeliveryService( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	{
+		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
+
+		$serviceManager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
+		$orderServiceManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/service' );
+
+		$search = $serviceManager->createSearch( true );
+		$search->setSortations( [$search->sort( '+', 'service.position' )] );
+		$search->setConditions( $search->compare( '==', 'service.type.code', $type ) );
+
+		foreach( $serviceManager->searchItems( $search, ['media', 'price', 'text'] ) as $item )
+		{
+			$provider = $serviceManager->getProvider( $item, $item->getType() );
+
+			if( $provider->isAvailable( $basket ) === true )
+			{
+				$orderServiceItem = $orderServiceManager->createItem()->copyFrom( $item );
+				$basket->addService( $orderServiceItem, $type );
+
+				return $basket;
+			}
+		}
+
+		return $basket;
+	}
+
+
+	/**
 	 * Creates a new context based on the order and the customer the subscription belongs to
 	 *
 	 * @param string $baseId Unique order base ID
@@ -189,12 +224,13 @@ class Standard
 			$newBasket->setAddress( $orderAddress, $type );
 		}
 
-		foreach( $basket->getServices() as $type => $orderServices )
-		{
-			foreach( $orderServices as $orderService ) {
-				$newBasket->addService( $orderService, $type );
-			}
+		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT;
+
+		foreach( $basket->getService( $type ) as $orderService ) {
+			$newBasket->addService( $orderService, $type );
 		}
+
+		$newBasket = $this->addDeliveryService( $context, $newBasket );
 
 		return $manager->store( $newBasket );
 	}
