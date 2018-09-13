@@ -64,8 +64,48 @@ class Standard
 		 * @param array List of processor names
 		 * @since 2018.04
 		 * @category Developer
+		 * @see controller/common/subscription/process/payment-status
+		 * @see controller/common/subscription/process/payment-days
 		 */
 		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
+
+		/** controller/common/subscription/process/payment-status
+		 * Minimum payment status that will activate the subscription
+		 *
+		 * Subscriptions will be activated if the payment status of the order is
+		 * at least the configured payment constant. The default payment status
+		 * is "authorized" so orders with a payment status of "authorized" (5) and
+		 * "received" (6) will cause the subscription to be activated. Lower
+		 * payment status values, e.g. "pending" (4) won't activate the subscription.
+		 *
+		 * @param integer Payment status constant
+		 * @since 2018.07
+		 * @category Developer
+		 * @category User
+		 * @see controller/common/subscription/process/processors
+		 * @see controller/common/subscription/process/payment-days
+		 */
+		$status = \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;
+		$status = $config->get( 'controller/common/subscription/process/payment-status', $status );
+
+		/** controller/common/subscription/process/payment-days
+		 * Number of days to wait for the payment until subscription is removed
+		 *
+		 * Subscriptions wait for the confiugrable number of days until the payment
+		 * status changes to a valid payment (by default: "authorized" and "received").
+		 * If the payment arrives within this time frame, the subscription is activated.
+		 * Otherwise, the subscription is removed from the list of subscriptions that
+		 * will be checked for activation.
+		 *
+		 * @param float Number of days
+		 * @since 2018.07
+		 * @category Developer
+		 * @category User
+		 * @see controller/common/subscription/process/processors
+		 * @see controller/common/subscription/process/payment-status
+		 */
+		$days = (float) $config->get( 'controller/common/subscription/process/payment-days', 3 );
+
 
 		$processors = $this->getProcessors( $names );
 		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
@@ -79,7 +119,7 @@ class Standard
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
 
-		$status = \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;
+		$date = date( 'Y-m-d H:i:s', time() - 86400 * $days );
 		$start = 0;
 
 		do
@@ -95,6 +135,7 @@ class Standard
 
 			$orderSearch = $orderManager->createSearch()->setSlice( 0, $search->getSliceSize() );
 			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.base.id', $ordBaseIds ) );
+			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
 
 			foreach( $orderManager->searchItems( $orderSearch ) as $orderItem ) {
 				$payStatus[$orderItem->getBaseId()] = $orderItem->getPaymentStatus();
@@ -113,7 +154,7 @@ class Standard
 						$interval = new \DateInterval( $item->getInterval() );
 						$item->setDateNext( date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' ) );
 					}
-					else
+					elseif( $item->getTimeCreated() < $date )
 					{
 						$item->setStatus( 0 );
 					}
