@@ -85,6 +85,10 @@ class TestHelperJobs
 		$ctx->setMessageQueueManager( $mq );
 
 
+		$cache = new \Aimeos\MW\Cache\None();
+		$ctx->setCache( $cache );
+
+
 		$session = new \Aimeos\MW\Session\None();
 		$ctx->setSession( $session );
 

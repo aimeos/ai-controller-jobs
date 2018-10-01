@@ -517,9 +517,11 @@ class Standard
 	protected function import( array $products, array $data, array $mapping,
 		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor, $strict )
 	{
+		$items = [];
 		$errors = 0;
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product' );
+		$indexManager = \Aimeos\MShop\Factory::createManager( $context, 'index' );
 
 		foreach( $data as $code => $list )
 		{
@@ -550,6 +552,7 @@ class Standard
 					$list = $processor->process( $product, $list );
 
 					$product = $manager->saveItem( $product );
+					$items[$product->getId()] = $product;
 				}
 
 				$manager->commit();
@@ -568,6 +571,8 @@ class Standard
 				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ) );
 			}
 		}
+
+		$indexManager->rebuildIndex( $items );
 
 		return $errors;
 	}
