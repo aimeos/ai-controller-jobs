@@ -130,8 +130,8 @@ class Standard
 						}
 						catch( \Exception $e )
 						{
-							$str = 'Error while processing orders: %2$s';
-							$context->getLogger()->log( sprintf( $str, $e->getMessage() ) );
+							$str = 'Error while processing orders by delivery service "%1$s": %2$s';
+							$context->getLogger()->log( sprintf( $str, $serviceItem->getLabel(), $e->getMessage() ) );
 						}
 
 						$orderCount = count( $orderItems );
