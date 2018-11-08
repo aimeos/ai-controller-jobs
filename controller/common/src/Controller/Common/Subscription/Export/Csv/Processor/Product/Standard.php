@@ -53,7 +53,7 @@ class Standard
 			$data = [];
 			$list = $item->toArray();
 
-			foreach( $item->getAttributes() as $attrItem )
+			foreach( $item->getAttributeItems() as $attrItem )
 			{
 				foreach( $attrItem->toArray() as $key => $value )
 				{
