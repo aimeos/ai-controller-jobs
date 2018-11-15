@@ -400,7 +400,7 @@ class Standard
 
 		switch( $name )
 		{
-			case 'domain':
+			case 'domains':
 				/** controller/jobs/product/export/sitemap/domains
 				 * List of associated items from other domains that should be fetched for the sitemap
 				 *
