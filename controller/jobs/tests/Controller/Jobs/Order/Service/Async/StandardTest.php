@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$serviceItem = $serviceManagerStub->createItem();
 
-		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Delivery\\Manual' )
+		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Delivery\\Standard' )
 			->setConstructorArgs( array( $context, $serviceItem ) )
 			->getMock();
 
