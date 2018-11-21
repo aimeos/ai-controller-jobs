@@ -14,5 +14,14 @@ return array(
 				),
 			),
 		),
+		'catalog' => array(
+			'export' => array(
+				'sitemap' => array(
+					'location' => dirname( __DIR__ ) . DIRECTORY_SEPARATOR . 'tmp',
+					'max-items' => 10,
+					'max-query' => 3,
+				),
+			),
+		),
 	),
 );
