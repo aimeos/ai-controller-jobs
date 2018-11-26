@@ -102,6 +102,31 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testAddCoupons()
+	{
+		$this->context->getConfig()->set( 'controller/jobs/subcription/process/renew/standard/use-coupons', true );
+
+		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$product = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNC', ['price'] );
+		$orderProduct = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' )->createItem();
+
+		$price = $product->getRefItems( 'price', 'default', 'default' );
+		$basket->addProduct( $orderProduct->copyFrom( $product )->setPrice( reset( $price ) ) );
+
+		$this->assertEquals( '600.00', $basket->getPrice()->getValue() );
+		$this->assertEquals( '30.00', $basket->getPrice()->getCosts() );
+		$this->assertEquals( '0.00', $basket->getPrice()->getRebate() );
+
+		$basket = $this->access( 'addBasketCoupons' )->invokeArgs( $this->object, [$this->context, $basket, ['90AB']] );
+
+		$this->assertEquals( 1, count( $basket->getCoupons() ) );
+		$this->assertEquals( 2, count( $basket->getProducts() ) );
+		$this->assertEquals( '537.00', $basket->getPrice()->getValue() );
+		$this->assertEquals( '30.00', $basket->getPrice()->getCosts() );
+		$this->assertEquals( '63.00', $basket->getPrice()->getRebate() );
+	}
+
+
 	public function testCreateOrderBase()
 	{
 		$item = $this->getSubscription();
