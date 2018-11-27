@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '14.50', $data[0][12] );
 		$this->assertEquals( '0.0000', $data[0][13] );
 		$this->assertEquals( '1', $data[0][14] );
-		$this->assertEquals( '0', $data[0][15] );
+		$this->assertEquals( '1', $data[0][15] );
 		$this->assertEquals( 'This is a comment if an order. It can be added by the user.', $data[0][16] );
 	}
 
