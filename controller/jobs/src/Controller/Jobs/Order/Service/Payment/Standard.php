@@ -13,7 +13,7 @@ namespace Aimeos\Controller\Jobs\Order\Service\Payment;
 
 
 /**
- * Sends paid orders to the ERP system or logistic partner.
+ * Captures the money for authorized orders
  *
  * @package Controller
  * @subpackage Jobs
