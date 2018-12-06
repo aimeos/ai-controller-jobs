@@ -125,14 +125,34 @@ class Standard
 
 
 	/**
-	 * Adds coupon code to basket if enabled
+	 * Adds the given addresses to the basket
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the addresses to
+	 * @param array $addresses Associative list of type as key and address object implementing \Aimeos\MShop\Order\Item\Base\Address\Iface as value
+	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with addresses added
+	 */
+	protected function addBasketAddresses( \Aimeos\MShop\Context\Item\Iface $context,
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $addresses )
+	{
+		foreach( $addresses as $type => $orderAddress ) {
+			$newBasket->setAddress( $orderAddress, $type );
+		}
+
+		return $newBasket;
+	}
+
+
+	/**
+	 * Adds the given coupon codes to basket if enabled
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Order including product and addresses
 	 * @param array $codes List of coupon codes that should be added to the given basket
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Basket, maybe with coupons added
 	 */
-	protected function addBasketCoupons( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket, array $codes )
+	protected function addBasketCoupons( \Aimeos\MShop\Context\Item\Iface $context,
+		\Aimeos\MShop\Order\Item\Base\Iface $basket, array $codes )
 	{
 		/** controller/jobs/subcription/process/renew/standard/use-coupons
 		 *
@@ -182,14 +202,52 @@ class Standard
 
 
 	/**
-	 * Adds a matching delivery service to the basket
+	 * Adds the given products to the basket
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Order including product and addresses
-	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with delivery service added
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the products to
+	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface[] $orderProducts List of product items
+	 * @param string $orderProductId Unique ID of the ordered subscription product
+	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with products added
 	 */
-	protected function addDeliveryService( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	protected function addBasketProducts( \Aimeos\MShop\Context\Item\Iface $context,
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $orderProducts, $orderProductId )
 	{
+		foreach( $orderProducts as $orderProduct )
+		{
+			if( $orderProduct->getId() == $orderProductId )
+			{
+				foreach( $orderProduct->getAttributeItems() as $attrItem ) {
+					$attrItem->setId( null );
+				}
+				$newBasket->addProduct( $orderProduct->setId( null ) );
+			}
+		}
+
+		return $newBasket;
+	}
+
+
+	/**
+	 * Adds a matching delivery and payment service to the basket
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the services to
+	 * @param array $services Associative list of type as key and list of service objects implementing \Aimeos\MShop\Order\Item\Base\Service\Iface as values
+	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with delivery and payment service added
+	 */
+	protected function addBasketServices( \Aimeos\MShop\Context\Item\Iface $context,
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $services )
+	{
+		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT;
+
+		if( isset( $services[$type] ) )
+		{
+			foreach( $services[$type] as $orderService ) {
+				$newBasket->addService( $orderService, $type );
+			}
+		}
+
 		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
 
 		$serviceManager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
@@ -203,16 +261,14 @@ class Standard
 		{
 			$provider = $serviceManager->getProvider( $item, $item->getType() );
 
-			if( $provider->isAvailable( $basket ) === true )
+			if( $provider->isAvailable( $newBasket ) === true )
 			{
 				$orderServiceItem = $orderServiceManager->createItem()->copyFrom( $item );
-				$basket->addService( $orderServiceItem, $type );
-
-				return $basket;
+				return $newBasket->addService( $orderServiceItem, $type );
 			}
 		}
 
-		return $basket;
+		return $newBasket;
 	}
 
 
@@ -261,33 +317,13 @@ class Standard
 	protected function createOrderBase( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+
 		$basket = $manager->load( $subscription->getOrderBaseId() );
+		$newBasket = $manager->createItem()->setCustomerId( $basket->getCustomerId() );
 
-		$newBasket = $manager->createItem();
-		$newBasket->setCustomerId( $basket->getCustomerId() );
-
-		foreach( $basket->getProducts() as $orderProduct )
-		{
-			if( $orderProduct->getId() === $subscription->getOrderProductId() )
-			{
-				foreach( $orderProduct->getAttributeItems() as $attrItem ) {
-					$attrItem->setId( null );
-				}
-				$newBasket->addProduct( $orderProduct->setId( null ) );
-			}
-		}
-
-		foreach( $basket->getAddresses() as $type => $orderAddress ) {
-			$newBasket->setAddress( $orderAddress, $type );
-		}
-
-		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT;
-
-		foreach( $basket->getService( $type ) as $orderService ) {
-			$newBasket->addService( $orderService, $type );
-		}
-
-		$newBasket = $this->addDeliveryService( $context, $newBasket );
+		$newBasket = $this->addBasketProducts( $context, $newBasket, $basket->getProducts(), $subscription->getOrderProductId() );
+		$newBasket = $this->addBasketAddresses( $context, $newBasket, $basket->getAddresses() );
+		$newBasket = $this->addBasketServices( $context, $newBasket, $basket->getServices() );
 		$newBasket = $this->addBasketCoupons( $context, $newBasket, array_keys( $basket->getCoupons() ) );
 
 		return $manager->store( $newBasket );

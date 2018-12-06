@@ -102,7 +102,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testAddCoupons()
+	public function testAddBasketAddresses()
+	{
+		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$address = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
+
+		$addresses = ['payment' => $address];
+		$basket = $this->access( 'addBasketAddresses' )->invokeArgs( $this->object, [$this->context, $basket, $addresses] );
+
+		$this->assertEquals( 1, count( $basket->getAddresses() ) );
+		$this->assertInstanceOf( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $basket->getAddress( 'payment' ) );
+	}
+
+
+	public function testAddBasketCoupons()
 	{
 		$this->context->getConfig()->set( 'controller/jobs/subcription/process/renew/standard/use-coupons', true );
 
@@ -124,6 +137,46 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '537.00', $basket->getPrice()->getValue() );
 		$this->assertEquals( '30.00', $basket->getPrice()->getCosts() );
 		$this->assertEquals( '63.00', $basket->getPrice()->getRebate() );
+	}
+
+
+	public function testAddBasketProducts()
+	{
+		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$product = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNC' );
+		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' );
+
+		$orderProducts = [
+			$manager->createItem()->copyFrom( $product )->setId( 1 ),
+			$manager->createItem()->copyFrom( $product )->setId( 2 ),
+		];
+
+		$basket = $this->access( 'addBasketProducts' )->invokeArgs( $this->object, [$this->context, $basket, $orderProducts, 1] );
+
+		$this->assertEquals( 1, count( $basket->getProducts() ) );
+		$this->assertNull( $basket->getProduct( 0 )->getId() );
+	}
+
+
+	public function testAddBasketServices()
+	{
+		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/service' );
+
+		$orderServices = [
+			'delivery' => [$manager->createItem()->setCode( 'shiptest' )],
+			'payment' => [$manager->createItem()->setCode( 'paytest' )],
+		];
+
+		$basket = $this->access( 'addBasketServices' )->invokeArgs( $this->object, [$this->context, $basket, $orderServices] );
+
+		$class = \Aimeos\MShop\Order\Item\Base\Service\Iface::class;
+
+		$this->assertEquals( 2, count( $basket->getServices() ) );
+		$this->assertEquals( 1, count( $basket->getService( 'delivery' ) ) );
+		$this->assertInstanceOf( $class, $basket->getService( 'delivery', 'unitcode' ) );
+		$this->assertEquals( 1, count( $basket->getService( 'payment' ) ) );
+		$this->assertInstanceOf( $class, $basket->getService( 'payment', 'paytest' ) );
 	}
 
 
@@ -212,7 +265,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function access( $name )
 	{
-		$class = new \ReflectionClass( '\Aimeos\Controller\Jobs\Subscription\Process\Renew\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Controller\Jobs\Subscription\Process\Renew\Standard::class );
 		$method = $class->getMethod( $name );
 		$method->setAccessible( true );
 
