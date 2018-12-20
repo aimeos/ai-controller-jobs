@@ -33,6 +33,7 @@ class Standard
 	 */
 
 	private $listTypes;
+	private $types;
 
 
 	/**
@@ -66,7 +67,31 @@ class Standard
 		 * @see controller/common/catalog/import/csv/processor/price/listtypes
 		 * @see controller/common/catalog/import/csv/processor/catalog/listtypes
 		 */
-		$this->listTypes = $context->getConfig()->get( 'controller/common/catalog/import/csv/processor/text/listtypes' );
+		$key = 'controller/common/catalog/import/csv/processor/text/listtypes';
+		$this->listTypes = $context->getConfig()->get( $key );
+
+		if( $this->listTypes === null )
+		{
+			$this->listTypes = [];
+			$manager = \Aimeos\MShop\Factory::createManager( $context, 'catalog/lists/type' );
+
+			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', 'text' ) );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$this->listTypes[$item->getCode()] = $item->getCode();
+			}
+		}
+
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'text/type' );
+
+		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+		$search->setConditions( $search->compare( '==', 'text.type.domain', 'catalog' ) );
+
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$this->types[$item->getCode()] = $item->getCode();
+		}
 	}
 
 
@@ -155,10 +180,14 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['text.content'] ) || trim( $list['text.content'] ) === '' || isset( $list['catalog.lists.type'] )
-			&& $this->listTypes !== null && !in_array( trim( $list['catalog.lists.type'] ), (array) $this->listTypes )
-		) {
+		if( !isset( $list['text.content'] ) || trim( $list['text.content'] ) === '' ) {
 			return false;
+		}
+
+		if( isset( $list['catalog.lists.type'] ) && !in_array( trim( $list['catalog.lists.type'] ), $this->listTypes )
+			|| isset( $list['text.type'] ) && !in_array( trim( $list['text.type'] ), $this->types )
+		) {
+			throw new \Aimeos\Controller\Common\Exception( sprintf( 'Invalid text or catalog list type' ) );
 		}
 
 		return true;

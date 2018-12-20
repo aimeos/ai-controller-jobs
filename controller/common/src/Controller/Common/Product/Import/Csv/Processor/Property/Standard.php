@@ -32,6 +32,29 @@ class Standard
 	 * @category Developer
 	 */
 
+	private $types = [];
+
+
+	/**
+	 * Initializes the object
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param array $mapping Associative list of field position in CSV as key and domain item key as value
+	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object Decorated processor
+	 */
+	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $mapping,
+		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object = null )
+	{
+		parent::__construct( $context, $mapping, $object );
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/property/type' );
+		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$this->types[$item->getCode()] = $item->getCode();
+		}
+	}
+
 
 	/**
 	 * Saves the product property related data to the storage
@@ -55,10 +78,15 @@ class Standard
 		foreach( $map as $list )
 		{
 			$typecode = trim( $list['product.property.type'] );
-			$value = trim( $list['product.property.value'] );
 
-			if( $typecode == '' || $value == '' ) {
+			if( ( $value = trim( $list['product.property.value'] ) ) == '' ) {
 				continue;
+			}
+
+			if( !in_array( $typecode, $this->types ) )
+			{
+				$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $typecode, 'product property' );
+				throw new \Aimeos\Controller\Common\Exception( $msg );
 			}
 
 			if( isset( $propMap[$value][$typecode] ) )

@@ -73,9 +73,21 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/price/listtypes
 		 * @see controller/common/product/import/csv/processor/text/listtypes
 		 */
-		$default = array( 'default', 'suggestion' );
 		$key = 'controller/common/product/import/csv/processor/product/listtypes';
-		$this->listTypes = $context->getConfig()->get( $key, $default );
+		$this->listTypes = $context->getConfig()->get( $key, ['default', 'suggestion'] );
+
+		if( $this->listTypes === null )
+		{
+			$this->listTypes = [];
+			$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
+
+			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+			$search->setConditions( $search->compare( '==', 'product.lists.type.domain', 'product' ) );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$this->listTypes[$item->getCode()] = $item->getCode();
+			}
+		}
 
 		$this->cache = $this->getCache( 'product' );
 	}
@@ -103,7 +115,7 @@ class Standard
 				continue;
 			}
 
-			$type = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+			$listtype = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
 
 			foreach( explode( $separator, trim( $list['product.code'] ) ) as $code )
 			{
@@ -115,8 +127,8 @@ class Standard
 					throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
 				}
 
-				if( ( $listItem = $product->getListItem( 'product', $type, $prodid ) ) === null ) {
-					$listItem = $manager->createItem( $type, 'product' );
+				if( ( $listItem = $product->getListItem( 'product', $listtype, $prodid ) ) === null ) {
+					$listItem = $manager->createItem( $listtype, 'product' );
 				} else {
 					unset( $listItems[$listItem->getId()] );
 				}
@@ -142,10 +154,14 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['product.code'] ) || trim( $list['product.code'] ) === '' || isset( $list['product.lists.type'] )
-			&& $this->listTypes !== null && !in_array( trim( $list['product.lists.type'] ), (array) $this->listTypes )
-		) {
+		if( !isset( $list['product.code'] ) || trim( $list['product.code'] ) === '' ) {
 			return false;
+		}
+
+		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
 		return true;

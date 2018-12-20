@@ -191,18 +191,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function create( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-		$typeManager = $manager->getSubManager( 'type' );
-
-		$typeSearch = $typeManager->createSearch();
-		$typeSearch->setConditions( $typeSearch->compare( '==', 'product.type.code', 'default' ) );
-		$typeResult = $typeManager->searchItems( $typeSearch );
-
-		if( ( $typeItem = reset( $typeResult ) ) === false ) {
-			throw new \RuntimeException( 'No product type "default" found' );
-		}
 
 		$item = $manager->createItem();
-		$item->setTypeid( $typeItem->getId() );
+		$item->setType( 'default' );
 		$item->setCode( $code );
 
 		return $manager->saveItem( $item );

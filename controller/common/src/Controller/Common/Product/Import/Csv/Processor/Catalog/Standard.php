@@ -67,7 +67,21 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/product/listtypes
 		 * @see controller/common/product/import/csv/processor/text/listtypes
 		 */
-		$this->listTypes = $context->getConfig()->get( 'controller/common/product/import/csv/processor/catalog/listtypes' );
+		$key = 'controller/common/product/import/csv/processor/catalog/listtypes';
+		$this->listTypes = $context->getConfig()->get( $key );
+
+		if( $this->listTypes === null )
+		{
+			$this->listTypes = [];
+			$manager = \Aimeos\MShop\Factory::createManager( $context, 'catalog/lists/type' );
+
+			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', 'product' ) );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$this->listTypes[$item->getCode()] = $item->getCode();
+			}
+		}
 
 		$this->cache = $this->getCache( 'catalog' );
 	}
@@ -126,7 +140,7 @@ class Standard
 				}
 
 				$codes = explode( $separator, trim( $list['catalog.code'] ) );
-				$type = trim( isset( $list['catalog.lists.type'] ) ? $list['catalog.lists.type'] : 'default' );
+				$listtype = trim( $this->getValue( $list, 'catalog.lists.type', 'default' ) );
 
 				foreach( $codes as $code )
 				{
@@ -142,14 +156,14 @@ class Standard
 					$list['catalog.lists.refid'] = $prodid;
 					$list['catalog.lists.domain'] = 'product';
 
-					if( isset( $listMap[$catid][$type] ) )
+					if( isset( $listMap[$catid][$listtype] ) )
 					{
-						$listItem = $listMap[$catid][$type];
+						$listItem = $listMap[$catid][$listtype];
 						unset( $listItems[ $listItem->getId() ] );
 					}
 					else
 					{
-						$listItem = $listManager->createItem( $type, 'product' );
+						$listItem = $listManager->createItem( $listtype, 'product' );
 					}
 
 					$listItem->fromArray( $this->addListItemDefaults( $list, $pos++ ) );
@@ -201,10 +215,14 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['catalog.code'] ) || trim( $list['catalog.code'] ) === '' || isset( $list['catalog.lists.type'] )
-			&& $this->listTypes !== null && !in_array( trim( $list['catalog.lists.type'] ), (array) $this->listTypes )
-		) {
+		if( !isset( $list['catalog.code'] ) || trim( $list['catalog.code'] ) === '' ) {
 			return false;
+		}
+
+		if( isset( $list['catalog.lists.type'] ) && !in_array( trim( $list['catalog.lists.type'] ), $this->listTypes ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['catalog.lists.type'], 'catalog list' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
 		return true;
@@ -229,7 +247,7 @@ class Standard
 		);
 
 		if( $types !== null ) {
-			$expr[] = $search->compare( '==', 'catalog.lists.type.code', $types );
+			$expr[] = $search->compare( '==', 'catalog.lists.type', $types );
 		}
 
 		$search->setConditions( $search->combine( '&&', $expr ) );

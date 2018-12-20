@@ -33,6 +33,7 @@ class Standard
 	 */
 
 	private $listTypes;
+	private $types = [];
 
 
 	/**
@@ -66,7 +67,31 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/price/listtypes
 		 * @see controller/common/product/import/csv/processor/product/listtypes
 		 */
-		$this->listTypes = $context->getConfig()->get( 'controller/common/product/import/csv/processor/text/listtypes' );
+		$key = 'controller/common/product/import/csv/processor/text/listtypes';
+		$this->listTypes = $context->getConfig()->get( $key );
+
+		if( $this->listTypes === null )
+		{
+			$this->listTypes = [];
+			$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
+
+			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+			$search->setConditions( $search->compare( '==', 'product.lists.type.domain', 'text' ) );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$this->listTypes[$item->getCode()] = $item->getCode();
+			}
+		}
+
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'text/type' );
+
+		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+		$search->setConditions( $search->compare( '==', 'text.type.domain', 'product' ) );
+
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$this->types[$item->getCode()] = $item->getCode();
+		}
 	}
 
 
@@ -155,10 +180,20 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['text.content'] ) || trim( $list['text.content'] ) === '' || isset( $list['product.lists.type'] )
-			&& $this->listTypes !== null && !in_array( trim( $list['product.lists.type'] ), (array) $this->listTypes )
-		) {
+		if( !isset( $list['text.content'] ) || trim( $list['text.content'] ) === '' ) {
 			return false;
+		}
+
+		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
+		}
+
+		if( isset( $list['text.type'] ) && !in_array( trim( $list['text.type'] ), $this->types ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['text.type'], 'text' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
 		return true;

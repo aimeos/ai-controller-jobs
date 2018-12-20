@@ -19,19 +19,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public static function setUpBeforeClass()
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( \TestHelperCntl::getContext() );
-		$typeManager = $manager->getSubmanager( 'type' );
-
-		$typeSearch = $typeManager->createSearch();
-		$typeSearch->setConditions( $typeSearch->compare( '==', 'product.type.code', 'default' ) );
-		$result = $typeManager->searchItems( $typeSearch );
-
-		if( ( $typeItem = reset( $result ) ) === false ) {
-			throw new \RuntimeException( 'Product type "default" not found' );
-		}
 
 		$item = $manager->createItem();
 		$item->setCode( 'job_csv_prod' );
-		$item->setTypeId( $typeItem->getId() );
+		$item->setType( 'default' );
 		$item->setStatus( 1 );
 
 		self::$product = $manager->saveItem( $item );
@@ -273,20 +264,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
+
+		$this->setExpectedException( '\Aimeos\Controller\Common\Exception' );
 		$object->process( self::$product, $data );
-
-		$category = $this->get( 'job_csv_test' );
-		$this->delete( $category );
-
-
-		$listItems = $category->getListItems();
-		$listItem = reset( $listItems );
-
-		$this->assertEquals( 1, count( $listItems ) );
-		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
-
-		$this->assertEquals( 'default', $listItem->getType() );
-		$this->assertEquals( 'job_csv_prod', $listItem->getRefItem()->getCode() );
 	}
 
 

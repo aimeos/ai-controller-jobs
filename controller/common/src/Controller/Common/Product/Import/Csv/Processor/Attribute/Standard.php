@@ -34,6 +34,7 @@ class Standard
 
 	private $cache;
 	private $listTypes;
+	private $types = [];
 
 
 	/**
@@ -67,7 +68,32 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/price/listtypes
 		 * @see controller/common/product/import/csv/processor/text/listtypes
 		 */
-		$this->listTypes = $context->getConfig()->get( 'controller/common/product/import/csv/processor/attribute/listtypes');
+		$key = 'controller/common/product/import/csv/processor/attribute/listtypes';
+		$this->listTypes = $context->getConfig()->get( $key );
+
+		if( $this->listTypes === null )
+		{
+			$this->listTypes = [];
+			$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
+
+			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+			$search->setConditions( $search->compare( '==', 'product.lists.type.domain', 'attribute' ) );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$this->listTypes[$item->getCode()] = $item->getCode();
+			}
+		}
+
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'attribute/type' );
+
+		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+		$search->setConditions( $search->compare( '==', 'attribute.type.domain', 'product' ) );
+
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$this->types[$item->getCode()] = $item->getCode();
+		}
+
 
 		$this->cache = $this->getCache( 'attribute' );
 	}
@@ -144,11 +170,20 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['attribute.code'] ) || trim( $list['attribute.code'] ) === ''
-			|| trim( $list['attribute.type'] ) === '' || isset( $list['product.lists.type'] )
-			&& $this->listTypes !== null && !in_array( trim( $list['product.lists.type'] ), (array) $this->listTypes )
-		) {
+		if( !isset( $list['attribute.code'] ) || trim( $list['attribute.code'] ) === '' ) {
 			return false;
+		}
+
+		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
+		}
+
+		if( isset( $list['attribute.type'] ) && !in_array( trim( $list['attribute.type'] ), $this->types ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['attribute.type'], 'attribute' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
 		return true;
@@ -169,7 +204,7 @@ class Standard
 			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'attribute' );
 
 			$item = $manager->createItem();
-			$item->setTypeId( $this->getTypeId( 'attribute/type', 'product', $type ) );
+			$item->setType( $type );
 			$item->setDomain( 'product' );
 			$item->setLabel( $code );
 			$item->setCode( $code );

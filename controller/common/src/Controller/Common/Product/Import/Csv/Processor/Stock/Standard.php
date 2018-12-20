@@ -32,7 +32,7 @@ class Standard
 	 * @category Developer
 	 */
 
-	private $cache;
+	private $types = [];
 
 
 	/**
@@ -47,7 +47,12 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		$this->cache = $this->getCache( 'stocktype' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'stock/type' );
+		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$this->types[$item->getCode()] = $item->getCode();
+		}
 	}
 
 
@@ -74,10 +79,13 @@ class Standard
 					continue;
 				}
 
-				$stockType = trim( isset( $list['stock.type'] ) ? $list['stock.type'] : 'default' );
+				$list['stock.productcode'] = $product->getCode();
+				$list['stock.type'] = trim( isset( $list['stock.type'] ) ? $list['stock.type'] : 'default' );
 
-				if( !isset( $list['stock.typeid'] ) ) {
-					$list['stock.typeid'] = $this->cache->get( $stockType );
+				if( !in_array( $list['stock.type'], $this->types ) )
+				{
+					$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['stock.type'], 'stock' );
+					throw new \Aimeos\Controller\Common\Exception( $msg );
 				}
 
 				if( isset( $list['stock.dateback'] ) && trim( $list['stock.dateback'] ) === '' ) {
@@ -87,8 +95,6 @@ class Standard
 				if( trim( $list['stock.stocklevel'] ) === '' ) {
 					$list['stock.stocklevel'] = null;
 				}
-
-				$list['stock.productcode'] = $product->getCode();
 
 				if( ( $item = array_pop( $items ) ) === null ) {
 					$item = $manager->createItem();

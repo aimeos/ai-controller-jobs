@@ -214,32 +214,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessInvalid()
-	{
-		$mapping = array(
-			0 => 'attribute.type',
-			1 => 'attribute.code',
-		);
-
-		$data = array(
-			0 => 'invalid',
-			1 => '30',
-		);
-
-		$product = $this->create( 'job_csv_test' );
-
-		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
-
-		try {
-			$object->process( $product, $data );
-		} catch( \Exception $e ) {
-			return;
-		}
-
-		$this->markTestFail( 'No exception thrown' );
-	}
-
-
 	public function testProcessListtypes()
 	{
 		$mapping = array(
@@ -265,18 +239,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
+
+		$this->setExpectedException( '\Aimeos\Controller\Common\Exception' );
 		$object->process( $product, $data );
-
-
-		$listItems = $product->getListItems();
-		$listItem = reset( $listItems );
-
-		$this->assertEquals( 1, count( $listItems ) );
-		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
-
-		$this->assertEquals( 'default', $listItem->getType() );
-		$this->assertEquals( 'width', $listItem->getRefItem()->getType() );
-		$this->assertEquals( '30', $listItem->getRefItem()->getCode() );
 	}
 
 

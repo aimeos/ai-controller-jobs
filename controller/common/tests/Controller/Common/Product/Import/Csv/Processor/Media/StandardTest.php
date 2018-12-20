@@ -249,17 +249,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$product = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
+
+		$this->setExpectedException( '\Aimeos\Controller\Common\Exception' );
 		$object->process( $product, $data );
-
-
-		$listItems = $product->getListItems();
-		$listItem = reset( $listItems );
-
-		$this->assertEquals( 1, count( $listItems ) );
-		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
-
-		$this->assertEquals( 'default', $listItem->getType() );
-		$this->assertEquals( 'path/to/file2', $listItem->getRefItem()->getUrl() );
 	}
 
 
