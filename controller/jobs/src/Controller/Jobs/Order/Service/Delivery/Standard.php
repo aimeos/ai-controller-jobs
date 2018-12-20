@@ -90,7 +90,7 @@ class Standard
 
 		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $context );
 		$serviceSearch = $serviceManager->createSearch();
-		$serviceSearch->setConditions( $serviceSearch->compare( '==', 'service.type.code', 'delivery' ) );
+		$serviceSearch->setConditions( $serviceSearch->compare( '==', 'service.type', 'delivery' ) );
 
 		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( $context );
 		$orderSearch = $orderManager->createSearch();

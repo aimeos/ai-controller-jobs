@@ -105,10 +105,7 @@ class Standard
 		 * and the MShop domain item key (e.g. "catalog.code") it represents.
 		 *
 		 * You can use all domain item keys which are used in the fromArray()
-		 * methods of the item classes. The "*.type" item keys will be
-		 * automatically converted to their "*.typeid" representation. You only
-		 * need to make sure that the corresponding type is available in the
-		 * database.
+		 * methods of the item classes.
 		 *
 		 * These mappings are grouped together by their processor names, which
 		 * are responsible for importing the data, e.g. all mappings in "item"

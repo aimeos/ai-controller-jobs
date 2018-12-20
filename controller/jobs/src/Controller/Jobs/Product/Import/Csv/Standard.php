@@ -21,6 +21,26 @@ class Standard
 	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	private $types = [];
+
+
+	/**
+	 * Initializes the object.
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface $context MShop context object
+	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap main object
+	 */
+	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos )
+	{
+		parent::__construct( $context, $aimeos );
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/type' );
+		$manager->createSearch()->setSlice( 0, 0x7fffffff );
+
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$this->types[$item->getCode()] = $item->getCode();
+		}
+	}
 
 
 	/**
@@ -107,10 +127,7 @@ class Standard
 		 * and the MShop domain item key (e.g. "product.code") it represents.
 		 *
 		 * You can use all domain item keys which are used in the fromArray()
-		 * methods of the item classes. The "*.type" item keys will be
-		 * automatically converted to their "*.typeid" representation. You only
-		 * need to make sure that the corresponding type is available in the
-		 * database.
+		 * methods of the item classes.
 		 *
 		 * These mappings are grouped together by their processor names, which
 		 * are responsible for importing the data, e.g. all mappings in "item"
@@ -541,9 +558,13 @@ class Standard
 				if( isset( $map[0] ) )
 				{
 					$map = $map[0]; // there can only be one chunk for the base product data
+					$map['product.type'] = trim( $this->getValue( $map, 'product.type', 'default' ) );
 
-					$typecode = trim( isset( $map['product.type'] ) ? $map['product.type'] : 'default' );
-					$map['product.typeid'] = $this->getTypeId( 'product/type', 'product', $typecode );
+					if( !in_array( $map['product.type'], $this->types ) )
+					{
+						$msg = sprintf( 'Invalid product type "%1$s"', $map['product.type'] );
+						throw new \Aimeos\Controller\Jobs\Exception( $msg );
+					}
 
 					$product->fromArray( $this->addItemDefaults( $map ) );
 					$product = $manager->saveItem( $product );

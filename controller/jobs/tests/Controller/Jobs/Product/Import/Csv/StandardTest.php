@@ -320,7 +320,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.property.parentid', $prodids ) );
-		$search->setSortations( array( $search->sort( '+', 'product.property.type.code' ) ) );
+		$search->setSortations( array( $search->sort( '+', 'product.property.type' ) ) );
 
 		return $manager->searchItems( $search );
 	}

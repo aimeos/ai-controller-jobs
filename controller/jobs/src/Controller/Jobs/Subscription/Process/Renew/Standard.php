@@ -255,7 +255,7 @@ class Standard
 
 		$search = $serviceManager->createSearch( true );
 		$search->setSortations( [$search->sort( '+', 'service.position' )] );
-		$search->setConditions( $search->compare( '==', 'service.type.code', $type ) );
+		$search->setConditions( $search->compare( '==', 'service.type', $type ) );
 
 		foreach( $serviceManager->searchItems( $search, ['media', 'price', 'text'] ) as $item )
 		{
