@@ -18,10 +18,9 @@ namespace Aimeos\Controller\Jobs\Product\Import\Csv;
  * @subpackage Jobs
  */
 class Standard
-	extends \Aimeos\Controller\Jobs\Base
+	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
-	use \Aimeos\Controller\Common\Product\Import\Csv\Traits;
 
 
 	/**

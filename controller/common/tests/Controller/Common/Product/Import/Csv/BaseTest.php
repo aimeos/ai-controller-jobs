@@ -9,7 +9,7 @@
 namespace Aimeos\Controller\Common\Product\Import\Csv;
 
 
-class TraitsTest extends \PHPUnit\Framework\TestCase
+class BaseTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 
@@ -88,28 +88,12 @@ class TraitsTest extends \PHPUnit\Framework\TestCase
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
-
-
-	public function testGetTypeId()
-	{
-		$typeid = $this->object->getTypeIdPublic( 'attribute/type', 'product', 'color' );
-
-		$this->assertNotEquals( null, $typeid );
-	}
-
-
-	public function testGetTypeIdUnknown()
-	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$this->object->getTypeIdPublic( 'attribute/type', 'product', 'unknown' );
-	}
 }
 
 
 class TestAbstract
+	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 {
-	use \Aimeos\Controller\Common\Product\Import\Csv\Traits;
-
 	public function getContext()
 	{
 		return \TestHelperCntl::getContext();
@@ -124,12 +108,6 @@ class TestAbstract
 	public function getProcessorsPublic( array $mappings )
 	{
 		return $this->getProcessors( $mappings );
-	}
-
-
-	public function getTypeIdPublic( $path, $domain, $code )
-	{
-		return $this->getTypeId( $path, $domain, $code );
 	}
 }
 
