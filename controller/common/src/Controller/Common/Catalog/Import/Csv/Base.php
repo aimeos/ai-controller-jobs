@@ -20,9 +20,6 @@ namespace Aimeos\Controller\Common\Catalog\Import\Csv;
 class Base
 	extends \Aimeos\Controller\Jobs\Base
 {
-	private static $types = [];
-
-
 	/**
 	 * Converts the CSV field data using the available converter objects
 	 *
@@ -240,36 +237,5 @@ class Base
 		}
 
 		return $object;
-	}
-
-
-	/**
-	 * Returns the ID of the type item with the given code
-	 *
-	 * @param string $path Item/manager path separated by slashes, e.g. "catalog/lists/type"
-	 * @param string $domain Domain the type items needs to be from
-	 * @param string $code Unique code of the type item
-	 * @return string Unique ID of the type item
-	 */
-	protected function getTypeId( $path, $domain, $code )
-	{
-		if( !isset( self::$types[$path][$domain] ) )
-		{
-			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), $path );
-			$key = str_replace( '/', '.', $path );
-
-			$search = $manager->createSearch();
-			$search->setConditions( $search->compare( '==', $key . '.domain', $domain ) );
-
-			foreach( $manager->searchItems( $search ) as $id => $item ) {
-				self::$types[$path][$domain][ $item->getCode() ] = $id;
-			}
-		}
-
-		if( !isset( self::$types[$path][$domain][$code] ) ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No type item for "%1$s/%2$s" in "%3$s" found', $domain, $code, $path ) );
-		}
-
-		return self::$types[$path][$domain][$code];
 	}
 }

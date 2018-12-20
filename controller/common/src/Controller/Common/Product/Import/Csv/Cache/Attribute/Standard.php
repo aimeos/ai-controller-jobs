@@ -71,7 +71,7 @@ class Standard
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'attribute.code', $code ),
-			$search->compare( '==', 'attribute.type.code', $type ),
+			$search->compare( '==', 'attribute.type', $type ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 

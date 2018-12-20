@@ -73,21 +73,6 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
-
-
-	public function testGetTypeId()
-	{
-		$typeid = $this->object->getTypeIdPublic( 'text/type', 'catalog', 'name' );
-
-		$this->assertNotEquals( null, $typeid );
-	}
-
-
-	public function testGetTypeIdUnknown()
-	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$this->object->getTypeIdPublic( 'text/type', 'catalog', 'unknown' );
-	}
 }
 
 
@@ -103,12 +88,6 @@ class TestAbstract
 	public function getProcessorsPublic( array $mappings )
 	{
 		return $this->getProcessors( $mappings );
-	}
-
-
-	public function getTypeIdPublic( $path, $domain, $code )
-	{
-		return $this->getTypeId( $path, $domain, $code );
 	}
 }
 
