@@ -94,7 +94,7 @@ class Standard
 			}
 			else
 			{
-				$item = $manager->createItem( $type, 'product' );
+				$item = $manager->createItem()->setType( $type );
 			}
 
 			$item->fromArray( $list );

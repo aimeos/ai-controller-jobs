@@ -138,16 +138,16 @@ class Standard
 			foreach( $codes as $code )
 			{
 				$code = trim( $code );
-				$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
+				$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 
-				if( isset( $listMap[$code][$typecode] ) )
+				if( isset( $listMap[$code][$listtype] ) )
 				{
-					$listItem = $listMap[$code][$typecode];
+					$listItem = $listMap[$code][$listtype];
 					unset( $listItems[ $listItem->getId() ] );
 				}
 				else
 				{
-					$listItem = $listManager->createItem( $typecode, 'attribute' );
+					$listItem = $listManager->createItem()->setType( $listtype );
 				}
 
 				$attrItem = $this->getAttributeItem( $code, $this->getValue( $list, 'attribute.type' ) );

@@ -144,8 +144,8 @@ class Standard
 				}
 				else
 				{
-					$listItem = $listManager->createItem( $listtype, 'media' );
-					$refItem = $manager->createItem( $type, 'catalog' );
+					$listItem = $listManager->createItem()->setType( $listtype );
+					$refItem = $manager->createItem()->setType( $type );
 				}
 
 				$list['media.url'] = $url;

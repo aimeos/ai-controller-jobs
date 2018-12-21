@@ -167,7 +167,7 @@ class Standard
 					}
 					else
 					{
-						$listItem = $listManager->createItem( $listtype, 'product' );
+						$listItem = $listManager->createItem()->setType( $listtype );
 					}
 
 					$listItem->fromArray( $this->addListItemDefaults( $list, $pos++ ) );

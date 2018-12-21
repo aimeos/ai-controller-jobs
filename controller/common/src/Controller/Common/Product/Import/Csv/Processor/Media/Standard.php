@@ -131,23 +131,23 @@ class Standard
 			}
 
 			$type = $this->getValue( $list, 'media.type', 'default' );
-			$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
+			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
 
 			foreach( $urls as $url )
 			{
 				$url = trim( $url );
 
-				if( isset( $listMap[$url][$type][$typecode] ) )
+				if( isset( $listMap[$url][$type][$listtype] ) )
 				{
-					$listItem = $listMap[$url][$type][$typecode];
+					$listItem = $listMap[$url][$type][$listtype];
 					$refItem = $listItem->getRefItem();
 					unset( $listItems[ $listItem->getId() ] );
 				}
 				else
 				{
-					$listItem = $listManager->createItem( $typecode, 'media' );
-					$refItem = $manager->createItem( $type, 'product' );
+					$listItem = $listManager->createItem()->setType( $listtype );
+					$refItem = $manager->createItem()->setType( $type );
 				}
 
 				$list['media.url'] = $url;

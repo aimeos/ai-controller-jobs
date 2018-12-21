@@ -140,8 +140,8 @@ class Standard
 			}
 			else
 			{
-				$listItem = $listManager->createItem( $listtype, 'text' );
-				$refItem = $manager->createItem( $type, 'catalog' );
+				$listItem = $listManager->createItem()->setType( $listtype );
+				$refItem = $manager->createItem()->setType( $type );
 			}
 
 			$refItem->fromArray( $this->addItemDefaults( $list ) );

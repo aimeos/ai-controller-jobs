@@ -132,7 +132,7 @@ class Standard
 				}
 
 				if( ( $listItem = $product->getListItem( 'product', $listtype, $prodid ) ) === null ) {
-					$listItem = $manager->createItem( $listtype, 'product' );
+					$listItem = $manager->createItem()->setType( $listtype );
 				} else {
 					unset( $listItems[$listItem->getId()] );
 				}
