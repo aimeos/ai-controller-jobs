@@ -35,7 +35,7 @@ class Standard
 		parent::__construct( $context, $aimeos );
 
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/type' );
-		$manager->createSearch()->setSlice( 0, 0x7fffffff );
+		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 
 		foreach( $manager->searchItems( $search ) as $item ) {
 			$this->types[$item->getCode()] = $item->getCode();
