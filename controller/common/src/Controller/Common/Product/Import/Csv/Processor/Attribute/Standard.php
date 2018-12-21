@@ -83,6 +83,10 @@ class Standard
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
+		else
+		{
+			$this->listTypes = array_flip( $this->listTypes );
+		}
 
 
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'attribute/type' );
@@ -129,12 +133,12 @@ class Standard
 				continue;
 			}
 
-			$codes = explode( $separator, trim( $list['attribute.code'] ) );
+			$codes = explode( $separator, $this->getValue( $list, 'attribute.code', '' ) );
 
 			foreach( $codes as $code )
 			{
 				$code = trim( $code );
-				$typecode = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
+				$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
 
 				if( isset( $listMap[$code][$typecode] ) )
 				{
@@ -146,7 +150,7 @@ class Standard
 					$listItem = $listManager->createItem( $typecode, 'attribute' );
 				}
 
-				$attrItem = $this->getAttributeItem( $code, trim( $list['attribute.type'] ) );
+				$attrItem = $this->getAttributeItem( $code, $this->getValue( $list, 'attribute.type' ) );
 				$attrItem->fromArray( $list );
 				$attrItem->setCode( $code );
 
@@ -170,19 +174,19 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['attribute.code'] ) || trim( $list['attribute.code'] ) === '' ) {
+		if( $this->getValue( $list, 'attribute.code' ) === null ) {
 			return false;
 		}
 
-		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( isset( $list['attribute.type'] ) && !in_array( trim( $list['attribute.type'] ), $this->types ) )
+		if( ( $type = $this->getValue( $list, 'attribute.type' ) ) && !isset( $this->types[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['attribute.type'], 'attribute' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'attribute' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 

@@ -558,7 +558,7 @@ class Standard
 				if( isset( $map[0] ) )
 				{
 					$map = $map[0]; // there can only be one chunk for the base product data
-					$map['product.type'] = trim( $this->getValue( $map, 'product.type', 'default' ) );
+					$map['product.type'] = $this->getValue( $map, 'product.type', 'default' );
 
 					if( !in_array( $map['product.type'], $this->types ) )
 					{

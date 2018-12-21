@@ -240,7 +240,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$data = array(
 			0 => 'path/to/file',
-			1 => 'download',
+			1 => 'test',
 			2 => 'path/to/file2',
 			3 => 'default',
 		);

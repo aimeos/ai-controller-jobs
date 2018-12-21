@@ -82,6 +82,10 @@ class Standard
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
+		else
+		{
+			$this->listTypes = array_flip( $this->listTypes );
+		}
 
 
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'text/type' );
@@ -124,19 +128,19 @@ class Standard
 				continue;
 			}
 
-			$content = trim( $list['text.content'] );
-			$type = trim( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
-			$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+			$type = $this->getValue( $list, 'text.type', 'name' );
+			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
+			$content = $this->getValue( $list, 'text.content', '' );
 
-			if( isset( $listMap[$content][$type][$typecode] ) )
+			if( isset( $listMap[$content][$type][$listtype] ) )
 			{
-				$listItem = $listMap[$content][$type][$typecode];
+				$listItem = $listMap[$content][$type][$listtype];
 				$refItem = $listItem->getRefItem();
 				unset( $listItems[ $listItem->getId() ] );
 			}
 			else
 			{
-				$listItem = $listManager->createItem( $typecode, 'text' );
+				$listItem = $listManager->createItem( $listtype, 'text' );
 				$refItem = $manager->createItem( $type, 'product' );
 			}
 
@@ -173,26 +177,26 @@ class Standard
 
 
 	/**
-	 * Checks if an entry can be used for updating a media item
+	 * Checks if an entry can be used for updating a text item
 	 *
 	 * @param array $list Associative list of key/value pairs from the mapping
 	 * @return boolean True if valid, false if not
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['text.content'] ) || trim( $list['text.content'] ) === '' ) {
+		if( $this->getValue( $list, 'text.content' ) === null ) {
 			return false;
 		}
 
-		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( isset( $list['text.type'] ) && !in_array( trim( $list['text.type'] ), $this->types ) )
+		if( ( $type = $this->getValue( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['text.type'], 'text' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 

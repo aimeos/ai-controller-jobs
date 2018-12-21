@@ -88,6 +88,10 @@ class Standard
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
+		else
+		{
+			$this->listTypes = array_flip( $this->listTypes );
+		}
 
 		$this->cache = $this->getCache( 'product' );
 	}
@@ -98,7 +102,7 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item with associated items
 	 * @param array $data List of CSV fields with position as key and data as value
-	 * @return array List of data which hasn't been imported
+	 * @return array List of data which has not been imported
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
@@ -115,9 +119,9 @@ class Standard
 				continue;
 			}
 
-			$listtype = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
+			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 
-			foreach( explode( $separator, trim( $list['product.code'] ) ) as $code )
+			foreach( explode( $separator, $this->getValue( $list, 'product.code', '' ) ) as $code )
 			{
 				$code = trim( $code );
 
@@ -154,13 +158,13 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['product.code'] ) || trim( $list['product.code'] ) === '' ) {
+		if( $this->getValue( $list, 'product.code' ) === null ) {
 			return false;
 		}
 
-		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 

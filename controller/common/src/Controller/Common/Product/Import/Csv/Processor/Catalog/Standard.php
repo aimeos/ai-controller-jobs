@@ -82,6 +82,10 @@ class Standard
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
+		else
+		{
+			$this->listTypes = array_flip( $this->listTypes );
+		}
 
 		$this->cache = $this->getCache( 'catalog' );
 	}
@@ -139,8 +143,8 @@ class Standard
 					continue;
 				}
 
-				$codes = explode( $separator, trim( $list['catalog.code'] ) );
-				$listtype = trim( $this->getValue( $list, 'catalog.lists.type', 'default' ) );
+				$codes = explode( $separator, $this->getValue( $list, 'catalog.code', '' ) );
+				$listtype = $this->getValue( $list, 'catalog.lists.type', 'default' );
 
 				foreach( $codes as $code )
 				{
@@ -215,13 +219,13 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['catalog.code'] ) || trim( $list['catalog.code'] ) === '' ) {
+		if( $this->getValue( $list, 'catalog.code' ) === null ) {
 			return false;
 		}
 
-		if( isset( $list['catalog.lists.type'] ) && !in_array( trim( $list['catalog.lists.type'] ), $this->listTypes ) )
+		if( ( $type = $this->getValue( $list, 'catalog.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['catalog.lists.type'], 'catalog list' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'catalog list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 

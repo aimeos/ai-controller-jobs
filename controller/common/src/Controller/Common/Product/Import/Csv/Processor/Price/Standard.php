@@ -82,6 +82,10 @@ class Standard
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
+		else
+		{
+			$this->listTypes = array_flip( $this->listTypes );
+		}
 
 
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'price/type' );
@@ -124,9 +128,9 @@ class Standard
 				continue;
 			}
 
-			$value = trim( isset( $list['price.value'] ) ? $list['price.value'] : '0.00' );
-			$type = trim( isset( $list['price.type'] ) ? $list['price.type'] : 'default' );
-			$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+			$value = $this->getValue( $list, 'price.value', '0.00' );
+			$type = $this->getValue( $list, 'price.type', 'default' );
+			$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
 
 			if( isset( $listMap[$value][$type][$typecode] ) )
 			{
@@ -174,26 +178,26 @@ class Standard
 
 
 	/**
-	 * Checks if an entry can be used for updating a media item
+	 * Checks if an entry can be used for updating a price item
 	 *
 	 * @param array $list Associative list of key/value pairs from the mapping
 	 * @return boolean True if valid, false if not
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['price.value'] ) || trim( $list['price.value'] ) === '' ) {
+		if( $this->getValue( $list, 'price.value' ) === null ) {
 			return false;
 		}
 
-		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( isset( $list['price.type'] ) && !in_array( trim( $list['price.type'] ), $this->types ) )
+		if( ( $type = $this->getValue( $list, 'price.type' ) ) && !isset( $this->types[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['price.type'], 'price' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'price' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 

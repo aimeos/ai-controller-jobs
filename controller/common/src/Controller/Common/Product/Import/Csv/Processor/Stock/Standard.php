@@ -80,20 +80,14 @@ class Standard
 				}
 
 				$list['stock.productcode'] = $product->getCode();
-				$list['stock.type'] = trim( isset( $list['stock.type'] ) ? $list['stock.type'] : 'default' );
+				$list['stock.dateback'] = $this->getValue( $list, 'stock.dateback' );
+				$list['stock.stocklevel'] = $this->getValue( $list, 'stock.stocklevel' );
+				$list['stock.type'] = $this->getValue( $list, 'stock.type', 'default' );
 
 				if( !in_array( $list['stock.type'], $this->types ) )
 				{
 					$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['stock.type'], 'stock' );
 					throw new \Aimeos\Controller\Common\Exception( $msg );
-				}
-
-				if( isset( $list['stock.dateback'] ) && trim( $list['stock.dateback'] ) === '' ) {
-					$list['stock.dateback'] = null;
-				}
-
-				if( trim( $list['stock.stocklevel'] ) === '' ) {
-					$list['stock.stocklevel'] = null;
 				}
 
 				if( ( $item = array_pop( $items ) ) === null ) {

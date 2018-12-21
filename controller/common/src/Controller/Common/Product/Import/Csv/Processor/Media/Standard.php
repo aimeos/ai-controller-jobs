@@ -82,6 +82,10 @@ class Standard
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
+		else
+		{
+			$this->listTypes = array_flip( $this->listTypes );
+		}
 
 
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'media/type' );
@@ -126,9 +130,9 @@ class Standard
 				continue;
 			}
 
-			$urls = explode( $separator, trim( $list['media.url'] ) );
-			$type = trim( $this->getValue( $list, 'media.type', 'default' ) );
-			$typecode = trim( $this->getValue( $list, 'product.lists.type', 'default' ) );
+			$type = $this->getValue( $list, 'media.type', 'default' );
+			$typecode = $this->getValue( $list, 'product.lists.type', 'default' );
+			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
 
 			foreach( $urls as $url )
 			{
@@ -193,19 +197,19 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['media.url'] ) || trim( $list['media.url'] ) === '' ) {
+		if( $this->getValue( $list, 'media.url' ) === null ) {
 			return false;
 		}
 
-		if( isset( $list['product.lists.type'] ) && !in_array( trim( $list['product.lists.type'] ), $this->listTypes ) )
+		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['product.lists.type'], 'product list' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( isset( $list['media.type'] ) && !in_array( trim( $list['media.type'] ), $this->types ) )
+		if( ( $type = $this->getValue( $list, 'media.type' ) ) && !isset( $this->types[$type] ) )
 		{
-			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['media.type'], 'media' );
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 

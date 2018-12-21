@@ -77,26 +77,24 @@ class Standard
 
 		foreach( $map as $list )
 		{
-			$typecode = trim( $list['product.property.type'] );
-
-			if( ( $value = trim( $list['product.property.value'] ) ) == '' ) {
+			if( ( $value = $this->getValue( $list, 'product.property.value' ) ) === null ) {
 				continue;
 			}
 
-			if( !in_array( $typecode, $this->types ) )
+			if( ( $type = $this->getValue( $list, 'product.property.type' ) ) && !isset( $this->types[$type] ) )
 			{
-				$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $typecode, 'product property' );
+				$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product property' );
 				throw new \Aimeos\Controller\Common\Exception( $msg );
 			}
 
-			if( isset( $propMap[$value][$typecode] ) )
+			if( isset( $propMap[$value][$type] ) )
 			{
-				$item = $propMap[$value][$typecode];
+				$item = $propMap[$value][$type];
 				unset( $items[ $item->getId() ] );
 			}
 			else
 			{
-				$item = $manager->createItem( $typecode, 'product' );
+				$item = $manager->createItem( $type, 'product' );
 			}
 
 			$item->fromArray( $list );

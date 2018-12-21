@@ -82,6 +82,10 @@ class Standard
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
+		else
+		{
+			$this->listTypes = array_flip( $this->listTypes );
+		}
 
 
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'media/type' );
@@ -126,21 +130,21 @@ class Standard
 				continue;
 			}
 
-			$urls = explode( $separator, trim( $list['media.url'] ) );
-			$type = trim( $this->getValue( $list, 'media.type', 'default' ) );
-			$typecode = trim( $this->getValue( $list, 'catalog.lists.type', 'default' ) );
+			$type = $this->getValue( $list, 'media.type', 'default' );
+			$listtype = $this->getValue( $list, 'catalog.lists.type', 'default' );
+			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
 
 			foreach( $urls as $url )
 			{
-				if( isset( $listMap[$url][$type][$typecode] ) )
+				if( isset( $listMap[$url][$type][$listtype] ) )
 				{
-					$listItem = $listMap[$url][$type][$typecode];
+					$listItem = $listMap[$url][$type][$listtype];
 					$refItem = $listItem->getRefItem();
 					unset( $listItems[ $listItem->getId() ] );
 				}
 				else
 				{
-					$listItem = $listManager->createItem( $typecode, 'media' );
+					$listItem = $listManager->createItem( $listtype, 'media' );
 					$refItem = $manager->createItem( $type, 'catalog' );
 				}
 
@@ -191,14 +195,20 @@ class Standard
 	 */
 	protected function checkEntry( array $list )
 	{
-		if( !isset( $list['media.url'] ) || trim( $list['media.url'] ) === '' ) {
+		if( $this->getValue( $list, 'media.url' ) === null ) {
 			return false;
 		}
 
-		if( isset( $list['catalog.lists.type'] ) && !in_array( trim( $list['catalog.lists.type'] ), $this->listTypes )
-			|| isset( $list['media.type'] ) && !in_array( trim( $list['media.type'] ), $this->types )
-		) {
-			throw new \Aimeos\Controller\Common\Exception( sprintf( 'Invalid media or catalog list type' ) );
+		if( ( $type = $this->getValue( $list, 'catalog.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'catalog list' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
+		}
+
+		if( ( $type = $this->getValue( $list, 'media.type' ) ) && !isset( $this->types[$type] ) )
+		{
+			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
+			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
 		return true;
