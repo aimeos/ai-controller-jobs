@@ -573,9 +573,9 @@ class Standard
 				$code = trim( $code );
 
 				if( isset( $catalogMap[$code] )  ) {
-					$catalogItem = $catalogMap[$code];
+					$item = $catalogMap[$code];
 				} else {
-					$catalogItem = $manager->createItem();
+					$item = $manager->createItem();
 				}
 
 				$map = $this->getMappedChunk( $list, $mapping );
@@ -584,22 +584,22 @@ class Standard
 				{
 					$map = $map[0]; // there can only be one chunk for the base catalog data
 					$parentid = $this->getParentId( $catalogMap, $map, $code );
-					$catalogItem->fromArray( $this->addItemDefaults( $map ) );
+					$item->fromArray( $map );
 
 					if( isset( $catalogMap[$code] ) )
 					{
-						$manager->moveItem( $catalogItem->getId(), $catalogItem->getParentId(), $parentid );
-						$catalogItem = $manager->saveItem( $catalogItem );
+						$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
+						$item = $manager->saveItem( $item );
 					}
 					else
 					{
-						$catalogItem = $manager->insertItem( $catalogItem, $parentid );
+						$item = $manager->insertItem( $item, $parentid );
 					}
 
-					$list = $processor->process( $catalogItem, $list );
-					$catalogMap[$code] = $catalogItem;
+					$list = $processor->process( $item, $list );
+					$catalogMap[$code] = $item;
 
-					$manager->saveItem( $catalogItem );
+					$manager->saveItem( $item );
 				}
 
 				$manager->commit();
@@ -620,21 +620,5 @@ class Standard
 		}
 
 		return $errors;
-	}
-
-
-	/**
-	 * Adds the catalog item default values and returns the resulting array
-	 *
-	 * @param array $list Associative list of domain item keys and their values, e.g. "catalog.status" => 1
-	 * @return array Given associative list enriched by default values if they were not already set
-	 */
-	protected function addItemDefaults( array $list )
-	{
-		if( !isset( $list['catalog.status'] ) ) {
-			$list['catalog.status'] = 1;
-		}
-
-		return $list;
 	}
 }

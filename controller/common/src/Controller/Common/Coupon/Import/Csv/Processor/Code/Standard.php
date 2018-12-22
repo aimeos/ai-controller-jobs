@@ -51,8 +51,7 @@ class Standard
 				continue;
 			}
 
-			$item->fromArray( $list );
-			$manager->saveItem( $item );
+			$item = $manager->saveItem( $item->fromArray( $list ) );
 		}
 
 		return $this->getObject()->process( $item, $data );

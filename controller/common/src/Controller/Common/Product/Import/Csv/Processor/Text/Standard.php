@@ -144,8 +144,10 @@ class Standard
 				$refItem = $manager->createItem()->setType( $type );
 			}
 
-			$refItem->fromArray( $this->addItemDefaults( $list ) );
-			$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
+			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
+
+			$label = mb_strcut( $this->getValue( $list, 'text.content', '' ), 0, 255 );
+			$refItem = $refItem->setLabel( $label )->fromArray( $list );
 
 			$product->addListItem( 'text', $listItem, $refItem );
 		}
@@ -153,26 +155,6 @@ class Standard
 		$product->deleteListItems( $listItems, true );
 
 		return $this->getObject()->process( $product, $data );
-	}
-
-
-	/**
-	 * Adds the text item default values and returns the resulting array
-	 *
-	 * @param array $list Associative list of domain item keys and their values, e.g. "text.status" => 1
-	 * @return array Given associative list enriched by default values if they were not already set
-	 */
-	protected function addItemDefaults( array $list )
-	{
-		if( !isset( $list['text.label'] ) ) {
-			$list['text.label'] = mb_strcut( trim( $list['text.content'] ), 0, 255 );
-		}
-
-		if( !isset( $list['text.status'] ) ) {
-			$list['text.status'] = 1;
-		}
-
-		return $list;
 	}
 
 

@@ -144,9 +144,10 @@ class Standard
 				$refItem = $manager->createItem()->setType( $type );
 			}
 
+			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
 
-			$refItem->fromArray( $this->addItemDefaults( $list ) );
-			$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
+			$label = $this->getValue( $list, 'price.currencyid', '' ) . ' ' . $this->getValue( $list, 'price.value', '' );
+			$refItem = $refItem->setLabel( $label )->fromArray( $list );
 
 			$product->addListItem( 'price', $listItem, $refItem );
 		}
@@ -154,26 +155,6 @@ class Standard
 		$product->deleteListItems( $listItems, true );
 
 		return $this->getObject()->process( $product, $data );
-	}
-
-
-	/**
-	 * Adds the text item default values and returns the resulting array
-	 *
-	 * @param array $list Associative list of domain item keys and their values, e.g. "price.status" => 1
-	 * @return array Given associative list enriched by default values if they were not already set
-	 */
-	protected function addItemDefaults( array $list )
-	{
-		if( !isset( $list['price.label'] ) ) {
-			$list['price.label'] = $list['price.currencyid'] . ' ' . $list['price.value'];
-		}
-
-		if( !isset( $list['price.status'] ) ) {
-			$list['price.status'] = 1;
-		}
-
-		return $list;
 	}
 
 

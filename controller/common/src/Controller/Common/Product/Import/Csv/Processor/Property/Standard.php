@@ -97,9 +97,7 @@ class Standard
 				$item = $manager->createItem()->setType( $type );
 			}
 
-			$item->fromArray( $list );
-
-			$product->addPropertyItem( $item );
+			$product->addPropertyItem( $item->fromArray( $list ) );
 		}
 
 		$product->deletePropertyItems( $items );

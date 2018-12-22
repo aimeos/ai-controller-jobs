@@ -137,9 +137,7 @@ class Standard
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem->fromArray( $list );
-				$listItem->setRefId( $prodid );
-
+				$listItem = $listItem->fromArray( $list )->setRefId( $prodid );
 				$product->addListItem( 'product', $listItem );
 			}
 		}

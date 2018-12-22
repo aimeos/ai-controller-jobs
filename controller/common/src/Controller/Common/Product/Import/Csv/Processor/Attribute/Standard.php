@@ -150,11 +150,10 @@ class Standard
 					$listItem = $listManager->createItem()->setType( $listtype );
 				}
 
-				$attrItem = $this->getAttributeItem( $code, $this->getValue( $list, 'attribute.type' ) );
-				$attrItem->fromArray( $list );
-				$attrItem->setCode( $code );
+				$listItem = $listItem->setPosition( $pos )->fromArray( $list );
 
-				$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
+				$attrItem = $this->getAttributeItem( $code, $this->getValue( $list, 'attribute.type' ) );
+				$attrItem = $attrItem->setCode( $code )->fromArray( $list );
 
 				$product->addListItem( 'attribute', $listItem, $attrItem );
 			}

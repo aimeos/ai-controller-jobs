@@ -566,8 +566,7 @@ class Standard
 						throw new \Aimeos\Controller\Jobs\Exception( $msg );
 					}
 
-					$product->fromArray( $this->addItemDefaults( $map ) );
-					$product = $manager->saveItem( $product );
+					$product = $manager->saveItem( $product->fromArray( $map ) );
 
 					$list = $processor->process( $product, $list );
 
@@ -595,21 +594,5 @@ class Standard
 		$indexManager->rebuildIndex( $items );
 
 		return $errors;
-	}
-
-
-	/**
-	 * Adds the product item default values and returns the resulting array
-	 *
-	 * @param array $list Associative list of domain item keys and their values, e.g. "product.status" => 1
-	 * @return array Given associative list enriched by default values if they were not already set
-	 */
-	protected function addItemDefaults( array $list )
-	{
-		if( !isset( $list['product.status'] ) ) {
-			$list['product.status'] = 1;
-		}
-
-		return $list;
 	}
 }

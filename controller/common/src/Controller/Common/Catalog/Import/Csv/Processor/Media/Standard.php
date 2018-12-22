@@ -148,10 +148,8 @@ class Standard
 					$refItem = $manager->createItem()->setType( $type );
 				}
 
-				$list['media.url'] = $url;
-
-				$list = $refItem->fromArray( $this->addItemDefaults( $list ) );
-				$list = $listItem->fromArray( $this->addListItemDefaults( $list, $pos++ ) );
+				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
+				$refItem = $refItem->setLabel( $url )->setPreview( $url )->fromArray( $list )->setUrl( $url );
 
 				$catalog->addListItem( 'media', $listItem, $refItem );
 			}
@@ -160,30 +158,6 @@ class Standard
 		$catalog->deleteListItems( $listItems, true );
 
 		return $this->getObject()->process( $catalog, $data );
-	}
-
-
-	/**
-	 * Adds the text item default values and returns the resulting array
-	 *
-	 * @param array $list Associative list of domain item keys and their values, e.g. "media.status" => 1
-	 * @return array Given associative list enriched by default values if they were not already set
-	 */
-	protected function addItemDefaults( array $list )
-	{
-		if( !isset( $list['media.label'] ) ) {
-			$list['media.label'] = $list['media.url'];
-		}
-
-		if( !isset( $list['media.preview'] ) ) {
-			$list['media.preview'] = $list['media.url'];
-		}
-
-		if( !isset( $list['media.status'] ) ) {
-			$list['media.status'] = 1;
-		}
-
-		return $list;
 	}
 
 

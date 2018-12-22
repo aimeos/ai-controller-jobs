@@ -94,8 +94,7 @@ class Standard
 					$item = $manager->createItem();
 				}
 
-				$item->fromArray( $list );
-				$manager->saveItem( $item, false );
+				$manager->saveItem( $item->fromArray( $list ), false );
 			}
 
 			$manager->deleteItems( array_keys( $items ) );
