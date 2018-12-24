@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
+		\Aimeos\MShop::cache( true );
 
 		$this->context = \TestHelperJobs::getContext();
 		$this->aimeos = \TestHelperJobs::getAimeos();
@@ -30,8 +30,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
+		\Aimeos\MShop::cache( false );
+		\Aimeos\MShop::clear();
 
 		$this->object = null;
 	}
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'deleteItems', 'saveItem' ) )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'product/lists', $stub );
+		\Aimeos\MShop::inject( $this->context, 'product/lists', $stub );
 
 		$stub->expects( $this->atLeastOnce() )->method( 'deleteItems' );
 		$stub->expects( $this->atLeastOnce() )->method( 'saveItem' );

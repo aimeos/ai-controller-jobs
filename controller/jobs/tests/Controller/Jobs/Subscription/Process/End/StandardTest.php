@@ -22,14 +22,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object = new \Aimeos\Controller\Jobs\Subscription\Process\End\Standard( $this->context, $aimeos );
 
-		\Aimeos\MShop\Factory::setCache( true );
+		\Aimeos\MShop::cache( true );
 	}
 
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
+		\Aimeos\MShop::cache( false );
+		\Aimeos\MShop::clear();
 
 		unset( $this->object, $this->context );
 	}
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['searchItems', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'subscription', $managerStub );
+		\Aimeos\MShop::inject( $this->context, 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( [$item] ) );
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['searchItems', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'subscription', $managerStub );
+		\Aimeos\MShop::inject( $this->context, 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( [$managerStub->createItem()] ) );

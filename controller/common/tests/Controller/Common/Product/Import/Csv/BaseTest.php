@@ -16,7 +16,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
+		\Aimeos\MShop::cache( true );
 
 		$context = \TestHelperCntl::getContext();
 		$aimeos = \TestHelperCntl::getAimeos();
@@ -27,8 +27,8 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
+		\Aimeos\MShop::cache( false );
+		\Aimeos\MShop::clear();
 	}
 
 

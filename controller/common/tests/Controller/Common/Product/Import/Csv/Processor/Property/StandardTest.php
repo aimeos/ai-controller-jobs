@@ -17,7 +17,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
+		\Aimeos\MShop::cache( true );
 
 		$this->context = \TestHelperCntl::getContext();
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
@@ -26,8 +26,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
+		\Aimeos\MShop::cache( false );
+		\Aimeos\MShop::clear();
 	}
 
 

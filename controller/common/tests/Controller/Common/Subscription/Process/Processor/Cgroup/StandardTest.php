@@ -12,13 +12,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
+		\Aimeos\MShop::cache( true );
 	}
 
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
+		\Aimeos\MShop::cache( false );
 	}
 
 
@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['getItem', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $context, 'customer', $customerStub );
+		\Aimeos\MShop::inject( $context, 'customer', $customerStub );
 
 		$customerItem = $customerStub->createItem();
 
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['getItem', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $context, 'customer', $customerStub );
+		\Aimeos\MShop::inject( $context, 'customer', $customerStub );
 
 		$customerItem = $customerStub->createItem()->setGroups( ['1', '2'] );
 

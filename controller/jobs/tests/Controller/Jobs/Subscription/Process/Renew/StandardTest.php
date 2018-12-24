@@ -23,14 +23,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object = new \Aimeos\Controller\Jobs\Subscription\Process\Renew\Standard( $this->context, $this->aimeos );
 
-		\Aimeos\MShop\Factory::setCache( true );
+		\Aimeos\MShop::cache( true );
 	}
 
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
+		\Aimeos\MShop::cache( false );
+		\Aimeos\MShop::clear();
 
 		unset( $this->object, $this->context, $this->aimeos );
 	}
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['searchItems', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'subscription', $managerStub );
+		\Aimeos\MShop::inject( $this->context, 'subscription', $managerStub );
 
 		$object->expects( $this->once() )->method( 'createOrderBase' )
 			->will( $this->returnValue( $this->getOrderBaseItem( $item->getOrderBaseId() ) ) );
@@ -91,7 +91,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['searchItems', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'subscription', $managerStub );
+		\Aimeos\MShop::inject( $this->context, 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( [$managerStub->createItem()] ) );
@@ -189,7 +189,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['store'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'order/base', $managerStub );
+		\Aimeos\MShop::inject( $this->context, 'order/base', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'store' );
 
@@ -207,7 +207,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'order', $managerStub );
+		\Aimeos\MShop::inject( $this->context, 'order', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
@@ -226,7 +226,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'order', $managerStub );
+		\Aimeos\MShop::inject( $this->context, 'order', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
