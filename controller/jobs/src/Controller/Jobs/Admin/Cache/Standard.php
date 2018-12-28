@@ -51,6 +51,6 @@ class Standard
 	 */
 	public function run()
 	{
-		\Aimeos\MAdmin\Cache\Manager\Factory::createManager( $this->getContext() )->getCache()->cleanup();
+		\Aimeos\MAdmin\Cache\Manager\Factory::create( $this->getContext() )->getCache()->cleanup();
 	}
 }

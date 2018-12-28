@@ -183,7 +183,7 @@ class Standard
 			$container = \Aimeos\MW\Container\Factory::getContainer( $path, $type, $format, $options );
 		}
 
-		$manager = \Aimeos\MAdmin\Factory::createManager( $context, 'log' );
+		$manager = \Aimeos\MAdmin::create( $context, 'log' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '<=', 'log.timestamp', $limitDate ) );

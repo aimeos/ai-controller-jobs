@@ -29,7 +29,7 @@ class Base
 	protected function getCouponCodeItems( array $codes )
 	{
 		$result = [];
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'coupon/code' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'coupon.code.code', $codes ) );

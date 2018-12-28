@@ -73,7 +73,7 @@ class Standard
 		if( $this->listTypes === null )
 		{
 			$this->listTypes = [];
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'catalog/lists/type' );
+			$manager = \Aimeos\MShop::create( $context, 'catalog/lists/type' );
 
 			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', 'text' ) );
@@ -88,7 +88,7 @@ class Standard
 		}
 
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'text/type' );
+		$manager = \Aimeos\MShop::create( $context, 'text/type' );
 
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 		$search->setConditions( $search->compare( '==', 'text.type.domain', 'catalog' ) );
@@ -108,8 +108,8 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data )
 	{
-		$listManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'catalog/lists' );
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'text' );
+		$listManager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'text' );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );

@@ -154,14 +154,14 @@ class Standard
 		$date = date( 'Y-m-d H:i:s', time() - $days * 86400 );
 
 
-		$baseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$search = $baseManager->createSearch();
 		$search->setConditions( $search->compare( '>', 'order.base.ctime', $date ) );
 		$search->setSlice( 0, 0 );
 		$totalOrders = 0;
 		$baseManager->searchItems( $search, [], $totalOrders );
 
-		$baseProductManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/product' );
+		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
 		$search = $baseProductManager->createSearch();
 		$search->setConditions( $search->compare( '>', 'order.base.product.ctime', $date ) );
 		$start = 0;
@@ -208,8 +208,8 @@ class Standard
 		$refIds = [];
 		$context = $this->getContext();
 
-		$catalogListManager = \Aimeos\MShop\Factory::createManager( $context, 'catalog/lists' );
-		$baseProductManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/product' );
+		$catalogListManager = \Aimeos\MShop::create( $context, 'catalog/lists' );
+		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
 
 
 		$search = $baseProductManager->createSearch();
@@ -271,7 +271,7 @@ class Standard
 			return;
 		}
 
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
 		$item = $manager->createItem();
 
 		foreach( $productIds as $pos => $refid )
@@ -296,7 +296,7 @@ class Standard
 	 */
 	protected function removeListItems( $productId )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(

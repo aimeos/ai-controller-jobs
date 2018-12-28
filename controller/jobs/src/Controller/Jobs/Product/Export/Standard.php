@@ -288,7 +288,7 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$productManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product' );
+		$productManager = \Aimeos\MShop::create( $this->getContext(), 'product' );
 
 		$search = $productManager->createSearch( $default );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );

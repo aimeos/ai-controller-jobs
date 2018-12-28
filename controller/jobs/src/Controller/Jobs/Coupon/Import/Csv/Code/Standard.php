@@ -280,7 +280,7 @@ class Standard
 	{
 		$errors = 0;
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'coupon/code' );
+		$manager = \Aimeos\MShop::create( $context, 'coupon/code' );
 
 		foreach( $data as $code => $list )
 		{

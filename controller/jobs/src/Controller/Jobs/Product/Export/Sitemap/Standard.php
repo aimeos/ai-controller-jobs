@@ -353,7 +353,7 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'index' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'index' );
 
 		$search = $manager->createSearch( $default );
 		$search->setConditions( $search->compare( '!=', 'index.catalog.id', null ) );

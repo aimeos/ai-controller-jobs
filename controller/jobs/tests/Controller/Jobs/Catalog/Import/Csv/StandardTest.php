@@ -229,11 +229,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function delete( \Aimeos\MShop\Catalog\Item\Iface $tree, array $domains = [] )
 	{
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 
 		foreach( $domains as $domain )
 		{
-			$manager = \Aimeos\MShop\Factory::createManager( $this->context, $domain );
+			$manager = \Aimeos\MShop::create( $this->context, $domain );
 
 			foreach( $tree->getListItems( $domain ) as $listItem ) {
 				$manager->deleteItem( $listItem->getRefItem()->getId() );
@@ -250,7 +250,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function get( $catcode, array $domains = [] )
 	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$root = $manager->findItem( $catcode );
 
 		return $manager->getTree( $root->getId(), $domains, \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );

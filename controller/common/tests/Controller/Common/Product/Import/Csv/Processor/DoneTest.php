@@ -35,7 +35,7 @@ class DoneTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$product = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
 
 		$result = $this->object->process( $product, array( 'test' ) );
 

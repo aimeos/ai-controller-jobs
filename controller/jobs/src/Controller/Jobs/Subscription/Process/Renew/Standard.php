@@ -58,7 +58,7 @@ class Standard
 
 		$date = date( 'Y-m-d' );
 		$processors = $this->getProcessors( $names );
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
+		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
 		$search = $manager->createSearch( true );
 		$expr = [
@@ -168,8 +168,8 @@ class Standard
 		 */
 		if( $context->getConfig()->get( 'controller/jobs/subcription/process/renew/standard/use-coupons', false ) )
 		{
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'coupon' );
-			$codeManager = \Aimeos\MShop\Factory::createManager( $context, 'coupon/code' );
+			$manager = \Aimeos\MShop::create( $context, 'coupon' );
+			$codeManager = \Aimeos\MShop::create( $context, 'coupon/code' );
 
 			foreach( $codes as $code )
 			{
@@ -250,8 +250,8 @@ class Standard
 
 		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
 
-		$serviceManager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
-		$orderServiceManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/service' );
+		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
+		$orderServiceManager = \Aimeos\MShop::create( $context, 'order/base/service' );
 
 		$search = $serviceManager->createSearch( true );
 		$search->setSortations( [$search->sort( '+', 'service.position' )] );
@@ -282,20 +282,20 @@ class Standard
 	{
 		$context = clone $this->getContext();
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 		$baseItem = $manager->getItem( $baseId );
 
 		$locale = $baseItem->getLocale();
 		$level = \Aimeos\MShop\Locale\Manager\Base::SITE_ALL;
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+		$manager = \Aimeos\MShop::create( $context, 'locale' );
 		$locale = $manager->bootstrap( $baseItem->getSiteCode(), $locale->getLanguageId(), $locale->getCurrencyId(), false, $level );
 
 		$context->setLocale( $locale );
 
 		try
 		{
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+			$manager = \Aimeos\MShop::create( $context, 'customer' );
 			$customerItem = $manager->getItem( $baseItem->getCustomerId(), ['customer/group'] );
 
 			$context->setUserId( $baseItem->getCustomerId() );
@@ -316,7 +316,7 @@ class Standard
 	 */
 	protected function createOrderBase( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		$basket = $manager->load( $subscription->getOrderBaseId() );
 		$newBasket = $manager->createItem()->setCustomerId( $basket->getCustomerId() );
@@ -339,7 +339,7 @@ class Standard
 	 */
 	protected function createOrderInvoice( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 
 		$item = $manager->createItem();
 		$item->setBaseId( $basket->getId() );
@@ -359,7 +359,7 @@ class Standard
 	protected function createPayment( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket,
 		\Aimeos\MShop\Order\Item\Iface $invoice )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
+		$manager = \Aimeos\MShop::create( $context, 'service' );
 
 		foreach( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) as $service )
 		{

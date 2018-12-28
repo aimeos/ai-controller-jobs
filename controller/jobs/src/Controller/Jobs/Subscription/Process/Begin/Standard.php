@@ -108,8 +108,8 @@ class Standard
 
 
 		$processors = $this->getProcessors( $names );
-		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
+		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
 		$search = $manager->createSearch( true );
 		$expr = [

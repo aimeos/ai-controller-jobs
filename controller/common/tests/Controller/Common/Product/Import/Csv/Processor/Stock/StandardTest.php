@@ -190,7 +190,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function create( $code )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 
 		$item = $manager->createItem();
 		$item->setType( 'default' );
@@ -202,14 +202,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function delete( \Aimeos\MShop\Product\Item\Iface $product )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$manager->deleteItem( $product->getId() );
 	}
 
 
 	protected function getStockItems( $code )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'stock' );
+		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );

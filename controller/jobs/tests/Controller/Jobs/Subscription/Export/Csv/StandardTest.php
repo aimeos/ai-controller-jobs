@@ -86,7 +86,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 
-		$jobManager = \Aimeos\MAdmin\Factory::createManager( $this->context, 'job' );
+		$jobManager = \Aimeos\MAdmin::create( $this->context, 'job' );
 		$jobSearch = $jobManager->createSearch();
 		$jobSearch->setConditions( $jobSearch->compare( '=~', 'job.label', 'subscription-export_' ) );
 		$jobItems = $jobManager->searchItems( $jobSearch );

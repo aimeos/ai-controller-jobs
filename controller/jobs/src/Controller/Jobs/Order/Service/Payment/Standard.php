@@ -87,11 +87,11 @@ class Standard
 		$capDays = $config->get( 'controller/jobs/order/service/payment/capture-days', null );
 
 
-		$serviceManager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
+		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 		$serviceSearch = $serviceManager->createSearch();
 		$serviceSearch->setConditions( $serviceSearch->compare( '==', 'service.type', 'payment' ) );
 
-		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 		$orderSearch = $orderManager->createSearch();
 
 		$status = array( \Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED, \Aimeos\MShop\Order\Item\Base::STAT_DELIVERED );

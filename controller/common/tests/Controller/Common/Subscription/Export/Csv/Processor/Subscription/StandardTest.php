@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Subscription\Standard( $context, $mapping );
 
 		$subscription = $this->getSubscription( $context );
-		$order = \Aimeos\MShop\Factory::createManager( $context, 'order/base' )->load( $subscription->getOrderBaseId() );
+		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $subscription->getOrderBaseId() );
 
 		$data = $object->process( $subscription, $order );
 
@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getSubscription( $context )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
+		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );

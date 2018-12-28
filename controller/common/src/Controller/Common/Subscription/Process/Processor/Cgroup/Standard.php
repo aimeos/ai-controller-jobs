@@ -74,8 +74,8 @@ class Standard
 
 		$context = $this->getContext();
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-		$baseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $context, 'customer' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		$baseItem = $baseManager->getItem( $subscription->getOrderBaseId() );
 		$item = $manager->getItem( $baseItem->getCustomerId(), ['customer/group'] );
@@ -98,8 +98,8 @@ class Standard
 
 		$context = $this->getContext();
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-		$baseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $context, 'customer' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		$baseItem = $baseManager->getItem( $subscription->getOrderBaseId() );
 		$item = $manager->getItem( $baseItem->getCustomerId(), ['customer/group'] );

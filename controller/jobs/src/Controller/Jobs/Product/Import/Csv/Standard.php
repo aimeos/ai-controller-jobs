@@ -34,7 +34,7 @@ class Standard
 	{
 		parent::__construct( $context, $aimeos );
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/type' );
+		$manager = \Aimeos\MShop::create( $context, 'product/type' );
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 
 		foreach( $manager->searchItems( $search ) as $item ) {
@@ -536,8 +536,8 @@ class Standard
 		$items = [];
 		$errors = 0;
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product' );
-		$indexManager = \Aimeos\MShop\Factory::createManager( $context, 'index' );
+		$manager = \Aimeos\MShop::create( $context, 'product' );
+		$indexManager = \Aimeos\MShop::create( $context, 'index' );
 
 		foreach( $data as $code => $list )
 		{

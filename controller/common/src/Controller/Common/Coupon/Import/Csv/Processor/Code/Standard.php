@@ -42,7 +42,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Coupon\Item\Code\Iface $item, array $data )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'coupon/code' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 
 		foreach( $map as $list )

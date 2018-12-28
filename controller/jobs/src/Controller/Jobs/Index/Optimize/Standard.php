@@ -51,6 +51,6 @@ class Standard
 	 */
 	public function run()
 	{
-		\Aimeos\MShop\Index\Manager\Factory::createManager( $this->getContext() )->optimize();
+		\Aimeos\MShop\Index\Manager\Factory::create( $this->getContext() )->optimize();
 	}
 }

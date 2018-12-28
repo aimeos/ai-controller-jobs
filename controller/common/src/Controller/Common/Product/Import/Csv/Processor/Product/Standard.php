@@ -79,7 +79,7 @@ class Standard
 		if( $this->listTypes === null )
 		{
 			$this->listTypes = [];
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
+			$manager = \Aimeos\MShop::create( $context, 'product/lists/type' );
 
 			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 			$search->setConditions( $search->compare( '==', 'product.lists.type.domain', 'product' ) );
@@ -107,7 +107,7 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'product/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$listItems = $product->getListItems( 'product', null, null, false );

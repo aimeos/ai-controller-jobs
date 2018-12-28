@@ -53,8 +53,8 @@ class Standard
 	{
 		$context = $this->getContext();
 		$controller = \Aimeos\Controller\Common\Order\Factory::createController( $context );
-		$baseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 
 		/** controller/jobs/order/cleanup/unfinished/keep-hours
 		 * Release the ordered products after the configured time if no payment was confirmed

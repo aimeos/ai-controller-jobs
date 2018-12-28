@@ -104,8 +104,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketAddresses()
 	{
-		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
-		$address = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 
 		$addresses = ['payment' => $address];
 		$basket = $this->access( 'addBasketAddresses' )->invokeArgs( $this->object, [$this->context, $basket, $addresses] );
@@ -119,9 +119,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'controller/jobs/subcription/process/renew/standard/use-coupons', true );
 
-		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
-		$product = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNC', ['price'] );
-		$orderProduct = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' )->createItem();
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC', ['price'] );
+		$orderProduct = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
 
 		$price = $product->getRefItems( 'price', 'default', 'default' );
 		$basket->addProduct( $orderProduct->copyFrom( $product )->setPrice( reset( $price ) ) );
@@ -142,9 +142,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketProducts()
 	{
-		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
-		$product = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNC' );
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' );
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
 
 		$orderProducts = [
 			$manager->createItem()->copyFrom( $product )->setId( 1 ),
@@ -160,8 +160,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketServices()
 	{
-		$basket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/service' );
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$manager = \Aimeos\MShop::create( $this->context, 'order/base/service' );
 
 		$orderServices = [
 			'delivery' => [$manager->createItem()->setCode( 'shiptest' )],
@@ -236,19 +236,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getOrderItem()
 	{
-		return \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+		return \Aimeos\MShop::create( $this->context, 'order' )->createItem();
 	}
 
 
 	protected function getOrderBaseItem( $baseId )
 	{
-		return \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->getItem( $baseId, ['order/base/service'] );
+		return \Aimeos\MShop::create( $this->context, 'order/base' )->getItem( $baseId, ['order/base/service'] );
 	}
 
 
 	protected function getSubscription()
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'subscription' );
+		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );

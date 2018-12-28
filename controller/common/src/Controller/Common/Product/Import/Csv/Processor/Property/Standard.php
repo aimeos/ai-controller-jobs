@@ -47,7 +47,7 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/property/type' );
+		$manager = \Aimeos\MShop::create( $context, 'product/property/type' );
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 
 		foreach( $manager->searchItems( $search ) as $item ) {
@@ -65,7 +65,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/property' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/property' );
 
 		$propMap = [];
 		$items = $product->getPropertyItems( null, false );

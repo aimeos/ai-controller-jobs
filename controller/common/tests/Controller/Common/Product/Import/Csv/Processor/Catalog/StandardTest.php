@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function setUpBeforeClass()
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( \TestHelperCntl::getContext() );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
 
 		$item = $manager->createItem();
 		$item->setCode( 'job_csv_prod' );
@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function tearDownAfterClass()
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( \TestHelperCntl::getContext() );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
 		$manager->deleteItem( self::$product->getId() );
 	}
 
@@ -275,7 +275,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function create( $code )
 	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 
 		$item = $manager->createItem();
 		$item->setCode( $code );
@@ -288,7 +288,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function delete( \Aimeos\MShop\Catalog\Item\Iface $catItem )
 	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$listManager = $manager->getSubManager( 'lists' );
 
 		foreach( $catItem->getListItems('product') as $listItem ) {
@@ -304,7 +304,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function get( $code )
 	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );

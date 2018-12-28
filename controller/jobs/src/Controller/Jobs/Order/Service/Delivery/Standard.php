@@ -88,11 +88,11 @@ class Standard
 		$maxItems = $context->getConfig()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
 
 
-		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $context );
+		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $context );
 		$serviceSearch = $serviceManager->createSearch();
 		$serviceSearch->setConditions( $serviceSearch->compare( '==', 'service.type', 'delivery' ) );
 
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( $context );
+		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( $context );
 		$orderSearch = $orderManager->createSearch();
 
 		$start = 0;

@@ -57,7 +57,7 @@ class Standard
 		$context->getLocale()->setLanguageId( null );
 		$context->getLocale()->setCurrencyId( null );
 
-		$manager = \Aimeos\MShop\Index\Manager\Factory::createManager( $context );
+		$manager = \Aimeos\MShop\Index\Manager\Factory::create( $context );
 
 		$manager->rebuildIndex();
 		$manager->cleanupIndex( $timestamp );

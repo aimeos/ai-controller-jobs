@@ -68,7 +68,7 @@ class Standard
 		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
 
 		$processors = $this->getProcessors( $names );
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
+		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
 		$search = $manager->createSearch( true );
 		$expr = [

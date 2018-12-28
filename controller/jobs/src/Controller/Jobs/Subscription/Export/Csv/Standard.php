@@ -141,7 +141,7 @@ class Standard
 	 */
 	protected function addJob( $context, $path )
 	{
-		$manager = \Aimeos\MAdmin\Factory::createManager( $context, 'job' );
+		$manager = \Aimeos\MAdmin::create( $context, 'job' );
 
 		$item = $manager->createItem();
 		$item->setResult( ['file' => $path] );
@@ -258,8 +258,8 @@ class Standard
 		$lcontext = $this->getLocaleContext( $msg );
 		$baseRef = ['order/base/address', 'order/base/product'];
 
-		$manager = \Aimeos\MShop\Factory::createManager( $lcontext, 'subscription' );
-		$baseManager = \Aimeos\MShop\Factory::createManager( $lcontext, 'order/base' );
+		$manager = \Aimeos\MShop::create( $lcontext, 'subscription' );
+		$baseManager = \Aimeos\MShop::create( $lcontext, 'order/base' );
 
 		$container = $this->getContainer();
 		$content = $container->create( 'subscription-export_' . date( 'Y-m-d_H-i-s' ) );
@@ -315,7 +315,7 @@ class Standard
 	protected function getLocaleContext( array $msg )
 	{
 		$lcontext = clone $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $lcontext, 'locale' );
+		$manager = \Aimeos\MShop::create( $lcontext, 'locale' );
 
 		$sitecode = ( isset( $msg['sitecode'] ) ? $msg['sitecode'] : 'default' );
 		$localeItem = $manager->bootstrap( $sitecode, '', '', false, \Aimeos\MShop\Locale\Manager\Base::SITE_ONE );

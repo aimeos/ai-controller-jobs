@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Order\Export\Csv\Processor\Coupon\Standard( $context, $mapping );
 
 		$invoice = $this->getInvoice( $context );
-		$order = \Aimeos\MShop\Factory::createManager( $context, 'order/base' )->load( $invoice->getBaseId() );
+		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $invoice->getBaseId() );
 
 		$data = $object->process( $invoice, $order );
 
@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getInvoice( $context )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', '2008-02-15 12:34:56' ) );

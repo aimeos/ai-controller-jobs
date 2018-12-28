@@ -52,7 +52,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$cntl = \Aimeos\Controller\Common\Media\Factory::createController( $context );
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'media' );
+		$manager = \Aimeos\MShop::create( $context, 'media' );
 
 		$search = $manager->createSearch();
 		$expr = array(

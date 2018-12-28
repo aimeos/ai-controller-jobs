@@ -149,7 +149,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function cleanupAttribute()
 	{
-		$manager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $manager->createSearch();
 		$expr = array(
@@ -176,7 +176,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function cleanupMedia()
 	{
-		$manager = \Aimeos\MShop\Media\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Media\Manager\Factory::create( $this->context );
 
 		$search = $manager->createSearch();
 		$expr = array(
@@ -203,7 +203,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function cleanupPrice()
 	{
-		$manager = \Aimeos\MShop\Price\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Price\Manager\Factory::create( $this->context );
 
 		$search = $manager->createSearch();
 		$expr = array(
@@ -230,7 +230,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function cleanupProduct()
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', 'import-%' ) );
@@ -253,7 +253,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function cleanupText()
 	{
-		$manager = \Aimeos\MShop\Text\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Text\Manager\Factory::create( $this->context );
 
 		$search = $manager->createSearch();
 		$expr = array(

@@ -52,7 +52,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->getContext();
-		$serviceManager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
+		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 
 		$search = $serviceManager->createSearch();
 		$start = 0;

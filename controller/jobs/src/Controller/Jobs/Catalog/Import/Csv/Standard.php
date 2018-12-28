@@ -507,7 +507,7 @@ class Standard
 	protected function getCatalogMap( array $domains )
 	{
 		$map = [];
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'catalog' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 
 		foreach( $manager->searchItems( $search, $domains ) as $item ) {
@@ -562,7 +562,7 @@ class Standard
 	{
 		$errors = 0;
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'catalog' );
+		$manager = \Aimeos\MShop::create( $context, 'catalog' );
 
 		foreach( $data as $code => $list )
 		{

@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperCntl::getContext();
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
 
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'product' );
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', ['CNC', 'CNE'] ) );
 
@@ -231,7 +231,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function create( $code )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		return $manager->createItem()->setCode( $code );
 	}
 }
