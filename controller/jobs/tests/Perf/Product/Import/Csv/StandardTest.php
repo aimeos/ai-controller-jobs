@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testImport()
 	{
 		$aimeos = \TestHelperJobs::getAimeos();
-		$cntl = \Aimeos\Controller\Jobs\Product\Import\Csv\Factory::createController( $this->context, $aimeos, 'Standard' );
+		$cntl = \Aimeos\Controller\Jobs\Product\Import\Csv\Factory::create( $this->context, $aimeos, 'Standard' );
 
 		$start = microtime( true );
 

@@ -29,7 +29,7 @@ class Factory
 	 * @param string|null $name Name of the controller or "Standard" if null
 	 * @return \Aimeos\Controller\Jobs\Iface New controller object
 	 */
-	public static function createController( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, $name = null )
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, $name = null )
 	{
 		/** controller/jobs/media/scale/name
 		 * Class name of the used media scale job controller implementation
@@ -77,7 +77,7 @@ class Factory
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';
 		$classname = '\\Aimeos\\Controller\\Jobs\\Media\\Scale\\' . $name;
 
-		$controller = self::createControllerBase( $context, $aimeos, $classname, $iface );
+		$controller = self::createController( $context, $aimeos, $classname, $iface );
 
 		/** controller/jobs/media/scale/decorators/excludes
 		 * Excludes decorators added by the "common" option from the media scale controllers

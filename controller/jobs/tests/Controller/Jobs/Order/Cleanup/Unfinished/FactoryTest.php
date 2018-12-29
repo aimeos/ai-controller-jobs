@@ -18,7 +18,7 @@ class FactoryTest
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$obj = \Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::createController( $context, $aimeos );
+		$obj = \Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::create( $context, $aimeos );
 		$this->assertInstanceOf( '\\Aimeos\\Controller\\Jobs\\Iface', $obj );
 	}
 
@@ -29,7 +29,7 @@ class FactoryTest
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::createController( $context, $aimeos, 'Wrong$$$Name' );
+		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::create( $context, $aimeos, 'Wrong$$$Name' );
 	}
 
 
@@ -39,7 +39,7 @@ class FactoryTest
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::createController( $context, $aimeos, 'WrongClass' );
+		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::create( $context, $aimeos, 'WrongClass' );
 	}
 
 
@@ -49,7 +49,7 @@ class FactoryTest
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::createController( $context, $aimeos, 'Factory' );
+		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::create( $context, $aimeos, 'Factory' );
 	}
 
 }

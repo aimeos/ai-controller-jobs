@@ -52,7 +52,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Common\Order\Factory::createController( $context );
+		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 

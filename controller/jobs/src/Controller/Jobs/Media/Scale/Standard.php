@@ -51,7 +51,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->getContext();
-		$cntl = \Aimeos\Controller\Common\Media\Factory::createController( $context );
+		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
 		$search = $manager->createSearch();

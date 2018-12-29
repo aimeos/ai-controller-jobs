@@ -30,7 +30,7 @@ class Factory
 	 * @param string|null $name Name of the controller or "Standard" if null
 	 * @return \Aimeos\Controller\Jobs\Iface New controller object
 	 */
-	public static function createController( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, $name = null )
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, $name = null )
 	{
 		/** controller/jobs/admin/log/name
 		 * Class name of the used admin log scheduler controller implementation
@@ -78,7 +78,7 @@ class Factory
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';
 		$classname = '\\Aimeos\\Controller\\Jobs\\Admin\\Log\\' . $name;
 
-		$controller = self::createControllerBase( $context, $aimeos, $classname, $iface );
+		$controller = self::createController( $context, $aimeos, $classname, $iface );
 
 		/** controller/jobs/admin/log/decorators/excludes
 		 * Excludes decorators added by the "common" option from the admin log controllers
