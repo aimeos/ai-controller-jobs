@@ -187,7 +187,7 @@ class Standard
 					continue;
 				}
 
-				$provider = $manager->getProvider( $item, strtolower( $code ) );
+				$provider = $manager->getProvider( $item, $code );
 
 				if( $provider->isAvailable( $basket ) !== true ) {
 					continue;
