@@ -28,7 +28,6 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\MShop::cache( false );
-		\Aimeos\MShop::clear();
 	}
 
 

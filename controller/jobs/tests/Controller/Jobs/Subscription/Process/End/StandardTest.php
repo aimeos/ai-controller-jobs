@@ -29,8 +29,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\MShop::cache( false );
-		\Aimeos\MShop::clear();
-
 		unset( $this->object, $this->context );
 	}
 
@@ -57,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['searchItems', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'subscription', $managerStub );
+		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( [$item] ) );
@@ -78,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['searchItems', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'subscription', $managerStub );
+		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( [$managerStub->createItem()] ) );

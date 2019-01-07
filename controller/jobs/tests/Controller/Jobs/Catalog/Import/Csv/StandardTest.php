@@ -34,8 +34,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\MShop::cache( false );
-		\Aimeos\MShop::clear();
-
 		$this->object = null;
 
 		if( file_exists( 'tmp/import.zip' ) ) {

@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['getItem', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( $context, 'customer', $customerStub );
+		\Aimeos\MShop::inject( 'customer', $customerStub );
 
 		$customerItem = $customerStub->createItem();
 
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['getItem', 'saveItem'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( $context, 'customer', $customerStub );
+		\Aimeos\MShop::inject( 'customer', $customerStub );
 
 		$customerItem = $customerStub->createItem()->setGroups( ['1', '2'] );
 
