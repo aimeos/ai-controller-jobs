@@ -168,32 +168,13 @@ class Standard
 		 */
 		if( $context->getConfig()->get( 'controller/jobs/subcription/process/renew/standard/use-coupons', false ) )
 		{
-			$manager = \Aimeos\MShop::create( $context, 'coupon' );
-			$codeManager = \Aimeos\MShop::create( $context, 'coupon/code' );
-
 			foreach( $codes as $code )
 			{
-				$search = $manager->createSearch( true )->setSlice( 0, 1 );
-				$expr = [
-					$search->compare( '==', 'coupon.code.code', $code ),
-					$codeManager->createSearch( true )->getConditions(),
-					$search->getConditions(),
-				];
-				$search->setConditions( $search->combine( '&&', $expr ) );
-
-				$result = $manager->searchItems( $search );
-
-				if( ( $item = reset( $result ) ) === false ) {
-					continue;
+				try {
+					$basket->addCoupon( $code );
+				} catch( \Aimeos\MShop\Plugin\Provider\Exception $e ) {
+					$basket->deleteCoupon( $code );
 				}
-
-				$provider = $manager->getProvider( $item, $code );
-
-				if( $provider->isAvailable( $basket ) !== true ) {
-					continue;
-				}
-
-				$provider->addCoupon( $basket );
 			}
 		}
 
