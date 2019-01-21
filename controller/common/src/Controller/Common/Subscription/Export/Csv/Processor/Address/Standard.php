@@ -47,22 +47,25 @@ class Standard
 
 		krsort( $addresses );
 
-		foreach( $addresses as $item )
+		foreach( $addresses as $items )
 		{
-			$data = [];
-			$list = $item->toArray();
-
-			foreach( $this->getMapping() as $pos => $key )
+			foreach( $items as $item )
 			{
-				if( array_key_exists( $key, $list ) ) {
-					$data[$pos] = $list[$key];
-				} else {
-					$data[$pos] = '';
-				}
-			}
+				$data = [];
+				$list = $item->toArray();
 
-			ksort( $data );
-			$result[] = $data;
+				foreach( $this->getMapping() as $pos => $key )
+				{
+					if( array_key_exists( $key, $list ) ) {
+						$data[$pos] = $list[$key];
+					} else {
+						$data[$pos] = '';
+					}
+				}
+
+				ksort( $data );
+				$result[] = $data;
+			}
 		}
 
 		return $result;

@@ -135,8 +135,11 @@ class Standard
 	protected function addBasketAddresses( \Aimeos\MShop\Context\Item\Iface $context,
 		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $addresses )
 	{
-		foreach( $addresses as $type => $orderAddress ) {
-			$newBasket->setAddress( $orderAddress, $type );
+		foreach( $addresses as $type => $orderAddresses )
+		{
+			foreach( $orderAddresses as $orderAddress ) {
+				$newBasket->addAddress( $orderAddress, $type );
+			}
 		}
 
 		return $newBasket;

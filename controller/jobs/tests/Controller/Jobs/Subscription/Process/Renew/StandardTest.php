@@ -105,11 +105,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 
-		$addresses = ['payment' => $address];
+		$addresses = ['payment' => [$address]];
 		$basket = $this->access( 'addBasketAddresses' )->invokeArgs( $this->object, [$this->context, $basket, $addresses] );
 
 		$this->assertEquals( 1, count( $basket->getAddresses() ) );
-		$this->assertInstanceOf( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $basket->getAddress( 'payment' ) );
+		$this->assertInstanceOf( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $basket->getAddress( 'payment', 0 ) );
 	}
 
 
