@@ -25,25 +25,6 @@ class Standard
 
 
 	/**
-	 * Initializes the object.
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context MShop context object
-	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap main object
-	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos )
-	{
-		parent::__construct( $context, $aimeos );
-
-		$manager = \Aimeos\MShop::create( $context, 'product/type' );
-		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
-
-		foreach( $manager->searchItems( $search ) as $item ) {
-			$this->types[$item->getCode()] = $item->getCode();
-		}
-	}
-
-
-	/**
 	 * Returns the localized name of the job.
 	 *
 	 * @return string Name of the job
@@ -333,8 +314,16 @@ class Standard
 
 		try
 		{
+			$types = [];
 			$procMappings = $mappings;
 			unset( $procMappings['item'] );
+
+			$manager = \Aimeos\MShop::create( $context, 'product/type' );
+			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$types[$item->getCode()] = $item->getCode();
+			}
 
 			$codePos = $this->getCodePosition( $mappings['item'] );
 			$convlist = $this->getConverterList( $converters );
@@ -357,7 +346,7 @@ class Standard
 				{
 					$data = $this->convertData( $convlist, $data );
 					$products = $this->getProducts( array_keys( $data ), $domains );
-					$errcnt = $this->import( $products, $data, $mappings['item'], $processor, $strict );
+					$errcnt = $this->import( $products, $data, $mappings['item'], $types, $processor, $strict );
 					$chunkcnt = count( $data );
 
 					$msg = 'Imported product lines from "%1$s": %2$d/%3$d (%4$s)';
@@ -525,12 +514,13 @@ class Standard
 	 * @param array $products List of products items implementing \Aimeos\MShop\Product\Item\Iface
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param array $mapping Associative list of positions and domain item keys
+	 * @param array $types List of allowed product type codes
 	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor Processor object
 	 * @param boolean $strict Log columns not mapped or silently ignore them
 	 * @return integer Number of products that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
-	protected function import( array $products, array $data, array $mapping,
+	protected function import( array $products, array $data, array $mapping, array $types,
 		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor, $strict )
 	{
 		$items = [];
@@ -560,7 +550,7 @@ class Standard
 					$map = $map[0]; // there can only be one chunk for the base product data
 					$map['product.type'] = $this->getValue( $map, 'product.type', 'default' );
 
-					if( !in_array( $map['product.type'], $this->types ) )
+					if( !in_array( $map['product.type'], $types ) )
 					{
 						$msg = sprintf( 'Invalid product type "%1$s"', $map['product.type'] );
 						throw new \Aimeos\Controller\Jobs\Exception( $msg );
