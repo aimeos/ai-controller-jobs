@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2018
+ * @copyright Aimeos (aimeos.org), 2015-2019
  * @package Controller
  * @subpackage Jobs
  */
@@ -88,7 +88,7 @@ class Standard
 		 * {@link http://www.sitemaps.org/protocol.html#xmlTagDefinitions sitemap.org}
 		 *
 		 * @param string One of the pre-defined strings (see description)
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category User
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/container/options
@@ -121,7 +121,7 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-items';
-		$default = 'catalog/export/sitemap-items-body-standard.xml';
+		$default = 'catalog/export/sitemap-items-body-standard';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -240,7 +240,7 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-header';
-		$default = 'catalog/export/sitemap-items-header-standard.xml';
+		$default = 'catalog/export/sitemap-items-header-standard';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -283,7 +283,7 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-index
 		 */
 		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-footer';
-		$default = 'catalog/export/sitemap-items-footer-standard.xml';
+		$default = 'catalog/export/sitemap-items-footer-standard';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -323,7 +323,7 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-footer
 		 */
 		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-index';
-		$default = 'catalog/export/sitemap-index-standard.xml';
+		$default = 'catalog/export/sitemap-index-standard';
 
 		$context = $this->getContext();
 		$view = $context->getView();
@@ -353,7 +353,7 @@ class Standard
 		$filenum = 1;
 		$names = [];
 
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'catalog' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 
 		$search = $manager->createSearch( $default );
 		$search->setSortations( array($search->sort( '+', 'catalog.id' )) );

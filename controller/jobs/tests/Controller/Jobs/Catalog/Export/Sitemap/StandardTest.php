@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2018
+ * @copyright Aimeos (aimeos.org), 2015-2019
  */
 
 
@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
+		\Aimeos\MShop::cache( true );
 
 		$this->context = \TestHelperJobs::getContext();
 		$this->aimeos = \TestHelperJobs::getAimeos();
@@ -29,9 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
-
+		\Aimeos\MShop::cache( false );
 		$this->object = null;
 	}
 
@@ -68,8 +66,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml.gz' );
 		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml.gz' );
 
-		$this->assertContains( 'Kaffee', $file2 );
-		$this->assertContains( 'Tee', $file2 );
+		$this->assertContains( 'Kaffee', $file1 );
+		$this->assertContains( 'Misc', $file2 );
 
 		$this->assertContains( 'aimeos-catalog-sitemap-1.xml.gz', $index );
 		$this->assertContains( 'aimeos-catalog-sitemap-2.xml.gz', $index );

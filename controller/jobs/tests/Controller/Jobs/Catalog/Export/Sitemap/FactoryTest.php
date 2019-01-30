@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2018
+ * @copyright Aimeos (aimeos.org), 2015-2019
  */
 
 
@@ -16,7 +16,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$obj = \Aimeos\Controller\Jobs\Catalog\Export\Sitemap\Factory::createController( $context, $aimeos );
+		$obj = \Aimeos\Controller\Jobs\Catalog\Export\Sitemap\Factory::create( $context, $aimeos );
 		$this->assertInstanceOf( '\\Aimeos\\Controller\\Jobs\\Iface', $obj);
 	}
 
@@ -27,7 +27,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		\Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'Wrong$$$Name' );
+		\Aimeos\Controller\Jobs\Catalog\Export\Sitemap\Factory::create( $context, $aimeos, 'Wrong$$$Name' );
 	}
 
 
@@ -37,7 +37,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		\Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'WrongClass' );
+		\Aimeos\Controller\Jobs\Catalog\Export\Sitemap\Factory::create( $context, $aimeos, 'WrongClass' );
 	}
 
 
@@ -47,6 +47,6 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		\Aimeos\Controller\Jobs\Product\Export\Sitemap\Factory::createController( $context, $aimeos, 'Factory' );
+		\Aimeos\Controller\Jobs\Catalog\Export\Sitemap\Factory::create( $context, $aimeos, 'Factory' );
 	}
 }

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2018
+ * @copyright Aimeos (aimeos.org), 2015-2019
  * @package Controller
  * @subpackage Jobs
  */
@@ -29,7 +29,7 @@ class Factory
 	 * @param string|null $name Name of the controller or "Standard" if null
 	 * @return \Aimeos\Controller\Jobs\Iface New controller object
 	 */
-	public static function createController( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, $name = null )
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, $name = null )
 	{
 		/** controller/jobs/catalog/export/sitemap/name
 		 * Class name of the used catalog sitemap export scheduler controller implementation
@@ -61,22 +61,23 @@ class Factory
 		 * or numbers. Avoid chamel case names like "MySitemap"!
 		 *
 		 * @param string Last part of the class name
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 */
 		if ( $name === null ) {
 			$name = $context->getConfig()->get( 'controller/jobs/catalog/export/sitemap/name', 'Standard' );
 		}
 
-		if ( ctype_alnum( $name ) === false ) {
-			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Jobs\\Catalog\\Export\\Sitemap\\' . $name : '<not a string>';
+		if ( ctype_alnum($name) === false )
+		{
+			$classname = is_string($name) ? '\\Aimeos\\Controller\\Jobs\\Catalog\\Export\\Sitemap\\' . $name : '<not a string>';
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';
 		$classname = '\\Aimeos\\Controller\\Jobs\\Catalog\\Export\\Sitemap\\' . $name;
 
-		$controller = self::createControllerBase( $context, $aimeos, $classname, $iface );
+		$controller = self::createController( $context, $aimeos, $classname, $iface );
 
 		/** controller/jobs/catalog/export/sitemap/decorators/excludes
 		 * Excludes decorators added by the "common" option from the catalog export sitemap job controller
@@ -97,7 +98,7 @@ class Factory
 		 * "controller/jobs/common/decorators/default" to the job controller.
 		 *
 		 * @param array List of decorator names
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/catalog/export/sitemap/decorators/global
@@ -121,7 +122,7 @@ class Factory
 		 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 		 *
 		 * @param array List of decorator names
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/catalog/export/sitemap/decorators/excludes
@@ -147,7 +148,7 @@ class Factory
 		 * only to the job controller.
 		 *
 		 * @param array List of decorator names
-		 * @since 2015.01
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/catalog/export/sitemap/export/sitemap/decorators/excludes

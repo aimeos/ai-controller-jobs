@@ -19,7 +19,7 @@ return array(
 				'sitemap' => array(
 					'location' => dirname( __DIR__ ) . DIRECTORY_SEPARATOR . 'tmp',
 					'max-items' => 10,
-					'max-query' => 3,
+					'max-query' => 5,
 				),
 			),
 		),
