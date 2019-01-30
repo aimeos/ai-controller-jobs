@@ -114,7 +114,7 @@ class Standard
 		 * should be replaced by the name of the new class.
 		 *
 		 * @param string Relative path to the template creating XML code for the site map items
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-header
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-footer
@@ -167,7 +167,7 @@ class Standard
 		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
 		 *
 		 * @param string Absolute directory to store the site maps into
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/catalog/export/sitemap/container/options
@@ -189,7 +189,7 @@ class Standard
 		 * * gzip-mode (default: "wb"): Overwrite existing files in binary mode
 		 *
 		 * @param array Associative list of option name/value pairs
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/location
 		 * @see controller/jobs/catalog/export/sitemap/max-items
@@ -233,7 +233,7 @@ class Standard
 		 * should be replaced by the name of the new class.
 		 *
 		 * @param string Relative path to the template creating XML code for the site map header
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-items
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-footer
@@ -276,7 +276,7 @@ class Standard
 		 * should be replaced by the name of the new class.
 		 *
 		 * @param string Relative path to the template creating XML code for the site map footer
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-header
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-items
@@ -316,7 +316,7 @@ class Standard
 		 * should be replaced by the name of the new class.
 		 *
 		 * @param string Relative path to the template creating XML code for the site map index
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-header
 		 * @see controller/jobs/catalog/export/sitemap/standard/template-items
@@ -355,7 +355,7 @@ class Standard
 		 * in the template.
 		 *
 		 * @param array List of domain names
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/catalog/export/sitemap/container/options
@@ -379,7 +379,7 @@ class Standard
 		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
 		 *
 		 * @param integer Number of catalogs per file
-		 * @since 2018.11
+		 * @since 2019.02
 		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/catalog/export/sitemap/container/options
@@ -400,7 +400,7 @@ class Standard
 		 * of the PHP process is higher.
 		 *
 		 * @param integer Number of catalog per query
-		 * @since 2015.01
+		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/container/options
 		 * @see controller/jobs/catalog/export/sitemap/location
