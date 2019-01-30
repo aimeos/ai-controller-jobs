@@ -72,4 +72,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( 'aimeos-catalog-sitemap-1.xml.gz', $index );
 		$this->assertContains( 'aimeos-catalog-sitemap-2.xml.gz', $index );
 	}
+
+	public function testRunEmptyLocation()
+	{
+		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', '' );
+
+		$this->setExpectedException('\\Aimeos\\Controller\\Jobs\\Exception');
+
+		$this->object->run();
+	}
+
+	public function testRunNoLocation()
+	{
+		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', null );
+
+		$this->setExpectedException('\\Aimeos\\Controller\\Jobs\\Exception');
+
+		$this->object->run();
+	}
 }

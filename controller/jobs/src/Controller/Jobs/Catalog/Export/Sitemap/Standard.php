@@ -199,7 +199,7 @@ class Standard
 		$default = array('gzip-mode' => 'wb');
 		$options = $config->get( 'controller/jobs/catalog/export/sitemap/container/options', $default );
 
-		if ( $location === null ) {
+		if ( $location === null || $location === '' ) {
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/export/sitemap/location' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
@@ -345,9 +345,70 @@ class Standard
 	 */
 	protected function export( \Aimeos\MW\Container\Iface $container, $default = true )
 	{
-		$domains = $this->getConfig( 'domains', [] );
-		$maxItems = $this->getConfig( 'max-items', 10000 );
-		$maxQuery = $this->getConfig( 'max-query', 1000 );
+		$config = $this->getContext()->getConfig();
+		/** controller/jobs/catalog/export/sitemap/domains
+		 * List of associated items from other domains that should be fetched for the sitemap
+		 *
+		 * Catalogs consist not only of the base data but also of texts, media and
+		 * other details. Those information is associated to the catalog via their lists.
+		 * Using the "domains" option you can make more or less associated items available
+		 * in the template.
+		 *
+		 * @param array List of domain names
+		 * @since 2018.11
+		 * @category Developer
+		 * @category User
+		 * @see controller/jobs/catalog/export/sitemap/container/options
+		 * @see controller/jobs/catalog/export/sitemap/location
+		 * @see controller/jobs/catalog/export/sitemap/max-items
+		 * @see controller/jobs/catalog/export/sitemap/max-query
+		 * @see controller/jobs/catalog/export/sitemap/changefreq
+		 */
+		$domains = $config->get( 'controller/jobs/catalog/export/sitemap/domains', [] );
+
+		/** controller/jobs/catalog/export/sitemap/max-items
+		 * Maximum number of catalog per site map
+		 *
+		 * Each site map file must not contain more than 50,000 links and it's
+		 * size must be less than 10MB. If your catalog URLs are rather long
+		 * and one of your site map files is bigger than 10MB, you should set
+		 * the number of catalogs per file to a smaller value until each file
+		 * is less than 10MB.
+		 *
+		 * More details about site maps can be found at
+		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
+		 *
+		 * @param integer Number of catalogs per file
+		 * @since 2018.11
+		 * @category Developer
+		 * @category User
+		 * @see controller/jobs/catalog/export/sitemap/container/options
+		 * @see controller/jobs/catalog/export/sitemap/location
+		 * @see controller/jobs/catalog/export/sitemap/max-query
+		 * @see controller/jobs/catalog/export/sitemap/changefreq
+		 * @see controller/jobs/catalog/export/sitemap/domains
+		 */
+		$maxItems = $config->get( 'controller/jobs/catalog/export/sitemap/max-items', 50000 );
+
+		/** controller/jobs/catalog/export/sitemap/max-query
+		 * Maximum number of catalog per query
+		 *
+		 * The catalogs are fetched from the database in bunches for efficient
+		 * retrieval. The higher the value, the lower the total time the database
+		 * is busy finding the records. Higher values also means that record
+		 * updates in the tables need to wait longer and the memory consumption
+		 * of the PHP process is higher.
+		 *
+		 * @param integer Number of catalog per query
+		 * @since 2015.01
+		 * @category Developer
+		 * @see controller/jobs/catalog/export/sitemap/container/options
+		 * @see controller/jobs/catalog/export/sitemap/location
+		 * @see controller/jobs/catalog/export/sitemap/max-items
+		 * @see controller/jobs/catalog/export/sitemap/changefreq
+		 * @see controller/jobs/catalog/export/sitemap/domains
+		 */
+		$maxQuery = $config->get( 'controller/jobs/catalog/export/sitemap/max-query', 1000 );
 
 		$start = 0;
 		$filenum = 1;
@@ -380,90 +441,6 @@ class Standard
 		$this->closeContent( $content );
 
 		return $names;
-	}
-
-
-	/**
-	 * Returns the configuration value for the given name
-	 *
-	 * @param string $name One of "domain", "max-items" or "max-query"
-	 * @param mixed $default Default value if name is unknown
-	 * @return mixed Configuration value
-	 */
-	protected function getConfig( $name, $default = null )
-	{
-		$config = $this->getContext()->getConfig();
-
-		switch ($name) {
-			case 'domains':
-				/** controller/jobs/catalog/export/sitemap/domains
-				 * List of associated items from other domains that should be fetched for the sitemap
-				 *
-				 * Catalogs consist not only of the base data but also of texts, media and
-				 * other details. Those information is associated to the catalog via their lists.
-				 * Using the "domains" option you can make more or less associated items available
-				 * in the template.
-				 *
-				 * @param array List of domain names
-				 * @since 2018.11
-				 * @category Developer
-				 * @category User
-				 * @see controller/jobs/catalog/export/sitemap/container/options
-				 * @see controller/jobs/catalog/export/sitemap/location
-				 * @see controller/jobs/catalog/export/sitemap/max-items
-				 * @see controller/jobs/catalog/export/sitemap/max-query
-				 * @see controller/jobs/catalog/export/sitemap/changefreq
-				 */
-				return $config->get( 'controller/jobs/catalog/export/sitemap/domains', $default );
-
-			case 'max-items':
-				/** controller/jobs/catalog/export/sitemap/max-items
-				 * Maximum number of catalog per site map
-				 *
-				 * Each site map file must not contain more than 50,000 links and it's
-				 * size must be less than 10MB. If your catalog URLs are rather long
-				 * and one of your site map files is bigger than 10MB, you should set
-				 * the number of catalogs per file to a smaller value until each file
-				 * is less than 10MB.
-				 *
-				 * More details about site maps can be found at
-				 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
-				 *
-				 * @param integer Number of catalogs per file
-				 * @since 2018.11
-				 * @category Developer
-				 * @category User
-				 * @see controller/jobs/catalog/export/sitemap/container/options
-				 * @see controller/jobs/catalog/export/sitemap/location
-				 * @see controller/jobs/catalog/export/sitemap/max-query
-				 * @see controller/jobs/catalog/export/sitemap/changefreq
-				 * @see controller/jobs/catalog/export/sitemap/domains
-				 */
-				return $config->get( 'controller/jobs/catalog/export/sitemap/max-items', 50000 );
-
-			case 'max-query':
-				/** controller/jobs/catalog/export/sitemap/max-query
-				 * Maximum number of catalog per query
-				 *
-				 * The catalogs are fetched from the database in bunches for efficient
-				 * retrieval. The higher the value, the lower the total time the database
-				 * is busy finding the records. Higher values also means that record
-				 * updates in the tables need to wait longer and the memory consumption
-				 * of the PHP process is higher.
-				 *
-				 * @param integer Number of catalog per query
-				 * @since 2015.01
-				 * @category Developer
-				 * @see controller/jobs/catalog/export/sitemap/container/options
-				 * @see controller/jobs/catalog/export/sitemap/location
-				 * @see controller/jobs/catalog/export/sitemap/max-items
-				 * @see controller/jobs/catalog/export/sitemap/changefreq
-				 * @see controller/jobs/catalog/export/sitemap/domains
-				 */
-				return $config->get( 'controller/jobs/catalog/export/sitemap/max-query', 1000 );
-		}
-
-		return $default;
 	}
 
 
