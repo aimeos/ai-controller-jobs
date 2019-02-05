@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '30.00', $basket->getPrice()->getCosts() );
 		$this->assertEquals( '0.00', $basket->getPrice()->getRebate() );
 
-		$basket = $this->access( 'addBasketCoupons' )->invokeArgs( $this->object, [$this->context, $basket, ['90AB']] );
+		$basket = $this->access( 'addBasketCoupons' )->invokeArgs( $this->object, [$this->context, $basket, ['90ab']] );
 
 		$this->assertEquals( 1, count( $basket->getCoupons() ) );
 		$this->assertEquals( 2, count( $basket->getProducts() ) );
