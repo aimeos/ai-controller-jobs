@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2019-01-08 12:04+0000\n"
-"Last-Translator: György Szikinger <gyorgyszikinger@gmail.com>\n"
-"Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Language-Team: Romanian (http://www.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
@@ -46,7 +46,7 @@ msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr "A következő osztály nem található: \"%1$s\""
+msgstr ""
 
 msgid "Coupon code import CSV"
 msgstr ""
@@ -98,7 +98,7 @@ msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr "Érvénytelen karakter a/az \"%1$s\" osztály nevében"
+msgstr ""
 
 #, php-format
 msgid "Invalid message: %1$s"
@@ -152,7 +152,7 @@ msgid "Product site map"
 msgstr ""
 
 msgid "Products bought together"
-msgstr "Együtt vásárolt termékek"
+msgstr ""
 
 msgid "Rebuilds the catalog index for searching products"
 msgstr ""
