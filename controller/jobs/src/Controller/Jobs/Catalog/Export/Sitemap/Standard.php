@@ -367,18 +367,18 @@ class Standard
 		$domains = $config->get( 'controller/jobs/catalog/export/sitemap/domains', [] );
 
 		/** controller/jobs/catalog/export/sitemap/max-items
-		 * Maximum number of catalog per site map
+		 * Maximum number of categories per site map
 		 *
 		 * Each site map file must not contain more than 50,000 links and it's
 		 * size must be less than 10MB. If your catalog URLs are rather long
 		 * and one of your site map files is bigger than 10MB, you should set
-		 * the number of catalogs per file to a smaller value until each file
+		 * the number of categories per file to a smaller value until each file
 		 * is less than 10MB.
 		 *
 		 * More details about site maps can be found at
 		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
 		 *
-		 * @param integer Number of catalogs per file
+		 * @param integer Number of categories per file
 		 * @since 2019.02
 		 * @category Developer
 		 * @category User
@@ -391,7 +391,7 @@ class Standard
 		$maxItems = $config->get( 'controller/jobs/catalog/export/sitemap/max-items', 50000 );
 
 		/** controller/jobs/catalog/export/sitemap/max-query
-		 * Maximum number of catalog per query
+		 * Maximum number of categories per query
 		 *
 		 * The catalogs are fetched from the database in bunches for efficient
 		 * retrieval. The higher the value, the lower the total time the database
@@ -399,7 +399,10 @@ class Standard
 		 * updates in the tables need to wait longer and the memory consumption
 		 * of the PHP process is higher.
 		 *
-		 * @param integer Number of catalog per query
+		 * Note: The value of max-query must be smaller than or equal to
+		 * {@see controller/jobs/catalog/export/sitemap/max-items max-items}
+		 *
+		 * @param integer Number of categories per query
 		 * @since 2019.02
 		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/container/options
@@ -423,20 +426,28 @@ class Standard
 		$content = $this->createContent( $container, $filenum );
 		$names[] = $content->getResource();
 
-		do {
+		do
+		{
 			$items = $manager->searchItems( $search, $domains );
-			$this->addItems( $content, $items );
-
+			$free = $maxItems * $filenum - $start;
 			$count = count( $items );
-			$start += $count;
-			$search->setSlice( $start, $maxQuery );
 
-			if ( $start + $maxQuery > $maxItems * $filenum ) {
+			if( $free < $count )
+			{
+				$this->addItems( $content, array_slice( $items, 0, $free, true ) );
+				$items = array_slice( $items, $free, null, true );
+
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
 				$names[] = $content->getResource();
 			}
-		} while ($count >= $search->getSliceSize());
+
+			$this->addItems( $content, $items );
+
+			$start += $count;
+			$search->setSlice( $start, $maxQuery );
+		}
+		while( $count >= $search->getSliceSize() );
 
 		$this->closeContent( $content );
 

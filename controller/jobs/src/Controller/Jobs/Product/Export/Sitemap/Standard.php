@@ -366,18 +366,23 @@ class Standard
 		do
 		{
 			$items = $manager->searchItems( $search, $domains );
-			$this->addItems( $content, $items );
-
+			$free = $maxItems * $filenum - $start;
 			$count = count( $items );
-			$start += $count;
-			$search->setSlice( $start, $maxQuery );
 
-			if( $start + $maxQuery > $maxItems * $filenum )
+			if( $free < $count )
 			{
+				$this->addItems( $content, array_slice( $items, 0, $free, true ) );
+				$items = array_slice( $items, $free, null, true );
+
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
 				$names[] = $content->getResource();
 			}
+
+			$this->addItems( $content, $items );
+
+			$start += $count;
+			$search->setSlice( $start, $maxQuery );
 		}
 		while( $count >= $search->getSliceSize() );
 
@@ -455,6 +460,9 @@ class Standard
 				 * is busy finding the records. Higher values also means that record
 				 * updates in the tables need to wait longer and the memory consumption
 				 * of the PHP process is higher.
+				 *
+				 * Note: The value of max-query must be smaller than or equal to
+				 * {@see controller/jobs/product/export/sitemap/max-items max-items}
 				 *
 				 * @param integer Number of products per query
 				 * @since 2015.01
