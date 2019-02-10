@@ -572,7 +572,7 @@ class Standard
 			{
 				$code = trim( $code );
 
-				if( isset( $catalogMap[$code] )  ) {
+				if( isset( $catalogMap[$code] ) ) {
 					$item = $catalogMap[$code];
 				} else {
 					$item = $manager->createItem();
