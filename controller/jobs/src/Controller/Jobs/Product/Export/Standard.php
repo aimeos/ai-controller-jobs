@@ -299,19 +299,24 @@ class Standard
 
 		do
 		{
-			$items = $productManager->searchItems( $search, $domains );
-			$this->addItems( $content, $items );
-
+			$items = $manager->searchItems( $search, $domains );
+			$free = $maxItems * $filenum - $start;
 			$count = count( $items );
-			$start += $count;
-			$search->setSlice( $start, $maxQuery );
 
-			if( $start + $maxQuery > $maxItems * $filenum )
+			if( $free < $count )
 			{
+				$this->addItems( $content, array_slice( $items, 0, $free, true ) );
+				$items = array_slice( $items, $free, null, true );
+
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
 				$names[] = $content->getResource();
 			}
+
+			$this->addItems( $content, $items );
+
+			$start += $count;
+			$search->setSlice( $start, $maxQuery );
 		}
 		while( $count >= $search->getSliceSize() );
 
