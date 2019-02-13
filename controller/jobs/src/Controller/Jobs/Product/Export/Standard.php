@@ -288,9 +288,9 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$productManager = \Aimeos\MShop::create( $this->getContext(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
 
-		$search = $productManager->createSearch( $default );
+		$search = $manager->createSearch( $default );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
 		$search->setSlice( 0, $maxQuery );
 
