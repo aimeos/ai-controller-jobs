@@ -72,7 +72,7 @@ class Standard
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 
 		foreach( $items as $item ) {
-			$propMap[ $item->getValue() ][ $item->getType() ] = $item;
+			$propMap[$item->getValue()][$item->getType()] = $item;
 		}
 
 		foreach( $map as $list )
@@ -90,7 +90,7 @@ class Standard
 			if( isset( $propMap[$value][$type] ) )
 			{
 				$item = $propMap[$value][$type];
-				unset( $items[ $item->getId() ] );
+				unset( $items[$item->getId()] );
 			}
 			else
 			{

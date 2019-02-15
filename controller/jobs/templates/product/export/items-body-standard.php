@@ -22,7 +22,7 @@ $enc = $this->encoder();
 			<list>
 				<text>
 					<?php foreach( $item->getListItems( 'text' ) as $listItem ) : ?>
-						<?php if ( $refItem = $listItem->getRefItem() ) { ?>
+						<?php if( $refItem = $listItem->getRefItem() ) { ?>
 							<textitem id="<?php echo $enc->attr( $refItem->getId() ); ?>" siteid="<?php echo $enc->attr( $refItem->getSiteId() ); ?>" ctime="<?php echo $enc->attr( $refItem->getTimeCreated() ); ?>" mtime="<?php echo $enc->attr( $refItem->getTimeModified() ); ?>" editor="<?php echo $enc->attr( $refItem->getEditor() ); ?>" list.id="<?php echo $enc->attr( $listItem->getId() ); ?>" list.siteid="<?php echo $enc->attr( $listItem->getSiteId() ); ?>" list.parentid="<?php echo $enc->attr( $listItem->getParentId() ); ?>" list.type="<?php echo $enc->attr( $listItem->getType() ); ?>" list.domain="<?php echo $enc->attr( $listItem->getDomain() ); ?>" list.config="<?php echo $enc->attr( json_encode( $listItem->getConfig() ) ); ?>" list.start="<?php echo $enc->attr( $listItem->getDateStart() ); ?>" list.end="<?php echo $enc->attr( $listItem->getDateEnd() ); ?>" list.position="<?php echo $enc->attr( $listItem->getPosition() ); ?>" list.status="<?php echo $enc->attr( $listItem->getStatus() ); ?>" list.ctime="<?php echo $enc->attr( $listItem->getTimeCreated() ); ?>" list.mtime="<?php echo $enc->attr( $listItem->getTimeModified() ); ?>" list.editor="<?php echo $enc->attr( $listItem->getEditor() ); ?>">
 								<type><![CDATA[<?php echo $refItem->getType(); ?>]]></type>
 								<languageid><![CDATA[<?php echo $refItem->getLanguageId(); ?>]]></languageid>
@@ -36,7 +36,7 @@ $enc = $this->encoder();
 				</text>
 				<media>
 					<?php foreach( $item->getListItems( 'media' ) as $listItem ) : ?>
-						<?php if ( $refItem = $listItem->getRefItem() ) { ?>
+						<?php if( $refItem = $listItem->getRefItem() ) { ?>
 							<mediaitem id="<?php echo $enc->attr( $refItem->getId() ); ?>" siteid="<?php echo $enc->attr( $refItem->getSiteId() ); ?>" ctime="<?php echo $enc->attr( $refItem->getTimeCreated() ); ?>" mtime="<?php echo $enc->attr( $refItem->getTimeModified() ); ?>" editor="<?php echo $enc->attr( $refItem->getEditor() ); ?>" list.id="<?php echo $enc->attr( $listItem->getId() ); ?>" list.siteid="<?php echo $enc->attr( $listItem->getSiteId() ); ?>" list.parentid="<?php echo $enc->attr( $listItem->getParentId() ); ?>" list.type="<?php echo $enc->attr( $listItem->getType() ); ?>" list.config="<?php echo $enc->attr( json_encode( $listItem->getConfig() ) ); ?>" list.start="<?php echo $enc->attr( $listItem->getDateStart() ); ?>" list.end="<?php echo $enc->attr( $listItem->getDateEnd() ); ?>" list.position="<?php echo $enc->attr( $listItem->getPosition() ); ?>" list.status="<?php echo $enc->attr( $listItem->getStatus() ); ?>" list.ctime="<?php echo $enc->attr( $listItem->getTimeCreated() ); ?>" list.mtime="<?php echo $enc->attr( $listItem->getTimeModified() ); ?>" list.editor="<?php echo $enc->attr( $listItem->getEditor() ); ?>">
 								<type><![CDATA[<?php echo $refItem->getType(); ?>]]></type>
 								<languageid><![CDATA[<?php echo $refItem->getLanguageId(); ?>]]></languageid>
@@ -52,7 +52,7 @@ $enc = $this->encoder();
 				</media>
 				<price>
 					<?php foreach( $item->getListItems( 'price' ) as $listItem ) : ?>
-						<?php if ( $refItem = $listItem->getRefItem() ) { ?>
+						<?php if( $refItem = $listItem->getRefItem() ) { ?>
 							<priceitem id="<?php echo $enc->attr( $refItem->getId() ); ?>" siteid="<?php echo $enc->attr( $refItem->getSiteId() ); ?>" ctime="<?php echo $enc->attr( $refItem->getTimeCreated() ); ?>" mtime="<?php echo $enc->attr( $refItem->getTimeModified() ); ?>" editor="<?php echo $enc->attr( $refItem->getEditor() ); ?>" list.id="<?php echo $enc->attr( $listItem->getId() ); ?>" list.siteid="<?php echo $enc->attr( $listItem->getSiteId() ); ?>" list.parentid="<?php echo $enc->attr( $listItem->getParentId() ); ?>" list.type="<?php echo $enc->attr( $listItem->getType() ); ?>" list.config="<?php echo $enc->attr( json_encode( $listItem->getConfig() ) ); ?>" list.start="<?php echo $enc->attr( $listItem->getDateStart() ); ?>" list.end="<?php echo $enc->attr( $listItem->getDateEnd() ); ?>" list.position="<?php echo $enc->attr( $listItem->getPosition() ); ?>" list.status="<?php echo $enc->attr( $listItem->getStatus() ); ?>" list.ctime="<?php echo $enc->attr( $listItem->getTimeCreated() ); ?>" list.mtime="<?php echo $enc->attr( $listItem->getTimeModified() ); ?>" list.editor="<?php echo $enc->attr( $listItem->getEditor() ); ?>">
 								<type><![CDATA[<?php echo $refItem->getType(); ?>]]></type>
 								<currencyid><![CDATA[<?php echo $refItem->getCurrencyId(); ?>]]></currencyid>
@@ -70,7 +70,7 @@ $enc = $this->encoder();
 				</price>
 				<attribute>
 					<?php foreach( $item->getListItems( 'attribute' ) as $listItem ) : ?>
-						<?php if ( $refItem = $listItem->getRefItem() ) { ?>
+						<?php if( $refItem = $listItem->getRefItem() ) { ?>
 							<attributeitem id="<?php echo $enc->attr( $refItem->getId() ); ?>" siteid="<?php echo $enc->attr( $refItem->getSiteId() ); ?>" ctime="<?php echo $enc->attr( $refItem->getTimeCreated() ); ?>" mtime="<?php echo $enc->attr( $refItem->getTimeModified() ); ?>" editor="<?php echo $enc->attr( $refItem->getEditor() ); ?>" list.id="<?php echo $enc->attr( $listItem->getId() ); ?>" list.siteid="<?php echo $enc->attr( $listItem->getSiteId() ); ?>" list.parentid="<?php echo $enc->attr( $listItem->getParentId() ); ?>" list.type="<?php echo $enc->attr( $listItem->getType() ); ?>" list.config="<?php echo $enc->attr( json_encode( $listItem->getConfig() ) ); ?>" list.start="<?php echo $enc->attr( $listItem->getDateStart() ); ?>" list.end="<?php echo $enc->attr( $listItem->getDateEnd() ); ?>" list.position="<?php echo $enc->attr( $listItem->getPosition() ); ?>" list.status="<?php echo $enc->attr( $listItem->getStatus() ); ?>" list.ctime="<?php echo $enc->attr( $listItem->getTimeCreated() ); ?>" list.mtime="<?php echo $enc->attr( $listItem->getTimeModified() ); ?>" list.editor="<?php echo $enc->attr( $listItem->getEditor() ); ?>">
 								<type><![CDATA[<?php echo $refItem->getType(); ?>]]></type>
 								<code><![CDATA[<?php echo $refItem->getCode(); ?>]]></code>
@@ -84,7 +84,7 @@ $enc = $this->encoder();
 				</attribute>
 				<product>
 					<?php foreach( $item->getListItems( 'product' ) as $listItem ) : ?>
-						<?php if ( $refItem = $listItem->getRefItem() ) { ?>
+						<?php if( $refItem = $listItem->getRefItem() ) { ?>
 							<productitem id="<?php echo $enc->attr( $refItem->getId() ); ?>" siteid="<?php echo $enc->attr( $refItem->getSiteId() ); ?>" ctime="<?php echo $enc->attr( $refItem->getTimeCreated() ); ?>" mtime="<?php echo $enc->attr( $refItem->getTimeModified() ); ?>" editor="<?php echo $enc->attr( $refItem->getEditor() ); ?>" list.id="<?php echo $enc->attr( $listItem->getId() ); ?>" list.siteid="<?php echo $enc->attr( $listItem->getSiteId() ); ?>" list.parentid="<?php echo $enc->attr( $listItem->getParentId() ); ?>" list.type="<?php echo $enc->attr( $listItem->getType() ); ?>" list.config="<?php echo $enc->attr( json_encode( $listItem->getConfig() ) ); ?>" list.start="<?php echo $enc->attr( $listItem->getDateStart() ); ?>" list.end="<?php echo $enc->attr( $listItem->getDateEnd() ); ?>" list.position="<?php echo $enc->attr( $listItem->getPosition() ); ?>" list.status="<?php echo $enc->attr( $listItem->getStatus() ); ?>" list.ctime="<?php echo $enc->attr( $listItem->getTimeCreated() ); ?>" list.mtime="<?php echo $enc->attr( $listItem->getTimeModified() ); ?>" list.editor="<?php echo $enc->attr( $listItem->getEditor() ); ?>">
 								<type><![CDATA[<?php echo $item->getType(); ?>]]></type>
 								<code><![CDATA[<?php echo $item->getCode(); ?>]]></code>

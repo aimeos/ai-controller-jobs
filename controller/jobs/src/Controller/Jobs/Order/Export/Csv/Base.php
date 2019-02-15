@@ -152,7 +152,7 @@ class Base
 		{
 			if( ctype_alnum( $type ) === false )
 			{
-				$classname = is_string($type) ? '\\Aimeos\\Controller\\Common\\Order\\Export\\Csv\\Processor\\' . $type : '<not a string>';
+				$classname = is_string( $type ) ? '\\Aimeos\\Controller\\Common\\Order\\Export\\Csv\\Processor\\' . $type : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 
@@ -160,7 +160,7 @@ class Base
 
 			if( ctype_alnum( $name ) === false )
 			{
-				$classname = is_string($name) ? '\\Aimeos\\Controller\\Common\\Order\\Export\\Csv\\Processor\\' . $type . '\\' . $name : '<not a string>';
+				$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Order\\Export\\Csv\\Processor\\' . $type . '\\' . $name : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 

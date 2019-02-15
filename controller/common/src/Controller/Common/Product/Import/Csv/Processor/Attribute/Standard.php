@@ -123,7 +123,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[ $refItem->getCode() ][ $listItem->getType() ] = $listItem;
+				$listMap[$refItem->getCode()][$listItem->getType()] = $listItem;
 			}
 		}
 
@@ -143,7 +143,7 @@ class Standard
 				if( isset( $listMap[$code][$listtype] ) )
 				{
 					$listItem = $listMap[$code][$listtype];
-					unset( $listItems[ $listItem->getId() ] );
+					unset( $listItems[$listItem->getId()] );
 				}
 				else
 				{

@@ -196,10 +196,10 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/max-query
 		 * @see controller/jobs/catalog/export/sitemap/changefreq
 		 */
-		$default = array('gzip-mode' => 'wb');
+		$default = array( 'gzip-mode' => 'wb' );
 		$options = $config->get( 'controller/jobs/catalog/export/sitemap/container/options', $default );
 
-		if ( $location === null || $location === '' ) {
+		if( $location === null || $location === '' ) {
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/export/sitemap/location' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
@@ -420,7 +420,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 
 		$search = $manager->createSearch( $default );
-		$search->setSortations( array($search->sort( '+', 'catalog.id' )) );
+		$search->setSortations( array( $search->sort( '+', 'catalog.id' ) ) );
 		$search->setSlice( 0, $maxQuery );
 
 		$content = $this->createContent( $container, $filenum );

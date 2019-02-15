@@ -67,7 +67,7 @@ class Standard
 			$propItem = $manager->createItem()->fromArray( $list );
 
 			if( isset( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] ) ) {
-				unset( $propItems[ $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] ] );
+				unset( $propItems[$map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()]] );
 			} else {
 				$item->addPropertyItem( $propItem );
 			}

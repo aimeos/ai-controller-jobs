@@ -134,7 +134,7 @@ class Standard
 			$listItems = $this->getListItems( $prodid, $this->listTypes );
 
 			foreach( $listItems as $listItem ) {
-				$listMap[ $listItem->getParentId() ][ $listItem->getType() ] = $listItem;
+				$listMap[$listItem->getParentId()][$listItem->getType()] = $listItem;
 			}
 
 			foreach( $map as $pos => $list )
@@ -163,7 +163,7 @@ class Standard
 					if( isset( $listMap[$catid][$listtype] ) )
 					{
 						$listItem = $listMap[$catid][$listtype];
-						unset( $listItems[ $listItem->getId() ] );
+						unset( $listItems[$listItem->getId()] );
 					}
 					else
 					{

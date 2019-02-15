@@ -103,8 +103,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$address2 = fgetcsv( $fp );
 		$service1 = fgetcsv( $fp );
 		$service2 = fgetcsv( $fp );
-		$coupon1 = fgetcsv($fp);
-		$coupon2 = fgetcsv($fp);
+		$coupon1 = fgetcsv( $fp );
+		$coupon2 = fgetcsv( $fp );
 		$product1 = fgetcsv( $fp );
 		$product2 = fgetcsv( $fp );
 		$product3 = fgetcsv( $fp );
@@ -118,8 +118,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'address', $address2[0] );
 		$this->assertEquals( 'service', $service1[0] );
 		$this->assertEquals( 'service', $service2[0] );
-		$this->assertEquals( 'coupon', $coupon1[0]);
-		$this->assertEquals( 'coupon', $coupon2[0]);
+		$this->assertEquals( 'coupon', $coupon1[0] );
+		$this->assertEquals( 'coupon', $coupon2[0] );
 		$this->assertEquals( 'product', $product1[0] );
 		$this->assertEquals( 'product', $product2[0] );
 		$this->assertEquals( 'product', $product3[0] );

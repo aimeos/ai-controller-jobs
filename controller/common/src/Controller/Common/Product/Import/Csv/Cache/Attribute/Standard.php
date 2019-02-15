@@ -48,7 +48,7 @@ class Standard
 		$result = $manager->searchItems( $manager->createSearch() );
 
 		foreach( $result as $id => $item ) {
-			$this->attributes[ $item->getCode() ][ $item->getType() ] = $item;
+			$this->attributes[$item->getCode()][$item->getType()] = $item;
 		}
 	}
 
@@ -98,6 +98,6 @@ class Standard
 			$this->attributes[$code] = [];
 		}
 
-		$this->attributes[$code][ $item->getType() ] = $item;
+		$this->attributes[$code][$item->getType()] = $item;
 	}
 }

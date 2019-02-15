@@ -14,7 +14,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		$this->context = \TestHelperJobs::getContext('unitperf');
+		$this->context = \TestHelperJobs::getContext( 'unitperf' );
 
 		$config = $this->context->getConfig();
 		$config->set( 'controller/jobs/product/import/csv/location', 'tmp/product-import.zip' );
@@ -76,11 +76,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function addAttribute( array $data, $cnt )
 	{
 		$data[] = 'length'; // type
-		$data[] = 'import-' . ($cnt % 30); // code
+		$data[] = 'import-' . ( $cnt % 30 ); // code
 		$data[] = 'width'; // type
-		$data[] = 'import-' . ($cnt % 30); // code
+		$data[] = 'import-' . ( $cnt % 30 ); // code
 		$data[] = 'size'; // type
-		$data[] = 'import-' . ($cnt % 5); // code
+		$data[] = 'import-' . ( $cnt % 5 ); // code
 
 		return $data;
 	}
@@ -118,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function addProductRef( array $data, $cnt )
 	{
-		$data[] = 'import-' . ($cnt % 100); // code
+		$data[] = 'import-' . ( $cnt % 100 ); // code
 		$data[] = 'suggestion'; // type
 
 		return $data;

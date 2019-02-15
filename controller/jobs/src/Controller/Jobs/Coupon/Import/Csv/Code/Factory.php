@@ -64,13 +64,13 @@ class Factory
 		 * @since 2017.10
 		 * @category Developer
 		 */
-		if ( $name === null ) {
-			$name = $context->getConfig()->get('controller/jobs/coupon/import/csv/code/name', 'Standard');
+		if( $name === null ) {
+			$name = $context->getConfig()->get( 'controller/jobs/coupon/import/csv/code/name', 'Standard' );
 		}
 
-		if ( ctype_alnum($name) === false )
+		if( ctype_alnum( $name ) === false )
 		{
-			$classname = is_string($name) ? '\\Aimeos\\Controller\\Jobs\\Coupon\\Import\\Csv\\Code\\' . $name : '<not a string>';
+			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Jobs\\Coupon\\Import\\Csv\\Code\\' . $name : '<not a string>';
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 
