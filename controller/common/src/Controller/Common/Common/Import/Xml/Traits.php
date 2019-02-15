@@ -23,6 +23,14 @@ trait Traits
 
 
 	/**
+	 * Returns the context item
+	 *
+	 * @return \Aimeos\MShop\Context\Item\Iface Context object
+	 */
+	abstract protected function getContext();
+
+
+	/**
 	 * Returns the processor object for adding the product related information
 	 *
 	 * @param string $type Type of the processor
@@ -49,22 +57,26 @@ trait Traits
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
+		$parts = explode( '/', $type );
 
-		if( ctype_alnum( $type ) === false )
+		foreach( $parts as $part )
 		{
-			$classname = is_string( $type ) ? '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . $type : '<not a string>';
-			throw new \Aimeos\Controller\Common\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			if( ctype_alnum( $part ) === false )
+			{
+				$classname = is_string( $part ) ? '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . $part : '<not a string>';
+				throw new \Aimeos\Controller\Common\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			}
 		}
 
 		$name = $config->get( 'controller/common/product/import/xml/processor/' . $type . '/name', 'Standard' );
 
 		if( ctype_alnum( $name ) === false )
 		{
-			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . $type . '\\' . $name : '<not a string>';
+			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . implode( '\\', $parts ) . '\\' . $name : '<not a string>';
 			throw new \Aimeos\Controller\Common\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 
-		$classname = '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . ucfirst( $type ) . '\\' . $name;
+		$classname = '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . str_replace( '/', '\\', ucwords( $type, '/' ) ) . '\\' . $name;
 
 		if( class_exists( $classname ) === false ) {
 			throw new \Aimeos\Controller\Common\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
