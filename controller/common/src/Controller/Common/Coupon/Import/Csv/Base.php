@@ -36,7 +36,7 @@ class Base
 		$search->setSlice( 0, count( $codes ) );
 
 		foreach( $manager->searchItems( $search ) as $item ) {
-			$result[ $item->getCode() ] = $item;
+			$result[$item->getCode()] = $item;
 		}
 
 		return $result;
@@ -59,7 +59,7 @@ class Base
 		while( $content->valid() && $count++ < $maxcnt )
 		{
 			$row = $content->current();
-			$data[ $row[$codePos] ] = $row;
+			$data[$row[$codePos]] = $row;
 			$content->next();
 		}
 
@@ -136,7 +136,7 @@ class Base
 		{
 			if( ctype_alnum( $type ) === false )
 			{
-				$classname = is_string($type) ? '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\' . $type : '<not a string>';
+				$classname = is_string( $type ) ? '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\' . $type : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 
@@ -144,7 +144,7 @@ class Base
 
 			if( ctype_alnum( $name ) === false )
 			{
-				$classname = is_string($name) ? '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\' . $type . '\\' . $name : '<not a string>';
+				$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\' . $type . '\\' . $name : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 

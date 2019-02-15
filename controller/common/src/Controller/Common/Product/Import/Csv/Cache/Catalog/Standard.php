@@ -48,7 +48,7 @@ class Standard
 		$result = $manager->searchItems( $manager->createSearch() );
 
 		foreach( $result as $id => $item ) {
-			$this->categories[ $item->getCode() ] = $id;
+			$this->categories[$item->getCode()] = $id;
 		}
 	}
 
@@ -88,6 +88,6 @@ class Standard
 	 */
 	public function set( \Aimeos\MShop\Common\Item\Iface $item )
 	{
-		$this->categories[ $item->getCode() ] = $item->getId();
+		$this->categories[$item->getCode()] = $item->getId();
 	}
 }

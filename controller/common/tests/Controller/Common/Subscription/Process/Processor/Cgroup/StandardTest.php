@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$context->getConfig()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1', '2'] );
 
-		$fcn = function( $subject ){
+		$fcn = function( $subject ) {
 			return $subject->getGroups() === ['1', '2'];
 		};
 
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$context->getConfig()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1', '2'] );
 
-		$fcn = function( $subject ){
+		$fcn = function( $subject ) {
 			return $subject->getGroups() === [];
 		};
 

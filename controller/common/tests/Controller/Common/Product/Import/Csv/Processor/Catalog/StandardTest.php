@@ -290,7 +290,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$listManager = $manager->getSubManager( 'lists' );
 
-		foreach( $catItem->getListItems('product') as $listItem ) {
+		foreach( $catItem->getListItems( 'product' ) as $listItem ) {
 			$listManager->deleteItem( $listItem->getId() );
 		}
 
@@ -308,7 +308,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
 
-		$result = $manager->searchItems( $search, array('product') );
+		$result = $manager->searchItems( $search, array( 'product' ) );
 
 		if( ( $item = reset( $result ) ) === false ) {
 			throw new \RuntimeException( sprintf( 'No catalog item for code "%1$s"', $code ) );

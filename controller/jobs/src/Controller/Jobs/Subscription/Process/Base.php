@@ -37,7 +37,7 @@ abstract class Base
 		{
 			if( ctype_alnum( $pname ) === false )
 			{
-				$classname = is_string($pname) ? '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . $pname : '<not a string>';
+				$classname = is_string( $pname ) ? '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . $pname : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 
@@ -45,7 +45,7 @@ abstract class Base
 
 			if( ctype_alnum( $name ) === false )
 			{
-				$classname = is_string($name) ? '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . $pname . '\\' . $name : '<not a string>';
+				$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . $pname . '\\' . $name : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 
