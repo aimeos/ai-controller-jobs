@@ -170,7 +170,7 @@ class Standard
 						$listItem = $listManager->createItem()->setType( $listtype );
 					}
 
-					$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
+					$listItem = $listItem->setPosition( $pos++ )->fromArray( $list, true );
 					$listManager->saveItem( $listItem, false );
 				}
 			}

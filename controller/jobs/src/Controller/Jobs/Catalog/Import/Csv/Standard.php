@@ -584,7 +584,7 @@ class Standard
 				{
 					$map = $map[0]; // there can only be one chunk for the base catalog data
 					$parentid = $this->getParentId( $catalogMap, $map, $code );
-					$item->fromArray( $map );
+					$item->fromArray( $map, true );
 
 					if( isset( $catalogMap[$code] ) )
 					{

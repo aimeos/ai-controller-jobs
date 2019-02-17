@@ -556,7 +556,7 @@ class Standard
 						throw new \Aimeos\Controller\Jobs\Exception( $msg );
 					}
 
-					$product = $manager->saveItem( $product->fromArray( $map ) );
+					$product = $manager->saveItem( $product->fromArray( $map, true ) );
 
 					$list = $processor->process( $product, $list );
 
