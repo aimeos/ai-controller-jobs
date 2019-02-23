@@ -106,7 +106,7 @@ class TestHelperJobs
 		$ctx->setView( $view );
 
 
-		$ctx->setEditor( 'core:controller/jobs' );
+		$ctx->setEditor( 'ai-controller-jobs:cntl/jobs' );
 
 		return $ctx;
 	}

@@ -80,7 +80,7 @@ class TestHelperCntl
 		$ctx->setLocale( $locale );
 
 
-		$ctx->setEditor( 'core:controller/common' );
+		$ctx->setEditor( 'ai-controller-jobs:cntl/common' );
 
 		return $ctx;
 	}
