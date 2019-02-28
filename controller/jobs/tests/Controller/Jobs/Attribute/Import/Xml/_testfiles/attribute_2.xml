@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<attributes>
+	<attributeitem ref="product/color/unittest-xml">
+		<attribute.type><![CDATA[color]]></attribute.type>
+		<attribute.domain><![CDATA[product]]></attribute.domain>
+		<attribute.code><![CDATA[unittest-xml]]></attribute.code>
+		<attribute.label><![CDATA[Test attribute 2]]></attribute.label>
+		<lists>
+			<text>
+				<textitem lists.type="default">
+					<text.type><![CDATA[name]]></text.type>
+					<text.languageid><![CDATA[de]]></text.languageid>
+					<text.content><![CDATA[Ein weiteres Testattribut]]></text.content>
+				</textitem>
+			</text>
+			<media>
+				<mediaitem lists.type="default">
+					<media.type><![CDATA[test]]></media.type>
+					<media.languageid><![CDATA[de]]></media.languageid>
+					<media.url><![CDATA[path/to/file2.jpg]]></media.url>
+				</mediaitem>
+			</media>
+			<price>
+				<priceitem lists.type="default">
+					<price.type><![CDATA[default]]></price.type>
+					<price.currencyid><![CDATA[EUR]]></price.currencyid>
+					<price.taxrate><![CDATA[20.00]]></price.taxrate>
+					<price.quantity><![CDATA[1]]></price.quantity>
+					<price.value><![CDATA[1.00]]></price.value>
+				</priceitem>
+			</price>
+		</lists>
+		<property>
+			<propertyitem>
+				<attribute.property.type><![CDATA[htmlcolor]]></attribute.property.type>
+				<attribute.property.languageid><![CDATA[]]></attribute.property.languageid>
+				<attribute.property.value><![CDATA[#111111]]></attribute.property.value>
+			</propertyitem>
+		</property>
+	</attributeitem>
+</attributes>
