@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<customers>
+	<customeritem ref="me@example.com">
+		<customer.code><![CDATA[me@example.com]]></customer.code>
+		<customer.label><![CDATA[Test user]]></customer.label>
+		<customer.status><![CDATA[0]]></customer.status>
+		<customer.company><![CDATA[Example company]]></customer.company>
+		<customer.vatid><![CDATA[DE12345678]]></customer.vatid>
+		<customer.salutation><![CDATA[mrs]]></customer.salutation>
+		<customer.title><![CDATA[]]></customer.title>
+		<customer.firstname><![CDATA[Test]]></customer.firstname>
+		<customer.lastname><![CDATA[User]]></customer.lastname>
+		<customer.address1><![CDATA[Example street]]></customer.address1>
+		<customer.address2><![CDATA[1]]></customer.address2>
+		<customer.address3><![CDATA[2. floor]]></customer.address3>
+		<customer.postal><![CDATA[10000]]></customer.postal>
+		<customer.city><![CDATA[New York]]></customer.city>
+		<customer.state><![CDATA[NY]]></customer.state>
+		<customer.langid><![CDATA[en]]></customer.langid>
+		<customer.countryid><![CDATA[US]]></customer.countryid>
+		<customer.telephone><![CDATA[+112309876]]></customer.telephone>
+		<customer.telefax><![CDATA[+155598765]]></customer.telefax>
+		<customer.email><![CDATA[me@example.com]]></customer.email>
+		<customer.website><![CDATA[https://www.example.com/]]></customer.website>
+		<customer.longitude><![CDATA[10.0000]]></customer.longitude>
+		<customer.latitude><![CDATA[50.0000]]></customer.latitude>
+		<customer.password><![CDATA[testpwd]]></customer.password>
+		<customer.birthday><![CDATA[1980-01-01]]></customer.birthday>
+		<customer.vdate><![CDATA[2000-01-01]]></customer.vdate>
+		<address>
+			<addressitem>
+				<customer.address.company><![CDATA[Example company]]></customer.address.company>
+				<customer.address.vatid><![CDATA[DE12345678]]></customer.address.vatid>
+				<customer.address.salutation><![CDATA[mrs]]></customer.address.salutation>
+				<customer.address.title><![CDATA[]]></customer.address.title>
+				<customer.address.firstname><![CDATA[Test]]></customer.address.firstname>
+				<customer.address.lastname><![CDATA[User]]></customer.address.lastname>
+				<customer.address.address1><![CDATA[Example street]]></customer.address.address1>
+				<customer.address.address2><![CDATA[1]]></customer.address.address2>
+				<customer.address.address3><![CDATA[2. floor]]></customer.address.address3>
+				<customer.address.postal><![CDATA[10000]]></customer.address.postal>
+				<customer.address.city><![CDATA[New York]]></customer.address.city>
+				<customer.address.state><![CDATA[NY]]></customer.address.state>
+				<customer.address.langid><![CDATA[en]]></customer.address.langid>
+				<customer.address.countryid><![CDATA[US]]></customer.address.countryid>
+				<customer.address.telephone><![CDATA[+112309876]]></customer.address.telephone>
+				<customer.address.telefax><![CDATA[+155598765]]></customer.address.telefax>
+				<customer.address.email><![CDATA[me@example.com]]></customer.address.email>
+				<customer.address.website><![CDATA[https://www.example.com/]]></customer.address.website>
+				<customer.address.longitude><![CDATA[10.0000]]></customer.address.longitude>
+				<customer.address.latitude><![CDATA[50.0000]]></customer.address.latitude>
+			</addressitem>
+		</address>
+		<lists>
+			<text>
+				<textitem lists.type="default">
+					<text.type><![CDATA[description]]></text.type>
+					<text.languageid><![CDATA[de]]></text.languageid>
+					<text.content><![CDATA[Eine Zusatzbeschreibung]]></text.content>
+				</textitem>
+			</text>
+			<media>
+				<mediaitem lists.type="default">
+					<media.type><![CDATA[default]]></media.type>
+					<media.languageid><![CDATA[]]></media.languageid>
+					<media.url><![CDATA[path/to/file2.jpg]]></media.url>
+				</mediaitem>
+			</media>
+		</lists>
+		<property>
+			<propertyitem>
+				<customer.property.type><![CDATA[erp-id]]></customer.property.type>
+				<customer.property.languageid><![CDATA[]]></customer.property.languageid>
+				<customer.property.value><![CDATA[98765]]></customer.property.value>
+			</propertyitem>
+		</property>
+	</customeritem>
+</customers>
