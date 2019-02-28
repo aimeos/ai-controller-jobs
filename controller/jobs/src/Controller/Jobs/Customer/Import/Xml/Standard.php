@@ -125,7 +125,7 @@ class Standard
 	/**
 	 * Imports the XML file given by its path
 	 *
-	 * @param $filename Absolute or relative path to the XML file
+	 * @param string $filename Absolute or relative path to the XML file
 	 * @return integer Total number of imported customers
 	 */
 	protected function import( $filename )
