@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<suppliers>
+	<supplieritem ref="unittest-xml">
+		<supplier.code><![CDATA[unittest-xml]]></supplier.code>
+		<supplier.label><![CDATA[Test supplier]]></supplier.label>
+		<supplier.status><![CDATA[1]]></supplier.status>
+		<address>
+			<addressitem>
+				<supplier.address.company><![CDATA[Example company]]></supplier.address.company>
+				<supplier.address.vatid><![CDATA[DE12345678]]></supplier.address.vatid>
+				<supplier.address.salutation><![CDATA[mr]]></supplier.address.salutation>
+				<supplier.address.title><![CDATA[Dr]]></supplier.address.title>
+				<supplier.address.firstname><![CDATA[Test]]></supplier.address.firstname>
+				<supplier.address.lastname><![CDATA[Supplier]]></supplier.address.lastname>
+				<supplier.address.address1><![CDATA[Test street]]></supplier.address.address1>
+				<supplier.address.address2><![CDATA[1]]></supplier.address.address2>
+				<supplier.address.address3><![CDATA[2. floor]]></supplier.address.address3>
+				<supplier.address.postal><![CDATA[10000]]></supplier.address.postal>
+				<supplier.address.city><![CDATA[New York]]></supplier.address.city>
+				<supplier.address.state><![CDATA[NY]]></supplier.address.state>
+				<supplier.address.langid><![CDATA[en]]></supplier.address.langid>
+				<supplier.address.countryid><![CDATA[US]]></supplier.address.countryid>
+				<supplier.address.telephone><![CDATA[+112309876]]></supplier.address.telephone>
+				<supplier.address.telefax><![CDATA[+155598765]]></supplier.address.telefax>
+				<supplier.address.email><![CDATA[me@example.com]]></supplier.address.email>
+				<supplier.address.website><![CDATA[https://www.example.com/]]></supplier.address.website>
+				<supplier.address.longitude><![CDATA[10.0000]]></supplier.address.longitude>
+				<supplier.address.latitude><![CDATA[50.0000]]></supplier.address.latitude>
+			</addressitem>
+		</address>
+		<lists>
+			<text>
+				<textitem lists.type="default">
+					<text.type><![CDATA[name]]></text.type>
+					<text.languageid><![CDATA[de]]></text.languageid>
+					<text.content><![CDATA[Ein Lieferant]]></text.content>
+				</textitem>
+			</text>
+			<media>
+				<mediaitem lists.type="default">
+					<media.type><![CDATA[default]]></media.type>
+					<media.languageid><![CDATA[de]]></media.languageid>
+					<media.url><![CDATA[path/to/file.jpg]]></media.url>
+				</mediaitem>
+			</media>
+			<product>
+				<productitem ref="CNC" lists.type="default" />
+			</product>
+		</lists>
+	</supplieritem>
+</suppliers>
