@@ -50,9 +50,7 @@ class Standard
 		$context = $this->getContext();
 		$resource = $item->getResourceType();
 		$listItems = array_reverse( $item->getListItems( 'product', null, null, false ), true );
-
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
-		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$map = $this->getItems( $node->childNodes );
 
 		foreach( $node->childNodes as $node )
