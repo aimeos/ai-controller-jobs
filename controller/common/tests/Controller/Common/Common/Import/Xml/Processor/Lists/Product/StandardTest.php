@@ -33,6 +33,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 
+		$refId1 = $manager->findItem( 'CNC' )->getId();
+		$refId2 = $manager->findItem( 'CNE' )->getId();
+
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <product>
 	<productitem ref="CNC" lists.type="default" />
@@ -42,8 +45,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$product = $this->object->process( $manager->createItem(), $dom->firstChild );
 
 		$this->assertEquals( 2, count( $product->getListItems() ) );
-		$this->assertNotNull( $product->getListItem( 'product', 'test', $manager->findItem( 'CNE' )->getId() ) );
-		$this->assertNotNull( $product->getListItem( 'product', 'default', $manager->findItem( 'CNC' )->getId() ) );
+		$this->assertNotNull( $product->getListItem( 'product', 'default', $refId1 ) );
+		$this->assertNotNull( $product->getListItem( 'product', 'test', $refId2 ) );
 	}
 
 

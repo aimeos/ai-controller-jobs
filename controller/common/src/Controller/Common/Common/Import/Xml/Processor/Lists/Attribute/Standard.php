@@ -8,11 +8,11 @@
  */
 
 
-namespace Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Product;
+namespace Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Attribute;
 
 
 /**
- * Product list processor for XML imports
+ * Attribute list processor for XML imports
  *
  * @package Controller
  * @subpackage Common
@@ -27,7 +27,7 @@ class Standard
 	/** controller/common/common/import/xml/processor/lists/text/name
 	 * Name of the lists processor implementation
 	 *
-	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Product\Myname".
+	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Attribute\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the processor class name
@@ -49,7 +49,7 @@ class Standard
 
 		$context = $this->getContext();
 		$resource = $item->getResourceType();
-		$listItems = $item->getListItems( 'product', null, null, false );
+		$listItems = $item->getListItems( 'attribute', null, null, false );
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
 		$map = $this->getItems( $node->childNodes );
 
@@ -57,7 +57,7 @@ class Standard
 		{
 			$attributes = $node->attributes;
 
-			if( $node->nodeName !== 'productitem' ) {
+			if( $node->nodeName !== 'attributeitem' ) {
 				continue;
 			}
 
@@ -69,7 +69,7 @@ class Standard
 			$refId = $map[$attr->nodeValue]->getId();
 			$type = ( $attr = $attributes->getNamedItem( 'lists.type' ) ) !== null ? $attr->nodeValue : 'default';
 
-			if( ( $listItem = $item->getListItem( 'product', $type, $refId ) ) === null ) {
+			if( ( $listItem = $item->getListItem( 'attribute', $type, $refId ) ) === null ) {
 				$listItem = $listManager->createItem();
 			} else {
 				unset( $listItems[$listItem->getId()] );
@@ -80,7 +80,7 @@ class Standard
 			}
 
 			$listItem = $listItem->fromArray( $list )->setRefId( $refId );
-			$item = $item->addListItem( 'product', $listItem );
+			$item = $item->addListItem( 'attribute', $listItem );
 		}
 
 		return $item->deleteListItems( $listItems );
@@ -88,28 +88,28 @@ class Standard
 
 
 	/**
-	 * Returns the product items for the given nodes
+	 * Returns the attribute items for the given nodes
 	 *
-	 * @param \DomNodeList $nodes List of XML product item nodes
-	 * @return \Aimeos\MShop\Product\Item\Iface[] Associative list of product items with codes as keys
+	 * @param \DomNodeList $nodes List of XML attribute item nodes
+	 * @return \Aimeos\MShop\Attribute\Item\Iface[] Associative list of attribute items with codes as keys
 	 */
 	protected function getItems( \DomNodeList $nodes )
 	{
-		$codes = $map = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
+		$keys = $map = [];
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'attribute' );
 
 		foreach( $nodes as $node )
 		{
-			if( $node->nodeName === 'productitem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$codes[$attr->nodeValue] = null;
+			if( $node->nodeName === 'attributeitem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
+				$keys[$attr->nodeValue] = null;
 			}
 		}
 
-		$search = $manager->createSearch()->setSlice( 0, count( $codes ) );
-		$search->setConditions( $search->compare( '==', 'product.code', array_keys( $codes ) ) );
+		$search = $manager->createSearch()->setSlice( 0, count( $keys ) );
+		$search->setConditions( $search->compare( '==', 'attribute.key', array_keys( $keys ) ) );
 
 		foreach( $manager->searchItems( $search, [] ) as $item ) {
-			$map[$item->getCode()] = $item;
+			$map[$item->getKey()] = $item;
 		}
 
 		return $map;
