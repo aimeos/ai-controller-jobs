@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<products>
+	<productitem ref="unittest-xml">
+		<product.type><![CDATA[default]]></product.type>
+		<product.code><![CDATA[unittest-xml]]></product.code>
+		<product.label><![CDATA[Test product]]></product.label>
+		<lists>
+			<text>
+				<textitem lists.type="default">
+					<text.type><![CDATA[name]]></text.type>
+					<text.languageid><![CDATA[de]]></text.languageid>
+					<text.content><![CDATA[Ein Testprodukt]]></text.content>
+				</textitem>
+			</text>
+			<media>
+				<mediaitem lists.type="default">
+					<media.type><![CDATA[default]]></media.type>
+					<media.languageid><![CDATA[de]]></media.languageid>
+					<media.url><![CDATA[path/to/file.jpg]]></media.url>
+				</mediaitem>
+			</media>
+			<price>
+				<priceitem lists.type="default">
+					<price.type><![CDATA[default]]></price.type>
+					<price.currencyid><![CDATA[USD]]></price.currencyid>
+					<price.taxrate><![CDATA[20.00]]></price.taxrate>
+					<price.quantity><![CDATA[1]]></price.quantity>
+					<price.value><![CDATA[10.00]]></price.value>
+				</priceitem>
+			</price>
+			<product>
+				<productitem ref="CNC" lists.type="default" />
+			</product>
+			<attribute>
+				<attributeitem ref="product|color|black" lists.type="default" />
+			</attribute>
+		</lists>
+		<property>
+			<propertyitem>
+				<product.property.type><![CDATA[package-width]]></product.property.type>
+				<product.property.languageid><![CDATA[]]></product.property.languageid>
+				<product.property.value><![CDATA[10.0]]></product.property.value>
+			</propertyitem>
+		</property>
+	</productitem>
+</products>
