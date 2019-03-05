@@ -72,7 +72,7 @@ class StandardTest
 
 
 		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
-		\Aimeos\Controller\Common\Order\Factory::injectController( '\\Aimeos\\Controller\\Common\\Order\\' . $name, $orderCntlStub );
+		\Aimeos\Controller\Common\Order\Factory::inject( '\\Aimeos\\Controller\\Common\\Order\\' . $name, $orderCntlStub );
 
 
 		$orderItem = $orderManagerStub->createItem();
