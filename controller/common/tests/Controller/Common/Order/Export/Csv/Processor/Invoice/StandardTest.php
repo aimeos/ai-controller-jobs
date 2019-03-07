@@ -29,8 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			12 => 'order.base.rebate',
 			13 => 'order.base.taxvalue',
 			14 => 'order.base.taxflag',
-			15 => 'order.base.status',
-			16 => 'order.base.comment',
+			15 => 'order.base.comment',
 		);
 
 
@@ -44,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 1, count( $data ) );
 
-		$this->assertEquals( 17, count( $data[0] ) );
+		$this->assertEquals( 16, count( $data[0] ) );
 		$this->assertEquals( 'web', $data[0][0] );
 		$this->assertEquals( '2008-02-15 12:34:56', $data[0][1] );
 		$this->assertEquals( '6', $data[0][2] );
@@ -60,8 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '14.50', $data[0][12] );
 		$this->assertEquals( '0.0000', $data[0][13] );
 		$this->assertEquals( '1', $data[0][14] );
-		$this->assertEquals( '1', $data[0][15] );
-		$this->assertEquals( 'This is a comment if an order. It can be added by the user.', $data[0][16] );
+		$this->assertEquals( 'This is a comment if an order. It can be added by the user.', $data[0][15] );
 	}
 
 
