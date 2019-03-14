@@ -1,0 +1,314 @@
+<?php
+
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Aimeos (aimeos.org), 2019
+ * @package Controller
+ * @subpackage Jobs
+ */
+
+
+namespace Aimeos\Controller\Jobs\Catalog\Import\Xml;
+
+
+/**
+ * Job controller for XML catalog imports
+ *
+ * @package Controller
+ * @subpackage Jobs
+ */
+class Standard
+	extends \Aimeos\Controller\Jobs\Base
+	implements \Aimeos\Controller\Jobs\Iface
+{
+	use \Aimeos\Controller\Common\Common\Import\Xml\Traits;
+
+
+	/**
+	 * Returns the localized name of the job.
+	 *
+	 * @return string Name of the job
+	 */
+	public function getName()
+	{
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Catalog import XML' );
+	}
+
+
+	/**
+	 * Returns the localized description of the job.
+	 *
+	 * @return string Description of the job
+	 */
+	public function getDescription()
+	{
+		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing categories from XML files' );
+	}
+
+
+	/**
+	 * Executes the job.
+	 *
+	 * @throws \Aimeos\Controller\Jobs\Exception If an error occurs
+	 */
+	public function run()
+	{
+		$context = $this->getContext();
+		$config = $context->getConfig();
+		$logger = $context->getLogger();
+
+		/** controller/jobs/catalog/import/xml/location
+		 * File or directory where the content is stored which should be imported
+		 *
+		 * You need to configure the XML file or directory with the XML files that
+		 * should be imported. It should be an absolute path to be sure but can be
+		 * relative path if you absolutely know from where the job will be executed
+		 * from.
+		 *
+		 * @param string Absolute file or directory path
+		 * @since 2019.04
+		 * @category Developer
+		 * @category User
+		 * @see controller/jobs/catalog/import/xml/container/type
+		 * @see controller/jobs/catalog/import/xml/container/content
+		 * @see controller/jobs/catalog/import/xml/container/options
+		 */
+		$location = $config->get( 'controller/jobs/catalog/import/xml/location' );
+
+		try
+		{
+			$msg = sprintf( 'Started catalog import from "%1$s" (%2$s)', $location, __CLASS__ );
+			$logger->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+
+			if( !file_exists( $location ) )
+			{
+				$msg = sprintf( 'File or directory "%1$s" doesn\'t exist', $location );
+				throw new \Aimeos\Controller\Jobs\Exception( $msg );
+			}
+
+			$files = [];
+
+			if( is_dir( $location ) )
+			{
+				foreach( new \DirectoryIterator( $location ) as $entry )
+				{
+					if( strncmp( $entry->getFilename(), 'catalog', 7 ) === 0 && $entry->getExtension() === 'xml' ) {
+						$files[] = $entry->getPathname();
+					}
+				}
+			}
+			else
+			{
+				$files[] = $location;
+			}
+
+			sort( $files );
+			$total = 0;
+
+			foreach( $files as $filepath ) {
+				$total += $this->import( $filepath );
+			}
+
+			$msg = 'Finished catalog import from "%1$s": %2$s total (%3$s MB)';
+			$mem = number_format( memory_get_peak_usage() / 1024 / 1024, 2 );
+
+			$logger->log( sprintf( $msg, $location, $total, $mem ), \Aimeos\MW\Logger\Base::INFO );
+		}
+		catch( \Exception $e )
+		{
+			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			throw $e;
+		}
+	}
+
+
+	/**
+	 * Imports the XML file given by its path
+	 *
+	 * @param string $filename Absolute or relative path to the XML file
+	 * @return integer Total number of imported catalogs
+	 */
+	protected function import( $filename )
+	{
+		$context = $this->getContext();
+		$config = $context->getConfig();
+		$domains = ['media', 'product', 'text'];
+
+		/** controller/jobs/catalog/import/xml/domains
+		 * List of item domain names that should be retrieved along with the catalog items
+		 *
+		 * This configuration setting overwrites the shared option
+		 * "controller/common/catalog/import/xml/domains" if you need a
+		 * specific setting for the job controller. Otherwise, you should
+		 * use the shared option for consistency.
+		 *
+		 * @param array Associative list of MShop item domain names
+		 * @since 2019.04
+		 * @category Developer
+		 * @see controller/jobs/catalog/import/xml/backup
+		 * @see controller/jobs/catalog/import/xml/max-query
+		 */
+		$domains = $config->get( 'controller/jobs/catalog/import/xml/domains', $domains );
+
+		/** controller/jobs/catalog/import/xml/backup
+		 * Name of the backup for sucessfully imported files
+		 *
+		 * After a XML file was imported successfully, you can move it to another
+		 * location, so it won't be imported again and isn't overwritten by the
+		 * next file that is stored at the same location in the file system.
+		 *
+		 * You should use an absolute path to be sure but can be relative path
+		 * if you absolutely know from where the job will be executed from. The
+		 * name of the new backup location can contain placeholders understood
+		 * by the PHP strftime() function to create dynamic paths, e.g. "backup/%Y-%m-%d"
+		 * which would create "backup/2000-01-01". For more information about the
+		 * strftime() placeholders, please have a look into the PHP documentation of
+		 * the {@link http://php.net/manual/en/function.strftime.php strftime() function}.
+		 *
+		 * '''Note:''' If no backup name is configured, the file or directory
+		 * won't be moved away. Please make also sure that the parent directory
+		 * and the new directory are writable so the file or directory could be
+		 * moved.
+		 *
+		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @since 2019.04
+		 * @category Developer
+		 * @see controller/jobs/catalog/import/xml/domains
+		 * @see controller/jobs/catalog/import/xml/max-query
+		 */
+		$backup = $config->get( 'controller/jobs/catalog/import/xml/backup' );
+
+
+		$xml = new \XMLReader();
+
+		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
+			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
+		}
+
+		$total = $this->importTree( $xml, $domains );
+
+		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
+		{
+			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
+
+		return $total;
+	}
+
+
+	/**
+	 * Imports a single category node
+	 *
+	 * @param \DomElement $node DOM node of "catalogitem" element
+	 * @param string[] $ref List of domain names whose referenced items will be updated in the catalog items
+	 * @param string|null $parentid ID of the parent catalog node
+	 * @return array Associative list of catalog codes as keys and category IDs as values
+	 */
+	protected function importNode( \DomElement $node, $ref, &$parentid )
+	{
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
+
+		if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null )
+		{
+			try
+			{
+				$item = $manager->findItem( $attr->nodeValue, $ref );
+				$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
+
+				$item = $this->process( $item, $node );
+				$parentid = $manager->saveItem( $item )->getId();
+				unset( $item );
+
+				$map = [];
+				$tree = $manager->getTree( $parentid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
+
+				foreach( $tree->getChildren() as $child ) {
+					$map[$child->getCode()] = $child->getId();
+				}
+
+				return $map;
+			}
+			catch( \Aimeos\MShop\Exception $e ) {} // not found, create new
+		}
+
+		$item = $this->process( $manager->createItem(), $node );
+		$parentid = $manager->insertItem( $item, $parentid )->getId();
+
+		return [];
+	}
+
+
+	/**
+	 * Imports the catalog document
+	 *
+	 * @param \XMLReader $xml Catalog document to import
+	 * @param string[] $ref List of domain names whose referenced items will be updated in the catalog items
+	 * @param string|null $parentid ID of the parent catalog node
+	 * @param array $map Associative list of catalog code as keys and category ID as values
+	 * @return integer Number of imported categories
+	 */
+	protected function importTree( \XMLReader $xml, array $ref, $parentid = null, array $map = [] )
+	{
+		$total = 0;
+		$childMap = [];
+
+		while( $xml->read() === true )
+		{
+			if( $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'catalogitem' )
+			{
+				if( ( $node = $xml->expand() ) === false )
+				{
+					$msg = sprintf( 'Expanding "%1$s" node failed', 'catalogitem' );
+					throw new \Aimeos\Controller\Jobs\Exception( $msg );
+				}
+
+				if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
+					unset( $map[$attr->nodeValue] );
+				}
+
+				$childMap = $this->importNode( $node, $ref, $parentid );
+				$total++;
+			}
+			elseif( $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'catalog' )
+			{
+				$this->importTree( $xml, $ref, $parentid, $childMap );
+			}
+			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' && $map !== [] )
+			{
+				\Aimeos\MShop::create( $this->getContext(), 'catalog' )->deleteItems( $map );
+				break;
+			}
+		}
+
+		return $total;
+	}
+
+
+	/**
+	 * Updates the catalog item and its referenced items using the given DOM node
+	 *
+	 * @param \Aimeos\MShop\Catalog\Item\Iface $item Catalog item object to update
+	 * @param \DomElement $node DOM node used for updateding the catalog item
+	 * @return \Aimeos\MShop\Catalog\Item\Iface $item Updated catalog item object
+	 */
+	protected function process( \Aimeos\MShop\Catalog\Item\Iface $item, \DomElement $node )
+	{
+		$list = [];
+
+		foreach( $node->attributes as $attr ) {
+			$list[$attr->nodeName] = $attr->nodeValue;
+		}
+
+		foreach( $node->childNodes as $tag )
+		{
+			if( $tag->nodeName === 'lists' ) {
+				$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
+			} else {
+				$list[$tag->nodeName] = $tag->nodeValue;
+			}
+		}
+
+		return $item->fromArray( $list, true );
+	}
+}

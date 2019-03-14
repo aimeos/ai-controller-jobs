@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<catalog>
+	<catalogitem ref="unittest-xml">
+		<catalog.code><![CDATA[unittest-xml]]></catalog.code>
+		<catalog.label><![CDATA[Test catalog]]></catalog.label>
+		<lists>
+			<text>
+				<textitem lists.type="default">
+					<text.type><![CDATA[name]]></text.type>
+					<text.languageid><![CDATA[en]]></text.languageid>
+					<text.content><![CDATA[Catalog name in English]]></text.content>
+				</textitem>
+			</text>
+			<product>
+				<productitem ref="CNC" lists.type="default" />
+			</product>
+		</lists>
+	</catalogitem>
+	<catalog>
+		<catalogitem ref="unittest-xml-2-2">
+			<catalog.code><![CDATA[unittest-xml-2-2]]></catalog.code>
+			<catalog.label><![CDATA[Test sub-category]]></catalog.label>
+			<lists>
+				<product>
+					<productitem ref="CNC" lists.type="default" />
+				</product>
+			</lists>
+		</catalogitem>
+	</catalog>
+</catalog>

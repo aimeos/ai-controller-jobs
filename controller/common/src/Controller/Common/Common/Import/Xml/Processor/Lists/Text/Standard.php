@@ -81,7 +81,6 @@ class Standard
 			}
 
 			$listItem = $listItem->fromArray( $list );
-
 			$item->addListItem( 'text', $listItem, $refItem );
 		}
 
