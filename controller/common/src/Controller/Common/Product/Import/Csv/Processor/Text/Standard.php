@@ -89,7 +89,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[ $refItem->getContent() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
+				$listMap[$refItem->getContent()][$refItem->getLanguageId()][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
 		}
 
@@ -102,10 +102,11 @@ class Standard
 			$content = trim( $list['text.content'] );
 			$type = trim( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
 			$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+			$language = trim( isset( $list['text.languageid'] ) ? $list['text.languageid'] : '' );
 
-			if( isset( $listMap[$content][$type][$typecode] ) )
+			if( isset( $listMap[$content][$language][$type][$listtype] ) )
 			{
-				$listItem = $listMap[$content][$type][$typecode];
+				$listItem = $listMap[$content][$language][$type][$listtype];
 				$refItem = $listItem->getRefItem();
 				unset( $listItems[ $listItem->getId() ] );
 			}
