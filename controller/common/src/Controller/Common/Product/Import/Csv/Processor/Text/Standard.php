@@ -118,7 +118,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[$refItem->getContent()][$refItem->getType()][$listItem->getType()] = $listItem;
+				$listMap[$refItem->getContent()][$refItem->getLanguageId()][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
 		}
 
@@ -130,11 +130,12 @@ class Standard
 
 			$type = $this->getValue( $list, 'text.type', 'name' );
 			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
+			$language = $this->getValue( $list, 'text.languageid', '' );
 			$content = $this->getValue( $list, 'text.content', '' );
 
-			if( isset( $listMap[$content][$type][$listtype] ) )
+			if( isset( $listMap[$content][$language][$type][$listtype] ) )
 			{
-				$listItem = $listMap[$content][$type][$listtype];
+				$listItem = $listMap[$content][$language][$type][$listtype];
 				$refItem = $listItem->getRefItem();
 				unset( $listItems[$listItem->getId()] );
 			}
