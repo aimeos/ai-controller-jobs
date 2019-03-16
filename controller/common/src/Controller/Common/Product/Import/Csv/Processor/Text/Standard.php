@@ -101,7 +101,7 @@ class Standard
 
 			$content = trim( $list['text.content'] );
 			$type = trim( isset( $list['text.type'] ) ? $list['text.type'] : 'name' );
-			$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+			$listtype = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 			$language = trim( isset( $list['text.languageid'] ) ? $list['text.languageid'] : '' );
 
 			if( isset( $listMap[$content][$language][$type][$listtype] ) )
@@ -112,7 +112,7 @@ class Standard
 			}
 			else
 			{
-				$listItem = $listManager->createItem( $typecode, 'text' );
+				$listItem = $listManager->createItem( $listtype, 'text' );
 				$refItem = $manager->createItem( $type, 'product' );
 			}
 
