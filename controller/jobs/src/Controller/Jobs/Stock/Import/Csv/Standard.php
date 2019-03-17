@@ -21,9 +21,6 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
-	private $types = [];
-
-
 	/**
 	 * Returns the localized name of the job.
 	 *
@@ -215,8 +212,6 @@ class Standard
 
 			foreach( $container as $content )
 			{
-				$name = $content->getName();
-
 				for( $i = 0; $i < $skiplines; $i++ ) {
 					$content->next();
 				}
@@ -236,7 +231,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
 
-		if( !empty( $backup ) && @rename( $path, strftime( $backup ) ) === false ) {
+		if( !empty( $backup ) && @rename( $filepath, strftime( $backup ) ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Unable to move imported file' ) );
 		}
 
@@ -247,7 +242,7 @@ class Standard
 	/**
 	 * Opens and returns the container which includes the stock data
 	 *
-	 * @param $location Absolute path to the file
+	 * @param string $location Absolute path to the file
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
 	protected function getContainer( $location )
@@ -360,6 +355,7 @@ class Standard
 				break;
 			}
 
+			$items = [];
 			$map = $this->getStockItems( $codes, $types );
 
 			foreach( $data as $entry )
@@ -367,8 +363,8 @@ class Standard
 				$code = $entry[0];
 				$type = $entry[2];
 
-				if( isset( $items[$code][$type] ) ) {
-					$item = $items[$code][$type];
+				if( isset( $map[$code][$type] ) ) {
+					$item = $map[$code][$type];
 				} else {
 					$item = $manager->createItem();
 				}
@@ -377,10 +373,11 @@ class Standard
 					->setStocklevel( $this->getValue( $entry, 1 ) )
 					->setDateBack( $this->getValue( $entry, 3 ) );
 
-				unset( $items[$code][$type] );
+				unset( $map[$code][$type] );
 			}
 
 			$manager->saveItems( $items );
+			unset( $items );
 
 			$total += $count;
 		}
