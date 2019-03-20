@@ -77,8 +77,7 @@ class Standard
 
 		try
 		{
-			$msg = sprintf( 'Started catalog import from "%1$s" (%2$s)', $location, __CLASS__ );
-			$logger->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Started catalog import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
 
 			if( !file_exists( $location ) )
 			{
@@ -112,7 +111,7 @@ class Standard
 			$msg = 'Finished catalog import from "%1$s": %2$s total (%3$s MB)';
 			$mem = number_format( memory_get_peak_usage() / 1024 / 1024, 2 );
 
-			$logger->log( sprintf( $msg, $location, $total, $mem ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Finished catalog import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
 		}
 		catch( \Exception $e )
 		{
@@ -126,12 +125,14 @@ class Standard
 	 * Imports the XML file given by its path
 	 *
 	 * @param string $filename Absolute or relative path to the XML file
-	 * @return integer Total number of imported catalogs
 	 */
 	protected function import( $filename )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
+		$logger = $context->getLogger();
+
+
 		$domains = ['media', 'product', 'text'];
 
 		/** controller/jobs/catalog/import/xml/domains
@@ -185,15 +186,17 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
 
-		$total = $this->importTree( $xml, $domains );
+		$logger->log( sprintf( 'Started catalog import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+
+		$this->importTree( $xml, $domains );
+
+		$logger->log( sprintf( 'Finished catalog import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
-
-		return $total;
 	}
 
 
@@ -246,7 +249,6 @@ class Standard
 	 * @param string[] $ref List of domain names whose referenced items will be updated in the catalog items
 	 * @param string|null $parentid ID of the parent catalog node
 	 * @param array $map Associative list of catalog code as keys and category ID as values
-	 * @return integer Number of imported categories
 	 */
 	protected function importTree( \XMLReader $xml, array $ref, $parentid = null, array $map = [] )
 	{
@@ -280,8 +282,6 @@ class Standard
 				break;
 			}
 		}
-
-		return $total;
 	}
 
 

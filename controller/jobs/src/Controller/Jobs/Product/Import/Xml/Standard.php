@@ -57,6 +57,7 @@ class Standard
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
+
 		/** controller/jobs/product/import/xml/location
 		 * File or directory where the content is stored which should be imported
 		 *
@@ -77,8 +78,7 @@ class Standard
 
 		try
 		{
-			$msg = sprintf( 'Started product import from "%1$s" (%2$s)', $location, __CLASS__ );
-			$logger->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Started product import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
 
 			if( !file_exists( $location ) )
 			{
@@ -112,7 +112,7 @@ class Standard
 			$msg = 'Finished product import from "%1$s": %2$s total (%3$s MB)';
 			$mem = number_format( memory_get_peak_usage() / 1024 / 1024, 2 );
 
-			$logger->log( sprintf( $msg, $location, $total, $mem ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Finished product import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
 		}
 		catch( \Exception $e )
 		{
@@ -126,12 +126,14 @@ class Standard
 	 * Imports the XML file given by its path
 	 *
 	 * @param string $filename Absolute or relative path to the XML file
-	 * @return integer Total number of imported products
 	 */
 	protected function import( $filename )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
+		$logger = $context->getLogger();
+
+
 		$domains = ['attribute', 'media', 'price', 'product', 'product/property', 'text'];
 
 		/** controller/jobs/product/import/xml/domains
@@ -197,13 +199,15 @@ class Standard
 		$maxquery = $config->get( 'controller/jobs/product/import/xml/max-query', 1000 );
 
 
+		$slice = 0;
 		$nodes = [];
-		$total = $slice = 0;
 		$xml = new \XMLReader();
 
 		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
+
+		$logger->log( sprintf( 'Started product import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
 
 		while( $xml->read() === true )
 		{
@@ -224,21 +228,19 @@ class Standard
 					$nodes = [];
 					$slice = 0;
 				}
-
-				$total++;
 			}
 		}
 
 		$this->importNodes( $nodes, $domains );
 		unset( $nodes );
 
+		$logger->log( sprintf( 'Finished product import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
-
-		return $total;
 	}
 
 

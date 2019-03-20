@@ -54,6 +54,7 @@ class Standard
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
+
 		/** controller/jobs/stock/import/csv/location
 		 * File or directory where the content is stored which should be imported
 		 *
@@ -74,8 +75,7 @@ class Standard
 
 		try
 		{
-			$msg = sprintf( 'Started stock import from "%1$s" (%2$s)', $location, __CLASS__ );
-			$logger->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Started stock import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
 
 			if( !file_exists( $location ) )
 			{
@@ -117,7 +117,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Stock import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
 	}
@@ -126,15 +126,14 @@ class Standard
 	/**
 	 * Executes the job.
 	 *
-	 * @param string $filepath Absolute path to the file that whould be imported
-	 * @return integer Number of imported stocks
-	 * @throws \Aimeos\Controller\Jobs\Exception If an error occurs
+	 * @param string $filename Absolute path to the file that whould be imported
 	 */
-	public function import( $filepath )
+	public function import( $filename )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
+
 
 		/** controller/common/stock/import/csv/max-size
 		 * Maximum number of CSV rows to import at once
@@ -202,40 +201,26 @@ class Standard
 		$backup = $config->get( 'controller/jobs/stock/import/csv/backup' );
 
 
-		$total = 0;
-		$container = $this->getContainer( $filepath );
+		$container = $this->getContainer( $filename );
 
-		try
+		$logger->log( sprintf( 'Started stock import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+
+		foreach( $container as $content )
 		{
-			$msg = sprintf( 'Started stock import from "%1$s" (%2$s)', $container->getName(), __CLASS__ );
-			$logger->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
-
-			foreach( $container as $content )
-			{
-				for( $i = 0; $i < $skiplines; $i++ ) {
-					$content->next();
-				}
-
-				$total += $this->importStocks( $content, $maxcnt );
+			for( $i = 0; $i < $skiplines; $i++ ) {
+				$content->next();
 			}
 
-			$container->close();
-		}
-		catch( \Exception $e )
-		{
-			$container->close();
-
-			$logger->log( 'Stock import error: ' . $e->getMessage() );
-			$logger->log( $e->getTraceAsString() );
-
-			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
+			$this->importStocks( $content, $maxcnt );
 		}
 
-		if( !empty( $backup ) && @rename( $filepath, strftime( $backup ) ) === false ) {
+		$logger->log( sprintf( 'Finished stock import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+
+		$container->close();
+
+		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Unable to move imported file' ) );
 		}
-
-		return $total;
 	}
 
 
