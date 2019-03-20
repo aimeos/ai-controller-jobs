@@ -103,14 +103,17 @@ class Standard
 			}
 
 			sort( $files );
-			$total = 0;
+			$context->__sleep();
+
+			$fcn = function( $filepath ) {
+				$this->import( $filepath );
+			};
 
 			foreach( $files as $filepath ) {
-				$total += $this->import( $filepath );
+				$context->getProcess()->start( $fcn, [$filepath] );
 			}
 
-			$msg = 'Finished product import from "%1$s": %2$s total (%3$s MB)';
-			$mem = number_format( memory_get_peak_usage() / 1024 / 1024, 2 );
+			$context->getProcess()->wait();
 
 			$logger->log( sprintf( 'Finished product import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
 		}

@@ -93,6 +93,10 @@ class TestHelperJobs
 		$ctx->setSession( $session );
 
 
+		$process = new \Aimeos\MW\Process\None();
+		$ctx->setProcess( $process );
+
+
 		$i18n = new \Aimeos\MW\Translation\None( 'de' );
 		$ctx->setI18n( array( 'de' => $i18n ) );
 

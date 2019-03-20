@@ -100,20 +100,19 @@ class Standard
 			}
 
 			sort( $files );
-			$total = 0;
+			$context->__sleep();
 
-			foreach( $files as $filepath )
-			{
-				$num = $this->import( $filepath );
-				$total += $num;
+			$fcn = function( $filepath ) {
+				$this->import( $filepath );
+			};
 
-				$msg = sprintf( 'Stock import from "%1$s": %2$d items', $filepath, $num );
-				$logger->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
+			foreach( $files as $filepath ) {
+				$context->getProcess()->start( $fcn, [$filepath] );
 			}
 
-			$mem = memory_get_peak_usage() / 1024 / 1024;
-			$msg = 'Finished stock import from "%1$s", %2$d items, %3$01.2F MB (%4$s)';
-			$logger->log( sprintf( $msg, $location, $total, $mem, __CLASS__ ), \Aimeos\MW\Logger\Base::INFO );
+			$context->getProcess()->wait();
+
+			$logger->log( sprintf( 'Finished stock import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
 		}
 		catch( \Exception $e )
 		{
