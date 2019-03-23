@@ -6,4 +6,4 @@
  */
 
 ?>
-</container>
+</products>
