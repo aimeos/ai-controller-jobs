@@ -29,7 +29,7 @@ $enc = $this->encoder();
                                 <type><![CDATA[<?php echo $refItem->getType(); ?>]]></type>
                                 <languageid><![CDATA[<?php echo $refItem->getLanguageId(); ?>]]></languageid>
                                 <label><![CDATA[<?php echo $refItem->getLabel(); ?>]]></label>
-                                <content><![CDATA[<?php echo $refItem->getLabel(); ?>]]></content>
+                                <content><![CDATA[<?php echo $refItem->getContent(); ?>]]></content>
                                 <status><![CDATA[<?php echo $refItem->getStatus(); ?>]]></status>
                             </textitem>
                         <?php } ?>
