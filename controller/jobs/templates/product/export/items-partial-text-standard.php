@@ -17,7 +17,7 @@ $enc = $this->encoder()
 				<text.type><![CDATA[<?= $enc->xml( $refItem->getType() ) ?>]]></text.type>
 				<text.languageid><![CDATA[<?= $enc->xml( $refItem->getLanguageId() ) ?>]]></text.languageid>
 				<text.label><![CDATA[<?= $enc->xml( $refItem->getLabel() ) ?>]]></text.label>
-				<text.content><![CDATA[<?= $enc->xml( $refItem->getLabel() ) ?>]]></text.content>
+				<text.content><![CDATA[<?= $enc->xml( $refItem->getContent() ) ?>]]></text.content>
 				<text.status><![CDATA[<?= $enc->xml( $refItem->getStatus() ) ?>]]></text.status>
 			</textitem>
 		<?php endif ?>
