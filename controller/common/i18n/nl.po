@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 11:29+0200\n"
+"POT-Creation-Date: 2019-04-02 15:11+0200\n"
 "PO-Revision-Date: 2016-01-21 15:42+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
@@ -32,6 +32,10 @@ msgstr "Class \"%1$s\" niet gevonden"
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Ongeldige karakters in class naam \"%1$s\""
+
+#, php-format
+msgid "Invalid type \"%1$s\" (%2$s)"
+msgstr ""
 
 #, php-format
 msgid "No allowed image types configured for \"%1$s\""
