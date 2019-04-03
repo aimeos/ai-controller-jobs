@@ -54,16 +54,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->run();
 
-		$map = $ids = [];
+		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', ['unittest-csv', 'unittest-csv2'] ) );
+		$items = $manager->searchItems( $search );
+		$manager->deleteItems( array_keys( $items ) );
 
-		foreach( $manager->searchItems( $search ) as $item )
-		{
+		foreach( $items as $item ) {
 			$map[$item->getProductCode()] = $item;
-			$ids[] = $item->getId();
 		}
 
 		$this->assertEquals( 2, count( $map ) );
