@@ -5,6 +5,19 @@
  * @copyright Aimeos (aimeos.org), 2019
  */
 
+/** controller/jobs/product/export/partials/media
+ * Name of the partial used for exporting the media items into the product XML
+ *
+ * When exporting products into XML files, the assoicated media items are
+ * added to the product XML node. This partial receives the list and media
+ * items that associate the media to the product. Then, the partial creates
+ * the XML tags for these items that will be inserted into the product XML.
+ *
+ * @param string Name of the product media partial
+ * @since 2019.04
+ * @category Developer
+ */
+
 $enc = $this->encoder()
 
 ?>
