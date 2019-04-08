@@ -80,6 +80,9 @@ class Standard
 				$list[$resource . '.' . $attrName] = $attrNode->nodeValue;
 			}
 
+			$name = $resource . '.lists.config';
+			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
+
 			$listItem = $listItem->fromArray( $list );
 
 			$item->addListItem( 'media', $listItem, $refItem );

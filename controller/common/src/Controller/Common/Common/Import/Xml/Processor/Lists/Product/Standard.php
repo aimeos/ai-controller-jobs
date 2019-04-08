@@ -79,6 +79,9 @@ class Standard
 				$list[$resource . '.' . $attrName] = $attrNode->nodeValue;
 			}
 
+			$name = $resource . '.lists.config';
+			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
+
 			$listItem = $listItem->fromArray( $list )->setRefId( $refId );
 			$item = $item->addListItem( 'product', $listItem );
 		}
