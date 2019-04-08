@@ -47,7 +47,7 @@ class Standard
 	{
 		foreach( $node->childNodes as $listNode )
 		{
-			if( $listNode->nodeName === '#text' ) {
+			if( $listNode->nodeName[0] === '#' ) {
 				continue;
 			}
 
