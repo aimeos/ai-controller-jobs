@@ -209,9 +209,10 @@ class Standard
 	 * @param \DomElement $node DOM node of "catalogitem" element
 	 * @param string[] $ref List of domain names whose referenced items will be updated in the catalog items
 	 * @param string|null $parentid ID of the parent catalog node
-	 * @return array Associative list of catalog codes as keys and category IDs as values
+	 * @param array &$map Will contain the associative list of code/ID pairs of the child categories
+	 * @return string Catalog ID of the imported category
 	 */
-	protected function importNode( \DomElement $node, $ref, &$parentid )
+	protected function importNode( \DomElement $node, $ref, $parentid, array &$map )
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 
@@ -223,25 +224,22 @@ class Standard
 				$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
 
 				$item = $this->process( $item, $node );
-				$parentid = $manager->saveItem( $item )->getId();
+				$currentid = $manager->saveItem( $item )->getId();
 				unset( $item );
 
-				$map = [];
-				$tree = $manager->getTree( $parentid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
+				$tree = $manager->getTree( $currentid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 
 				foreach( $tree->getChildren() as $child ) {
 					$map[$child->getCode()] = $child->getId();
 				}
 
-				return $map;
+				return $currentid;
 			}
 			catch( \Aimeos\MShop\Exception $e ) {} // not found, create new
 		}
 
 		$item = $this->process( $manager->createItem(), $node );
-		$parentid = $manager->insertItem( $item, $parentid )->getId();
-
-		return [];
+		return $manager->insertItem( $item, $parentid )->getId();
 	}
 
 
@@ -257,6 +255,7 @@ class Standard
 	{
 		$total = 0;
 		$childMap = [];
+		$currentid = $parentid;
 
 		while( $xml->read() === true )
 		{
@@ -272,12 +271,12 @@ class Standard
 					unset( $map[$attr->nodeValue] );
 				}
 
-				$childMap = $this->importNode( $node, $ref, $parentid );
+				$currentid = $this->importNode( $node, $ref, $parentid, $childMap );
 				$total++;
 			}
 			elseif( $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'catalog' )
 			{
-				$this->importTree( $xml, $ref, $parentid, $childMap );
+				$this->importTree( $xml, $ref, $currentid, $childMap );
 			}
 			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' && $map !== [] )
 			{

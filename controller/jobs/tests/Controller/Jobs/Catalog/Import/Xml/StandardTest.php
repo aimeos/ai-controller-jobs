@@ -59,9 +59,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager->deleteItem( $tree->getId() );
 
 		$this->assertEquals( 'Test catalog', $tree->getLabel() );
-		$this->assertEquals( 1, count( $tree->getChildren() ) );
+		$this->assertEquals( 2, count( $tree->getChildren() ) );
 		$this->assertEquals( 1, count( $tree->getRefItems( 'text', null, null, false ) ) );
-		$this->assertEquals( 'Test sub-category', $tree->getChild( 0 )->getLabel() );
-		$this->assertEquals( 1, count( $tree->getChild( 0 )->getRefItems( 'product' ) ) );
+		$this->assertEquals( 'Test sub-category 3', $tree->getChild( 0 )->getLabel() );
+		$this->assertEquals( 2, count( $tree->getChild( 0 )->getRefItems( 'product' ) ) );
 	}
 }
