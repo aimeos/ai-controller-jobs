@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 
 <attributes>
-	<attributeitem ref="product/color/unittest-xml">
+	<attributeitem ref="product|color|unittest-xml">
 		<attribute.type><![CDATA[color]]></attribute.type>
 		<attribute.domain><![CDATA[product]]></attribute.domain>
 		<attribute.code><![CDATA[unittest-xml]]></attribute.code>

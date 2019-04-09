@@ -133,24 +133,18 @@ class Standard
 	 */
 	protected function getItems( array $nodes, array $ref )
 	{
-		$domains = $types = $codes = [];
+		$keys = [];
 
 		foreach( $nodes as $node )
 		{
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null )
-			{
-				list( $domain, $type, $code ) = explode( '/', $attr->nodeValue );
-				$domains[$domain] = $types[$type] = $codes[$code] = null;
+			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
+				$keys[] = $attr->nodeValue;
 			}
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'attribute' );
-		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
-		$search->setConditions( $search->combine( '&&', [
-			$search->compare( '==', 'attribute.domain', array_keys( $domains ) ),
-			$search->compare( '==', 'attribute.type', array_keys( $types ) ),
-			$search->compare( '==', 'attribute.code', array_keys( $codes ) ),
-		] ) );
+		$search = $manager->createSearch()->setSlice( 0, count( $keys ) );
+		$search->setConditions( $search->compare( '==', 'attribute.key', $keys ) );
 
 		return $manager->searchItems( $search, $ref );
 	}
@@ -290,7 +284,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'attribute' );
 
 		foreach( $this->getItems( $nodes, $ref ) as $item ) {
-			$map[$item->getDomain() . '/' . $item->getType() . '/' . $item->getCode()] = $item;
+			$map[$item->getKey()] = $item;
 		}
 
 		foreach( $nodes as $node )
