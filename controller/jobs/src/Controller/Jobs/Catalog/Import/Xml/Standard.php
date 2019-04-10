@@ -207,12 +207,12 @@ class Standard
 	 * Imports a single category node
 	 *
 	 * @param \DomElement $node DOM node of "catalogitem" element
-	 * @param string[] $ref List of domain names whose referenced items will be updated in the catalog items
+	 * @param string[] $domains List of domain names whose referenced items will be updated in the catalog items
 	 * @param string|null $parentid ID of the parent catalog node
 	 * @param array &$map Will contain the associative list of code/ID pairs of the child categories
 	 * @return string Catalog ID of the imported category
 	 */
-	protected function importNode( \DomElement $node, $ref, $parentid, array &$map )
+	protected function importNode( \DomElement $node, $domains, $parentid, array &$map )
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 
@@ -220,7 +220,7 @@ class Standard
 		{
 			try
 			{
-				$item = $manager->findItem( $attr->nodeValue, $ref );
+				$item = $manager->findItem( $attr->nodeValue, $domains );
 				$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
 
 				$item = $this->process( $item, $node );
@@ -247,11 +247,11 @@ class Standard
 	 * Imports the catalog document
 	 *
 	 * @param \XMLReader $xml Catalog document to import
-	 * @param string[] $ref List of domain names whose referenced items will be updated in the catalog items
+	 * @param string[] $domains List of domain names whose referenced items will be updated in the catalog items
 	 * @param string|null $parentid ID of the parent catalog node
 	 * @param array $map Associative list of catalog code as keys and category ID as values
 	 */
-	protected function importTree( \XMLReader $xml, array $ref, $parentid = null, array $map = [] )
+	protected function importTree( \XMLReader $xml, array $domains, $parentid = null, array $map = [] )
 	{
 		$total = 0;
 		$childMap = [];
@@ -271,14 +271,14 @@ class Standard
 					unset( $map[$attr->nodeValue] );
 				}
 
-				$currentid = $this->importNode( $node, $ref, $parentid, $childMap );
+				$currentid = $this->importNode( $node, $domains, $parentid, $childMap );
 				$total++;
 			}
 			elseif( $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'catalog' )
 			{
-				$this->importTree( $xml, $ref, $currentid, $childMap );
+				$this->importTree( $xml, $domains, $currentid, $childMap );
 			}
-			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' && $map !== [] )
+			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' )
 			{
 				\Aimeos\MShop::create( $this->getContext(), 'catalog' )->deleteItems( $map );
 				break;
