@@ -24,7 +24,7 @@ class Standard
 	use \Aimeos\Controller\Common\Common\Import\Xml\Traits;
 
 
-	/** controller/common/common/import/xml/processor/lists/text/name
+	/** controller/common/common/import/xml/processor/lists/product/name
 	 * Name of the lists processor implementation
 	 *
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Product\Myname".
