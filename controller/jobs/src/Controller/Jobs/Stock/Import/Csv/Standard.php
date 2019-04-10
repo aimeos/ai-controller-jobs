@@ -340,7 +340,7 @@ class Standard
 			}
 
 			$items = [];
-			$map = $this->getStockItems( $codes, $types );
+			$map = $this->getStockItems( $codes, array_keys( $types ) );
 
 			foreach( $data as $entry )
 			{
