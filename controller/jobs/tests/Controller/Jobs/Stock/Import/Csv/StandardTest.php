@@ -69,11 +69,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $map ) );
 
 		$this->assertEquals( 'test', $map['unittest-csv']->getType() );
-		$this->assertEquals( 10, $map['unittest-csv']->getStockLevel() );
+		$this->assertEquals( 20, $map['unittest-csv']->getStockLevel() );
 		$this->assertEquals( '2000-01-01 00:00:00', $map['unittest-csv']->getDateBack() );
 
 		$this->assertEquals( 'default', $map['unittest-csv2']->getType() );
-		$this->assertEquals( null, $map['unittest-csv2']->getStockLevel() );
+		$this->assertEquals( 5, $map['unittest-csv2']->getStockLevel() );
 		$this->assertEquals( null, $map['unittest-csv2']->getDateBack() );
 	}
 }
