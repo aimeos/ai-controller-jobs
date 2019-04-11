@@ -277,6 +277,7 @@ class Standard
 			elseif( $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'catalog' )
 			{
 				$this->importTree( $xml, $domains, $currentid, $childMap );
+				$childMap = [];
 			}
 			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' )
 			{
