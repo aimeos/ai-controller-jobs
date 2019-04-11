@@ -63,6 +63,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $tree->getRefItems( 'text', null, null, false ) ) );
 		$this->assertEquals( 'Test sub-category 3', $tree->getChild( 0 )->getLabel() );
 		$this->assertEquals( 2, count( $tree->getChild( 0 )->getRefItems( 'product' ) ) );
-		$this->assertEquals( 'Test sub-category 4', $tree->getChild( 0 )->getChild( 0 )->getLabel() );
+		$this->assertEquals( 'Test sub-category 3-1', $tree->getChild( 0 )->getChild( 0 )->getLabel() );
 	}
 }
