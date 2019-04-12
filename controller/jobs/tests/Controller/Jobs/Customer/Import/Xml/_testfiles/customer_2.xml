@@ -75,5 +75,8 @@
 				<customer.property.value><![CDATA[98765]]></customer.property.value>
 			</propertyitem>
 		</property>
+		<group>
+			<groupitem ref="unitgroup" />
+		</group>
 	</customeritem>
 </customers>
