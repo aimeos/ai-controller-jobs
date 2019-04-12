@@ -306,7 +306,7 @@ class Standard
 		foreach( $node->childNodes as $tag )
 		{
 			if( $tag->nodeName === 'lists' ) {
-				$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
+				$item = $this->getProcessor( $tag->nodeName, 'catalog' )->process( $item, $tag );
 			} else {
 				$list[$tag->nodeName] = $tag->nodeValue;
 			}

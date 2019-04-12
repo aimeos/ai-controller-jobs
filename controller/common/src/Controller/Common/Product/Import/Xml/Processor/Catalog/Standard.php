@@ -8,7 +8,7 @@
  */
 
 
-namespace Aimeos\Controller\Common\Common\Import\Xml\Processor\Catalog;
+namespace Aimeos\Controller\Common\Product\Import\Xml\Processor\Catalog;
 
 
 /**
@@ -24,7 +24,7 @@ class Standard
 	/** controller/common/common/import/xml/processor/catalog/name
 	 * Name of the catalog processor implementation
 	 *
-	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Common\Import\Xml\Processor\Catalog\Myname".
+	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Product\Import\Xml\Processor\Catalog\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the processor class name
