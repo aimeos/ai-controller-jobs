@@ -21,7 +21,7 @@ class Standard
 	extends \Aimeos\Controller\Common\Common\Import\Xml\Processor\Base
 	implements \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
 {
-	/** controller/common/common/import/xml/processor/catalog/name
+	/** controller/common/product/import/xml/processor/catalog/name
 	 * Name of the catalog processor implementation
 	 *
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Product\Import\Xml\Processor\Catalog\Myname".
