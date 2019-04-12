@@ -33,7 +33,7 @@ class Standard
 	 */
 
 	 private $groupManager;
-	 private $groups = [];
+	 private $map = [];
 
 
 	/**
@@ -54,7 +54,7 @@ class Standard
 			$items = $this->groupManager->searchItems( $search->setSlice( $start, 100 ) );
 
 			foreach( $items as $item ) {
-				$this->groups[$item->getCode()] = $item->getId();
+				$this->map[$item->getCode()] = $item->getId();
 			}
 
 			$count = count( $items );
