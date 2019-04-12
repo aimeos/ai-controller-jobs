@@ -302,7 +302,7 @@ class Standard
 		foreach( $node->childNodes as $tag )
 		{
 			if( in_array( $tag->nodeName, ['address', 'lists', 'property'] ) ) {
-				$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
+				$item = $this->getProcessor( $tag->nodeName, 'customer' )->process( $item, $tag );
 			} else {
 				$list[$tag->nodeName] = $tag->nodeValue;
 			}

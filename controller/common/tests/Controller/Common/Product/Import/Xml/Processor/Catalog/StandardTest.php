@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\Controller\Common\Common\Import\Xml\Processor\Catalog;
+namespace Aimeos\Controller\Common\Product\Import\Xml\Processor\Catalog;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperCntl::getContext();
-		$this->object = new \Aimeos\Controller\Common\Common\Import\Xml\Processor\Catalog\Standard( $this->context );
+		$this->object = new \Aimeos\Controller\Common\Product\Import\Xml\Processor\Catalog\Standard( $this->context );
 	}
 
 
