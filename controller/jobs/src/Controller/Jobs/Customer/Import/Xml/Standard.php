@@ -136,7 +136,7 @@ class Standard
 		$logger = $context->getLogger();
 
 
-		$domains = ['customer', 'customer/address', 'customer/property', 'media', 'product', 'text'];
+		$domains = ['customer', 'customer/address', 'customer/property', 'customer/group', 'media', 'product', 'text'];
 
 		/** controller/jobs/customer/import/xml/domains
 		 * List of item domain names that should be retrieved along with the customer items
@@ -301,7 +301,7 @@ class Standard
 
 		foreach( $node->childNodes as $tag )
 		{
-			if( in_array( $tag->nodeName, ['address', 'lists', 'property'] ) ) {
+			if( in_array( $tag->nodeName, ['address', 'lists', 'property', 'group'] ) ) {
 				$item = $this->getProcessor( $tag->nodeName, 'customer' )->process( $item, $tag );
 			} else {
 				$list[$tag->nodeName] = $tag->nodeValue;
