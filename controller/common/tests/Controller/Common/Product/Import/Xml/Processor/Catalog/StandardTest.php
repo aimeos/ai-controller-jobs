@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'ABCD' );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <catalog>
@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessUpdate()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'ABCD' );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <catalog>
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessDelete()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'ABCD' );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <catalog>
