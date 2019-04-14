@@ -33,6 +33,29 @@ class Standard
 	 */
 
 
+	private $listTypes = [];
+
+
+	/**
+	 * Initializes the object
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 */
+	public function __construct( \Aimeos\MShop\Context\Item\Iface $context )
+	{
+		parent::__construct( $context );
+
+		$manager = \Aimeos\MShop::create( $context, 'catalog/lists/type' );
+
+		$search = $manager->createSearch()->setSlice( 0, 10000 );
+		$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', 'product' ) );
+
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$this->listTypes[$item->getCode()] = $item->getCode();
+		}
+	}
+
+
 	/**
 	 * Updates the given item using the data from the DOM node
 	 *
@@ -45,14 +68,7 @@ class Standard
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\ListRef\Iface::class, $item );
 
 		$listManager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
-
-		$search = $listManager->createSearch()->setSlice( 0, 10000 );
-		$search->setConditions( $search->combine( '&&', [
-			$search->compare( '==', 'catalog.lists.domain', 'product' ),
-			$search->compare( '==', 'catalog.lists.refid', $item->getId() ),
-		] ) );
-
-		$listItems = $listManager->searchItems( $search );
+		$listItems = $this->getListItems( $item->getId() );
 		$catItems = $this->getCatalogItems( $node );
 		$map = [];
 
@@ -85,8 +101,8 @@ class Standard
 			$list['catalog.lists.type'] = $type;
 
 
-			if( isset( $map[$catcode][$type] ) ) {
-				$listItem = $map[$catcode][$type]; unset( $map[$catcode][$type] );
+			if( isset( $map[$parentid][$type] ) ) {
+				$listItem = $map[$parentid][$type]; unset( $map[$parentid][$type] );
 			} else {
 				$listItem = $listManager->createItem();
 			}
@@ -134,5 +150,25 @@ class Standard
 		}
 
 		return $items;
+	}
+
+
+	/**
+	 * Returns the catalog list items for the given product ID
+	 *
+	 * @param string $prodid Unique product ID
+	 * @return array List of catalog list items
+	 */
+	protected function getListItems( $prodid )
+	{
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
+		$search = $manager->createSearch()->setSlice( 0, 10000 );
+		$expr = [];
+
+		foreach( $this->listTypes as $type ) {
+			$expr[] = $search->compare( '==', 'catalog.lists.key', 'product|' . $type . '|' . $prodid );
+		}
+
+		return $manager->searchItems( $search->setConditions( $search->combine( '||', $expr ) ) );
 	}
 }
