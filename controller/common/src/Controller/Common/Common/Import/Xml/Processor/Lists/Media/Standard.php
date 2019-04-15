@@ -82,9 +82,10 @@ class Standard
 
 			$name = $resource . '.lists.config';
 			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
+			$name = $resource . '.lists.type';
+			$list[$name] = ( isset( $list[$name] ) ? $list[$name] : 'default' );
 
 			$listItem = $listItem->fromArray( $list );
-
 			$item->addListItem( 'media', $listItem, $refItem );
 		}
 
