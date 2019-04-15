@@ -33,7 +33,7 @@
 				<productitem ref="CNE" lists.type="test" />
 			</product>
 			<attribute>
-				<attributeitem ref="product|color|white" lists.type="default" />
+				<attributeitem ref="product|color|white" />
 			</attribute>
 		</lists>
 		<property>

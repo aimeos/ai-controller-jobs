@@ -81,6 +81,7 @@ class Standard
 
 			$name = $resource . '.lists.config';
 			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
+			$list[$resource . '.lists.type'] = $type;
 
 			$listItem = $listItem->fromArray( $list )->setRefId( $refId );
 			$item = $item->addListItem( 'attribute', $listItem );

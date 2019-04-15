@@ -7,21 +7,21 @@
 		<product.label><![CDATA[Test product]]></product.label>
 		<lists>
 			<text>
-				<textitem lists.type="default">
+				<textitem>
 					<text.type><![CDATA[name]]></text.type>
 					<text.languageid><![CDATA[de]]></text.languageid>
 					<text.content><![CDATA[Ein Testprodukt]]></text.content>
 				</textitem>
 			</text>
 			<media>
-				<mediaitem lists.type="default">
+				<mediaitem>
 					<media.type><![CDATA[default]]></media.type>
 					<media.languageid><![CDATA[de]]></media.languageid>
 					<media.url><![CDATA[path/to/file.jpg]]></media.url>
 				</mediaitem>
 			</media>
 			<price>
-				<priceitem lists.type="default">
+				<priceitem>
 					<price.type><![CDATA[default]]></price.type>
 					<price.currencyid><![CDATA[USD]]></price.currencyid>
 					<price.taxrate><![CDATA[20.00]]></price.taxrate>
@@ -30,10 +30,10 @@
 				</priceitem>
 			</price>
 			<product>
-				<productitem ref="CNC" lists.type="default" />
+				<productitem ref="CNC" />
 			</product>
 			<attribute>
-				<attributeitem ref="product|color|black" lists.type="default" />
+				<attributeitem ref="product|color|black" />
 			</attribute>
 		</lists>
 		<property>
