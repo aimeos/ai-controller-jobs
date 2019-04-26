@@ -49,9 +49,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '0.00', $data[0][6] );
 		$this->assertEquals( '0.0000', $data[0][7] );
 		$this->assertEquals( "payment\npayment\npayment\npayment\npayment\npayment\npayment\npayment\npayment", $data[0][8] );
-		$this->assertEquals( "ACOWNER\nACSTRING\nNAME\nOgone-alias-name\nOgone-alias-value\nREFID\nTXDATE\nX-ACCOUNT\nX-STATUS", $data[0][9] );
-		$this->assertEquals( "account owner\naccount number\npayment method\nogone alias name\nogone alias value\nreference id\ntransaction date\ntransaction account\ntransaction status", $data[0][10] );
-		$this->assertEquals( "test user\n9876543\nCreditCard\naliasName\naliasValue\n12345678\n2009-08-18\nKraft02\n9", $data[0][11] );
+		$this->assertEquals( "ACOWNER\nACSTRING\nNAME\nREFID\nTXDATE\nX-ACCOUNT\nX-STATUS\nOgone-alias-name\nOgone-alias-value", $data[0][9] );
+		$this->assertEquals( "account owner\naccount number\npayment method\nreference id\ntransaction date\ntransaction account\ntransaction status\nogone alias name\nogone alias value", $data[0][10] );
+		$this->assertEquals( "test user\n9876543\nCreditCard\n12345678\n2009-08-18\nKraft02\n9\naliasName\naliasValue", $data[0][11] );
 
 		$this->assertEquals( 12, count( $data[1] ) );
 		$this->assertEquals( 'delivery', $data[1][0] );
