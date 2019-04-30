@@ -172,9 +172,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 2, count( $basket->getServices() ) );
 		$this->assertEquals( 1, count( $basket->getService( 'delivery' ) ) );
-		$this->assertInstanceOf( $class, $basket->getService( 'delivery', 'unitcode' ) );
+		$this->assertInstanceOf( $class, $basket->getService( 'delivery', 0 ) );
 		$this->assertEquals( 1, count( $basket->getService( 'payment' ) ) );
-		$this->assertInstanceOf( $class, $basket->getService( 'payment', 'paytest' ) );
+		$this->assertInstanceOf( $class, $basket->getService( 'payment', 0 ) );
 	}
 
 
