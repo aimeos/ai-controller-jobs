@@ -107,6 +107,7 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
 	{
 		$context = $this->getContext();
+		$logger = $context->getLogger();
 		$manager = \Aimeos\MShop::create( $context, 'product/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
 
@@ -128,7 +129,7 @@ class Standard
 				if( ( $prodid = $this->cache->get( $code ) ) === null )
 				{
 					$msg = 'No product for code "%1$s" available when importing product with code "%2$s"';
-					throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
+					$logger->log( sprintf( $msg, $code, $product->getCode() ), \Aimeos\MW\Logger\Base::WARN );
 				}
 
 				if( ( $listItem = $product->getListItem( 'product', $listtype, $prodid ) ) === null ) {
