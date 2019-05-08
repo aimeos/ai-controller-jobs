@@ -59,14 +59,6 @@ class Standard
 		$logger = $context->getLogger();
 		$mappings = $this->getDefaultMapping();
 
-		$domains = [
-			'attribute' => 'attribute',
-			'media' => 'media',
-			'price' => 'price',
-			'product' => 'product',
-			'product/property' => 'product/property',
-			'text' => 'text'
-		];
 
 		/** controller/common/product/import/csv/domains
 		 * List of item domain names that should be retrieved along with the product items
@@ -84,7 +76,7 @@ class Standard
 		 * @see controller/common/product/import/csv/converter
 		 * @see controller/common/product/import/csv/max-size
 		 */
-		$domains = $config->get( 'controller/common/product/import/csv/domains', $domains );
+		$domains = $config->get( 'controller/common/product/import/csv/domains', [] );
 
 		/** controller/jobs/product/import/csv/domains
 		 * List of item domain names that should be retrieved along with the product items

@@ -13,6 +13,9 @@ return array(
 		'controller/common' => 'controller/common/i18n',
 		'controller/jobs' => 'controller/jobs/i18n',
 	),
+	'config' => array(
+		'config',
+	),
 	'custom' => array(
 		'controller/jobs' => array(
 			'controller/jobs/src',
