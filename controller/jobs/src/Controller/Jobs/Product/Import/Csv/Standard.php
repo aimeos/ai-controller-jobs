@@ -57,9 +57,16 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
-		$domains = array( 'attribute', 'media', 'price', 'product', 'product/property', 'text' );
 		$mappings = $this->getDefaultMapping();
 
+		$domains = [
+			'attribute' => 'attribute',
+			'media' => 'media',
+			'price' => 'price',
+			'product' => 'product',
+			'product/property' => 'product/property',
+			'text' => 'text'
+		];
 
 		/** controller/common/product/import/csv/domains
 		 * List of item domain names that should be retrieved along with the product items
