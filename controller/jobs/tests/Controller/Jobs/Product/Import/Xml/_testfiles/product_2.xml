@@ -11,6 +11,11 @@
 					<text.type><![CDATA[name]]></text.type>
 					<text.languageid><![CDATA[de]]></text.languageid>
 					<text.content><![CDATA[Testprodukt]]></text.content>
+					<lists>
+						<attribute>
+							<attributeitem ref="product|color|black"/>
+						</attribute>
+					</lists>
 				</textitem>
 			</text>
 			<media>
@@ -18,6 +23,18 @@
 					<media.type><![CDATA[small]]></media.type>
 					<media.languageid><![CDATA[]]></media.languageid>
 					<media.url><![CDATA[path/to/file2.jpg]]></media.url>
+					<lists>
+						<attribute>
+							<attributeitem ref="product|color|black"/>
+						</attribute>
+					</lists>
+					<property>
+						<propertyitem>
+							<media.property.type><![CDATA[copyright]]></media.property.type>
+							<media.property.languageid><![CDATA[de]]></media.property.languageid>
+							<media.property.value><![CDATA[ich, 2019]]></media.property.value>
+						</propertyitem>
+					</property>
 				</mediaitem>
 			</media>
 			<price>
@@ -27,6 +44,11 @@
 					<price.taxrate><![CDATA[10.00]]></price.taxrate>
 					<price.quantity><![CDATA[2]]></price.quantity>
 					<price.value><![CDATA[20.00]]></price.value>
+					<lists>
+						<attribute>
+							<attributeitem ref="product|color|black"/>
+						</attribute>
+					</lists>
 				</priceitem>
 			</price>
 			<product>
