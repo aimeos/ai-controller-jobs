@@ -61,6 +61,11 @@ class Standard
 		$mappings = $this->getDefaultMapping();
 
 
+		if( file_exists( $config->get( 'controller/jobs/product/import/csv/location' ) ) === false ) {
+			return;
+		}
+
+
 		/** controller/common/product/import/csv/domains
 		 * List of item domain names that should be retrieved along with the product items
 		 *
