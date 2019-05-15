@@ -70,8 +70,13 @@ class Standard
 
 			$list = [];
 
-			foreach( $refNode->childNodes as $tagNode ) {
-				$list[$tagNode->nodeName] = $tagNode->nodeValue;
+			foreach( $refNode->childNodes as $tag )
+			{
+				if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
+					$refItem = $this->getProcessor( $tag->nodeName, 'media' )->process( $refItem, $tag );
+				} else {
+					$list[$tag->nodeName] = $tag->nodeValue;
+				}
 			}
 
 			$refItem = $refItem->fromArray( $list );
