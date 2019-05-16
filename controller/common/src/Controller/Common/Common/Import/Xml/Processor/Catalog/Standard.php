@@ -157,14 +157,14 @@ class Standard
 	/**
 	 * Returns the available catalog list types for the given domain
 	 *
-	 * @param $domain Domain name the list types belong to
+	 * @param string $domain Domain name the list types belong to
 	 * @return string[] List of list type codes
 	 */
 	protected function getListTypes( $domain )
 	{
-		if( !isset( $this->getListTypes[$domain] ) )
+		if( !isset( $this->listTypes[$domain] ) )
 		{
-			$this->getListTypes[$domain] = [];
+			$this->listTypes[$domain] = [];
 
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists/type' );
 
