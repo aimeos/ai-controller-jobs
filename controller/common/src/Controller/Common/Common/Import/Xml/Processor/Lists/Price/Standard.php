@@ -73,7 +73,7 @@ class Standard
 			foreach( $refNode->childNodes as $tag )
 			{
 				if( in_array( $tag->nodeName, ['lists'] ) ) {
-					$refItem = $this->getProcessor( $tag->nodeName, 'common' )->process( $refItem, $tag );
+					$refItem = $this->getProcessor( $tag->nodeName )->process( $refItem, $tag );
 				} else {
 					$list[$tag->nodeName] = $tag->nodeValue;
 				}

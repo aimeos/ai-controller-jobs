@@ -34,16 +34,15 @@ trait Traits
 	 * Returns the processor object for adding the product related information
 	 *
 	 * @param string $type Type of the processor
-	 * @param string $domain Name of the domain that is imported
 	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface Processor object
 	 */
-	protected function getProcessor( $type, $domain )
+	protected function getProcessor( $type )
 	{
-		if( !isset( $this->processors[$domain][$type] ) ) {
-			$this->processors[$domain][$type] = $this->createProcessor( $type, $domain );
+		if( !isset( $this->processors[$type] ) ) {
+			$this->processors[$type] = $this->createProcessor( $type );
 		}
 
-		return $this->processors[$domain][$type];
+		return $this->processors[$type];
 	}
 
 
@@ -51,11 +50,10 @@ trait Traits
 	 * Creates a new processor object of the given type
 	 *
 	 * @param string $type Type of the processor
-	 * @param string $domain Name of the domain that is imported
 	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface Processor object
 	 * @throws \Aimeos\Controller\Common\Exception If type is invalid or processor isn't found
 	 */
-	protected function createProcessor( $type, $domain )
+	protected function createProcessor( $type )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -70,13 +68,7 @@ trait Traits
 			}
 		}
 
-		if( ctype_alnum( $domain ) === false )
-		{
-			$msg = sprintf( 'Invalid characters in data domain name "%1$s"', $domain );
-			throw new \Aimeos\Controller\Common\Exception( $msg );
-		}
-
-		$name = $config->get( 'controller/common/' . $domain . '/import/xml/processor/' . $type . '/name', 'Standard' );
+		$name = $config->get( 'controller/common/common/import/xml/processor/' . $type . '/name', 'Standard' );
 
 		if( ctype_alnum( $name ) === false )
 		{
@@ -89,7 +81,7 @@ trait Traits
 
 		if( class_exists( $classname ) === false )
 		{
-			$classname = '\\Aimeos\\Controller\\Common\\' . ucfirst( $domain ) . '\\Import\\Xml\\Processor\\' . $segment;
+			$classname = '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . $segment;
 
 			if( class_exists( $classname ) === false ){
 				throw new \Aimeos\Controller\Common\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
