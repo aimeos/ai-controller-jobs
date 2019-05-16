@@ -45,15 +45,13 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node )
 	{
-		$domain = $item->getResourceType();
-
 		foreach( $node->childNodes as $listNode )
 		{
 			if( $listNode->nodeName[0] === '#' ) {
 				continue;
 			}
 
-			$item = $this->getProcessor( 'lists/' . $listNode->nodeName, $domain )->process( $item, $listNode );
+			$item = $this->getProcessor( 'lists/' . $listNode->nodeName )->process( $item, $listNode );
 		}
 
 		return $item;
