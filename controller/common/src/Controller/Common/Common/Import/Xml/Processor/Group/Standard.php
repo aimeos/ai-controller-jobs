@@ -47,7 +47,6 @@ class Standard
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Customer\Item\Iface::class, $item );
 
 		$map = $this->getItems( $node->childNodes );
-		$context = $this->getContext();
 		$list = [];
 
 		foreach( $node->childNodes as $node )
