@@ -8,7 +8,7 @@
  */
 
 
-namespace Aimeos\Controller\Common\Product\Import\Xml\Processor\Catalog;
+namespace Aimeos\Controller\Common\Common\Import\Xml\Processor\Catalog;
 
 
 /**
@@ -21,10 +21,10 @@ class Standard
 	extends \Aimeos\Controller\Common\Common\Import\Xml\Processor\Base
 	implements \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
 {
-	/** controller/common/product/import/xml/processor/catalog/name
+	/** controller/common/common/import/xml/processor/catalog/name
 	 * Name of the catalog processor implementation
 	 *
-	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Product\Import\Xml\Processor\Catalog\Myname".
+	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Common\Import\Xml\Processor\Catalog\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the processor class name
@@ -34,26 +34,6 @@ class Standard
 
 
 	private $listTypes = [];
-
-
-	/**
-	 * Initializes the object
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context )
-	{
-		parent::__construct( $context );
-
-		$manager = \Aimeos\MShop::create( $context, 'catalog/lists/type' );
-
-		$search = $manager->createSearch()->setSlice( 0, 10000 );
-		$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', 'product' ) );
-
-		foreach( $manager->searchItems( $search ) as $item ) {
-			$this->listTypes[$item->getCode()] = $item->getCode();
-		}
-	}
 
 
 	/**
@@ -68,7 +48,7 @@ class Standard
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\ListRef\Iface::class, $item );
 
 		$listManager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
-		$listItems = $this->getListItems( $item->getId() );
+		$listItems = $this->getListItems( $item->getResourceType(), $item->getId() );
 		$catItems = $this->getCatalogItems( $node );
 		$map = [];
 
@@ -107,7 +87,7 @@ class Standard
 				$listItem = $listManager->createItem();
 			}
 
-			$listItem = $listItem->fromArray( $list )->setDomain( 'product' )
+			$listItem = $listItem->fromArray( $list )->setDomain( $item->getResourceType() )
 				->setRefId( $item->getId() )->setParentId( $parentid );
 			$listManager->saveItem( $listItem, false );
 		}
@@ -154,21 +134,48 @@ class Standard
 
 
 	/**
-	 * Returns the catalog list items for the given product ID
+	 * Returns the catalog list items for the given referenced ID
 	 *
-	 * @param string $prodid Unique product ID
+	 * @param string $domain Domain name the referenced ID belongs to
+	 * @param string $id ID of the referenced domain item
 	 * @return array List of catalog list items
 	 */
-	protected function getListItems( $prodid )
+	protected function getListItems( $domain, $id )
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
 		$search = $manager->createSearch()->setSlice( 0, 10000 );
 		$expr = [];
 
-		foreach( $this->listTypes as $type ) {
-			$expr[] = $search->compare( '==', 'catalog.lists.key', 'product|' . $type . '|' . $prodid );
+		foreach( $this->getListTypes( $domain ) as $type ) {
+			$expr[] = $search->compare( '==', 'catalog.lists.key', $domain . '|' . $type . '|' . $id );
 		}
 
 		return $manager->searchItems( $search->setConditions( $search->combine( '||', $expr ) ) );
+	}
+
+
+	/**
+	 * Returns the available catalog list types for the given domain
+	 *
+	 * @param $domain Domain name the list types belong to
+	 * @return string[] List of list type codes
+	 */
+	protected function getListTypes( $domain )
+	{
+		if( !isset( $this->getListTypes[$domain] ) )
+		{
+			$this->getListTypes[$domain] = [];
+
+			$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists/type' );
+
+			$search = $manager->createSearch()->setSlice( 0, 10000 );
+			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', $domain ) );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$this->listTypes[$domain][] = $item->getCode();
+			}
+		}
+
+		return $this->listTypes[$domain];
 	}
 }
