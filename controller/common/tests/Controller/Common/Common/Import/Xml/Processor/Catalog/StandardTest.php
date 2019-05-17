@@ -63,22 +63,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <catalog>
+	<catalogitem ref="root" />
 	<catalogitem ref="categories" />
 </catalog>' );
 
 		$this->object->process( $product, $dom->firstChild );
 
+		$listIds = [];
 		$manager = \Aimeos\MShop::create( $this->context, 'catalog' );
 
 		$catItem = $manager->findItem( 'root', ['product'] );
-		$this->assertNull( $catItem->getListItem( 'product', 'default', $product->getId() ) );
+		$listItem = $catItem->getListItem( 'product', 'default', $product->getId() );
+		$this->assertNotNull( $listItem );
+		$listIds[] = $listItem->getId();
 
 		$catItem = $manager->findItem( 'categories', ['product'] );
 		$listItem = $catItem->getListItem( 'product', 'default', $product->getId() );
-
 		$this->assertNotNull( $listItem );
+		$listIds[] = $listItem->getId();
 
-		\Aimeos\MShop::create( $this->context, 'catalog/lists' )->deleteItem( $listItem->getId() );
+		\Aimeos\MShop::create( $this->context, 'catalog/lists' )->deleteItems( $listIds );
 	}
 
 

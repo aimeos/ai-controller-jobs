@@ -81,9 +81,14 @@ class Standard
 			$list['catalog.lists.type'] = $type;
 
 
-			if( isset( $map[$parentid][$type] ) ) {
-				$listItem = $map[$parentid][$type]; unset( $map[$parentid][$type] );
-			} else {
+			if( isset( $map[$parentid][$type] ) )
+			{
+				$listItem = $map[$parentid][$type];
+				unset( $listItems[$map[$parentid][$type]->getId()] );
+				unset( $map[$parentid][$type] );
+			}
+			else
+			{
 				$listItem = $listManager->createItem();
 			}
 
