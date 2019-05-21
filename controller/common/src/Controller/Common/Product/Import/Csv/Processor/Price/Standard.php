@@ -105,7 +105,7 @@ class Standard
 			if( isset( $listMap[$type][$listtype] ) && !empty( $listMap[$type][$listtype] ) ) {
 				$listItem = array_shift( $listMap[$type][$listtype] );
 			} else {
-				$listItem = $listManager->createItem( $typecode, 'price' );
+				$listItem = $listManager->createItem( $listtype, 'price' );
 			}
 
 			if( ( $refItem = $listItem->getRefItem() ) === null ) {
