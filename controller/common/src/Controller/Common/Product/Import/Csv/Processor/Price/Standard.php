@@ -100,7 +100,7 @@ class Standard
 			}
 
 			$type = trim( isset( $list['price.type'] ) ? $list['price.type'] : 'default' );
-			$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
+			$listtype = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 
 			if( isset( $listMap[$type][$listtype] ) && !empty( $listMap[$type][$listtype] ) ) {
 				$listItem = array_shift( $listMap[$type][$listtype] );
