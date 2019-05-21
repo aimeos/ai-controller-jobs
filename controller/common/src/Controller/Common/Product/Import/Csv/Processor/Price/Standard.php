@@ -89,7 +89,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[ $refItem->getValue() ][ $refItem->getType() ][ $listItem->getType() ] = $listItem;
+				$listMap[$refItem->getType()][$listItem->getType()][] = $listItem;
 			}
 		}
 
@@ -99,27 +99,25 @@ class Standard
 				continue;
 			}
 
-			$value = trim( isset( $list['price.value'] ) ? $list['price.value'] : '0.00' );
 			$type = trim( isset( $list['price.type'] ) ? $list['price.type'] : 'default' );
 			$typecode = trim( isset( $list['product.lists.type'] ) ? $list['product.lists.type'] : 'default' );
 
-			if( isset( $listMap[$value][$type][$typecode] ) )
-			{
-				$listItem = $listMap[$value][$type][$typecode];
-				$refItem = $listItem->getRefItem();
-				unset( $listItems[ $listItem->getId() ] );
-			}
-			else
-			{
+			if( isset( $listMap[$type][$listtype] ) && !empty( $listMap[$type][$listtype] ) ) {
+				$listItem = array_shift( $listMap[$type][$listtype] );
+			} else {
 				$listItem = $listManager->createItem( $typecode, 'price' );
-				$refItem = $manager->createItem( $type, 'product' );
 			}
 
+			if( ( $refItem = $listItem->getRefItem() ) === null ) {
+				$refItem = $manager->createItem( $type, 'product' );
+			}
 
 			$refItem->fromArray( $this->addItemDefaults( $list ) );
 			$listItem->fromArray( $this->addListItemDefaults( $list, $pos ) );
 
 			$product->addListItem( 'price', $listItem, $refItem );
+
+			unset( $listItems[$listItem->getId()] );
 		}
 
 		$product->deleteListItems( $listItems, true );
