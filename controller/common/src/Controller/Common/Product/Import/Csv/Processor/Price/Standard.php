@@ -118,7 +118,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[ $refItem->getType() ][ $listItem->getType() ][] = $listItem;
+				$listMap[$refItem->getType()][$listItem->getType()][] = $listItem;
 			}
 		}
 
@@ -141,10 +141,10 @@ class Standard
 				$refItem = $manager->createItem();
 			}
 
-			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
+			$listItem = $listItem->setType( $listtype )->setPosition( $pos )->fromArray( $list );
 
 			$label = $this->getValue( $list, 'price.currencyid', '' ) . ' ' . $this->getValue( $list, 'price.value', '' );
-			$refItem = $refItem->setLabel( $label )->fromArray( $list );
+			$refItem = $refItem->setType( $type )->setLabel( $label )->fromArray( $list );
 
 			$product->addListItem( 'price', $listItem, $refItem );
 
