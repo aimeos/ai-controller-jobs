@@ -21,7 +21,7 @@ class Standard
 	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
-	private $types = [];
+	private $types;
 
 
 	/**
@@ -389,6 +389,30 @@ class Standard
 
 
 	/**
+	 * Checks the given product type for validity
+	 *
+	 * @param string|null $type Product type or null for no type
+	 * @return string New product type
+	 */
+	protected function checkType( $type )
+	{
+		if( isset( $this->types ) )
+		{
+			$this->types = [];
+
+			$manager = \Aimeos\MShop::create( $context, 'product/type' );
+			$search = $manager->createSearch()->setSlice( 0, 10000 );
+
+			foreach( $manager->searchItems( $search ) as $item ) {
+				$this->types[$item->getCode()] = $item->getCode();
+			}
+		}
+
+		return ( isset( $this->types[$type] ) ? $this->types[$type] : 'default' );
+	}
+
+
+	/**
 	 * Returns the position of the "product.code" column from the product item mapping
 	 *
 	 * @param array $mapping Mapping of the "item" columns with position as key and code as value
@@ -550,18 +574,12 @@ class Standard
 
 				$map = $this->getMappedChunk( $list, $mapping );
 
-				if( isset( $map[0] ) )
+				if( isset( $map[0] ) ) // there can only be one chunk for the base product data
 				{
-					$map = $map[0]; // there can only be one chunk for the base product data
-					$map['product.type'] = $this->getValue( $map, 'product.type', 'default' );
+					$product = $product->fromArray( $map[0], true );
+					$type = $this->checkType( $this->getValue( $map[0], 'product.type', $product->getType() ) );
 
-					if( !in_array( $map['product.type'], $types ) )
-					{
-						$msg = sprintf( 'Invalid product type "%1$s"', $map['product.type'] );
-						throw new \Aimeos\Controller\Jobs\Exception( $msg );
-					}
-
-					$product = $manager->saveItem( $product->fromArray( $map, true ) );
+					$product = $manager->saveItem( $product->setType( $type ) );
 
 					$list = $processor->process( $product, $list );
 
