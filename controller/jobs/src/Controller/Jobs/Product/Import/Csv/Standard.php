@@ -400,7 +400,7 @@ class Standard
 		{
 			$this->types = [];
 
-			$manager = \Aimeos\MShop::create( $context, 'product/type' );
+			$manager = \Aimeos\MShop::create( $this->getContext(), 'product/type' );
 			$search = $manager->createSearch()->setSlice( 0, 10000 );
 
 			foreach( $manager->searchItems( $search ) as $item ) {
