@@ -544,9 +544,14 @@ class Standard
 					$map = $map[0]; // there can only be one chunk for the base product data
 
 					$typecode = trim( isset( $map['product.type'] ) ? $map['product.type'] : 'default' );
-					$map['product.typeid'] = $this->getTypeId( 'product/type', 'product', $typecode );
+					$typeid = $this->getTypeId( 'product/type', 'product', $typecode );
 
 					$product->fromArray( $this->addItemDefaults( $map ) );
+
+					if( $product->getTypeId() === null ) {
+						$product->setTypeId( $typeid );
+					}
+
 					$product = $manager->saveItem( $product );
 
 					$list = $processor->process( $product, $list );
