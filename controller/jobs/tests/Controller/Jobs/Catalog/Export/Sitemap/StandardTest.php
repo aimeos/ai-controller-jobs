@@ -50,6 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/max-items', 5 );
+		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/base-url', 'https://www.yourshop.com/sitemaps/' );
 
 		$this->object->run();
 
@@ -69,8 +70,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( 'Kaffee', $file1 );
 		$this->assertContains( 'Misc', $file2 );
 
-		$this->assertContains( 'aimeos-catalog-sitemap-1.xml.gz', $index );
-		$this->assertContains( 'aimeos-catalog-sitemap-2.xml.gz', $index );
+		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-1.xml.gz', $index );
+		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-2.xml.gz', $index );
 	}
 
 	public function testRunEmptyLocation()
