@@ -7,6 +7,7 @@
 
 $enc = $this->encoder();
 $date = date( 'c' );
+$baseUrl = $this->get( 'baseUrl' );
 
 ?>
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
@@ -15,7 +16,7 @@ $date = date( 'c' );
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <?php foreach( $this->get( 'siteFiles', [] ) as $name ) : ?>
 	<sitemap>
-		<loc><?php echo $enc->xml( basename( $name ) ); ?></loc>
+		<loc><?php echo $enc->xml( $baseUrl . basename( $name ) ); ?></loc>
 		<lastmod><?php echo $date; ?></lastmod>
 	</sitemap>
 <?php endforeach; ?>

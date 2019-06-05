@@ -50,6 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$this->context->getConfig()->set( 'controller/jobs/product/export/sitemap/max-items', 5 );
+		$this->context->getConfig()->set( 'controller/jobs/product/export/sitemap/baseurl', 'https://www.yourshop.com/sitemaps/' );
 
 		$this->object->run();
 
@@ -69,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( 'Cafe_Noire_Expresso', $file2 );
 		$this->assertContains( 'Unittest%3A_Bundle', $file2 );
 
-		$this->assertContains( 'aimeos-sitemap-1.xml.gz', $index );
-		$this->assertContains( 'aimeos-sitemap-2.xml.gz', $index );
+		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-1.xml.gz', $index );
+		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-2.xml.gz', $index );
 	}
 }

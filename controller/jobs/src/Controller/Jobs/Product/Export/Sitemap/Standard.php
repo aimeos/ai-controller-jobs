@@ -301,6 +301,10 @@ class Standard
 	 */
 	protected function createSitemapIndex( \Aimeos\MW\Container\Iface $container, array $files )
 	{
+		$context = $this->getContext();
+		$view = $context->getView();
+		$config = $context->getConfig();
+
 		/** controller/jobs/product/export/sitemap/standard/template-index
 		 * Relative path to the XML site map index template of the product site map job controller.
 		 *
@@ -326,13 +330,44 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-index';
 		$default = 'product/export/sitemap-index-standard';
 
-		$context = $this->getContext();
-		$view = $context->getView();
+		/** controller/jobs/product/export/sitemap/baseurl
+		 * URL to the folder where the site maps can be accessed, without the filenames.
+		 *
+		 * The site maps must be publically available for download by the search
+		 * engines. Individual site map files need a fully qualified URL in the index file.
+		 *
+		 * https://www.yourshop.com/your/sitemap/path/
+		 *
+		 * The location of the site map index file should then be
+		 * added to the robots.txt in the document root of your domain:
+		 *
+		 * Sitemap: https://www.yourshop.com/your/sitemap/path/aimeos-sitemap-index.xml
+		 *
+		 * More details about site maps can be found at
+		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
+		 *
+		 * @param string Absolute URL
+		 * @since 2019.06
+		 * @category Developer
+		 * @category User
+		 * @see controller/jobs/product/export/sitemap/container/options
+		 * @see controller/jobs/product/export/sitemap/max-items
+		 * @see controller/jobs/product/export/sitemap/max-query
+		 * @see controller/jobs/product/export/sitemap/changefreq
+		 * @see controller/jobs/product/export/sitemap/location
+		 */
+		$urlConf = 'controller/jobs/product/export/sitemap/baseurl';
+
+		if( ( $baseUrl = $config->get( $urlConf ) ) == '' ) {
+			$msg = sprintf( 'Required configuration for "%1$s" is missing', $urlConf );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
+		$view->baseUrl = rtrim($baseUrl, '/') . '/';
 
 		$view->siteFiles = $files;
 
 		$content = $container->create( 'aimeos-sitemap-index.xml' );
-		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
+		$content->add( $view->render( $config->get( $tplconf, $default ) ) );
 		$container->add( $content );
 	}
 
