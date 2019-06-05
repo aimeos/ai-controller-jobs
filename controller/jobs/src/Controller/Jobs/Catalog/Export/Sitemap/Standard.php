@@ -357,9 +357,7 @@ class Standard
 		 */
 		$urlConf = 'controller/jobs/catalog/export/sitemap/baseurl';
 
-		$baseUrl = $context->getConfig()->get($urlConf, '');
-		if( $baseUrl === '' )
-		{
+		if( ( $baseUrl = $config->get( $urlConf ) ) == '' ) {
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', $urlConf );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
