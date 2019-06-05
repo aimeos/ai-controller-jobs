@@ -199,7 +199,8 @@ class Standard
 		$default = array( 'gzip-mode' => 'wb' );
 		$options = $config->get( 'controller/jobs/catalog/export/sitemap/container/options', $default );
 
-		if( $location === null || $location === '' ) {
+		if( $location == null )
+		{
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/export/sitemap/location' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
@@ -301,8 +302,8 @@ class Standard
 	protected function createSitemapIndex( \Aimeos\MW\Container\Iface $container, array $files )
 	{
 		$context = $this->getContext();
-		$view = $context->getView();
 		$config = $context->getConfig();
+		$view = $context->getView();
 
 		/** controller/jobs/catalog/export/sitemap/standard/template-index
 		 * Relative path to the XML site map index template of the catalog site map job controller.
@@ -355,14 +356,15 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/changefreq
 		 * @see controller/jobs/catalog/export/sitemap/location
 		 */
-		$urlConf = 'controller/jobs/catalog/export/sitemap/baseurl';
+		$baseUrl = $config->get( 'controller/jobs/catalog/export/sitemap/baseurl' );
 
-		if( ( $baseUrl = $config->get( $urlConf ) ) == '' ) {
-			$msg = sprintf( 'Required configuration for "%1$s" is missing', $urlConf );
+		if( $baseUrl == null )
+		{
+			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/export/sitemap/baseurl' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
-		$view->baseUrl = rtrim($baseUrl, '/') . '/';
 
+		$view->baseUrl = rtrim( $baseUrl, '/' ) . '/';
 		$view->siteFiles = $files;
 
 		$content = $container->create( 'aimeos-catalog-sitemap-index.xml' );
