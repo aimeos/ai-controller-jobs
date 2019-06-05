@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/max-items', 5 );
-		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/base-url', 'https://www.yourshop.com/sitemaps/' );
+		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/baseurl', 'https://www.yourshop.com/sitemaps/' );
 
 		$this->object->run();
 

@@ -330,7 +330,7 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/standard/template-index';
 		$default = 'product/export/sitemap-index-standard';
 
-		/** controller/jobs/product/export/sitemap/base-url
+		/** controller/jobs/product/export/sitemap/baseurl
 		 * URL to the folder where the site maps can be accessed, without the filenames.
 		 *
 		 * The site maps must be publically available for download by the search
@@ -356,7 +356,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 * @see controller/jobs/product/export/sitemap/location
 		 */
-		$urlConf = 'controller/jobs/product/export/sitemap/base-url';
+		$urlConf = 'controller/jobs/product/export/sitemap/baseurl';
 
 		$baseUrl = $config->get($urlConf, '');
 		if( $baseUrl === '' )
