@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( [$managerStub->createItem()] ) );
 
-		$managerStub->expects( $this->never() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
 		$this->object->run();
 	}
