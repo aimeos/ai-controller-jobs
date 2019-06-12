@@ -36,12 +36,20 @@ interface Iface
 
 
 	/**
-	 * Processes the subscription renewal
+	 * Executed before the subscription renewal
+	 *
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 */
+	public function renewBefore( \Aimeos\MShop\Subscription\Item\Iface $subscription );
+
+
+	/**
+	 * Executed after the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
 	 * @param \Aimeos\MShop\Order\Item\Iface $order Order invoice item
 	 */
-	public function renew( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
+	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
 
 
 	/**

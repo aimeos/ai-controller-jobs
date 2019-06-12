@@ -83,6 +83,10 @@ class Standard
 			{
 				try
 				{
+					foreach( $processors as $processor ) {
+						$processor->renewBefore( $item );
+					}
+
 					$context = $this->createContext( $item->getOrderBaseId() );
 					$newOrder = $this->createOrderBase( $context, $item );
 					$newInvoice = $this->createOrderInvoice( $context, $newOrder );
@@ -98,15 +102,12 @@ class Standard
 					{
 						$item->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
 						$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
-						$manager->saveItem( $item );
 
 						throw $e;
 					}
 
-					$manager->saveItem( $item );
-
 					foreach( $processors as $processor ) {
-						$processor->renew( $item, $newInvoice );
+						$processor->renewAfter( $item, $newInvoice );
 					}
 				}
 				catch( \Exception $e )
@@ -115,6 +116,8 @@ class Standard
 					$logger->log( sprintf( $msg, $item->getId(), $e->getMessage() ) );
 					$logger->log( $e->getTraceAsString() );
 				}
+
+				$manager->saveItem( $item );
 			}
 
 			$count = count( $items );
