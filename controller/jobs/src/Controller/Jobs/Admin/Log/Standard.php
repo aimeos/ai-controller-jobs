@@ -101,87 +101,86 @@ class Standard
 		 * @see controller/jobs/admin/log/standard/container/options
 		 * @see controller/jobs/admin/log/standard/limit-days
 		 */
-		if( ( $path = $config->get( 'controller/jobs/admin/log/standard/path', null ) ) !== null )
-		{
-			/** controller/jobs/admin/log/standard/container/type
-			 * Container file type storing all coupon code files to import
-			 *
-			 * All coupon code files or content objects must be put into one
-			 * container file so editors don't have to upload one file for each
-			 * coupon code file.
-			 *
-			 * The container file types that are supported by default are:
-			 * * Zip
-			 *
-			 * Extensions implement other container types like spread sheets, XMLs or
-			 * more advanced ways of handling the exported data.
-			 *
-			 * @param string Container file type
-			 * @since 2014.09
-			 * @category Developer
-			 * @category User
-			 * @see controller/jobs/admin/log/standard/path
-			 * @see controller/jobs/admin/log/standard/container/format
-			 * @see controller/jobs/admin/log/standard/container/options
-			 * @see controller/jobs/admin/log/standard/limit-days
-			 */
+		$path = $config->get( 'controller/jobs/admin/log/standard/path', sys_get_temp_dir() );
 
-			/** controller/jobs/admin/log/standard/container/format
-			 * Format of the coupon code files to import
-			 *
-			 * The coupon codes are stored in one or more files or content
-			 * objects. The format of that file or content object can be configured
-			 * with this option but most formats are bound to a specific container
-			 * type.
-			 *
-			 * The formats that are supported by default are:
-			 * * CSV (requires container type "Zip")
-			 *
-			 * Extensions implement other container types like spread sheets, XMLs or
-			 * more advanced ways of handling the exported data.
-			 *
-			 * @param string Content file type
-			 * @since 2014.09
-			 * @category Developer
-			 * @category User
-			 * @see controller/jobs/admin/log/standard/path
-			 * @see controller/jobs/admin/log/standard/container/type
-			 * @see controller/jobs/admin/log/standard/container/options
-			 * @see controller/jobs/admin/log/standard/limit-days
-			 */
+		/** controller/jobs/admin/log/standard/container/type
+		 * Container file type storing all coupon code files to import
+		 *
+		 * All coupon code files or content objects must be put into one
+		 * container file so editors don't have to upload one file for each
+		 * coupon code file.
+		 *
+		 * The container file types that are supported by default are:
+		 * * Zip
+		 *
+		 * Extensions implement other container types like spread sheets, XMLs or
+		 * more advanced ways of handling the exported data.
+		 *
+		 * @param string Container file type
+		 * @since 2014.09
+		 * @category Developer
+		 * @category User
+		 * @see controller/jobs/admin/log/standard/path
+		 * @see controller/jobs/admin/log/standard/container/format
+		 * @see controller/jobs/admin/log/standard/container/options
+		 * @see controller/jobs/admin/log/standard/limit-days
+		 */
 
-			/** controller/jobs/admin/log/standard/container/options
-			 * Options changing the expected format of the coupon codes to import
-			 *
-			 * Each content format may support some configuration options to change
-			 * the output for that content type.
-			 *
-			 * The options for the CSV content format are:
-			 * * csv-separator, default ','
-			 * * csv-enclosure, default '"'
-			 * * csv-escape, default '"'
-			 * * csv-lineend, default '\n'
-			 *
-			 * For format options provided by other container types implemented by
-			 * extensions, please have a look into the extension documentation.
-			 *
-			 * @param array Associative list of options with the name as key and its value
-			 * @since 2014.09
-			 * @category Developer
-			 * @category User
-			 * @see controller/jobs/admin/log/standard/path
-			 * @see controller/jobs/admin/log/standard/container/type
-			 * @see controller/jobs/admin/log/standard/container/format
-			 * @see controller/jobs/admin/log/standard/limit-days
-			 */
+		/** controller/jobs/admin/log/standard/container/format
+		 * Format of the coupon code files to import
+		 *
+		 * The coupon codes are stored in one or more files or content
+		 * objects. The format of that file or content object can be configured
+		 * with this option but most formats are bound to a specific container
+		 * type.
+		 *
+		 * The formats that are supported by default are:
+		 * * CSV (requires container type "Zip")
+		 *
+		 * Extensions implement other container types like spread sheets, XMLs or
+		 * more advanced ways of handling the exported data.
+		 *
+		 * @param string Content file type
+		 * @since 2014.09
+		 * @category Developer
+		 * @category User
+		 * @see controller/jobs/admin/log/standard/path
+		 * @see controller/jobs/admin/log/standard/container/type
+		 * @see controller/jobs/admin/log/standard/container/options
+		 * @see controller/jobs/admin/log/standard/limit-days
+		 */
 
-			$type = $config->get( 'controller/jobs/admin/log/standard/container/type', 'Zip' );
-			$format = $config->get( 'controller/jobs/admin/log/standard/container/format', 'CSV' );
-			$options = $config->get( 'controller/jobs/admin/log/standard/container/options', [] );
+		/** controller/jobs/admin/log/standard/container/options
+		 * Options changing the expected format of the coupon codes to import
+		 *
+		 * Each content format may support some configuration options to change
+		 * the output for that content type.
+		 *
+		 * The options for the CSV content format are:
+		 * * csv-separator, default ','
+		 * * csv-enclosure, default '"'
+		 * * csv-escape, default '"'
+		 * * csv-lineend, default '\n'
+		 *
+		 * For format options provided by other container types implemented by
+		 * extensions, please have a look into the extension documentation.
+		 *
+		 * @param array Associative list of options with the name as key and its value
+		 * @since 2014.09
+		 * @category Developer
+		 * @category User
+		 * @see controller/jobs/admin/log/standard/path
+		 * @see controller/jobs/admin/log/standard/container/type
+		 * @see controller/jobs/admin/log/standard/container/format
+		 * @see controller/jobs/admin/log/standard/limit-days
+		 */
 
-			$path .= DIRECTORY_SEPARATOR . str_replace( ' ', '_', $limitDate );
-			$container = \Aimeos\MW\Container\Factory::getContainer( $path, $type, $format, $options );
-		}
+		$type = $config->get( 'controller/jobs/admin/log/standard/container/type', 'Zip' );
+		$format = $config->get( 'controller/jobs/admin/log/standard/container/format', 'CSV' );
+		$options = $config->get( 'controller/jobs/admin/log/standard/container/options', [] );
+
+		$path .= DIRECTORY_SEPARATOR . str_replace( ' ', '_', $limitDate );
+		$container = \Aimeos\MW\Container\Factory::getContainer( $path, $type, $format, $options );
 
 		$manager = \Aimeos\MAdmin::create( $context, 'log' );
 
