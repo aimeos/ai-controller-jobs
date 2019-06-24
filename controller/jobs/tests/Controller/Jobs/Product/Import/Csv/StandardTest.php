@@ -171,54 +171,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testRunProcessorInvalidData()
-	{
-		$mapping = array(
-			'item' => array(
-				0 => 'product.code',
-				1 => 'product.label',
-				2 => 'product.type',
-			),
-			'text' => array(
-				3 => 'text.type',
-				4 => 'text.content',
-			),
-			'media' => array(
-				5 => 'media.url',
-				6 => 'product.lists.type',
-			),
-			'price' => array(
-				7 => 'price.type',
-				8 => 'price.value',
-				9 => 'price.taxrate',
-			),
-			'attribute' => array(
-				10 => 'attribute.type',
-				11 => 'attribute.code',
-			),
-			'product' => array(
-				12 => 'product.code',
-				13 => 'product.lists.type',
-			),
-			'property' => array(
-				14 => 'product.property.type',
-				15 => 'product.property.value',
-			),
-		);
-
-		$this->context->getConfig()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
-
-		$config = $this->context->getConfig();
-		$config->set( 'controller/jobs/product/import/csv/skip-lines', 0 );
-		$config->set( 'controller/jobs/product/import/csv/location', __DIR__ . '/_testfiles/invalid' );
-
-		$this->object = new \Aimeos\Controller\Jobs\Product\Import\Csv\Standard( $this->context, $this->aimeos );
-
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$this->object->run();
-	}
-
-
 	public function testRunBackup()
 	{
 		$config = $this->context->getConfig();
