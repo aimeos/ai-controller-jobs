@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		foreach( $items as $item )
 		{
-			$this->assertEquals( 100, $item->getStocklevel() );
+			$this->assertEquals( 100, $item->getStockLevel() );
 			$this->assertEquals( '2000-01-01 00:00:00', $item->getDateBack() );
 		}
 	}
@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $items ) );
 
 		foreach( $items as $item ) {
-			$this->assertEquals( 200, $item->getStocklevel() );
+			$this->assertEquals( 200, $item->getStockLevel() );
 		}
 	}
 
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = reset( $items );
 
 		$this->assertEquals( 1, count( $items ) );
-		$this->assertEquals( 20, $item->getStocklevel() );
+		$this->assertEquals( 20, $item->getStockLevel() );
 	}
 
 
@@ -178,7 +178,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		foreach( $items as $item )
 		{
-			$this->assertEquals( null, $item->getStocklevel() );
+			$this->assertEquals( null, $item->getStockLevel() );
 			$this->assertEquals( null, $item->getDateBack() );
 		}
 	}
