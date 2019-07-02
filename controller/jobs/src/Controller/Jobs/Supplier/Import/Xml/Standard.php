@@ -233,7 +233,7 @@ class Standard
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{
-			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
+			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, strftime( $backup ) );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 

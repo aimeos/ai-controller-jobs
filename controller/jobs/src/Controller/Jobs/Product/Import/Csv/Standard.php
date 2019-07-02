@@ -381,8 +381,10 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		if( !empty( $backup ) && @rename( $path, strftime( $backup ) ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Unable to move imported file' ) );
+		if( !empty( $backup ) && @rename( $path, strftime( $backup ) ) === false )
+		{
+			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, strftime( $backup ) );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 	}
 
