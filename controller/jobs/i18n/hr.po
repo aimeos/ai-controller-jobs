@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 15:36+0200\n"
-"PO-Revision-Date: 2019-04-02 13:42+0000\n"
+"POT-Creation-Date: 2019-07-02 10:32+0200\n"
+"PO-Revision-Date: 2019-07-02 08:32+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Croatian (http://www.transifex.com/aimeos/aimeos-core/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -187,6 +187,10 @@ msgid "Invalid message: %1$s"
 msgstr ""
 
 #, php-format
+msgid "Invalid order type \"%1$s\""
+msgstr ""
+
+#, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
 msgstr ""
 
@@ -220,6 +224,9 @@ msgid "Optimizes the index for searching products faster"
 msgstr ""
 
 msgid "Order export CSV"
+msgstr ""
+
+msgid "Order status import CSV"
 msgstr ""
 
 #, php-format
@@ -327,6 +334,10 @@ msgid "Started customer import from file \"%1$s\""
 msgstr ""
 
 #, php-format
+msgid "Started order status import from \"%1$s\" (%2$s)"
+msgstr ""
+
+#, php-format
 msgid "Started product import from \"%1$s\""
 msgstr ""
 
@@ -380,15 +391,18 @@ msgid "Unable to import coupon with code \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format
+msgid "Unable to import order with code \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format
-msgid "Unable to move imported file"
+msgid "Unable to move imported file \"%1$s\" to \"%2$s\""
 msgstr ""
 
-#, php-format
-msgid "Unable to move imported file \"%1$s\" to \"%2$s\""
+msgid "Updates order status from CSV files"
 msgstr ""
 
 #, php-format

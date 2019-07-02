@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 15:36+0200\n"
-"PO-Revision-Date: 2019-04-09 15:17+0000\n"
+"POT-Creation-Date: 2019-07-02 10:32+0200\n"
+"PO-Revision-Date: 2019-07-02 08:32+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -189,6 +189,10 @@ msgid "Invalid message: %1$s"
 msgstr "Ungültige Nachricht: %1$s"
 
 #, php-format
+msgid "Invalid order type \"%1$s\""
+msgstr "Ungültiger Bestelltyp \"%1$s\""
+
+#, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
 msgstr "Ungültige Produktzeilen in \"%1$s\": %2$d/%3$d"
 
@@ -223,6 +227,9 @@ msgstr "Optimiert den Produktindex für die Suche"
 
 msgid "Order export CSV"
 msgstr "Bestellexport CSV"
+
+msgid "Order status import CSV"
+msgstr "Bestellstatusimport CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
@@ -329,6 +336,10 @@ msgid "Started customer import from file \"%1$s\""
 msgstr "Kundenimport aus Datei \"%1$s\" gestartet"
 
 #, php-format
+msgid "Started order status import from \"%1$s\" (%2$s)"
+msgstr "Der Bestellstatusimport von \"%1$s\" (%2$s) wurde gestartet"
+
+#, php-format
 msgid "Started product import from \"%1$s\""
 msgstr "Produktimport aus \"%1$s\" gestartet"
 
@@ -382,16 +393,19 @@ msgid "Unable to import coupon with code \"%1$s\": %2$s"
 msgstr "Der Gutschein mit dem Code \"%1$s\" konnte nicht importiert werden: %2$s"
 
 #, php-format
+msgid "Unable to import order with code \"%1$s\": %2$s"
+msgstr "Die Bestellung mit dem Code \"%1$s\" konnte nicht importiert werden: %2$s"
+
+#, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
 msgstr "Das Produkt mit dem Code \"%1$s\" konnte nicht importiert werden: %2$s"
 
 #, php-format
-msgid "Unable to move imported file"
-msgstr "Die importierte Datei konnte nicht verschoben werden"
-
-#, php-format
 msgid "Unable to move imported file \"%1$s\" to \"%2$s\""
 msgstr "Datei \"%1$s\" konnte nicht nach \"%2$s\" verschoben werden"
+
+msgid "Updates order status from CSV files"
+msgstr "Aktualisiert den Bestellstatus aus CSV Dateien"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
