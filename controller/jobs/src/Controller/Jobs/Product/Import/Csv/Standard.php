@@ -397,7 +397,7 @@ class Standard
 	 */
 	protected function checkType( $type )
 	{
-		if( isset( $this->types ) )
+		if( !isset( $this->types ) )
 		{
 			$this->types = [];
 
@@ -577,9 +577,9 @@ class Standard
 
 				if( isset( $map[0] ) ) // there can only be one chunk for the base product data
 				{
-					$product = $product->fromArray( $map[0], true );
 					$type = $this->checkType( $this->getValue( $map[0], 'product.type', $product->getType() ) );
 
+					$product = $product->fromArray( $map[0], true );
 					$product = $manager->saveItem( $product->setType( $type ) );
 
 					$list = $processor->process( $product, $list );
