@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-02 10:32+0200\n"
-"PO-Revision-Date: 2019-07-02 08:32+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2019-07-13 09:29+0000\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,7 +188,7 @@ msgstr "Geçersiz mesaj: %1$s"
 
 #, php-format
 msgid "Invalid order type \"%1$s\""
-msgstr ""
+msgstr "Geçersiz sipariş türü \"%1$s\""
 
 #, php-format
 msgid "Invalid product lines in \"%1$s\": %2$d/%3$d"
@@ -218,16 +218,16 @@ msgid "No XML file \"%1$s\" found"
 msgstr "\"%1$s\" XML dosyası bulunamadı"
 
 msgid "Optimizes the catalog index for searching products"
-msgstr "Arama ürünleri için katalog dizinini optimize eder"
+msgstr "Ürün araması için katalog dizinini optimize eder"
 
 msgid "Optimizes the index for searching products faster"
-msgstr "Arama ürünlerini için dizinlemeyi daha hızlı optimize eder"
+msgstr "Daha hızlı ürün araması için dizini optimize eder"
 
 msgid "Order export CSV"
 msgstr "Sipariş dışa aktarma CSV"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Sipariş durumu dışa aktarma CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
@@ -255,10 +255,10 @@ msgid "Products bought together"
 msgstr "Beraber satın alınan ürünler"
 
 msgid "Rebuilds the catalog index for searching products"
-msgstr "Arama ürünleri için katalog dizinini yeniden oluşturur"
+msgstr "Ürün araması için katalog dizinini yeniden oluşturur"
 
 msgid "Rebuilds the index for searching products"
-msgstr "Arama ürünleri için dizini yeniden oluşturur"
+msgstr "Ürün araması için dizini yeniden oluşturur"
 
 msgid "Removes the expired entries from the cache"
 msgstr "Süresi dolan girişleri önbellekten kaldırır"
@@ -335,7 +335,7 @@ msgstr "\"%1$s\" dan müşteri içe aktarma başladı"
 
 #, php-format
 msgid "Started order status import from \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "\"%1$s\"dan sipariş durumu içeri aktarımı başladı (%2$s)"
 
 #, php-format
 msgid "Started product import from \"%1$s\""
@@ -392,7 +392,7 @@ msgstr "\"%1$s\" kodlu kupon içe aktarılamıyor: %2$s"
 
 #, php-format
 msgid "Unable to import order with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "\"%1$s\" kodlu sipariş içe aktarılamadı: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -403,7 +403,7 @@ msgid "Unable to move imported file \"%1$s\" to \"%2$s\""
 msgstr "İçe aktarılan \"%1$s\" dosyası \"%2$s\" ya taşınamadı"
 
 msgid "Updates order status from CSV files"
-msgstr ""
+msgstr "CSV dosyalarından sipariş durumunu günceller"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
