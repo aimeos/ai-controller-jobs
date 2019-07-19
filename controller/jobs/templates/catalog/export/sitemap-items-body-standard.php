@@ -11,6 +11,7 @@ $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listCntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
+$listConfig['absoluteUri'] = true;
 
 $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
 
@@ -18,7 +19,7 @@ $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
 <?php foreach( $this->get( 'siteItems', [] ) as $id => $item ) : ?>
 <?php
 		$date = str_replace( ' ', 'T', $item->getTimeModified() ) . date( 'P' );
-		$params = array( 'f_name' => $item->getName( 'url' ), 'f_catid' => $id );
+		$params = ['f_name' => $item->getName( 'url' ), 'f_catid' => $id];
 		$url = $this->url( $item->getTarget() ?: $listTarget, $listCntl, $listAction, $params, [], $listConfig );
 ?>
 	<url><loc><?php echo $enc->xml( $url ); ?></loc><lastmod><?php echo $date; ?></lastmod><changefreq><?php echo $freq; ?></changefreq></url>
