@@ -152,7 +152,8 @@ class Standard
 						}
 
 						$interval = new \DateInterval( $item->getInterval() );
-						$item->setDateNext( date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' ) );
+						$date = date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' );
+						$item = $item->setDateNext( $date )->setPeriod( 1 );
 					}
 					elseif( $item->getTimeCreated() < $date )
 					{
