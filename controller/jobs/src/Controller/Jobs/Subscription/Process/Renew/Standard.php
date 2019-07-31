@@ -96,7 +96,8 @@ class Standard
 						$this->createPayment( $context, $newOrder, $newInvoice );
 
 						$interval = new \DateInterval( $item->getInterval() );
-						$item->setDateNext( date_create()->add( $interval )->format( 'Y-m-d' ) );
+						$item = $item->setPeriod( $item->getPeriod() + 1 )
+							->setDateNext( date_create()->add( $interval )->format( 'Y-m-d' ) );
 					}
 					catch( \Exception $e )
 					{
