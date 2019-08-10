@@ -149,13 +149,14 @@ class Standard
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
 		$search = $manager->createSearch()->setSlice( 0, 10000 );
-		$expr = [];
 
-		foreach( $this->getListTypes( $domain ) as $type ) {
-			$expr[] = $search->compare( '==', 'catalog.lists.key', $domain . '|' . $type . '|' . $id );
-		}
+		$expr = [
+			$search->compare( '==', 'catalog.lists.domain', $domain ),
+			$search->compare( '==', 'catalog.lists.type', $this->getListTypes( $domain ) ),
+			$search->compare( '==', 'catalog.lists.refid', $id ),
+		];
 
-		return $manager->searchItems( $search->setConditions( $search->combine( '||', $expr ) ) );
+		return $manager->searchItems( $search->setConditions( $search->combine( '&&', $expr ) ) );
 	}
 
 
