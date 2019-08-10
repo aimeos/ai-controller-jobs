@@ -34,6 +34,7 @@ class Standard
 
 	private $listTypes;
 	private $types = [];
+	private $mimes = [];
 
 
 	/**
@@ -47,6 +48,8 @@ class Standard
 			\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object = null )
 	{
 		parent::__construct( $context, $mapping, $object );
+
+		$this->mimes = array_flip( $context->getConfig()->get( 'controller/common/media/standard/extensions', [] ) );
 
 		/** controller/common/product/import/csv/processor/media/listtypes
 		 * Names of the product list types for media that are updated or removed
@@ -134,7 +137,11 @@ class Standard
 			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
 
-			foreach( $urls as $url )
+			if( ( $previews = $this->getValue( $list, 'media.previews' ) ) != null ) {
+				$previews = explode( $separator, $previews );
+			}
+
+			foreach( $urls as $idx => $url )
 			{
 				$url = trim( $url );
 
@@ -150,8 +157,21 @@ class Standard
 					$refItem = $manager->createItem()->setType( $type );
 				}
 
+				$ext = pathinfo( $url, PATHINFO_EXTENSION );
+				if( isset( $this->mimes[$ext] ) ) {
+					$refItem->setMimeType( $this->mimes[$ext] );
+				}
+
+				if( is_array( $previews ) && isset( $previews[$idx] )
+					&& ( $map = json_decode( $previews[$idx], true ) ) !== null
+				) {
+					$list['media.previews'] = $map;
+				} else {
+					$refItem->setPreview( $url );
+				}
+
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
-				$refItem = $refItem->setLabel( $url )->setPreview( $url )->fromArray( $list )->setUrl( $url );
+				$refItem = $refItem->setLabel( $url )->fromArray( $list )->setUrl( $url );
 
 				$product->addListItem( 'media', $listItem, $refItem );
 			}

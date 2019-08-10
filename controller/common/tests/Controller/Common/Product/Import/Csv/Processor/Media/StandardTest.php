@@ -82,10 +82,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mapping = array(
 			0 => 'media.url',
+			1 => 'media.previews',
 		);
 
 		$data = array(
 			0 => "path/to/0\npath/to/1\npath/to/2\npath/to/3",
+			1 => "{\"1\":\"path/to/0\",\"500\":\"path/to/b0\"}\n{\"10\":\"path/to/1\",\"510\":\"path/to/b1\"}\n{\"20\":\"path/to/2\",\"520\":\"path/to/b2\"}\n{\"30\":\"path/to/3\",\"530\":\"path/to/b3\"}",
 		);
 
 		$product = $this->create( 'job_csv_test' );
@@ -96,13 +98,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$pos = 0;
 		$listItems = $product->getListItems();
-		$expected = array( 'path/to/0', 'path/to/1', 'path/to/2', 'path/to/3' );
+		$expected = ['path/to/0', 'path/to/1', 'path/to/2', 'path/to/3'];
+		$previews = [
+			['1' => 'path/to/0', '500' => 'path/to/b0'],
+			['10' => 'path/to/1', '510' => 'path/to/b1'],
+			['20' => 'path/to/2', '520' => 'path/to/b2'],
+			['30' => 'path/to/3', '530' => 'path/to/b3'],
+		];
 
 		$this->assertEquals( 4, count( $listItems ) );
 
 		foreach( $listItems as $listItem )
 		{
 			$this->assertEquals( $expected[$pos], $listItem->getRefItem()->getUrl() );
+			$this->assertEquals( $previews[$pos], $listItem->getRefItem()->getPreviews() );
 			$pos++;
 		}
 	}
@@ -156,7 +165,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		);
 
 		$dataUpdate = array(
-			0 => 'path/to/new',
+			0 => 'path/to/new.jpg',
 			1 => '',
 		);
 
@@ -173,7 +182,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $listItems ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
 
-		$this->assertEquals( 'path/to/new', $listItem->getRefItem()->getUrl() );
+		$this->assertEquals( 'path/to/new.jpg', $listItem->getRefItem()->getUrl() );
+		$this->assertEquals( 'image/jpeg', $listItem->getRefItem()->getMimeType() );
 		$this->assertEquals( null, $listItem->getRefItem()->getLanguageId() );
 	}
 
