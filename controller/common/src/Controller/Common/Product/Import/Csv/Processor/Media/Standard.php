@@ -136,10 +136,8 @@ class Standard
 			$type = $this->getValue( $list, 'media.type', 'default' );
 			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
-
-			if( ( $previews = $this->getValue( $list, 'media.previews' ) ) != null ) {
-				$previews = explode( $separator, $previews );
-			}
+			$preview = explode( $separator, $this->getValue( $list, 'media.preview', '' ) );
+			$previews = explode( $separator, $this->getValue( $list, 'media.previews', '' ) );
 
 			foreach( $urls as $idx => $url )
 			{
@@ -162,10 +160,10 @@ class Standard
 					$refItem->setMimeType( $this->mimes[$ext] );
 				}
 
-				if( is_array( $previews ) && isset( $previews[$idx] )
-					&& ( $map = json_decode( $previews[$idx], true ) ) !== null
-				) {
+				if( isset( $previews[$idx] ) && ( $map = json_decode( $previews[$idx], true ) ) !== null ) {
 					$list['media.previews'] = $map;
+				} elseif( isset( $preview[$idx] ) ) {
+					$refItem->setPreview( $preview[$idx] );
 				} else {
 					$refItem->setPreview( $url );
 				}

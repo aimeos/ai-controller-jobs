@@ -82,12 +82,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mapping = array(
 			0 => 'media.url',
-			1 => 'media.previews',
+			1 => 'media.preview',
+			2 => 'media.previews',
 		);
 
 		$data = array(
-			0 => "path/to/0\npath/to/1\npath/to/2\npath/to/3",
-			1 => "{\"1\":\"path/to/0\",\"500\":\"path/to/b0\"}\n{\"10\":\"path/to/1\",\"510\":\"path/to/b1\"}\n{\"20\":\"path/to/2\",\"520\":\"path/to/b2\"}\n{\"30\":\"path/to/3\",\"530\":\"path/to/b3\"}",
+			0 => "path/to/b0\npath/to/b1\npath/to/b2\npath/to/b3",
+			1 => "path/to/0\npath/to/1\npath/to/2\npath/to/3",
+			2 => "{\"1\":\"path/to/0\",\"500\":\"path/to/b0\"}\n{\"10\":\"path/to/1\",\"510\":\"path/to/b1\"}\n{\"20\":\"path/to/2\",\"520\":\"path/to/b2\"}\n{\"30\":\"path/to/3\",\"530\":\"path/to/b3\"}",
 		);
 
 		$product = $this->create( 'job_csv_test' );
@@ -98,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$pos = 0;
 		$listItems = $product->getListItems();
-		$expected = ['path/to/0', 'path/to/1', 'path/to/2', 'path/to/3'];
+		$expected = ['path/to/b0', 'path/to/b1', 'path/to/b2', 'path/to/b3'];
 		$previews = [
 			['1' => 'path/to/0', '500' => 'path/to/b0'],
 			['10' => 'path/to/1', '510' => 'path/to/b1'],
