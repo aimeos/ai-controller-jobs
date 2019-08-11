@@ -315,7 +315,7 @@ class Standard
 		do
 		{
 			$count = 0;
-			$codes = $data = $items = $types = [];
+			$codes = $data = $types = [];
 
 			while( $content->valid() && $count < $maxcnt )
 			{
