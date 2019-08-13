@@ -119,6 +119,7 @@ class Standard
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$listItems = $product->getListItems( 'media', $this->listTypes );
+		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 
 		foreach( $listItems as $listItem )
 		{
@@ -138,6 +139,8 @@ class Standard
 			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
 			$preview = explode( $separator, $this->getValue( $list, 'media.preview', '' ) );
 			$previews = explode( $separator, $this->getValue( $list, 'media.previews', '' ) );
+
+			unset( $list['media.preview'], $list['media.previews'], $list['media.url'] );
 
 			foreach( $urls as $idx => $url )
 			{
@@ -160,16 +163,16 @@ class Standard
 					$refItem->setMimeType( $this->mimes[$ext] );
 				}
 
-				if( isset( $previews[$idx] ) && ( $map = json_decode( $previews[$idx], true ) ) !== null ) {
-					$list['media.previews'] = $map;
-				} elseif( isset( $preview[$idx] ) ) {
-					$refItem->setPreview( $preview[$idx] );
-				} else {
-					$refItem->setPreview( $url );
-				}
-
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
 				$refItem = $refItem->setLabel( $url )->fromArray( $list )->setUrl( $url );
+
+				if( isset( $previews[$idx] ) && ( $map = json_decode( $previews[$idx], true ) ) !== null ) {
+					$refItem->setPreviews( $map );
+				} elseif( isset( $preview[$idx] ) ) {
+					$refItem->setPreview( $preview[$idx] );
+				} elseif( $refItem->isModified() ) {
+					$refItem = $cntl->scale( $refItem );
+				}
 
 				$product->addListItem( 'media', $listItem, $refItem );
 			}
