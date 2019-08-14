@@ -48,6 +48,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 
+		$fsmStub = $this->getMockBuilder( '\\Aimeos\\MW\\FileSystem\\Manager\\Standard' )
+			->disableOriginalConstructor()
+			->setMethods( ['get'] )
+			->getMock();
+
+		$fsStub = $this->getMockBuilder( '\\Aimeos\\MW\\FileSystem\\Standard' )
+			->disableOriginalConstructor()
+			->setMethods( ['time'] )
+			->getMock();
+
+		$fsmStub->expects( $this->once() )->method( 'get' )->will( $this->returnValue( $fsStub ) );
+		$fsStub->expects( $this->atLeast( 1 ) )->method( 'time' )->will( $this->returnValue( 0 ) );
+		$context->setFileSystemManager( $fsmStub );
+
 		$name = 'ControllerJobsMediaScaleStandardRun';
 		$context->getConfig()->set( 'mshop/media/manager/name', $name );
 		$context->getConfig()->set( 'controller/common/media/name', $name );
