@@ -96,9 +96,9 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 
-		$force = $context->getConfig()->get( 'controller/jobs/media/scale/standard/force', true );
 		$fs = $context->getFileSystemManager()->get( 'fs-media' );
-		$is = ( $fs instanceof MetaIface ? true : false );
+		$is = ( $fs instanceof \Aimeos\MW\Filesystem\MetaIface ? true : false );
+		$force = $context->getConfig()->get( 'controller/jobs/media/scale/standard/force', true );
 
 		foreach( $items as $item )
 		{
