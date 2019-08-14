@@ -88,7 +88,7 @@ class Standard
 	/**
 	 * Recreates the preview images for the given media items
 	 *
-	 * @param \Aimeos\MShop\Media\Item\Iface[] List of media items
+	 * @param \Aimeos\MShop\Media\Item\Iface[] $items List of media items
 	 */
 	protected function rescale( array $items )
 	{
@@ -96,11 +96,17 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 
+		$force = $context->getConfig()->get( 'controller/jobs/media/scale/standard/force', true );
+		$fs = $context->getFileSystemManager()->get( 'fs-media' );
+		$is = ( $fs instanceof MetaIface ? true : false );
+
 		foreach( $items as $item )
 		{
 			try
 			{
-				$manager->saveItem( $cntl->scale( $item ) );
+				if( $is && date( 'Y-m-d H:i:s', $fs->time( $item->getUrl() ) ) > $item->getTimeModified() || $force ) {
+					$manager->saveItem( $cntl->scale( $item ) );
+				}
 			}
 			catch( \Exception $e )
 			{
