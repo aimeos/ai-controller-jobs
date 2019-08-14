@@ -51,7 +51,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->getContext();
-		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
+		$process = $context->getProcess();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
 		$search = $manager->createSearch();
@@ -64,28 +64,49 @@ class Standard
 
 		$start = 0;
 
+		$fcn = function( array $items ) {
+			$this->rescale( $items );
+		};
+
 		do
 		{
 			$search->setSlice( $start );
 			$items = $manager->searchItems( $search );
 
-			foreach( $items as $item )
-			{
-				try
-				{
-					$cntl->scale( $item, 'fs-media' );
-					$manager->saveItem( $item );
-				}
-				catch( \Exception $e )
-				{
-					$msg = sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() );
-					$context->getLogger()->log( $msg );
-				}
-			}
+			$context->__sleep();
+			$process->start( $fcn, [$items] );
 
 			$count = count( $items );
 			$start += $count;
 		}
 		while( $count === $search->getSliceSize() );
+
+		$process->wait();
+	}
+
+
+	/**
+	 * Recreates the preview images for the given media items
+	 *
+	 * @param \Aimeos\MShop\Media\Item\Iface[] List of media items
+	 */
+	protected function rescale( array $items )
+	{
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop::create( $context, 'media' );
+		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
+
+		foreach( $items as $item )
+		{
+			try
+			{
+				$manager->saveItem( $cntl->scale( $item ) );
+			}
+			catch( \Exception $e )
+			{
+				$msg = sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() );
+				$context->getLogger()->log( $msg );
+			}
+		}
 	}
 }

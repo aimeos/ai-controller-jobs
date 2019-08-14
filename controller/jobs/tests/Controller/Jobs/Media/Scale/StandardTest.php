@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\Controller\Common\Media\Factory::inject( '\\Aimeos\\Controller\\Common\\Media\\' . $name, $cntlStub );
 
-		$cntlStub->expects( $this->atLeast( 1 ) )->method( 'scale' );
+		$cntlStub->expects( $this->atLeast( 1 ) )->method( 'scale' )->will( $this->returnArgument( 0 ) );
 
 
 		$object = new \Aimeos\Controller\Jobs\Media\Scale\Standard( $context, $aimeos );
