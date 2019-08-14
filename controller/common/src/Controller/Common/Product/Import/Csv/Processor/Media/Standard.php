@@ -166,12 +166,19 @@ class Standard
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
 				$refItem = $refItem->setLabel( $url )->fromArray( $list )->setUrl( $url );
 
-				if( isset( $previews[$idx] ) && ( $map = json_decode( $previews[$idx], true ) ) !== null ) {
-					$refItem->setPreviews( $map );
-				} elseif( isset( $preview[$idx] ) ) {
-					$refItem->setPreview( $preview[$idx] );
-				} elseif( $refItem->isModified() ) {
-					$refItem = $cntl->scale( $refItem );
+				try
+				{
+					if( isset( $previews[$idx] ) && ( $map = json_decode( $previews[$idx], true ) ) !== null ) {
+						$refItem->setPreviews( $map );
+					} elseif( isset( $preview[$idx] ) ) {
+						$refItem->setPreview( $preview[$idx] );
+					} elseif( $refItem->isModified() ) {
+						$refItem = $cntl->scale( $refItem );
+					}
+				}
+				catch( \Aimeos\MW\Media\Exception $e )
+				{
+					$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() ) );
 				}
 
 				$product->addListItem( 'media', $listItem, $refItem );
