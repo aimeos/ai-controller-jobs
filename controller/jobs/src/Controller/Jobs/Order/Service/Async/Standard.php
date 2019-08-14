@@ -59,7 +59,7 @@ class Standard
 
 		do
 		{
-			$serviceItems = $serviceManager->searchItems( $search );
+			$serviceItems = $serviceManager->searchItems( $search->setSlice( $start ) );
 
 			foreach( $serviceItems as $serviceItem )
 			{
@@ -76,7 +76,6 @@ class Standard
 
 			$count = count( $serviceItems );
 			$start += $count;
-			$search->setSlice( $start );
 		}
 		while( $count >= $search->getSliceSize() );
 	}

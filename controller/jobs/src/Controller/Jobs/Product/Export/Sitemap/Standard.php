@@ -402,13 +402,13 @@ class Standard
 		do
 		{
 			$items = $manager->searchItems( $search, $domains );
-			$free = $maxItems * $filenum - $start;
+			$remaining = $maxItems * $filenum - $start;
 			$count = count( $items );
 
-			if( $free < $count )
+			if( $remaining < $count )
 			{
-				$this->addItems( $content, array_slice( $items, 0, $free, true ) );
-				$items = array_slice( $items, $free, null, true );
+				$this->addItems( $content, array_slice( $items, 0, $remaining, true ) );
+				$items = array_slice( $items, $remaining, null, true );
 
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );

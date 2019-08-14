@@ -57,7 +57,6 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
-		$mappings = $this->getDefaultMapping();
 
 
 		if( file_exists( $config->get( 'controller/jobs/product/import/csv/location' ) ) === false ) {
@@ -126,7 +125,7 @@ class Standard
 		 * @see controller/common/product/import/csv/converter
 		 * @see controller/common/product/import/csv/max-size
 		 */
-		$mappings = $config->get( 'controller/common/product/import/csv/mapping', $mappings );
+		$mappings = $config->get( 'controller/common/product/import/csv/mapping', $this->getDefaultMapping() );
 
 		/** controller/jobs/product/import/csv/mapping
 		 * List of mappings between the position in the CSV file and item keys
@@ -318,16 +317,8 @@ class Standard
 
 		try
 		{
-			$types = [];
 			$procMappings = $mappings;
 			unset( $procMappings['item'] );
-
-			$manager = \Aimeos\MShop::create( $context, 'product/type' );
-			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
-
-			foreach( $manager->searchItems( $search ) as $item ) {
-				$types[$item->getCode()] = $item->getCode();
-			}
 
 			$codePos = $this->getCodePosition( $mappings['item'] );
 			$convlist = $this->getConverterList( $converters );
@@ -350,7 +341,7 @@ class Standard
 				{
 					$data = $this->convertData( $convlist, $data );
 					$products = $this->getProducts( array_keys( $data ), $domains );
-					$errcnt = $this->import( $products, $data, $mappings['item'], $types, $processor, $strict );
+					$errcnt = $this->import( $products, $data, $mappings['item'], [], $processor, $strict );
 					$chunkcnt = count( $data );
 
 					$msg = 'Imported product lines from "%1$s": %2$d/%3$d (%4$s)';
