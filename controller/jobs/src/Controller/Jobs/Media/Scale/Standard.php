@@ -64,8 +64,8 @@ class Standard
 
 		$start = 0;
 
-		$fcn = function( array $items ) {
-			$this->rescale( $items );
+		$fcn = function( \Aimeos\MShop\Context\Item\Iface $context, array $items ) {
+			$this->rescale( $context, $items );
 		};
 
 		do
@@ -73,8 +73,7 @@ class Standard
 			$search->setSlice( $start );
 			$items = $manager->searchItems( $search );
 
-			$context->__sleep();
-			$process->start( $fcn, [$items] );
+			$process->start( $fcn, [$context, $items] );
 
 			$count = count( $items );
 			$start += $count;
@@ -88,11 +87,11 @@ class Standard
 	/**
 	 * Recreates the preview images for the given media items
 	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param \Aimeos\MShop\Media\Item\Iface[] $items List of media items
 	 */
-	protected function rescale( array $items )
+	protected function rescale( \Aimeos\MShop\Context\Item\Iface $context, array $items )
 	{
-		$context = $this->getContext();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 
