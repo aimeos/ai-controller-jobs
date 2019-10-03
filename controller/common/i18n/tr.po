@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-02 10:16+0200\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
 "PO-Revision-Date: 2016-01-22 14:13+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
@@ -53,6 +53,10 @@ msgstr "\"%1$s\" için hiçbir izin verilen görüntü türü yapılandırılmad
 #, php-format
 msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
 msgstr "\"%3$s\" içinde \"%1$s/%2$s\" için tür öğesi bulunamadı"
+
+#, php-format
+msgid "Scaling image \"%1$s\" failed: %2$s"
+msgstr ""
 
 #, php-format
 msgid "Unable to create directory \"%1$s\""
