@@ -97,6 +97,20 @@ class Standard
 
 		$fs = $context->getFileSystemManager()->get( 'fs-media' );
 		$is = ( $fs instanceof \Aimeos\MW\Filesystem\MetaIface ? true : false );
+
+		/** controller/jobs/media/scale/standard/force
+		 * Enforce rescaling all images
+		 *
+		 * By default, all images are rescaled when executing the job controller.
+		 * You can limit scaling to new images only (if mtime of the file is newer
+		 * than the mtime of the media record) by setting this configuration option
+		 * to false or 0
+		 *
+		 * @param bool True to rescale all images, false for new ones only
+		 * @category Developer
+		 * @category User
+		 * @since 2019.10
+		 */
 		$force = $context->getConfig()->get( 'controller/jobs/media/scale/standard/force', true );
 
 		foreach( $items as $item )
