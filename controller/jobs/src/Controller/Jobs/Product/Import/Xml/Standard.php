@@ -279,8 +279,6 @@ class Standard
 			} else {
 				$item = $this->process( $manager->createItem(), $node );
 			}
-
-			$manager->saveItem( $item );
 		}
 	}
 
@@ -294,7 +292,7 @@ class Standard
 	 */
 	protected function process( \Aimeos\MShop\Product\Item\Iface $item, \DomElement $node )
 	{
-		$list = [];
+		$list = $subnodes = [];
 
 		foreach( $node->attributes as $attr ) {
 			$list[$attr->nodeName] = $attr->nodeValue;
@@ -302,13 +300,21 @@ class Standard
 
 		foreach( $node->childNodes as $tag )
 		{
-			if( in_array( $tag->nodeName, ['lists', 'property', 'catalog'] ) ) {
+			if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
 				$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
+			} elseif( in_array( $tag->nodeName, ['catalog'] ) ) {
+				$subnodes[$tag->nodeName] = $tag;
 			} else {
 				$list[$tag->nodeName] = $tag->nodeValue;
 			}
 		}
 
-		return $item->fromArray( $list, true );
+		$item = \Aimeos\MShop::create( $this->getContext(), 'product' )->saveItem( $item->fromArray( $list, true ) );
+
+		foreach( $subnodes as $name => $subnode ) {
+			$item = $this->getProcessor( $name )->process( $item, $subnode );
+		}
+
+		return $item;
 	}
 }
