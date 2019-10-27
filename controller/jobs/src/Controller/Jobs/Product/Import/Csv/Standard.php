@@ -596,7 +596,7 @@ class Standard
 			}
 		}
 
-		$indexManager->rebuildIndex( $items );
+		$indexManager->rebuild( $items );
 
 		return $errors;
 	}

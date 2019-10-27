@@ -59,7 +59,7 @@ class Standard
 
 		$manager = \Aimeos\MShop\Index\Manager\Factory::create( $context );
 
-		$manager->rebuildIndex();
-		$manager->cleanupIndex( $timestamp );
+		$manager->rebuild();
+		$manager->cleanup( $timestamp );
 	}
 }

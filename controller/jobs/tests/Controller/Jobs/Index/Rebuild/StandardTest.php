@@ -54,15 +54,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$indexManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Index\\Manager\\Standard' )
-			->setMethods( array( 'rebuildIndex', 'cleanupIndex' ) )
+			->setMethods( array( 'rebuild', 'cleanup' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		\Aimeos\MShop\Catalog\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Index\\Manager\\' . $name, $indexManagerStub );
 
 
-		$indexManagerStub->expects( $this->once() )->method( 'rebuildIndex' );
-		$indexManagerStub->expects( $this->once() )->method( 'cleanupIndex' );
+		$indexManagerStub->expects( $this->once() )->method( 'rebuild' );
+		$indexManagerStub->expects( $this->once() )->method( 'cleanup' );
 
 
 		$object = new \Aimeos\Controller\Jobs\Index\Rebuild\Standard( $context, $aimeos );
