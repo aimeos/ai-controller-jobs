@@ -55,18 +55,6 @@ class Base
 
 
 	/**
-	 * Processes the subscription renewal
-	 *
-	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $order Order invoice item
-	 * @deprecated 2020.01 Use renewAfter() instead
-	 */
-	public function renew( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
-	{
-	}
-
-
-	/**
 	 * Executed before the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
@@ -84,7 +72,6 @@ class Base
 	 */
 	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
 	{
-		$this->renew( $subscription, $order );
 	}
 
 
