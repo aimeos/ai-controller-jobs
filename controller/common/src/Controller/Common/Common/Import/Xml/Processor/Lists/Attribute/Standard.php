@@ -61,12 +61,18 @@ class Standard
 				continue;
 			}
 
-			if( ( $attr = $attributes->getNamedItem( 'ref' ) ) === null || !isset( $map[$attr->nodeValue] ) ) {
+			if( ( $attr = $attributes->getNamedItem( 'ref' ) ) === null ) {
+				continue;
+			}
+
+			$key = md5( $attr->nodeValue );
+
+			if( !isset( $map[$key] ) ) {
 				continue;
 			}
 
 			$list = [];
-			$refId = $map[$attr->nodeValue]->getId();
+			$refId = $map[$key]->getId();
 			$type = ( $attr = $attributes->getNamedItem( 'lists.type' ) ) !== null ? $attr->nodeValue : 'default';
 
 			if( ( $listItem = $item->getListItem( 'attribute', $type, $refId ) ) === null ) {
@@ -105,7 +111,7 @@ class Standard
 		foreach( $nodes as $node )
 		{
 			if( $node->nodeName === 'attributeitem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$keys[$attr->nodeValue] = null;
+				$keys[md5( $attr->nodeValue )] = null;
 			}
 		}
 
