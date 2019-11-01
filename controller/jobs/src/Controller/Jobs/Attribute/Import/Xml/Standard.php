@@ -138,7 +138,7 @@ class Standard
 		foreach( $nodes as $node )
 		{
 			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$keys[] = $attr->nodeValue;
+				$keys[] = md5( $attr->nodeValue );
 			}
 		}
 
@@ -289,8 +289,8 @@ class Standard
 
 		foreach( $nodes as $node )
 		{
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[$attr->nodeValue] ) ) {
-				$item = $this->process( $map[$attr->nodeValue], $node );
+			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[md5( $attr->nodeValue )] ) ) {
+				$item = $this->process( $map[md5( $attr->nodeValue )], $node );
 			} else {
 				$item = $this->process( $manager->createItem(), $node );
 			}
