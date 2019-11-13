@@ -17,7 +17,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$obj = \Aimeos\Controller\Jobs\Catalog\Import\Csv\Factory::create( $context, $aimeos );
-		$this->assertInstanceOf( '\\Aimeos\\Controller\\Jobs\\Iface', $obj);
+		$this->assertInstanceOf( '\\Aimeos\\Controller\\Jobs\\Iface', $obj );
 	}
 
 

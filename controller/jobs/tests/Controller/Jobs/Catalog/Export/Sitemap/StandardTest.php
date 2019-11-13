@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', '' );
 
-		$this->setExpectedException('\\Aimeos\\Controller\\Jobs\\Exception');
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 
 		$this->object->run();
 	}
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', null );
 
-		$this->setExpectedException('\\Aimeos\\Controller\\Jobs\\Exception');
+		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 
 		$this->object->run();
 	}

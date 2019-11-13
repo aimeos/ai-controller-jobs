@@ -64,13 +64,13 @@ class Factory
 		 * @since 2015.01
 		 * @category Developer
 		 */
-		if ( $name === null ) {
-			$name = $context->getConfig()->get('controller/jobs/product/export/sitemap/name', 'Standard');
+		if( $name === null ) {
+			$name = $context->getConfig()->get( 'controller/jobs/product/export/sitemap/name', 'Standard' );
 		}
 
-		if ( ctype_alnum($name) === false )
+		if( ctype_alnum( $name ) === false )
 		{
-			$classname = is_string($name) ? '\\Aimeos\\Controller\\Jobs\\Product\\Export\\Sitemap\\' . $name : '<not a string>';
+			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Jobs\\Product\\Export\\Sitemap\\' . $name : '<not a string>';
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 
