@@ -37,19 +37,19 @@ abstract class Base
 	/**
 	 * Stores all types for which no type items exist yet
 	 */
-    public function __destruct()
-    {
-        foreach( $this->types as $path => $list )
-        {
+	public function __destruct()
+	{
+		foreach( $this->types as $path => $list )
+		{
 			$manager = \Aimeos\MShop::create( $this->context, $path );
 			$prefix = str_replace( '/', '.', $path );
 
 			foreach( $list as $domain => $codes )
-            {
-                $manager->begin();
+			{
+				$manager->begin();
 
-                try
-                {
+				try
+				{
 					$search = $manager->createSearch()->setSlice( 0, 10000 );
 					$expr = [
 						$search->compare( '==', $prefix . '.domain', $domain ),
@@ -68,29 +68,29 @@ abstract class Base
 					}
 
 					$manager->saveItems( $items, false );
-                    $manager->commit();
-                }
-                catch( \Exception $e )
-                {
-                    $manager->rollback();
-                    $this->context->getLogger()->log( 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-                }
-            }
-        }
-    }
+					$manager->commit();
+				}
+				catch( \Exception $e )
+				{
+					$manager->rollback();
+					$this->context->getLogger()->log( 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+				}
+			}
+		}
+	}
 
 
-    /**
-     * Registers a used type which is going to be saved if it doesn't exist yet
-     *
-     * @param string $path Manager path, e.g. "product/lists/type"
-     * @param string $domain Domain name the type belongs to, e.g. "attribute"
-     * @param string $code Type code
-     */
-    protected function addType( string $path, string $domain, string $code )
-    {
-        $this->types[$path][$domain][$code] = $code;
-    }
+	/**
+	 * Registers a used type which is going to be saved if it doesn't exist yet
+	 *
+	 * @param string $path Manager path, e.g. "product/lists/type"
+	 * @param string $domain Domain name the type belongs to, e.g. "attribute"
+	 * @param string $code Type code
+	 */
+	protected function addType( string $path, string $domain, string $code )
+	{
+		$this->types[$path][$domain][$code] = $code;
+	}
 
 
 	/**
