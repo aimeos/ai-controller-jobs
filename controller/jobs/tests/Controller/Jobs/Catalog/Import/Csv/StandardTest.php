@@ -98,7 +98,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunPosition()
 	{
 		$config = $this->context->getConfig();
-		$mapping = $config->set( 'controller/jobs/catalog/import/csv/mapping', [] );
+		$mapping = $config->get( 'controller/jobs/catalog/import/csv/mapping', [] );
 		$mapping['item'] = array( 0 => 'catalog.label', 1 => 'catalog.code', 2 => 'catalog.parent' );
 
 		$config->set( 'controller/jobs/catalog/import/csv/mapping', $mapping );

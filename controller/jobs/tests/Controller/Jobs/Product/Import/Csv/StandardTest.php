@@ -111,7 +111,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$delete = array( 'media', 'price', 'text' );
 
 		$config = $this->context->getConfig();
-		$mapping = $config->set( 'controller/jobs/product/import/csv/mapping', [] );
+		$mapping = $config->get( 'controller/jobs/product/import/csv/mapping', [] );
 		$mapping['item'] = array( 0 => 'product.label', 1 => 'product.code' );
 
 		$config->set( 'controller/jobs/product/import/csv/mapping', $mapping );
