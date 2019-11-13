@@ -142,6 +142,9 @@ class Standard
 
 			unset( $list['media.preview'], $list['media.previews'], $list['media.url'] );
 
+			$this->addType( 'product/lists/type', 'media', $listtype );
+			$this->addType( 'media/type', 'product', $type );
+
 			foreach( $urls as $idx => $url )
 			{
 				$url = trim( $url );

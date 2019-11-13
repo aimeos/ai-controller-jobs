@@ -133,6 +133,9 @@ class Standard
 			$language = $this->getValue( $list, 'text.languageid', '' );
 			$content = $this->getValue( $list, 'text.content', '' );
 
+			$this->addType( 'product/lists/type', 'text', $listtype );
+			$this->addType( 'text/type', 'product', $type );
+
 			if( isset( $listMap[$content][$language][$type][$listtype] ) )
 			{
 				$listItem = $listMap[$content][$language][$type][$listtype];

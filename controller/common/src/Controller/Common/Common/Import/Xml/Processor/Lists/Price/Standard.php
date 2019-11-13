@@ -90,8 +90,9 @@ class Standard
 			$name = $resource . '.lists.type';
 			$list[$name] = ( isset( $list[$name] ) ? $list[$name] : 'default' );
 
-			$listItem = $listItem->fromArray( $list );
+			$this->addType( $resource . '/lists/type', 'price', $list[$resource . '.lists.type'] );
 
+			$listItem = $listItem->fromArray( $list );
 			$item->addListItem( 'price', $listItem, $refItem );
 		}
 

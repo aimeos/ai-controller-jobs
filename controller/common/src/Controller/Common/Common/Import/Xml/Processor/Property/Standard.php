@@ -44,7 +44,8 @@ class Standard
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\PropertyRef\Iface::class, $item );
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), $item->getResourceType() . '/property' );
+		$resource = $item->getResourceType();
+		$manager = \Aimeos\MShop::create( $this->getContext(), $resource . '/property' );
 		$propItems = $item->getPropertyItems( null, false );
 		$map = [];
 
@@ -71,6 +72,8 @@ class Standard
 			} else {
 				$item->addPropertyItem( $propItem );
 			}
+
+			$this->addType( $resource . '/property/type', 'product', $propItem->getType() );
 		}
 
 		return $item->deletePropertyItems( $propItems );

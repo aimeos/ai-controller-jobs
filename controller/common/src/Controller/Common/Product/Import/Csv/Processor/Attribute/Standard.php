@@ -139,6 +139,7 @@ class Standard
 			{
 				$code = trim( $code );
 				$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
+				$this->addType( 'product/lists/type', 'attribute', $listtype );
 
 				if( isset( $listMap[$code][$listtype] ) )
 				{

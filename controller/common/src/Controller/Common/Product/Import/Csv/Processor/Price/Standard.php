@@ -131,6 +131,9 @@ class Standard
 			$type = $this->getValue( $list, 'price.type', 'default' );
 			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 
+			$this->addType( 'product/lists/type', 'price', $listtype );
+			$this->addType( 'price/type', 'product', $type );
+
 			if( isset( $listMap[$type][$listtype] ) && !empty( $listMap[$type][$listtype] ) ) {
 				$listItem = array_shift( $listMap[$type][$listtype] );
 			} else {

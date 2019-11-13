@@ -86,8 +86,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		);
 
 		$dataUpdate = array(
-			0 => 'package-height',
-			1 => '10',
+			0 => 'package-size',
+			1 => 'S',
 		);
 
 		$product = $this->create( 'job_csv_test' );
@@ -97,14 +97,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->process( $product, $dataUpdate );
 
 
+		unset( $object ); // test if new type is created
+		$manager = \Aimeos\MShop::create( $this->context, 'product/property/type' );
+		$manager->deleteItem( $manager->findItem( 'package-size' )->getId() );
+
 		$items = $product->getPropertyItems();
 		$item = reset( $items );
 
 		$this->assertEquals( 1, count( $items ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Property\\Iface', $item );
 
-		$this->assertEquals( 'package-height', $item->getType() );
-		$this->assertEquals( '10', $item->getValue() );
+		$this->assertEquals( 'package-size', $item->getType() );
+		$this->assertEquals( 'S', $item->getValue() );
 	}
 
 
