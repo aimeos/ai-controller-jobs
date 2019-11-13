@@ -95,7 +95,7 @@ abstract class Base
 	 * @param string $domain Domain name the type belongs to, e.g. "attribute"
 	 * @param string $code Type code
 	 */
-	protected function addType( string $path, string $domain, string $code )
+	protected function addType( $path, $domain, $code )
 	{
 		$this->types[$path][$domain][$code] = $code;
 	}
