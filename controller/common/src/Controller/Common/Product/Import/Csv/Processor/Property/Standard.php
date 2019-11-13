@@ -32,29 +32,6 @@ class Standard
 	 * @category Developer
 	 */
 
-	private $types = [];
-
-
-	/**
-	 * Initializes the object
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param array $mapping Associative list of field position in CSV as key and domain item key as value
-	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object Decorated processor
-	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $mapping,
-		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object = null )
-	{
-		parent::__construct( $context, $mapping, $object );
-
-		$manager = \Aimeos\MShop::create( $context, 'product/property/type' );
-		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
-
-		foreach( $manager->searchItems( $search ) as $item ) {
-			$this->types[$item->getCode()] = $item->getCode();
-		}
-	}
-
 
 	/**
 	 * Saves the product property related data to the storage
@@ -81,11 +58,8 @@ class Standard
 				continue;
 			}
 
-			if( ( $type = $this->getValue( $list, 'product.property.type' ) ) && !isset( $this->types[$type] ) )
-			{
-				$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product property' );
-				throw new \Aimeos\Controller\Common\Exception( $msg );
-			}
+			$type = $this->getValue( $list, 'product.property.type' );
+			$this->addType( 'product/property/type', 'product', $type );
 
 			if( isset( $propMap[$value][$type] ) )
 			{

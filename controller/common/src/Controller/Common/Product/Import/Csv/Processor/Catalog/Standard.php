@@ -145,6 +145,7 @@ class Standard
 
 				$codes = explode( $separator, $this->getValue( $list, 'catalog.code', '' ) );
 				$listtype = $this->getValue( $list, 'catalog.lists.type', 'default' );
+				$this->addType( 'catalog/lists/type', 'product', $listtype );
 
 				foreach( $codes as $code )
 				{

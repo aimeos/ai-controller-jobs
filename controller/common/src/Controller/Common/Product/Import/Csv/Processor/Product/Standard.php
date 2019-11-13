@@ -121,6 +121,7 @@ class Standard
 			}
 
 			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
+			$this->addType( 'product/lists/type', 'product', $listtype );
 
 			foreach( explode( $separator, $this->getValue( $list, 'product.code', '' ) ) as $code )
 			{

@@ -83,6 +83,8 @@ class Standard
 			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
 			$list[$resource . '.lists.type'] = $type;
 
+			$this->addType( $resource . '/lists/type', 'product', $type );
+
 			$listItem = $listItem->fromArray( $list )->setRefId( $refId );
 			$item = $item->addListItem( 'product', $listItem );
 		}

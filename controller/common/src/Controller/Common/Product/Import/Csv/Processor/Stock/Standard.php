@@ -32,29 +32,6 @@ class Standard
 	 * @category Developer
 	 */
 
-	private $types = [];
-
-
-	/**
-	 * Initializes the object
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param array $mapping Associative list of field position in CSV as key and domain item key as value
-	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object Decorated processor
-	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $mapping,
-		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object = null )
-	{
-		parent::__construct( $context, $mapping, $object );
-
-		$manager = \Aimeos\MShop::create( $context, 'stock/type' );
-		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
-
-		foreach( $manager->searchItems( $search ) as $item ) {
-			$this->types[$item->getCode()] = $item->getCode();
-		}
-	}
-
 
 	/**
 	 * Saves the product stock related data to the storage
@@ -84,11 +61,7 @@ class Standard
 				$list['stock.stocklevel'] = $this->getValue( $list, 'stock.stocklevel' );
 				$list['stock.type'] = $this->getValue( $list, 'stock.type', 'default' );
 
-				if( !in_array( $list['stock.type'], $this->types ) )
-				{
-					$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $list['stock.type'], 'stock' );
-					throw new \Aimeos\Controller\Common\Exception( $msg );
-				}
+				$this->addType( 'stock/type', 'product', $list['stock.type'] );
 
 				if( ( $item = array_pop( $items ) ) === null ) {
 					$item = $manager->createItem();

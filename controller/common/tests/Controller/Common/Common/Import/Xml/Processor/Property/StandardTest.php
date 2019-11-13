@@ -85,9 +85,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		<product.property.value><![CDATA[50]]></product.property.value>
 	</propertyitem>
 	<propertyitem>
-		<product.property.type><![CDATA[package-weight]]></product.property.type>
+		<product.property.type><![CDATA[package-size]]></product.property.type>
 		<product.property.languageid><![CDATA[de]]></product.property.languageid>
-		<product.property.value><![CDATA[3.00 kg]]></product.property.value>
+		<product.property.value><![CDATA[S]]></product.property.value>
 	</propertyitem>
 </property>' );
 
@@ -95,7 +95,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$pos = 0;
-		$expected = [['package-weight', '3.00 kg', 'de'], ['package-width', '50', null]];
+		$expected = [['package-width', '50', null], ['package-size', 'S', 'de']];
+
+		unset( $this->object ); // test if new type is created
+		$manager = \Aimeos\MShop::create( $this->context, 'product/property/type' );
+		$manager->deleteItem( $manager->findItem( 'package-size' )->getId() );
 
 		$items = $product->getPropertyItems();
 		$this->assertEquals( 2, count( $items ) );
