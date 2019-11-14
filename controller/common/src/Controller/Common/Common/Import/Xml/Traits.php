@@ -83,7 +83,7 @@ trait Traits
 		{
 			$classname = '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . $segment;
 
-			if( class_exists( $classname ) === false ){
+			if( class_exists( $classname ) === false ) {
 				throw new \Aimeos\Controller\Common\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
 			}
 		}
