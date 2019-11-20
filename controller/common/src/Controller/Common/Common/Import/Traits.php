@@ -35,7 +35,7 @@ trait Traits
 	 */
 	protected function addType( string $path, string $domain, string $code )
 	{
-		$this->types[$path][$domain][$code] = $code;
+		$this->typeMap[$path][$domain][$code] = $code;
 		return $this;
 	}
 
@@ -47,7 +47,7 @@ trait Traits
 	 */
 	protected function saveTypes()
 	{
-		foreach( $this->types as $path => $list )
+		foreach( $this->typeMap as $path => $list )
 		{
 			$manager = \Aimeos\MShop::create( $this->getContext(), $path );
 			$prefix = str_replace( '/', '.', $path );
