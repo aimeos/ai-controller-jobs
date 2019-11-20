@@ -21,6 +21,18 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	use \Aimeos\Controller\Common\Common\Import\Traits;
+
+
+	/**
+	 * Cleanup before removing the object
+	 */
+	public function __destruct()
+	{
+		$this->saveTypes();
+	}
+
+
 	/**
 	 * Returns the localized name of the job.
 	 *
@@ -357,6 +369,7 @@ class Standard
 					->setStocklevel( $this->getValue( $entry, 1 ) )
 					->setDateBack( $this->getValue( $entry, 3 ) );
 
+				$this->addType( 'stock/type', 'product', $type );
 				unset( $map[$code][$type] );
 			}
 

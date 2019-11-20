@@ -21,7 +21,17 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	use \Aimeos\Controller\Common\Common\Import\Traits;
 	use \Aimeos\Controller\Common\Common\Import\Xml\Traits;
+
+
+	/**
+	 * Cleanup before removing the object
+	 */
+	public function __destruct()
+	{
+		$this->saveTypes();
+	}
 
 
 	/**
@@ -310,6 +320,7 @@ class Standard
 		}
 
 		$item = \Aimeos\MShop::create( $this->getContext(), 'product' )->saveItem( $item->fromArray( $list, true ) );
+		$this->addType( 'product/type', 'product', $item->getType() );
 
 		foreach( $subnodes as $name => $subnode ) {
 			$item = $this->getProcessor( $name )->process( $item, $subnode );

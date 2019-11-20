@@ -21,7 +21,17 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	use \Aimeos\Controller\Common\Common\Import\Traits;
 	use \Aimeos\Controller\Common\Common\Import\Xml\Traits;
+
+
+	/**
+	 * Cleanup before removing the object
+	 */
+	public function __destruct()
+	{
+		$this->saveTypes();
+	}
 
 
 	/**
@@ -296,6 +306,7 @@ class Standard
 			}
 
 			$manager->saveItem( $item );
+			$this->addType( 'attribute/type', $item->getDomain(), $item->getType() );
 		}
 	}
 

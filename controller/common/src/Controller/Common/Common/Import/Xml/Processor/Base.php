@@ -19,8 +19,10 @@ namespace Aimeos\Controller\Common\Common\Import\Xml\Processor;
  */
 abstract class Base
 {
+	use \Aimeos\Controller\Common\Common\Import\Traits;
+
+
 	private $context;
-	private $types = [];
 
 
 	/**
@@ -35,61 +37,11 @@ abstract class Base
 
 
 	/**
-	 * Stores all types for which no type items exist yet
+	 * Cleanup before removing the object
 	 */
 	public function __destruct()
 	{
-		foreach( $this->types as $path => $list )
-		{
-			$manager = \Aimeos\MShop::create( $this->context, $path );
-			$prefix = str_replace( '/', '.', $path );
-
-			foreach( $list as $domain => $codes )
-			{
-				$manager->begin();
-
-				try
-				{
-					$search = $manager->createSearch()->setSlice( 0, 10000 );
-					$expr = [
-						$search->compare( '==', $prefix . '.domain', $domain ),
-						$search->compare( '==', $prefix . '.code', $codes )
-					];
-					$search->setConditions( $search->combine( '&&', $expr ) );
-
-					$types = $items = [];
-
-					foreach( $manager->searchItems( $search ) as $item ) {
-						$types[] = $item->getCode();
-					}
-
-					foreach( array_diff( $codes, $types ) as $code ) {
-						$items[] = $manager->createItem()->setDomain( $domain )->setCode( $code )->setLabel( $code );
-					}
-
-					$manager->saveItems( $items, false );
-					$manager->commit();
-				}
-				catch( \Exception $e )
-				{
-					$manager->rollback();
-					$this->context->getLogger()->log( 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-				}
-			}
-		}
-	}
-
-
-	/**
-	 * Registers a used type which is going to be saved if it doesn't exist yet
-	 *
-	 * @param string $path Manager path, e.g. "product/lists/type"
-	 * @param string $domain Domain name the type belongs to, e.g. "attribute"
-	 * @param string $code Type code
-	 */
-	protected function addType( string $path, string $domain, string $code )
-	{
-		$this->types[$path][$domain][$code] = $code;
+		$this->saveTypes();
 	}
 
 
