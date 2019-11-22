@@ -31,7 +31,7 @@ trait Traits
 	 * @param string $path Manager path, e.g. "product/lists/type"
 	 * @param string $domain Domain name the type belongs to, e.g. "attribute"
 	 * @param string $code Type code
-	 * @param self Same object for method chaining
+	 * @return self Same object for method chaining
 	 */
 	protected function addType( $path, $domain, $code )
 	{
@@ -43,7 +43,7 @@ trait Traits
 	/**
 	 * Stores all types for which no type items exist yet
 	 *
-	 * @param self Same object for method chaining
+	 * @return self Same object for method chaining
 	 */
 	protected function saveTypes()
 	{
@@ -85,5 +85,7 @@ trait Traits
 				}
 			}
 		}
+
+		return $this;
 	}
 }
