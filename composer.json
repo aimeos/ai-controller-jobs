@@ -18,6 +18,9 @@
 		"composer/installers": "^1.0",
 		"aimeos/aimeos-core": "dev-master"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.7"
+	},
 	"autoload": {
 		"psr-4": {
 			"Aimeos\\Controller\\Common\\": "controller/jobs/src/Controller/Common/",
