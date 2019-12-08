@@ -47,6 +47,17 @@ trait Traits
 
 
 	/**
+	 * Returns the processor objects which have been used up to now
+	 *
+	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface[] List of processor objects
+	 */
+	protected function getProcessors()
+	{
+		return $this->processors;
+	}
+
+
+	/**
 	 * Creates a new processor object of the given type
 	 *
 	 * @param string $type Type of the processor

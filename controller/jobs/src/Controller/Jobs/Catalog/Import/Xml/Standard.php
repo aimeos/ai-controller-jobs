@@ -193,6 +193,10 @@ class Standard
 
 		$this->importTree( $xml, $domains );
 
+		foreach( $this->getProcessors() as $proc ) {
+			$proc->finish();
+		}
+
 		$logger->log( sprintf( 'Finished catalog import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )

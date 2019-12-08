@@ -37,9 +37,9 @@ abstract class Base
 
 
 	/**
-	 * Cleanup before removing the object
+	 * Clean up and store data.
 	 */
-	public function __destruct()
+	public function finish()
 	{
 		$this->saveTypes();
 	}

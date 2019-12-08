@@ -236,6 +236,10 @@ class Standard
 		$this->importNodes( $nodes, $domains );
 		unset( $nodes );
 
+		foreach( $this->getProcessors() as $proc ) {
+			$proc->finish();
+		}
+
 		$logger->log( sprintf( 'Finished customer import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )

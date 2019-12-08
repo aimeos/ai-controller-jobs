@@ -231,6 +231,10 @@ class Standard
 		$this->importNodes( $nodes, $domains );
 		unset( $nodes );
 
+		foreach( $this->getProcessors() as $proc ) {
+			$proc->finish();
+		}
+
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, strftime( $backup ) );
