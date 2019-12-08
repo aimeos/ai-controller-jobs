@@ -20,6 +20,12 @@ namespace Aimeos\Controller\Common\Common\Import\Xml\Processor;
 interface Iface
 {
 	/**
+	 * Clean up and store data.
+	 */
+	public function finish();
+
+
+	/**
 	 * Updates the given item using the data from the DOM node
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item which should be updated
