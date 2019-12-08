@@ -37,6 +37,17 @@ class Standard
 
 
 	/**
+	 * Clean up and store data.
+	 */
+	public function finish()
+	{
+		foreach( $this->getProcessors() as $proc ) {
+			$proc->finish();
+		}
+	}
+
+
+	/**
 	 * Updates the given item using the data from the DOM node
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item which should be updated

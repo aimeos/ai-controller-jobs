@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$pos = 0;
 		$expected = [['package-width', '50', null], ['package-size', 'S', 'de']];
 
-		unset( $this->object ); // test if new type is created
+		$this->object->finish(); // test if new type is created
 		$manager = \Aimeos\MShop::create( $this->context, 'product/property/type' );
 		$manager->deleteItem( $manager->findItem( 'package-size', [], 'product' )->getId() );
 

@@ -363,6 +363,8 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
 
+		$processor->finish();
+
 		$msg = 'Finished product import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
 		$logger->log( sprintf( $msg, $path, $total - $errors, $errors, $total, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
 

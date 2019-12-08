@@ -45,8 +45,12 @@ abstract class Base
 	/**
 	 * Stores all types for which no type items exist yet
 	 */
-	public function __destruct()
+	public function finish()
 	{
+		if( $this->object ) {
+			$this->object->finish();
+		}
+
 		foreach( $this->types as $path => $list )
 		{
 			$manager = \Aimeos\MShop::create( $this->context, $path );

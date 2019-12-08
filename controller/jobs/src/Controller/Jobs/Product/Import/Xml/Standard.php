@@ -26,15 +26,6 @@ class Standard
 
 
 	/**
-	 * Cleanup before removing the object
-	 */
-	public function __destruct()
-	{
-		$this->saveTypes();
-	}
-
-
-	/**
 	 * Returns the localized name of the job.
 	 *
 	 * @return string Name of the job
@@ -246,6 +237,12 @@ class Standard
 
 		$this->importNodes( $nodes, $domains );
 		unset( $nodes );
+
+		$this->saveTypes();
+
+		foreach( $this->getProcessors() as $proc ) {
+			$proc->finish();
+		}
 
 		$logger->log( sprintf( 'Finished product import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
 
