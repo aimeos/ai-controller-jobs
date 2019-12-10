@@ -263,6 +263,7 @@ class Standard
 
 		$container = $this->getContainer();
 		$content = $container->create( 'subscription-export_' . date( 'Y-m-d_H-i-s' ) );
+		$collapse = $lcontext->getConfig()->get( 'controller/jobs/subscription/export/csv/collapse', false );
 		$search = $this->initCriteria( $manager->createSearch()->setSlice( 0, 0x7fffffff ), $msg );
 		$start = 0;
 
@@ -284,11 +285,22 @@ class Standard
 
 			foreach( $items as $id => $item )
 			{
+				$lines = [];
+
 				foreach( $processors as $type => $processor )
 				{
-					foreach( $processor->process( $item, $baseItems[$item->getOrderBaseId()] ) as $line ) {
-						$content->add( [0 => $type, 1 => $id] + $line );
+					foreach( $processor->process( $item, $baseItems[$item->getOrderBaseId()] ) as $line )
+					{
+						if( !$collapse ) {
+							$lines[] = [0 => $type, 1 => $id] + $line;
+						} else {
+							$lines[0] = array_replace( $lines[0] ?? [], $line );
+						}
 					}
+				}
+
+				foreach( $lines as $line ) {
+					$content->add( $line );
 				}
 			}
 
