@@ -278,6 +278,7 @@ class Standard
 
 			$baseSearch = $baseManager->createSearch();
 			$baseSearch->setConditions( $baseSearch->compare( '==', 'order.base.id', $baseIds ) );
+			$baseSearch->setSortations( [$baseSearch->sort( '+', 'order.base.id')] );
 			$baseSearch->setSlice( 0, count( $baseIds ) );
 
 			$baseItems = $baseManager->searchItems( $baseSearch, $baseRef );
