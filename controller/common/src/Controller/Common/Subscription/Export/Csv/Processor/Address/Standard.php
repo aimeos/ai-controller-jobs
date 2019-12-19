@@ -52,7 +52,7 @@ class Standard
 			foreach( $items as $item )
 			{
 				$data = [];
-				$list = $item->toArray();
+				$list = $item->toArray( true );
 
 				foreach( $this->getMapping() as $pos => $key )
 				{
