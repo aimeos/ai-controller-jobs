@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$this->assertEquals( 10, $couponCode->getCount() );
-		$this->assertEquals( 'jobimporttest', $couponCode->getCode() );
+		$this->assertEquals( 'JOBIMPORTTEST', $couponCode->getCode() );
 		$this->assertEquals( '2000-01-01 00:00:00', $couponCode->getDateStart() );
 		$this->assertEquals( null, $couponCode->getDateEnd() );
 	}
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$this->assertEquals( 5, $couponCode->getCount() );
-		$this->assertEquals( 'jobimporttest', $couponCode->getCode() );
+		$this->assertEquals( 'JOBIMPORTTEST', $couponCode->getCode() );
 	}
 
 
