@@ -43,7 +43,7 @@ class Standard
 	public function process( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Base\Iface $order )
 	{
 		$result = [];
-		$list = $subscription->toArray() + $order->toArray();
+		$list = $subscription->toArray( true ) + $order->toArray( true );
 
 		foreach( $this->getMapping() as $pos => $key )
 		{

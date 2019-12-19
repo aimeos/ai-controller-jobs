@@ -47,11 +47,11 @@ class Standard
 		foreach( $order->getProducts() as $item )
 		{
 			$data = [];
-			$list = $item->toArray();
+			$list = $item->toArray( true );
 
 			foreach( $item->getAttributeItems() as $attrItem )
 			{
-				foreach( $attrItem->toArray() as $key => $value )
+				foreach( $attrItem->toArray( true ) as $key => $value )
 				{
 					if( isset( $list[$key] ) ) {
 						$list[$key] .= "\n" . $value;
