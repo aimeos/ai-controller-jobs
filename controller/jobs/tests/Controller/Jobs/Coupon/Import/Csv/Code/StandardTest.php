@@ -74,8 +74,8 @@ jobccimport2,5,,';
 
 
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
-		$code1 = $codeManager->findItem( 'jobccimport1' );
-		$code2 = $codeManager->findItem( 'jobccimport2' );
+		$code1 = $codeManager->findItem( 'JOBCCIMPORT1' );
+		$code2 = $codeManager->findItem( 'JOBCCIMPORT2' );
 
 		$manager->deleteItem( $coupon->getId() );
 
