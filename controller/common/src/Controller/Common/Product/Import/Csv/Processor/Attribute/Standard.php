@@ -133,13 +133,15 @@ class Standard
 				continue;
 			}
 
+			$attrType = $this->getValue( $list, 'attribute.type' );
+			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
+			$this->addType( 'product/lists/type', 'attribute', $listtype );
+
 			$codes = explode( $separator, $this->getValue( $list, 'attribute.code', '' ) );
 
 			foreach( $codes as $code )
 			{
 				$code = trim( $code );
-				$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
-				$this->addType( 'product/lists/type', 'attribute', $listtype );
 
 				if( isset( $listMap[$code][$listtype] ) )
 				{
@@ -151,10 +153,9 @@ class Standard
 					$listItem = $listManager->createItem()->setType( $listtype );
 				}
 
+				$attrItem = $this->getAttributeItem( $code, $attrType );
+				$attrItem = $attrItem->fromArray( $list )->setCode( $code );
 				$listItem = $listItem->setPosition( $pos )->fromArray( $list );
-
-				$attrItem = $this->getAttributeItem( $code, $this->getValue( $list, 'attribute.type' ) );
-				$attrItem = $attrItem->setCode( $code )->fromArray( $list );
 
 				$product->addListItem( 'attribute', $listItem, $attrItem );
 			}
