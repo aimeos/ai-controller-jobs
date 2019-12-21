@@ -25,9 +25,9 @@ abstract class Base
 	 * Returns the processor object for managing the subscription resources
 	 *
 	 * @param array $pnames List of processor names
-	 * @return \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Iface Processor object
+	 * @return array Associative list of processor names as keys and processor objects as values
 	 */
-	protected function getProcessors( array $pnames )
+	protected function getProcessors( array $pnames ) : array
 	{
 		$list = [];
 		$context = $this->getContext();

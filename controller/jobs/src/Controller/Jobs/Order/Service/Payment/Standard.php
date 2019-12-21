@@ -27,7 +27,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Capture authorized payments' );
 	}
@@ -38,7 +38,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Authorized payments of orders will be captured after dispatching or after a configurable amount of time' );
 	}

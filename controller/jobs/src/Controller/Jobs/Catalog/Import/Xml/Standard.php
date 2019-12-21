@@ -29,7 +29,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Catalog import XML' );
 	}
@@ -40,7 +40,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing categories from XML files' );
 	}
@@ -129,7 +129,7 @@ class Standard
 	 *
 	 * @param string $filename Absolute or relative path to the XML file
 	 */
-	protected function import( $filename )
+	protected function import( string $filename )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -216,7 +216,7 @@ class Standard
 	 * @param array &$map Will contain the associative list of code/ID pairs of the child categories
 	 * @return string Catalog ID of the imported category
 	 */
-	protected function importNode( \DomElement $node, $domains, $parentid, array &$map )
+	protected function importNode( \DomElement $node, array $domains, string $parentid = null, array &$map ) : string
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 
@@ -255,7 +255,7 @@ class Standard
 	 * @param string|null $parentid ID of the parent catalog node
 	 * @param array $map Associative list of catalog code as keys and category ID as values
 	 */
-	protected function importTree( \XMLReader $xml, array $domains, $parentid = null, array $map = [] )
+	protected function importTree( \XMLReader $xml, array $domains, string $parentid = null, array $map = [] )
 	{
 		$total = 0;
 		$childMap = [];
@@ -299,7 +299,7 @@ class Standard
 	 * @param \DomElement $node DOM node used for updateding the catalog item
 	 * @return \Aimeos\MShop\Catalog\Item\Iface $item Updated catalog item object
 	 */
-	protected function process( \Aimeos\MShop\Catalog\Item\Iface $item, \DomElement $node )
+	protected function process( \Aimeos\MShop\Catalog\Item\Iface $item, \DomElement $node ) : \Aimeos\MShop\Catalog\Item\Iface
 	{
 		$list = [];
 

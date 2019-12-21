@@ -29,7 +29,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Customer import XML' );
 	}
@@ -40,7 +40,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing customers from XML files' );
 	}
@@ -129,7 +129,7 @@ class Standard
 	 *
 	 * @param string $filename Absolute or relative path to the XML file
 	 */
-	protected function import( $filename )
+	protected function import( string $filename )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -295,7 +295,7 @@ class Standard
 	 * @param \DomElement $node DOM node used for updateding the customer item
 	 * @return \Aimeos\MShop\Customer\Item\Iface $item Updated customer item object
 	 */
-	protected function process( \Aimeos\MShop\Customer\Item\Iface $item, \DomElement $node )
+	protected function process( \Aimeos\MShop\Customer\Item\Iface $item, \DomElement $node ) : \Aimeos\MShop\Customer\Item\Iface
 	{
 		$list = [];
 

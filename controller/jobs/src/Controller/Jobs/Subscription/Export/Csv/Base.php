@@ -43,7 +43,7 @@ class Base
 	 * @return array Associative list of domains as keys and a list of
 	 * 	positions and the domain item keys as values.
 	 */
-	protected function getDefaultMapping()
+	protected function getDefaultMapping() : array
 	{
 		return array(
 			'subscription' => array(
@@ -106,9 +106,9 @@ class Base
 	 * Returns the processor object for saving the subscription/order related information
 	 *
 	 * @param array $mappings Associative list of processor types as keys and index/data mappings as values
-	 * @return \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Iface Processor object
+	 * @return array Associative list of processor types as keys and processor objects as values
 	 */
-	protected function getProcessors( array $mappings )
+	protected function getProcessors( array $mappings ) : array
 	{
 		$list = [];
 		$context = $this->getContext();

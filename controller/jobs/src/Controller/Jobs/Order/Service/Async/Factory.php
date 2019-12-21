@@ -30,7 +30,7 @@ class Factory
 	 * @param string|null $name Name of the controller or "Standard" if null
 	 * @return \Aimeos\Controller\Jobs\Iface New controller object
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, $name = null )
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, string $name = null ) : \Aimeos\Controller\Jobs\Iface
 	{
 		/** controller/jobs/order/service/async/name
 		 * Class name of the used order service async scheduler controller implementation

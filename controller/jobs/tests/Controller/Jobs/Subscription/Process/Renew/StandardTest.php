@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( [$managerStub->createItem()] ) );
+			->will( $this->returnValue( [$managerStub->createItem()->setOrderBaseId( -1 )] ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
@@ -189,7 +189,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( 'order/base', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'store' );
+		$managerStub->expects( $this->once() )->method( 'store' )->will( $this->returnArgument( 0 ) );
 
 		$this->access( 'createOrderBase' )->invokeArgs( $this->object, [$this->context, $item] );
 	}
@@ -207,7 +207,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( 'order', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'saveItem' )->will( $this->returnArgument( 0 ) );
 
 		$this->access( 'createOrderInvoice' )->invokeArgs( $this->object, [$this->context, $baseItem] );
 	}

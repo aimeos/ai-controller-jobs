@@ -26,7 +26,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Coupon code import CSV' );
 	}
@@ -37,7 +37,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing coupon code from CSV files' );
 	}
@@ -94,10 +94,10 @@ class Standard
 	 * Returns the position of the "coupon.code" column from the coupon item mapping
 	 *
 	 * @param array $mapping Mapping of the "item" columns with position as key and code as value
-	 * @return integer Position of the "coupon.code" column
+	 * @return int Position of the "coupon.code" column
 	 * @throws \Aimeos\Controller\Jobs\Exception If no mapping for "coupon.code.code" is found
 	 */
-	protected function getCodePosition( array $mapping )
+	protected function getCodePosition( array $mapping ) : int
 	{
 		foreach( $mapping as $pos => $key )
 		{
@@ -116,7 +116,7 @@ class Standard
 	 * @param string $filepath Path to the container file
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function getContainer( $filepath )
+	protected function getContainer( string $filepath ) : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -190,11 +190,11 @@ class Standard
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param string $couponId ID of the coupon item the coupon code should be added to
 	 * @param \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $processor Processor object
-	 * @return integer Number of coupons that couldn't be imported
+	 * @return int Number of coupons that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
-	protected function import( array $items, array $data, $couponId,
-		\Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $processor )
+	protected function import( array $items, array $data, string $couponId,
+		\Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$errors = 0;
 		$context = $this->getContext();
@@ -240,7 +240,7 @@ class Standard
 	 * @param string $couponId Unique coupon ID the codes should be imported for
 	 * @param string $path Path to the container file
 	 */
-	protected function process( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MW\Container\Iface $container, $couponId, $path )
+	protected function process( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MW\Container\Iface $container, string $couponId, string $path )
 	{
 		$total = $errors = 0;
 		$config = $context->getConfig();

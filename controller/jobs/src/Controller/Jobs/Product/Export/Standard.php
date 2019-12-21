@@ -26,7 +26,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Product export' );
 	}
@@ -37,7 +37,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Exports all available products' );
 	}
@@ -103,7 +103,7 @@ class Standard
 	 *
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function createContainer()
+	protected function createContainer() : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -190,10 +190,10 @@ class Standard
 	 * Creates a new site map content object
 	 *
 	 * @param \Aimeos\MW\Container\Iface $container Container object
-	 * @param integer $filenum New file number
+	 * @param int $filenum New file number
 	 * @return \Aimeos\MW\Container\Content\Iface New content object
 	 */
-	protected function createContent( \Aimeos\MW\Container\Iface $container, $filenum )
+	protected function createContent( \Aimeos\MW\Container\Iface $container, int $filenum ) : \Aimeos\MW\Container\Content\Iface
 	{
 		/** controller/jobs/product/export/standard/template-header
 		 * Relative path to the XML site map header template of the product site map job controller.
@@ -274,10 +274,10 @@ class Standard
 	 * Exports the products into the given container
 	 *
 	 * @param \Aimeos\MW\Container\Iface $container Container object
-	 * @param boolean $default True to filter exported products by default criteria
+	 * @param bool $default True to filter exported products by default criteria
 	 * @return array List of content (file) names
 	 */
-	protected function export( \Aimeos\MW\Container\Iface $container, $default = true )
+	protected function export( \Aimeos\MW\Container\Iface $container, bool $default = true ) : array
 	{
 		$domains = array( 'attribute', 'media', 'price', 'product', 'text' );
 
@@ -331,7 +331,7 @@ class Standard
 	 * @param mixed $default Default value if name is unknown
 	 * @return mixed Configuration value
 	 */
-	protected function getConfig( $name, $default = null )
+	protected function getConfig( string $name, $default = null )
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -435,10 +435,10 @@ class Standard
 	/**
 	 * Returns the file name for the new content file
 	 *
-	 * @param integer $number Current file number
+	 * @param int $number Current file number
 	 * @return string New file name
 	 */
-	protected function getFilename( $number )
+	protected function getFilename( int $number ) : string
 	{
 		return sprintf( $this->getConfig( 'filename', 'aimeos-products-%1$d_%2$s.xml' ), $number, date( 'Y-m-d_H:i:s' ) );
 	}

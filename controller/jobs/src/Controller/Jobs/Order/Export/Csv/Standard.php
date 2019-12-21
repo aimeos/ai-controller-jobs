@@ -26,7 +26,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Order export CSV' );
 	}
@@ -37,7 +37,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Exports orders to CSV file' );
 	}
@@ -139,7 +139,7 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
 	 * @param string $path Absolute path to the exported file
 	 */
-	protected function addJob( $context, $path )
+	protected function addJob( \Aimeos\MShop\Context\Item\Iface $context, string $path )
 	{
 		$manager = \Aimeos\MAdmin::create( $context, 'job' );
 
@@ -156,7 +156,7 @@ class Standard
 	 *
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function getContainer()
+	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -250,10 +250,9 @@ class Standard
 	 *
 	 * @param Aimeos\Controller\Common\Order\Export\Csv\Processor\Iface[] List of processor objects
 	 * @param array $msg Message data passed from the frontend
-	 * @param integer $maxcnt Maximum number of retrieved orders at once
-	 * @return string Path of the file containing the exported data
+	 * @param int $maxcnt Maximum number of retrieved orders at once
 	 */
-	protected function export( array $processors, $msg, $maxcnt )
+	protected function export( array $processors, array $msg, int $maxcnt )
 	{
 		$lcontext = $this->getLocaleContext( $msg );
 		$baseRef = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
@@ -313,7 +312,7 @@ class Standard
 	 * @param array $msg Message data including a "sitecode" value
 	 * @return \Aimeos\MShop\Context\Item\Iface New context item with updated locale
 	 */
-	protected function getLocaleContext( array $msg )
+	protected function getLocaleContext( array $msg ) : \Aimeos\MShop\Context\Item\Iface
 	{
 		$lcontext = clone $this->getContext();
 		$manager = \Aimeos\MShop::create( $lcontext, 'locale' );
@@ -332,7 +331,7 @@ class Standard
 	 * @param array $msg Message data
 	 * @return \Aimeos\MW\Criteria\Iface Initialized criteria object
 	 */
-	protected function initCriteria( \Aimeos\MW\Criteria\Iface $criteria, array $msg )
+	protected function initCriteria( \Aimeos\MW\Criteria\Iface $criteria, array $msg ) : \Aimeos\MW\Criteria\Iface
 	{
 		if( isset( $msg['filter'] ) && ( $cond = $criteria->toConditions( $msg['filter'] ) ) !== null ) {
 			$criteria->setConditions( $cond );
@@ -353,7 +352,7 @@ class Standard
 	 * @param string $path Absolute path to the exported file
 	 * @return string Relative path of the file in the storage
 	 */
-	protected function moveFile( $context, $path )
+	protected function moveFile( \Aimeos\MShop\Context\Item\Iface $context, string $path ) : string
 	{
 		$filename = basename( $path );
 		$context->getFileSystemManager()->get( 'fs-admin' )->writef( $filename, $path );

@@ -29,7 +29,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Supplier import XML' );
 	}
@@ -40,7 +40,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing suppliers from XML files' );
 	}
@@ -126,9 +126,9 @@ class Standard
 	 * Imports the XML file given by its path
 	 *
 	 * @param string $filename Absolute or relative path to the XML file
-	 * @return integer Total number of imported suppliers
+	 * @return int Total number of imported suppliers
 	 */
-	protected function import( $filename )
+	protected function import( string $filename ) : int
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -290,7 +290,7 @@ class Standard
 	 * @param \DomElement $node DOM node used for updateding the supplier item
 	 * @return \Aimeos\MShop\Supplier\Item\Iface $item Updated supplier item object
 	 */
-	protected function process( \Aimeos\MShop\Supplier\Item\Iface $item, \DomElement $node )
+	protected function process( \Aimeos\MShop\Supplier\Item\Iface $item, \DomElement $node ) : \Aimeos\MShop\Supplier\Item\Iface
 	{
 		$list = [];
 

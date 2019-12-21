@@ -26,7 +26,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Catalog site map' );
 	}
@@ -37,7 +37,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Creates a catalog site map for search engines' );
 	}
@@ -138,7 +138,7 @@ class Standard
 	 *
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function createContainer()
+	protected function createContainer() : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -213,10 +213,10 @@ class Standard
 	 * Creates a new site map content object
 	 *
 	 * @param \Aimeos\MW\Container\Iface $container Container object
-	 * @param integer $filenum New file number
+	 * @param int $filenum New file number
 	 * @return \Aimeos\MW\Container\Content\Iface New content object
 	 */
-	protected function createContent( \Aimeos\MW\Container\Iface $container, $filenum )
+	protected function createContent( \Aimeos\MW\Container\Iface $container, int $filenum ) : \Aimeos\MW\Container\Content\Iface
 	{
 		/** controller/jobs/catalog/export/sitemap/standard/template-header
 		 * Relative path to the XML site map header template of the catalog site map job controller.
@@ -377,10 +377,10 @@ class Standard
 	 * Exports the catalogs into the given container
 	 *
 	 * @param \Aimeos\MW\Container\Iface $container Container object
-	 * @param boolean $default True to filter exported catalogs by default criteria
+	 * @param bool $default True to filter exported catalogs by default criteria
 	 * @return array List of content (file) names
 	 */
-	protected function export( \Aimeos\MW\Container\Iface $container, $default = true )
+	protected function export( \Aimeos\MW\Container\Iface $container, bool $default = true ) : array
 	{
 		$config = $this->getContext()->getConfig();
 		/** controller/jobs/catalog/export/sitemap/domains
@@ -495,10 +495,10 @@ class Standard
 	/**
 	 * Returns the file name for the new content file
 	 *
-	 * @param integer $number Current file number
+	 * @param int $number Current file number
 	 * @return string New file name
 	 */
-	protected function getFilename( $number )
+	protected function getFilename( int $number ) : string
 	{
 		return sprintf( 'aimeos-catalog-sitemap-%d.xml', $number );
 	}

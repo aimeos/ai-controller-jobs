@@ -27,7 +27,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Products bought together' );
 	}
@@ -38,7 +38,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Creates bought together product suggestions' );
 	}
@@ -195,15 +195,16 @@ class Standard
 	 *
 	 * @param string $id Product ID to calculate the suggestions for
 	 * @param string[] $prodIds List of product IDs to create suggestions for
-	 * @param integer $count Number of ordered products
-	 * @param integer $total Total number of orders
-	 * @param integer $maxItems Maximum number of suggestions
+	 * @param int $count Number of ordered products
+	 * @param int $total Total number of orders
+	 * @param int $maxItems Maximum number of suggestions
 	 * @param float $minSupport Minium support value for calculating the suggested products
 	 * @param float $minConfidence Minium confidence value for calculating the suggested products
 	 * @param string $date Date in YYYY-MM-DD HH:mm:ss format after which orders should be used for calculations
 	 * @return array List of suggested product IDs as key and their confidence as value
 	 */
-	protected function getSuggestions( $id, $prodIds, $count, $total, $maxItems, $minSupport, $minConfidence, $date )
+	protected function getSuggestions( string $id, array $prodIds, int $count, int $total, int $maxItems,
+		float $minSupport, float $minConfidence, string $date ) : array
 	{
 		$refIds = [];
 		$context = $this->getContext();
@@ -265,7 +266,7 @@ class Standard
 	 * @param string $productId Unique ID of the product the given products should be referenced to
 	 * @param array $productIds List of position as key and product ID as value
 	 */
-	protected function addListItems( $productId, array $productIds )
+	protected function addListItems( string $productId, array $productIds )
 	{
 		if( empty( $productIds ) ) {
 			return;
@@ -294,7 +295,7 @@ class Standard
 	 *
 	 * @param string $productId Unique ID of the product the references should be removed from
 	 */
-	protected function removeListItems( $productId )
+	protected function removeListItems( string $productId )
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
 

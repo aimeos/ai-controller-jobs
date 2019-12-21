@@ -26,7 +26,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Catalog import CSV' );
 	}
@@ -37,7 +37,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing categories from CSV files' );
 	}
@@ -384,10 +384,10 @@ class Standard
 	 * Returns the position of the "catalog.code" column from the catalog item mapping
 	 *
 	 * @param array $mapping Mapping of the "item" columns with position as key and code as value
-	 * @return integer Position of the "catalog.code" column
+	 * @return int Position of the "catalog.code" column
 	 * @throws \Aimeos\Controller\Jobs\Exception If no mapping for "catalog.code" is found
 	 */
-	protected function getCodePosition( array $mapping )
+	protected function getCodePosition( array $mapping ) : int
 	{
 		foreach( $mapping as $pos => $key )
 		{
@@ -405,7 +405,7 @@ class Standard
 	 *
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function getContainer()
+	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -511,7 +511,7 @@ class Standard
 	 * @param array $domains List of domain names whose items should be fetched too
 	 * @return array Associative list of catalog codes as keys and items implementing \Aimeos\MShop\Catalog\Item\Iface as values
 	 */
-	protected function getCatalogMap( array $domains )
+	protected function getCatalogMap( array $domains ) : array
 	{
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
@@ -533,7 +533,7 @@ class Standard
 	 * @param string $code Catalog item code of the parent category
 	 * @return string|null ID of the parent category or null for top level nodes
 	 */
-	protected function getParentId( array $catalogMap, array $map, $code )
+	protected function getParentId( array $catalogMap, array $map, string $code ) : ?string
 	{
 		if( !isset( $map['catalog.parent'] ) )
 		{
@@ -560,12 +560,12 @@ class Standard
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor Processor object
-	 * @param boolean $strict Log columns not mapped or silently ignore them
-	 * @return integer Number of catalogs that couldn't be imported
+	 * @param bool $strict Log columns not mapped or silently ignore them
+	 * @return int Number of catalogs that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
 	protected function import( array &$catalogMap, array $data, array $mapping,
-		\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor, $strict )
+		\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor, bool $strict ) : int
 	{
 		$errors = 0;
 		$context = $this->getContext();

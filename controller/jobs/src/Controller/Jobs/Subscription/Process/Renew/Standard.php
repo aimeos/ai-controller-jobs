@@ -26,7 +26,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Subscription process renew' );
 	}
@@ -37,7 +37,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Renews subscriptions at next date' );
 	}
@@ -137,7 +137,7 @@ class Standard
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with addresses added
 	 */
 	protected function addBasketAddresses( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $addresses )
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $addresses ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		foreach( $addresses as $type => $orderAddresses )
 		{
@@ -159,7 +159,7 @@ class Standard
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Basket, maybe with coupons added
 	 */
 	protected function addBasketCoupons( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $basket, array $codes )
+		\Aimeos\MShop\Order\Item\Base\Iface $basket, array $codes ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		/** controller/jobs/subcription/process/renew/standard/use-coupons
 		 * Applies the coupons of the previous order also to the new one
@@ -200,7 +200,7 @@ class Standard
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with products added
 	 */
 	protected function addBasketProducts( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $orderProducts, $orderProductId )
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $orderProducts, $orderProductId ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		foreach( $orderProducts as $orderProduct )
 		{
@@ -226,7 +226,7 @@ class Standard
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with delivery and payment service added
 	 */
 	protected function addBasketServices( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $services )
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $services ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT;
 
@@ -267,7 +267,7 @@ class Standard
 	 * @param string $baseId Unique order base ID
 	 * @return \Aimeos\MShop\Context\Item\Iface New context object
 	 */
-	protected function createContext( $baseId )
+	protected function createContext( string $baseId ) : \Aimeos\MShop\Context\Item\Iface
 	{
 		$context = clone $this->getContext();
 
@@ -303,7 +303,7 @@ class Standard
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item with order base ID and order product ID
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Complete order with product, addresses and services saved to the storage
 	 */
-	protected function createOrderBase( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription )
+	protected function createOrderBase( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 
@@ -326,7 +326,7 @@ class Standard
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Complete order with product, addresses and services saved to the storage
 	 * @return \Aimeos\MShop\Order\Item\Iface New invoice item associated to the order saved to the storage
 	 */
-	protected function createOrderInvoice( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	protected function createOrderInvoice( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 

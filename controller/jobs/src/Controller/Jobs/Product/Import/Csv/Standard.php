@@ -29,7 +29,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Product import CSV' );
 	}
@@ -40,7 +40,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing products from CSV files' );
 	}
@@ -388,7 +388,7 @@ class Standard
 	 * @param string|null $type Product type or null for no type
 	 * @return string New product type
 	 */
-	protected function checkType( $type )
+	protected function checkType( string $type = null ) : string
 	{
 		if( !isset( $this->types ) )
 		{
@@ -410,10 +410,10 @@ class Standard
 	 * Returns the position of the "product.code" column from the product item mapping
 	 *
 	 * @param array $mapping Mapping of the "item" columns with position as key and code as value
-	 * @return integer Position of the "product.code" column
+	 * @return int Position of the "product.code" column
 	 * @throws \Aimeos\Controller\Jobs\Exception If no mapping for "product.code" is found
 	 */
-	protected function getCodePosition( array $mapping )
+	protected function getCodePosition( array $mapping ) : int
 	{
 		foreach( $mapping as $pos => $key )
 		{
@@ -431,7 +431,7 @@ class Standard
 	 *
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function getContainer()
+	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -539,12 +539,12 @@ class Standard
 	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param array $types List of allowed product type codes
 	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor Processor object
-	 * @param boolean $strict Log columns not mapped or silently ignore them
-	 * @return integer Number of products that couldn't be imported
+	 * @param bool $strict Log columns not mapped or silently ignore them
+	 * @return int Number of products that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
 	protected function import( array $products, array $data, array $mapping, array $types,
-		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor, $strict )
+		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor, bool $strict ) : int
 	{
 		$items = [];
 		$errors = 0;

@@ -38,7 +38,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Stock import CSV' );
 	}
@@ -49,7 +49,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing stocks from CSV files' );
 	}
@@ -139,7 +139,7 @@ class Standard
 	 *
 	 * @param string $filename Absolute path to the file that whould be imported
 	 */
-	public function import( $filename )
+	public function import( string $filename )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -241,7 +241,7 @@ class Standard
 	 * @param string $location Absolute path to the file
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function getContainer( $location )
+	protected function getContainer( string $location ) : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -294,7 +294,7 @@ class Standard
 	 * @param array $types List of stock types
 	 * @return array Multi-dimensional array of code/type/item map
 	 */
-	protected function getStockItems( array $codes, array $types )
+	protected function getStockItems( array $codes, array $types ) : array
 	{
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
@@ -317,9 +317,10 @@ class Standard
 	 * Imports the CSV data and creates new stocks or updates existing ones
 	 *
 	 * @param \Aimeos\MW\Container\Content\Iface $content Content object
-	 * @return integer Number of imported stocks
+	 * @param int Maximum number of stock levels imported at once
+	 * @return int Number of imported stocks
 	 */
-	protected function importStocks( \Aimeos\MW\Container\Content\Iface $content, $maxcnt )
+	protected function importStocks( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt ) : int
 	{
 		$total = 0;
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
