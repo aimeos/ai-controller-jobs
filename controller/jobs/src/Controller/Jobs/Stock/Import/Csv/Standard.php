@@ -317,7 +317,7 @@ class Standard
 	 * Imports the CSV data and creates new stocks or updates existing ones
 	 *
 	 * @param \Aimeos\MW\Container\Content\Iface $content Content object
-	 * @param int Maximum number of stock levels imported at once
+	 * @param int $maxcnt Maximum number of stock levels imported at once
 	 * @return int Number of imported stocks
 	 */
 	protected function importStocks( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt ) : int

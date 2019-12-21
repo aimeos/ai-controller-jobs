@@ -98,7 +98,7 @@ abstract class Base
 	 * @param string $path Manager path, e.g. "product/lists/type"
 	 * @param string $domain Domain name the type belongs to, e.g. "attribute"
 	 * @param string $code Type code
-	 * @return Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface Same object for fluent interface
+	 * @return \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface Same object for fluent interface
 	 */
 	protected function addType( string $path, string $domain, string $code ) : Iface
 	{
