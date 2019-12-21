@@ -68,14 +68,12 @@ class Factory
 			$name = $context->getConfig()->get( 'controller/jobs/product/export/sitemap/name', 'Standard' );
 		}
 
-		if( ctype_alnum( $name ) === false )
-		{
-			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Jobs\\Product\\Export\\Sitemap\\' . $name : '<not a string>';
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
-		}
-
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';
 		$classname = '\\Aimeos\\Controller\\Jobs\\Product\\Export\\Sitemap\\' . $name;
+
+		if( ctype_alnum( $name ) === false ) {
+			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+		}
 
 		$controller = self::createController( $context, $aimeos, $classname, $iface );
 

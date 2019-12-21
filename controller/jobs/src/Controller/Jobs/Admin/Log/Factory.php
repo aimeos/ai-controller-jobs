@@ -69,14 +69,12 @@ class Factory
 			$name = $context->getConfig()->get( 'controller/jobs/admin/log/name', 'Standard' );
 		}
 
-		if( ctype_alnum( $name ) === false )
-		{
-			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Jobs\\Admin\\Log\\' . $name : '<not a string>';
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
-		}
-
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';
 		$classname = '\\Aimeos\\Controller\\Jobs\\Admin\\Log\\' . $name;
+
+		if( ctype_alnum( $name ) === false ) {
+			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+		}
 
 		$controller = self::createController( $context, $aimeos, $classname, $iface );
 
