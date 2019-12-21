@@ -40,7 +40,7 @@ class Standard
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $order Full subscription with associated items
 	 * @return array Two dimensional associative list of subscription data representing the lines in CSV
 	 */
-	public function process( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Base\Iface $order )
+	public function process( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Base\Iface $order ) : array
 	{
 		$result = [];
 		$addresses = $order->getAddresses();

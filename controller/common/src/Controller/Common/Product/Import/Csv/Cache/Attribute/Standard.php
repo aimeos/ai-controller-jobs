@@ -60,7 +60,7 @@ class Standard
 	 * @param string|null $type Attribute type
 	 * @return \Aimeos\MShop\Attribute\Item\Iface|null Attribute object or null if not found
 	 */
-	public function get( $code, $type = null )
+	public function get( string $code, string $type = null )
 	{
 		if( isset( $this->attributes[$code] ) && isset( $this->attributes[$code][$type] ) ) {
 			return $this->attributes[$code][$type];

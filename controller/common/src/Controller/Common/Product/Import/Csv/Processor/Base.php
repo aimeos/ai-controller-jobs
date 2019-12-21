@@ -98,10 +98,12 @@ abstract class Base
 	 * @param string $path Manager path, e.g. "product/lists/type"
 	 * @param string $domain Domain name the type belongs to, e.g. "attribute"
 	 * @param string $code Type code
+	 * @return Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface Same object for fluent interface
 	 */
-	protected function addType( string $path, string $domain, string $code )
+	protected function addType( string $path, string $domain, string $code ) : Iface
 	{
 		$this->types[$path][$domain][$code] = $code;
+		return $this;
 	}
 
 
@@ -109,10 +111,10 @@ abstract class Base
 	 * Adds the list item default values and returns the resulting array
 	 *
 	 * @param array $list Associative list of domain item keys and their values, e.g. "product.lists.status" => 1
-	 * @param integer $pos Computed position of the list item in the associated list of items
+	 * @param int $pos Computed position of the list item in the associated list of items
 	 * @return array Given associative list enriched by default values if they were not already set
 	 */
-	protected function addListItemDefaults( array $list, $pos )
+	protected function addListItemDefaults( array $list, int $pos ) : array
 	{
 		if( !isset( $list['product.lists.position'] ) ) {
 			$list['product.lists.position'] = $pos;
@@ -131,7 +133,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\MShop\Context\Item\Iface Context object
 	 */
-	protected function getContext()
+	protected function getContext() : \Aimeos\MShop\Context\Item\Iface
 	{
 		return $this->context;
 	}
@@ -142,7 +144,7 @@ abstract class Base
 	 *
 	 * @return array Associative list of field positions in CSV as keys and domain item keys as values
 	 */
-	protected function getMapping()
+	protected function getMapping() : array
 	{
 		return $this->mapping;
 	}
@@ -154,7 +156,7 @@ abstract class Base
 	 * @return \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface Processor object
 	 * @throws \Aimeos\Controller\Jobs\Exception If no processor object is available
 	 */
-	protected function getObject()
+	protected function getObject() : \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface
 	{
 		if( $this->object === null ) {
 			throw new \Aimeos\Controller\Jobs\Exception( 'No processor object available' );

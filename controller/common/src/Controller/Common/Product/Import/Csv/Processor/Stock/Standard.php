@@ -40,7 +40,7 @@ class Standard
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
+	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
 		$manager->begin();
@@ -92,7 +92,7 @@ class Standard
 	 * @param string $code Unique product code
 	 * @return \Aimeos\MShop\Stock\Item\Iface[] Associative list of stock items
 	 */
-	protected function getStockItems( $code )
+	protected function getStockItems( string $code ) : array
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
 

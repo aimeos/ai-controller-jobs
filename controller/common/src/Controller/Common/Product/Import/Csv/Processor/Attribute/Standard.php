@@ -110,7 +110,7 @@ class Standard
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
+	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->getContext();
 		$listManager = \Aimeos\MShop::create( $context, 'product/lists' );
@@ -171,9 +171,9 @@ class Standard
 	 * Checks if the entry from the mapped data is valid
 	 *
 	 * @param array $list Associative list of key/value pairs from the mapped data
-	 * @return boolean True if the entry is valid, false if not
+	 * @return bool True if the entry is valid, false if not
 	 */
-	protected function checkEntry( array $list )
+	protected function checkEntry( array $list ) : bool
 	{
 		if( $this->getValue( $list, 'attribute.code' ) === null ) {
 			return false;
@@ -202,7 +202,7 @@ class Standard
 	 * @param string $type Attribute type
 	 * @return \Aimeos\MShop\Attribute\Item\Iface Attribute item object
 	 */
-	protected function getAttributeItem( $code, $type )
+	protected function getAttributeItem( string $code, string $type ) : \Aimeos\MShop\Attribute\Item\Iface
 	{
 		if( ( $item = $this->cache->get( $code, $type ) ) === null )
 		{

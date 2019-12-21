@@ -40,7 +40,7 @@ class Standard
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Coupon\Item\Code\Iface $item, array $data )
+	public function process( \Aimeos\MShop\Coupon\Item\Code\Iface $item, array $data ) : array
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );
 		$map = $this->getMappedChunk( $data, $this->getMapping() );

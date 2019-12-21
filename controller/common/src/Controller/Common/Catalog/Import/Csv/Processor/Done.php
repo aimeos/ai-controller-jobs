@@ -40,7 +40,7 @@ class Done
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data )
+	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data ) : array
 	{
 		return $data;
 	}

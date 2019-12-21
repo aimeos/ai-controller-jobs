@@ -26,7 +26,7 @@ class Base
 	 * @param array $codes List of coupon codes
 	 * @return array Associative list of coupon codes as key and coupon code items as value
 	 */
-	protected function getCouponCodeItems( array $codes )
+	protected function getCouponCodeItems( array $codes ) : array
 	{
 		$result = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );

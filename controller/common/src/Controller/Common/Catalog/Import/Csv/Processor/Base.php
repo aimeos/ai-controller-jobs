@@ -46,7 +46,7 @@ class Base
 	 *
 	 * @return \Aimeos\MShop\Context\Item\Iface Context object
 	 */
-	protected function getContext()
+	protected function getContext() : \Aimeos\MShop\Context\Item\Iface
 	{
 		return $this->context;
 	}
@@ -57,7 +57,7 @@ class Base
 	 *
 	 * @return array Associative list of field positions in CSV as keys and domain item keys as values
 	 */
-	protected function getMapping()
+	protected function getMapping() : array
 	{
 		return $this->mapping;
 	}
@@ -69,7 +69,7 @@ class Base
 	 * @return \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface Processor object
 	 * @throws \Aimeos\Controller\Jobs\Exception If no processor object is available
 	 */
-	protected function getObject()
+	protected function getObject() : Iface
 	{
 		if( $this->object === null ) {
 			throw new \Aimeos\Controller\Jobs\Exception( 'No processor object available' );

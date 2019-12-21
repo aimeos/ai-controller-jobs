@@ -41,7 +41,7 @@ class Base
 	 *
 	 * @return \Aimeos\MShop\Context\Item\Iface Context object
 	 */
-	protected function getContext()
+	protected function getContext() : \Aimeos\MShop\Context\Item\Iface
 	{
 		return $this->context;
 	}
@@ -52,7 +52,7 @@ class Base
 	 *
 	 * @return array Associative list of field positions in CSV as keys and domain item keys as values
 	 */
-	protected function getMapping()
+	protected function getMapping() : array
 	{
 		return $this->mapping;
 	}

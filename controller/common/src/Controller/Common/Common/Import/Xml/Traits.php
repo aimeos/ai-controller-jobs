@@ -27,7 +27,7 @@ trait Traits
 	 *
 	 * @return \Aimeos\MShop\Context\Item\Iface Context object
 	 */
-	abstract protected function getContext();
+	abstract protected function getContext() : \Aimeos\MShop\Context\Item\Iface;
 
 
 	/**
@@ -36,7 +36,7 @@ trait Traits
 	 * @param string $type Type of the processor
 	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface Processor object
 	 */
-	protected function getProcessor( $type )
+	protected function getProcessor( string $type ) : \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
 	{
 		if( !isset( $this->processors[$type] ) ) {
 			$this->processors[$type] = $this->createProcessor( $type );
@@ -51,7 +51,7 @@ trait Traits
 	 *
 	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface[] List of processor objects
 	 */
-	protected function getProcessors()
+	protected function getProcessors() : array
 	{
 		return $this->processors;
 	}
@@ -64,7 +64,7 @@ trait Traits
 	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface Processor object
 	 * @throws \Aimeos\Controller\Common\Exception If type is invalid or processor isn't found
 	 */
-	protected function createProcessor( $type )
+	protected function createProcessor( string $type ) : \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();

@@ -106,7 +106,7 @@ class Standard
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data )
+	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data ) : array
 	{
 		$listManager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'text' );
@@ -162,9 +162,9 @@ class Standard
 	 * Checks if an entry can be used for updating a media item
 	 *
 	 * @param array $list Associative list of key/value pairs from the mapping
-	 * @return boolean True if valid, false if not
+	 * @return bool True if valid, false if not
 	 */
-	protected function checkEntry( array $list )
+	protected function checkEntry( array $list ) : bool
 	{
 		if( $this->getValue( $list, 'text.content' ) === null ) {
 			return false;

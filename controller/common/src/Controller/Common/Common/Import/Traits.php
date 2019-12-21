@@ -33,7 +33,7 @@ trait Traits
 	 * @param string $code Type code
 	 * @return self Same object for method chaining
 	 */
-	protected function addType( $path, $domain, $code )
+	protected function addType( string $path, string $domain, string $code ) : self
 	{
 		$this->typeMap[$path][$domain][$code] = $code;
 		return $this;
@@ -45,7 +45,7 @@ trait Traits
 	 *
 	 * @return self Same object for method chaining
 	 */
-	protected function saveTypes()
+	protected function saveTypes() : self
 	{
 		foreach( $this->typeMap as $path => $list )
 		{

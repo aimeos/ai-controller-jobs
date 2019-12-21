@@ -40,7 +40,7 @@ class Standard
 	 * @param \DOMNode $node XML document node containing a list of nodes to process
 	 * @return \Aimeos\MShop\Common\Item\Iface Updated item
 	 */
-	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node )
+	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node ) : \Aimeos\MShop\Common\Item\Iface
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\PropertyRef\Iface::class, $item );
 

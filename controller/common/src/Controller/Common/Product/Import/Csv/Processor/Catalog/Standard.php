@@ -98,7 +98,7 @@ class Standard
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data )
+	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop::create( $context, 'catalog' );
@@ -195,10 +195,10 @@ class Standard
 	 * Adds the list item default values and returns the resulting array
 	 *
 	 * @param array $list Associative list of domain item keys and their values, e.g. "catalog.lists.status" => 1
-	 * @param integer $pos Computed position of the list item in the associated list of items
+	 * @param int $pos Computed position of the list item in the associated list of items
 	 * @return array Given associative list enriched by default values if they were not already set
 	 */
-	protected function addListItemDefaults( array $list, $pos )
+	protected function addListItemDefaults( array $list, int $pos ) : array
 	{
 		if( !isset( $list['catalog.lists.position'] ) ) {
 			$list['catalog.lists.position'] = $pos;
@@ -216,9 +216,9 @@ class Standard
 	 * Checks if the entry from the mapped data is valid
 	 *
 	 * @param array $list Associative list of key/value pairs from the mapped data
-	 * @return boolean True if the entry is valid, false if not
+	 * @return bool True if the entry is valid, false if not
 	 */
-	protected function checkEntry( array $list )
+	protected function checkEntry( array $list ) : bool
 	{
 		if( $this->getValue( $list, 'catalog.code' ) === null ) {
 			return false;
@@ -241,7 +241,7 @@ class Standard
 	 * @param array $types List of catalog list types
 	 * @return array List of catalog list items
 	 */
-	protected function getListItems( $prodid, array $types )
+	protected function getListItems( string $prodid, array $types ) : array
 	{
 		if( empty( $types ) ) {
 			return [];

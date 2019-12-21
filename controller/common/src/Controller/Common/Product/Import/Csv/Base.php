@@ -27,7 +27,7 @@ class Base
 	 * @param array $data Associative list of product codes and lists of CSV field indexes and their data
 	 * @return array Associative list of CSV field indexes and their converted data
 	 */
-	protected function convertData( array $convlist, array $data )
+	protected function convertData( array $convlist, array $data ) : array
 	{
 		foreach( $convlist as $idx => $converter )
 		{
@@ -50,7 +50,7 @@ class Base
 	 * @param string|null Name of the cache implementation
 	 * @return \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface Cache object
 	 */
-	protected function getCache( $type, $name = null )
+	protected function getCache( string $type, string $name = null ) : \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -91,7 +91,7 @@ class Base
 	 * @param array $convmap List of converter names for the values at the position in the CSV file
 	 * @return array Associative list of positions and converter objects
 	 */
-	protected function getConverterList( array $convmap )
+	protected function getConverterList( array $convmap ) : array
 	{
 		$convlist = [];
 
@@ -107,11 +107,11 @@ class Base
 	 * Returns the rows from the CSV file up to the maximum count
 	 *
 	 * @param \Aimeos\MW\Container\Content\Iface $content CSV content object
-	 * @param integer $maxcnt Maximum number of rows that should be retrieved at once
-	 * @param integer $codePos Column position which contains the unique product code (starting from 0)
+	 * @param int $maxcnt Maximum number of rows that should be retrieved at once
+	 * @param int $codePos Column position which contains the unique product code (starting from 0)
 	 * @return array List of arrays with product codes as keys and list of values from the CSV file
 	 */
-	protected function getData( \Aimeos\MW\Container\Content\Iface $content, $maxcnt, $codePos )
+	protected function getData( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt, int $codePos ) : array
 	{
 		$count = 0;
 		$data = [];
@@ -167,7 +167,7 @@ class Base
 	 * @return array Associative list of domains as keys ("item" is special for the product itself) and a list of
 	 * 	positions and the domain item keys as values.
 	 */
-	protected function getDefaultMapping()
+	protected function getDefaultMapping() : array
 	{
 		return array(
 			'item' => array(
@@ -218,7 +218,7 @@ class Base
 	 * @param array $mapping List of domain item keys with the CSV field position as key
 	 * @return array List of associative arrays containing the chunked properties
 	 */
-	protected function getMappedChunk( array &$data, array $mapping )
+	protected function getMappedChunk( array &$data, array $mapping ) : array
 	{
 		$idx = 0;
 		$map = [];
@@ -246,7 +246,7 @@ class Base
 	 * @param array $mappings Associative list of processor types as keys and index/data mappings as values
 	 * @return \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface Processor object
 	 */
-	protected function getProcessors( array $mappings )
+	protected function getProcessors( array $mappings ) : \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -290,7 +290,7 @@ class Base
 	 * @param array $domains List of domains whose items should be fetched too
 	 * @return array Associative list of product codes as key and product items as value
 	 */
-	protected function getProducts( array $codes, array $domains )
+	protected function getProducts( array $codes, array $domains ) : array
 	{
 		$result = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );

@@ -40,7 +40,7 @@ class Standard
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $order Full order with associated items
 	 * @return array Two dimensional associative list of order data representing the lines in CSV
 	 */
-	public function process( \Aimeos\MShop\Order\Item\Iface $invoice, \Aimeos\MShop\Order\Item\Base\Iface $order )
+	public function process( \Aimeos\MShop\Order\Item\Iface $invoice, \Aimeos\MShop\Order\Item\Base\Iface $order ) : array
 	{
 		$result = [];
 		$list = $invoice->toArray( true ) + $order->toArray( true );

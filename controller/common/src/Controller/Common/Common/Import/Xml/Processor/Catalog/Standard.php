@@ -43,7 +43,7 @@ class Standard
 	 * @param \DOMNode $node XML document node containing a list of nodes to process
 	 * @return \Aimeos\MShop\Common\Item\Iface Updated item
 	 */
-	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node )
+	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node ) : \Aimeos\MShop\Common\Item\Iface
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\ListRef\Iface::class, $item );
 
@@ -109,7 +109,7 @@ class Standard
 	 * @param \DOMNode $node XML document node containing a list of nodes to process
 	 * @return \Aimeos\MShop\Catalog\Item\Iface[] List of referenced catalog items
 	 */
-	protected function getCatalogItems( \DOMNode $node )
+	protected function getCatalogItems( \DOMNode $node ) : array
 	{
 		foreach( $node->childNodes as $node )
 		{

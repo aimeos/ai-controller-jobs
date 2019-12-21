@@ -33,12 +33,12 @@ interface Iface
 	 * @param string|null $type Item type if used and required
 	 * @return \Aimeos\MShop\Common\Item\Iface|string|null Item object, unique ID or null if not found
 	 */
-	public function get( $code, $type = null );
+	public function get( string $code, string $type = null );
 
 	/**
 	 * Adds the item or ID to the cache
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item object
 	 */
-	public function set( \Aimeos\MShop\Common\Item\Iface $item );
+	public function set( \Aimeos\MShop\Common\Item\Iface $item ) : \Aimeos\MShop\Common\Item\Iface;
 }

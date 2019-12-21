@@ -100,25 +100,32 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$product = $this->create( 'job_csv_test' );
 
-		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$object->process( $product, $data );
+		$mock = $this->getMockBuilder( '\Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard' )
+			->setConstructorArgs( [$this->context, $mapping, $this->endpoint] )
+			->setMethods( ['getAttributeItem'] )
+			->getMock();
+
+		$item = \Aimeos\MShop::create( $this->context, 'attribute' )->createItem()->setType( 'color' );
+		$mock->expects( $this->exactly( 3 ) )->method( 'getAttributeItem' )
+			->will( $this->onConsecutiveCalls( clone $item, clone $item, clone $item ) );
+
+		$mock->process( $product, $data );
 
 
 		$pos = 0;
+		$listItems = $product->getListItems();
 		$codes = array( 'white', 'black', 'aimeos' );
 
-		foreach( $product->getListItems() as $listItems )
-		{
-			$this->assertEquals( 3, count( $listItems ) );
+		$this->assertEquals( 3, count( $listItems ) );
 
-			foreach( $listItems as $listItem )
-			{
-				$this->assertEquals( 1, $listItem->getStatus() );
-				$this->assertEquals( 'attribute', $listItem->getDomain() );
-				$this->assertEquals( 'variant', $listItem->getType() );
-				$this->assertEquals( $codes[$pos], $listItem->getRefItem()->getCode() );
-				$pos++;
-			}
+		foreach( $listItems as $listItem )
+		{
+			$this->assertEquals( 1, $listItem->getStatus() );
+			$this->assertEquals( 'attribute', $listItem->getDomain() );
+			$this->assertEquals( 'variant', $listItem->getType() );
+			$this->assertEquals( 'color', $listItem->getRefItem()->getType() );
+			$this->assertEquals( $codes[$pos], $listItem->getRefItem()->getCode() );
+			$pos++;
 		}
 	}
 

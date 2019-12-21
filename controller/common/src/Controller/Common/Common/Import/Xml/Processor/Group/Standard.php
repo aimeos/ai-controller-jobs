@@ -42,7 +42,7 @@ class Standard
 	 * @param \DOMNode $node XML document node containing a list of nodes to process
 	 * @return \Aimeos\MShop\Common\Item\Iface Updated item
 	 */
-	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node )
+	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node ) : \Aimeos\MShop\Common\Item\Iface
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Customer\Item\Iface::class, $item );
 
@@ -72,7 +72,7 @@ class Standard
 	 * @param \DomNodeList $nodes List of XML attribute item nodes
 	 * @return \Aimeos\MShop\Customer\Item\Group\Iface[] Associative list of customer group items with codes as keys
 	 */
-	protected function getItems( \DomNodeList $nodes )
+	protected function getItems( \DomNodeList $nodes ) : array
 	{
 		$keys = $map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'customer/group' );
