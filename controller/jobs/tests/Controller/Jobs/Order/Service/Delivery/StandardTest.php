@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem();
+		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
 		$orderItem = $orderManagerStub->createItem();
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Delivery\\Standard' )
@@ -120,7 +120,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem();
+		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
 		$orderItem = $orderManagerStub->createItem();
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Delivery\\Standard' )
@@ -173,7 +173,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem();
+		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->onConsecutiveCalls( array( $serviceItem ), [] ) );

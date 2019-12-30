@@ -68,6 +68,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
+		$item = $this->getSubscription();
+
 		$this->context->getConfig()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
 		$this->context->getConfig()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1'] );
 
@@ -79,9 +81,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( [$managerStub->createItem()] ) );
+			->will( $this->returnValue( [$item] ) );
 
-		$managerStub->expects( $this->never() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'saveItem' )
+			->will( $this->throwException( new \Exception() ) );
 
 		$this->object->run();
 	}
