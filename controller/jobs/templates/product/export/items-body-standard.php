@@ -20,7 +20,7 @@ $enc = $this->encoder()
 	<lists>
 		<?php foreach( $item->getDomains() as $domain ) : ?>
 			<?= $this->partial(
-				$this->config( 'controller/jobs/product/export/partials/' . $domain, 'product/export/items-partial-' . str_replace( '/', '', $domain ) . '-standard' ),
+				'product/export/items-partial-' . str_replace( '/', '', $domain ) . '-standard',
 				['listItems' => $item->getListItems( $domain )]
 			) ?>
 		<?php endforeach ?>
