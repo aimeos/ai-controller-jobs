@@ -51,8 +51,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 21, count( $data[0] ) );
 		$this->assertEquals( 'payment', $data[0][0] );
 		$this->assertEquals( 'mr', $data[0][1] );
-		$this->assertEquals( '', $data[0][2] );
-		$this->assertEquals( '', $data[0][3] );
+		$this->assertEquals( 'Example company', $data[0][2] );
+		$this->assertEquals( 'DE999999999', $data[0][3] );
 		$this->assertEquals( '', $data[0][4] );
 		$this->assertEquals( 'Our', $data[0][5] );
 		$this->assertEquals( 'Unittest', $data[0][6] );
