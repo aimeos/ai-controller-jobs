@@ -28,7 +28,7 @@ class FactoryTest
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::create( $context, $aimeos, 'Wrong$$$Name' );
 	}
 
@@ -38,7 +38,7 @@ class FactoryTest
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::create( $context, $aimeos, 'WrongClass' );
 	}
 
@@ -48,7 +48,7 @@ class FactoryTest
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		\Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Factory::create( $context, $aimeos, 'Factory' );
 	}
 

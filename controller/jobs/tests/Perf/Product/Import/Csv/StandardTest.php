@@ -12,7 +12,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperJobs::getContext( 'unitperf' );
 
@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		$this->cleanupAttribute();
 		$this->cleanupMedia();

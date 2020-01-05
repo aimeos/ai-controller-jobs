@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -30,7 +30,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 		unset( $this->object );
@@ -91,8 +91,6 @@ jobccimport2,5,,';
 
 	public function testRunException()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
-
 		$dir = 'tmp/import/couponcode/unittest';
 		$filepath = $dir . '/0.csv';
 
@@ -101,12 +99,17 @@ jobccimport2,5,,';
 		}
 
 		$content = 'code,count,start,end
-jobccimport1,,,';
+jobccimport1,a,b,c';
 
 		if( file_put_contents( $filepath, $content ) === false ) {
 			throw new \Exception( sprintf( 'Unable to create file "%1$s"', $file ) );
 		}
 
 		$this->object->run();
+
+		$manager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
+
+		$this->expectException( \Aimeos\MShop\Exception::class );
+		$manager->findItem( 'jobccimport1' );
 	}
 }

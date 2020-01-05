@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $products;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 	}
@@ -220,7 +220,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Product\Standard( $this->context, $mapping, $this->endpoint );
 
-		$this->setExpectedException( '\Aimeos\Controller\Common\Exception' );
+		$this->expectException( '\Aimeos\Controller\Common\Exception' );
 		$object->process( $product, $data );
 	}
 

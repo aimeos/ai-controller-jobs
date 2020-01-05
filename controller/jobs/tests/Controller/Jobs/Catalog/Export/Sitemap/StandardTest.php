@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 		$this->object = null;
@@ -67,18 +67,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml.gz' );
 		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml.gz' );
 
-		$this->assertContains( 'Kaffee', $file1 );
-		$this->assertContains( 'Misc', $file2 );
+		$this->assertStringContainsString( 'Kaffee', $file1 );
+		$this->assertStringContainsString( 'Misc', $file2 );
 
-		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-1.xml.gz', $index );
-		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-2.xml.gz', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-1.xml.gz', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-2.xml.gz', $index );
 	}
 
 	public function testRunEmptyLocation()
 	{
 		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', '' );
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 
 		$this->object->run();
 	}
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', null );
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 
 		$this->object->run();
 	}

@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 		$this->object = null;
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		unlink( 'tmp' . $ds . 'aimeos-products-1.xml' );
 		unlink( 'tmp' . $ds . 'aimeos-products-2.xml' );
 
-		$this->assertContains( 'CNE', $file2 );
-		$this->assertContains( 'U:BUNDLE', $file2 );
+		$this->assertStringContainsString( 'CNE', $file2 );
+		$this->assertStringContainsString( 'U:BUNDLE', $file2 );
 	}
 }

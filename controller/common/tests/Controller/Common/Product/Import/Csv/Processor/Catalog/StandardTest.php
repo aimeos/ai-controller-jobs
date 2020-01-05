@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $endpoint;
 
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
 
@@ -29,14 +29,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public static function tearDownAfterClass()
+	public static function tearDownAfterClass() : void
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
 		$manager->deleteItem( self::$product->getId() );
 	}
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 	}
@@ -264,7 +264,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 
-		$this->setExpectedException( '\Aimeos\Controller\Common\Exception' );
+		$this->expectException( '\Aimeos\Controller\Common\Exception' );
 		$object->process( self::$product, $data );
 	}
 

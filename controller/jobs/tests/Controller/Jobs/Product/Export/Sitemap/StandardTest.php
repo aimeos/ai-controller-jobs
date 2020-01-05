@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 		$this->object = null;
@@ -67,10 +67,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz' );
 
-		$this->assertContains( 'Cafe_Noire_Expresso', $file2 );
-		$this->assertContains( 'Unittest%3A_Bundle', $file2 );
+		$this->assertStringContainsString( 'Cafe_Noire_Expresso', $file2 );
+		$this->assertStringContainsString( 'Unittest%3A_Bundle', $file2 );
 
-		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-1.xml.gz', $index );
-		$this->assertContains( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-2.xml.gz', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-1.xml.gz', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-2.xml.gz', $index );
 	}
 }

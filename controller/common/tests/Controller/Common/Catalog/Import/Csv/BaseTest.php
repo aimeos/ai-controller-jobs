@@ -14,7 +14,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -25,7 +25,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 	}
@@ -33,14 +33,14 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetCacheInvalidType()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( '$' );
 	}
 
 
 	public function testGetCacheInvalidClass()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getCachePublic( 'unknown' );
 	}
 
@@ -55,21 +55,21 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetProcessorsInvalidType()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( '$' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidClass()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidInterface()
 	{
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 }

@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '4.50', $data[0][8] );
 		$this->assertEquals( '0.00', $data[0][9] );
 		$this->assertEquals( '0.00', $data[0][10] );
-		$this->assertEquals( '0.0000', $data[0][11] );
+		$this->assertEquals( '0.00', $data[0][11] );
 		$this->assertEquals( '1', $data[0][12] );
 		$this->assertEquals( '1', $data[0][13] );
 		$this->assertEquals( "default\ndefault\nconfig", $data[0][14] );

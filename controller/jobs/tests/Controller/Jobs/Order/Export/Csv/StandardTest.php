@@ -15,7 +15,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object, $this->context );
 	}

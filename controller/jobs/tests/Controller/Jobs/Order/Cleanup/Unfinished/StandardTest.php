@@ -16,7 +16,7 @@ class StandardTest
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$context = \TestHelperJobs::getContext();
 		$aimeos = \TestHelperJobs::getAimeos();
@@ -25,7 +25,7 @@ class StandardTest
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		$this->object = null;
 	}

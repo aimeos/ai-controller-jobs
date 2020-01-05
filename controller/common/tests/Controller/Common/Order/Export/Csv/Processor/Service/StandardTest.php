@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '0.00', $data[0][4] );
 		$this->assertEquals( '0.00', $data[0][5] );
 		$this->assertEquals( '0.00', $data[0][6] );
-		$this->assertEquals( '0.0000', $data[0][7] );
+		$this->assertEquals( '0.00', $data[0][7] );
 		$this->assertEquals( "payment\npayment\npayment\npayment\npayment\npayment\npayment\npayment\npayment", $data[0][8] );
 		$this->assertEquals( "ACOWNER\nACSTRING\nNAME\nREFID\nTXDATE\nX-ACCOUNT\nX-STATUS\nOgone-alias-name\nOgone-alias-value", $data[0][9] );
 		$this->assertEquals( "account owner\naccount number\npayment method\nreference id\ntransaction date\ntransaction account\ntransaction status\nogone alias name\nogone alias value", $data[0][10] );
@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '0.00', $data[1][4] );
 		$this->assertEquals( '5.00', $data[1][5] );
 		$this->assertEquals( '0.00', $data[1][6] );
-		$this->assertEquals( '0.0000', $data[1][7] );
+		$this->assertEquals( '0.00', $data[1][7] );
 		$this->assertEquals( '', $data[1][8] );
 		$this->assertEquals( '', $data[1][9] );
 		$this->assertEquals( '', $data[1][10] );

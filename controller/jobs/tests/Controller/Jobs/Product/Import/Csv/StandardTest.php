@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 		$this->object = null;
@@ -126,36 +126,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testRunProcessorInvalidPosition()
-	{
-		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
-
-		$mapping = array(
-			'item' => array(
-				0 => 'product.code',
-				1 => 'product.label',
-				2 => 'product.type',
-				3 => 'product.status',
-			),
-			'text' => array(
-				4 => 'text.type',
-				5 => 'text.content',
-				100 => 'text.type',
-				101 => 'text.content',
-			),
-			'media' => array(
-				8 => 'media.url',
-			),
-		);
-
-		$this->context->getConfig()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
-
-		$this->object->run();
-
-		$this->delete( $prodcodes, array( 'text', 'media' ), [] );
-	}
-
-
 	public function testRunProcessorInvalidMapping()
 	{
 		$mapping = array(
@@ -166,7 +136,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context->getConfig()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 
@@ -202,7 +172,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Unable to copy test file' );
 		}
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 

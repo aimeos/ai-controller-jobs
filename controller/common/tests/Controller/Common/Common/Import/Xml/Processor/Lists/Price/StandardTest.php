@@ -15,14 +15,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperCntl::getContext();
 		$this->object = new \Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Price\Standard( $this->context );
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object, $this->context );
 	}
