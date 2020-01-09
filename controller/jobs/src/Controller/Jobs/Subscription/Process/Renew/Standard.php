@@ -184,6 +184,8 @@ class Standard
 					$basket->addCoupon( $code );
 				} catch( \Aimeos\MShop\Plugin\Provider\Exception $e ) {
 					$basket->deleteCoupon( $code );
+				} catch( \Aimeos\MShop\Coupon\Exception $e ) {
+					$basket->deleteCoupon( $code );
 				}
 			}
 		}
