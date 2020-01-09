@@ -141,8 +141,10 @@ class Standard
 	{
 		foreach( $addresses as $type => $orderAddresses )
 		{
+			$idx = 0;
+
 			foreach( $orderAddresses as $orderAddress ) {
-				$newBasket->addAddress( $orderAddress->setId( null ), $type );
+				$newBasket->addAddress( $orderAddress->setId( null ), $type, $idx );
 			}
 		}
 
@@ -232,12 +234,14 @@ class Standard
 
 		if( isset( $services[$type] ) )
 		{
+			$idx = 0;
+
 			foreach( $services[$type] as $orderService )
 			{
 				foreach( $orderService->getAttributeItems() as $attrItem ) {
 					$attrItem->setId( null );
 				}
-				$newBasket->addService( $orderService->setId( null ), $type );
+				$newBasket->addService( $orderService->setId( null ), $type, $idx++ );
 			}
 		}
 
