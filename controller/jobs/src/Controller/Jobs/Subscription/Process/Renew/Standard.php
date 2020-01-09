@@ -245,6 +245,7 @@ class Standard
 			}
 		}
 
+		$idx = 0;
 		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
 
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
@@ -261,7 +262,7 @@ class Standard
 			if( $provider->isAvailable( $newBasket ) === true )
 			{
 				$orderServiceItem = $orderServiceManager->createItem()->copyFrom( $item );
-				return $newBasket->addService( $orderServiceItem, $type );
+				return $newBasket->addService( $orderServiceItem, $type, $idx++ );
 			}
 		}
 
