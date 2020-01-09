@@ -141,8 +141,10 @@ class Standard
 	{
 		foreach( $addresses as $type => $orderAddresses )
 		{
+			$idx = 0;
+
 			foreach( $orderAddresses as $orderAddress ) {
-				$newBasket->addAddress( $orderAddress, $type );
+				$newBasket->addAddress( $orderAddress->setId( null ), $type, $idx++ );
 			}
 		}
 
@@ -232,11 +234,18 @@ class Standard
 
 		if( isset( $services[$type] ) )
 		{
-			foreach( $services[$type] as $orderService ) {
-				$newBasket->addService( $orderService, $type );
+			$idx = 0;
+
+			foreach( $services[$type] as $orderService )
+			{
+				foreach( $orderService->getAttributeItems() as $attrItem ) {
+					$attrItem->setId( null );
+				}
+				$newBasket->addService( $orderService->setId( null ), $type, $idx++ );
 			}
 		}
 
+		$idx = 0;
 		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
 
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
@@ -253,7 +262,7 @@ class Standard
 			if( $provider->isAvailable( $newBasket ) === true )
 			{
 				$orderServiceItem = $orderServiceManager->createItem()->copyFrom( $item );
-				return $newBasket->addService( $orderServiceItem, $type );
+				return $newBasket->addService( $orderServiceItem, $type, $idx++ );
 			}
 		}
 
