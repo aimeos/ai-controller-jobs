@@ -51,6 +51,7 @@ class Standard
 		$resource = $item->getResourceType();
 		$context = $this->getContext();
 
+		$mediacntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
@@ -77,6 +78,25 @@ class Standard
 				} else {
 					$list[$tag->nodeName] = $tag->nodeValue;
 				}
+			}
+
+			try
+			{
+				$refItem = $refItem->setUrl( $list['media.url'] ?? '' );
+
+				if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
+					$refItem->setPreviews( $map );
+				} elseif( isset( $list['media.preview'] ) ) {
+					$refItem->setPreview( $list['media.preview'] );
+				} elseif( $refItem->isModified() ) {
+					$refItem = $mediacntl->scale( $refItem );
+				}
+
+				unset( $list['media.previews'], $list['media.preview'] );
+			}
+			catch( \Aimeos\Controller\Common\Exception $e )
+			{
+				$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $refItem->getUrl(), $e->getMessage() ) );
 			}
 
 			$refItem = $refItem->fromArray( $list );

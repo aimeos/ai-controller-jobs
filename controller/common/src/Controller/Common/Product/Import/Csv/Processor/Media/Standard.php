@@ -179,7 +179,7 @@ class Standard
 						$refItem = $cntl->scale( $refItem );
 					}
 				}
-				catch( \Aimeos\MW\Media\Exception $e )
+				catch( \Aimeos\Controller\Common\Exception $e )
 				{
 					$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() ) );
 				}

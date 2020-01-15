@@ -67,6 +67,10 @@ class TestHelperCntl
 		$ctx->setDatabaseManager( $dbm );
 
 
+		$fsm = new \Aimeos\MW\Filesystem\Manager\Standard( $conf );
+		$ctx->setFilesystemManager( $fsm );
+
+
 		$logger = new \Aimeos\MW\Logger\File( 'unittest.log', \Aimeos\MW\Logger\Base::DEBUG );
 		$ctx->setLogger( $logger );
 

@@ -39,11 +39,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		<media.type><![CDATA[test]]></media.type>
 		<media.languageid><![CDATA[de]]></media.languageid>
 		<media.url><![CDATA[path/to/file.jpg]]></media.url>
+		<media.preview><![CDATA[path/to/preview.jpg]]></media.preview>
 	</mediaitem>
 	<mediaitem lists.type="test">
 		<media.type><![CDATA[default]]></media.type>
 		<media.languageid><![CDATA[]]></media.languageid>
 		<media.url><![CDATA[path/to/file2.jpg]]></media.url>
+		<media.previews><![CDATA[{"1":"path/to/preview.jpg"}]]></media.previews>
 	</mediaitem>
 </media>' );
 
@@ -51,8 +53,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$pos = 0;
 		$expected = [
-			['default', 'test', 'de', 'path/to/file.jpg'],
-			['test', 'default', '', 'path/to/file2.jpg'],
+			['default', 'test', 'de', 'path/to/file.jpg', [1 => 'path/to/preview.jpg']],
+			['test', 'default', '', 'path/to/file2.jpg', [1 => 'path/to/preview.jpg']],
 		];
 
 		$listItems = $product->getListItems( 'media' );
@@ -64,6 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$this->assertEquals( $expected[$pos][1], $listItem->getRefItem()->getType() );
 			$this->assertEquals( $expected[$pos][2], $listItem->getRefItem()->getLanguageId() );
 			$this->assertEquals( $expected[$pos][3], $listItem->getRefItem()->getUrl() );
+			$this->assertEquals( $expected[$pos][4], $listItem->getRefItem()->getPreviews() );
 			$pos++;
 		}
 	}
