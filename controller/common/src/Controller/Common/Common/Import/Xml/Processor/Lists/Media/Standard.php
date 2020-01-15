@@ -82,7 +82,8 @@ class Standard
 
 			try
 			{
-				$refItem = $refItem->setUrl( $list['media.url'] ?? '' );
+				$url = isset( $list['media.url'] ) ? $list['media.url'] : '';
+				$refItem = $refItem->setUrl( $url );
 
 				if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
 					$refItem->setPreviews( $map );
