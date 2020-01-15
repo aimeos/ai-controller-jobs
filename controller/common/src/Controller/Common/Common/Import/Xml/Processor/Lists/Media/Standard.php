@@ -51,7 +51,6 @@ class Standard
 		$resource = $item->getResourceType();
 		$context = $this->getContext();
 
-		$mediacntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
@@ -80,26 +79,7 @@ class Standard
 				}
 			}
 
-			try
-			{
-				$refItem = $refItem->setUrl( $list['media.url'] ?? '' );
-
-				if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
-					$refItem->setPreviews( $map );
-				} elseif( isset( $list['media.preview'] ) ) {
-					$refItem->setPreview( $list['media.preview'] );
-				} elseif( $refItem->isModified() ) {
-					$refItem = $mediacntl->scale( $refItem );
-				}
-
-				unset( $list['media.previews'], $list['media.preview'] );
-			}
-			catch( \Aimeos\Controller\Common\Exception $e )
-			{
-				$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $refItem->getUrl(), $e->getMessage() ) );
-			}
-
-			$refItem = $refItem->fromArray( $list );
+			$refItem = $this->update( $refItem, $list );
 
 			foreach( $refNode->attributes as $attrName => $attrNode ) {
 				$list[$resource . '.' . $attrName] = $attrNode->nodeValue;
@@ -117,5 +97,38 @@ class Standard
 		}
 
 		return $item->deleteListItems( $listItems );
+	}
+
+
+	/**
+	 * Updates the media item with the given key/value pairs
+	 *
+	 * @param \Aimeos\MShop\Media\Item\Iface $refItem Media item to update
+	 * @param array &$list Associative list of key/value pairs, matching pairs are removed
+	 * @return \Aimeos\MShop\Media\Item\Iface Updated media item
+	 */
+	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list )
+	{
+		try
+		{
+			$refItem = $refItem->setUrl( $list['media.url'] ?? '' );
+
+			if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
+				$refItem->setPreviews( $map );
+			} elseif( isset( $list['media.preview'] ) ) {
+				$refItem->setPreview( $list['media.preview'] );
+			} elseif( $refItem->isModified() ) {
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $this->getContext() )->scale( $refItem );
+			}
+
+			unset( $list['media.previews'], $list['media.preview'] );
+		}
+		catch( \Aimeos\Controller\Common\Exception $e )
+		{
+			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $refItem->getUrl(), $e->getMessage() );
+			$this->getContext()->getLogger()->log( $msg );
+		}
+
+		return $refItem->fromArray( $list );
 	}
 }
