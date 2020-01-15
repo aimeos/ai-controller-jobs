@@ -142,7 +142,7 @@ class Standard
 		foreach( $addresses as $type => $orderAddresses )
 		{
 			foreach( $orderAddresses as $orderAddress ) {
-				$newBasket->addAddress( $orderAddress, $type );
+				$newBasket->addAddress( $orderAddress->setId( null ), $type );
 			}
 		}
 
@@ -233,7 +233,7 @@ class Standard
 		if( isset( $services[$type] ) )
 		{
 			foreach( $services[$type] as $orderService ) {
-				$newBasket->addService( $orderService, $type );
+				$newBasket->addService( $orderService->setId( null ), $type );
 			}
 		}
 
