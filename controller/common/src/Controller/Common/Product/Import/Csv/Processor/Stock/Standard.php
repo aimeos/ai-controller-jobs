@@ -63,14 +63,14 @@ class Standard
 
 				$this->addType( 'stock/type', 'product', $list['stock.type'] );
 
-				if( ( $item = array_pop( $items ) ) === null ) {
+				if( ( $item = $items->pop() ) === null ) {
 					$item = $manager->createItem();
 				}
 
 				$manager->saveItem( $item->fromArray( $list ), false );
 			}
 
-			$manager->deleteItems( array_keys( $items ) );
+			$manager->deleteItems( $items->toArray() );
 
 			$data = $this->getObject()->process( $product, $data );
 
@@ -90,9 +90,9 @@ class Standard
 	 * Returns the stock items for the given product code
 	 *
 	 * @param string $code Unique product code
-	 * @return \Aimeos\MShop\Stock\Item\Iface[] Associative list of stock items
+	 * @return \Aimeos\Map List of stock items implementing \Aimeos\MShop\Stock\Item\Iface
 	 */
-	protected function getStockItems( string $code ) : array
+	protected function getStockItems( $code ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
 

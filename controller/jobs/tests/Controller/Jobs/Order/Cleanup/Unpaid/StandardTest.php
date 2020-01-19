@@ -84,7 +84,7 @@ class StandardTest
 			->will( $this->returnValue( $orderBaseManagerStub ) );
 
 		$orderManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( array( $orderItem->getId() => $orderItem ) ) );
+			->will( $this->returnValue( map( [$orderItem->getId() => $orderItem] ) ) );
 
 		$orderBaseManagerStub->expects( $this->once() )->method( 'deleteItems' );
 

@@ -119,10 +119,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->delete( $product );
 
 
-		$item = reset( $items );
-
 		$this->assertEquals( 1, count( $items ) );
-		$this->assertEquals( 20, $item->getStockLevel() );
+		$this->assertEquals( 20, $items->first()->getStockLevel() );
 	}
 
 
@@ -204,14 +202,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Stock\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $product->getCode() ) );
-		$manager->deleteItems( array_keys( $manager->searchItems( $search ) ) );
+		$manager->deleteItems( $manager->searchItems( $search )->toArray() );
 
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$manager->deleteItem( $product->getId() );
 	}
 
 
-	protected function getStockItems( $code )
+	protected function getStockItems( $code ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
 

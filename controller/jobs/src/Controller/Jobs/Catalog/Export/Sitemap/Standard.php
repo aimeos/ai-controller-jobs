@@ -63,9 +63,9 @@ class Standard
 	 * Adds the given catalogs to the content object for the site map file
 	 *
 	 * @param \Aimeos\MW\Container\Content\Iface $content File content object
-	 * @param \Aimeos\MShop\Catalog\Item\Iface[] $items List of catalog items
+	 * @param \Aimeos\Map $items List of catalog items implementing \Aimeos\MShop\Catalog\Item\Iface
 	 */
-	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, array $items )
+	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, \Aimeos\Map $items )
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -471,8 +471,8 @@ class Standard
 
 			if( $free < $count )
 			{
-				$this->addItems( $content, array_slice( $items, 0, $free, true ) );
-				$items = array_slice( $items, $free, null, true );
+				$this->addItems( $content, $items->slice( 0, $free, true ) );
+				$items = $items->slice( $free, null, true );
 
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );

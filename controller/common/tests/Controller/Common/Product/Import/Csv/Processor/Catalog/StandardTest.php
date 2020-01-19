@@ -308,9 +308,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
 
-		$result = $manager->searchItems( $search, array( 'product' ) );
-
-		if( ( $item = reset( $result ) ) === false ) {
+		if( ( $item = $manager->searchItems( $search, ['product'] )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No catalog item for code "%1$s"', $code ) );
 		}
 

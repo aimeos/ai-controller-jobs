@@ -121,7 +121,7 @@ class Standard
 					do
 					{
 						$orderSearch->setSlice( $orderStart, $maxItems );
-						$orderItems = $orderManager->searchItems( $orderSearch );
+						$orderItems = $orderManager->searchItems( $orderSearch )->toArray();
 
 						try
 						{

@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'createPayment' );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( [$item] ) );
+			->will( $this->returnValue( map( [$item] ) ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( [$managerStub->createItem()->setOrderBaseId( -1 )] ) );
+			->will( $this->returnValue( map( [$managerStub->createItem()->setOrderBaseId( -1 )] ) ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
@@ -251,9 +251,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
 
-		$items = $manager->searchItems( $search );
-
-		if( ( $item = reset( $items ) ) !== false ) {
+		if( ( $item = $manager->searchItems( $search )->first() ) !== null ) {
 			return $item;
 		}
 

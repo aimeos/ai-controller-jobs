@@ -75,9 +75,7 @@ class Standard
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		$result = $manager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) !== false )
+		if( ( $item = $manager->searchItems( $search )->first() ) !== null )
 		{
 			$this->attributes[$code][$type] = $item;
 			return $item;

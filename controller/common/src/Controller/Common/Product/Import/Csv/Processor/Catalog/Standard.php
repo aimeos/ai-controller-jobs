@@ -176,7 +176,7 @@ class Standard
 				}
 			}
 
-			$listManager->deleteItems( array_keys( $listItems ) );
+			$listManager->deleteItems( $listItems->toArray() );
 			$data = $this->getObject()->process( $product, $data );
 
 			$manager->commit();
@@ -241,7 +241,7 @@ class Standard
 	 * @param array $types List of catalog list types
 	 * @return array List of catalog list items
 	 */
-	protected function getListItems( string $prodid, array $types ) : array
+	protected function getListItems( $prodid, array $types ) : \Aimeos\Map
 	{
 		if( empty( $types ) ) {
 			return [];

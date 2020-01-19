@@ -90,12 +90,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$jobSearch = $jobManager->createSearch();
 		$jobSearch->setConditions( $jobSearch->compare( '=~', 'job.label', 'order-export_' ) );
 		$jobItems = $jobManager->searchItems( $jobSearch );
-		$jobManager->deleteItems( array_keys( $jobItems ) );
+		$jobManager->deleteItems( $jobItems->toArray() );
 
 		$this->assertEquals( 1, count( $jobItems ) );
 
 
-		$filename = dirname( dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) ) . '/tmp/' . reset( $jobItems )->getLabel();
+		$filename = dirname( dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) ) . '/tmp/' . $jobItems->first()->getLabel();
 		$fp = fopen( $filename, 'r' );
 
 		$invoice = fgetcsv( $fp );

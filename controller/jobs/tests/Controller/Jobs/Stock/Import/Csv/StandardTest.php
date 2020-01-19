@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', ['unittest-csv', 'unittest-csv2'] ) );
 		$items = $manager->searchItems( $search );
-		$manager->deleteItems( array_keys( $items ) );
+		$manager->deleteItems( $items->toArray() );
 
 		foreach( $items as $item ) {
 			$map[$item->getProductCode()] = $item;

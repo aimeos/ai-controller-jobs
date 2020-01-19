@@ -130,9 +130,9 @@ class Standard
 	 *
 	 * @param \DomElement[] $nodes List of XML attribute item nodes
 	 * @param string[] $ref Domain names of referenced items that should be fetched too
-	 * @return \Aimeos\MShop\Attribute\Item\Iface[] Associative list of attribute items with IDs as keys
+	 * @return \Aimeos\Map List of attribute items implementing \Aimeos\MShop\Attribute\Item\Iface with IDs as keys
 	 */
-	protected function getItems( array $nodes, array $ref ) : array
+	protected function getItems( array $nodes, array $ref ) : \Aimeos\Map
 	{
 		$keys = [];
 

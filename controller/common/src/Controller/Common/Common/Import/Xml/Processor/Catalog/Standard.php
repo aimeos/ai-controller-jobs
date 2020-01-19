@@ -97,7 +97,7 @@ class Standard
 			$listManager->saveItem( $listItem, false );
 		}
 
-		$listManager->deleteItems( array_keys( $listItems ) );
+		$listManager->deleteItems( $listItems->toArray() );
 
 		return $item;
 	}
@@ -143,9 +143,9 @@ class Standard
 	 *
 	 * @param string $domain Domain name the referenced ID belongs to
 	 * @param string $id ID of the referenced domain item
-	 * @return array List of catalog list items
+	 * @return \Aimeos\Map List of catalog list items
 	 */
-	protected function getListItems( $domain, $id )
+	protected function getListItems( $domain, $id ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
 		$search = $manager->createSearch()->setSlice( 0, 10000 );
@@ -166,7 +166,7 @@ class Standard
 	 * @param string $domain Domain name the list types belong to
 	 * @return string[] List of list type codes
 	 */
-	protected function getListTypes( $domain )
+	protected function getListTypes( $domain ) : array
 	{
 		if( !isset( $this->listTypes[$domain] ) )
 		{

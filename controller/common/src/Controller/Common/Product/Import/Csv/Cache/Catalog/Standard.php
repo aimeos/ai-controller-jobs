@@ -71,9 +71,7 @@ class Standard
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
 
-		$result = $manager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) !== false )
+		if( ( $item = $manager->searchItems( $search )->first() ) !== null )
 		{
 			$this->categories[$code] = $item->getId();
 			return $item->getId();

@@ -63,9 +63,9 @@ class Standard
 	 * Adds the given products to the content object for the site map file
 	 *
 	 * @param \Aimeos\MW\Container\Content\Iface $content File content object
-	 * @param \Aimeos\MShop\Product\Item\Iface[] $items List of product items
+	 * @param \Aimeos\Map $items List of product items implementing \Aimeos\MShop\Product\Item\Iface
 	 */
-	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, array $items )
+	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, \Aimeos\Map $items )
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -407,8 +407,8 @@ class Standard
 
 			if( $remaining < $count )
 			{
-				$this->addItems( $content, array_slice( $items, 0, $remaining, true ) );
-				$items = array_slice( $items, $remaining, null, true );
+				$this->addItems( $content, $items->slice( 0, $remaining, true ) );
+				$items = $items->slice( $remaining, null, true );
 
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );

@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
-		$properties = $this->getProperties( array_keys( $result ) );
+		$properties = $this->getProperties( $result->keys()->toArray() );
 		$this->delete( $prodcodes, $delete, $nondelete );
 
 		$this->assertEquals( 2, count( $result ) );
@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
-		$properties = $this->getProperties( array_keys( $result ) );
+		$properties = $this->getProperties( $result->keys()->toArray() );
 		$this->delete( $prodcodes, $delete, $nondelete );
 
 		$this->assertEquals( 2, count( $result ) );
@@ -208,7 +208,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );
 			$result = $catListManager->searchItems( $search );
 
-			$catListManager->deleteItems( array_keys( $result ) );
+			$catListManager->deleteItems( $result->toArray() );
 		}
 
 
@@ -219,7 +219,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $attrManager->searchItems( $search );
 
-		$attrManager->deleteItems( array_keys( $result ) );
+		$attrManager->deleteItems( $result->toArray() );
 	}
 
 
