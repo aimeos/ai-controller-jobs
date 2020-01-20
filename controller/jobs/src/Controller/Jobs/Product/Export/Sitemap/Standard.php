@@ -407,8 +407,8 @@ class Standard
 
 			if( $remaining < $count )
 			{
-				$this->addItems( $content, $items->slice( 0, $remaining, true ) );
-				$items = $items->slice( $remaining, null, true );
+				$this->addItems( $content, $items->slice( 0, $remaining ) );
+				$items = $items->slice( $remaining );
 
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );

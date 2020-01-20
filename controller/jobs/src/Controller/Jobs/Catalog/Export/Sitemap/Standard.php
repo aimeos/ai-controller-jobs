@@ -471,8 +471,8 @@ class Standard
 
 			if( $free < $count )
 			{
-				$this->addItems( $content, $items->slice( 0, $free, true ) );
-				$items = $items->slice( $free, null, true );
+				$this->addItems( $content, $items->slice( 0, $free ) );
+				$items = $items->slice( $free );
 
 				$this->closeContent( $content );
 				$content = $this->createContent( $container, ++$filenum );
