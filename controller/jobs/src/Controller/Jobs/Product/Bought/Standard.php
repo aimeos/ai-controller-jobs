@@ -169,7 +169,7 @@ class Standard
 		do
 		{
 			$totalCounts = $baseProductManager->aggregate( $search, 'order.base.product.productid' );
-			$prodIds = array_keys( $totalCounts );
+			$prodIds = $totalCounts->keys()->toArray();
 
 			foreach( $totalCounts as $id => $count )
 			{
@@ -227,7 +227,7 @@ class Standard
 
 		$search = $catalogListManager->createSearch();
 		$expr = array(
-			$search->compare( '==', 'catalog.lists.refid', array_keys( $relativeCounts ) ),
+			$search->compare( '==', 'catalog.lists.refid', $relativeCounts->keys()->toArray() ),
 			$search->compare( '==', 'catalog.lists.domain', 'product' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
