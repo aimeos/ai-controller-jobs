@@ -61,6 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 'default', $item->getType() );
 		$this->assertEquals( 'Test product', $item->getLabel() );
+		$this->assertEquals( ['css' => 'new'], $item->getConfig() );
 		$this->assertEquals( 1, count( $item->getRefItems( 'attribute' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'product' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'media' ) ) );

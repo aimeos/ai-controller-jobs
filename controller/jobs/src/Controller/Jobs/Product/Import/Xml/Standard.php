@@ -316,6 +316,8 @@ class Standard
 			}
 		}
 
+		$list['product.config'] = isset( $list['product.config'] ) ? json_decode( $list['product.config'], true ) : [];
+
 		$item = \Aimeos\MShop::create( $this->getContext(), 'product' )->saveItem( $item->fromArray( $list, true ) );
 		$this->addType( 'product/type', 'product', $item->getType() );
 
