@@ -5,6 +5,7 @@
 		<product.type><![CDATA[default]]></product.type>
 		<product.code><![CDATA[unittest-xml]]></product.code>
 		<product.label><![CDATA[Test product]]></product.label>
+		<product.config><![CDATA[{"css":"new"}]]></product.config>
 		<lists>
 			<text>
 				<textitem lists.type="test">

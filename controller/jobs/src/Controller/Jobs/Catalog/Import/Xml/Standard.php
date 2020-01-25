@@ -316,6 +316,8 @@ class Standard
 			}
 		}
 
+		$list['catalog.config'] = isset( $list['catalog.config'] ) ? json_decode( $list['catalog.config'], true ) : [];
+
 		return $item->fromArray( $list, true );
 	}
 }
