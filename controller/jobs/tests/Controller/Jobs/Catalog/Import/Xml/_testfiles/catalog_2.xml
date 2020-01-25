@@ -4,6 +4,7 @@
 	<catalogitem ref="unittest-xml">
 		<catalog.code><![CDATA[unittest-xml]]></catalog.code>
 		<catalog.label><![CDATA[Test catalog]]></catalog.label>
+		<catalog.config><![CDATA[{"css":"new"}]]></catalog.config>
 		<lists>
 			<text>
 				<textitem lists.type="default">
