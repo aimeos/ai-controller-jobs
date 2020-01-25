@@ -12,7 +12,7 @@ $enc = $this->encoder()
 <productitem ref="<?= $enc->attr( $item->getCode() ) ?>">
 	<product.type><![CDATA[<?= $enc->xml( $item->getType() ) ?>]]></product.type>
 	<product.code><![CDATA[<?= $enc->xml( $item->getCode() ) ?>]]></product.code>
-	<product.label><![CDATA[<?= $enc->xml( $item->getCode() ) ?>]]></product.label>
+	<product.label><![CDATA[<?= $enc->xml( $item->getLabel() ) ?>]]></product.label>
 	<product.status><![CDATA[<?= $enc->xml( $item->getStatus() ) ?>]]></product.status>
 	<product.config><![CDATA[<?= $enc->xml( json_encode( $item->getConfig() ) ) ?>]]></product.config>
 	<product.datestart><![CDATA[<?= $enc->xml( str_replace( ' ', 'T', $item->getDateStart() ) ) ?>]]></product.datestart>
