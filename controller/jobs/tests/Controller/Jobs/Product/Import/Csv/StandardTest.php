@@ -196,10 +196,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				}
 			}
 
-			foreach( $nondelete as $domain )
-			{
-				$ids = array_keys( $product->getListItems( $domain ) );
-				$listManager->deleteItems( $ids );
+			foreach( $nondelete as $domain ) {
+				$listManager->deleteItems( $product->getListItems( $domain )->toArray() );
 			}
 
 			$productManager->deleteItem( $product->getId() );

@@ -89,7 +89,7 @@ class Standard
 			$item = $item->addListItem( 'product', $listItem );
 		}
 
-		return $item->deleteListItems( $listItems );
+		return $item->deleteListItems( $listItems->toArray() );
 	}
 
 

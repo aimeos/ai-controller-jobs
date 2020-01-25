@@ -68,7 +68,7 @@ class Standard
 			$propItem = $manager->createItem()->fromArray( $list );
 
 			if( isset( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] ) ) {
-				unset( $propItems[$map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()]] );
+				$propItems->remove( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] );
 			} else {
 				$item->addPropertyItem( $propItem );
 			}
@@ -76,6 +76,6 @@ class Standard
 			$this->addType( $resource . '/property/type', 'product', $propItem->getType() );
 		}
 
-		return $item->deletePropertyItems( $propItems );
+		return $item->deletePropertyItems( $propItems->toArray() );
 	}
 }

@@ -172,7 +172,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$listItems = $category->getListItems();
-		$listItem = reset( $listItems );
+		$listItem = $listItems->first();
 
 		$this->assertEquals( 1, count( $listItems ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
@@ -290,10 +290,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$listManager = $manager->getSubManager( 'lists' );
 
-		foreach( $catItem->getListItems( 'product' ) as $listItem ) {
-			$listManager->deleteItem( $listItem->getId() );
-		}
-
+		$listManager->deleteItems( $catItem->getListItems( 'product' )->keys()->toArray() );
 		$manager->deleteItem( $catItem->getId() );
 	}
 

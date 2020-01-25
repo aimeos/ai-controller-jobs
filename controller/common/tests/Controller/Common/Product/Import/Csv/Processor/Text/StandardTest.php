@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$listItems = $product->getListItems();
-		$listItem = reset( $listItems );
+		$listItem = $listItems->first();
 
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
 		$this->assertEquals( 1, count( $listItems ) );
@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$listItems = $product->getListItems();
-		$listItem = reset( $listItems );
+		$listItem = $listItems->first();
 
 		$this->assertEquals( 1, count( $listItems ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );

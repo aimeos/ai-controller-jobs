@@ -188,7 +188,7 @@ class Standard
 			}
 		}
 
-		$product->deleteListItems( $listItems, true );
+		$product->deleteListItems( $listItems->toArray(), true );
 
 		return $this->getObject()->process( $product, $data );
 	}

@@ -121,8 +121,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC', ['price'] );
 		$orderProduct = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
 
-		$price = $product->getRefItems( 'price', 'default', 'default' );
-		$basket->addProduct( $orderProduct->copyFrom( $product )->setPrice( reset( $price ) ) );
+		$price = $product->getRefItems( 'price', 'default', 'default' )->first();
+		$basket->addProduct( $orderProduct->copyFrom( $product )->setPrice( $price ) );
 
 		$this->assertEquals( '600.00', $basket->getPrice()->getValue() );
 		$this->assertEquals( '30.00', $basket->getPrice()->getCosts() );

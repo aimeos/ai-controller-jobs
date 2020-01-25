@@ -152,7 +152,7 @@ class Standard
 			$catalog->addListItem( 'text', $listItem, $refItem );
 		}
 
-		$catalog->deleteListItems( $listItems, true );
+		$catalog->deleteListItems( $listItems->toArray(), true );
 
 		return $this->getObject()->process( $catalog, $data );
 	}

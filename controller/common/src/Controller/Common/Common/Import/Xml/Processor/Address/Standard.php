@@ -45,7 +45,7 @@ class Standard
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\AddressRef\Iface::class, $item );
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), $item->getResourceType() . '/address' );
-		$addrItems = array_reverse( $item->getAddressItems(), true );
+		$addrItems = $item->getAddressItems()->reverse();
 
 		foreach( $node->childNodes as $addrNode )
 		{
@@ -59,15 +59,15 @@ class Standard
 				$list[$tagNode->nodeName] = $tagNode->nodeValue;
 			}
 
-			if( ( $addrItem = array_pop( $addrItems ) ) === null ) {
-				$addrItem = $manager->createItem();
+			if( ( $addrItem = $addrItems->pop() ) !== null ) {
+				$addrItems->remove( $addrItem->getId() );
 			} else {
-				unset( $addrItems[$addrItem->getId()] );
+				$addrItem = $manager->createItem();
 			}
 
 			$item = $item->addAddressItem( $addrItem->fromArray( $list ), $addrItem->getId() );
 		}
 
-		return $item->deleteAddressItems( $addrItems );
+		return $item->deleteAddressItems( $addrItems->toArray() );
 	}
 }

@@ -47,7 +47,7 @@ class Standard
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\ListRef\Iface::class, $item );
 
-		$listItems = array_reverse( $item->getListItems( 'media', null, null, false ), true );
+		$listItems = $item->getListItems( 'media', null, null, false )->reverse();
 		$resource = $item->getResourceType();
 		$context = $this->getContext();
 
@@ -60,7 +60,7 @@ class Standard
 				continue;
 			}
 
-			if( ( $listItem = array_pop( $listItems ) ) === null ) {
+			if( ( $listItem = $listItems->pop() ) === null ) {
 				$listItem = $listManager->createItem();
 			}
 
@@ -96,7 +96,7 @@ class Standard
 			$item->addListItem( 'media', $listItem, $refItem );
 		}
 
-		return $item->deleteListItems( $listItems );
+		return $item->deleteListItems( $listItems->toArray() );
 	}
 
 

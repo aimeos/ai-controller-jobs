@@ -64,7 +64,7 @@ class Standard
 			if( isset( $propMap[$value][$type] ) )
 			{
 				$item = $propMap[$value][$type];
-				unset( $items[$item->getId()] );
+				$items->remove( $item->getId() );
 			}
 			else
 			{
@@ -74,7 +74,7 @@ class Standard
 			$product->addPropertyItem( $item->fromArray( $list ) );
 		}
 
-		$product->deletePropertyItems( $items );
+		$product->deletePropertyItems( $items->toArray() );
 
 		return $this->getObject()->process( $product, $data );
 	}

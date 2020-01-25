@@ -68,11 +68,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $listItems1 ) );
 		$this->assertEquals( 1, count( $listItems2 ) );
 
-		$this->assertEquals( 1, reset( $listItems1 )->getStatus() );
-		$this->assertEquals( 1, reset( $listItems2 )->getStatus() );
+		$this->assertEquals( 1, $listItems1->first()->getStatus() );
+		$this->assertEquals( 1, $listItems2->first()->getStatus() );
 
-		$this->assertEquals( $this->products['CNC'], reset( $listItems1 )->getRefId() );
-		$this->assertEquals( $this->products['CNE'], reset( $listItems2 )->getRefId() );
+		$this->assertEquals( $this->products['CNC'], $listItems1->first()->getRefId() );
+		$this->assertEquals( $this->products['CNE'], $listItems2->first()->getRefId() );
 	}
 
 
@@ -136,7 +136,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$listItems = $product->getListItems();
-		$listItem = reset( $listItems );
+		$listItem = $listItems->first();
 
 		$this->assertEquals( 1, count( $listItems ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );

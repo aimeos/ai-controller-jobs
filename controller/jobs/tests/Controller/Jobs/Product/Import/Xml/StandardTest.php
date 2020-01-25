@@ -67,9 +67,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $item->getRefItems( 'price' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'text' ) ) );
 		$this->assertEquals( 1, count( $item->getPropertyItems() ) );
-		$this->assertEquals( 1, count( current( $item->getRefItems( 'media' ) )->getPropertyItems() ) );
-		$this->assertEquals( 1, count( current( $item->getRefItems( 'media' ) )->getListItems( 'attribute' ) ) );
-		$this->assertEquals( 1, count( current( $item->getRefItems( 'price' ) )->getListItems( 'attribute' ) ) );
-		$this->assertEquals( 1, count( current( $item->getRefItems( 'text' ) )->getListItems( 'attribute' ) ) );
+		$this->assertEquals( 1, count( $item->getRefItems( 'media' )->first()->getPropertyItems() ) );
+		$this->assertEquals( 1, count( $item->getRefItems( 'media' )->first()->getListItems( 'attribute' ) ) );
+		$this->assertEquals( 1, count( $item->getRefItems( 'price' )->first()->getListItems( 'attribute' ) ) );
+		$this->assertEquals( 1, count( $item->getRefItems( 'text' )->first()->getListItems( 'attribute' ) ) );
 	}
 }

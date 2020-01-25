@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager->deleteItem( $manager->findItem( 'package-size' )->getId() );
 
 		$items = $product->getPropertyItems();
-		$item = reset( $items );
+		$item = $items->first();
 
 		$this->assertEquals( 1, count( $items ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Property\\Iface', $item );
