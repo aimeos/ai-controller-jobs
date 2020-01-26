@@ -139,7 +139,7 @@ class Standard
 		foreach( $nodes as $node )
 		{
 			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$keys[] = md5( $attr->nodeValue );
+				$keys[] = $attr->nodeValue;
 			}
 		}
 

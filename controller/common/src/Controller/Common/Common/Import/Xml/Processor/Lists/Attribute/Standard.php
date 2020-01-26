@@ -113,7 +113,7 @@ class Standard
 		foreach( $nodes as $node )
 		{
 			if( $node->nodeName === 'attributeitem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$keys[md5( $attr->nodeValue )] = null;
+				$keys[$attr->nodeValue] = null;
 			}
 		}
 
