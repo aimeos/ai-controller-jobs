@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 
-		$addresses = ['payment' => [$address]];
+		$addresses = map( ['payment' => [$address]] );
 		$basket = $this->access( 'addBasketAddresses' )->invokeArgs( $this->object, [$this->context, $basket, $addresses] );
 
 		$this->assertEquals( 1, count( $basket->getAddresses() ) );
@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '30.00', $basket->getPrice()->getCosts() );
 		$this->assertEquals( '0.00', $basket->getPrice()->getRebate() );
 
-		$basket = $this->access( 'addBasketCoupons' )->invokeArgs( $this->object, [$this->context, $basket, ['90AB']] );
+		$basket = $this->access( 'addBasketCoupons' )->invokeArgs( $this->object, [$this->context, $basket, map( ['90AB'] )] );
 
 		$this->assertEquals( 1, count( $basket->getCoupons() ) );
 		$this->assertEquals( 2, count( $basket->getProducts() ) );
@@ -144,10 +144,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' );
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
 
-		$orderProducts = [
+		$orderProducts = map( [
 			$manager->createItem()->copyFrom( $product )->setId( 1 ),
 			$manager->createItem()->copyFrom( $product )->setId( 2 ),
-		];
+		] );
 
 		$basket = $this->access( 'addBasketProducts' )->invokeArgs( $this->object, [$this->context, $basket, $orderProducts, 1] );
 
@@ -161,10 +161,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base/service' );
 
-		$orderServices = [
+		$orderServices = map( [
 			'delivery' => [$manager->createItem()->setCode( 'shiptest' )],
 			'payment' => [$manager->createItem()->setCode( 'paytest' )],
-		];
+		] );
 
 		$basket = $this->access( 'addBasketServices' )->invokeArgs( $this->object, [$this->context, $basket, $orderServices] );
 

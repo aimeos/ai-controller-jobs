@@ -43,11 +43,8 @@ class Standard
 	public function process( \Aimeos\MShop\Order\Item\Iface $invoice, \Aimeos\MShop\Order\Item\Base\Iface $order ) : array
 	{
 		$result = [];
-		$services = $order->getServices();
 
-		krsort( $services );
-
-		foreach( $services as $list )
+		foreach( $order->getServices()->krsort() as $list )
 		{
 			foreach( $list as $item )
 			{

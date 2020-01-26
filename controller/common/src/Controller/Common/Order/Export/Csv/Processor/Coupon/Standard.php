@@ -44,7 +44,7 @@ class Standard
 	{
 		$result = [];
 
-		foreach( $order->getCoupons() as $code => $products )
+		foreach( $order->getCoupons()->krsort() as $code => $products )
 		{
 			$data = [];
 

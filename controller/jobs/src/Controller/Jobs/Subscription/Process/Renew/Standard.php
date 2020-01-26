@@ -133,11 +133,11 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the addresses to
-	 * @param array $addresses Associative list of type as key and address object implementing \Aimeos\MShop\Order\Item\Base\Address\Iface as value
+	 * @param \Aimeos\Map $addresses List of type as key and address object implementing \Aimeos\MShop\Order\Item\Base\Address\Iface as value
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with addresses added
 	 */
 	protected function addBasketAddresses( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $addresses ) : \Aimeos\MShop\Order\Item\Base\Iface
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, \Aimeos\Map $addresses ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		foreach( $addresses as $type => $orderAddresses )
 		{
@@ -157,11 +157,11 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Order including product and addresses
-	 * @param array $codes List of coupon codes that should be added to the given basket
+	 * @param \Aimeos\Map $codes List of coupon codes that should be added to the given basket
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Basket, maybe with coupons added
 	 */
 	protected function addBasketCoupons( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $basket, array $codes ) : \Aimeos\MShop\Order\Item\Base\Iface
+		\Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\Map $codes ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		/** controller/jobs/subcription/process/renew/standard/use-coupons
 		 * Applies the coupons of the previous order also to the new one
@@ -199,12 +199,12 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the products to
-	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface[] $orderProducts List of product items
+	 * @param \Aimeos\Map $orderProducts List of product items Implementing \Aimeos\MShop\Order\Item\Base\Product\Iface
 	 * @param string $orderProductId Unique ID of the ordered subscription product
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with products added
 	 */
 	protected function addBasketProducts( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $orderProducts, $orderProductId ) : \Aimeos\MShop\Order\Item\Base\Iface
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, \Aimeos\Map $orderProducts, $orderProductId ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		foreach( $orderProducts as $orderProduct )
 		{
@@ -226,11 +226,11 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the services to
-	 * @param array $services Associative list of type as key and list of service objects implementing \Aimeos\MShop\Order\Item\Base\Service\Iface as values
+	 * @param \Aimeos\Map $services Associative list of type as key and list of service objects implementing \Aimeos\MShop\Order\Item\Base\Service\Iface as values
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with delivery and payment service added
 	 */
 	protected function addBasketServices( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, array $services ) : \Aimeos\MShop\Order\Item\Base\Iface
+		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, \Aimeos\Map $services ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT;
 
@@ -324,7 +324,7 @@ class Standard
 		$newBasket = $this->addBasketProducts( $context, $newBasket, $basket->getProducts(), $subscription->getOrderProductId() );
 		$newBasket = $this->addBasketAddresses( $context, $newBasket, $basket->getAddresses() );
 		$newBasket = $this->addBasketServices( $context, $newBasket, $basket->getServices() );
-		$newBasket = $this->addBasketCoupons( $context, $newBasket, array_keys( $basket->getCoupons() ) );
+		$newBasket = $this->addBasketCoupons( $context, $newBasket, $basket->getCoupons()->keys() );
 
 		return $manager->store( $newBasket );
 	}
