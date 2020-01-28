@@ -16,12 +16,27 @@ $detailConfig['absoluteUri'] = true;
 
 $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
 
-?>
-<?php foreach( $this->get( 'siteItems', [] ) as $id => $item ) : ?>
-<?php
-		$date = str_replace( ' ', 'T', $item->getTimeModified() ) . date( 'P' );
-		$params = array_diff_key( ['d_name' => $item->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter );
+foreach( $this->get( 'siteItems', [] ) as $id => $item )
+{
+	$texts = [];
+	$date = str_replace( ' ', 'T', $item->getTimeModified() ) . date( 'P' );
+
+	foreach( $item->getListItems( 'text', 'default', 'url', false ) as $listItem )
+	{
+		if( $listItem->isAvailable() && ( $text = $listItem->getRefItem() ) !== null && $text->getStatus() > 0 ) {
+			$texts[$text->getLanguageId()] = \Aimeos\MW\Common\Base::sanitize( $text->getContent() );
+		}
+	}
+
+	if( empty( $texts ) ) {
+		$texts[''] = $item->getLabel();
+	}
+
+	foreach( $texts as $name )
+	{
+		$params = array_diff_key( ['d_name' => \Aimeos\MW\Common\Base::sanitize( $name ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter );
 		$url = $this->url( $detailTarget, $detailCntl, $detailAction, $params, [], $detailConfig );
-?>
-	<url><loc><?php echo $enc->xml( $url ); ?></loc><lastmod><?php echo $date; ?></lastmod><changefreq><?php echo $freq; ?></changefreq></url>
-<?php endforeach; ?>
+
+		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
+	}
+}

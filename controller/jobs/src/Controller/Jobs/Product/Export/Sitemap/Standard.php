@@ -382,7 +382,7 @@ class Standard
 	 */
 	protected function export( \Aimeos\MW\Container\Iface $container, bool $default = true ) : array
 	{
-		$domains = $this->getConfig( 'domains', [] );
+		$domains = $this->getConfig( 'domains', ['text'] );
 		$maxItems = $this->getConfig( 'max-items', 10000 );
 		$maxQuery = $this->getConfig( 'max-query', 1000 );
 
