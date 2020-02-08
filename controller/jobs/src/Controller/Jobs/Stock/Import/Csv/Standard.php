@@ -129,6 +129,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$logger->log( 'Stock import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$this->mail( 'Stock CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
 	}

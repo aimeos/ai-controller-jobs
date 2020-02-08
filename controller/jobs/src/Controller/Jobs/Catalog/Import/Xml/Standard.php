@@ -119,6 +119,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$this->mail( 'Catalog XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
 	}

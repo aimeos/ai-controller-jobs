@@ -89,6 +89,10 @@ class TestHelperJobs
 		$ctx->setCache( $cache );
 
 
+		$mail = new \Aimeos\MW\Mail\None();
+		$ctx->setMail( $mail );
+
+
 		$session = new \Aimeos\MW\Session\None();
 		$ctx->setSession( $session );
 

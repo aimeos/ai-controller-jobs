@@ -357,9 +357,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Product import error: ' . $e->getMessage() );
-			$logger->log( $e->getTraceAsString() );
-
+			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$this->mail( 'Product CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
 
@@ -371,6 +370,7 @@ class Standard
 		if( $errors > 0 )
 		{
 			$msg = sprintf( 'Invalid product lines in "%1$s": %2$d/%3$d', $path, $errors, $total );
+			$this->mail( 'Product CSV import', $msg );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 

@@ -357,9 +357,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Catalog import error: ' . $e->getMessage() );
-			$logger->log( $e->getTraceAsString() );
-
+			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$this->mail( 'Catalog CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
 
@@ -369,6 +368,7 @@ class Standard
 		if( $errors > 0 )
 		{
 			$msg = sprintf( 'Invalid catalog lines in "%1$s": %2$d/%3$d', $path, $errors, $total );
+			$this->mail( 'Catalog CSV import error', $msg );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 

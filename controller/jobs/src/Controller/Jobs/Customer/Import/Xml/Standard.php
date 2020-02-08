@@ -119,6 +119,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$logger->log( 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$this->mail( 'Customer XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
 	}

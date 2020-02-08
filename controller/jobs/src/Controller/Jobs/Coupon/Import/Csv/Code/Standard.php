@@ -82,9 +82,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( 'Coupon import error: ' . $e->getMessage() );
-			$context->getLogger()->log( $e->getTraceAsString() );
-
+			$context->getLogger()->log( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$this->mail( 'Coupon CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
 	}

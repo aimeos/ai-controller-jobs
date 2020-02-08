@@ -120,6 +120,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$logger->log( 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$this->mail( 'Attribute XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
 	}
