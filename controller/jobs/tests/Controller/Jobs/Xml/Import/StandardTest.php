@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		unset( $this->object, $this->context, $this->aimeos );
+		unset( $this->object, $this->context );
 		\Aimeos\MShop::cache( false );
 	}
 
