@@ -35,7 +35,7 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 	foreach( $texts as $name )
 	{
 		$params = array_diff_key( ['d_name' => \Aimeos\MW\Common\Base::sanitize( $name ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter );
-		$url = $this->url( $detailTarget, $detailCntl, $detailAction, $params, [], $detailConfig );
+		$url = $this->url( $item->getTarget() ?: $detailTarget, $detailCntl, $detailAction, $params, [], $detailConfig );
 
 		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
 	}
