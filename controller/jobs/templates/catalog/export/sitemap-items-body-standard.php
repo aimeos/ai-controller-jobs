@@ -7,20 +7,35 @@
 
 $enc = $this->encoder();
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listCntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-$listConfig['absoluteUri'] = true;
+$treeTarget = $this->config( 'client/html/catalog/tree/url/target' );
+$treeCntl = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
+$treeAction = $this->config( 'client/html/catalog/tree/url/action', 'list' );
+$treeConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
+$treeConfig['absoluteUri'] = true;
 
 $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
 
-?>
-<?php foreach( $this->get( 'siteItems', [] ) as $id => $item ) : ?>
-<?php
-		$date = str_replace( ' ', 'T', $item->getTimeModified() ) . date( 'P' );
-		$params = ['f_name' => $item->getName( 'url' ), 'f_catid' => $id];
-		$url = $this->url( $item->getTarget() ?: $listTarget, $listCntl, $listAction, $params, [], $listConfig );
-?>
-	<url><loc><?php echo $enc->xml( $url ); ?></loc><lastmod><?php echo $date; ?></lastmod><changefreq><?php echo $freq; ?></changefreq></url>
-<?php endforeach; ?>
+foreach( $this->get( 'siteItems', [] ) as $id => $item )
+{
+	$texts = [];
+	$date = str_replace( ' ', 'T', $item->getTimeModified() ) . date( 'P' );
+
+	foreach( $item->getListItems( 'text', 'default', 'url', false ) as $listItem )
+	{
+		if( $listItem->isAvailable() && ( $text = $listItem->getRefItem() ) !== null && $text->getStatus() > 0 ) {
+			$texts[$text->getLanguageId()] = \Aimeos\MW\Common\Base::sanitize( $text->getContent() );
+		}
+	}
+
+	if( empty( $texts ) ) {
+		$texts[''] = $item->getLabel();
+	}
+
+	foreach( $texts as $name )
+	{
+		$params = ['f_name' => \Aimeos\MW\Common\Base::sanitize( $name ), 'f_catid' => $id];
+		$url = $this->url( $item->getTarget() ?: $treeTarget, $treeCntl, $treeAction, $params, [], $treeConfig );
+
+		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
+	}
+}

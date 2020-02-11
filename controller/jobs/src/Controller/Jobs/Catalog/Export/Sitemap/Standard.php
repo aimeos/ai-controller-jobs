@@ -401,7 +401,7 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/max-query
 		 * @see controller/jobs/catalog/export/sitemap/changefreq
 		 */
-		$domains = $config->get( 'controller/jobs/catalog/export/sitemap/domains', [] );
+		$domains = $config->get( 'controller/jobs/catalog/export/sitemap/domains', ['text'] );
 
 		/** controller/jobs/catalog/export/sitemap/max-items
 		 * Maximum number of categories per site map
