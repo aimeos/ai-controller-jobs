@@ -56,7 +56,7 @@ class Standard
 
 		$search = $manager->createSearch();
 		$expr = array(
-			$search->compare( '==', 'media.domain', 'product' ),
+			$search->compare( '==', 'media.domain', ['attribute', 'catalog', 'product', 'service', 'supplier'] ),
 			$search->compare( '=~', 'media.mimetype', 'image/' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
