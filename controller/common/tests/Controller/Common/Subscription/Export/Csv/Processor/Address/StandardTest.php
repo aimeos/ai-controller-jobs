@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '055544332211', $data[0][15] );
 		$this->assertEquals( '055544332213', $data[0][16] );
 		$this->assertEquals( 'test@example.com', $data[0][17] );
-		$this->assertEquals( 'www.metaways.net', $data[0][18] );
+		$this->assertEquals( 'www.example.net', $data[0][18] );
 		$this->assertEquals( '11.000000', $data[0][19] );
 		$this->assertEquals( '52.000000', $data[0][20] );
 
