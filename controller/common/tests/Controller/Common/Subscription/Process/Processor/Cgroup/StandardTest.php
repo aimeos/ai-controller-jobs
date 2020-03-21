@@ -50,11 +50,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' );
 
 		$ordProdItem = $ordProdStub->createItem()->setAttributeItems( [
-			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),
-			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
+			$ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' )
+				->setAttributeId( 10 )->setValue( '3' ),
+			$ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' )
+				->setAttributeId( 11 )->setValue( '4' ),
 		] );
 
 		$ordProdStub->expects( $this->once() )->method( 'getItem' )
@@ -94,11 +95,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' );
 
 		$ordProdItem = $ordProdStub->createItem()->setAttributeItems( [
-			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),
-			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
+			$ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' )
+				->setAttributeId( 10 )->setValue( '3' ),
+			$ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' )
+				->setAttributeId( 11 )->setValue( '4' ),
 		] );
 
 		$ordProdStub->expects( $this->once() )->method( 'getItem' )
