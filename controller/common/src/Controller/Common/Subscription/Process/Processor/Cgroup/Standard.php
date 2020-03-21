@@ -68,19 +68,21 @@ class Standard
 	 */
 	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		if( empty( $this->groupIds ) ) {
-			return;
-		}
-
 		$context = $this->getContext();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
+		$productManager = \Aimeos\MShop::create( $context, 'order/base/product' );
 
 		$baseItem = $baseManager->getItem( $subscription->getOrderBaseId() );
+		$productItem = $productManager->getItem( $subscription->getOrderProductId() );
 		$item = $manager->getItem( $baseItem->getCustomerId(), ['customer/group'] );
 
-		$item->setGroups( array_unique( array_merge( $item->getGroups(), $this->groupIds ) ) );
+		if( ( $groupIds = (array) $productItem->getAttribute( 'customer/group', 'hidden' ) ) === [] ) {
+			$groupIds = $this->groupIds;
+		}
+
+		$item->setGroups( array_unique( array_merge( $item->getGroups(), $groupIds ) ) );
 		$manager->saveItem( $item );
 	}
 
@@ -92,19 +94,21 @@ class Standard
 	 */
 	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		if( empty( $this->groupIds ) ) {
-			return;
-		}
-
 		$context = $this->getContext();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
+		$productManager = \Aimeos\MShop::create( $context, 'order/base/product' );
 
 		$baseItem = $baseManager->getItem( $subscription->getOrderBaseId() );
+		$productItem = $productManager->getItem( $subscription->getOrderProductId() );
 		$item = $manager->getItem( $baseItem->getCustomerId(), ['customer/group'] );
 
-		$item->setGroups( array_diff( $item->getGroups(), $this->groupIds ) );
+		if( ( $groupIds = (array) $productItem->getAttribute( 'customer/group', 'hidden' ) ) === [] ) {
+			$groupIds = $this->groupIds;
+		}
+
+		$item->setGroups( array_diff( $item->getGroups(), $groupIds ) );
 		$manager->saveItem( $item );
 	}
 }
