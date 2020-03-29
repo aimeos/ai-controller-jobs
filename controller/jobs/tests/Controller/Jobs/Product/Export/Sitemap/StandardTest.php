@@ -67,8 +67,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
 		unlink( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz' );
 
-		$this->assertStringContainsString( 'Cafe_Noire_Expresso', $file2 );
-		$this->assertStringContainsString( 'Unittest%3A_Bundle', $file2 );
+		$this->assertStringContainsString( 'Cafe-Noire-Expresso', $file2 );
+		$this->assertStringContainsString( 'Unittest-Bundle', $file2 );
 
 		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-1.xml.gz', $index );
 		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-2.xml.gz', $index );
