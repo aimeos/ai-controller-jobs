@@ -264,10 +264,6 @@ class Standard
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
 
 		$search = $this->initCriteria( $manager->createSearch(), $msg );
-		$search->setConditions( $search->combine( '&&', [
-			$search->compare( '=~', 'order.base.product.siteid', $lcontext->getLocale()->getSiteId() ),
-			$search->getConditions()
-		] ) );
 		$search->setSortations( [$search->sort( '+', 'order.id' )] );
 
 		$start = 0;
