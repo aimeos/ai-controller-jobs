@@ -173,7 +173,7 @@ class Standard
 				{
 					if( isset( $previews[$idx] ) && ( $map = json_decode( $previews[$idx], true ) ) !== null ) {
 						$refItem->setPreviews( $map );
-					} elseif( isset( $preview[$idx] ) ) {
+					} elseif( isset( $preview[$idx] ) && $preview[$idx] ) {
 						$refItem->setPreview( $preview[$idx] );
 					} elseif( $refItem->isModified() ) {
 						$refItem = $cntl->scale( $refItem );
