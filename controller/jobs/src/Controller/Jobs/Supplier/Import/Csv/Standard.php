@@ -383,7 +383,6 @@ class Standard
                         $strict
                     );
                     $chunkcnt = count($data);
-
                     $msg =
                         'Imported supplier lines from "%1$s": %2$d/%3$d (%4$s)';
                     $logger->log(
@@ -402,8 +401,6 @@ class Standard
                     unset($data);
                 }
             }
-
-            dd(__CLASS__ . "-" . __FUNCTION__);
 
             $container->close();
         } catch (\Exception $e) {
@@ -622,10 +619,9 @@ class Standard
         $errors = 0;
         $context = $this->getContext();
         $manager = \Aimeos\MShop::create($context, 'supplier');
-        
+
         foreach ($data as $code => $list) {
             $manager->begin();
-
             try {
                 $code = trim($code);
                 if (isset($supplierMap[$code])) {
@@ -646,7 +642,6 @@ class Standard
 
                 $manager->commit();
             } catch (\Exception $e) {
-                dump($e->getMessage(), $e->getTraceAsString());
                 $manager->rollback();
 
                 $msg = sprintf(
@@ -666,7 +661,6 @@ class Standard
             }
         }
 
-        dd(__CLASS__ . "-" . __FUNCTION__);
         return $errors;
     }
 }
