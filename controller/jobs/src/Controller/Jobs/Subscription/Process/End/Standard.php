@@ -101,9 +101,8 @@ class Standard
 				}
 				catch( \Exception $e )
 				{
-					$msg = 'Unable to process subscription with ID "%1$S": %2$s';
-					$logger->log( sprintf( $msg, $item->getId(), $e->getMessage() ) );
-					$logger->log( $e->getTraceAsString() );
+					$str = sprintf( 'Unable to end subscription with ID "%1$s": %2$s', $item->getId(), $e->getMessage() );
+					$logger->log( $str . "\n" . $e->getTraceAsString(), \Aimeos\MW\Logger\Base::ERR, 'subscription' );
 				}
 			}
 
