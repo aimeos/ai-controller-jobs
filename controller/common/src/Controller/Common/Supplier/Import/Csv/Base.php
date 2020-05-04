@@ -152,9 +152,8 @@ class Base extends \Aimeos\Controller\Jobs\Base
      * Example:
      *  'item' => array(
      *  	0 => 'supplier.code', // e.g. unique EAN code
-     *		1 => 'supplier.parent', // Code of parent supplier node
-     *  	2 => 'supplier.label', // UTF-8 encoded text, also used as supplier name
-     *		3 => 'supplier.status', // If category should be shown in the frontend
+     *  	1 => 'supplier.label', // UTF-8 encoded text, also used as supplier name
+     *		2 => 'supplier.status', // If category should be shown in the frontend
      *  ),
      *  'text' => array(
      *  	3 => 'text.type', // e.g. "short" for short description
@@ -183,7 +182,7 @@ class Base extends \Aimeos\Controller\Jobs\Base
                 5 => 'media.url',
             ],
             /* 'product' => [],
-            'address' => [], */
+             'address' => [], */
         ];
     }
 

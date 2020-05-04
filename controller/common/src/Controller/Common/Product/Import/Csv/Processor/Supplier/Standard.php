@@ -27,10 +27,10 @@ class Standard
      *
      * @param string Last part of the processor class name
      * @since 2015.10
-     * @category Developer
+     * @supplier Developer
      */
 
-    //private $cache;
+    private $cache;
     private $listTypes;
 
     /**
@@ -57,8 +57,8 @@ class Standard
          *
          * @param array|null List of supplier list type names or null for all
          * @since 2015.05
-         * @category Developer
-         * @category User
+         * @supplier Developer
+         * @supplier User
          * @see controller/common/product/import/csv/domains
          * @see controller/common/product/import/csv/processor/attribute/listtypes
          * @see controller/common/product/import/csv/processor/media/listtypes
@@ -86,7 +86,7 @@ class Standard
             $this->listTypes = array_flip($this->listTypes);
         }
 
-        //$this->cache = $this->getCache('supplier');
+        $this->cache = $this->getCache('supplier');
     }
 
     /**
@@ -118,8 +118,8 @@ class Standard
          *
          * @param string Single separator character
          * @since 2015.07
-         * @category User
-         * @category Developer
+         * @supplier User
+         * @supplier Developer
          * @see controller/common/product/import/csv/domains
          */
         $separator = $context
@@ -159,20 +159,20 @@ class Standard
                 foreach ($codes as $code) {
                     $code = trim($code);
 
-                    if (($catid = $this->cache->get($code)) === null) {
+                    if (($supplierid = $this->cache->get($code)) === null) {
                         $msg =
-                            'No category for code "%1$s" available when importing product with code "%2$s"';
+                            'No supplier for code "%1$s" available when importing product with code "%2$s"';
                         throw new \Aimeos\Controller\Jobs\Exception(
                             sprintf($msg, $code, $product->getCode())
                         );
                     }
 
-                    $list['supplier.lists.parentid'] = $catid;
+                    $list['supplier.lists.parentid'] = $supplierid;
                     $list['supplier.lists.refid'] = $prodid;
                     $list['supplier.lists.domain'] = 'product';
 
-                    if (isset($listMap[$catid][$listtype])) {
-                        $listItem = $listMap[$catid][$listtype];
+                    if (isset($listMap[$supplierid][$listtype])) {
+                        $listItem = $listMap[$supplierid][$listtype];
                         unset($listItems[$listItem->getId()]);
                     } else {
                         $listItem = $listManager
@@ -247,7 +247,7 @@ class Standard
     }
 
     /**
-     * Returns the supplier list items for the given category and product ID
+     * Returns the supplier list items for the given supplier and product ID
      *
      * @param string $prodid Unique product ID
      * @param array $types List of supplier list types
