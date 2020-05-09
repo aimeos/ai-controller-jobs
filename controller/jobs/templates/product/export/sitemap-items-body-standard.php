@@ -24,7 +24,7 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 	foreach( $item->getListItems( 'text', 'default', 'url', false ) as $listItem )
 	{
 		if( $listItem->isAvailable() && ( $text = $listItem->getRefItem() ) !== null && $text->getStatus() > 0 ) {
-			$texts[$text->getLanguageId()] = \Aimeos\MW\Common\Base::sanitize( $text->getContent() );
+			$texts[$text->getLanguageId()] = \Aimeos\MW\Str::slug( $text->getContent() );
 		}
 	}
 
@@ -34,7 +34,7 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 
 	foreach( $texts as $name )
 	{
-		$params = array_diff_key( ['d_name' => \Aimeos\MW\Common\Base::sanitize( $name ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter );
+		$params = array_diff_key( ['d_name' => \Aimeos\MW\Str::slug( $name ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter );
 		$url = $this->url( $item->getTarget() ?: $detailTarget, $detailCntl, $detailAction, $params, [], $detailConfig );
 
 		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";

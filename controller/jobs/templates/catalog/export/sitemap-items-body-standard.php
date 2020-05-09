@@ -23,7 +23,7 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 	foreach( $item->getListItems( 'text', 'default', 'url', false ) as $listItem )
 	{
 		if( $listItem->isAvailable() && ( $text = $listItem->getRefItem() ) !== null && $text->getStatus() > 0 ) {
-			$texts[$text->getLanguageId()] = \Aimeos\MW\Common\Base::sanitize( $text->getContent() );
+			$texts[$text->getLanguageId()] = \Aimeos\MW\Str::slug( $text->getContent() );
 		}
 	}
 
@@ -33,7 +33,7 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 
 	foreach( $texts as $name )
 	{
-		$params = ['f_name' => \Aimeos\MW\Common\Base::sanitize( $name ), 'f_catid' => $id];
+		$params = ['f_name' => \Aimeos\MW\Str::slug( $name ), 'f_catid' => $id];
 		$url = $this->url( $item->getTarget() ?: $treeTarget, $treeCntl, $treeAction, $params, [], $treeConfig );
 
 		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
