@@ -54,6 +54,24 @@ class Standard
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
+		/** controller/common/subscription/process/payment-ends
+		 * Subscriptions ends if payment couldn't be captured
+		 *
+		 * By default, a subscription ends automatically if the next payment couldn't
+		 * be captured. When setting this configuration to FALSE, the subscription job
+		 * controller will try to capture the payment at the next run again until the
+		 * subscription is deactivated manually.
+		 *
+		 * @param bool TRUE if payment failures ends the subscriptions, FALSE if not
+		 * @since 2019.10
+		 * @category Developer
+		 * @category User
+		 * @see controller/common/subscription/process/processors
+		 * @see controller/common/subscription/process/payment-days
+		 * @see controller/common/subscription/process/payment-status
+		 */
+		$end = (bool) $config->get( 'controller/common/subscription/process/payment-ends', true );
+
 		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
 
 		$date = date( 'Y-m-d' );
@@ -102,7 +120,10 @@ class Standard
 					catch( \Exception $e )
 					{
 						$item->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
-						$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
+
+						if( $end ) {
+							$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
+						}
 
 						throw $e;
 					}
