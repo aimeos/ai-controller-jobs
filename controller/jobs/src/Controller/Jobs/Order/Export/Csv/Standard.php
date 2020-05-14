@@ -255,6 +255,7 @@ class Standard
 	protected function export( array $processors, array $msg, int $maxcnt )
 	{
 		$lcontext = $this->getLocaleContext( $msg );
+		$siteId = $lcontext->getLocale()->getSiteId();
 		$baseRef = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
@@ -264,6 +265,10 @@ class Standard
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
 
 		$search = $this->initCriteria( $manager->createSearch(), $msg );
+		$search->setConditions( $search->combine( '&&', [
+			$search->compare( '=~', 'order.base.product.siteid', $siteId ),
+			$search->getConditions()
+		] ) );
 		$search->setSortations( [$search->sort( '+', 'order.id' )] );
 
 		$start = 0;
@@ -289,7 +294,7 @@ class Standard
 			{
 				foreach( $processors as $type => $processor )
 				{
-					foreach( $processor->process( $item, $baseItems[$item->getBaseId()] ) as $line ) {
+					foreach( $processor->process( $item, $baseItems[$item->getBaseId()], $siteId ) as $line ) {
 						$content->add( [0 => $type, 1 => $id] + $line );
 					}
 				}
