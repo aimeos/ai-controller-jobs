@@ -255,8 +255,9 @@ class Standard
 	 */
 	protected function export( array $processors, $msg, $maxcnt )
 	{
-		$lcontext = $this->getLocaleContext( $msg );
 		$baseRef = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$lcontext = $this->getLocaleContext( $msg );
+		$locale = $lcontext->getLocale();
 
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
 		$baseManager = \Aimeos\MShop::create( $lcontext, 'order/base' );
@@ -264,9 +265,10 @@ class Standard
 		$container = $this->getContainer();
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
 
-		$search = $this->initCriteria( $manager->createSearch(), $msg );
+		$siteIds = array_merge( $locale->getSitePath(), $locale->getSiteSubTree() );
+		$search = $this->initCriteria( $manager->createSearch()->setSlice( 0x7fffffff ), $msg );
 		$search->setConditions( $search->combine( '&&', [
-			$search->compare( '==', 'order.base.product.siteid', $lcontext->getLocale()->getSiteSubTree() ),
+			$search->compare( '==', 'order.base.product.siteid', $siteIds ),
 			$search->getConditions()
 		] ) );
 		$search->setSortations( [$search->sort( '+', 'order.id')] );
@@ -326,7 +328,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $lcontext, 'locale' );
 
 		$sitecode = ( isset( $msg['sitecode'] ) ? $msg['sitecode'] : 'default' );
-		$localeItem = $manager->bootstrap( $sitecode, '', '', false, \Aimeos\MShop\Locale\Manager\Base::SITE_PATH );
+		$localeItem = $manager->bootstrap( $sitecode, '', '', false, \Aimeos\MShop\Locale\Manager\Base::SITE_ALL );
 
 		return $lcontext->setLocale( $localeItem );
 	}
