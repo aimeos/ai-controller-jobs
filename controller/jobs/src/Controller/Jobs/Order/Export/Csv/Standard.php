@@ -256,45 +256,27 @@ class Standard
 	{
 		$lcontext = $this->getLocaleContext( $msg );
 		$siteId = $lcontext->getLocale()->getSiteId();
-		$baseRef = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
-		$baseManager = \Aimeos\MShop::create( $lcontext, 'order/base' );
+		$ref = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 
 		$container = $this->getContainer();
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
 
 		$search = $this->initCriteria( $manager->createSearch(), $msg );
-		$search->setConditions( $search->combine( '&&', [
-			$search->compare( '=~', 'order.base.product.siteid', $siteId ),
-			$search->getConditions()
-		] ) );
 		$search->setSortations( [$search->sort( '+', 'order.id' )] );
 
 		$start = 0;
 
 		do
 		{
-			$baseIds = [];
 			$search->setSlice( $start, $maxcnt );
-			$items = $manager->searchItems( $search );
-
-			foreach( $items as $item ) {
-				$baseIds[] = $item->getBaseId();
-			}
-
-			$baseSearch = $baseManager->createSearch();
-			$baseSearch->setConditions( $baseSearch->compare( '==', 'order.base.id', $baseIds ) );
-			$baseSearch->setSortations( [$baseSearch->sort( '+', 'order.base.id' )] );
-			$baseSearch->setSlice( 0, count( $baseIds ) );
-
-			$baseItems = $baseManager->searchItems( $baseSearch, $baseRef );
+			$items = $manager->searchItems( $search, $ref );
 
 			foreach( $items as $id => $item )
 			{
 				foreach( $processors as $type => $processor )
 				{
-					foreach( $processor->process( $item, $baseItems[$item->getBaseId()], $siteId ) as $line ) {
+					foreach( $processor->process( $item, $item->getBaseItem(), $siteId ) as $line ) {
 						$content->add( [0 => $type, 1 => $id] + $line );
 					}
 				}
