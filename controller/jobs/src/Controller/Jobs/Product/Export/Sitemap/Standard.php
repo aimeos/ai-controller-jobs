@@ -356,7 +356,8 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 * @see controller/jobs/product/export/sitemap/location
 		 */
-		$baseUrl = $config->get( 'controller/jobs/product/export/sitemap/baseurl' );
+		$baseUrl = $config->get( 'resource/fs/baseurl' );
+		$baseUrl = $config->get( 'controller/jobs/product/export/sitemap/baseurl', $baseUrl );
 
 		if( $baseUrl == null )
 		{
