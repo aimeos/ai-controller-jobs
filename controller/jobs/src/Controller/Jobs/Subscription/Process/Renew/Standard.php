@@ -128,9 +128,11 @@ class Standard
 
 						throw $e;
 					}
-
-					foreach( $processors as $processor ) {
-						$processor->renewAfter( $item, $newInvoice );
+					finally // will be always executed, even if exception is rethrown in catch()
+					{
+						foreach( $processors as $processor ) {
+							$processor->renewAfter( $item, $newInvoice );
+						}
 					}
 				}
 				catch( \Exception $e )
