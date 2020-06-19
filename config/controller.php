@@ -11,7 +11,8 @@ return [
 						'price' => 'price',
 						'product' => 'product',
 						'product/property' => 'product/property',
-						'text' => 'text'
+						'text' => 'text',
+						'supplier' => 'supplier'
 					],
 				],
 			],
