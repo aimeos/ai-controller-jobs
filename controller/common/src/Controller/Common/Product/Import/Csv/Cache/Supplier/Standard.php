@@ -47,7 +47,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
 		$result = $manager->searchItems( $manager->createSearch() );
 
-		foreach( $result as $id => $item ) {
+		foreach ( $result as $id => $item ) {
 			$this->suppliers[$item->getCode()] = $id;
 		}
 	}
@@ -73,14 +73,13 @@ class Standard
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
 
 
-		if( ( $item = $manager->searchItems( $search )->first() ) == null )
-		{
-            $item = $manager->createItem()->setCode($code);
-            if( ( $item = $manager->saveItem($item) ) == null ) return null;
+		if( ($item = $manager->searchItems( $search )->first()) == null ) {
+			$item = $manager->createItem()->setCode( $code );
+			if( ($item = $manager->saveItem( $item )) == null ) return null;
 		}
 
-        $this->suppliers[$code] = $item->getId();
-        return $item->getId();
+		$this->suppliers[$code] = $item->getId();
+		return $item->getId();
 	}
 
 
