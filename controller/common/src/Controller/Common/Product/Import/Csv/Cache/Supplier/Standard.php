@@ -58,10 +58,9 @@ class Standard
 	 *
 	 * @param string $code Category code
 	 * @param string|null $type Not used
-	 * @param bool $create_if_not_exists Try to create a new one if existing is not found
 	 * @return string|null Supplier ID or null if not found
 	 */
-	public function get( string $code, string $type = null, bool $create_if_not_exists = false )
+	public function get( string $code, string $type = null )
 	{
 		if( isset( $this->suppliers[$code] ) ) {
 			return $this->suppliers[$code];
@@ -73,13 +72,11 @@ class Standard
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
 
 
-		if( ($item = $manager->searchItems( $search )->first()) == null ) {
-			$item = $manager->createItem()->setCode( $code );
-			if( ($item = $manager->saveItem( $item )) == null ) return null;
+		if( ( $item = $manager->searchItems( $search )->first() ) !== null )
+		{
+			$this->suppliers[$code] = $item->getId();
+			return $item->getId();
 		}
-
-		$this->suppliers[$code] = $item->getId();
-		return $item->getId();
 	}
 
 
