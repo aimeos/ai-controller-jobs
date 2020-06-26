@@ -54,7 +54,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
-		$domains = array('media', 'text', 'address');
+		$domains = array('media', 'text', 'supplier/address');
 		$mappings = $this->getDefaultMapping();
 
 

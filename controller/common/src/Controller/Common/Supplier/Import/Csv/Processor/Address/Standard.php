@@ -40,7 +40,7 @@ class Standard
 	 * @param \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $object Decorated processor
 	 */
 	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $mapping,
-								 \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $object = null )
+		\Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $object = null )
 	{
 		parent::__construct( $context, $mapping, $object );
 	}
@@ -60,7 +60,7 @@ class Standard
 
 		try {
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$items = $this->getAddressItems( $supplier->getId() );
+			$items = $supplier->getAddressItems();
 
 			foreach( $map as $pos => $list ) {
 				if( $this->checkEntry( $list ) === false ) {
@@ -69,40 +69,21 @@ class Standard
 
 				if( ($item = $items->pop()) === null ) {
 					$item = $manager->createItem();
-					$item->fromArray( $list );
-					$supplier->addAddressItem( $item );
-				} else {
-					$item->fromArray( $list );
-					$manager->saveItem( $item );
 				}
+
+				$item->fromArray( $list );
+				$supplier->addAddressItem( $item, $items->lastKey() );
 			}
 
 			$data = $this->getObject()->process( $supplier, $data );
 
 			$manager->commit();
-		} catch ( \Exception $e ) {
+		} catch( \Exception $e ) {
 			$manager->rollback();
 			throw $e;
 		}
 
-
 		return $data;
-	}
-
-	/**
-	 * Returns the address items for the given supplier code
-	 *
-	 * @param string $id Supplier's id
-	 * @return \Aimeos\Map List of stock items implementing \Aimeos\MShop\Stock\Item\Iface
-	 */
-	protected function getAddressItems( $id ): \Aimeos\Map
-	{
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier/address' );
-
-		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'supplier.address.parentid', $id ) );
-
-		return $manager->searchItems( $search );
 	}
 
 	/**
