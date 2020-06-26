@@ -50,8 +50,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown(): void
 	{
-		if( self::$supplier != null )
+		if( self::$supplier != null ){
 			$this->delete( self::$supplier );
+		}
 
 		\Aimeos\MShop::cache( false );
 	}
@@ -75,8 +76,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
 
-		foreach( $suppliersCodes as $code )
+		foreach( $suppliersCodes as $code ){
 			$this->create( $code );
+		}
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -89,7 +91,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$this->assertEquals( self::$product->getId(), $actualProductItem->getId() );
 		}
-
 	}
 
 
@@ -109,8 +110,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
 
-		foreach( $suppliersCodes as $code )
+		foreach( $suppliersCodes as $code ){
 			$this->create( $code );
+		}
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );

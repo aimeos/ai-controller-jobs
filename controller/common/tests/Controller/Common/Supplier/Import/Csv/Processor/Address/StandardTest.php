@@ -175,8 +175,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'ru', $address->getLanguageid() );
 		$this->assertEquals( 'RU', $address->getCountryid() );
 		$this->assertEquals( 'Moscow', $address->getCity() );
-
-
 	}
 
 	public function testProcessDelete()

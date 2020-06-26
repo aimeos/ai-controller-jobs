@@ -32,10 +32,6 @@ class Standard
 	 * @category Developer
 	 */
 
-	private $listTypes;
-	private $types;
-
-
 	/**
 	 * Initializes the object
 	 *
@@ -67,7 +63,6 @@ class Standard
 			$items = $this->getAddressItems( $supplier->getId() );
 
 			foreach( $map as $pos => $list ) {
-
 				if( $this->checkEntry( $list ) === false ) {
 					continue;
 				}
@@ -85,7 +80,6 @@ class Standard
 			$data = $this->getObject()->process( $supplier, $data );
 
 			$manager->commit();
-
 		} catch ( \Exception $e ) {
 			$manager->rollback();
 			throw $e;
