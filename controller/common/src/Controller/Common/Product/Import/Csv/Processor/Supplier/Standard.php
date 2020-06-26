@@ -28,7 +28,7 @@ class Standard
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the processor class name
-	 * @since 2015.10
+	 * @since 2020.07
 	 * @category Developer
 	 */
 
@@ -57,7 +57,7 @@ class Standard
 		 * that shouldn't be updated or removed.
 		 *
 		 * @param array|null List of supplier list type names or null for all
-		 * @since 2015.05
+		 * @since 2020.07
 		 * @category Developer
 		 * @category User
 		 * @see controller/common/product/import/csv/domains
@@ -117,7 +117,7 @@ class Standard
 		 * may fail!
 		 *
 		 * @param string Single separator character
-		 * @since 2015.07
+		 * @since 2020.07
 		 * @category User
 		 * @category Developer
 		 * @see controller/common/product/import/csv/domains

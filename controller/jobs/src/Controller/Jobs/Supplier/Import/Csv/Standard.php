@@ -73,7 +73,7 @@ class Standard
 		 * the import.
 		 *
 		 * @param array Associative list of MShop item domain names
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/common/supplier/import/csv/mapping
 		 * @see controller/common/supplier/import/csv/converter
@@ -90,7 +90,7 @@ class Standard
 		 * use the shared option for consistency.
 		 *
 		 * @param array Associative list of MShop item domain names
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/supplier/import/csv/mapping
 		 * @see controller/jobs/supplier/import/csv/skip-lines
@@ -118,7 +118,7 @@ class Standard
 		 * "text" will be imported by the text processor.
 		 *
 		 * @param array Associative list of processor names and lists of key/position pairs
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/common/supplier/import/csv/domains
 		 * @see controller/common/supplier/import/csv/converter
@@ -135,7 +135,7 @@ class Standard
 		 * use the shared option for consistency.
 		 *
 		 * @param array Associative list of processor names and lists of key/position pairs
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/skip-lines
@@ -180,7 +180,7 @@ class Standard
 		 * really need!
 		 *
 		 * @param array Associative list of position/converter name (or list of names) pairs
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/common/supplier/import/csv/domains
 		 * @see controller/common/supplier/import/csv/mapping
@@ -197,7 +197,7 @@ class Standard
 		 * use the shared option for consistency.
 		 *
 		 * @param array Associative list of position/converter name (or list of names) pairs
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/mapping
@@ -220,7 +220,7 @@ class Standard
 		 * import speed.
 		 *
 		 * @param integer Number of rows
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/common/supplier/import/csv/domains
 		 * @see controller/common/supplier/import/csv/mapping
@@ -239,7 +239,7 @@ class Standard
 		 * begins.
 		 *
 		 * @param integer Number of rows
-		 * @since 2015.08
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/mapping
@@ -262,7 +262,7 @@ class Standard
 		 * in the imported line will be silently ignored.
 		 *
 		 * @param boolen True if not imported columns should be logged, false if not
-		 * @since 2015.08
+		 * @since 2020.07
 		 * @category User
 		 * @category Developer
 		 * @see controller/jobs/supplier/import/csv/domains
@@ -296,7 +296,7 @@ class Standard
 		 * moved.
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/mapping
@@ -415,7 +415,7 @@ class Standard
 		 * * PHPExcel container / PHPExcel sheet
 		 *
 		 * @param string Absolute file or directory path
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/supplier/import/csv/container/type
@@ -438,7 +438,7 @@ class Standard
 		 * "ai-container" extension.
 		 *
 		 * @param string Container type name
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/supplier/import/csv/location
@@ -459,7 +459,7 @@ class Standard
 		 * "ai-container" extension.
 		 *
 		 * @param array Content type name
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/supplier/import/csv/location
@@ -477,7 +477,7 @@ class Standard
 		 * for more information.
 		 *
 		 * @param array Associative list of option name/value pairs
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/supplier/import/csv/location

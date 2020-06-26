@@ -61,7 +61,7 @@ class Factory
 		 * or numbers. Avoid chamel case names like "MyCsv"!
 		 *
 		 * @param string Last part of the class name
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 */
 		if( $name === null ) {
@@ -96,7 +96,7 @@ class Factory
 		 * "controller/jobs/common/decorators/default" to the job controller.
 		 *
 		 * @param array List of decorator names
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/supplier/import/csv/decorators/global
@@ -120,7 +120,7 @@ class Factory
 		 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 		 *
 		 * @param array List of decorator names
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/supplier/import/csv/decorators/excludes
@@ -146,7 +146,7 @@ class Factory
 		 * only to the job controller.
 		 *
 		 * @param array List of decorator names
-		 * @since 2018.04
+		 * @since 2020.07
 		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/supplier/import/csv/decorators/excludes

@@ -28,7 +28,7 @@ class Standard
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the processor class name
-	 * @since 2018.04
+	 * @since 2020.07
 	 * @category Developer
 	 */
 
