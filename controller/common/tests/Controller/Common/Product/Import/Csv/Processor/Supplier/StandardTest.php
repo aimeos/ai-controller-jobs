@@ -9,14 +9,17 @@
 namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier;
 
 
+use Aimeos\Shop\Base\Aimeos;
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $product;
+	private static $supplier;
 	private $context;
 	private $endpoint;
 
 
-	public static function setUpBeforeClass() : void
+	public static function setUpBeforeClass(): void
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
 
@@ -29,14 +32,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public static function tearDownAfterClass() : void
+	public static function tearDownAfterClass(): void
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
 		$manager->deleteItem( self::$product->getId() );
 	}
 
 
-	protected function setUp() : void
+	protected function setUp(): void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -45,8 +48,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown() : void
+	protected function tearDown(): void
 	{
+		if( self::$supplier != null )
+			$this->delete( self::$supplier );
+
 		\Aimeos\MShop::cache( false );
 	}
 
@@ -63,36 +69,27 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$data = array(
 			0 => 'default',
 			1 => 'job_csv_test',
-			2 => 'promotion',
-			3 => 'job_csv_test',
+			2 => 'default',
+			3 => 'job_csv_test2',
 		);
 
-		$this->create( 'job_csv_test' );
+		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
+
+		foreach( $suppliersCodes as $code )
+			$this->create( $code );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
 
-		$supplier = $this->get( 'job_csv_test' );
-		$this->delete( $supplier );
+		foreach( $suppliersCodes as $code ) {
+			$supplier = $this->get( $code );
+			$this->delete( $supplier );
 
+			$actualProductItem = $supplier->getRefItems()->first()[self::$product->getId()];
 
-		$pos = 0;
-		$listItems = $supplier->getListItems();
-		$expected = array(
-			array( 'default', 'job_csv_prod' ),
-			array( 'promotion', 'job_csv_prod' ),
-		);
-
-		$this->assertEquals( 2, count( $listItems ) );
-
-		foreach( $listItems as $listItem )
-		{
-			$this->assertEquals( 1, $listItem->getStatus() );
-			$this->assertEquals( 'product', $listItem->getDomain() );
-			$this->assertEquals( $expected[$pos][0], $listItem->getType() );
-			$this->assertEquals( $expected[$pos][1], $listItem->getRefItem()->getCode() );
-			$pos++;
+			$this->assertEquals( self::$product->getId(), $actualProductItem->getId() );
 		}
+
 	}
 
 
@@ -108,38 +105,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$data = array(
 			0 => 'default',
 			1 => "job_csv_test\njob_csv_test2",
-			2 => 'promotion',
-			3 => "job_csv_test\njob_csv_test2",
 		);
 
-		$this->create( 'job_csv_test' );
-		$this->create( 'job_csv_test2' );
+		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
+
+		foreach( $suppliersCodes as $code )
+			$this->create( $code );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
 
-		$supplier = $this->get( 'job_csv_test' );
-		$supplier2 = $this->get( 'job_csv_test2' );
+		foreach( $suppliersCodes as $code ) {
+			$supplier = $this->get( $code );
+			$this->delete( $supplier );
 
-		$this->delete( $supplier );
-		$this->delete( $supplier2 );
+			$actualProductItem = $supplier->getRefItems()->first()[self::$product->getId()];
 
-
-		$pos = 0;
-		$types = array( 'default', 'promotion', 'default', 'promotion' );
-
-		foreach( array( $supplier->getListItems(), $supplier2->getListItems() ) as $listItems )
-		{
-			$this->assertEquals( 2, count( $listItems ) );
-
-			foreach( $listItems as $listItem )
-			{
-				$this->assertEquals( 1, $listItem->getStatus() );
-				$this->assertEquals( 'product', $listItem->getDomain() );
-				$this->assertEquals( $types[$pos], $listItem->getType() );
-				$this->assertEquals( 'job_csv_prod', $listItem->getRefItem()->getCode() );
-				$pos++;
-			}
+			$this->assertEquals( self::$product->getId(), $actualProductItem->getId() );
 		}
 	}
 
@@ -161,6 +143,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			1 => 'job_csv_test',
 		);
 
+		$listType = $this->createListType( 'promotion' );
 		$this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
@@ -169,6 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$supplier = $this->get( 'job_csv_test' );
 		$this->delete( $supplier );
+		$this->deleteListType( $listType );
 
 
 		$listItems = $supplier->getListItems();
@@ -258,9 +242,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'job_csv_test',
 		);
 
-		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/supplier/listtypes', array( 'default' ) );
+		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/supplier/listtypes', array('default') );
 
-		$this->create( 'job_csv_test' );
+		self::$supplier = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
 
@@ -279,19 +263,48 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = $manager->createItem();
 		$item->setCode( $code );
 
-		$manager->insertItem( $item );
+		$manager->saveItem( $item );
 
 		return $item;
 	}
 
+	/**
+	 * @param string $code
+	 */
+	protected function createListType( $code )
+	{
+		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
+		$supplierListManager = $manager->getSubManager( 'lists' );
+		$supplierListTypeManager = $supplierListManager->getSubmanager( 'type' );
 
-	protected function delete( \Aimeos\MShop\Supplier\Item\Iface $catItem )
+		$item = $supplierListTypeManager->createItem();
+		$item->setCode( $code );
+		$item->setDomain( 'product' );
+		$item->setLabel( $code );
+		$item->setStatus( 1 );
+
+		$supplierListTypeManager->saveItem( $item );
+
+		return $item;
+	}
+
+	protected function delete( \Aimeos\MShop\Supplier\Item\Iface $item )
 	{
 		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
 		$listManager = $manager->getSubManager( 'lists' );
 
-		$listManager->deleteItems( $catItem->getListItems( 'product' )->keys()->toArray() );
-		$manager->deleteItem( $catItem->getId() );
+		$listManager->deleteItems( $item->getListItems( 'product' )->keys()->toArray() );
+		$manager->deleteItem( $item->getId() );
+	}
+
+
+	protected function deleteListType( \Aimeos\MShop\Common\Item\Iface $item )
+	{
+		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
+		$listManager = $manager->getSubManager( 'lists' );
+		$listTypeManager = $listManager->getSubmanager( 'type' );
+
+		$listTypeManager->deleteItem( $item->getId() );
 	}
 
 
@@ -305,7 +318,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
 
-		if( ( $item = $manager->searchItems( $search, ['product'] )->first() ) === null ) {
+		if( ($item = $manager->searchItems( $search, ['product'] )->first()) === null ) {
 			throw new \RuntimeException( sprintf( 'No supplier item for code "%1$s"', $code ) );
 		}
 

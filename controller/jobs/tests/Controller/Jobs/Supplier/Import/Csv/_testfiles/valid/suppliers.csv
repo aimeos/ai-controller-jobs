@@ -1,0 +1,3 @@
+supplier.code,supplier.label,supplier.status,text.languageid,text.type,text.content,media.type,media.url,supplier.address.languageid,supplier.address.countryid,supplier.address.city
+job_csv_test,supplier1,1,en,short,nice supplier,default,./images/1.jpg,en,de,Berlin
+job_csv_test2,supplier2,1,ru,short,good one,default,./images/1.jpg,ru,ru,Moscow

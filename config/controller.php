@@ -12,7 +12,7 @@ return [
 						'product' => 'product',
 						'product/property' => 'product/property',
 						'text' => 'text',
-						'supplier' => 'supplier'
+						//'supplier' => 'supplier'
 					],
 				],
 			],
