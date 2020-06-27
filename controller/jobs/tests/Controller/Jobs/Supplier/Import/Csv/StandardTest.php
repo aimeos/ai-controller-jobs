@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	protected function setUp(): void
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -31,12 +31,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown(): void
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 		$this->object = null;
 
-		if( file_exists( 'tmp/import.zip' ) ) {
+		if( file_exists( 'tmp/import.zip' ) )
+		{
 			unlink( 'tmp/import.zip' );
 		}
 	}
@@ -57,9 +58,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$prodcodes = array('job_csv_test', 'job_csv_test2');
-		$nondelete = array('address');
-		$delete = array('media', 'text');
+		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
+		$nondelete = array( 'address' );
+		$delete = array( 'media', 'text' );
 
 		$convert = array(
 			1 => 'Text/LatinUTF8',
@@ -78,7 +79,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $result ) );
 		$this->assertEquals( 2, count( $addresses ) );
 
-		foreach( $result as $supplier ) {
+		foreach( $result as $supplier )
+		{
 			$this->assertEquals( 2, count( $supplier->getListItems() ) );
 		}
 	}
@@ -86,9 +88,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunUpdate()
 	{
-		$prodcodes = array('job_csv_test', 'job_csv_test2');
-		$nondelete = array('address');
-		$delete = array('media', 'text');
+		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
+		$nondelete = array( 'address' );
+		$delete = array( 'media', 'text' );
 
 		$this->object->run();
 		$this->object->run();
@@ -100,7 +102,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $result ) );
 		$this->assertEquals( 2, count( $addresses ) );
 
-		foreach( $result as $supplier ) {
+		foreach( $result as $supplier )
+		{
 			$this->assertEquals( 2, count( $supplier->getListItems() ) );
 		}
 	}
@@ -108,13 +111,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunPosition()
 	{
-		$prodcodes = array('job_csv_test', 'job_csv_test2');
-		$nondelete = array('address');
-		$delete = array('media', 'text');
+		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
+		$nondelete = array( 'address' );
+		$delete = array( 'media', 'text' );
 
 		$config = $this->context->getConfig();
 		$mapping = $config->get( 'controller/jobs/supplier/import/csv/mapping', [] );
-		$mapping['item'] = array(0 => 'supplier.label', 1 => 'supplier.code');
+		$mapping['item'] = array( 0 => 'supplier.label', 1 => 'supplier.code' );
 
 		$config->set( 'controller/jobs/supplier/import/csv/mapping', $mapping );
 		$config->set( 'controller/jobs/supplier/import/csv/location', __DIR__ . '/_testfiles/position' );
@@ -150,7 +153,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config->set( 'controller/jobs/supplier/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/supplier/import/csv/backup', 'tmp/test-%Y-%m-%d.zip' );
 
-		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false ) {
+		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false )
+		{
 			throw new \RuntimeException( 'Unable to copy test file' );
 		}
 
@@ -170,7 +174,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config->set( 'controller/jobs/supplier/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/supplier/import/csv/backup', 'tmp/notexist/import.zip' );
 
-		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false ) {
+		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false )
+		{
 			throw new \RuntimeException( 'Unable to copy test file' );
 		}
 
@@ -185,17 +190,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$supplierManager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
 		$listManager = $supplierManager->getSubManager( 'lists' );
 
-		foreach( $this->get( $prodcodes, $delete + $nondelete ) as $id => $supplier ) {
-			foreach( $delete as $domain ) {
+		foreach( $this->get( $prodcodes, $delete + $nondelete ) as $id => $supplier )
+		{
+			foreach( $delete as $domain )
+			{
 				$manager = \Aimeos\MShop::create( $this->context, $domain );
 
-				foreach( $supplier->getListItems( $domain ) as $listItem ) {
+				foreach( $supplier->getListItems( $domain ) as $listItem )
+				{
 					$manager->deleteItem( $listItem->getRefItem()->getId() );
 					$listManager->deleteItem( $listItem->getId() );
 				}
 			}
 
-			foreach( $nondelete as $domain ) {
+			foreach( $nondelete as $domain )
+			{
 				$listManager->deleteItems( $supplier->getListItems( $domain )->toArray() );
 			}
 

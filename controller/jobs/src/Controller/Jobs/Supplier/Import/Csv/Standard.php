@@ -26,7 +26,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName(): string
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Supplier import CSV' );
 	}
@@ -37,7 +37,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription(): string
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing suppliers from CSV files' );
 	}
@@ -54,11 +54,12 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
-		$domains = array('media', 'text', 'supplier/address');
+		$domains = array( 'media', 'text', 'supplier/address' );
 		$mappings = $this->getDefaultMapping();
 
 
-		if( file_exists( $config->get( 'controller/jobs/supplier/import/csv/location' ) ) === false ) {
+		if( file_exists( $config->get( 'controller/jobs/supplier/import/csv/location' ) ) === false )
+		{
 			return;
 		}
 
@@ -308,12 +309,14 @@ class Standard
 		$backup = $config->get( 'controller/jobs/supplier/import/csv/backup' );
 
 
-		if( !isset( $mappings['item'] ) || !is_array( $mappings['item'] ) ) {
+		if( !isset( $mappings['item'] ) || !is_array( $mappings['item'] ) )
+		{
 			$msg = sprintf( 'Required mapping key "%1$s" is missing or contains no array', 'item' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		try {
+		try
+		{
 			$procMappings = $mappings;
 			unset( $procMappings['item'] );
 
@@ -328,14 +331,17 @@ class Standard
 			$msg = sprintf( 'Started supplier import from "%1$s" (%2$s)', $path, __CLASS__ );
 			$logger->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
 
-			foreach( $container as $content ) {
+			foreach( $container as $content )
+			{
 				$name = $content->getName();
 
-				for( $i = 0; $i < $skiplines; $i++ ) {
+				for( $i = 0; $i < $skiplines; $i++ )
+				{
 					$content->next();
 				}
 
-				while ( ($data = $this->getData( $content, $maxcnt, $codePos )) !== [] ) {
+				while( ($data = $this->getData( $content, $maxcnt, $codePos )) !== [] )
+				{
 					$data = $this->convertData( $convlist, $data );
 					$errcnt = $this->import( $supplierMap, $data, $mappings['item'], $processor, $strict );
 					$chunkcnt = count( $data );
@@ -350,7 +356,8 @@ class Standard
 			}
 
 			$container->close();
-		} catch ( \Exception $e ) {
+		} catch( \Exception $e )
+		{
 			$logger->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
 			$this->mail( 'Supplier CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
@@ -359,13 +366,15 @@ class Standard
 		$msg = 'Finished supplier import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
 		$logger->log( sprintf( $msg, $path, $total - $errors, $errors, $total, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
 
-		if( $errors > 0 ) {
+		if( $errors > 0 )
+		{
 			$msg = sprintf( 'Invalid supplier lines in "%1$s": %2$d/%3$d', $path, $errors, $total );
 			$this->mail( 'Supplier CSV import error', $msg );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		if( !empty( $backup ) && @rename( $path, strftime( $backup ) ) === false ) {
+		if( !empty( $backup ) && @rename( $path, strftime( $backup ) ) === false )
+		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, strftime( $backup ) );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
@@ -379,10 +388,12 @@ class Standard
 	 * @return int Position of the "supplier.code" column
 	 * @throws \Aimeos\Controller\Jobs\Exception If no mapping for "supplier.code" is found
 	 */
-	protected function getCodePosition( array $mapping ): int
+	protected function getCodePosition( array $mapping ) : int
 	{
-		foreach( $mapping as $pos => $key ) {
-			if( $key === 'supplier.code' ) {
+		foreach( $mapping as $pos => $key )
+		{
+			if( $key === 'supplier.code' )
+			{
 				return $pos;
 			}
 		}
@@ -396,7 +407,7 @@ class Standard
 	 *
 	 * @return \Aimeos\MW\Container\Iface Container object
 	 */
-	protected function getContainer(): \Aimeos\MW\Container\Iface
+	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -486,7 +497,8 @@ class Standard
 		 */
 		$options = $config->get( 'controller/jobs/supplier/import/csv/container/options', [] );
 
-		if( $location === null ) {
+		if( $location === null )
+		{
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/supplier/import/csv/location' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
@@ -501,13 +513,14 @@ class Standard
 	 * @param array $domains List of domain names whose items should be fetched too
 	 * @return array Associative list of supplier codes as keys and items implementing \Aimeos\MShop\Supplier\Item\Iface as values
 	 */
-	protected function getSupplierMap( array $domains ): array
+	protected function getSupplierMap( array $domains ) : array
 	{
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier' );
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 
-		foreach( $manager->searchItems( $search, $domains ) as $item ) {
+		foreach( $manager->searchItems( $search, $domains ) as $item )
+		{
 			$map[$item->getCode()] = $item;
 		}
 
@@ -527,27 +540,32 @@ class Standard
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
 	protected function import( array &$supplierMap, array $data, array $mapping,
-							   \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $processor, bool $strict ): int
+		\Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $processor, bool $strict ) : int
 	{
 		$errors = 0;
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
 
-		foreach( $data as $code => $list ) {
+		foreach( $data as $code => $list )
+		{
 			$manager->begin();
 
-			try {
+			try
+			{
 				$code = trim( $code );
 
-				if( isset( $supplierMap[$code] ) ) {
+				if( isset( $supplierMap[$code] ) )
+				{
 					$item = $supplierMap[$code];
-				} else {
+				} else
+				{
 					$item = $manager->createItem();
 				}
 
 				$map = $this->getMappedChunk( $list, $mapping );
 
-				if( isset( $map[0] ) ) {
+				if( isset( $map[0] ) )
+				{
 					$map = $map[0]; // there can only be one chunk for the base supplier data
 					$item->fromArray( $map, true );
 
@@ -558,7 +576,8 @@ class Standard
 				}
 
 				$manager->commit();
-			} catch ( \Exception $e ) {
+			} catch( \Exception $e )
+			{
 				$manager->rollback();
 
 				$msg = sprintf( 'Unable to import supplier with code "%1$s": %2$s', $code, $e->getMessage() );
@@ -567,7 +586,8 @@ class Standard
 				$errors++;
 			}
 
-			if( $strict && !empty( $list ) ) {
+			if( $strict && !empty( $list ) )
+			{
 				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ) );
 			}
 		}

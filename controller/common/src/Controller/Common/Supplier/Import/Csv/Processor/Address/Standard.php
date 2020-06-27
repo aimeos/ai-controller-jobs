@@ -52,22 +52,26 @@ class Standard
 	 * @param array $data List of CSV fields with position as key and data as value
 	 * @return array List of data which hasn't been imported
 	 */
-	public function process( \Aimeos\MShop\Supplier\Item\Iface $supplier, array $data ): array
+	public function process( \Aimeos\MShop\Supplier\Item\Iface $supplier, array $data ) : array
 	{
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier/address' );
 		$manager->begin();
 
-		try {
+		try
+		{
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$items = $supplier->getAddressItems();
 
-			foreach( $map as $pos => $list ) {
-				if( $this->checkEntry( $list ) === false ) {
+			foreach( $map as $pos => $list )
+			{
+				if( $this->checkEntry( $list ) === false )
+				{
 					continue;
 				}
 
-				if( ($item = $items->pop()) === null ) {
+				if( ($item = $items->pop()) === null )
+				{
 					$item = $manager->createItem();
 				}
 
@@ -78,7 +82,8 @@ class Standard
 			$data = $this->getObject()->process( $supplier, $data );
 
 			$manager->commit();
-		} catch( \Exception $e ) {
+		} catch( \Exception $e )
+		{
 			$manager->rollback();
 			throw $e;
 		}
@@ -92,15 +97,18 @@ class Standard
 	 * @param array $list Associative list of key/value pairs from the mapping
 	 * @return bool True if valid, false if not
 	 */
-	protected function checkEntry( array $list ): bool
+	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'supplier.address.languageid' ) === null ) {
+		if( $this->getValue( $list, 'supplier.address.languageid' ) === null )
+		{
 			return false;
 		}
-		if( $this->getValue( $list, 'supplier.address.countryid' ) === null ) {
+		if( $this->getValue( $list, 'supplier.address.countryid' ) === null )
+		{
 			return false;
 		}
-		if( $this->getValue( $list, 'supplier.address.city' ) === null ) {
+		if( $this->getValue( $list, 'supplier.address.city' ) === null )
+		{
 			return false;
 		}
 		return true;

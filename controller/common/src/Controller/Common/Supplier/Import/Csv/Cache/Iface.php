@@ -40,5 +40,5 @@ interface Iface
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item object
 	 */
-	public function set( \Aimeos\MShop\Common\Item\Iface $item ): \Aimeos\MShop\Common\Item\Iface;
+	public function set( \Aimeos\MShop\Common\Item\Iface $item ) : \Aimeos\MShop\Common\Item\Iface;
 }

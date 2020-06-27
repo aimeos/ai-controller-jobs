@@ -78,11 +78,11 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 			$search->setConditions( $search->compare( '==', 'supplier.lists.type.domain', 'product' ) );
 
-			foreach( $manager->searchItems( $search ) as $item ) {
+			foreach( $manager->searchItems( $search ) as $item )
+			{
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
-		}
-		else
+		} else
 		{
 			$this->listTypes = array_flip( $this->listTypes );
 		}
@@ -133,13 +133,15 @@ class Standard
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$listItems = $this->getListItems( $prodid, $this->listTypes );
 
-			foreach( $listItems as $listItem ) {
+			foreach( $listItems as $listItem )
+			{
 				$listMap[$listItem->getParentId()][$listItem->getType()] = $listItem;
 			}
 
 			foreach( $map as $pos => $list )
 			{
-				if( $this->checkEntry( $list ) === false ) {
+				if( $this->checkEntry( $list ) === false )
+				{
 					continue;
 				}
 
@@ -151,7 +153,7 @@ class Standard
 				{
 					$code = trim( $code );
 
-					if( ( $catid = $this->cache->get( $code ) ) === null )
+					if( ($catid = $this->cache->get( $code )) === null )
 					{
 						$msg = 'No supplier for code "%1$s" available when importing product with code "%2$s"';
 						throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
@@ -165,8 +167,7 @@ class Standard
 					{
 						$listItem = $listMap[$catid][$listtype];
 						unset( $listItems[$listItem->getId()] );
-					}
-					else
+					} else
 					{
 						$listItem = $listManager->createItem()->setType( $listtype );
 					}
@@ -180,8 +181,7 @@ class Standard
 			$data = $this->getObject()->process( $product, $data );
 
 			$manager->commit();
-		}
-		catch( \Exception $e )
+		} catch( \Exception $e )
 		{
 			$manager->rollback();
 			throw $e;
@@ -200,11 +200,13 @@ class Standard
 	 */
 	protected function addListItemDefaults( array $list, int $pos ) : array
 	{
-		if( !isset( $list['supplier.lists.position'] ) ) {
+		if( !isset( $list['supplier.lists.position'] ) )
+		{
 			$list['supplier.lists.position'] = $pos;
 		}
 
-		if( !isset( $list['supplier.lists.status'] ) ) {
+		if( !isset( $list['supplier.lists.status'] ) )
+		{
 			$list['supplier.lists.status'] = 1;
 		}
 
@@ -220,11 +222,12 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'supplier.code' ) === null ) {
+		if( $this->getValue( $list, 'supplier.code' ) === null )
+		{
 			return false;
 		}
 
-		if( ( $type = $this->getValue( $list, 'supplier.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ($type = $this->getValue( $list, 'supplier.lists.type' )) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
@@ -243,7 +246,8 @@ class Standard
 	 */
 	protected function getListItems( $prodid, array $types ) : \Aimeos\Map
 	{
-		if( empty( $types ) ) {
+		if( empty( $types ) )
+		{
 			return [];
 		}
 

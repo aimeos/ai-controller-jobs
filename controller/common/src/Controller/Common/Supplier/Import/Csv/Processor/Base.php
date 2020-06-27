@@ -71,7 +71,8 @@ class Base
 	 */
 	protected function getObject() : Iface
 	{
-		if( $this->object === null ) {
+		if( $this->object === null )
+		{
 			throw new \Aimeos\Controller\Jobs\Exception( 'No processor object available' );
 		}
 

@@ -27,11 +27,14 @@ class Base
 	 * @param array $data Associative list of supplier codes and lists of CSV field indexes and their data
 	 * @return array Associative list of CSV field indexes and their converted data
 	 */
-	protected function convertData( array $convlist, array $data ): array
+	protected function convertData( array $convlist, array $data ) : array
 	{
-		foreach( $convlist as $idx => $converter ) {
-			foreach( $data as $code => $list ) {
-				if( isset( $list[$idx] ) ) {
+		foreach( $convlist as $idx => $converter )
+		{
+			foreach( $data as $code => $list )
+			{
+				if( isset( $list[$idx] ) )
+				{
 					$data[$code][$idx] = $converter->translate( $list[$idx] );
 				}
 			}
@@ -48,28 +51,32 @@ class Base
 	 * @param string|null $name Name of the cache implementation
 	 * @return \Aimeos\Controller\Common\Supplier\Import\Csv\Cache\Iface Cache object
 	 */
-	protected function getCache( string $type, $name = null ): \Aimeos\Controller\Common\Supplier\Import\Csv\Cache\Iface
+	protected function getCache( string $type, $name = null ) : \Aimeos\Controller\Common\Supplier\Import\Csv\Cache\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		if( ctype_alnum( $type ) === false ) {
+		if( ctype_alnum( $type ) === false )
+		{
 			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Supplier\\Import\\Csv\\Cache\\' . $type : '<not a string>';
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 
-		if( $name === null ) {
+		if( $name === null )
+		{
 			$name = $config->get( 'controller/common/supplier/import/csv/cache/' . $type . '/name', 'Standard' );
 		}
 
-		if( ctype_alnum( $name ) === false ) {
+		if( ctype_alnum( $name ) === false )
+		{
 			$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Supplier\\Import\\Csv\\Cache\\' . $type . '\\' . $name : '<not a string>';
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 
 		$classname = '\\Aimeos\\Controller\\Common\\Supplier\\Import\\Csv\\Cache\\' . ucfirst( $type ) . '\\' . $name;
 
-		if( class_exists( $classname ) === false ) {
+		if( class_exists( $classname ) === false )
+		{
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
 		}
 
@@ -87,11 +94,12 @@ class Base
 	 * @param array $convmap List of converter names for the values at the position in the CSV file
 	 * @return array Associative list of positions and converter objects
 	 */
-	protected function getConverterList( array $convmap ): array
+	protected function getConverterList( array $convmap ) : array
 	{
 		$convlist = [];
 
-		foreach( $convmap as $idx => $name ) {
+		foreach( $convmap as $idx => $name )
+		{
 			$convlist[$idx] = \Aimeos\MW\Convert\Factory::createConverter( $name );
 		}
 
@@ -107,12 +115,13 @@ class Base
 	 * @param int $codePos Column position which contains the unique supplier code (starting from 0)
 	 * @return array List of arrays with supplier codes as keys and list of values from the CSV file
 	 */
-	protected function getData( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt, int $codePos ): array
+	protected function getData( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt, int $codePos ) : array
 	{
 		$count = 0;
 		$data = [];
 
-		while ( $content->valid() && $count++ < $maxcnt ) {
+		while( $content->valid() && $count++ < $maxcnt )
+		{
 			$row = $content->current();
 			$data[$row[$codePos]] = $row;
 			$content->next();
@@ -147,7 +156,7 @@ class Base
 	 * @return array Associative list of domains as keys ("item" is special for the supplier itself) and a list of
 	 *    positions and the domain item keys as values.
 	 */
-	protected function getDefaultMapping(): array
+	protected function getDefaultMapping() : array
 	{
 		return array(
 			'item' => array(
@@ -180,17 +189,20 @@ class Base
 	 * @param array $mapping List of domain item keys with the CSV field position as key
 	 * @return array List of associative arrays containing the chunked properties
 	 */
-	protected function getMappedChunk( array &$data, array $mapping ): array
+	protected function getMappedChunk( array &$data, array $mapping ) : array
 	{
 		$idx = 0;
 		$map = [];
 
-		foreach( $mapping as $pos => $key ) {
-			if( isset( $map[$idx][$key] ) ) {
+		foreach( $mapping as $pos => $key )
+		{
+			if( isset( $map[$idx][$key] ) )
+			{
 				$idx++;
 			}
 
-			if( isset( $data[$pos] ) ) {
+			if( isset( $data[$pos] ) )
+			{
 				$map[$idx][$key] = $data[$pos];
 				unset( $data[$pos] );
 			}
@@ -206,28 +218,32 @@ class Base
 	 * @param array $mappings Associative list of processor types as keys and index/data mappings as values
 	 * @return \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface Processor object
 	 */
-	protected function getProcessors( array $mappings ): \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface
+	protected function getProcessors( array $mappings ) : \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$object = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Done( $context, [] );
 
-		foreach( $mappings as $type => $mapping ) {
-			if( ctype_alnum( $type ) === false ) {
+		foreach( $mappings as $type => $mapping )
+		{
+			if( ctype_alnum( $type ) === false )
+			{
 				$classname = is_string( $type ) ? '\\Aimeos\\Controller\\Common\\Supplier\\Import\\Csv\\Processor\\' . $type : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 
 			$name = $config->get( 'controller/common/supplier/import/csv/processor/' . $type . '/name', 'Standard' );
 
-			if( ctype_alnum( $name ) === false ) {
+			if( ctype_alnum( $name ) === false )
+			{
 				$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Supplier\\Import\\Csv\\Processor\\' . $type . '\\' . $name : '<not a string>';
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 			}
 
 			$classname = '\\Aimeos\\Controller\\Common\\Supplier\\Import\\Csv\\Processor\\' . ucfirst( $type ) . '\\' . $name;
 
-			if( class_exists( $classname ) === false ) {
+			if( class_exists( $classname ) === false )
+			{
 				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
 			}
 

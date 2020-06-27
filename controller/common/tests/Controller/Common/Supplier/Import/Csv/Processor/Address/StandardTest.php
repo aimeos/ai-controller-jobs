@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected static $supplierManager;
 
 
-	protected function setUp(): void
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
@@ -26,7 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown(): void
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 	}
@@ -117,15 +117,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$pos = 0;
 		$listItems = $supplier->getAddressItems();
 		$expected = array(
-			0 => array('name', 'Job CSV test'),
-			1 => array('short', 'Short: Job CSV test'),
-			2 => array('long', 'Long: Job CSV test'),
-			3 => array('long', 'Long: Job CSV test 2'),
+			0 => array( 'name', 'Job CSV test' ),
+			1 => array( 'short', 'Short: Job CSV test' ),
+			2 => array( 'long', 'Long: Job CSV test' ),
+			3 => array( 'long', 'Long: Job CSV test 2' ),
 		);
 
 		$this->assertEquals( 4, count( $listItems ) );
 
-		foreach( $listItems as $listItem ) {
+		foreach( $listItems as $listItem )
+		{
 			$this->assertEquals( $expected[$pos][0], $listItem->getRefItem()->getType() );
 			$this->assertEquals( $expected[$pos][1], $listItem->getRefItem()->getContent() );
 			$pos++;
@@ -259,7 +260,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function reloadSupplier( &$supplier )
 	{
-		$supplier = self::$supplierManager->getItem( $supplier->getId(), ['supplier/address'] );
+		$supplier = self::$supplierManager->getItem( $supplier->getId(), [ 'supplier/address' ] );
 	}
 
 }

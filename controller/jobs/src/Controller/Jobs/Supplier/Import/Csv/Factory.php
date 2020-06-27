@@ -29,7 +29,7 @@ class Factory
 	 * @param string|null $name Name of the controller or "Standard" if null
 	 * @return \Aimeos\Controller\Jobs\Iface New controller object
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, string $name = null ): \Aimeos\Controller\Jobs\Iface
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, string $name = null ) : \Aimeos\Controller\Jobs\Iface
 	{
 		/** controller/jobs/supplier/import/csv/name
 		 * Class name of the used supplier suggestions scheduler controller implementation
@@ -64,14 +64,16 @@ class Factory
 		 * @since 2020.07
 		 * @category Developer
 		 */
-		if( $name === null ) {
+		if( $name === null )
+		{
 			$name = $context->getConfig()->get( 'controller/jobs/supplier/import/csv/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';
 		$classname = '\\Aimeos\\Controller\\Jobs\\Supplier\\Import\\Csv\\' . $name;
 
-		if( ctype_alnum( $name ) === false ) {
+		if( ctype_alnum( $name ) === false )
+		{
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 

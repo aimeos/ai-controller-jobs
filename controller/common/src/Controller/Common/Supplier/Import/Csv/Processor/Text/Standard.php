@@ -44,7 +44,7 @@ class Standard
 	 * @param \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $object Decorated processor
 	 */
 	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $mapping,
-			\Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $object = null )
+		\Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $object = null )
 	{
 		parent::__construct( $context, $mapping, $object );
 
@@ -78,11 +78,11 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 			$search->setConditions( $search->compare( '==', 'supplier.lists.type.domain', 'text' ) );
 
-			foreach( $manager->searchItems( $search ) as $item ) {
+			foreach( $manager->searchItems( $search ) as $item )
+			{
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
-		}
-		else
+		} else
 		{
 			$this->listTypes = array_flip( $this->listTypes );
 		}
@@ -93,7 +93,8 @@ class Standard
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 		$search->setConditions( $search->compare( '==', 'text.type.domain', 'supplier' ) );
 
-		foreach( $manager->searchItems( $search ) as $item ) {
+		foreach( $manager->searchItems( $search ) as $item )
+		{
 			$this->types[$item->getCode()] = $item->getCode();
 		}
 	}
@@ -117,14 +118,16 @@ class Standard
 
 		foreach( $listItems as $listItem )
 		{
-			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+			if( ($refItem = $listItem->getRefItem()) !== null )
+			{
 				$listMap[$refItem->getContent()][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
 		}
 
 		foreach( $map as $pos => $list )
 		{
-			if( $this->checkEntry( $list ) === false ) {
+			if( $this->checkEntry( $list ) === false )
+			{
 				continue;
 			}
 
@@ -137,8 +140,7 @@ class Standard
 				$listItem = $listMap[$content][$type][$listtype];
 				$refItem = $listItem->getRefItem();
 				unset( $listItems[$listItem->getId()] );
-			}
-			else
+			} else
 			{
 				$listItem = $listManager->createItem()->setType( $listtype );
 				$refItem = $manager->createItem()->setType( $type );
@@ -166,17 +168,18 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'text.content' ) === null ) {
+		if( $this->getValue( $list, 'text.content' ) === null )
+		{
 			return false;
 		}
 
-		if( ( $type = $this->getValue( $list, 'supplier.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ($type = $this->getValue( $list, 'supplier.lists.type' )) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->getValue( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
+		if( ($type = $this->getValue( $list, 'text.type' )) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
