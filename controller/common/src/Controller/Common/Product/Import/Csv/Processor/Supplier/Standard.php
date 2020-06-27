@@ -153,7 +153,7 @@ class Standard
 				{
 					$code = trim( $code );
 
-					if( ($catid = $this->cache->get( $code )) === null )
+					if( ( $catid = $this->cache->get( $code ) ) === null )
 					{
 						$msg = 'No supplier for code "%1$s" available when importing product with code "%2$s"';
 						throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
@@ -227,7 +227,7 @@ class Standard
 			return false;
 		}
 
-		if( ($type = $this->getValue( $list, 'supplier.lists.type' )) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = $this->getValue( $list, 'supplier.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

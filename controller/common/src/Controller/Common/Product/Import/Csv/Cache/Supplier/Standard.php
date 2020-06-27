@@ -74,7 +74,7 @@ class Standard
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
 
 
-		if( ($item = $manager->searchItems( $search )->first()) !== null )
+		if( ( $item = $manager->searchItems( $search )->first() ) !== null )
 		{
 			$this->suppliers[$code] = $item->getId();
 			return $item->getId();
