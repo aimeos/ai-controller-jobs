@@ -47,7 +47,7 @@ class Base
 	 * Returns the cache object for the given type
 	 *
 	 * @param string $type Type of the cached data
-	 * @param string|null Name of the cache implementation
+	 * @param string|null $name Name of the cache implementation
 	 * @return \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface Cache object
 	 */
 	protected function getCache( string $type, string $name = null ) : \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface
