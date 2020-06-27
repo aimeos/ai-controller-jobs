@@ -120,7 +120,7 @@ class Standard
 
 		foreach( $listItems as $listItem )
 		{
-			if( ($refItem = $listItem->getRefItem()) !== null )
+			if( ( $refItem = $listItem->getRefItem() ) !== null )
 			{
 				$listMap[$refItem->getUrl()][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
@@ -176,13 +176,13 @@ class Standard
 			return false;
 		}
 
-		if( ($type = $this->getValue( $list, 'supplier.lists.type' )) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = $this->getValue( $list, 'supplier.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ($type = $this->getValue( $list, 'media.type' )) && !isset( $this->types[$type] ) )
+		if( ( $type = $this->getValue( $list, 'media.type' ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

@@ -70,7 +70,7 @@ class Standard
 					continue;
 				}
 
-				if( ($item = $items->pop()) === null )
+				if( ( $item = $items->pop() ) === null )
 				{
 					$item = $manager->createItem();
 				}

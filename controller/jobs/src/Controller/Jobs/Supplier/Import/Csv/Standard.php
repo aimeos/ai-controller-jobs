@@ -227,7 +227,7 @@ class Standard
 		 * @see controller/common/supplier/import/csv/mapping
 		 * @see controller/common/supplier/import/csv/converter
 		 */
-		$maxcnt = (int)$config->get( 'controller/common/supplier/import/csv/max-size', 1000 );
+		$maxcnt = (int) $config->get( 'controller/common/supplier/import/csv/max-size', 1000 );
 
 
 		/** controller/jobs/supplier/import/csv/skip-lines
@@ -249,7 +249,7 @@ class Standard
 		 * @see controller/jobs/supplier/import/csv/backup
 		 * @see controller/common/supplier/import/csv/max-size
 		 */
-		$skiplines = (int)$config->get( 'controller/jobs/supplier/import/csv/skip-lines', 0 );
+		$skiplines = (int) $config->get( 'controller/jobs/supplier/import/csv/skip-lines', 0 );
 
 
 		/** controller/jobs/supplier/import/csv/strict
@@ -273,7 +273,7 @@ class Standard
 		 * @see controller/jobs/supplier/import/csv/backup
 		 * @see controller/common/supplier/import/csv/max-size
 		 */
-		$strict = (bool)$config->get( 'controller/jobs/supplier/import/csv/strict', true );
+		$strict = (bool) $config->get( 'controller/jobs/supplier/import/csv/strict', true );
 
 
 		/** controller/jobs/supplier/import/csv/backup
@@ -340,7 +340,7 @@ class Standard
 					$content->next();
 				}
 
-				while( ($data = $this->getData( $content, $maxcnt, $codePos )) !== [] )
+				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
 				{
 					$data = $this->convertData( $convlist, $data );
 					$errcnt = $this->import( $supplierMap, $data, $mappings['item'], $processor, $strict );

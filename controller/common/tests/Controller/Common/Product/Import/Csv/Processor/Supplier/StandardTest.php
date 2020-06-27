@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'job_csv_test2',
 		);
 
-		$suppliersCodes = [ 'job_csv_test', 'job_csv_test2' ];
+		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
 
 		foreach( $suppliersCodes as $code )
 		{
@@ -111,7 +111,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			1 => "job_csv_test\njob_csv_test2",
 		);
 
-		$suppliersCodes = [ 'job_csv_test', 'job_csv_test2' ];
+		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
 
 		foreach( $suppliersCodes as $code )
 		{
@@ -325,7 +325,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
 
-		if( ($item = $manager->searchItems( $search, [ 'product' ] )->first()) === null )
+		if( ( $item = $manager->searchItems( $search, ['product'] )->first() ) === null )
 		{
 			throw new \RuntimeException( sprintf( 'No supplier item for code "%1$s"', $code ) );
 		}
