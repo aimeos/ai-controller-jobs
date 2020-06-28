@@ -9,8 +9,6 @@
 namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier;
 
 
-use Aimeos\Shop\Base\Aimeos;
-
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $product;
