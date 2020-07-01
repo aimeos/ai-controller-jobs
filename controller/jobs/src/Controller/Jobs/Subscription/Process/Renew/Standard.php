@@ -345,8 +345,8 @@ class Standard
 		$basket = $manager->load( $subscription->getOrderBaseId() );
 		$newBasket = $manager->createItem()->setCustomerId( $basket->getCustomerId() );
 
-		$newBasket = $this->addBasketProducts( $context, $newBasket, $basket->getProducts(), $subscription->getOrderProductId() );
 		$newBasket = $this->addBasketAddresses( $context, $newBasket, $basket->getAddresses() );
+		$newBasket = $this->addBasketProducts( $context, $newBasket, $basket->getProducts(), $subscription->getOrderProductId() );
 		$newBasket = $this->addBasketServices( $context, $newBasket, $basket->getServices() );
 		$newBasket = $this->addBasketCoupons( $context, $newBasket, array_keys( $basket->getCoupons() ) );
 
