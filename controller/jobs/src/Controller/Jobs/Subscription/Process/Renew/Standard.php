@@ -350,7 +350,7 @@ class Standard
 		$newBasket = $this->addBasketServices( $context, $newBasket, $basket->getServices() );
 		$newBasket = $this->addBasketCoupons( $context, $newBasket, array_keys( $basket->getCoupons() ) );
 
-		return $manager->store( $newBasket );
+		return $manager->store( $newBasket->check() );
 	}
 
 
