@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 13:58+0200\n"
+"POT-Creation-Date: 2020-07-01 17:24+0200\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -166,6 +166,9 @@ msgstr ""
 msgid "Imports new and updates existing stocks from CSV files"
 msgstr ""
 
+msgid "Imports new and updates existing suppliers from CSV files"
+msgstr ""
+
 msgid "Imports new and updates existing suppliers from XML files"
 msgstr ""
 
@@ -199,6 +202,10 @@ msgstr ""
 msgid "Invalid product type \"%1$s\""
 msgstr ""
 
+#, php-format
+msgid "Invalid supplier lines in \"%1$s\": %2$d/%3$d"
+msgstr ""
+
 msgid "Log cleanup"
 msgstr ""
 
@@ -212,6 +219,10 @@ msgstr ""
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
+msgstr ""
+
+#, php-format
+msgid "No \"supplier.code\" column in CSV mapping found"
 msgstr ""
 
 #, php-format
@@ -376,10 +387,21 @@ msgstr ""
 msgid "Subscription process start"
 msgstr ""
 
+msgid "Supplier import CSV"
+msgstr ""
+
 msgid "Supplier import XML"
 msgstr ""
 
 msgid "Terminates expired subscriptions"
+msgstr ""
+
+#, php-format
+msgid "Unable to begin subscription with ID \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
+msgid "Unable to end subscription with ID \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format
@@ -399,11 +421,19 @@ msgid "Unable to import product with code \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format
+msgid "Unable to import supplier with code \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
 msgid "Unable to move imported file"
 msgstr ""
 
 #, php-format
 msgid "Unable to move imported file \"%1$s\" to \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Unable to renew subscription with ID \"%1$s\": %2$s"
 msgstr ""
 
 msgid "Updates order status from CSV files"
