@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 18, count( $data[0] ) );
 		$this->assertEquals( 'default', $data[0][0] );
-		$this->assertEquals( 'unit_type1', $data[0][1] );
+		$this->assertEquals( 'default', $data[0][1] );
 		$this->assertEquals( 'unitsupplier', $data[0][2] );
 		$this->assertEquals( 'CNE', $data[0][3] );
 		$this->assertGreaterThan( 0, $data[0][4] );
