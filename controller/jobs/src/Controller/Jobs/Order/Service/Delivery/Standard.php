@@ -123,15 +123,18 @@ class Standard
 						$orderSearch->setSlice( $orderStart, $maxItems );
 						$orderItems = $orderManager->searchItems( $orderSearch )->toArray();
 
-						try
+						if( !empty( $orderItems ) )
 						{
-							$serviceProvider->processBatch( $orderItems );
-							$orderManager->saveItems( $orderItems );
-						}
-						catch( \Exception $e )
-						{
-							$str = 'Error while processing orders by delivery service "%1$s": %2$s';
-							$context->getLogger()->log( sprintf( $str, $serviceItem->getLabel(), $e->getMessage() ) );
+							try
+							{
+								$serviceProvider->processBatch( $orderItems );
+								$orderManager->saveItems( $orderItems );
+							}
+							catch( \Exception $e )
+							{
+								$str = 'Error while processing orders by delivery service "%1$s": %2$s';
+								$context->getLogger()->log( sprintf( $str, $serviceItem->getLabel(), $e->getMessage() ) );
+							}
 						}
 
 						$orderCount = count( $orderItems );
