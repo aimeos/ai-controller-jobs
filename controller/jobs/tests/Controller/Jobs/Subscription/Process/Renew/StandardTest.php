@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Subscription\\Process\\Renew\\Standard' )
 			->setConstructorArgs( [$this->context, $this->aimeos] )
-			->setMethods( ['createOrderBase', 'createOrderInvoice', 'createPayment'] )
+			->setMethods( ['createPayment'] )
 			->getMock();
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
@@ -61,13 +61,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['searchItems', 'saveItem'] )
 			->getMock();
 
+		$orderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['saveItem'] )
+			->getMock();
+
+		$baseStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['store'] )
+			->getMock();
+
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
-
-		$object->expects( $this->once() )->method( 'createOrderBase' )
-			->will( $this->returnValue( $this->getOrderBaseItem( $item->getOrderBaseId() ) ) );
-
-		$object->expects( $this->once() )->method( 'createOrderInvoice' )
-			->will( $this->returnValue( $this->getOrderItem() ) );
+		\Aimeos\MShop::inject( 'order/base', $baseStub );
+		\Aimeos\MShop::inject( 'order', $orderStub );
 
 		$object->expects( $this->once() )->method( 'createPayment' );
 
@@ -75,6 +81,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( map( [$item] ) ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
+		$orderStub->expects( $this->once() )->method( 'saveItem' );
+		$baseStub->expects( $this->once() )->method( 'store' )
+			->will( $this->returnCallback( function( $basket ) {
+				return $basket->setId( -1 );
+			} ) );
 
 		$object->run();
 	}
@@ -178,20 +189,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testCreateOrderBase()
+	public function testCreateOrder()
 	{
 		$item = $this->getSubscription();
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store'] )
-			->getMock();
+		$result = $this->access( 'createOrder' )->invokeArgs( $this->object, [$this->context, $item] );
 
-		\Aimeos\MShop::inject( 'order/base', $managerStub );
+		$this->assertInstanceOf( \Aimeos\MShop\Order\Item\Iface::class, $result );
+	}
 
-		$managerStub->expects( $this->once() )->method( 'store' )->will( $this->returnArgument( 0 ) );
 
-		$this->access( 'createOrderBase' )->invokeArgs( $this->object, [$this->context, $item] );
+	public function testCreateOrderBase()
+	{
+		$item = $this->getSubscription();
+		$class = \Aimeos\MShop\Order\Item\Base\Iface::class;
+
+		$result = $this->access( 'createOrderBase' )->invokeArgs( $this->object, [$this->context, $item] );
+
+		$this->assertInstanceOf( $class, $result );
 	}
 
 

@@ -106,6 +106,7 @@ class Standard
 		 */
 		$days = (float) $config->get( 'controller/common/subscription/process/payment-days', 3 );
 
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 
 		$processors = $this->getProcessors( $names );
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
@@ -124,31 +125,28 @@ class Standard
 
 		do
 		{
-			$ordBaseIds = $payStatus = [];
+			$orderItems = [];
 
 			$search->setSlice( $start, 100 );
 			$items = $manager->searchItems( $search );
-
-			foreach( $items as $item ) {
-				$ordBaseIds[] = $item->getOrderBaseId();
-			}
+			$ordBaseIds = $items->getOrderBaseId()->toArray();
 
 			$orderSearch = $orderManager->createSearch()->setSlice( 0, $search->getSliceSize() );
-			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.base.id', $ordBaseIds ) );
+			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
 			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
 
-			foreach( $orderManager->searchItems( $orderSearch ) as $orderItem ) {
-				$payStatus[$orderItem->getBaseId()] = $orderItem->getPaymentStatus();
-			}
+			$orderItems = $orderManager->searchItems( $orderSearch, $domains )->col( null, 'order.baseid' );
 
 			foreach( $items as $item )
 			{
 				try
 				{
-					if( isset( $payStatus[$item->getOrderBaseId()] ) && $payStatus[$item->getOrderBaseId()] >= $status )
+					$orderItem = $orderItems->get( $item->getOrderBaseId() );
+
+					if( $orderItem && $orderItem->getPaymentStatus() >= $status )
 					{
 						foreach( $processors as $processor ) {
-							$processor->begin( $item );
+							$processor->begin( $item, $orderItem );
 						}
 
 						$interval = new \DateInterval( $item->getInterval() );

@@ -67,8 +67,11 @@ class Standard
 		 */
 		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
 
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+
 		$processors = $this->getProcessors( $names );
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$search = $manager->createSearch( true );
 		$expr = [
@@ -82,15 +85,27 @@ class Standard
 
 		do
 		{
+			$orderItems = [];
+
 			$search->setSlice( $start, 100 );
 			$items = $manager->searchItems( $search );
+			$ordBaseIds = $items->getOrderBaseId()->toArray();
+
+			$orderSearch = $orderManager->createSearch()->setSlice( 0, $search->getSliceSize() );
+			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
+			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
+
+			$orderItems = $orderManager->searchItems( $orderSearch, $domains )->col( null, 'order.baseid' );
 
 			foreach( $items as $item )
 			{
 				try
 				{
-					foreach( $processors as $processor ) {
-						$processor->end( $item );
+					if( $orderItem = $orderItems->get( $item->getOrderBaseId() ) )
+					{
+						foreach( $processors as $processor ) {
+							$processor->end( $item, $orderItem );
+						}
 					}
 
 					if( ( $reason = $item->getReason() ) === null ) {
