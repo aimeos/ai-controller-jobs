@@ -31,6 +31,7 @@ interface Iface
 	 * Processes the initial subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @todo 2021.01 Add \Aimeos\MShop\Order\Item\Iface $order as second parameter
 	 */
 	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription );
 
@@ -39,6 +40,7 @@ interface Iface
 	 * Executed before the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @todo 2021.01 Add \Aimeos\MShop\Order\Item\Iface $order as second parameter
 	 */
 	public function renewBefore( \Aimeos\MShop\Subscription\Item\Iface $subscription );
 
@@ -56,6 +58,7 @@ interface Iface
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @todo 2021.01 Add \Aimeos\MShop\Order\Item\Iface $order as second parameter
 	 */
 	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription );
 }

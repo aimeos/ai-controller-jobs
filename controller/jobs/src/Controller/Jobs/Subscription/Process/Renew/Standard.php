@@ -77,6 +77,8 @@ class Standard
 		$date = date( 'Y-m-d' );
 		$processors = $this->getProcessors( $names );
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$search = $manager->createSearch( true );
 		$expr = [
@@ -101,17 +103,19 @@ class Standard
 			{
 				try
 				{
+					$context = $this->createContext( $item->getOrderBaseId() );
+					$newOrder = $this->createOrder( $context, $item );
+
 					foreach( $processors as $processor ) {
-						$processor->renewBefore( $item );
+						$processor->renewBefore( $item, $newOrder );
 					}
 
-					$context = $this->createContext( $item->getOrderBaseId() );
-					$newOrder = $this->createOrderBase( $context, $item );
-					$newInvoice = $this->createOrderInvoice( $context, $newOrder );
+					$basket = $baseManager->store( $newOrder->getBaseItem()->check() );
+					$newOrder = $orderManager->saveItem( $newOrder->setBaseId( $basket->getId() ) );
 
 					try
 					{
-						$this->createPayment( $context, $newOrder, $newInvoice );
+						$this->createPayment( $context, $basket, $newOrder );
 
 						$interval = new \DateInterval( $item->getInterval() );
 						$date = date_create()->add( $interval )->format( 'Y-m-d' );
@@ -131,7 +135,7 @@ class Standard
 					finally // will be always executed, even if exception is rethrown in catch()
 					{
 						foreach( $processors as $processor ) {
-							$processor->renewAfter( $item, $newInvoice );
+							$processor->renewAfter( $item, $newOrder );
 						}
 					}
 				}
@@ -205,9 +209,7 @@ class Standard
 			{
 				try {
 					$basket->addCoupon( $code );
-				} catch( \Aimeos\MShop\Plugin\Provider\Exception $e ) {
-					$basket->deleteCoupon( $code );
-				} catch( \Aimeos\MShop\Coupon\Exception $e ) {
+				} catch( \Aimeos\MShop\Plugin\Provider\Exception | \Aimeos\MShop\Coupon\Exception $e ) {
 					$basket->deleteCoupon( $code );
 				}
 			}
@@ -300,6 +302,7 @@ class Standard
 	 *
 	 * @param string $baseId Unique order base ID
 	 * @return \Aimeos\MShop\Context\Item\Iface New context object
+	 * @todo 2021.01 Pass site and locale as parameters instead of $baseId
 	 */
 	protected function createContext( string $baseId ) : \Aimeos\MShop\Context\Item\Iface
 	{
@@ -307,12 +310,13 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 		$baseItem = $manager->getItem( $baseId );
+		$sitecode = $baseItem->getSiteCode();
 
 		$locale = $baseItem->getLocale();
 		$level = \Aimeos\MShop\Locale\Manager\Base::SITE_ALL;
 
 		$manager = \Aimeos\MShop::create( $context, 'locale' );
-		$locale = $manager->bootstrap( $baseItem->getSiteCode(), $locale->getLanguageId(), $locale->getCurrencyId(), false, $level );
+		$locale = $manager->bootstrap( $sitecode, $locale->getLanguageId(), $locale->getCurrencyId(), false, $level );
 
 		$context->setLocale( $locale );
 
@@ -327,6 +331,23 @@ class Standard
 		catch( \Exception $e ) {} // Subscription without account
 
 		return $context;
+	}
+
+
+	/**
+	 * Creates and stores a new invoice for the given order basket
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Complete order with product, addresses and services saved to the storage
+	 * @return \Aimeos\MShop\Order\Item\Iface New invoice item including the order base item
+	 */
+	protected function createOrder( \Aimeos\MShop\Context\Item\Iface $context,
+		\Aimeos\MShop\Subscription\Item\Iface $subscription ) : \Aimeos\MShop\Order\Item\Iface
+	{
+		$manager = \Aimeos\MShop::create( $context, 'order' );
+		$basket = $this->createOrderBase( $context, $subscription );
+
+		return $manager->createItem()->setBaseItem( $basket )->setType( 'subscription' );
 	}
 
 
@@ -349,7 +370,7 @@ class Standard
 		$newBasket = $this->addBasketServices( $context, $newBasket, $basket->getServices() );
 		$newBasket = $this->addBasketCoupons( $context, $newBasket, $basket->getCoupons()->keys() );
 
-		return $manager->store( $newBasket->check() );
+		return $newBasket->check();
 	}
 
 
@@ -359,14 +380,12 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Complete order with product, addresses and services saved to the storage
 	 * @return \Aimeos\MShop\Order\Item\Iface New invoice item associated to the order saved to the storage
+	 * @deprecated Use createOrder() instead
 	 */
 	protected function createOrderInvoice( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
-
-		$item = $manager->createItem();
-		$item->setBaseId( $basket->getId() );
-		$item->setType( 'subscription' );
+		$item = $manager->createItem()->setBaseItem( $basket )->setBaseId( $basket->getId() )->setType( 'subscription' );
 
 		return $manager->saveItem( $item );
 	}
@@ -378,18 +397,15 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Complete order with product, addresses and services
 	 * @param \Aimeos\MShop\Order\Item\Iface New invoice item associated to the order
+	 * @deprecated 2021.01 $basket will be removed, use $invoice->getBaseItem() instead
 	 */
 	protected function createPayment( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket,
 		\Aimeos\MShop\Order\Item\Iface $invoice )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'service' );
 
-		foreach( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) as $service )
-		{
-			$item = $manager->getItem( $service->getServiceId() );
-			$provider = $manager->getProvider( $item, 'payment' );
-
-			$provider->repay( $invoice );
+		foreach( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) as $service ) {
+			$manager->getProvider( $manager->getItem( $service->getServiceId() ), 'payment' )->repay( $invoice );
 		}
 	}
 }
