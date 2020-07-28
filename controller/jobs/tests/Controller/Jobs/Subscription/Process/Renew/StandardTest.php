@@ -126,7 +126,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketCoupons()
 	{
-		$this->context->getConfig()->set( 'controller/jobs/subcription/process/renew/standard/use-coupons', true );
+		$this->context->getConfig()->set( 'controller/jobs/subscription/process/renew/standard/use-coupons', true );
 
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC', ['price'] );
