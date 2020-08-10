@@ -133,7 +133,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderProduct = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
 
 		$price = $product->getRefItems( 'price', 'default', 'default' )->first();
-		$basket->addProduct( $orderProduct->copyFrom( $product )->setPrice( $price ) );
+		$basket->addProduct( $orderProduct->copyFrom( $product )->setPrice( $price )->setStockType( 'default' ) );
 
 		$this->assertEquals( '600.00', $basket->getPrice()->getValue() );
 		$this->assertEquals( '30.00', $basket->getPrice()->getCosts() );
@@ -156,8 +156,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
 
 		$orderProducts = map( [
-			$manager->createItem()->copyFrom( $product )->setId( 1 ),
-			$manager->createItem()->copyFrom( $product )->setId( 2 ),
+			$manager->createItem()->copyFrom( $product )->setId( 1 )->setStockType( 'default' ),
+			$manager->createItem()->copyFrom( $product )->setId( 2 )->setStockType( 'default' ),
 		] );
 
 		$basket = $this->access( 'addBasketProducts' )->invokeArgs( $this->object, [$this->context, $basket, $orderProducts, 1] );
