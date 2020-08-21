@@ -125,12 +125,9 @@ class Standard
 		 * The container type tells the importer how it should retrieve the data.
 		 * There are currently three container types that support the necessary
 		 * CSV content:
+		 *
 		 * * File (plain)
 		 * * Zip
-		 * * PHPExcel
-		 *
-		 * '''Note:''' For the PHPExcel container, you need to install the
-		 * "ai-container" extension.
 		 *
 		 * @param string Container type name
 		 * @since 2017.10
@@ -146,11 +143,8 @@ class Standard
 		 *
 		 * The content type must always be a CSV-like format and there are
 		 * currently two format types that are supported:
-		 * * CSV
-		 * * PHPExcel
 		 *
-		 * '''Note:''' for the PHPExcel content type, you need to install the
-		 * "ai-container" extension.
+		 * * CSV
 		 *
 		 * @param array Content type name
 		 * @since 2017.10

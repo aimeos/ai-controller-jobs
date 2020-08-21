@@ -76,6 +76,7 @@ class Standard
 		 * and the site map files are generated you can give search engines a
 		 * hint how often they should reindex your site. The site map schema
 		 * allows a few pre-defined strings for the change frequency:
+		 *
 		 * * always
 		 * * hourly
 		 * * daily
@@ -184,6 +185,7 @@ class Standard
 		 * container/content objects from the core, namely the "Directory"
 		 * container and the "Binary" content classes. Both implementations
 		 * support some options:
+		 *
 		 * * dir-perm (default: 0755): Permissions if the directory must be created
 		 * * gzip-level (default: 5): GZip compression level from 0 to 9 (0 = fast, 9 = best)
 		 * * gzip-mode (default: "wb"): Overwrite existing files in binary mode

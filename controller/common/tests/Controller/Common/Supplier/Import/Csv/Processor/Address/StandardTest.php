@@ -80,8 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 * There are no ability to add several addresses to one Supplier from CSV Import.
 	 * Because of if Supplier has one address, it will be rewrite instead of add one.
 	 * Because we cannot identify if it's a new one address or modification of existing one
-	 *
-	 * */
+	 */
 	public function testProcessMultiple()
 	{
 		$this->markTestSkipped( 'There are no ability to add several addresses to one Supplier from CSV Import.' );

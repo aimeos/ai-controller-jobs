@@ -111,6 +111,7 @@ class Standard
 		 * coupon code file.
 		 *
 		 * The container file types that are supported by default are:
+		 *
 		 * * Zip
 		 *
 		 * Extensions implement other container types like spread sheets, XMLs or
@@ -135,6 +136,7 @@ class Standard
 		 * type.
 		 *
 		 * The formats that are supported by default are:
+		 *
 		 * * CSV (requires container type "Zip")
 		 *
 		 * Extensions implement other container types like spread sheets, XMLs or
@@ -157,6 +159,7 @@ class Standard
 		 * the output for that content type.
 		 *
 		 * The options for the CSV content format are:
+		 *
 		 * * csv-separator, default ','
 		 * * csv-enclosure, default '"'
 		 * * csv-escape, default '"'
