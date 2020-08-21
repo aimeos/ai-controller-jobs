@@ -170,7 +170,7 @@ class Standard
 		 * strftime() placeholders, please have a look into the PHP documentation of
 		 * the {@link http://php.net/manual/en/function.strftime.php strftime() function}.
 		 *
-		 * '''Note:''' If no backup name is configured, the file or directory
+		 * **Note:** If no backup name is configured, the file or directory
 		 * won't be moved away. Please make also sure that the parent directory
 		 * and the new directory are writable so the file or directory could be
 		 * moved.

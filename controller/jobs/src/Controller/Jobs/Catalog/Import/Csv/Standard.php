@@ -174,7 +174,7 @@ class Standard
 		 * In the configuration, the type and conversion must be separated by a
 		 * slash (<type>/<conversion>).
 		 *
-		 * '''Note:''' Keep in mind that the position of the CSV fields start at
+		 * **Note:** Keep in mind that the position of the CSV fields start at
 		 * zero (0). If you only need to convert a few fields, you don't have to
 		 * configure all fields. Only specify the positions in the array you
 		 * really need!
@@ -290,7 +290,7 @@ class Standard
 		 * strftime() placeholders, please have a look into the PHP documentation of
 		 * the {@link http://php.net/manual/en/function.strftime.php strftime() function}.
 		 *
-		 * '''Note:''' If no backup name is configured, the file or directory
+		 * **Note:** If no backup name is configured, the file or directory
 		 * won't be moved away. Please make also sure that the parent directory
 		 * and the new directory are writable so the file or directory could be
 		 * moved.
