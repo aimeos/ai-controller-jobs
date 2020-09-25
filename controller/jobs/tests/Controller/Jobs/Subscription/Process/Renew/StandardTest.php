@@ -113,14 +113,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketAddresses()
 	{
-		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$custId = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com')->getId();
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem()->setCustomerId( $custId );
 		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 
-		$addresses = map( ['payment' => [$address]] );
+		$addresses = map( ['delivery' => [$address]] );
 		$basket = $this->access( 'addBasketAddresses' )->invokeArgs( $this->object, [$this->context, $basket, $addresses] );
 
-		$this->assertEquals( 1, count( $basket->getAddresses() ) );
+		$this->assertEquals( 2, count( $basket->getAddresses() ) );
 		$this->assertInstanceOf( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $basket->getAddress( 'payment', 0 ) );
+		$this->assertInstanceOf( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $basket->getAddress( 'delivery', 0 ) );
 	}
 
 

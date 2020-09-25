@@ -175,6 +175,24 @@ class Standard
 			}
 		}
 
+		if( !$newBasket->getCustomerId() ) {
+			return $newBasket;
+		}
+
+		try
+		{
+			$customer = \Aimeos\MShop::create( $context, 'customer' )->getItem( $newBasket->getCustomerId() );
+			$address = \Aimeos\MShop::create( $context, 'order/base/address' )->createItem();
+
+			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+			$newBasket->addAddress( $address->copyFrom( $customer->getPaymentAddress() ), $type, 0 );
+		}
+		catch( \Exception $e )
+		{
+			$msg = sprintf( 'Unable to add current address for customer with ID "%1$s"', $newBasket->getCustomerId() );
+			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+		}
+
 		return $newBasket;
 	}
 
