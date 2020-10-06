@@ -112,6 +112,26 @@ class Standard
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$listManager = \Aimeos\MShop::create( $context, 'supplier/lists' );
+
+		/** controller/common/supplier/import/csv/separator
+		 * Single separator character for multiple entries in one field of the import file
+		 *
+		 * The supplier importer is able split the content of a field from the import
+		 * file into several entries based on the given separator character. Thus,
+		 * you can create more compact import files and handle a variable range
+		 * of entries better. The default separator character is a new line.
+		 *
+		 * '''Caution:''' The separator character must not be part of any entry
+		 * in the field. Otherwise, you will get invalid entries and the importer
+		 * may fail!
+		 *
+		 * @param string Single separator character
+		 * @since 2015.07
+		 * @category User
+		 * @category Developer
+		 * @see controller/common/catalog/import/csv/domains
+		 * @see controller/common/product/import/csv/domains
+		 */
 		$separator = $context->getConfig()->get( 'controller/common/supplier/import/csv/separator', "\n" );
 
 		$listMap = [];

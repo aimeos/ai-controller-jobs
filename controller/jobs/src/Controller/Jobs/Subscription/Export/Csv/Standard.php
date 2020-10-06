@@ -251,12 +251,24 @@ class Standard
 		$lcontext = $this->getLocaleContext( $msg );
 		$baseRef = ['order/base/address', 'order/base/product'];
 
+		/** controller/jobs/subscription/export/csv/collapse
+		 * Collapse all lines in the subscription export on only one line
+		 *
+		 * By default, the subscription export will contain several lines for each
+		 * subscription, e.g. for the product, the addresses, the delivery and payment
+		 * services as well as the invoice data. You can merge them into one line using
+		 * this configuration setting.
+		 *
+		 * @param bool True to collapse all lines of one subscription, false for separate lines
+		 * @since 2020.07
+		 */
+		$collapse = $lcontext->getConfig()->get( 'controller/jobs/subscription/export/csv/collapse', false );
+
 		$manager = \Aimeos\MShop::create( $lcontext, 'subscription' );
 		$baseManager = \Aimeos\MShop::create( $lcontext, 'order/base' );
 
 		$container = $this->getContainer();
 		$content = $container->create( 'subscription-export_' . date( 'Y-m-d_H-i-s' ) );
-		$collapse = $lcontext->getConfig()->get( 'controller/jobs/subscription/export/csv/collapse', false );
 		$search = $this->initCriteria( $manager->createSearch()->setSlice( 0, 0x7fffffff ), $msg );
 		$start = 0;
 

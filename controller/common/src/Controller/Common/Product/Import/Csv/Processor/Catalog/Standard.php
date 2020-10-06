@@ -120,7 +120,8 @@ class Standard
 		 * @since 2015.07
 		 * @category User
 		 * @category Developer
-		 * @see controller/common/product/import/csv/domains
+		 * @see controller/common/catalog/import/csv/domains
+		 * @see controller/common/supplier/import/csv/domains
 		 */
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
 
