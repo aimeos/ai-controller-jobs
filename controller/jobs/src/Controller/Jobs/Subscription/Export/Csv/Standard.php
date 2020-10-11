@@ -269,7 +269,7 @@ class Standard
 
 		$container = $this->getContainer();
 		$content = $container->create( 'subscription-export_' . date( 'Y-m-d_H-i-s' ) );
-		$search = $this->initCriteria( $manager->createSearch()->setSlice( 0, 0x7fffffff ), $msg );
+		$search = $this->initCriteria( $manager->createSearch( false, true )->setSlice( 0, 0x7fffffff ), $msg );
 		$start = 0;
 
 		do
@@ -282,7 +282,7 @@ class Standard
 				$baseIds[] = $item->getOrderBaseId();
 			}
 
-			$baseSearch = $baseManager->createSearch();
+			$baseSearch = $baseManager->createSearch( false, true );
 			$baseSearch->setConditions( $baseSearch->compare( '==', 'order.base.id', $baseIds ) );
 			$baseSearch->setSlice( 0, count( $baseIds ) );
 
