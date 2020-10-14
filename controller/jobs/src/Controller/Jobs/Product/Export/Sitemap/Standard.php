@@ -395,7 +395,10 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'index' );
 
 		$search = $manager->createSearch( $default );
-		$search->setConditions( $search->compare( '!=', 'index.catalog.id', null ) );
+		$search->setConditions( $search->combine( '&&', [
+			$search->compare( '!=', 'index.catalog.id', null ),
+			$search->getConditions()
+		] ) );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
 		$search->setSlice( 0, $maxQuery );
 
