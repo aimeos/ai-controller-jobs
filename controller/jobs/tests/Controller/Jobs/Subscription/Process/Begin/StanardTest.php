@@ -52,12 +52,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['searchItems', 'saveItem'] )
+			->setMethods( ['search', 'saveItem'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'searchItems' )
+		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$item] ) ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
@@ -73,12 +73,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['searchItems', 'saveItem'] )
+			->setMethods( ['search', 'saveItem'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'searchItems' )
+		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$managerStub->createItem()] ) ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' )
@@ -95,7 +95,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
 
-		if( ( $item = $manager->searchItems( $search )->first() ) !== null ) {
+		if( ( $item = $manager->search( $search )->first() ) !== null ) {
 			return $item;
 		}
 

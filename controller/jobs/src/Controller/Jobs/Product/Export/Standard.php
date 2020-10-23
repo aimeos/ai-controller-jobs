@@ -299,7 +299,7 @@ class Standard
 
 		do
 		{
-			$items = $manager->searchItems( $search->setSlice( $start, $maxQuery ), $domains );
+			$items = $manager->search( $search->setSlice( $start, $maxQuery ), $domains );
 			$remaining = $maxItems * $filenum - $start;
 			$count = count( $items );
 

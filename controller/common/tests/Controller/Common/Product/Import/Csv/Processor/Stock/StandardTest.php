@@ -202,7 +202,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Stock\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $product->getCode() ) );
-		$manager->deleteItems( $manager->searchItems( $search )->toArray() );
+		$manager->deleteItems( $manager->search( $search )->toArray() );
 
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$manager->deleteItem( $product->getId() );
@@ -216,6 +216,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );
 
-		return $manager->searchItems( $search );
+		return $manager->search( $search );
 	}
 }

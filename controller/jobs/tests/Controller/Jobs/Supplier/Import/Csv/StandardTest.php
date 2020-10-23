@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$search = $catListManager->createSearch();
 			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );
-			$result = $catListManager->searchItems( $search );
+			$result = $catListManager->search( $search );
 
 			$catListManager->deleteItems( $result->toArray() );
 		}
@@ -223,7 +223,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $attrManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'attribute.code', 'import-test' ) );
 
-		$result = $attrManager->searchItems( $search );
+		$result = $attrManager->search( $search );
 
 		$attrManager->deleteItems( $result->toArray() );
 	}
@@ -236,7 +236,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $supplierManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'supplier.code', $prodcodes ) );
 
-		return $supplierManager->searchItems( $search, $domains );
+		return $supplierManager->search( $search, $domains );
 	}
 
 	protected function getAddresses( array $prodids )
@@ -246,6 +246,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'supplier.address.parentid', $prodids ) );
 
-		return $manager->searchItems( $search );
+		return $manager->search( $search );
 	}
 }

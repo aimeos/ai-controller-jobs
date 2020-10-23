@@ -97,7 +97,7 @@ class Standard
 		do
 		{
 			$search->setSlice( $start, 100 );
-			$items = $manager->searchItems( $search );
+			$items = $manager->search( $search );
 
 			foreach( $items as $item )
 			{
@@ -300,7 +300,7 @@ class Standard
 		$search->setSortations( [$search->sort( '+', 'service.position' )] );
 		$search->setConditions( $search->compare( '==', 'service.type', $type ) );
 
-		foreach( $serviceManager->searchItems( $search, ['media', 'price', 'text'] ) as $item )
+		foreach( $serviceManager->search( $search, ['media', 'price', 'text'] ) as $item )
 		{
 			$provider = $serviceManager->getProvider( $item, $item->getType() );
 

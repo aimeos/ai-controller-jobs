@@ -407,7 +407,7 @@ class Standard
 
 		do
 		{
-			$items = $manager->searchItems( $search, $domains );
+			$items = $manager->search( $search, $domains );
 			$remaining = $maxItems * $filenum - $start;
 			$count = count( $items );
 

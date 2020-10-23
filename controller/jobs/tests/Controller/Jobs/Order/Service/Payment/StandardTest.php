@@ -55,12 +55,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'searchItems' ) )
+			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItem', 'searchItems' ) )
+			->setMethods( array( 'saveItem', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -77,13 +77,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 
-		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
+		$serviceManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->returnValue( $serviceProviderStub ) );
 
-		$orderManagerStub->expects( $this->once() )->method( 'searchItems' )
+		$orderManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$orderItem] ), map() ) );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'isImplemented' )
@@ -109,12 +109,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItem', 'searchItems' ) )
+			->setMethods( array( 'saveItem', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'searchItems' ) )
+			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -131,13 +131,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 
-		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
+		$serviceManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->returnValue( $serviceProviderStub ) );
 
-		$orderManagerStub->expects( $this->once() )->method( 'searchItems' )
+		$orderManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$orderItem] ), map() ) );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'isImplemented' )
@@ -166,12 +166,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItem', 'searchItems' ) )
+			->setMethods( array( 'saveItem', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'searchItems' ) )
+			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -181,13 +181,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
 
-		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
+		$serviceManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test service delivery process: getProvider' ) ) );
 
-		$orderManagerStub->expects( $this->never() )->method( 'searchItems' );
+		$orderManagerStub->expects( $this->never() )->method( 'search' );
 
 
 		$object = new \Aimeos\Controller\Jobs\Order\Service\Payment\Standard( $context, $aimeos );

@@ -304,7 +304,7 @@ class Standard
 			$search->compare( '==', 'stock.type', $types )
 		] ) );
 
-		foreach( $manager->searchItems( $search ) as $item ) {
+		foreach( $manager->search( $search ) as $item ) {
 			$map[$item->getProductCode()][$item->getType()] = $item;
 		}
 

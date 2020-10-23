@@ -78,7 +78,7 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', 'product' ) );
 
-			foreach( $manager->searchItems( $search ) as $item ) {
+			foreach( $manager->search( $search ) as $item ) {
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
@@ -257,6 +257,6 @@ class Standard
 			$search->compare( '==', 'catalog.lists.refid', $prodid ),
 		];
 
-		return $manager->searchItems( $search->setConditions( $search->combine( '&&', $expr ) ) );
+		return $manager->search( $search->setConditions( $search->combine( '&&', $expr ) ) );
 	}
 }

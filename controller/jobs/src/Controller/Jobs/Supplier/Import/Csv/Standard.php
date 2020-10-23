@@ -513,7 +513,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier' );
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 
-		foreach( $manager->searchItems( $search, $domains ) as $item )
+		foreach( $manager->search( $search, $domains ) as $item )
 		{
 			$map[$item->getCode()] = $item;
 		}

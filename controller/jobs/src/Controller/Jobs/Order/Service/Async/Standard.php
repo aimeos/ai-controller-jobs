@@ -59,7 +59,7 @@ class Standard
 
 		do
 		{
-			$serviceItems = $serviceManager->searchItems( $search->setSlice( $start ) );
+			$serviceItems = $serviceManager->search( $search->setSlice( $start ) );
 
 			foreach( $serviceItems as $serviceItem )
 			{

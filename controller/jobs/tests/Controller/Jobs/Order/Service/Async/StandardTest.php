@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'searchItems' ) )
+			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 
-		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
+		$serviceManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'searchItems' ) )
+			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
 
-		$serviceManagerStub->expects( $this->once() )->method( 'searchItems' )
+		$serviceManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )

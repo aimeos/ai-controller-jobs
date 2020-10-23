@@ -45,7 +45,7 @@ class Standard
 		parent::__construct( $context );
 
 		$manager = \Aimeos\MShop::create( $context, 'attribute' );
-		$result = $manager->searchItems( $manager->createSearch() );
+		$result = $manager->search( $manager->createSearch() );
 
 		foreach( $result as $id => $item ) {
 			$this->attributes[$item->getCode()][$item->getType()] = $item;
@@ -75,7 +75,7 @@ class Standard
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		if( ( $item = $manager->searchItems( $search )->first() ) !== null )
+		if( ( $item = $manager->search( $search )->first() ) !== null )
 		{
 			$this->attributes[$code][$type] = $item;
 			return $item;

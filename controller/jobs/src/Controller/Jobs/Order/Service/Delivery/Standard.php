@@ -99,7 +99,7 @@ class Standard
 
 		do
 		{
-			$serviceItems = $serviceManager->searchItems( $serviceSearch );
+			$serviceItems = $serviceManager->search( $serviceSearch );
 
 			foreach( $serviceItems as $serviceItem )
 			{
@@ -121,7 +121,7 @@ class Standard
 					do
 					{
 						$orderSearch->setSlice( $orderStart, $maxItems );
-						$orderItems = $orderManager->searchItems( $orderSearch )->toArray();
+						$orderItems = $orderManager->search( $orderSearch )->toArray();
 
 						if( !empty( $orderItems ) )
 						{

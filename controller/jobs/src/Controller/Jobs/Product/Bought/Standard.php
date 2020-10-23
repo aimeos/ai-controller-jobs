@@ -159,7 +159,7 @@ class Standard
 		$search->setConditions( $search->compare( '>', 'order.base.ctime', $date ) );
 		$search->setSlice( 0, 0 );
 		$totalOrders = 0;
-		$baseManager->searchItems( $search, [], $totalOrders );
+		$baseManager->search( $search, [], $totalOrders );
 
 		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
 		$search = $baseProductManager->createSearch();
@@ -232,7 +232,7 @@ class Standard
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		foreach( $catalogListManager->searchItems( $search ) as $listItem ) {
+		foreach( $catalogListManager->search( $search ) as $listItem ) {
 			$refIds[$listItem->getRefId()] = true;
 		}
 
@@ -307,7 +307,7 @@ class Standard
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		$listItems = $manager->searchItems( $search );
+		$listItems = $manager->search( $search );
 
 		$manager->deleteItems( $listItems->toArray() );
 	}

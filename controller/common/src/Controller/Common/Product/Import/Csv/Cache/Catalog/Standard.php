@@ -45,7 +45,7 @@ class Standard
 		parent::__construct( $context );
 
 		$manager = \Aimeos\MShop::create( $context, 'catalog' );
-		$result = $manager->searchItems( $manager->createSearch() );
+		$result = $manager->search( $manager->createSearch() );
 
 		foreach( $result as $id => $item ) {
 			$this->categories[$item->getCode()] = $id;
@@ -71,7 +71,7 @@ class Standard
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
 
-		if( ( $item = $manager->searchItems( $search )->first() ) !== null )
+		if( ( $item = $manager->search( $search )->first() ) !== null )
 		{
 			$this->categories[$code] = $item->getId();
 			return $item->getId();

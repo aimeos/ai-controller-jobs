@@ -78,7 +78,7 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 			$search->setConditions( $search->compare( '==', 'product.lists.type.domain', 'text' ) );
 
-			foreach( $manager->searchItems( $search ) as $item ) {
+			foreach( $manager->search( $search ) as $item ) {
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
 		}
@@ -93,7 +93,7 @@ class Standard
 		$search = $manager->createSearch()->setSlice( 0, 0x7fffffff );
 		$search->setConditions( $search->compare( '==', 'text.type.domain', 'product' ) );
 
-		foreach( $manager->searchItems( $search ) as $item ) {
+		foreach( $manager->search( $search ) as $item ) {
 			$this->types[$item->getCode()] = $item->getCode();
 		}
 	}

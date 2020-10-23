@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$search = $catListManager->createSearch();
 			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );
-			$result = $catListManager->searchItems( $search );
+			$result = $catListManager->search( $search );
 
 			$catListManager->deleteItems( $result->toArray() );
 		}
@@ -215,7 +215,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $attrManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'attribute.code', 'import-test' ) );
 
-		$result = $attrManager->searchItems( $search );
+		$result = $attrManager->search( $search );
 
 		$attrManager->deleteItems( $result->toArray() );
 	}
@@ -228,7 +228,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $productManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $prodcodes ) );
 
-		return $productManager->searchItems( $search, $domains );
+		return $productManager->search( $search, $domains );
 	}
 
 
@@ -240,6 +240,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search->setConditions( $search->compare( '==', 'product.property.parentid', $prodids ) );
 		$search->setSortations( array( $search->sort( '+', 'product.property.type' ) ) );
 
-		return $manager->searchItems( $search );
+		return $manager->search( $search );
 	}
 }

@@ -114,7 +114,7 @@ class Standard
 		$search = $manager->createSearch()->setSlice( 0, count( $codes ) );
 		$search->setConditions( $search->compare( '==', 'product.code', array_keys( $codes ) ) );
 
-		foreach( $manager->searchItems( $search, [] ) as $item ) {
+		foreach( $manager->search( $search, [] ) as $item ) {
 			$map[$item->getCode()] = $item;
 		}
 

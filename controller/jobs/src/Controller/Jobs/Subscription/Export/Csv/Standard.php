@@ -276,7 +276,7 @@ class Standard
 		{
 			$baseIds = [];
 			$search->setSlice( $start, $maxcnt );
-			$items = $manager->searchItems( $search );
+			$items = $manager->search( $search );
 
 			foreach( $items as $item ) {
 				$baseIds[] = $item->getOrderBaseId();
@@ -286,7 +286,7 @@ class Standard
 			$baseSearch->setConditions( $baseSearch->compare( '==', 'order.base.id', $baseIds ) );
 			$baseSearch->setSlice( 0, count( $baseIds ) );
 
-			$baseItems = $baseManager->searchItems( $baseSearch, $baseRef );
+			$baseItems = $baseManager->search( $baseSearch, $baseRef );
 
 			foreach( $items as $id => $item )
 			{

@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search->setConditions( $search->compare( '==', 'product.code', ['CNC', 'CNE'] ) );
 
 		$this->products = [];
-		foreach( $manager->searchItems( $search ) as $id => $item ) {
+		foreach( $manager->search( $search ) as $id => $item ) {
 			$this->products[$item->getCode()] = $id;
 		}
 	}

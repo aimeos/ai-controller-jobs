@@ -197,7 +197,7 @@ class Standard
 		do
 		{
 			$ids = [];
-			$items = $manager->searchItems( $search );
+			$items = $manager->search( $search );
 
 			foreach( $items as $id => $item )
 			{

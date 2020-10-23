@@ -99,6 +99,6 @@ class Standard
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );
 
-		return $manager->searchItems( $search );
+		return $manager->search( $search );
 	}
 }

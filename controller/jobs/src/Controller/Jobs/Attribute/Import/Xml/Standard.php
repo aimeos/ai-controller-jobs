@@ -148,7 +148,7 @@ class Standard
 		$search = $manager->createSearch()->setSlice( 0, count( $keys ) );
 		$search->setConditions( $search->compare( '==', 'attribute.key', $keys ) );
 
-		return $manager->searchItems( $search, $ref );
+		return $manager->search( $search, $ref );
 	}
 
 

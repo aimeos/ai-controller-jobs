@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', '2008-02-15 12:34:56' ) );
 
-		if( ( $item = $manager->searchItems( $search )->first() ) !== null ) {
+		if( ( $item = $manager->search( $search )->first() ) !== null ) {
 			return $item;
 		}
 

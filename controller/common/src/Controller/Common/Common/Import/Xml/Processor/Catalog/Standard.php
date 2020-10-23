@@ -129,7 +129,7 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, count( $codes ) );
 			$search->setConditions( $search->compare( '==', 'catalog.code', $codes ) );
 
-			foreach( $manager->searchItems( $search ) as $item ) {
+			foreach( $manager->search( $search ) as $item ) {
 				$items[$item->getCode()] = $item;
 			}
 		}
@@ -156,7 +156,7 @@ class Standard
 			$search->compare( '==', 'catalog.lists.refid', $id ),
 		];
 
-		return $manager->searchItems( $search->setConditions( $search->combine( '&&', $expr ) ) );
+		return $manager->search( $search->setConditions( $search->combine( '&&', $expr ) ) );
 	}
 
 
@@ -177,7 +177,7 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 10000 );
 			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', $domain ) );
 
-			foreach( $manager->searchItems( $search ) as $item ) {
+			foreach( $manager->search( $search ) as $item ) {
 				$this->listTypes[$domain][] = $item->getCode();
 			}
 		}

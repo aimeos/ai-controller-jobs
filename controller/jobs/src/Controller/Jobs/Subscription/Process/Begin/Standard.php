@@ -128,14 +128,14 @@ class Standard
 			$orderItems = [];
 
 			$search->setSlice( $start, 100 );
-			$items = $manager->searchItems( $search );
+			$items = $manager->search( $search );
 			$ordBaseIds = $items->getOrderBaseId()->toArray();
 
 			$orderSearch = $orderManager->createSearch()->setSlice( 0, $search->getSliceSize() );
 			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
 			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
 
-			$orderItems = $orderManager->searchItems( $orderSearch, $domains )->col( null, 'order.baseid' );
+			$orderItems = $orderManager->search( $orderSearch, $domains )->col( null, 'order.baseid' );
 
 			foreach( $items as $item )
 			{

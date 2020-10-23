@@ -99,7 +99,7 @@ class Standard
 
 		do
 		{
-			$serviceItems = $serviceManager->searchItems( $serviceSearch );
+			$serviceItems = $serviceManager->search( $serviceSearch );
 
 			foreach( $serviceItems as $serviceItem )
 			{
@@ -136,7 +136,7 @@ class Standard
 
 					do
 					{
-						$orderItems = $orderManager->searchItems( $orderSearch );
+						$orderItems = $orderManager->search( $orderSearch );
 
 						foreach( $orderItems as $orderItem )
 						{

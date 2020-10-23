@@ -51,7 +51,7 @@ class Standard
 
 		do
 		{
-			$items = $this->groupManager->searchItems( $search->setSlice( $start, 100 ) );
+			$items = $this->groupManager->search( $search->setSlice( $start, 100 ) );
 
 			foreach( $items as $item ) {
 				$this->map[$item->getCode()] = $item->getId();

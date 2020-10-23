@@ -71,7 +71,7 @@ abstract class Base
 
 					$types = $items = [];
 
-					foreach( $manager->searchItems( $search ) as $item ) {
+					foreach( $manager->search( $search ) as $item ) {
 						$types[] = $item->getCode();
 					}
 

@@ -87,7 +87,7 @@ class Standard
 		$search = $manager->createSearch()->setSlice( 0, count( $keys ) );
 		$search->setConditions( $search->compare( '==', 'customer.group.code', array_keys( $keys ) ) );
 
-		foreach( $manager->searchItems( $search, [] ) as $item ) {
+		foreach( $manager->search( $search, [] ) as $item ) {
 			$map[$item->getCode()] = $item;
 		}
 

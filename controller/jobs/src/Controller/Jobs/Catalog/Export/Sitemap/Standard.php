@@ -467,7 +467,7 @@ class Standard
 
 		do
 		{
-			$items = $manager->searchItems( $search, $domains );
+			$items = $manager->search( $search, $domains );
 			$free = $maxItems * $filenum - $start;
 			$count = count( $items );
 

@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$jobManager = \Aimeos\MAdmin::create( $this->context, 'job' );
 		$jobSearch = $jobManager->createSearch();
 		$jobSearch->setConditions( $jobSearch->compare( '=~', 'job.label', 'order-export_' ) );
-		$jobItems = $jobManager->searchItems( $jobSearch );
+		$jobItems = $jobManager->search( $jobSearch );
 		$jobManager->deleteItems( $jobItems->toArray() );
 
 		$this->assertEquals( 1, count( $jobItems ) );
