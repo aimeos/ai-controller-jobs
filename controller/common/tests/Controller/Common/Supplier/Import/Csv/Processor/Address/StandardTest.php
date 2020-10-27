@@ -259,7 +259,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function reloadSupplier( &$supplier )
 	{
-		$supplier = self::$supplierManager->getItem( $supplier->getId(), ['supplier/address'] );
+		$supplier = self::$supplierManager->get( $supplier->getId(), ['supplier/address'] );
 	}
 
 }

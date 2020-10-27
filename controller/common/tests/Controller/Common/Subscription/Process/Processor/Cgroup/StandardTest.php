@@ -23,12 +23,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->custStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['getItem', 'saveItem'] )
+			->setMethods( ['get', 'saveItem'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'customer', $this->custStub );
 
-		$this->custStub->expects( $this->once() )->method( 'getItem' )
+		$this->custStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $this->custStub->createItem() ) );
 	}
 
@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['getItem'] )
+			->setMethods( ['get'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
 		] );
 
-		$ordProdStub->expects( $this->once() )->method( 'getItem' )
+		$ordProdStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ordProdItem ) );
 
 		$this->custStub->expects( $this->once() )->method( 'saveItem' )
@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['getItem'] )
+			->setMethods( ['get'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
 		] );
 
-		$ordProdStub->expects( $this->once() )->method( 'getItem' )
+		$ordProdStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ordProdItem ) );
 
 		$this->custStub->expects( $this->once() )->method( 'saveItem' )

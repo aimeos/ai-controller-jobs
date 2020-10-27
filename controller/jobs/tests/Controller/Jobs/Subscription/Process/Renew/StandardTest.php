@@ -257,7 +257,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getOrderBaseItem( $baseId )
 	{
-		return \Aimeos\MShop::create( $this->context, 'order/base' )->getItem( $baseId, ['order/base/service'] );
+		return \Aimeos\MShop::create( $this->context, 'order/base' )->get( $baseId, ['order/base/service'] );
 	}
 
 

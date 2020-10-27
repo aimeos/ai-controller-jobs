@@ -181,7 +181,7 @@ class Standard
 
 		try
 		{
-			$customer = \Aimeos\MShop::create( $context, 'customer' )->getItem( $newBasket->getCustomerId() );
+			$customer = \Aimeos\MShop::create( $context, 'customer' )->get( $newBasket->getCustomerId() );
 			$address = \Aimeos\MShop::create( $context, 'order/base/address' )->createItem();
 
 			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
@@ -327,7 +327,7 @@ class Standard
 		$context = clone $this->getContext();
 
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
-		$baseItem = $manager->getItem( $baseId );
+		$baseItem = $manager->get( $baseId );
 		$sitecode = $baseItem->getSiteCode();
 
 		$locale = $baseItem->getLocale();
@@ -341,7 +341,7 @@ class Standard
 		try
 		{
 			$manager = \Aimeos\MShop::create( $context, 'customer' );
-			$customerItem = $manager->getItem( $baseItem->getCustomerId(), ['customer/group'] );
+			$customerItem = $manager->get( $baseItem->getCustomerId(), ['customer/group'] );
 
 			$context->setUserId( $baseItem->getCustomerId() );
 			$context->setGroupIds( $customerItem->getGroups() );
@@ -423,7 +423,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'service' );
 
 		foreach( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) as $service ) {
-			$manager->getProvider( $manager->getItem( $service->getServiceId() ), 'payment' )->repay( $invoice );
+			$manager->getProvider( $manager->get( $service->getServiceId() ), 'payment' )->repay( $invoice );
 		}
 	}
 }
