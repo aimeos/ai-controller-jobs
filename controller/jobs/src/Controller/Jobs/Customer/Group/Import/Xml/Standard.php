@@ -278,7 +278,7 @@ class Standard
 	 * @param \DomElement $node DOM node used for updating the customer group item
 	 * @return \Aimeos\MShop\Customer\Item\Group\Iface $item Updated customer group item object
 	 */
-	protected function process( \Aimeos\MShop\Customer\Item\Group\Iface $item, \DomElement $node ) : \Aimeos\MShop\Customer\Item\Group\Iface
+	protected function process( \Aimeos\MShop\Customer\Item\Group\Iface $item, \DomElement $node )
 	{
 		$list = [];
 
