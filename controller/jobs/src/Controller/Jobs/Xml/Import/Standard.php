@@ -56,8 +56,9 @@ class Standard
 
 		$logger->log( 'Started XML import', \Aimeos\MW\Logger\Base::INFO );
 
-		\Aimeos\Controller\Jobs\Attribute\Import\Xml\Factory::create( $context, $aimeos )->run();
+		\Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Factory::create( $context, $aimeos )->run();
 		\Aimeos\Controller\Jobs\Customer\Import\Xml\Factory::create( $context, $aimeos )->run();
+		\Aimeos\Controller\Jobs\Attribute\Import\Xml\Factory::create( $context, $aimeos )->run();
 		\Aimeos\Controller\Jobs\Product\Import\Xml\Factory::create( $context, $aimeos )->run();
 		\Aimeos\Controller\Jobs\Supplier\Import\Xml\Factory::create( $context, $aimeos )->run();
 		\Aimeos\Controller\Jobs\Catalog\Import\Xml\Factory::create( $context, $aimeos )->run();

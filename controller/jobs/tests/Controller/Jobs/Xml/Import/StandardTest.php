@@ -49,8 +49,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$config = $this->context->getConfig();
-		$config->set( 'controller/jobs/attribute/import/xml/location', __DIR__ . '/_testfiles' );
+		$config->set( 'controller/jobs/customer/group/import/xml/location', __DIR__ . '/_testfiles' );
 		$config->set( 'controller/jobs/customer/import/xml/location', __DIR__ . '/_testfiles' );
+		$config->set( 'controller/jobs/attribute/import/xml/location', __DIR__ . '/_testfiles' );
 		$config->set( 'controller/jobs/product/import/xml/location', __DIR__ . '/_testfiles' );
 		$config->set( 'controller/jobs/supplier/import/xml/location', __DIR__ . '/_testfiles' );
 		$config->set( 'controller/jobs/catalog/import/xml/location', __DIR__ . '/_testfiles' );
