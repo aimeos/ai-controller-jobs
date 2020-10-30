@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<customergroups>
+	<customergroupitem ref="test">
+		<customer.group.code><![CDATA[test]]></customer.group.code>
+		<customer.group.label><![CDATA[Test group]]></customer.group.label>
+	</customergroupitem>
+</customergroups>
