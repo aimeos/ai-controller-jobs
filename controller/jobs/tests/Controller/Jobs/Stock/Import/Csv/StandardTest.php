@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', ['unittest-csv', 'unittest-csv2'] ) );
 		$items = $manager->search( $search );
 		$manager->deleteItems( $items->toArray() );

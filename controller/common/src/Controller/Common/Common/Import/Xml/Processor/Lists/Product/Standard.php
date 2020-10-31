@@ -111,7 +111,7 @@ class Standard
 			}
 		}
 
-		$search = $manager->createSearch()->setSlice( 0, count( $codes ) );
+		$search = $manager->filter()->setSlice( 0, count( $codes ) );
 		$search->setConditions( $search->compare( '==', 'product.code', array_keys( $codes ) ) );
 
 		foreach( $manager->search( $search, [] ) as $item ) {

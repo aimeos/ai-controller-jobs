@@ -126,7 +126,7 @@ class Standard
 		{
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 
-			$search = $manager->createSearch()->setSlice( 0, count( $codes ) );
+			$search = $manager->filter()->setSlice( 0, count( $codes ) );
 			$search->setConditions( $search->compare( '==', 'catalog.code', $codes ) );
 
 			foreach( $manager->search( $search ) as $item ) {
@@ -148,7 +148,7 @@ class Standard
 	protected function getListItems( $domain, $id ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
-		$search = $manager->createSearch()->setSlice( 0, 10000 );
+		$search = $manager->filter()->setSlice( 0, 10000 );
 
 		$expr = [
 			$search->compare( '==', 'catalog.lists.domain', $domain ),
@@ -174,7 +174,7 @@ class Standard
 
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists/type' );
 
-			$search = $manager->createSearch()->setSlice( 0, 10000 );
+			$search = $manager->filter()->setSlice( 0, 10000 );
 			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', $domain ) );
 
 			foreach( $manager->search( $search ) as $item ) {

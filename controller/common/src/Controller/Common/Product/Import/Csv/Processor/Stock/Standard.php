@@ -96,7 +96,7 @@ class Standard
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );
 
 		return $manager->search( $search );

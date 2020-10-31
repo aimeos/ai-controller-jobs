@@ -77,7 +77,7 @@ class Standard
 		$hours = $context->getConfig()->get( 'controller/jobs/order/cleanup/unfinished/keep-hours', 24 );
 		$limit = date( 'Y-m-d H:i:s', time() - 3600 * $hours );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '<', 'order.mtime', $limit ),
 			$search->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_UNFINISHED ),

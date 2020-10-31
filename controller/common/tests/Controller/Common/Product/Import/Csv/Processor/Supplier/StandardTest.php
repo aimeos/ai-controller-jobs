@@ -320,7 +320,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
 
 		if( ( $item = $manager->search( $search, ['product'] )->first() ) === null )

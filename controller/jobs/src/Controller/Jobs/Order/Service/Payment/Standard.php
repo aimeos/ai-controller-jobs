@@ -88,11 +88,11 @@ class Standard
 
 
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
-		$serviceSearch = $serviceManager->createSearch();
+		$serviceSearch = $serviceManager->filter();
 		$serviceSearch->setConditions( $serviceSearch->compare( '==', 'service.type', 'payment' ) );
 
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
-		$orderSearch = $orderManager->createSearch();
+		$orderSearch = $orderManager->filter();
 
 		$status = array( \Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED, \Aimeos\MShop\Order\Item\Base::STAT_DELIVERED );
 		$start = 0;

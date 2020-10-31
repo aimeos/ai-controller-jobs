@@ -200,7 +200,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function delete( \Aimeos\MShop\Product\Item\Iface $product )
 	{
 		$manager = \Aimeos\MShop\Stock\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $product->getCode() ) );
 		$manager->deleteItems( $manager->search( $search )->toArray() );
 
@@ -213,7 +213,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );
 
 		return $manager->search( $search );

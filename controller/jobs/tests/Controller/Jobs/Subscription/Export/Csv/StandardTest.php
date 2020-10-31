@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$jobManager = \Aimeos\MAdmin::create( $this->context, 'job' );
-		$jobSearch = $jobManager->createSearch();
+		$jobSearch = $jobManager->filter();
 		$jobSearch->setConditions( $jobSearch->compare( '=~', 'job.label', 'subscription-export_' ) );
 		$jobItems = $jobManager->search( $jobSearch );
 		$jobManager->deleteItems( $jobItems->toArray() );
@@ -176,7 +176,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$jobManager = \Aimeos\MAdmin::create( $this->context, 'job' );
-		$jobSearch = $jobManager->createSearch();
+		$jobSearch = $jobManager->filter();
 		$jobSearch->setConditions( $jobSearch->compare( '=~', 'job.label', 'subscription-export_' ) );
 		$jobItems = $jobManager->search( $jobSearch );
 		$jobManager->deleteItems( $jobItems->toArray() );

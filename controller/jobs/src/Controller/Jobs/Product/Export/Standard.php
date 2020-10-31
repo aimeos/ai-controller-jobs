@@ -290,7 +290,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
 
-		$search = $manager->createSearch( $default );
+		$search = $manager->filter( $default );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
 		$search->setSlice( 0, $maxQuery );
 

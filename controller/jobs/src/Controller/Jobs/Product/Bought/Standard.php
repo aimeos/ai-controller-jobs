@@ -155,14 +155,14 @@ class Standard
 
 
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
-		$search = $baseManager->createSearch();
+		$search = $baseManager->filter();
 		$search->setConditions( $search->compare( '>', 'order.base.ctime', $date ) );
 		$search->setSlice( 0, 0 );
 		$totalOrders = 0;
 		$baseManager->search( $search, [], $totalOrders );
 
 		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
-		$search = $baseProductManager->createSearch();
+		$search = $baseProductManager->filter();
 		$search->setConditions( $search->compare( '>', 'order.base.product.ctime', $date ) );
 		$start = 0;
 
@@ -213,7 +213,7 @@ class Standard
 		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
 
 
-		$search = $baseProductManager->createSearch();
+		$search = $baseProductManager->filter();
 		$func = $search->createFunction( 'order.base.product.count', array( (string) $id ) );
 		$expr = array(
 			$search->compare( '==', 'order.base.product.productid', $prodIds ),
@@ -225,7 +225,7 @@ class Standard
 		$relativeCounts = $baseProductManager->aggregate( $search, 'order.base.product.productid' );
 
 
-		$search = $catalogListManager->createSearch();
+		$search = $catalogListManager->filter();
 		$expr = array(
 			$search->compare( '==', 'catalog.lists.refid', $relativeCounts->keys()->toArray() ),
 			$search->compare( '==', 'catalog.lists.domain', 'product' ),
@@ -299,7 +299,7 @@ class Standard
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '==', 'product.lists.parentid', $productId ),
 			$search->compare( '==', 'product.lists.domain', 'product' ),

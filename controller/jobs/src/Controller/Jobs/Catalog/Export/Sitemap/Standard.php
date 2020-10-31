@@ -458,7 +458,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
 
-		$search = $manager->createSearch( $default );
+		$search = $manager->filter( $default );
 		$search->setSortations( array( $search->sort( '+', 'catalog.id' ) ) );
 		$search->setSlice( 0, $maxQuery );
 

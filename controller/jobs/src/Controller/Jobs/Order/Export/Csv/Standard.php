@@ -256,7 +256,7 @@ class Standard
 		$container = $this->getContainer();
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
 
-		$search = $this->initCriteria( $manager->createSearch( false, true ), $msg );
+		$search = $this->initCriteria( $manager->filter( false, true ), $msg );
 		$search->setSortations( [$search->sort( '+', 'order.id' )] );
 
 		$start = 0;

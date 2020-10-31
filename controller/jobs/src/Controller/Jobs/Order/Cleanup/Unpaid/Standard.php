@@ -74,7 +74,7 @@ class Standard
 		$days = $context->getConfig()->get( 'controller/jobs/order/cleanup/unpaid/keep-days', 3 );
 		$limit = date( 'Y-m-d H:i:s', time() - 86400 * $days );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '<', 'order.mtime', $limit ),
 			$search->compare( '<', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_REFUND ),

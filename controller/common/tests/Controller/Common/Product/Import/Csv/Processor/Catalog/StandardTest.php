@@ -302,7 +302,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
 
 		if( ( $item = $manager->search( $search, ['product'] )->first() ) === null ) {

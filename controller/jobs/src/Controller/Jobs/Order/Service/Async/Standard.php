@@ -54,7 +54,7 @@ class Standard
 		$context = $this->getContext();
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 
-		$search = $serviceManager->createSearch();
+		$search = $serviceManager->filter();
 		$start = 0;
 
 		do

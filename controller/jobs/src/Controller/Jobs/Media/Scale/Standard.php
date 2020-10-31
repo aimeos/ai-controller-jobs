@@ -54,7 +54,7 @@ class Standard
 		$process = $context->getProcess();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '==', 'media.domain', ['attribute', 'catalog', 'product', 'service', 'supplier'] ),
 			$search->compare( '=~', 'media.mimetype', 'image/' ),

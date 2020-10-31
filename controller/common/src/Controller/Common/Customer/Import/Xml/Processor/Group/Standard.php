@@ -46,7 +46,7 @@ class Standard
 		parent::__construct( $context );
 
 		$this->groupManager = \Aimeos\MShop::create( $context, 'customer/group' );
-		$search = $this->groupManager->createSearch();
+		$search = $this->groupManager->filter();
 		$start = 0;
 
 		do

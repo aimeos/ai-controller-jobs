@@ -58,7 +58,7 @@ trait Traits
 
 				try
 				{
-					$search = $manager->createSearch()->setSlice( 0, 10000 );
+					$search = $manager->filter()->setSlice( 0, 10000 );
 					$expr = [
 						$search->compare( '==', $prefix . '.domain', $domain ),
 						$search->compare( '==', $prefix . '.code', $codes )

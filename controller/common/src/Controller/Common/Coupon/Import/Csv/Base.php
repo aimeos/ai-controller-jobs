@@ -31,7 +31,7 @@ class Base
 		$result = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'coupon.code.code', $codes ) );
 		$search->setSlice( 0, count( $codes ) );
 

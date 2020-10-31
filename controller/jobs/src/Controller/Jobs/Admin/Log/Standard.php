@@ -187,7 +187,7 @@ class Standard
 
 		$manager = \Aimeos\MAdmin::create( $context, 'log' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '<=', 'log.timestamp', $limitDate ) );
 		$search->setSortations( array( $search->sort( '+', 'log.timestamp' ) ) );
 

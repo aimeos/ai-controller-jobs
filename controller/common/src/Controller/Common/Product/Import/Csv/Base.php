@@ -295,7 +295,7 @@ class Base
 		$result = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $codes ) );
 		$search->setSlice( 0, count( $codes ) );
 

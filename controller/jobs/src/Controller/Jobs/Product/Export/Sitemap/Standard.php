@@ -394,7 +394,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'index' );
 
-		$search = $manager->createSearch( $default );
+		$search = $manager->filter( $default );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '!=', 'index.catalog.id', null ),
 			$search->getConditions()

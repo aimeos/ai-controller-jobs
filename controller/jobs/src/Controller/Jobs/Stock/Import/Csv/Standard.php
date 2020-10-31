@@ -298,7 +298,7 @@ class Standard
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
 
-		$search = $manager->createSearch()->setSlice( 0, 10000 );
+		$search = $manager->filter()->setSlice( 0, 10000 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'stock.productcode', $codes ),
 			$search->compare( '==', 'stock.type', $types )

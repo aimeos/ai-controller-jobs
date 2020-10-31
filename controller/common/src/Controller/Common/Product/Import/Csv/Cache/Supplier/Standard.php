@@ -45,7 +45,7 @@ class Standard
 		parent::__construct( $context );
 
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
-		$result = $manager->search( $manager->createSearch() );
+		$result = $manager->search( $manager->filter() );
 
 		foreach( $result as $id => $item )
 		{
@@ -70,7 +70,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
 
 

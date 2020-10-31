@@ -210,7 +210,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$supplierManager->deleteItem( $supplier->getId() );
 
-			$search = $catListManager->createSearch();
+			$search = $catListManager->filter();
 			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );
 			$result = $catListManager->search( $search );
 
@@ -220,7 +220,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $attrManager->createSearch();
+		$search = $attrManager->filter();
 		$search->setConditions( $search->compare( '==', 'attribute.code', 'import-test' ) );
 
 		$result = $attrManager->search( $search );
@@ -233,7 +233,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$supplierManager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
 
-		$search = $supplierManager->createSearch();
+		$search = $supplierManager->filter();
 		$search->setConditions( $search->compare( '==', 'supplier.code', $prodcodes ) );
 
 		return $supplierManager->search( $search, $domains );
@@ -243,7 +243,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context )->getSubManager( 'address' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'supplier.address.parentid', $prodids ) );
 
 		return $manager->search( $search );

@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '==', 'attribute.domain', 'product' ),
 			$search->compare( '==', 'attribute.label', 'import-%' ),
@@ -178,7 +178,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Media\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '==', 'media.domain', 'product' ),
 			$search->compare( '==', 'media.label', 'import-%' ),
@@ -205,7 +205,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Price\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 				$search->compare( '==', 'price.domain', 'product' ),
 				$search->compare( '==', 'price.label', 'import-%' ),
@@ -232,7 +232,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', 'import-%' ) );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
 
@@ -255,7 +255,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Text\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '==', 'text.domain', 'product' ),
 			$search->compare( '==', 'text.label', 'import-%' ),

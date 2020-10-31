@@ -80,7 +80,7 @@ class Standard
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
-		$search = $manager->createSearch( true );
+		$search = $manager->filter( true );
 		$expr = [
 			$search->compare( '<=', 'subscription.datenext', $date ),
 			$search->combine( '||', [
@@ -296,7 +296,7 @@ class Standard
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 		$orderServiceManager = \Aimeos\MShop::create( $context, 'order/base/service' );
 
-		$search = $serviceManager->createSearch( true );
+		$search = $serviceManager->filter( true );
 		$search->setSortations( [$search->sort( '+', 'service.position' )] );
 		$search->setConditions( $search->compare( '==', 'service.type', $type ) );
 

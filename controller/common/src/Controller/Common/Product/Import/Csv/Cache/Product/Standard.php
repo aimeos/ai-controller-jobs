@@ -50,7 +50,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
 		if( ( $item = $manager->search( $search )->first() ) !== null )

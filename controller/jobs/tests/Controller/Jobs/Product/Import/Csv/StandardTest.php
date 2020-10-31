@@ -202,7 +202,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$productManager->deleteItem( $product->getId() );
 
-			$search = $catListManager->createSearch();
+			$search = $catListManager->filter();
 			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );
 			$result = $catListManager->search( $search );
 
@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $attrManager->createSearch();
+		$search = $attrManager->filter();
 		$search->setConditions( $search->compare( '==', 'attribute.code', 'import-test' ) );
 
 		$result = $attrManager->search( $search );
@@ -225,7 +225,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 
-		$search = $productManager->createSearch();
+		$search = $productManager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $prodcodes ) );
 
 		return $productManager->search( $search, $domains );
@@ -236,7 +236,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context )->getSubManager( 'property' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.property.parentid', $prodids ) );
 		$search->setSortations( array( $search->sort( '+', 'product.property.type' ) ) );
 

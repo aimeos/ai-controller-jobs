@@ -112,7 +112,7 @@ class Standard
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
-		$search = $manager->createSearch( true );
+		$search = $manager->filter( true );
 		$expr = [
 			$search->compare( '==', 'subscription.datenext', null ),
 			$search->getConditions(),
@@ -131,7 +131,7 @@ class Standard
 			$items = $manager->search( $search );
 			$ordBaseIds = $items->getOrderBaseId()->toArray();
 
-			$orderSearch = $orderManager->createSearch()->setSlice( 0, $search->getSliceSize() );
+			$orderSearch = $orderManager->filter()->setSlice( 0, $search->getSliceSize() );
 			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
 			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
 

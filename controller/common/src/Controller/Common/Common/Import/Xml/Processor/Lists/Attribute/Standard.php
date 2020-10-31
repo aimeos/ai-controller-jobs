@@ -117,7 +117,7 @@ class Standard
 			}
 		}
 
-		$search = $manager->createSearch()->setSlice( 0, count( $keys ) );
+		$search = $manager->filter()->setSlice( 0, count( $keys ) );
 		$search->setConditions( $search->compare( '==', 'attribute.key', array_keys( $keys ) ) );
 
 		foreach( $manager->search( $search, [] ) as $item ) {
