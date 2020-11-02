@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$manager = \Aimeos\MShop::create( $this->context, 'customer/group' );
-		$item = $manager->findItem( 'test' );
+		$item = $manager->find( 'test' );
 		$manager->deleteItem( $item );
 
 		$this->assertEquals( 'Test group', $item->getLabel() );

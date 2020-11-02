@@ -33,8 +33,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 
-		$refId1 = $manager->findItem( 'CNC' )->getId();
-		$refId2 = $manager->findItem( 'CNE' )->getId();
+		$refId1 = $manager->find( 'CNC' )->getId();
+		$refId2 = $manager->find( 'CNE' )->getId();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <product>
@@ -57,8 +57,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
 
 		$product = $manager->createItem();
-		$refId1 = $manager->findItem( 'CNC' )->getId();
-		$refId2 = $manager->findItem( 'CNE' )->getId();
+		$refId1 = $manager->find( 'CNC' )->getId();
+		$refId2 = $manager->find( 'CNE' )->getId();
 
 		$product->addListItem( 'product',
 			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
@@ -88,8 +88,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
 
 		$product = $manager->createItem();
-		$refId1 = $manager->findItem( 'CNC' )->getId();
-		$refId2 = $manager->findItem( 'CNE' )->getId();
+		$refId1 = $manager->find( 'CNC' )->getId();
+		$refId2 = $manager->find( 'CNE' )->getId();
 
 		$product->addListItem( 'product',
 			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )

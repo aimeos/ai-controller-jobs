@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'IJKL' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'IJKL' );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <catalog>
@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process( $product, $dom->firstChild );
 
-		$catItem = \Aimeos\MShop::create( $this->context, 'catalog' )->findItem( 'root', ['product'] );
+		$catItem = \Aimeos\MShop::create( $this->context, 'catalog' )->find( 'root', ['product'] );
 		$listItem = $catItem->getListItem( 'product', 'default', $product->getId() );
 
 		$this->assertNotNull( $listItem );
@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessUpdate()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'IJKL' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'IJKL' );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <catalog>
@@ -72,12 +72,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$listIds = [];
 		$manager = \Aimeos\MShop::create( $this->context, 'catalog' );
 
-		$catItem = $manager->findItem( 'root', ['product'] );
+		$catItem = $manager->find( 'root', ['product'] );
 		$listItem = $catItem->getListItem( 'product', 'default', $product->getId() );
 		$this->assertNotNull( $listItem );
 		$listIds[] = $listItem->getId();
 
-		$catItem = $manager->findItem( 'categories', ['product'] );
+		$catItem = $manager->find( 'categories', ['product'] );
 		$listItem = $catItem->getListItem( 'product', 'default', $product->getId() );
 		$this->assertNotNull( $listItem );
 		$listIds[] = $listItem->getId();
@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessDelete()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'IJKL' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'IJKL' );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <catalog>
@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process( $product, $dom->firstChild );
 
-		$catItem = \Aimeos\MShop::create( $this->context, 'catalog' )->findItem( 'root', ['product'] );
+		$catItem = \Aimeos\MShop::create( $this->context, 'catalog' )->find( 'root', ['product'] );
 		$listItem = $catItem->getListItem( 'product', 'default', $product->getId() );
 
 		$this->assertNull( $listItem );

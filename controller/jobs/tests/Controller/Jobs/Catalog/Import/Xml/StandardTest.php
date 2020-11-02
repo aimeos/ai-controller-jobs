@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$manager = \Aimeos\MShop::create( $this->context, 'catalog' );
-		$tree = $manager->getTree( $manager->findItem( 'unittest-xml' )->getId(), ['media', 'product', 'text'] );
+		$tree = $manager->getTree( $manager->find( 'unittest-xml' )->getId(), ['media', 'product', 'text'] );
 		$manager->deleteItem( $tree->getId() );
 
 		$this->assertEquals( 'Test catalog', $tree->getLabel() );

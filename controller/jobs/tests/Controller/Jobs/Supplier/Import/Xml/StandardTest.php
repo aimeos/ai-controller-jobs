@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$manager = \Aimeos\MShop::create( $this->context, 'supplier' );
-		$item = $manager->findItem( 'unittest-xml', ['media', 'text', 'product', 'supplier/address'] );
+		$item = $manager->find( 'unittest-xml', ['media', 'text', 'product', 'supplier/address'] );
 		$manager->deleteItem( $item->getId() );
 
 		$this->assertEquals( 'Test supplier', $item->getLabel() );

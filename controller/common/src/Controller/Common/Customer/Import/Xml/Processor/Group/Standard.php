@@ -85,7 +85,7 @@ class Standard
 				$code = $refattr->nodeValue;
 
 				if( !isset( $this->map[$code] ) ) {
-					$this->map[$code] = $this->groupManager->findItem( $code )->getId();
+					$this->map[$code] = $this->groupManager->find( $code )->getId();
 				}
 
 				$ids[] = $this->map[$code];

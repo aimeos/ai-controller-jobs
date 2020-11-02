@@ -33,8 +33,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
 
-		$refId1 = $manager->findItem( 'black', [], 'product', 'color' )->getId();
-		$refId2 = $manager->findItem( 'white', [], 'product', 'color' )->getId();
+		$refId1 = $manager->find( 'black', [], 'product', 'color' )->getId();
+		$refId2 = $manager->find( 'white', [], 'product', 'color' )->getId();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <attribute>
@@ -57,8 +57,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$listManager = \Aimeos\MShop::create( $this->context, 'attribute/lists' );
 
 		$attribute = $manager->createItem();
-		$refId1 = $manager->findItem( 'black', [], 'product', 'color' )->getId();
-		$refId2 = $manager->findItem( 'white', [], 'product', 'color' )->getId();
+		$refId1 = $manager->find( 'black', [], 'product', 'color' )->getId();
+		$refId2 = $manager->find( 'white', [], 'product', 'color' )->getId();
 
 		$attribute->addListItem( 'attribute',
 			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
@@ -88,8 +88,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$listManager = \Aimeos\MShop::create( $this->context, 'attribute/lists' );
 
 		$attribute = $manager->createItem();
-		$refId1 = $manager->findItem( 'black', [], 'product', 'color' )->getId();
-		$refId2 = $manager->findItem( 'white', [], 'product', 'color' )->getId();
+		$refId1 = $manager->find( 'black', [], 'product', 'color' )->getId();
+		$refId2 = $manager->find( 'white', [], 'product', 'color' )->getId();
 
 		$attribute->addListItem( 'attribute',
 			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )

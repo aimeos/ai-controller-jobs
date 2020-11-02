@@ -113,7 +113,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketAddresses()
 	{
-		$custId = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com')->getId();
+		$custId = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com')->getId();
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem()->setCustomerId( $custId );
 		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->getConfig()->set( 'controller/jobs/subscription/process/renew/standard/use-coupons', true );
 
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC', ['price'] );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC', ['price'] );
 		$orderProduct = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
 
 		$price = $product->getRefItems( 'price', 'default', 'default' )->first();
@@ -154,7 +154,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testAddBasketProducts()
 	{
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' );
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
 
 		$orderProducts = map( [

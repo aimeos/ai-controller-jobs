@@ -74,8 +74,8 @@ jobccimport2,5,,';
 
 
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
-		$code1 = $codeManager->findItem( 'jobccimport1' );
-		$code2 = $codeManager->findItem( 'jobccimport2' );
+		$code1 = $codeManager->find( 'jobccimport1' );
+		$code2 = $codeManager->find( 'jobccimport2' );
 
 		$manager->deleteItem( $coupon->getId() );
 
@@ -110,6 +110,6 @@ jobccimport1,a,b,c';
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
 
 		$this->expectException( \Aimeos\MShop\Exception::class );
-		$manager->findItem( 'jobccimport1' );
+		$manager->find( 'jobccimport1' );
 	}
 }

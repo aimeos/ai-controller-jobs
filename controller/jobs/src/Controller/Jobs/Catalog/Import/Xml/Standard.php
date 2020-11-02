@@ -225,7 +225,7 @@ class Standard
 		{
 			try
 			{
-				$item = $manager->findItem( $attr->nodeValue, $domains );
+				$item = $manager->find( $attr->nodeValue, $domains );
 				$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
 
 				$item = $this->process( $item, $node );

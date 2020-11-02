@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$domains = ['attribute', 'media', 'media/property', 'price', 'product', 'product/property', 'text'];
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );
-		$item = $manager->findItem( 'unittest-xml', $domains );
+		$item = $manager->find( 'unittest-xml', $domains );
 		$manager->deleteItem( $item->getId() );
 
 		$this->assertEquals( 'default', $item->getType() );

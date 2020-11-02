@@ -220,7 +220,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function get( $catcode, array $domains = [] )
 	{
 		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-		$root = $manager->findItem( $catcode );
+		$root = $manager->find( $catcode );
 
 		return $manager->getTree( $root->getId(), $domains, \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
 	}
