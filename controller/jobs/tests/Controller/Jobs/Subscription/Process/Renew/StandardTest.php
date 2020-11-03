@@ -113,7 +113,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketAddresses()
 	{
-		$custId = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com')->getId();
+		$custId = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId();
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem()->setCustomerId( $custId );
 		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 
