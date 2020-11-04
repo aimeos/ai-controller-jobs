@@ -56,24 +56,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
+		$prodManager = \Aimeos\MShop::create( $this->context, 'product' );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'stock.productcode', ['unittest-csv', 'unittest-csv2'] ) );
-		$items = $manager->search( $search );
+		$filter = $prodManager->filter()->add( ['product.code' => ['U:WH', 'U:CF']] );
+		$prodIds = $prodManager->search( $filter )->col( 'product.id', 'product.code' )->toArray();
+
+		$items = $manager->search( $manager->filter()->add( ['stock.productid' => $prodIds] ) );
 		$manager->deleteItems( $items->toArray() );
 
 		foreach( $items as $item ) {
-			$map[$item->getProductCode()] = $item;
+			$map[$item->getProductId()] = $item;
 		}
 
 		$this->assertEquals( 2, count( $map ) );
 
-		$this->assertEquals( 'test', $map['unittest-csv']->getType() );
-		$this->assertEquals( 20, $map['unittest-csv']->getStockLevel() );
-		$this->assertEquals( '2000-01-01 00:00:00', $map['unittest-csv']->getDateBack() );
+		$this->assertEquals( 'test', $map[$prodIds['U:WH']]->getType() );
+		$this->assertEquals( 20, $map[$prodIds['U:WH']]->getStockLevel() );
+		$this->assertEquals( '2000-01-01 00:00:00', $map[$prodIds['U:WH']]->getDateBack() );
 
-		$this->assertEquals( 'default', $map['unittest-csv2']->getType() );
-		$this->assertEquals( 5, $map['unittest-csv2']->getStockLevel() );
-		$this->assertEquals( null, $map['unittest-csv2']->getDateBack() );
+		$this->assertEquals( 'default', $map[$prodIds['U:CF']]->getType() );
+		$this->assertEquals( 5, $map[$prodIds['U:CF']]->getStockLevel() );
+		$this->assertEquals( null, $map[$prodIds['U:CF']]->getDateBack() );
 	}
 }

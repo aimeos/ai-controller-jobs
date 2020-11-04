@@ -48,7 +48,7 @@ class Standard
 		try
 		{
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$items = $this->getStockItems( $product->getCode() );
+			$items = $manager->search( $manager->filter()->add( ['stock.productid' => $product->getId()] ) );
 
 			foreach( $map as $pos => $list )
 			{
@@ -56,7 +56,7 @@ class Standard
 					continue;
 				}
 
-				$list['stock.productcode'] = $product->getCode();
+				$list['stock.productid'] = $product->getId();
 				$list['stock.dateback'] = $this->getValue( $list, 'stock.dateback' );
 				$list['stock.stocklevel'] = $this->getValue( $list, 'stock.stocklevel' );
 				$list['stock.type'] = $this->getValue( $list, 'stock.type', 'default' );
@@ -83,22 +83,5 @@ class Standard
 		}
 
 		return $data;
-	}
-
-
-	/**
-	 * Returns the stock items for the given product code
-	 *
-	 * @param string $code Unique product code
-	 * @return \Aimeos\Map List of stock items implementing \Aimeos\MShop\Stock\Item\Iface
-	 */
-	protected function getStockItems( $code ) : \Aimeos\Map
-	{
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );
-
-		return $manager->search( $search );
 	}
 }

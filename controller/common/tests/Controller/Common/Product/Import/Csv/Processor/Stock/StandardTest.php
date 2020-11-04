@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$items = $this->getStockItems( $product->getCode() );
+		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
 
 
@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$items = $this->getStockItems( $product->getCode() );
+		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
 
 
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->process( $product, $data );
 		$object->process( $product, $dataUpdate );
 
-		$items = $this->getStockItems( $product->getCode() );
+		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
 
 
@@ -142,7 +142,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, [], $this->endpoint );
 		$object->process( $product, [] );
 
-		$items = $this->getStockItems( $product->getCode() );
+		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
 
 
@@ -169,7 +169,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Stock\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $product, $data );
 
-		$items = $this->getStockItems( $product->getCode() );
+		$items = $this->getStockItems( $product->getId() );
 		$this->delete( $product );
 
 		$this->assertEquals( 1, count( $items ) );
@@ -199,23 +199,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function delete( \Aimeos\MShop\Product\Item\Iface $product )
 	{
-		$manager = \Aimeos\MShop\Stock\Manager\Factory::create( $this->context );
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'stock.productcode', $product->getCode() ) );
-		$manager->deleteItems( $manager->search( $search )->toArray() );
+		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
+		$filter = $manager->filter()->add( ['stock.productid' => $product->getId()] );
+		$manager->deleteItems( $manager->search( $filter )->toArray() );
 
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$manager->deleteItem( $product->getId() );
 	}
 
 
-	protected function getStockItems( $code ) : \Aimeos\Map
+	protected function getStockItems( $prodid ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'stock.productcode', $code ) );
-
-		return $manager->search( $search );
+		return $manager->search( $manager->filter()->add( ['stock.productid' => $prodid] ) );
 	}
 }

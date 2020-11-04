@@ -287,25 +287,25 @@ class Standard
 
 
 	/**
-	 * Returns the stock items for the given codes and types
+	 * Returns the stock items for the given product IDs and stock types
 	 *
-	 * @param array $codes List of stock codes
+	 * @param array $ids List of product IDs
 	 * @param array $types List of stock types
 	 * @return array Multi-dimensional array of code/type/item map
 	 */
-	protected function getStockItems( array $codes, array $types ) : array
+	protected function getStockItems( array $ids, array $types ) : array
 	{
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
 
 		$search = $manager->filter()->setSlice( 0, 10000 );
 		$search->setConditions( $search->combine( '&&', [
-			$search->compare( '==', 'stock.productcode', $codes ),
+			$search->compare( '==', 'stock.productid', $ids ),
 			$search->compare( '==', 'stock.type', $types )
 		] ) );
 
 		foreach( $manager->search( $search ) as $item ) {
-			$map[$item->getProductCode()][$item->getType()] = $item;
+			$map[$item->getProductId()][$item->getType()] = $item;
 		}
 
 		return $map;
@@ -322,7 +322,9 @@ class Standard
 	protected function importStocks( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt ) : int
 	{
 		$total = 0;
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop::create( $context, 'stock' );
+		$prodManager = \Aimeos\MShop::create( $context, 'product' );
 
 		do
 		{
@@ -350,22 +352,27 @@ class Standard
 			if( $count === 0 ) {
 				break;
 			}
+print_r( $codes );
 
+			$filter = $prodManager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
+			$prodMap = $prodManager->search( $filter )->col( 'product.id', 'product.code' )->toArray();
+			$map = $this->getStockItems( $prodMap, array_keys( $types ) );
 			$items = [];
-			$map = $this->getStockItems( $codes, array_keys( $types ) );
+print_r( $prodMap );
 
 			foreach( $data as $entry )
 			{
 				$code = $entry[0];
 				$type = $entry[2];
 
-				if( isset( $map[$code][$type] ) ) {
-					$item = $map[$code][$type];
+				if( ( $prodid = $prodMap[$code] ?? null ) && isset( $map[$prodid][$type] ) ) {
+					$item = $map[$prodid][$type];
 				} else {
 					$item = $manager->createItem();
 				}
+echo 'code: ' . $code .PHP_EOL;
 
-				$items[] = $item->setProductCode( $code )->setType( $type )
+				$items[] = $item->setProductId( $prodMap[$code] ?? null )->setType( $type )
 					->setStocklevel( $this->getValue( $entry, 1 ) )
 					->setDateBack( $this->getValue( $entry, 3 ) );
 
