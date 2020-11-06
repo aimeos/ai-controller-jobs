@@ -352,13 +352,11 @@ class Standard
 			if( $count === 0 ) {
 				break;
 			}
-print_r( $codes );
 
 			$filter = $prodManager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
 			$prodMap = $prodManager->search( $filter )->col( 'product.id', 'product.code' )->toArray();
 			$map = $this->getStockItems( $prodMap, array_keys( $types ) );
 			$items = [];
-print_r( $prodMap );
 
 			foreach( $data as $entry )
 			{
@@ -370,7 +368,6 @@ print_r( $prodMap );
 				} else {
 					$item = $manager->createItem();
 				}
-echo 'code: ' . $code .PHP_EOL;
 
 				$items[] = $item->setProductId( $prodMap[$code] ?? null )->setType( $type )
 					->setStocklevel( $this->getValue( $entry, 1 ) )
