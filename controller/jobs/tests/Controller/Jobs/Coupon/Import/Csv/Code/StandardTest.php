@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
-		$coupon = $manager->saveItem( $manager->createItem()->setProvider( 'Example' ) );
+		$coupon = $manager->saveItem( $manager->create()->setProvider( 'Example' ) );
 
 		$dir = 'tmp/import/couponcode/unittest';
 		$filepath = $dir . '/' . $coupon->getId() . '.csv';

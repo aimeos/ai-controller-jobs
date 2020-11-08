@@ -89,7 +89,7 @@ class Standard
 			}
 			else
 			{
-				$listItem = $listManager->createItem();
+				$listItem = $listManager->create();
 			}
 
 			$listItem = $listItem->fromArray( $list )->setDomain( $item->getResourceType() )

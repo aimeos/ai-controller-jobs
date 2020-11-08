@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <text>
@@ -71,15 +71,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'text' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$product->addListItem( 'text',
-			$listManager->createItem()->setType( 'default' )->setId( 1 ),
-			$manager->createItem()->setType( 'name' )->setLanguageId( 'de' )->setContent( 'Test' )
+			$listManager->create()->setType( 'default' )->setId( 1 ),
+			$manager->create()->setType( 'name' )->setLanguageId( 'de' )->setContent( 'Test' )
 		);
 		$product->addListItem( 'text',
-			$listManager->createItem()->setType( 'test' )->setId( 2 ),
-			$manager->createItem()->setType( 'short' )->setLanguageId( 'de' )->setContent( 'Kurztest' )
+			$listManager->create()->setType( 'test' )->setId( 2 ),
+			$manager->create()->setType( 'short' )->setLanguageId( 'de' )->setContent( 'Kurztest' )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
@@ -120,15 +120,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'text' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$product->addListItem( 'text',
-			$listManager->createItem()->setType( 'default' )->setId( 1 ),
-			$manager->createItem()->setType( 'name' )->setLanguageId( 'de' )->setContent( 'Test' )
+			$listManager->create()->setType( 'default' )->setId( 1 ),
+			$manager->create()->setType( 'name' )->setLanguageId( 'de' )->setContent( 'Test' )
 		);
 		$product->addListItem( 'text',
-			$listManager->createItem()->setType( 'test' )->setId( 2 ),
-			$manager->createItem()->setType( 'short' )->setLanguageId( 'de' )->setContent( 'Kurztest' )
+			$listManager->create()->setType( 'test' )->setId( 2 ),
+			$manager->create()->setType( 'short' )->setLanguageId( 'de' )->setContent( 'Kurztest' )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>

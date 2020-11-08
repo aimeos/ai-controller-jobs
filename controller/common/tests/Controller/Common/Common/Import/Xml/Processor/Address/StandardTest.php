@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->createItem();
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <address>
@@ -70,11 +70,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'customer/address' );
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->createItem();
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create();
 
-		$customer->addAddressItem( $manager->createItem()->setSalutation( 'mr' )
+		$customer->addAddressItem( $manager->create()->setSalutation( 'mr' )
 			->setFirstname( 'Test' )->setLastname( 'User' )->setId( 1 ), 1 );
-		$customer->addAddressItem( $manager->createItem()->setSalutation( 'mrs' )
+		$customer->addAddressItem( $manager->create()->setSalutation( 'mrs' )
 			->setFirstname( 'Mytest' )->setLastname( 'Lastuser' )->setId( 2 ), 2 );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
@@ -114,11 +114,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'customer/address' );
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->createItem();
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create();
 
-		$customer->addAddressItem( $manager->createItem()->setSalutation( 'mr' )
+		$customer->addAddressItem( $manager->create()->setSalutation( 'mr' )
 			->setFirstname( 'Test' )->setLastname( 'User' )->setId( 1 ), 1 );
-		$customer->addAddressItem( $manager->createItem()->setSalutation( 'mrs' )
+		$customer->addAddressItem( $manager->create()->setSalutation( 'mrs' )
 			->setFirstname( 'Mytest' )->setLastname( 'Lastuser' )->setId( 2 ), 2 );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>

@@ -70,7 +70,7 @@ class Standard
 			$type = ( $attr = $attributes->getNamedItem( 'lists.type' ) ) !== null ? $attr->nodeValue : 'default';
 
 			if( ( $listItem = $item->getListItem( 'product', $type, $refId ) ) === null ) {
-				$listItem = $listManager->createItem();
+				$listItem = $listManager->create();
 			} else {
 				unset( $listItems[$listItem->getId()] );
 			}

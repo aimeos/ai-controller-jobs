@@ -285,7 +285,7 @@ class Standard
 			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[$attr->nodeValue] ) ) {
 				$item = $this->process( $map[$attr->nodeValue], $node );
 			} else {
-				$item = $this->process( $manager->createItem(), $node );
+				$item = $this->process( $manager->create(), $node );
 			}
 		}
 	}

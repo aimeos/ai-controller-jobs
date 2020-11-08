@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
 
-		$item = $manager->createItem();
+		$item = $manager->create();
 		$item->setCode( 'job_csv_prod' );
 		$item->setType( 'default' );
 		$item->setStatus( 1 );
@@ -276,7 +276,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 
-		$item = $manager->createItem();
+		$item = $manager->create();
 		$item->setCode( $code );
 
 		$manager->insertItem( $item );

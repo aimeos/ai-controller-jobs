@@ -557,7 +557,7 @@ class Standard
 				if( isset( $products[$code] ) ) {
 					$product = $products[$code];
 				} else {
-					$product = $manager->createItem();
+					$product = $manager->create();
 				}
 
 				$map = $this->getMappedChunk( $list, $mapping );

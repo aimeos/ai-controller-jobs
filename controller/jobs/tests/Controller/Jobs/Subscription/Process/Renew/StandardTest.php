@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$managerStub->createItem()->setOrderBaseId( -1 )] ) ) );
+			->will( $this->returnValue( map( [$managerStub->create()->setOrderBaseId( -1 )] ) ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
@@ -114,8 +114,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testAddBasketAddresses()
 	{
 		$custId = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId();
-		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem()->setCustomerId( $custId );
-		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->create()->setCustomerId( $custId );
+		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
 
 		$addresses = map( ['delivery' => [$address]] );
 		$basket = $this->access( 'addBasketAddresses' )->invokeArgs( $this->object, [$this->context, $basket, $addresses] );
@@ -130,9 +130,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'controller/jobs/subscription/process/renew/standard/use-coupons', true );
 
-		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC', ['price'] );
-		$orderProduct = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
+		$orderProduct = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
 
 		$price = $product->getRefItems( 'price', 'default', 'default' )->first();
 		$basket->addProduct( $orderProduct->copyFrom( $product )->setPrice( $price )->setStockType( 'default' ) );
@@ -153,13 +153,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketProducts()
 	{
-		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' );
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
 
 		$orderProducts = map( [
-			$manager->createItem()->copyFrom( $product )->setId( 1 )->setStockType( 'default' ),
-			$manager->createItem()->copyFrom( $product )->setId( 2 )->setStockType( 'default' ),
+			$manager->create()->copyFrom( $product )->setId( 1 )->setStockType( 'default' ),
+			$manager->create()->copyFrom( $product )->setId( 2 )->setStockType( 'default' ),
 		] );
 
 		$basket = $this->access( 'addBasketProducts' )->invokeArgs( $this->object, [$this->context, $basket, $orderProducts, 1] );
@@ -171,12 +171,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketServices()
 	{
-		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base/service' );
 
 		$orderServices = map( [
-			'delivery' => [$manager->createItem()->setCode( 'shiptest' )],
-			'payment' => [$manager->createItem()->setCode( 'paytest' )],
+			'delivery' => [$manager->create()->setCode( 'shiptest' )],
+			'payment' => [$manager->create()->setCode( 'paytest' )],
 		] );
 
 		$basket = $this->access( 'addBasketServices' )->invokeArgs( $this->object, [$this->context, $basket, $orderServices] );
@@ -251,7 +251,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getOrderItem()
 	{
-		return \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		return \Aimeos\MShop::create( $this->context, 'order' )->create();
 	}
 
 

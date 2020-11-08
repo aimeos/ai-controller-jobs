@@ -142,8 +142,8 @@ class Standard
 				unset( $listItems[$listItem->getId()] );
 			} else
 			{
-				$listItem = $listManager->createItem()->setType( $listtype );
-				$refItem = $manager->createItem()->setType( $type );
+				$listItem = $listManager->create()->setType( $listtype );
+				$refItem = $manager->create()->setType( $type );
 			}
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list );

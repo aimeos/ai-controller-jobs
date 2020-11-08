@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <price>
@@ -80,16 +80,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'price' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$product->addListItem( 'price',
-			$listManager->createItem()->setType( 'default' )->setId( 1 ),
-			$manager->createItem()->setType( 'test' )->setCurrencyId( 'EUR' )
+			$listManager->create()->setType( 'default' )->setId( 1 ),
+			$manager->create()->setType( 'test' )->setCurrencyId( 'EUR' )
 				->setTaxrate( '20.00' )->setQuantity( 1 )->setValue( '10.00' )
 		);
 		$product->addListItem( 'price',
-			$listManager->createItem()->setType( 'test' )->setId( 2 ),
-			$manager->createItem()->setType( 'default' )->setCurrencyId( 'USD' )
+			$listManager->create()->setType( 'test' )->setId( 2 ),
+			$manager->create()->setType( 'default' )->setCurrencyId( 'USD' )
 				->setTaxrate( '10.00' )->setQuantity( 2 )->setValue( '20.00' )
 		);
 
@@ -140,16 +140,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'price' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$product->addListItem( 'price',
-			$listManager->createItem()->setType( 'default' )->setId( 1 ),
-			$manager->createItem()->setType( 'test' )->setCurrencyId( 'EUR' )
+			$listManager->create()->setType( 'default' )->setId( 1 ),
+			$manager->create()->setType( 'test' )->setCurrencyId( 'EUR' )
 				->setTaxrate( '20.00' )->setQuantity( 1 )->setValue( '10.00' )
 		);
 		$product->addListItem( 'price',
-			$listManager->createItem()->setType( 'test' )->setId( 2 ),
-			$manager->createItem()->setType( 'default' )->setCurrencyId( 'USD' )
+			$listManager->create()->setType( 'test' )->setId( 2 ),
+			$manager->create()->setType( 'default' )->setCurrencyId( 'USD' )
 				->setTaxrate( '10.00' )->setQuantity( 2 )->setValue( '20.00' )
 		);
 

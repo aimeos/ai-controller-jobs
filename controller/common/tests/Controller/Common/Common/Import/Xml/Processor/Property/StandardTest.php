@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <property>
@@ -70,11 +70,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'product/property' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
-		$product->addPropertyItem( $manager->createItem()->setType( 'package-weight' )
+		$product->addPropertyItem( $manager->create()->setType( 'package-weight' )
 			->setLanguageId( 'de' )->setValue( '3.00 kg' )->setId( 1 ) );
-		$product->addPropertyItem( $manager->createItem()->setType( 'package-width' )
+		$product->addPropertyItem( $manager->create()->setType( 'package-width' )
 			->setLanguageId( '' )->setValue( '50' )->setId( 2 ) );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
@@ -118,11 +118,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'product/property' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
-		$product->addPropertyItem( $manager->createItem()->setType( 'package-weight' )
+		$product->addPropertyItem( $manager->create()->setType( 'package-weight' )
 			->setLanguageId( 'de' )->setValue( '3.00 kg' )->setId( 1 ) );
-		$product->addPropertyItem( $manager->createItem()->setType( 'package-width' )
+		$product->addPropertyItem( $manager->create()->setType( 'package-width' )
 			->setLanguageId( '' )->setValue( '50' )->setId( 2 ) );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>

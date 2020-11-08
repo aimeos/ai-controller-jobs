@@ -241,7 +241,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function create( $code )
 	{
-		$item = self::$supplierManager->createItem();
+		$item = self::$supplierManager->create();
 		$item->setCode( $code );
 
 		self::$supplierManager->saveItem( $item );

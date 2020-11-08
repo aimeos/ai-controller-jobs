@@ -68,8 +68,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
-		$orderItem = $orderManagerStub->createItem();
+		$serviceItem = $serviceManagerStub->create()->setType( '' );
+		$orderItem = $orderManagerStub->create();
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Payment\\PrePay' )
 			->setMethods( array( 'isImplemented', 'capture' ) )
@@ -122,8 +122,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
-		$orderItem = $orderManagerStub->createItem();
+		$serviceItem = $serviceManagerStub->create()->setType( '' );
+		$orderItem = $orderManagerStub->create();
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Payment\\PrePay' )
 			->setMethods( array( 'isImplemented', 'capture' ) )
@@ -179,7 +179,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
+		$serviceItem = $serviceManagerStub->create()->setType( '' );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );

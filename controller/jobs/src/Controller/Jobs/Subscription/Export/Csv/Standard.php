@@ -143,7 +143,7 @@ class Standard
 	{
 		$manager = \Aimeos\MAdmin::create( $context, 'job' );
 
-		$item = $manager->createItem();
+		$item = $manager->create();
 		$item->setResult( ['file' => $path] );
 		$item->setLabel( $path );
 

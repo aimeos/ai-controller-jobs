@@ -64,7 +64,7 @@ class Standard
 				$this->addType( 'stock/type', 'product', $list['stock.type'] );
 
 				if( ( $item = $items->pop() ) === null ) {
-					$item = $manager->createItem();
+					$item = $manager->create();
 				}
 
 				$manager->saveItem( $item->fromArray( $list ), false );

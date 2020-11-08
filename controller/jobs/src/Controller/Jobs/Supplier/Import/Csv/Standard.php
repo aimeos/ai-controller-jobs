@@ -553,7 +553,7 @@ class Standard
 					$item = $supplierMap[$code];
 				} else
 				{
-					$item = $manager->createItem();
+					$item = $manager->create();
 				}
 
 				$map = $this->getMappedChunk( $list, $mapping );

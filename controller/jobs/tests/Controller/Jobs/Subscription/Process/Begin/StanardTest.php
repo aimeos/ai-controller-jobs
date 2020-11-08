@@ -79,7 +79,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$managerStub->createItem()] ) ) );
+			->will( $this->returnValue( map( [$managerStub->create()] ) ) );
 
 		$managerStub->expects( $this->once() )->method( 'saveItem' )
 			->will( $this->throwException( new \Exception() ) );

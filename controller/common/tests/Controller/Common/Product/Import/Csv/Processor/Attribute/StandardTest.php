@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['getAttributeItem'] )
 			->getMock();
 
-		$item = \Aimeos\MShop::create( $this->context, 'attribute' )->createItem()->setType( 'color' );
+		$item = \Aimeos\MShop::create( $this->context, 'attribute' )->create()->setType( 'color' );
 		$mock->expects( $this->exactly( 3 ) )->method( 'getAttributeItem' )
 			->will( $this->onConsecutiveCalls( clone $item, clone $item, clone $item ) );
 
@@ -257,6 +257,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function create( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		return $manager->createItem()->setCode( $code );
+		return $manager->create()->setCode( $code );
 	}
 }

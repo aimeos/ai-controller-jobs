@@ -202,7 +202,7 @@ class Standard
 				if( isset( $items[$code] ) ) {
 					$item = $items[$code];
 				} else {
-					$item = $manager->createItem();
+					$item = $manager->create();
 				}
 
 				$item->setParentId( $couponId );

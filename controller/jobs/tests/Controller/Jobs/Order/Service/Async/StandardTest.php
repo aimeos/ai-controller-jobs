@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
+		$serviceItem = $serviceManagerStub->create()->setType( '' );
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Delivery\\Standard' )
 			->setConstructorArgs( array( $context, $serviceItem ) )
@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
 
 
-		$serviceItem = $serviceManagerStub->createItem()->setType( '' );
+		$serviceItem = $serviceManagerStub->create()->setType( '' );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );

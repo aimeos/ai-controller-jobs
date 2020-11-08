@@ -72,7 +72,7 @@ class Standard
 
 				if( ( $item = $items->pop() ) === null )
 				{
-					$item = $manager->createItem();
+					$item = $manager->create();
 				}
 
 				$item->fromArray( $list );

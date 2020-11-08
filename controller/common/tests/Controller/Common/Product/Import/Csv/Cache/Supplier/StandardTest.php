@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testSet()
 	{
-		$item = \Aimeos\MShop::create( \TestHelperCntl::getContext(), 'catalog' )->createItem();
+		$item = \Aimeos\MShop::create( \TestHelperCntl::getContext(), 'catalog' )->create();
 		$item->setCode( 'cache-test' );
 		$item->setId( 1 );
 

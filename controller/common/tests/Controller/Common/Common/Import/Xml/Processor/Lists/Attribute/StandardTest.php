@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	<attributeitem ref="product|color|white" lists.type="test" />
 </attribute>' );
 
-		$attribute = $this->object->process( $manager->createItem(), $dom->firstChild );
+		$attribute = $this->object->process( $manager->create(), $dom->firstChild );
 
 		$this->assertEquals( 2, count( $attribute->getListItems() ) );
 		$this->assertNotNull( $attribute->getListItem( 'attribute', 'test', $refId2 ) );
@@ -56,15 +56,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'attribute/lists' );
 
-		$attribute = $manager->createItem();
+		$attribute = $manager->create();
 		$refId1 = $manager->find( 'black', [], 'product', 'color' )->getId();
 		$refId2 = $manager->find( 'white', [], 'product', 'color' )->getId();
 
 		$attribute->addListItem( 'attribute',
-			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
+			$listManager->create()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
 		);
 		$attribute->addListItem( 'attribute',
-			$listManager->createItem()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
+			$listManager->create()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
@@ -87,15 +87,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'attribute/lists' );
 
-		$attribute = $manager->createItem();
+		$attribute = $manager->create();
 		$refId1 = $manager->find( 'black', [], 'product', 'color' )->getId();
 		$refId2 = $manager->find( 'white', [], 'product', 'color' )->getId();
 
 		$attribute->addListItem( 'attribute',
-			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
+			$listManager->create()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
 		);
 		$attribute->addListItem( 'attribute',
-			$listManager->createItem()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
+			$listManager->create()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>

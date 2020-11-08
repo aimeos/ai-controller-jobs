@@ -300,7 +300,7 @@ class Standard
 			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[md5( $attr->nodeValue )] ) ) {
 				$item = $this->process( $map[md5( $attr->nodeValue )], $node );
 			} else {
-				$item = $this->process( $manager->createItem(), $node );
+				$item = $this->process( $manager->create(), $node );
 			}
 
 			$manager->saveItem( $item );

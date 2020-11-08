@@ -137,11 +137,11 @@ class Standard
 			if( isset( $listMap[$type][$listtype] ) && !empty( $listMap[$type][$listtype] ) ) {
 				$listItem = array_shift( $listMap[$type][$listtype] );
 			} else {
-				$listItem = $listManager->createItem();
+				$listItem = $listManager->create();
 			}
 
 			if( ( $refItem = $listItem->getRefItem() ) === null ) {
-				$refItem = $manager->createItem();
+				$refItem = $manager->create();
 			}
 
 			$listItem = $listItem->setType( $listtype )->setPosition( $pos )->fromArray( $list );

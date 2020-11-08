@@ -169,7 +169,7 @@ class Standard
 						unset( $listItems[$listItem->getId()] );
 					} else
 					{
-						$listItem = $listManager->createItem()->setType( $listtype );
+						$listItem = $listManager->create()->setType( $listtype );
 					}
 
 					$listItem = $listItem->setPosition( $pos++ )->fromArray( $list, true );

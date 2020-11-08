@@ -72,7 +72,7 @@ trait Traits
 					}
 
 					foreach( array_diff( $codes, $types ) as $code ) {
-						$items[] = $manager->createItem()->setDomain( $domain )->setCode( $code )->setLabel( $code );
+						$items[] = $manager->create()->setDomain( $domain )->setCode( $code )->setLabel( $code );
 					}
 
 					$manager->saveItems( $items, false );

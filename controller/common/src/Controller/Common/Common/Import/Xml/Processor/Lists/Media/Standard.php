@@ -61,11 +61,11 @@ class Standard
 			}
 
 			if( ( $listItem = $listItems->pop() ) === null ) {
-				$listItem = $listManager->createItem();
+				$listItem = $listManager->create();
 			}
 
 			if( ( $refItem = $listItem->getRefItem() ) === null ) {
-				$refItem = $manager->createItem();
+				$refItem = $manager->create();
 			}
 
 			$list = [];

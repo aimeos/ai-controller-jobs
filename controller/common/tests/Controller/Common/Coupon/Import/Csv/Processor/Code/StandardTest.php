@@ -49,8 +49,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
 
-		$coupon = $manager->saveItem( $manager->createItem()->setProvider( 'test' ) );
-		$couponCode = $codeManager->createItem();
+		$coupon = $manager->saveItem( $manager->create()->setProvider( 'test' ) );
+		$couponCode = $codeManager->create();
 		$couponCode->setParentId( $coupon->getId() );
 
 		$object = new \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Code\Standard( $this->context, $mapping, $this->endpoint );
@@ -88,8 +88,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
 
-		$coupon = $manager->saveItem( $manager->createItem()->setProvider( 'test' ) );
-		$couponCode = $codeManager->createItem();
+		$coupon = $manager->saveItem( $manager->create()->setProvider( 'test' ) );
+		$couponCode = $codeManager->create();
 		$couponCode->setParentId( $coupon->getId() );
 
 		$object = new \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Code\Standard( $this->context, $mapping, $this->endpoint );
@@ -121,8 +121,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
 
-		$coupon = $manager->saveItem( $manager->createItem()->setProvider( 'test' ) );
-		$couponCode = $codeManager->createItem();
+		$coupon = $manager->saveItem( $manager->create()->setProvider( 'test' ) );
+		$couponCode = $codeManager->create();
 		$couponCode->setParentId( $coupon->getId() );
 
 		$object = new \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Code\Standard( $this->context, $mapping, $this->endpoint );

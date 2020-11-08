@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->createItem();
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <group>
@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessUpdate()
 	{
 		$dom = new \DOMDocument();
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->createItem()->setGroups( [123] );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create()->setGroups( [123] );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <group>
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessDelete()
 	{
 		$dom = new \DOMDocument();
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->createItem()->setGroups( [123, 456] );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create()->setGroups( [123, 456] );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <group>

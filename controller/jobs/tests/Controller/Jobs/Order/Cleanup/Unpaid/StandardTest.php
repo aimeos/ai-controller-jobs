@@ -75,7 +75,7 @@ class StandardTest
 		\Aimeos\Controller\Common\Order\Factory::inject( '\\Aimeos\\Controller\\Common\\Order\\' . $name, $orderCntlStub );
 
 
-		$orderItem = $orderManagerStub->createItem();
+		$orderItem = $orderManagerStub->create();
 		$orderItem->setBaseId( 1 );
 		$orderItem->setId( 2 );
 

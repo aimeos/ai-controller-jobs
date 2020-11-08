@@ -29,7 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'customer', $this->custStub );
 
 		$this->custStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $this->custStub->createItem() ) );
+			->will( $this->returnValue( $this->custStub->create() ) );
 	}
 
 
@@ -50,9 +50,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' );
+		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
 
-		$ordProdItem = $ordProdStub->createItem()->setAttributeItems( [
+		$ordProdItem = $ordProdStub->create()->setAttributeItems( [
 			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),
 			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
 		] );
@@ -94,9 +94,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->createItem()->setType( 'hidden' )->setCode( 'customer/group' );
+		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
 
-		$ordProdItem = $ordProdStub->createItem()->setAttributeItems( [
+		$ordProdItem = $ordProdStub->create()->setAttributeItems( [
 			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),
 			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
 		] );

@@ -62,7 +62,7 @@ class Standard
 			if( ( $addrItem = $addrItems->pop() ) !== null ) {
 				$addrItems->remove( $addrItem->getId() );
 			} else {
-				$addrItem = $manager->createItem();
+				$addrItem = $manager->create();
 			}
 
 			$item = $item->addAddressItem( $addrItem->fromArray( $list ), $addrItem->getId() );

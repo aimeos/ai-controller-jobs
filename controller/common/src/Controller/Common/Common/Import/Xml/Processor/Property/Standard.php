@@ -65,7 +65,7 @@ class Standard
 				$list[$tagNode->nodeName] = $tagNode->nodeValue;
 			}
 
-			$propItem = $manager->createItem()->fromArray( $list );
+			$propItem = $manager->create()->fromArray( $list );
 
 			if( isset( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] ) ) {
 				$propItems->remove( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] );

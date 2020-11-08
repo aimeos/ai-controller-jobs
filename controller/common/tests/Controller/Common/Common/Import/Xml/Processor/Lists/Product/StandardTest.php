@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	<productitem ref="CNE" lists.type="test" />
 </product>' );
 
-		$product = $this->object->process( $manager->createItem(), $dom->firstChild );
+		$product = $this->object->process( $manager->create(), $dom->firstChild );
 
 		$this->assertEquals( 2, count( $product->getListItems() ) );
 		$this->assertNotNull( $product->getListItem( 'product', 'default', $refId1 ) );
@@ -56,15 +56,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
 
-		$product = $manager->createItem();
+		$product = $manager->create();
 		$refId1 = $manager->find( 'CNC' )->getId();
 		$refId2 = $manager->find( 'CNE' )->getId();
 
 		$product->addListItem( 'product',
-			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
+			$listManager->create()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
 		);
 		$product->addListItem( 'product',
-			$listManager->createItem()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
+			$listManager->create()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
@@ -87,15 +87,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
 
-		$product = $manager->createItem();
+		$product = $manager->create();
 		$refId1 = $manager->find( 'CNC' )->getId();
 		$refId2 = $manager->find( 'CNE' )->getId();
 
 		$product->addListItem( 'product',
-			$listManager->createItem()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
+			$listManager->create()->setType( 'default' )->setId( 1 )->setRefId( $refId1 )
 		);
 		$product->addListItem( 'product',
-			$listManager->createItem()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
+			$listManager->create()->setType( 'test' )->setId( 2 )->setRefId( $refId2 )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>

@@ -182,7 +182,7 @@ class Standard
 		try
 		{
 			$customer = \Aimeos\MShop::create( $context, 'customer' )->get( $newBasket->getCustomerId() );
-			$address = \Aimeos\MShop::create( $context, 'order/base/address' )->createItem();
+			$address = \Aimeos\MShop::create( $context, 'order/base/address' )->create();
 
 			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
 			$newBasket->addAddress( $address->copyFrom( $customer->getPaymentAddress() ), $type, 0 );
@@ -306,7 +306,7 @@ class Standard
 
 			if( $provider->isAvailable( $newBasket ) === true )
 			{
-				$orderServiceItem = $orderServiceManager->createItem()->copyFrom( $item );
+				$orderServiceItem = $orderServiceManager->create()->copyFrom( $item );
 				return $newBasket->addService( $orderServiceItem, $type, $idx++ );
 			}
 		}
@@ -365,7 +365,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 		$basket = $this->createOrderBase( $context, $subscription );
 
-		return $manager->createItem()->setBaseItem( $basket )->setType( 'subscription' );
+		return $manager->create()->setBaseItem( $basket )->setType( 'subscription' );
 	}
 
 
@@ -381,7 +381,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		$basket = $manager->load( $subscription->getOrderBaseId() );
-		$newBasket = $manager->createItem()->setCustomerId( $basket->getCustomerId() );
+		$newBasket = $manager->create()->setCustomerId( $basket->getCustomerId() );
 
 		$newBasket = $this->addBasketAddresses( $context, $newBasket, $basket->getAddresses() );
 		$newBasket = $this->addBasketProducts( $context, $newBasket, $basket->getProducts(), $subscription->getOrderProductId() );
@@ -403,7 +403,7 @@ class Standard
 	protected function createOrderInvoice( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
-		$item = $manager->createItem()->setBaseItem( $basket )->setBaseId( $basket->getId() )->setType( 'subscription' );
+		$item = $manager->create()->setBaseItem( $basket )->setBaseId( $basket->getId() )->setType( 'subscription' );
 
 		return $manager->saveItem( $item );
 	}

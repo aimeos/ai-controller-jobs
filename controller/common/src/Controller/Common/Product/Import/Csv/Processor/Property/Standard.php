@@ -68,7 +68,7 @@ class Standard
 			}
 			else
 			{
-				$item = $manager->createItem()->setType( $type );
+				$item = $manager->create()->setType( $type );
 			}
 
 			$product->addPropertyItem( $item->fromArray( $list ) );

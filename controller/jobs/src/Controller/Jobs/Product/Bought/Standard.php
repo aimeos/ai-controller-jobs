@@ -273,7 +273,7 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
-		$item = $manager->createItem();
+		$item = $manager->create();
 
 		foreach( $productIds as $pos => $refid )
 		{

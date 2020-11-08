@@ -150,7 +150,7 @@ class Standard
 				}
 				else
 				{
-					$listItem = $listManager->createItem()->setType( $listtype );
+					$listItem = $listManager->create()->setType( $listtype );
 				}
 
 				$attrItem = $this->getAttributeItem( $code, $attrType );
@@ -208,7 +208,7 @@ class Standard
 		{
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'attribute' );
 
-			$item = $manager->createItem();
+			$item = $manager->create();
 			$item->setType( $type );
 			$item->setDomain( 'product' );
 			$item->setLabel( $code );

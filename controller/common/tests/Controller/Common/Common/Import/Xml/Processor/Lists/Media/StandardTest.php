@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$dom = new \DOMDocument();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <media>
@@ -77,15 +77,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'media' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$product->addListItem( 'media',
-			$listManager->createItem()->setType( 'default' )->setId( 1 ),
-			$manager->createItem()->setType( 'test' )->setLanguageId( 'de' )->setUrl( 'path/to/file.jpg' )
+			$listManager->create()->setType( 'default' )->setId( 1 ),
+			$manager->create()->setType( 'test' )->setLanguageId( 'de' )->setUrl( 'path/to/file.jpg' )
 		);
 		$product->addListItem( 'media',
-			$listManager->createItem()->setType( 'test' )->setId( 2 ),
-			$manager->createItem()->setType( 'default' )->setLanguageId( '' )->setUrl( 'path/to/file2.jpg' )
+			$listManager->create()->setType( 'test' )->setId( 2 ),
+			$manager->create()->setType( 'default' )->setLanguageId( '' )->setUrl( 'path/to/file2.jpg' )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
@@ -129,15 +129,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$dom = new \DOMDocument();
 		$manager = \Aimeos\MShop::create( $this->context, 'media' );
 		$listManager = \Aimeos\MShop::create( $this->context, 'product/lists' );
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->createItem();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->create();
 
 		$product->addListItem( 'media',
-			$listManager->createItem()->setType( 'default' )->setId( 1 ),
-			$manager->createItem()->setType( 'test' )->setLanguageId( 'de' )->setUrl( 'path/to/file.jpg' )
+			$listManager->create()->setType( 'default' )->setId( 1 ),
+			$manager->create()->setType( 'test' )->setLanguageId( 'de' )->setUrl( 'path/to/file.jpg' )
 		);
 		$product->addListItem( 'media',
-			$listManager->createItem()->setType( 'test' )->setId( 2 ),
-			$manager->createItem()->setType( 'default' )->setLanguageId( '' )->setUrl( 'path/to/file2.jpg' )
+			$listManager->create()->setType( 'test' )->setId( 2 ),
+			$manager->create()->setType( 'default' )->setLanguageId( '' )->setUrl( 'path/to/file2.jpg' )
 		);
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>

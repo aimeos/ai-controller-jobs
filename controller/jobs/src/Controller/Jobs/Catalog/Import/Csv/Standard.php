@@ -576,7 +576,7 @@ class Standard
 				if( isset( $catalogMap[$code] ) ) {
 					$item = $catalogMap[$code];
 				} else {
-					$item = $manager->createItem();
+					$item = $manager->create();
 				}
 
 				$map = $this->getMappedChunk( $list, $mapping );

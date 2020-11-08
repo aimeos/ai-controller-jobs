@@ -366,7 +366,7 @@ class Standard
 				if( ( $prodid = $prodMap[$code] ?? null ) && isset( $map[$prodid][$type] ) ) {
 					$item = $map[$prodid][$type];
 				} else {
-					$item = $manager->createItem();
+					$item = $manager->create();
 				}
 
 				$items[] = $item->setProductId( $prodMap[$code] ?? null )->setType( $type )
