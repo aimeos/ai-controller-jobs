@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
 		$item = $manager->find( 'unittest-xml', ['attribute/property', 'media', 'price', 'text'], 'product', 'color' );
-		$manager->deleteItem( $item->getId() );
+		$manager->delete( $item->getId() );
 
 		$this->assertEquals( 'Test attribute 2', $item->getLabel() );
 		$this->assertEquals( 1, count( $item->getRefItems( 'media' ) ) );

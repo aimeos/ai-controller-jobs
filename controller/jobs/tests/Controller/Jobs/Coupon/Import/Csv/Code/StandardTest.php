@@ -77,7 +77,7 @@ jobccimport2,5,,';
 		$code1 = $codeManager->find( 'jobccimport1' );
 		$code2 = $codeManager->find( 'jobccimport2' );
 
-		$manager->deleteItem( $coupon->getId() );
+		$manager->delete( $coupon->getId() );
 
 		$this->assertEquals( 3, $code1->getCount() );
 		$this->assertEquals( '2000-01-01 00:00:00', $code1->getDateStart() );

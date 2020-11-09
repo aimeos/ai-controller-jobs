@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertNotNull( $listItem );
 
-		\Aimeos\MShop::create( $this->context, 'catalog/lists' )->deleteItem( $listItem->getId() );
+		\Aimeos\MShop::create( $this->context, 'catalog/lists' )->delete( $listItem->getId() );
 	}
 
 

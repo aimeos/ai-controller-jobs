@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->finish(); // test if new type is created
 		$manager = \Aimeos\MShop::create( $this->context, 'product/property/type' );
-		$manager->deleteItem( $manager->find( 'package-size' )->getId() );
+		$manager->delete( $manager->find( 'package-size' )->getId() );
 
 		$items = $product->getPropertyItems();
 		$item = $items->first();

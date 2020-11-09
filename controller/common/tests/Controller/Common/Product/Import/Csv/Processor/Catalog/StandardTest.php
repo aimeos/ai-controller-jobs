@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public static function tearDownAfterClass() : void
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
-		$manager->deleteItem( self::$product->getId() );
+		$manager->delete( self::$product->getId() );
 	}
 
 
@@ -291,7 +291,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$listManager = $manager->getSubManager( 'lists' );
 
 		$listManager->deleteItems( $catItem->getListItems( 'product' )->keys()->toArray() );
-		$manager->deleteItem( $catItem->getId() );
+		$manager->delete( $catItem->getId() );
 	}
 
 

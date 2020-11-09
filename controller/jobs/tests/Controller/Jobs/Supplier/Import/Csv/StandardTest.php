@@ -198,8 +198,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 				foreach( $supplier->getListItems( $domain ) as $listItem )
 				{
-					$manager->deleteItem( $listItem->getRefItem()->getId() );
-					$listManager->deleteItem( $listItem->getId() );
+					$manager->delete( $listItem->getRefItem()->getId() );
+					$listManager->delete( $listItem->getId() );
 				}
 			}
 
@@ -208,7 +208,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				$listManager->deleteItems( $supplier->getListItems( $domain )->toArray() );
 			}
 
-			$supplierManager->deleteItem( $supplier->getId() );
+			$supplierManager->delete( $supplier->getId() );
 
 			$search = $catListManager->filter();
 			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );

@@ -56,8 +56,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Code\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $couponCode, $data );
 
-		$codeManager->deleteItem( $couponCode->getId() );
-		$manager->deleteItem( $coupon->getId() );
+		$codeManager->delete( $couponCode->getId() );
+		$manager->delete( $coupon->getId() );
 
 
 		$this->assertEquals( 10, $couponCode->getCount() );
@@ -96,8 +96,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->process( $couponCode, $data );
 		$object->process( $couponCode, $dataUpdate );
 
-		$codeManager->deleteItem( $couponCode->getId() );
-		$manager->deleteItem( $coupon->getId() );
+		$codeManager->delete( $couponCode->getId() );
+		$manager->delete( $coupon->getId() );
 
 
 		$this->assertEquals( 5, $couponCode->getCount() );
@@ -128,8 +128,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Code\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $couponCode, $data );
 
-		$codeManager->deleteItem( $couponCode->getId() );
-		$manager->deleteItem( $coupon->getId() );
+		$codeManager->delete( $couponCode->getId() );
+		$manager->delete( $coupon->getId() );
 
 
 		$this->assertEquals( 0, $couponCode->getCount() );

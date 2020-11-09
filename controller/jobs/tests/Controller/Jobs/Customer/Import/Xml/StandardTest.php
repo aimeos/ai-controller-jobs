@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$item = $manager->find( 'me@example.com', ['customer/address', 'customer/property', 'media', 'text'] );
-		$manager->deleteItem( $item->getId() );
+		$manager->delete( $item->getId() );
 
 		$this->assertEquals( 'Test user', $item->getLabel() );
 		$this->assertEquals( 1, count( $item->getPropertyItems() ) );

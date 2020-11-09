@@ -205,7 +205,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$manager = \Aimeos\MShop::create( $this->context, $domain );
 
 			foreach( $tree->getListItems( $domain ) as $listItem ) {
-				$manager->deleteItem( $listItem->getRefItem()->getId() );
+				$manager->delete( $listItem->getRefItem()->getId() );
 			}
 		}
 
@@ -213,7 +213,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$this->delete( $node, $domains );
 		}
 
-		$catalogManager->deleteItem( $tree->getId() );
+		$catalogManager->delete( $tree->getId() );
 	}
 
 

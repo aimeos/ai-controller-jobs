@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager->deleteItems( $manager->search( $filter )->toArray() );
 
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$manager->deleteItem( $product->getId() );
+		$manager->delete( $product->getId() );
 	}
 
 
