@@ -91,7 +91,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$jobSearch = $jobManager->filter();
 		$jobSearch->setConditions( $jobSearch->compare( '=~', 'job.label', 'subscription-export_' ) );
 		$jobItems = $jobManager->search( $jobSearch );
-		$jobManager->deleteItems( $jobItems->toArray() );
+		$jobManager->delete( $jobItems->toArray() );
 
 		$this->assertEquals( 1, count( $jobItems ) );
 
@@ -179,7 +179,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$jobSearch = $jobManager->filter();
 		$jobSearch->setConditions( $jobSearch->compare( '=~', 'job.label', 'subscription-export_' ) );
 		$jobItems = $jobManager->search( $jobSearch );
-		$jobManager->deleteItems( $jobItems->toArray() );
+		$jobManager->delete( $jobItems->toArray() );
 
 		$this->assertEquals( 1, count( $jobItems ) );
 

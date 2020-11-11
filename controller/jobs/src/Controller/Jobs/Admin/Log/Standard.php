@@ -215,7 +215,7 @@ class Standard
 				$ids[] = $id;
 			}
 
-			$manager->deleteItems( $ids );
+			$manager->delete( $ids );
 
 			$count = count( $items );
 			$start += $count;

@@ -177,7 +177,7 @@ class Standard
 				}
 			}
 
-			$listManager->deleteItems( $listItems->toArray() );
+			$listManager->delete( $listItems->toArray() );
 			$data = $this->getObject()->process( $product, $data );
 
 			$manager->commit();

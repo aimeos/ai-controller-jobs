@@ -164,7 +164,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		do
 		{
 			$result = $manager->search( $search );
-			$manager->deleteItems( $result->toArray() );
+			$manager->delete( $result->toArray() );
 
 			$count = count( $result );
 			$start += $count;
@@ -191,7 +191,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		do
 		{
 			$result = $manager->search( $search );
-			$manager->deleteItems( $result->toArray() );
+			$manager->delete( $result->toArray() );
 
 			$count = count( $result );
 			$start += $count;
@@ -218,7 +218,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		do
 		{
 			$result = $manager->search( $search );
-			$manager->deleteItems( $result->toArray() );
+			$manager->delete( $result->toArray() );
 
 			$count = count( $result );
 			$start += $count;
@@ -241,7 +241,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		do
 		{
 			$result = $manager->search( $search );
-			$manager->deleteItems( $result->toArray() );
+			$manager->delete( $result->toArray() );
 
 			$count = count( $result );
 			$start += $count;
@@ -268,7 +268,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		do
 		{
 			$result = $manager->search( $search );
-			$manager->deleteItems( $result->toArray() );
+			$manager->delete( $result->toArray() );
 
 			$count = count( $result );
 			$start += $count;

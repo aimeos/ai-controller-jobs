@@ -49,11 +49,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->getConfig();
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\MAdmin\\Log\\Manager\\Standard' )
-			->setMethods( array( 'deleteItems' ) )
+			->setMethods( array( 'delete' ) )
 			->setConstructorArgs( array( $this->context ) )
 			->getMock();
 
-		$mock->expects( $this->atLeastOnce() )->method( 'deleteItems' );
+		$mock->expects( $this->atLeastOnce() )->method( 'delete' );
 
 		$tmppath = dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) . DIRECTORY_SEPARATOR . 'tmp';
 		$name = 'ControllerJobsAdminLogDefaultRun';

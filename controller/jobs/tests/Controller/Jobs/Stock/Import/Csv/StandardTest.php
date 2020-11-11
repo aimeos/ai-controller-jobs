@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$prodIds = $prodManager->search( $filter )->col( 'product.id', 'product.code' )->toArray();
 
 		$items = $manager->search( $manager->filter()->add( ['stock.productid' => $prodIds] ) );
-		$manager->deleteItems( $items->toArray() );
+		$manager->delete( $items->toArray() );
 
 		foreach( $items as $item ) {
 			$map[$item->getProductId()] = $item;

@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertNotNull( $listItem );
 		$listIds[] = $listItem->getId();
 
-		\Aimeos\MShop::create( $this->context, 'catalog/lists' )->deleteItems( $listIds );
+		\Aimeos\MShop::create( $this->context, 'catalog/lists' )->delete( $listIds );
 	}
 
 

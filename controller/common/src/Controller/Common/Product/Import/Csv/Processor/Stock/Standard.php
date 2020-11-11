@@ -70,7 +70,7 @@ class Standard
 				$manager->saveItem( $item->fromArray( $list ), false );
 			}
 
-			$manager->deleteItems( $items->toArray() );
+			$manager->delete( $items->toArray() );
 
 			$data = $this->getObject()->process( $product, $data );
 

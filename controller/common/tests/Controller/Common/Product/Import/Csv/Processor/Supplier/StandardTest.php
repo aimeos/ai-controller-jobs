@@ -298,7 +298,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
 		$listManager = $manager->getSubManager( 'lists' );
 
-		$listManager->deleteItems( $item->getListItems( 'product' )->keys()->toArray() );
+		$listManager->delete( $item->getListItems( 'product' )->keys()->toArray() );
 		$manager->delete( $item->getId() );
 	}
 

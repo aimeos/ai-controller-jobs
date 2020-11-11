@@ -61,7 +61,7 @@ class StandardTest
 			->getMock();
 
 		$orderBaseManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard' )
-			->setMethods( array( 'deleteItems' ) )
+			->setMethods( array( 'delete' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -86,7 +86,7 @@ class StandardTest
 		$orderManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$orderItem->getId() => $orderItem] ) ) );
 
-		$orderBaseManagerStub->expects( $this->once() )->method( 'deleteItems' );
+		$orderBaseManagerStub->expects( $this->once() )->method( 'delete' );
 
 		$orderCntlStub->expects( $this->once() )->method( 'unblock' );
 

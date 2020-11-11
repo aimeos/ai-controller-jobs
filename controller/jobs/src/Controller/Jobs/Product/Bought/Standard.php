@@ -309,6 +309,6 @@ class Standard
 
 		$listItems = $manager->search( $search );
 
-		$manager->deleteItems( $listItems->toArray() );
+		$manager->delete( $listItems->toArray() );
 	}
 }

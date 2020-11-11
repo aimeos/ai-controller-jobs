@@ -97,7 +97,7 @@ class Standard
 				$baseIds[] = $item->getBaseId();
 			}
 
-			$baseManager->deleteItems( $baseIds );
+			$baseManager->delete( $baseIds );
 
 			$count = count( $items );
 			$start += $count;

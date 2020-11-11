@@ -286,7 +286,7 @@ class Standard
 			}
 			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' )
 			{
-				\Aimeos\MShop::create( $this->getContext(), 'catalog' )->deleteItems( $map );
+				\Aimeos\MShop::create( $this->getContext(), 'catalog' )->delete( $map );
 				break;
 			}
 		}

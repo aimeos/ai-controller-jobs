@@ -97,7 +97,7 @@ class Standard
 			$listManager->saveItem( $listItem, false );
 		}
 
-		$listManager->deleteItems( $listItems->toArray() );
+		$listManager->delete( $listItems->toArray() );
 
 		return $item;
 	}

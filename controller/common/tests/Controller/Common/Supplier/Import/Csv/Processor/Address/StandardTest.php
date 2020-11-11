@@ -253,7 +253,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$listManager = self::$supplierManager->getSubManager( 'lists' );
 
-		$listManager->deleteItems( $item->getListItems( 'product' )->keys()->toArray() );
+		$listManager->delete( $item->getListItems( 'product' )->keys()->toArray() );
 		self::$supplierManager->delete( $item->getId() );
 	}
 
