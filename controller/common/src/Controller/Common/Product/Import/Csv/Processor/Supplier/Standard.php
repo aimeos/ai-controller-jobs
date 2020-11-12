@@ -173,7 +173,7 @@ class Standard
 					}
 
 					$listItem = $listItem->setPosition( $pos++ )->fromArray( $list, true );
-					$listManager->saveItem( $listItem, false );
+					$listManager->save( $listItem, false );
 				}
 			}
 

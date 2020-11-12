@@ -193,7 +193,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setType( 'default' );
 		$item->setCode( $code );
 
-		return $manager->saveItem( $item );
+		return $manager->save( $item );
 	}
 
 

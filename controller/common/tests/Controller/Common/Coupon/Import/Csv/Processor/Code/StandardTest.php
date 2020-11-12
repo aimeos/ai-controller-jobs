@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
 
-		$coupon = $manager->saveItem( $manager->create()->setProvider( 'test' ) );
+		$coupon = $manager->save( $manager->create()->setProvider( 'test' ) );
 		$couponCode = $codeManager->create();
 		$couponCode->setParentId( $coupon->getId() );
 
@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
 
-		$coupon = $manager->saveItem( $manager->create()->setProvider( 'test' ) );
+		$coupon = $manager->save( $manager->create()->setProvider( 'test' ) );
 		$couponCode = $codeManager->create();
 		$couponCode->setParentId( $coupon->getId() );
 
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'coupon' );
 		$codeManager = \Aimeos\MShop::create( $this->context, 'coupon/code' );
 
-		$coupon = $manager->saveItem( $manager->create()->setProvider( 'test' ) );
+		$coupon = $manager->save( $manager->create()->setProvider( 'test' ) );
 		$couponCode = $codeManager->create();
 		$couponCode->setParentId( $coupon->getId() );
 

@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setType( 'default' );
 		$item->setStatus( 1 );
 
-		self::$product = $manager->saveItem( $item );
+		self::$product = $manager->save( $item );
 	}
 
 

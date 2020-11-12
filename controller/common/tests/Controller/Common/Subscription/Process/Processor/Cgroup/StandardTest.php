@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->custStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['get', 'saveItem'] )
+			->setMethods( ['get', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'customer', $this->custStub );
@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$ordProdStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ordProdItem ) );
 
-		$this->custStub->expects( $this->once() )->method( 'saveItem' )
+		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
 				return $subject->getGroups() === ['3', '4'];
 			} ) );
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBeginCustomGroups()
 	{
-		$this->custStub->expects( $this->once() )->method( 'saveItem' )
+		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
 				return $subject->getGroups() === ['1', '2'];
 			} ) );
@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$ordProdStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ordProdItem ) );
 
-		$this->custStub->expects( $this->once() )->method( 'saveItem' )
+		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
 				return $subject->getGroups() === [];
 			} ) );
@@ -116,7 +116,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testEndCustomGroups()
 	{
-		$this->custStub->expects( $this->once() )->method( 'saveItem' )
+		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
 				return $subject->getGroups() === [];
 			} ) );

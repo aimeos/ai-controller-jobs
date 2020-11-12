@@ -112,7 +112,7 @@ class Standard
 						$reason = \Aimeos\MShop\Subscription\Item\Iface::REASON_END;
 					}
 
-					$manager->saveItem( $item->setReason( $reason )->setStatus( 0 ) );
+					$manager->save( $item->setReason( $reason )->setStatus( 0 ) );
 				}
 				catch( \Exception $e )
 				{

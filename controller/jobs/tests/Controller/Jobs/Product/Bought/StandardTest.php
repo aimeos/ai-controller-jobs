@@ -52,13 +52,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Product\\Manager\\Lists\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'delete', 'saveItem' ) )
+			->setMethods( array( 'delete', 'save' ) )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'product/lists', $stub );
 
 		$stub->expects( $this->atLeastOnce() )->method( 'delete' );
-		$stub->expects( $this->atLeastOnce() )->method( 'saveItem' );
+		$stub->expects( $this->atLeastOnce() )->method( 'save' );
 
 		$this->object->run();
 	}

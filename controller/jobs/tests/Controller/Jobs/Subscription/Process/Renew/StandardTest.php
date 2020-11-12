@@ -58,12 +58,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'saveItem'] )
+			->setMethods( ['search', 'save'] )
 			->getMock();
 
 		$orderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['saveItem'] )
+			->setMethods( ['save'] )
 			->getMock();
 
 		$baseStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard' )
@@ -80,8 +80,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$item] ) ) );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' );
-		$orderStub->expects( $this->once() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'save' );
+		$orderStub->expects( $this->once() )->method( 'save' )->will( $this->returnArgument( 0 ) );
 		$baseStub->expects( $this->once() )->method( 'store' )
 			->will( $this->returnCallback( function( $basket ) {
 				return $basket->setId( -1 );
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'saveItem'] )
+			->setMethods( ['search', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$managerStub->create()->setOrderBaseId( -1 )] ) ) );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'save' );
 
 		$this->object->run();
 	}
@@ -219,12 +219,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['saveItem'] )
+			->setMethods( ['save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'order', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' )->will( $this->returnArgument( 0 ) );
+		$managerStub->expects( $this->once() )->method( 'save' )->will( $this->returnArgument( 0 ) );
 
 		$this->access( 'createOrderInvoice' )->invokeArgs( $this->object, [$this->context, $baseItem] );
 	}
@@ -238,12 +238,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['saveItem'] )
+			->setMethods( ['save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'order', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'save' )->will( $this->returnArgument( 0 ) );
 
 		$this->access( 'createPayment' )->invokeArgs( $this->object, [$this->context, $baseItem, $invoice] );
 	}

@@ -590,7 +590,7 @@ class Standard
 					if( isset( $catalogMap[$code] ) )
 					{
 						$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
-						$item = $manager->saveItem( $item );
+						$item = $manager->save( $item );
 					}
 					else
 					{
@@ -600,7 +600,7 @@ class Standard
 					$list = $processor->process( $item, $list );
 					$catalogMap[$code] = $item;
 
-					$manager->saveItem( $item );
+					$manager->save( $item );
 				}
 
 				$manager->commit();

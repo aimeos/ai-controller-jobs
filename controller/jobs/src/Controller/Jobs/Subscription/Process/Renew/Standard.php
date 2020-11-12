@@ -111,7 +111,7 @@ class Standard
 					}
 
 					$basket = $baseManager->store( $newOrder->getBaseItem()->check() );
-					$newOrder = $orderManager->saveItem( $newOrder->setBaseId( $basket->getId() ) );
+					$newOrder = $orderManager->save( $newOrder->setBaseId( $basket->getId() ) );
 
 					try
 					{
@@ -145,7 +145,7 @@ class Standard
 					$logger->log( $str . "\n" . $e->getTraceAsString(), \Aimeos\MW\Logger\Base::ERR, 'subscription' );
 				}
 
-				$manager->saveItem( $item );
+				$manager->save( $item );
 			}
 
 			$count = count( $items );
@@ -405,7 +405,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 		$item = $manager->create()->setBaseItem( $basket )->setBaseId( $basket->getId() )->setType( 'subscription' );
 
-		return $manager->saveItem( $item );
+		return $manager->save( $item );
 	}
 
 

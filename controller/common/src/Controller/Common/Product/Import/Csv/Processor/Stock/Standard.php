@@ -67,7 +67,7 @@ class Standard
 					$item = $manager->create();
 				}
 
-				$manager->saveItem( $item->fromArray( $list ), false );
+				$manager->save( $item->fromArray( $list ), false );
 			}
 
 			$manager->delete( $items->toArray() );

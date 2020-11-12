@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Address\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $supplier, $data );
 
-		self::$supplierManager->saveItem( $supplier );
+		self::$supplierManager->save( $supplier );
 
 		$addressItems = $supplier->getAddressItems();
 		$address = $addressItems->first();
@@ -157,10 +157,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Address\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $supplier, $data );
-		self::$supplierManager->saveItem( $supplier );
+		self::$supplierManager->save( $supplier );
 
 		$object->process( $supplier, $dataUpdate );
-		self::$supplierManager->saveItem( $supplier );
+		self::$supplierManager->save( $supplier );
 
 		$this->reloadSupplier( $supplier );
 
@@ -244,7 +244,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = self::$supplierManager->create();
 		$item->setCode( $code );
 
-		self::$supplierManager->saveItem( $item );
+		self::$supplierManager->save( $item );
 
 		return $item;
 	}

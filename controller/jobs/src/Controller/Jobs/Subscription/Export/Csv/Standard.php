@@ -147,7 +147,7 @@ class Standard
 		$item->setResult( ['file' => $path] );
 		$item->setLabel( $path );
 
-		$manager->saveItem( $item, false );
+		$manager->save( $item, false );
 	}
 
 

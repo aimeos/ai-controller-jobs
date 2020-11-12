@@ -83,7 +83,7 @@ class Standard
 		}
 
 		$item->setGroups( array_unique( array_merge( $item->getGroups(), $groupIds ) ) );
-		$manager->saveItem( $item );
+		$manager->save( $item );
 	}
 
 
@@ -109,6 +109,6 @@ class Standard
 		}
 
 		$item->setGroups( array_diff( $item->getGroups(), $groupIds ) );
-		$manager->saveItem( $item );
+		$manager->save( $item );
 	}
 }

@@ -118,7 +118,7 @@ class Standard
 			try
 			{
 				if( $is && date( 'Y-m-d H:i:s', $fs->time( $item->getUrl() ) ) > $item->getTimeModified() || $force ) {
-					$manager->saveItem( $cntl->scale( $item ) );
+					$manager->save( $cntl->scale( $item ) );
 				}
 			}
 			catch( \Exception $e )

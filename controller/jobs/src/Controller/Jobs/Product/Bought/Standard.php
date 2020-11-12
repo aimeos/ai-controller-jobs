@@ -285,7 +285,7 @@ class Standard
 			$item->setRefId( $refid );
 			$item->setStatus( 1 );
 
-			$manager->saveItem( $item, false );
+			$manager->save( $item, false );
 		}
 	}
 

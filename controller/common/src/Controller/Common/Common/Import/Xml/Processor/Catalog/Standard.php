@@ -94,7 +94,7 @@ class Standard
 
 			$listItem = $listItem->fromArray( $list )->setDomain( $item->getResourceType() )
 				->setRefId( $item->getId() )->setParentId( $parentid );
-			$listManager->saveItem( $listItem, false );
+			$listManager->save( $listItem, false );
 		}
 
 		$listManager->delete( $listItems->toArray() );

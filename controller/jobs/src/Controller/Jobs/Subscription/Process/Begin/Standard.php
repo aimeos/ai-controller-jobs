@@ -158,7 +158,7 @@ class Standard
 						$item->setStatus( 0 );
 					}
 
-					$manager->saveItem( $item );
+					$manager->save( $item );
 				}
 				catch( \Exception $e )
 				{

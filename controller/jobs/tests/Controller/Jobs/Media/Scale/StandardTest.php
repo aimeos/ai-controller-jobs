@@ -68,13 +68,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Media\\Manager\\Standard' )
-			->setMethods( array( 'saveItem' ) )
+			->setMethods( array( 'save' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		\Aimeos\MShop\Media\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Media\\Manager\\' . $name, $managerStub );
 
-		$managerStub->expects( $this->atLeast( 1 ) )->method( 'saveItem' );
+		$managerStub->expects( $this->atLeast( 1 ) )->method( 'save' );
 
 
 		$cntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Common\\Media\\Standard' )

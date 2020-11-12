@@ -215,7 +215,7 @@ class Standard
 			$item->setCode( $code );
 			$item->setStatus( 1 );
 
-			$item = $manager->saveItem( $item );
+			$item = $manager->save( $item );
 
 			$this->cache->set( $item );
 		}

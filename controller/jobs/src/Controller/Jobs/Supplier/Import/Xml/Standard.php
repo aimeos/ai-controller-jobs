@@ -279,7 +279,7 @@ class Standard
 				$item = $this->process( $manager->create(), $node );
 			}
 
-			$manager->saveItem( $item );
+			$manager->save( $item );
 		}
 	}
 

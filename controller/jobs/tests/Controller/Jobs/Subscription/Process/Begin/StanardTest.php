@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'saveItem'] )
+			->setMethods( ['search', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$item] ) ) );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'save' );
 
 		$this->object->run();
 	}
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'saveItem'] )
+			->setMethods( ['search', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'subscription', $managerStub );
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$managerStub->create()] ) ) );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' )
+		$managerStub->expects( $this->once() )->method( 'save' )
 			->will( $this->throwException( new \Exception() ) );
 
 		$this->object->run();

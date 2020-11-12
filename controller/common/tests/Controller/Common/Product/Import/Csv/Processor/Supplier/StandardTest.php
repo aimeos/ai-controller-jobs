@@ -26,7 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setType( 'default' );
 		$item->setStatus( 1 );
 
-		self::$product = $manager->saveItem( $item );
+		self::$product = $manager->save( $item );
 	}
 
 
@@ -268,7 +268,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = $manager->create();
 		$item->setCode( $code );
 
-		$manager->saveItem( $item );
+		$manager->save( $item );
 
 		return $item;
 	}
@@ -288,7 +288,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setLabel( $code );
 		$item->setStatus( 1 );
 
-		$supplierListTypeManager->saveItem( $item );
+		$supplierListTypeManager->save( $item );
 
 		return $item;
 	}

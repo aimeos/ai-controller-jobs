@@ -567,11 +567,11 @@ class Standard
 					$type = $this->checkType( $this->getValue( $map[0], 'product.type', $product->getType() ) );
 
 					$product = $product->fromArray( $map[0], true );
-					$product = $manager->saveItem( $product->setType( $type ) );
+					$product = $manager->save( $product->setType( $type ) );
 
 					$list = $processor->process( $product, $list );
 
-					$product = $manager->saveItem( $product );
+					$product = $manager->save( $product );
 					$items[$product->getId()] = $product;
 				}
 

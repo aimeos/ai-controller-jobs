@@ -566,7 +566,7 @@ class Standard
 					$list = $processor->process( $item, $list );
 					$supplierMap[$code] = $item;
 
-					$manager->saveItem( $item );
+					$manager->save( $item );
 				}
 
 				$manager->commit();

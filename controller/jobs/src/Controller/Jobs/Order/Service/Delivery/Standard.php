@@ -128,7 +128,7 @@ class Standard
 							try
 							{
 								$serviceProvider->processBatch( $orderItems );
-								$orderManager->saveItems( $orderItems );
+								$orderManager->save( $orderItems );
 							}
 							catch( \Exception $e )
 							{

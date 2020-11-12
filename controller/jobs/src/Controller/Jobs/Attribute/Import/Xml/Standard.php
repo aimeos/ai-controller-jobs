@@ -303,7 +303,7 @@ class Standard
 				$item = $this->process( $manager->create(), $node );
 			}
 
-			$manager->saveItem( $item );
+			$manager->save( $item );
 			$this->addType( 'attribute/type', $item->getDomain(), $item->getType() );
 		}
 	}

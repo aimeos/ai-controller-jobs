@@ -75,7 +75,7 @@ trait Traits
 						$items[] = $manager->create()->setDomain( $domain )->setCode( $code )->setLabel( $code );
 					}
 
-					$manager->saveItems( $items, false );
+					$manager->save( $items, false );
 					$manager->commit();
 				}
 				catch( \Exception $e )

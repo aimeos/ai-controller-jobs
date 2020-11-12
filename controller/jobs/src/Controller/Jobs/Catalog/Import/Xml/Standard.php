@@ -229,7 +229,7 @@ class Standard
 				$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
 
 				$item = $this->process( $item, $node );
-				$currentid = $manager->saveItem( $item )->getId();
+				$currentid = $manager->save( $item )->getId();
 				unset( $item );
 
 				$tree = $manager->getTree( $currentid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );

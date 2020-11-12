@@ -377,7 +377,7 @@ class Standard
 				unset( $map[$code][$type] );
 			}
 
-			$manager->saveItems( $items );
+			$manager->save( $items );
 			unset( $items );
 
 			$total += $count;

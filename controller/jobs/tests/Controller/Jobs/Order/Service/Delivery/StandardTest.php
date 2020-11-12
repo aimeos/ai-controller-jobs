@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItems', 'search' ) )
+			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$serviceProviderStub->expects( $this->once() )->method( 'processBatch' );
 
-		$orderManagerStub->expects( $this->once() )->method( 'saveItems' );
+		$orderManagerStub->expects( $this->once() )->method( 'save' );
 
 
 		$object = new \Aimeos\Controller\Jobs\Order\Service\Delivery\Standard( $context, $aimeos );
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItems', 'search' ) )
+			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -140,7 +140,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$serviceProviderStub->expects( $this->once() )->method( 'processBatch' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test order service delivery: process' ) ) );
 
-		$orderManagerStub->expects( $this->never() )->method( 'saveItems' );
+		$orderManagerStub->expects( $this->never() )->method( 'save' );
 
 
 		$object = new \Aimeos\Controller\Jobs\Order\Service\Delivery\Standard( $context, $aimeos );
@@ -160,7 +160,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItem', 'search' ) )
+			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 

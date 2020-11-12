@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItem', 'search' ) )
+			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -109,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItem', 'search' ) )
+			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -146,7 +146,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$serviceProviderStub->expects( $this->once() )->method( 'capture' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test oder service payment: capture' ) ) );
 
-		$orderManagerStub->expects( $this->never() )->method( 'saveItem' );
+		$orderManagerStub->expects( $this->never() )->method( 'save' );
 
 
 		$object = new \Aimeos\Controller\Jobs\Order\Service\Payment\Standard( $context, $aimeos );
@@ -166,7 +166,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'saveItem', 'search' ) )
+			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
