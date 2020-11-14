@@ -584,6 +584,7 @@ class Standard
 				if( isset( $map[0] ) )
 				{
 					$map = $map[0]; // there can only be one chunk for the base catalog data
+					$map['catalog.config'] = json_decode( $map['catalog.config'] ?? '[]', true ) ?: [];
 					$parentid = $this->getParentId( $catalogMap, $map, $code );
 					$item->fromArray( $map, true );
 
