@@ -124,10 +124,13 @@ class Standard
 					}
 					catch( \Exception $e )
 					{
-						$item->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
+						if( $e->getCode() < 1 ) // not a soft error
+						{
+							$item->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
 
-						if( $end ) {
-							$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
+							if( $end ) {
+								$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
+							}
 						}
 
 						throw $e;
