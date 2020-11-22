@@ -269,13 +269,13 @@ class Standard
 
 		$container = $this->getContainer();
 		$content = $container->create( 'subscription-export_' . date( 'Y-m-d_H-i-s' ) );
-		$search = $this->initCriteria( $manager->filter( false, true )->setSlice( 0, 0x7fffffff ), $msg );
+		$search = $this->initCriteria( $manager->filter( false, true )->slice( 0, 0x7fffffff ), $msg );
 		$start = 0;
 
 		do
 		{
 			$baseIds = [];
-			$search->setSlice( $start, $maxcnt );
+			$search->slice( $start, $maxcnt );
 			$items = $manager->search( $search );
 
 			foreach( $items as $item ) {
@@ -284,7 +284,7 @@ class Standard
 
 			$baseSearch = $baseManager->filter( false, true );
 			$baseSearch->setConditions( $baseSearch->compare( '==', 'order.base.id', $baseIds ) );
-			$baseSearch->setSlice( 0, count( $baseIds ) );
+			$baseSearch->slice( 0, count( $baseIds ) );
 
 			$baseItems = $baseManager->search( $baseSearch, $baseRef );
 

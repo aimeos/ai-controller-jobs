@@ -70,7 +70,7 @@ class Standard
 
 		do
 		{
-			$search->setSlice( $start );
+			$search->slice( $start );
 			$items = $manager->search( $search );
 
 			$process->start( $fcn, [$context, $items] );

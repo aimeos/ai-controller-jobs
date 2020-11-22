@@ -33,7 +33,7 @@ class Base
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'coupon.code.code', $codes ) );
-		$search->setSlice( 0, count( $codes ) );
+		$search->slice( 0, count( $codes ) );
 
 		foreach( $manager->search( $search ) as $item ) {
 			$result[$item->getCode()] = $item;

@@ -509,7 +509,7 @@ class Standard
 	{
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
-		$search = $manager->filter()->setSlice( 0, 0x7fffffff );
+		$search = $manager->filter()->slice( 0, 0x7fffffff );
 
 		foreach( $manager->search( $search, $domains ) as $item ) {
 			$map[$item->getCode()] = $item;

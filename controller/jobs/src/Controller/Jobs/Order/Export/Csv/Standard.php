@@ -263,7 +263,7 @@ class Standard
 
 		do
 		{
-			$search->setSlice( $start, $maxcnt );
+			$search->slice( $start, $maxcnt );
 			$items = $manager->search( $search, $ref );
 
 			foreach( $items as $id => $item )

@@ -157,7 +157,7 @@ class Standard
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$search = $baseManager->filter();
 		$search->setConditions( $search->compare( '>', 'order.base.ctime', $date ) );
-		$search->setSlice( 0, 0 );
+		$search->slice( 0, 0 );
 		$totalOrders = 0;
 		$baseManager->search( $search, [], $totalOrders );
 
@@ -184,7 +184,7 @@ class Standard
 
 			$count = count( $totalCounts );
 			$start += $count;
-			$search->setSlice( $start );
+			$search->slice( $start );
 		}
 		while( $count >= $search->getSliceSize() );
 	}

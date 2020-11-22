@@ -395,7 +395,7 @@ class Standard
 			$this->types = [];
 
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'product/type' );
-			$search = $manager->filter()->setSlice( 0, 10000 );
+			$search = $manager->filter()->slice( 0, 10000 );
 
 			foreach( $manager->search( $search ) as $item ) {
 				$this->types[$item->getCode()] = $item->getCode();

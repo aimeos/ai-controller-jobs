@@ -87,11 +87,11 @@ class Standard
 		{
 			$orderItems = [];
 
-			$search->setSlice( $start, 100 );
+			$search->slice( $start, 100 );
 			$items = $manager->search( $search );
 			$ordBaseIds = $items->getOrderBaseId()->toArray();
 
-			$orderSearch = $orderManager->filter()->setSlice( 0, $search->getSliceSize() );
+			$orderSearch = $orderManager->filter()->slice( 0, $search->getSliceSize() );
 			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
 			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
 

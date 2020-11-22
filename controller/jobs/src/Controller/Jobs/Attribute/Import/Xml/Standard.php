@@ -145,7 +145,7 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'attribute' );
-		$search = $manager->filter()->setSlice( 0, count( $keys ) );
+		$search = $manager->filter()->slice( 0, count( $keys ) );
 		$search->setConditions( $search->compare( '==', 'attribute.key', $keys ) );
 
 		return $manager->search( $search, $ref );

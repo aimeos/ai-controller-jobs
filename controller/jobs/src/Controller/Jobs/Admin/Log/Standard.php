@@ -219,7 +219,7 @@ class Standard
 
 			$count = count( $items );
 			$start += $count;
-			$search->setSlice( $start );
+			$search->slice( $start );
 		}
 		while( $count >= $search->getSliceSize() );
 

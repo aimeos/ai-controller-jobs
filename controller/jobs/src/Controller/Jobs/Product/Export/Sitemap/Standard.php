@@ -400,7 +400,7 @@ class Standard
 			$search->getConditions()
 		] ) );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
-		$search->setSlice( 0, $maxQuery );
+		$search->slice( 0, $maxQuery );
 
 		$content = $this->createContent( $container, $filenum );
 		$names[] = $content->getResource();
@@ -424,7 +424,7 @@ class Standard
 			$this->addItems( $content, $items );
 
 			$start += $count;
-			$search->setSlice( $start, $maxQuery );
+			$search->slice( $start, $maxQuery );
 		}
 		while( $count >= $search->getSliceSize() );
 

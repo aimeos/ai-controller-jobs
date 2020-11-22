@@ -168,7 +168,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$count = count( $result );
 			$start += $count;
-			$search->setSlice( $start );
+			$search->slice( $start );
 		}
 		while( $count == $search->getSliceSize() );
 	}
@@ -195,7 +195,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$count = count( $result );
 			$start += $count;
-			$search->setSlice( $start );
+			$search->slice( $start );
 		}
 		while( $count == $search->getSliceSize() );
 	}
@@ -222,7 +222,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$count = count( $result );
 			$start += $count;
-			$search->setSlice( $start );
+			$search->slice( $start );
 		}
 		while( $count == $search->getSliceSize() );
 	}
@@ -245,7 +245,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$count = count( $result );
 			$start += $count;
-			$search->setSlice( $start );
+			$search->slice( $start );
 		}
 		while( $count == $search->getSliceSize() );
 	}
@@ -272,7 +272,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$count = count( $result );
 			$start += $count;
-			$search->setSlice( $start );
+			$search->slice( $start );
 		}
 		while( $count == $search->getSliceSize() );
 	}

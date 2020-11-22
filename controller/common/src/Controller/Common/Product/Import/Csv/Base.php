@@ -297,7 +297,7 @@ class Base
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $codes ) );
-		$search->setSlice( 0, count( $codes ) );
+		$search->slice( 0, count( $codes ) );
 
 		foreach( $manager->search( $search, $domains ) as $item ) {
 			$result[$item->getCode()] = $item;

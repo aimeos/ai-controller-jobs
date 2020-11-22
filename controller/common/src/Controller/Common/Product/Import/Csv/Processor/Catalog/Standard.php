@@ -75,7 +75,7 @@ class Standard
 			$this->listTypes = [];
 			$manager = \Aimeos\MShop::create( $context, 'catalog/lists/type' );
 
-			$search = $manager->filter()->setSlice( 0, 0x7fffffff );
+			$search = $manager->filter()->slice( 0, 0x7fffffff );
 			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', 'product' ) );
 
 			foreach( $manager->search( $search ) as $item ) {
@@ -249,7 +249,7 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
-		$search = $manager->filter()->setSlice( 0, 0x7FFFFFFF );
+		$search = $manager->filter()->slice( 0, 0x7FFFFFFF );
 
 		$expr = [
 			$search->compare( '==', 'catalog.lists.domain', 'product' ),

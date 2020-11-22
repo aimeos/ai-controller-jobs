@@ -153,7 +153,7 @@ class Standard
 
 						$orderCount = count( $orderItems );
 						$orderStart += $orderCount;
-						$orderSearch->setSlice( $orderStart );
+						$orderSearch->slice( $orderStart );
 					}
 					while( $orderCount >= $orderSearch->getSliceSize() );
 				}
@@ -166,7 +166,7 @@ class Standard
 
 			$count = count( $serviceItems );
 			$start += $count;
-			$serviceSearch->setSlice( $start );
+			$serviceSearch->slice( $start );
 		}
 		while( $count >= $serviceSearch->getSliceSize() );
 	}

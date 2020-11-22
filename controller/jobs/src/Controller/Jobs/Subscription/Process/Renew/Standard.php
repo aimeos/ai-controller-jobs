@@ -96,7 +96,7 @@ class Standard
 
 		do
 		{
-			$search->setSlice( $start, 100 );
+			$search->slice( $start, 100 );
 			$items = $manager->search( $search );
 
 			foreach( $items as $item )

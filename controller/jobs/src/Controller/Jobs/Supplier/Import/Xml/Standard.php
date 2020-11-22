@@ -264,7 +264,7 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier' );
-		$search = $manager->filter()->setSlice( 0, count( $codes ) );
+		$search = $manager->filter()->slice( 0, count( $codes ) );
 		$search->setConditions( $search->compare( '==', 'supplier.code', array_keys( $codes ) ) );
 
 		foreach( $manager->search( $search, $ref ) as $item ) {

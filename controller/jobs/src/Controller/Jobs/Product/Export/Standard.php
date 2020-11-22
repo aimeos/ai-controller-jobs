@@ -292,14 +292,14 @@ class Standard
 
 		$search = $manager->filter( $default );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
-		$search->setSlice( 0, $maxQuery );
+		$search->slice( 0, $maxQuery );
 
 		$content = $this->createContent( $container, $filenum );
 		$names[] = $content->getResource();
 
 		do
 		{
-			$items = $manager->search( $search->setSlice( $start, $maxQuery ), $domains );
+			$items = $manager->search( $search->slice( $start, $maxQuery ), $domains );
 			$remaining = $maxItems * $filenum - $start;
 			$count = count( $items );
 

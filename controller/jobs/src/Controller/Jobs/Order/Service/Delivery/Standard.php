@@ -120,7 +120,7 @@ class Standard
 
 					do
 					{
-						$orderSearch->setSlice( $orderStart, $maxItems );
+						$orderSearch->slice( $orderStart, $maxItems );
 						$orderItems = $orderManager->search( $orderSearch )->toArray();
 
 						if( !empty( $orderItems ) )
@@ -151,7 +151,7 @@ class Standard
 
 			$count = count( $serviceItems );
 			$start += $count;
-			$serviceSearch->setSlice( $start );
+			$serviceSearch->slice( $start );
 		}
 		while( $count >= $serviceSearch->getSliceSize() );
 	}
