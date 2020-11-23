@@ -317,15 +317,7 @@ class Standard
 	 */
 	protected function initCriteria( \Aimeos\MW\Criteria\Iface $criteria, array $msg ) : \Aimeos\MW\Criteria\Iface
 	{
-		if( isset( $msg['filter'] ) && ( $cond = $criteria->toConditions( $msg['filter'] ) ) !== null ) {
-			$criteria->setConditions( $cond );
-		}
-
-		if( isset( $msg['sort'] ) && is_array( $msg['sort'] ) ) {
-			$criteria->setSortations( $criteria->toSortations( $msg['sort'] ) );
-		}
-
-		return $criteria;
+		return $criteria->add( $criteria->parse( $msg['filter'] ?? [] ) )->order( $msg['sort'] ?? [] );
 	}
 
 
