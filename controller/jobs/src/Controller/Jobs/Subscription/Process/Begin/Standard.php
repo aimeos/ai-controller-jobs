@@ -131,7 +131,7 @@ class Standard
 			$items = $manager->search( $search );
 			$ordBaseIds = $items->getOrderBaseId()->toArray();
 
-			$orderSearch = $orderManager->filter()->slice( 0, $search->getSliceSize() );
+			$orderSearch = $orderManager->filter()->slice( 0, $search->getLimit() );
 			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
 			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
 
@@ -170,6 +170,6 @@ class Standard
 			$count = count( $items );
 			$start += $count;
 		}
-		while( $count === $search->getSliceSize() );
+		while( $count === $search->getLimit() );
 	}
 }

@@ -155,7 +155,7 @@ class Standard
 						$orderStart += $orderCount;
 						$orderSearch->slice( $orderStart );
 					}
-					while( $orderCount >= $orderSearch->getSliceSize() );
+					while( $orderCount >= $orderSearch->getLimit() );
 				}
 				catch( \Exception $e )
 				{
@@ -168,6 +168,6 @@ class Standard
 			$start += $count;
 			$serviceSearch->slice( $start );
 		}
-		while( $count >= $serviceSearch->getSliceSize() );
+		while( $count >= $serviceSearch->getLimit() );
 	}
 }

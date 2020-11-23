@@ -100,6 +100,6 @@ class Standard
 			$start += $count;
 			$search->slice( $start );
 		}
-		while( $count >= $search->getSliceSize() );
+		while( $count >= $search->getLimit() );
 	}
 }

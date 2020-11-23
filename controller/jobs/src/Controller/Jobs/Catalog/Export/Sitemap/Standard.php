@@ -486,7 +486,7 @@ class Standard
 			$start += $count;
 			$search->slice( $start, $maxQuery );
 		}
-		while( $count >= $search->getSliceSize() );
+		while( $count >= $search->getLimit() );
 
 		$this->closeContent( $content );
 

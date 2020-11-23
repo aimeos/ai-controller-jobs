@@ -154,7 +154,7 @@ class Standard
 			$count = count( $items );
 			$start += $count;
 		}
-		while( $count === $search->getSliceSize() );
+		while( $count === $search->getLimit() );
 	}
 
 

@@ -61,7 +61,7 @@ class Standard
 			$start += $count;
 			unset( $items );
 		}
-		while( $count === $search->getSliceSize() );
+		while( $count === $search->getLimit() );
 	}
 
 

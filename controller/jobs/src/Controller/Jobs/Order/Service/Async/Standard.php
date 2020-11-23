@@ -77,6 +77,6 @@ class Standard
 			$count = count( $serviceItems );
 			$start += $count;
 		}
-		while( $count >= $search->getSliceSize() );
+		while( $count >= $search->getLimit() );
 	}
 }
