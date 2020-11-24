@@ -142,11 +142,7 @@ class Standard
 	protected function addJob( \Aimeos\MShop\Context\Item\Iface $context, string $path )
 	{
 		$manager = \Aimeos\MAdmin::create( $context, 'job' );
-
-		$item = $manager->create();
-		$item->setResult( ['file' => $path] );
-		$item->setLabel( $path );
-
+		$item = $manager->create()->setPath( $path )->setLabel( $path );
 		$manager->save( $item, false );
 	}
 
