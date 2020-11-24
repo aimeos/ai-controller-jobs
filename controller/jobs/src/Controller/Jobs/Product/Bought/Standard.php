@@ -214,7 +214,7 @@ class Standard
 
 
 		$search = $baseProductManager->filter();
-		$func = $search->createFunction( 'order.base.product.count', array( (string) $id ) );
+		$func = $search->make( 'order.base.product.count', array( (string) $id ) );
 		$expr = array(
 			$search->compare( '==', 'order.base.product.productid', $prodIds ),
 			$search->compare( '>', 'order.base.product.ctime', $date ),
