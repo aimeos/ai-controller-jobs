@@ -99,7 +99,7 @@ class Standard
 		 */
 		$changefreq = $config->get( 'controller/jobs/catalog/export/sitemap/changefreq', 'daily' );
 
-		/** controller/jobs/catalog/export/sitemap/standard/template-items
+		/** controller/jobs/catalog/export/sitemap/template-items
 		 * Relative path to the XML items template of the catalog site map job controller.
 		 *
 		 * The template file contains the XML code and processing instructions
@@ -117,11 +117,11 @@ class Standard
 		 * @param string Relative path to the template creating XML code for the site map items
 		 * @since 2019.02
 		 * @category Developer
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-header
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-footer
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-index
+		 * @see controller/jobs/catalog/export/sitemap/template-header
+		 * @see controller/jobs/catalog/export/sitemap/template-footer
+		 * @see controller/jobs/catalog/export/sitemap/template-index
 		 */
-		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-items';
+		$tplconf = 'controller/jobs/catalog/export/sitemap/template-items';
 		$default = 'catalog/export/sitemap-items-body-standard';
 
 		$context = $this->getContext();
@@ -220,7 +220,7 @@ class Standard
 	 */
 	protected function createContent( \Aimeos\MW\Container\Iface $container, int $filenum ) : \Aimeos\MW\Container\Content\Iface
 	{
-		/** controller/jobs/catalog/export/sitemap/standard/template-header
+		/** controller/jobs/catalog/export/sitemap/template-header
 		 * Relative path to the XML site map header template of the catalog site map job controller.
 		 *
 		 * The template file contains the XML code and processing instructions
@@ -238,11 +238,11 @@ class Standard
 		 * @param string Relative path to the template creating XML code for the site map header
 		 * @since 2019.02
 		 * @category Developer
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-items
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-footer
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-index
+		 * @see controller/jobs/catalog/export/sitemap/template-items
+		 * @see controller/jobs/catalog/export/sitemap/template-footer
+		 * @see controller/jobs/catalog/export/sitemap/template-index
 		 */
-		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-header';
+		$tplconf = 'controller/jobs/catalog/export/sitemap/template-header';
 		$default = 'catalog/export/sitemap-items-header-standard';
 
 		$context = $this->getContext();
@@ -263,7 +263,7 @@ class Standard
 	 */
 	protected function closeContent( \Aimeos\MW\Container\Content\Iface $content )
 	{
-		/** controller/jobs/catalog/export/sitemap/standard/template-footer
+		/** controller/jobs/catalog/export/sitemap/template-footer
 		 * Relative path to the XML site map footer template of the catalog site map job controller.
 		 *
 		 * The template file contains the XML code and processing instructions
@@ -281,11 +281,11 @@ class Standard
 		 * @param string Relative path to the template creating XML code for the site map footer
 		 * @since 2019.02
 		 * @category Developer
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-header
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-items
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-index
+		 * @see controller/jobs/catalog/export/sitemap/template-header
+		 * @see controller/jobs/catalog/export/sitemap/template-items
+		 * @see controller/jobs/catalog/export/sitemap/template-index
 		 */
-		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-footer';
+		$tplconf = 'controller/jobs/catalog/export/sitemap/template-footer';
 		$default = 'catalog/export/sitemap-items-footer-standard';
 
 		$context = $this->getContext();
@@ -307,7 +307,7 @@ class Standard
 		$config = $context->getConfig();
 		$view = $context->getView();
 
-		/** controller/jobs/catalog/export/sitemap/standard/template-index
+		/** controller/jobs/catalog/export/sitemap/template-index
 		 * Relative path to the XML site map index template of the catalog site map job controller.
 		 *
 		 * The template file contains the XML code and processing instructions
@@ -325,11 +325,11 @@ class Standard
 		 * @param string Relative path to the template creating XML code for the site map index
 		 * @since 2019.02
 		 * @category Developer
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-header
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-items
-		 * @see controller/jobs/catalog/export/sitemap/standard/template-footer
+		 * @see controller/jobs/catalog/export/sitemap/template-header
+		 * @see controller/jobs/catalog/export/sitemap/template-items
+		 * @see controller/jobs/catalog/export/sitemap/template-footer
 		 */
-		$tplconf = 'controller/jobs/catalog/export/sitemap/standard/template-index';
+		$tplconf = 'controller/jobs/catalog/export/sitemap/template-index';
 		$default = 'catalog/export/sitemap-index-standard';
 
 		/** controller/jobs/catalog/export/sitemap/baseurl

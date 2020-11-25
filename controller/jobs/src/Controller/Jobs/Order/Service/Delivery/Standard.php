@@ -65,8 +65,8 @@ class Standard
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
-		 * @see controller/jobs/order/email/payment/standard/limit-days
-		 * @see controller/jobs/order/email/delivery/standard/limit-days
+		 * @see controller/jobs/order/email/payment/limit-days
+		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/order/service/delivery/batch-max
 		 */
 		$days = $context->getConfig()->get( 'controller/jobs/order/service/delivery/limit-days', 90 );

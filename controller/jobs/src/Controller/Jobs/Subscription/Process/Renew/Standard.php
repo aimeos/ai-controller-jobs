@@ -211,7 +211,7 @@ class Standard
 	protected function addBasketCoupons( \Aimeos\MShop\Context\Item\Iface $context,
 		\Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\Map $codes ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
-		/** controller/jobs/subscription/process/renew/standard/use-coupons
+		/** controller/jobs/subscription/process/renew/use-coupons
 		 * Applies the coupons of the previous order also to the new one
 		 *
 		 * Reuse coupon codes added to the basket by the customer the first time
@@ -224,7 +224,7 @@ class Standard
 		 * @category User
 		 * @since 2018.10
 		 */
-		if( $context->getConfig()->get( 'controller/jobs/subscription/process/renew/standard/use-coupons', false ) )
+		if( $context->getConfig()->get( 'controller/jobs/subscription/process/renew/use-coupons', false ) )
 		{
 			foreach( $codes as $code )
 			{

@@ -49,7 +49,7 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		$this->mimes = array_flip( $context->getConfig()->get( 'controller/common/media/standard/extensions', [] ) );
+		$this->mimes = array_flip( $context->getConfig()->get( 'controller/common/media/extensions', [] ) );
 
 		/** controller/common/product/import/csv/processor/media/listtypes
 		 * Names of the product list types for media that are updated or removed

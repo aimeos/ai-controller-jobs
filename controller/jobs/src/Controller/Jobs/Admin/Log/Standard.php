@@ -55,7 +55,7 @@ class Standard
 		$config = $context->getConfig();
 		$container = null;
 
-		/** controller/jobs/admin/log/standard/limit-days
+		/** controller/jobs/admin/log/limit-days
 		 * Only remove log entries that were created berore the configured number of days
 		 *
 		 * This option specifies the number of days log entries will be kept in
@@ -66,15 +66,15 @@ class Standard
 		 * @since 2014.09
 		 * @category User
 		 * @category Developer
-		 * @see controller/jobs/admin/log/standard/path
-		 * @see controller/jobs/admin/log/standard/container/type
-		 * @see controller/jobs/admin/log/standard/container/format
-		 * @see controller/jobs/admin/log/standard/container/options
+		 * @see controller/jobs/admin/log/path
+		 * @see controller/jobs/admin/log/container/type
+		 * @see controller/jobs/admin/log/container/format
+		 * @see controller/jobs/admin/log/container/options
 		 */
-		$limit = $config->get( 'controller/jobs/admin/log/standard/limit-days', 30 );
+		$limit = $config->get( 'controller/jobs/admin/log/limit-days', 30 );
 		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
 
-		/** controller/jobs/admin/log/standard/path
+		/** controller/jobs/admin/log/path
 		 * Path to a writable directory where the log archive files should be stored
 		 *
 		 * During normal operation, a lot of data can be logged, not only for
@@ -96,14 +96,14 @@ class Standard
 		 * @since 2014.09
 		 * @category Developer
 		 * @category User
-		 * @see controller/jobs/admin/log/standard/container/type
-		 * @see controller/jobs/admin/log/standard/container/format
-		 * @see controller/jobs/admin/log/standard/container/options
-		 * @see controller/jobs/admin/log/standard/limit-days
+		 * @see controller/jobs/admin/log/container/type
+		 * @see controller/jobs/admin/log/container/format
+		 * @see controller/jobs/admin/log/container/options
+		 * @see controller/jobs/admin/log/limit-days
 		 */
-		$path = $config->get( 'controller/jobs/admin/log/standard/path', sys_get_temp_dir() );
+		$path = $config->get( 'controller/jobs/admin/log/path', sys_get_temp_dir() );
 
-		/** controller/jobs/admin/log/standard/container/type
+		/** controller/jobs/admin/log/container/type
 		 * Container file type storing all coupon code files to import
 		 *
 		 * All coupon code files or content objects must be put into one
@@ -121,13 +121,13 @@ class Standard
 		 * @since 2014.09
 		 * @category Developer
 		 * @category User
-		 * @see controller/jobs/admin/log/standard/path
-		 * @see controller/jobs/admin/log/standard/container/format
-		 * @see controller/jobs/admin/log/standard/container/options
-		 * @see controller/jobs/admin/log/standard/limit-days
+		 * @see controller/jobs/admin/log/path
+		 * @see controller/jobs/admin/log/container/format
+		 * @see controller/jobs/admin/log/container/options
+		 * @see controller/jobs/admin/log/limit-days
 		 */
 
-		/** controller/jobs/admin/log/standard/container/format
+		/** controller/jobs/admin/log/container/format
 		 * Format of the coupon code files to import
 		 *
 		 * The coupon codes are stored in one or more files or content
@@ -146,13 +146,13 @@ class Standard
 		 * @since 2014.09
 		 * @category Developer
 		 * @category User
-		 * @see controller/jobs/admin/log/standard/path
-		 * @see controller/jobs/admin/log/standard/container/type
-		 * @see controller/jobs/admin/log/standard/container/options
-		 * @see controller/jobs/admin/log/standard/limit-days
+		 * @see controller/jobs/admin/log/path
+		 * @see controller/jobs/admin/log/container/type
+		 * @see controller/jobs/admin/log/container/options
+		 * @see controller/jobs/admin/log/limit-days
 		 */
 
-		/** controller/jobs/admin/log/standard/container/options
+		/** controller/jobs/admin/log/container/options
 		 * Options changing the expected format of the coupon codes to import
 		 *
 		 * Each content format may support some configuration options to change
@@ -172,15 +172,15 @@ class Standard
 		 * @since 2014.09
 		 * @category Developer
 		 * @category User
-		 * @see controller/jobs/admin/log/standard/path
-		 * @see controller/jobs/admin/log/standard/container/type
-		 * @see controller/jobs/admin/log/standard/container/format
-		 * @see controller/jobs/admin/log/standard/limit-days
+		 * @see controller/jobs/admin/log/path
+		 * @see controller/jobs/admin/log/container/type
+		 * @see controller/jobs/admin/log/container/format
+		 * @see controller/jobs/admin/log/limit-days
 		 */
 
-		$type = $config->get( 'controller/jobs/admin/log/standard/container/type', 'Zip' );
-		$format = $config->get( 'controller/jobs/admin/log/standard/container/format', 'CSV' );
-		$options = $config->get( 'controller/jobs/admin/log/standard/container/options', [] );
+		$type = $config->get( 'controller/jobs/admin/log/container/type', 'Zip' );
+		$format = $config->get( 'controller/jobs/admin/log/container/format', 'CSV' );
+		$options = $config->get( 'controller/jobs/admin/log/container/options', [] );
 
 		$path .= DIRECTORY_SEPARATOR . str_replace( ' ', '_', $limitDate );
 		$container = \Aimeos\MW\Container\Factory::getContainer( $path, $type, $format, $options );
