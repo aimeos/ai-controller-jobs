@@ -279,7 +279,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = $manager->create();
 		$item->setCode( $code );
 
-		$manager->insertItem( $item );
+		$manager->insert( $item );
 
 		return $item;
 	}

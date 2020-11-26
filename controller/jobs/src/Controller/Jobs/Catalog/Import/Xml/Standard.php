@@ -244,7 +244,7 @@ class Standard
 		}
 
 		$item = $this->process( $manager->create(), $node );
-		return $manager->insertItem( $item, $parentid )->getId();
+		return $manager->insert( $item, $parentid )->getId();
 	}
 
 

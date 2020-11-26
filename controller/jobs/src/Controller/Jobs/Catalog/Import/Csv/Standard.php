@@ -595,7 +595,7 @@ class Standard
 					}
 					else
 					{
-						$item = $manager->insertItem( $item, $parentid );
+						$item = $manager->insert( $item, $parentid );
 					}
 
 					$list = $processor->process( $item, $list );
