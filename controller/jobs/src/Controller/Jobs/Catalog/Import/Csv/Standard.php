@@ -590,7 +590,7 @@ class Standard
 
 					if( isset( $catalogMap[$code] ) )
 					{
-						$manager->moveItem( $item->getId(), $item->getParentId(), $parentid );
+						$manager->move( $item->getId(), $item->getParentId(), $parentid );
 						$item = $manager->save( $item );
 					}
 					else
