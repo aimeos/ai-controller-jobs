@@ -1,3 +1,0 @@
-src_dir: ext/ai-controller-jobs
-json_path: ext/ai-controller-jobs/coveralls.json
-coverage_clover: ext/ai-controller-jobs/controller/jobs/tests/coverage.xml
