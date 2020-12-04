@@ -113,11 +113,14 @@ class Standard
 		{
 			$refItem = $refItem->setUrl( $list['media.url'] ?? '' );
 
+			$fs = $this->getContext()->getFilesystemManager()->get( 'fs-media' );
+			$is = ( $fs instanceof \Aimeos\MW\Filesystem\MetaIface ? true : false );
+
 			if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
 				$refItem->setPreviews( $map );
 			} elseif( isset( $list['media.preview'] ) ) {
 				$refItem->setPreview( $list['media.preview'] );
-			} elseif( $refItem->isModified() ) {
+			} elseif( !$is || date( 'Y-m-d H:i:s', $fs->time( $refItem->getUrl() ) ) < $refItem->getTimeModified() ) {
 				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $this->getContext() )->scale( $refItem );
 			}
 
