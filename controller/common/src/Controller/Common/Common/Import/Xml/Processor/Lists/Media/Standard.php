@@ -55,6 +55,9 @@ class Standard
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
+		$fs = $context->getFilesystemManager()->get( 'fs-media' );
+		$is = ( $fs instanceof \Aimeos\MW\Filesystem\MetaIface ? true : false );
+
 		foreach( $node->childNodes as $refNode )
 		{
 			if( $refNode->nodeName !== 'mediaitem' ) {
@@ -89,7 +92,7 @@ class Standard
 					$refItem->setPreviews( $map );
 				} elseif( isset( $list['media.preview'] ) ) {
 					$refItem->setPreview( $list['media.preview'] );
-				} elseif( $refItem->isModified() ) {
+				} elseif( !$is || date( 'Y-m-d H:i:s', $fs->time( $url ) ) < $refItem->getTimeModified() ) {
 					$refItem = $mediacntl->scale( $refItem );
 				}
 
