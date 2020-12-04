@@ -299,30 +299,37 @@ class Standard
 	 */
 	protected function process( \Aimeos\MShop\Product\Item\Iface $item, \DomElement $node )
 	{
-		$list = $subnodes = [];
-
-		foreach( $node->attributes as $attr ) {
-			$list[$attr->nodeName] = $attr->nodeValue;
-		}
-
-		foreach( $node->childNodes as $tag )
+		try
 		{
-			if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
-				$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-			} elseif( in_array( $tag->nodeName, ['catalog'] ) ) {
-				$subnodes[$tag->nodeName] = $tag;
-			} else {
-				$list[$tag->nodeName] = $tag->nodeValue;
+			$list = $subnodes = [];
+
+			foreach( $node->attributes as $attr ) {
+				$list[$attr->nodeName] = $attr->nodeValue;
+			}
+
+			foreach( $node->childNodes as $tag )
+			{
+				if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
+					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
+				} elseif( in_array( $tag->nodeName, ['catalog'] ) ) {
+					$subnodes[$tag->nodeName] = $tag;
+				} else {
+					$list[$tag->nodeName] = $tag->nodeValue;
+				}
+			}
+
+			$list['product.config'] = isset( $list['product.config'] ) ? json_decode( $list['product.config'], true ) : [];
+
+			$item = \Aimeos\MShop::create( $this->getContext(), 'product' )->saveItem( $item->fromArray( $list, true ) );
+			$this->addType( 'product/type', 'product', $item->getType() );
+
+			foreach( $subnodes as $name => $subnode ) {
+				$item = $this->getProcessor( $name )->process( $item, $subnode );
 			}
 		}
-
-		$list['product.config'] = isset( $list['product.config'] ) ? json_decode( $list['product.config'], true ) : [];
-
-		$item = \Aimeos\MShop::create( $this->getContext(), 'product' )->saveItem( $item->fromArray( $list, true ) );
-		$this->addType( 'product/type', 'product', $item->getType() );
-
-		foreach( $subnodes as $name => $subnode ) {
-			$item = $this->getProcessor( $name )->process( $item, $subnode );
+		catch( \Exception $e )
+		{
+			$this->getContext()->getLogger()->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
 		}
 
 		return $item;
