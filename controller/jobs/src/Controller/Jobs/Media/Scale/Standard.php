@@ -92,11 +92,9 @@ class Standard
 	 */
 	protected function rescale( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Map $items )
 	{
+		$logger = $context->getLogger();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
-
-		$fs = $context->getFileSystemManager()->get( 'fs-media' );
-		$is = ( $fs instanceof \Aimeos\MW\Filesystem\MetaIface ? true : false );
 
 		/** controller/jobs/media/scale/force
 		 * Enforce rescaling all images
@@ -115,16 +113,10 @@ class Standard
 
 		foreach( $items as $item )
 		{
-			try
-			{
-				if( $is && date( 'Y-m-d H:i:s', $fs->time( $item->getUrl() ) ) > $item->getTimeModified() || $force ) {
-					$manager->save( $cntl->scale( $item ) );
-				}
-			}
-			catch( \Exception $e )
-			{
-				$msg = sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() );
-				$context->getLogger()->log( $msg );
+			try {
+				$manager->save( $cntl->scale( $item, 'fs-media', $force ) );
+			} catch( \Exception $e ) {
+				$logger->log( sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() ) );
 			}
 		}
 	}

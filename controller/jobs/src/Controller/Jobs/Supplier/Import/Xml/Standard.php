@@ -293,21 +293,30 @@ class Standard
 	 */
 	protected function process( \Aimeos\MShop\Supplier\Item\Iface $item, \DomElement $node ) : \Aimeos\MShop\Supplier\Item\Iface
 	{
-		$list = [];
-
-		foreach( $node->attributes as $attr ) {
-			$list[$attr->nodeName] = $attr->nodeValue;
-		}
-
-		foreach( $node->childNodes as $tag )
+		try
 		{
-			if( in_array( $tag->nodeName, ['address', 'lists', 'property'] ) ) {
-				$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-			} else {
-				$list[$tag->nodeName] = $tag->nodeValue;
+			$list = [];
+
+			foreach( $node->attributes as $attr ) {
+				$list[$attr->nodeName] = $attr->nodeValue;
 			}
+
+			foreach( $node->childNodes as $tag )
+			{
+				if( in_array( $tag->nodeName, ['address', 'lists', 'property'] ) ) {
+					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
+				} else {
+					$list[$tag->nodeName] = $tag->nodeValue;
+				}
+			}
+
+			$item->fromArray( $list, true );
+		}
+		catch( \Exception $e )
+		{
+			$this->getContext()->getLogger()->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
 		}
 
-		return $item->fromArray( $list, true );
+		return $item;
 	}
 }

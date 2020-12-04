@@ -302,23 +302,31 @@ class Standard
 	 */
 	protected function process( \Aimeos\MShop\Catalog\Item\Iface $item, \DomElement $node ) : \Aimeos\MShop\Catalog\Item\Iface
 	{
-		$list = [];
-
-		foreach( $node->attributes as $attr ) {
-			$list[$attr->nodeName] = $attr->nodeValue;
-		}
-
-		foreach( $node->childNodes as $tag )
+		try
 		{
-			if( $tag->nodeName === 'lists' ) {
-				$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-			} else {
-				$list[$tag->nodeName] = $tag->nodeValue;
+			$list = [];
+
+			foreach( $node->attributes as $attr ) {
+				$list[$attr->nodeName] = $attr->nodeValue;
 			}
+
+			foreach( $node->childNodes as $tag )
+			{
+				if( $tag->nodeName === 'lists' ) {
+					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
+				} else {
+					$list[$tag->nodeName] = $tag->nodeValue;
+				}
+			}
+
+			$list['catalog.config'] = isset( $list['catalog.config'] ) ? json_decode( $list['catalog.config'], true ) : [];
+			$item->fromArray( $list, true );
+		}
+		catch( \Exception $e )
+		{
+			$this->getContext()->getLogger()->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
 		}
 
-		$list['catalog.config'] = isset( $list['catalog.config'] ) ? json_decode( $list['catalog.config'], true ) : [];
-
-		return $item->fromArray( $list, true );
+		return $item;
 	}
 }
