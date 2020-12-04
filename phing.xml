@@ -3,7 +3,6 @@
 <project name="ai-controller-jobs extension" default="test">
 
 	<target name="test" description="Executes all tests">
-		<phing target="test" haltonfailure="true" dir="controller/common" />
 		<phing target="test" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
