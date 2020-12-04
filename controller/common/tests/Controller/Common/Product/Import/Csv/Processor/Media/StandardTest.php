@@ -18,8 +18,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
-
 		$this->context = \TestHelperCntl::getContext();
+
+		$fs = $this->context->getFileSystemManager()->get( 'fs-media' );
+		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
+		$fs->write( 'path/to/new.jpg', 'test' );
+		$fs->write( 'path/to/file', 'test' );
+		$fs->write( 'path/to/0', 'test' );
+		$fs->write( 'path/to/1', 'test' );
+		$fs->write( 'path/to/2', 'test' );
+		$fs->write( 'path/to/3', 'test' );
+
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
 	}
 
