@@ -23,6 +23,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperJobs::getContext();
 		$this->aimeos = \TestHelperJobs::getAimeos();
 
+		$fs = $this->context->getFileSystemManager()->get( 'fs-media' );
+		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
+		$fs->write( 'path/to/file2.jpg', 'test' );
+		$fs->write( 'path/to/file.jpg', 'test' );
+
 		$config = $this->context->getConfig();
 		$config->set( 'controller/jobs/supplier/import/xml/location', __DIR__ . '/_testfiles' );
 
