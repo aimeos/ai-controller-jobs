@@ -61,5 +61,7 @@ class Standard
 
 		$manager->rebuildIndex();
 		$manager->cleanupIndex( $timestamp );
+
+		$context->getCache()->deleteByTags( ['product'] );
 	}
 }
