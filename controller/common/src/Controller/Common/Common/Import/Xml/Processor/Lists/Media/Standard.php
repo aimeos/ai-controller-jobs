@@ -88,7 +88,7 @@ class Standard
 			$name = $resource . '.lists.config';
 			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
 			$name = $resource . '.lists.type';
-			$list[$name] = ( isset( $list[$name] ) ? $list[$name] : 'default' );
+			$list[$name] = $list[$name] ?? 'default';
 
 			$this->addType( $resource . '/lists/type', 'media', $list[$resource . '.lists.type'] );
 
@@ -109,24 +109,30 @@ class Standard
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list )
 	{
+		$context = $this->getContext();
+		$fs = $context->fs( 'fs-media' );
+		$url = $list['media.url'] ?? '';
+
 		try
 		{
-			$refItem = $refItem->setUrl( $list['media.url'] ?? '' );
-
 			if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
-				$refItem->setPreviews( $map );
+				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
-				$refItem->setPreview( $list['media.preview'] );
-			} elseif( $refItem->isModified() ) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $this->getContext() )->scale( $refItem );
+				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
+			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url
+				|| $fs->has( $url ) && (
+					!( $fs instanceof \Aimeos\MW\Filesystem\MetaIface )
+					|| date( 'Y-m-d H:i:s', $fs->time( $url ) ) > $refItem->getTimeModified()
+				)
+			) {
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ) );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );
 		}
 		catch( \Aimeos\Controller\Common\Exception $e )
 		{
-			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $refItem->getUrl(), $e->getMessage() );
-			$this->getContext()->getLogger()->log( $msg );
+			$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() ) );
 		}
 
 		return $refItem->fromArray( $list );
