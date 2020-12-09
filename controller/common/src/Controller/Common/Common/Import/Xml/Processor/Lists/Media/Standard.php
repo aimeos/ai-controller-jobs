@@ -83,24 +83,26 @@ class Standard
 				}
 			}
 
+			$url = isset( $list['media.url'] ) ? $list['media.url'] : '';
+			$mtime = $refItem->getTimeModified();
+
 			try
 			{
-				$url = isset( $list['media.url'] ) ? $list['media.url'] : '';
-				$refItem = $refItem->setUrl( $url );
-
 				if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
-					$refItem->setPreviews( $map );
+					$refItem->setPreviews( $map )->setUrl( $url );
 				} elseif( isset( $list['media.preview'] ) ) {
-					$refItem->setPreview( $list['media.preview'] );
-				} elseif( !$is || date( 'Y-m-d H:i:s', $fs->time( $url ) ) < $refItem->getTimeModified() ) {
-					$refItem = $mediacntl->scale( $refItem );
+					$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
+				} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) {
+					$refItem = $mediacntl->scale( $refItem->setUrl( $url ) );
+				} elseif( $fs->has( $url ) && ( !$is || date( 'Y-m-d H:i:s', $fs->time( $url ) ) > $mtime ) ) {
+					$refItem = $mediacntl->scale( $refItem->setUrl( $url ) );
 				}
 
 				unset( $list['media.previews'], $list['media.preview'] );
 			}
 			catch( \Aimeos\Controller\Common\Exception $e )
 			{
-				$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $refItem->getUrl(), $e->getMessage() ) );
+				$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() ) );
 			}
 
 			$refItem = $refItem->fromArray( $list );
