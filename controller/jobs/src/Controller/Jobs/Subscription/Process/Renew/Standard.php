@@ -83,7 +83,7 @@ class Standard
 		$search = $manager->filter( true );
 		$expr = [
 			$search->compare( '<=', 'subscription.datenext', $date ),
-			$search->combine( '||', [
+			$search->or( [
 				$search->compare( '==', 'subscription.dateend', null ),
 				$search->compare( '>', 'subscription.dateend', $date ),
 			] ),
