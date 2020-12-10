@@ -299,7 +299,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
 
 		$search = $manager->filter()->slice( 0, 10000 );
-		$search->setConditions( $search->combine( '&&', [
+		$search->setConditions( $search->and( [
 			$search->compare( '==', 'stock.productid', $ids ),
 			$search->compare( '==', 'stock.type', $types )
 		] ) );

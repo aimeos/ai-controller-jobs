@@ -114,7 +114,7 @@ class Standard
 						$orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
 						$orderSearch->compare( '==', 'order.base.service.type', 'delivery' ),
 					);
-					$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
+					$orderSearch->setConditions( $orderSearch->and( $expr ) );
 
 					$orderStart = 0;
 

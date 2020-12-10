@@ -156,7 +156,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->compare( '==', 'attribute.domain', 'product' ),
 			$search->compare( '==', 'attribute.label', 'import-%' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( array( $search->sort( '+', 'attribute.id' ) ) );
 
 		$start = 0;
@@ -183,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->compare( '==', 'media.domain', 'product' ),
 			$search->compare( '==', 'media.label', 'import-%' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( array( $search->sort( '+', 'media.id' ) ) );
 
 		$start = 0;
@@ -210,7 +210,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				$search->compare( '==', 'price.domain', 'product' ),
 				$search->compare( '==', 'price.label', 'import-%' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( array( $search->sort( '+', 'price.id' ) ) );
 
 		$start = 0;
@@ -260,7 +260,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->compare( '==', 'text.domain', 'product' ),
 			$search->compare( '==', 'text.label', 'import-%' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( array( $search->sort( '+', 'text.id' ) ) );
 
 		$start = 0;

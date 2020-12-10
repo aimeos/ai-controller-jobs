@@ -117,7 +117,7 @@ class Standard
 			$search->compare( '==', 'subscription.datenext', null ),
 			$search->getConditions(),
 		];
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
 
 		$date = date( 'Y-m-d H:i:s', time() - 86400 * $days );

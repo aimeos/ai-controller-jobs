@@ -78,7 +78,7 @@ class Standard
 			$search->compare( '<', 'subscription.dateend', date( 'Y-m-d' ) ),
 			$search->getConditions(),
 		];
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
 
 		$start = 0;

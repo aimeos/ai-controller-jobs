@@ -89,7 +89,7 @@ class Standard
 			] ),
 			$search->getConditions(),
 		];
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
 
 		$start = 0;

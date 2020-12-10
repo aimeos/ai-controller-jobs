@@ -260,6 +260,6 @@ class Standard
 			$search->compare( '==', 'supplier.lists.refid', $prodid ),
 		];
 
-		return $manager->search( $search->setConditions( $search->combine( '&&', $expr ) ) );
+		return $manager->search( $search->setConditions( $search->and( $expr ) ) );
 	}
 }

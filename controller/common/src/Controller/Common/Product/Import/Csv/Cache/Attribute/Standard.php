@@ -73,7 +73,7 @@ class Standard
 			$search->compare( '==', 'attribute.code', $code ),
 			$search->compare( '==', 'attribute.type', $type ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		if( ( $item = $manager->search( $search )->first() ) !== null )
 		{

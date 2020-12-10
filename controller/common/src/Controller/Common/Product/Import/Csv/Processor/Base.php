@@ -67,7 +67,7 @@ abstract class Base
 						$search->compare( '==', $prefix . '.domain', $domain ),
 						$search->compare( '==', $prefix . '.code', $codes )
 					];
-					$search->setConditions( $search->combine( '&&', $expr ) );
+					$search->setConditions( $search->and( $expr ) );
 
 					$types = $items = [];
 

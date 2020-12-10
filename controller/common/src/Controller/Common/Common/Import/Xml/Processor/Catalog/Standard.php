@@ -156,7 +156,7 @@ class Standard
 			$search->compare( '==', 'catalog.lists.refid', $id ),
 		];
 
-		return $manager->search( $search->setConditions( $search->combine( '&&', $expr ) ) );
+		return $manager->search( $search->setConditions( $search->and( $expr ) ) );
 	}
 
 

@@ -129,7 +129,7 @@ class Standard
 					$expr[] = $orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() );
 					$expr[] = $orderSearch->compare( '==', 'order.base.service.type', 'payment' );
 
-					$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
+					$orderSearch->setConditions( $orderSearch->and( $expr ) );
 
 
 					$orderStart = 0;

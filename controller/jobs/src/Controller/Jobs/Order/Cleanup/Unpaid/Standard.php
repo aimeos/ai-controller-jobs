@@ -79,7 +79,7 @@ class Standard
 			$search->compare( '<', 'order.mtime', $limit ),
 			$search->compare( '<', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_REFUND ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		$start = 0;
 

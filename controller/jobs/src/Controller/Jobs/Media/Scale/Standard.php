@@ -59,7 +59,7 @@ class Standard
 			$search->compare( '==', 'media.domain', ['attribute', 'catalog', 'product', 'service', 'supplier'] ),
 			$search->compare( '=~', 'media.mimetype', 'image/' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->setSortations( array( $search->sort( '+', 'media.id' ) ) );
 
 		$start = 0;

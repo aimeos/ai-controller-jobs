@@ -220,7 +220,7 @@ class Standard
 			$search->compare( '>', 'order.base.product.ctime', $date ),
 			$search->compare( '==', $func, 1 ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		$relativeCounts = $baseProductManager->aggregate( $search, 'order.base.product.productid' );
 
@@ -230,7 +230,7 @@ class Standard
 			$search->compare( '==', 'catalog.lists.refid', $relativeCounts->keys()->toArray() ),
 			$search->compare( '==', 'catalog.lists.domain', 'product' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		foreach( $catalogListManager->search( $search ) as $listItem ) {
 			$refIds[$listItem->getRefId()] = true;
@@ -305,7 +305,7 @@ class Standard
 			$search->compare( '==', 'product.lists.domain', 'product' ),
 			$search->compare( '==', 'product.lists.type', 'bought-together' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		$listItems = $manager->search( $search );
 
