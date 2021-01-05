@@ -5,7 +5,7 @@ namespace Aimeos\Perf\Product\Import\Csv;
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2020
+ * @copyright Aimeos (aimeos.org), 2015-2021
  */
 class StandardTest extends \PHPUnit\Framework\TestCase
 {

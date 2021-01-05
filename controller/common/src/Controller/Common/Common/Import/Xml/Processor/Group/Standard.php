@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Aimeos GmbH (aimeos.com), 2019-2020
+ * @copyright Aimeos GmbH (aimeos.com), 2019-2021
  * @package Controller
  * @subpackage Common
  */
