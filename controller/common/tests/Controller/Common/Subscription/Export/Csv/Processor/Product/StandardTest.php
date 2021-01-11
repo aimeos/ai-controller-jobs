@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mapping = array(
 			0 => 'order.base.product.type',
 			1 => 'order.base.product.stocktype',
-			2 => 'order.base.product.suppliercode',
+			2 => 'order.base.product.suppliername',
 			3 => 'order.base.product.prodcode',
 			4 => 'order.base.product.productid',
 			5 => 'order.base.product.quantity',
@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 18, count( $data[0] ) );
 		$this->assertEquals( 'default', $data[0][0] );
 		$this->assertEquals( 'default', $data[0][1] );
-		$this->assertEquals( 'unitsupplier', $data[0][2] );
+		$this->assertEquals( 'Test supplier', $data[0][2] );
 		$this->assertEquals( 'CNE', $data[0][3] );
 		$this->assertGreaterThan( 0, $data[0][4] );
 		$this->assertEquals( '9', $data[0][5] );
