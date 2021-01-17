@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		<customer.address.lastname><![CDATA[User]]></customer.address.lastname>
 	</addressitem>
 	<addressitem>
-		<customer.address.salutation><![CDATA[mrs]]></customer.address.salutation>
+		<customer.address.salutation><![CDATA[ms]]></customer.address.salutation>
 		<customer.address.firstname><![CDATA[Mytest]]></customer.address.firstname>
 		<customer.address.lastname><![CDATA[Lastuser]]></customer.address.lastname>
 	</addressitem>
@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$pos = 0;
-		$expected = [['mr', 'Test', 'User'], ['mrs', 'Mytest', 'Lastuser']];
+		$expected = [['mr', 'Test', 'User'], ['ms', 'Mytest', 'Lastuser']];
 
 		$items = $customer->getAddressItems();
 		$this->assertEquals( 2, count( $items ) );
@@ -74,13 +74,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customer->addAddressItem( $manager->create()->setSalutation( 'mr' )
 			->setFirstname( 'Test' )->setLastname( 'User' )->setId( 1 ), 1 );
-		$customer->addAddressItem( $manager->create()->setSalutation( 'mrs' )
+		$customer->addAddressItem( $manager->create()->setSalutation( 'ms' )
 			->setFirstname( 'Mytest' )->setLastname( 'Lastuser' )->setId( 2 ), 2 );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <address>
 	<addressitem>
-		<customer.address.salutation><![CDATA[mrs]]></customer.address.salutation>
+		<customer.address.salutation><![CDATA[ms]]></customer.address.salutation>
 		<customer.address.firstname><![CDATA[Mytest]]></customer.address.firstname>
 		<customer.address.lastname><![CDATA[Lastuser]]></customer.address.lastname>
 	</addressitem>
@@ -95,7 +95,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$pos = 0;
-		$expected = [['mrs', 'Mytest', 'Lastuser'], ['mr', 'Test', 'User']];
+		$expected = [['ms', 'Mytest', 'Lastuser'], ['mr', 'Test', 'User']];
 
 		$items = $customer->getAddressItems();
 		$this->assertEquals( 2, count( $items ) );
@@ -118,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customer->addAddressItem( $manager->create()->setSalutation( 'mr' )
 			->setFirstname( 'Test' )->setLastname( 'User' )->setId( 1 ), 1 );
-		$customer->addAddressItem( $manager->create()->setSalutation( 'mrs' )
+		$customer->addAddressItem( $manager->create()->setSalutation( 'ms' )
 			->setFirstname( 'Mytest' )->setLastname( 'Lastuser' )->setId( 2 ), 2 );
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>

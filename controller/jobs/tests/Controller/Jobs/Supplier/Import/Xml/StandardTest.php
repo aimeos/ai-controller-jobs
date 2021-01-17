@@ -68,6 +68,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $item->getRefItems( 'media' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'text' ) ) );
 		$this->assertEquals( 1, count( $item->getAddressItems() ) );
-		$this->assertEquals( 'mrs', $item->getAddressItems()->first()->getSalutation() );
+		$this->assertEquals( 'ms', $item->getAddressItems()->first()->getSalutation() );
 	}
 }

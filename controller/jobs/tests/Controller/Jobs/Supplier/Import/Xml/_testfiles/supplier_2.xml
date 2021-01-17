@@ -9,7 +9,7 @@
 			<addressitem>
 				<supplier.address.company><![CDATA[Example company]]></supplier.address.company>
 				<supplier.address.vatid><![CDATA[DE12345678]]></supplier.address.vatid>
-				<supplier.address.salutation><![CDATA[mrs]]></supplier.address.salutation>
+				<supplier.address.salutation><![CDATA[ms]]></supplier.address.salutation>
 				<supplier.address.title><![CDATA[]]></supplier.address.title>
 				<supplier.address.firstname><![CDATA[Test]]></supplier.address.firstname>
 				<supplier.address.lastname><![CDATA[Supplier]]></supplier.address.lastname>

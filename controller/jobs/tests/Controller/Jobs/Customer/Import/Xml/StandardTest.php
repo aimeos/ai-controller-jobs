@@ -67,8 +67,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $item->getPropertyItems() ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'text' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'media' ) ) );
-		$this->assertEquals( 'mrs', $item->getPaymentAddress()->getSalutation() );
+		$this->assertEquals( 'ms', $item->getPaymentAddress()->getSalutation() );
 		$this->assertEquals( 'Example street', $item->getPaymentAddress()->getAddress1() );
-		$this->assertEquals( 'mrs', $item->getAddressItems()->first()->getSalutation() );
+		$this->assertEquals( 'ms', $item->getAddressItems()->first()->getSalutation() );
 	}
 }

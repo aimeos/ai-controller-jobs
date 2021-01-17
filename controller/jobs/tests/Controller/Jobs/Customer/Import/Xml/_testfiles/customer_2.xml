@@ -7,7 +7,7 @@
 		<customer.status><![CDATA[0]]></customer.status>
 		<customer.company><![CDATA[Example company]]></customer.company>
 		<customer.vatid><![CDATA[DE12345678]]></customer.vatid>
-		<customer.salutation><![CDATA[mrs]]></customer.salutation>
+		<customer.salutation><![CDATA[ms]]></customer.salutation>
 		<customer.title><![CDATA[]]></customer.title>
 		<customer.firstname><![CDATA[Test]]></customer.firstname>
 		<customer.lastname><![CDATA[User]]></customer.lastname>
@@ -32,7 +32,7 @@
 			<addressitem>
 				<customer.address.company><![CDATA[Example company]]></customer.address.company>
 				<customer.address.vatid><![CDATA[DE12345678]]></customer.address.vatid>
-				<customer.address.salutation><![CDATA[mrs]]></customer.address.salutation>
+				<customer.address.salutation><![CDATA[ms]]></customer.address.salutation>
 				<customer.address.title><![CDATA[]]></customer.address.title>
 				<customer.address.firstname><![CDATA[Test]]></customer.address.firstname>
 				<customer.address.lastname><![CDATA[User]]></customer.address.lastname>
