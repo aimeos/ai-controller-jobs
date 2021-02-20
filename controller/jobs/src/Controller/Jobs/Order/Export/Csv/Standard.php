@@ -109,18 +109,27 @@ class Standard
 		$maxcnt = (int) $config->get( 'controller/common/order/export/csv/max-size', 1000 );
 
 
+		$processed = [];
 		$processors = $this->getProcessors( $mappings );
 		$mq = $context->getMessageQueueManager()->get( 'mq-admin' )->getQueue( 'order-export' );
 
-		while( ( $msg = $mq->get() ) !== null )
+		while( $msg = $mq->get() )
 		{
 			try
 			{
-				if( ( $data = json_decode( $msg->getBody(), true ) ) === null ) {
-					throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid message: %1$s', $msg->getBody() ) );
-				}
+				$body = $msg->getBody();
+				$hash = md5( $body );
 
-				$this->export( $processors, $data, $maxcnt );
+				if( !isset( $processed[$hash] ) )
+				{
+					$processed[$hash] = true;
+
+					if( ( $data = json_decode( $body, true ) ) === null ) {
+						throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid message: %1$s', $body ) );
+					}
+
+					$this->export( $processors, $data, $maxcnt );
+				}
 			}
 			catch( \Exception $e )
 			{
