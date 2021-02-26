@@ -124,7 +124,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[$refItem->getUrl()][$refItem->getType()][$listItem->getType()] = $listItem;
+				$listMap[$refItem->getUrl()][$refItem->getType()][$refItem->getLanguageId()][$listItem->getType()] = $listItem;
 			}
 		}
 
@@ -134,6 +134,7 @@ class Standard
 				continue;
 			}
 
+			$langId = $this->getValue( $list, 'media.languageid' );
 			$type = $this->getValue( $list, 'media.type', 'default' );
 			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
@@ -149,9 +150,9 @@ class Standard
 			{
 				$url = trim( $url );
 
-				if( isset( $listMap[$url][$type][$listtype] ) )
+				if( isset( $listMap[$url][$type][$langId][$listtype] ) )
 				{
-					$listItem = $listMap[$url][$type][$listtype];
+					$listItem = $listMap[$url][$type][$langId][$listtype];
 					$refItem = $listItem->getRefItem();
 					unset( $listItems[$listItem->getId()] );
 				}
