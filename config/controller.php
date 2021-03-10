@@ -17,4 +17,20 @@ return [
 			],
 		],
 	],
+	'jobs' => [
+		'product' => [
+			'import' => [
+				'xml' => [
+					'domains' => [
+						'attribute' => 'attribute',
+						'media' => 'media',
+						'price' => 'price',
+						'product' => 'product',
+						'product/property' => 'product/property',
+						'text' => 'text'
+					]
+				]
+			]
+		]
+	]
 ];
