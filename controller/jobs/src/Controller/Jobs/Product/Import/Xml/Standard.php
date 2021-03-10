@@ -139,8 +139,6 @@ class Standard
 		$logger = $context->getLogger();
 
 
-		$domains = ['attribute', 'media', 'price', 'product', 'product/property', 'text'];
-
 		/** controller/jobs/product/import/xml/domains
 		 * List of item domain names that should be retrieved along with the product items
 		 *
@@ -155,7 +153,7 @@ class Standard
 		 * @see controller/jobs/product/import/xml/backup
 		 * @see controller/jobs/product/import/xml/max-query
 		 */
-		$domains = $config->get( 'controller/jobs/product/import/xml/domains', $domains );
+		$domains = $config->get( 'controller/jobs/product/import/xml/domains', [] );
 
 		/** controller/jobs/product/import/xml/backup
 		 * Name of the backup for sucessfully imported files
