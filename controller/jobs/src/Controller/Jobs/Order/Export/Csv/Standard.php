@@ -257,7 +257,7 @@ class Standard
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
 
 		$search = $this->initCriteria( $manager->createSearch( false, true ), $msg );
-		$search->setSortations( [$search->sort( '+', 'order.id' )] );
+		$search->setSortations( array_merge( $search->getSortations(), [$search->sort( '+', 'order.id' )] ) );
 
 		$start = 0;
 
