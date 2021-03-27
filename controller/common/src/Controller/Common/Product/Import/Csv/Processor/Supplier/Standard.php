@@ -242,13 +242,12 @@ class Standard
 	 *
 	 * @param string $prodid Unique product ID
 	 * @param array $types List of supplier list types
-	 * @return array List of supplier list items
+	 * @return \Aimeos\Map List of supplier list items
 	 */
 	protected function getListItems( $prodid, array $types ) : \Aimeos\Map
 	{
-		if( empty( $types ) )
-		{
-			return [];
+		if( empty( $types ) ) {
+			return map();
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier/lists' );
