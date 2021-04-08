@@ -271,7 +271,7 @@ class Standard
 			$search->compare( '==', 'order.base.product.siteid', $siteIds ),
 			$search->getConditions()
 		] ) );
-		$search->setSortations( [$search->sort( '+', 'order.id')] );
+		$search->setSortations( array_merge( $search->getSortations(), [$search->sort( '+', 'order.id' )] ) );
 
 		$start = 0;
 
