@@ -73,7 +73,9 @@ class Standard
 			$search->setSlice( $start );
 			$items = $manager->searchItems( $search );
 
-			$process->start( $fcn, [$context, $items] );
+			if( !$items->isEmpty() ) {
+				$process->start( $fcn, [$context, $items] );
+			}
 
 			$count = count( $items );
 			$start += $count;
