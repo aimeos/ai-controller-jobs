@@ -134,14 +134,12 @@ class Standard
 				continue;
 			}
 
-			$langId = $this->getValue( $list, 'media.languageid' );
 			$type = $this->getValue( $list, 'media.type', 'default' );
+			$langId = $this->getValue( $list, 'media.languageid', '' );
 			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
 			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
-			$preview = explode( $separator, $this->getValue( $list, 'media.preview', '' ) );
-			$previews = explode( $separator, $this->getValue( $list, 'media.previews', '' ) );
 
-			unset( $list['media.preview'], $list['media.previews'], $list['media.url'] );
+			unset( $list['media.url'] );
 
 			$this->addType( 'product/lists/type', 'media', $listtype );
 			$this->addType( 'media/type', 'product', $type );
@@ -167,23 +165,8 @@ class Standard
 					$refItem->setMimeType( $this->mimes[$ext] );
 				}
 
+				$refItem = $this->update( $refItem, $list, $url );
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
-				$refItem = $refItem->setLabel( $url )->fromArray( $list )->setUrl( $url );
-
-				try
-				{
-					if( isset( $previews[$idx] ) && ( $map = json_decode( $previews[$idx], true ) ) !== null ) {
-						$refItem->setPreviews( $map );
-					} elseif( isset( $preview[$idx] ) && $preview[$idx] ) {
-						$refItem->setPreview( $preview[$idx] );
-					} elseif( $refItem->isModified() ) {
-						$refItem = $cntl->scale( $refItem );
-					}
-				}
-				catch( \Aimeos\Controller\Common\Exception $e )
-				{
-					$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() ) );
-				}
 
 				$product->addListItem( 'media', $listItem, $refItem );
 			}
@@ -220,5 +203,43 @@ class Standard
 		}
 
 		return true;
+	}
+
+
+	/**
+	 * Updates the media item with the given key/value pairs
+	 *
+	 * @param \Aimeos\MShop\Media\Item\Iface $refItem Media item to update
+	 * @param array &$list Associative list of key/value pairs, matching pairs are removed
+	 * @return \Aimeos\MShop\Media\Item\Iface Updated media item
+	 */
+	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list, string $url ) : \Aimeos\MShop\Media\Item\Iface
+	{
+		$context = $this->getContext();
+		$fs = $context->fs( 'fs-media' );
+
+		try
+		{
+			if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
+				$refItem->setPreviews( $map )->setUrl( $url );
+			} elseif( isset( $list['media.preview'] ) ) {
+				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
+			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url
+				|| $fs->has( $url ) && (
+					!( $fs instanceof \Aimeos\MW\Filesystem\MetaIface )
+					|| date( 'Y-m-d H:i:s', $fs->time( $url ) ) > $refItem->getTimeModified()
+				)
+			) {
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ) );
+			}
+
+			unset( $list['media.previews'], $list['media.preview'] );
+		}
+		catch( \Aimeos\Controller\Common\Exception $e )
+		{
+			$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() ) );
+		}
+
+		return $refItem->fromArray( $list );
 	}
 }
