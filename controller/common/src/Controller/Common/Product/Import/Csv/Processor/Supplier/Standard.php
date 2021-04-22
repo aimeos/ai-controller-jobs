@@ -51,7 +51,7 @@ class Standard
 		/** controller/common/product/import/csv/processor/supplier/listtypes
 		 * Names of the supplier list types that are updated or removed
 		 *
-		 * If you want to associate product items to categories manually via the
+		 * If you want to associate product items to suppliers manually via the
 		 * administration interface and don't want these to be touched during the
 		 * import, you can specify the supplier list types for these products
 		 * that shouldn't be updated or removed.
@@ -153,19 +153,19 @@ class Standard
 				{
 					$code = trim( $code );
 
-					if( ( $catid = $this->cache->get( $code ) ) === null )
+					if( ( $supid = $this->cache->get( $code ) ) === null )
 					{
 						$msg = 'No supplier for code "%1$s" available when importing product with code "%2$s"';
 						throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
 					}
 
-					$list['supplier.lists.parentid'] = $catid;
+					$list['supplier.lists.parentid'] = $supid;
 					$list['supplier.lists.refid'] = $prodid;
 					$list['supplier.lists.domain'] = 'product';
 
-					if( isset( $listMap[$catid][$listtype] ) )
+					if( isset( $listMap[$supid][$listtype] ) )
 					{
-						$listItem = $listMap[$catid][$listtype];
+						$listItem = $listMap[$supid][$listtype];
 						unset( $listItems[$listItem->getId()] );
 					} else
 					{
