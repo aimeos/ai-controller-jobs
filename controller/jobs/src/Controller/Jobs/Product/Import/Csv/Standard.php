@@ -339,13 +339,13 @@ class Standard
 
 				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
 				{
+					$chunkcnt = count( $data );
 					$data = $this->convertData( $convlist, $data );
 					$products = $this->getProducts( array_keys( $data ), $domains );
 					$errcnt = $this->import( $products, $data, $mappings['item'], [], $processor, $strict );
-					$chunkcnt = count( $data );
 
 					$msg = 'Imported product lines from "%1$s": %2$d/%3$d (%4$s)';
-					$logger->log( sprintf( $msg, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
+					$logger->log( sprintf( $msg, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ ), \Aimeos\MW\Logger\Base::INFO );
 
 					$errors += $errcnt;
 					$total += $chunkcnt;
@@ -371,7 +371,6 @@ class Standard
 		{
 			$msg = sprintf( 'Invalid product lines in "%1$s": %2$d/%3$d', $path, $errors, $total );
 			$this->mail( 'Product CSV import', $msg );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
 		if( !empty( $backup ) && @rename( $path, strftime( $backup ) ) === false )
