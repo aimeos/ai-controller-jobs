@@ -133,7 +133,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$domains = ['media', 'product', 'supplier/address', 'text'];
 
 		/** controller/jobs/supplier/import/xml/domains
 		 * List of item domain names that should be retrieved along with the supplier items
@@ -149,7 +148,7 @@ class Standard
 		 * @see controller/jobs/supplier/import/xml/backup
 		 * @see controller/jobs/supplier/import/xml/max-query
 		 */
-		$domains = $config->get( 'controller/jobs/supplier/import/xml/domains', $domains );
+		$domains = $config->get( 'controller/jobs/supplier/import/xml/domains', [] );
 
 		/** controller/jobs/supplier/import/xml/backup
 		 * Name of the backup for sucessfully imported files

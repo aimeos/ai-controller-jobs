@@ -18,6 +18,29 @@ return [
 		],
 	],
 	'jobs' => [
+		'attribute' => [
+			'import' => [
+				'xml' => [
+					'domains' => [
+						'attribute/property' => 'attribute/property',
+						'media' => 'media',
+						'price' => 'price',
+						'text' => 'text'
+					]
+				]
+			]
+		],
+		'catalog' => [
+			'import' => [
+				'xml' => [
+					'domains' => [
+						'media' => 'media',
+						'product' => 'product',
+						'text' => 'text'
+					]
+				]
+			]
+		],
 		'product' => [
 			'import' => [
 				'xml' => [
@@ -31,6 +54,18 @@ return [
 					]
 				]
 			]
-		]
+		],
+		'supplier' => [
+			'import' => [
+				'xml' => [
+					'domains' => [
+						'supplier/address' => 'supplier/address',
+						'media' => 'media',
+						'product' => 'product',
+						'text' => 'text'
+					]
+				]
+			]
+		],
 	]
 ];

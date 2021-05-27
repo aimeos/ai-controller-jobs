@@ -164,8 +164,6 @@ class Standard
 		$logger = $context->getLogger();
 
 
-		$domains = ['attribute/property', 'media', 'price', 'text'];
-
 		/** controller/jobs/attribute/import/xml/domains
 		 * List of item domain names that should be retrieved along with the attribute items
 		 *
@@ -180,7 +178,7 @@ class Standard
 		 * @see controller/jobs/attribute/import/xml/backup
 		 * @see controller/jobs/attribute/import/xml/max-query
 		 */
-		$domains = $config->get( 'controller/jobs/attribute/import/xml/domains', $domains );
+		$domains = $config->get( 'controller/jobs/attribute/import/xml/domains', [] );
 
 		/** controller/jobs/attribute/import/xml/backup
 		 * Name of the backup for sucessfully imported files
