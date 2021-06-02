@@ -224,13 +224,17 @@ class Standard
 				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
-			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url
-				|| $fs->has( $url ) && (
-					!( $fs instanceof \Aimeos\MW\Filesystem\MetaIface )
+			} elseif( $fs->has( $url )
+				&& (
+					$refItem->getPreviews() === []
+					|| $refItem->getUrl() !== $url
+					|| !( $fs instanceof \Aimeos\MW\Filesystem\MetaIface )
 					|| date( 'Y-m-d H:i:s', $fs->time( $url ) ) > $refItem->getTimeModified()
 				)
 			) {
 				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ) );
+			} elseif( preg_match( '#^[a-zA-Z]{1,10}://#', $url ) === 1 ) {
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), 'fs-media', true );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );
