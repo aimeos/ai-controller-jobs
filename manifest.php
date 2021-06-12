@@ -1,27 +1,29 @@
 <?php
 
-return array(
+return [
 	'name' => 'ai-controller-jobs',
-	'depends' => array(
+	'depends' => [
 		'aimeos-core',
-	),
-	'include' => array(
+	],
+	'include' => [
 		'controller/common/src',
 		'controller/jobs/src',
-	),
-	'i18n' => array(
+	],
+	'i18n' => [
 		'controller/common' => 'controller/common/i18n',
 		'controller/jobs' => 'controller/jobs/i18n',
-	),
-	'config' => array(
+	],
+	'config' => [
 		'config',
-	),
-	'custom' => array(
-		'controller/jobs' => array(
-			'controller/jobs/src',
-		),
-		'controller/jobs/templates' => array(
+	],
+	'template' => [
+		'controller/jobs/templates' => [
 			'controller/jobs/templates',
-		),
-	),
-);
+		],
+	],
+	'custom' => [
+		'controller/jobs' => [
+			'controller/jobs/src',
+		],
+	],
+];
