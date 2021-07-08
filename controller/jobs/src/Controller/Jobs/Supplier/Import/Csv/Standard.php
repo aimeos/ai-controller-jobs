@@ -2,25 +2,23 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2018
+ * @copyright Aimeos (aimeos.org), 2018
  * @package Controller
  * @subpackage Jobs
  */
 
-namespace Aimeos\Controller\Jobs\Product\Import\Csv;
+namespace Aimeos\Controller\Jobs\Supplier\Import\Csv;
 
 /**
- * Job controller for CSV product imports.
+ * Job controller for CSV supplier imports.
  *
  * @package Controller
  * @subpackage Jobs
  */
 class Standard
-    extends \Aimeos\Controller\Common\Product\Import\Csv\Base
+    extends \Aimeos\Controller\Common\Supplier\Import\Csv\Base
     implements \Aimeos\Controller\Jobs\Iface
 {
-    private $types;
-
     /**
      * Returns the localized name of the job.
      *
@@ -30,7 +28,7 @@ class Standard
     {
         return $this->getContext()
             ->getI18n()
-            ->dt('controller/jobs', 'Product import CSV');
+            ->dt('controller/jobs', 'Supplier import CSV');
     }
 
     /**
@@ -44,7 +42,7 @@ class Standard
             ->getI18n()
             ->dt(
                 'controller/jobs',
-                'Imports new and updates existing products from CSV files'
+                'Imports new and updates existing suppliers from CSV files'
             );
     }
 
@@ -59,110 +57,117 @@ class Standard
         $context = $this->getContext();
         $config = $context->getConfig();
         $logger = $context->getLogger();
+        // additionnal domais atached to thecurrent one (supplier/item)
+        $domains = ['media', 'text', 'address', 'product'];
+        $mappings = $this->getDefaultMapping();
 
         if (
             file_exists(
-                $config->get('controller/jobs/product/import/csv/location')
+                $config->get('controller/jobs/supplier/import/csv/location')
             ) === false
         ) {
+            info(
+                'no file to import there ' .
+                    $config->get('controller/jobs/supplier/import/csv/location')
+            );
             return;
         }
 
-        /** controller/common/product/import/csv/domains
-         * List of item domain names that should be retrieved along with the product items
+        /** controller/common/supplier/import/csv/domains
+         * List of item domain names that should be retrieved along with the supplier items
          *
-         * For efficient processing, the items associated to the products can be
+         * For efficient processing, the items associated to the suppliers can be
          * fetched to, minimizing the number of database queries required. To be
          * most effective, the list of item domain names should be used in the
          * mapping configuration too, so the retrieved items will be used during
          * the import.
          *
          * @param array Associative list of MShop item domain names
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/common/product/import/csv/mapping
-         * @see controller/common/product/import/csv/converter
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/common/supplier/import/csv/mapping
+         * @see controller/common/supplier/import/csv/converter
+         * @see controller/common/supplier/import/csv/max-size
          */
         $domains = $config->get(
-            'controller/common/product/import/csv/domains',
-            []
+            'controller/common/supplier/import/csv/domains',
+            $domains
         );
 
-        /** controller/jobs/product/import/csv/domains
-         * List of item domain names that should be retrieved along with the product items
+        /** controller/jobs/supplier/import/csv/domains
+         * List of item domain names that should be retrieved along with the supplier items
          *
          * This configuration setting overwrites the shared option
-         * "controller/common/product/import/csv/domains" if you need a
+         * "controller/common/supplier/import/csv/domains" if you need a
          * specific setting for the job controller. Otherwise, you should
          * use the shared option for consistency.
          *
          * @param array Associative list of MShop item domain names
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/jobs/product/import/csv/mapping
-         * @see controller/jobs/product/import/csv/skip-lines
-         * @see controller/jobs/product/import/csv/converter
-         * @see controller/jobs/product/import/csv/strict
-         * @see controller/jobs/product/import/csv/backup
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/jobs/supplier/import/csv/mapping
+         * @see controller/jobs/supplier/import/csv/skip-lines
+         * @see controller/jobs/supplier/import/csv/converter
+         * @see controller/jobs/supplier/import/csv/strict
+         * @see controller/jobs/supplier/import/csv/backup
+         * @see controller/common/supplier/import/csv/max-size
          */
         $domains = $config->get(
-            'controller/jobs/product/import/csv/domains',
+            'controller/jobs/supplier/import/csv/domains',
             $domains
         );
 
-        /** controller/common/product/import/csv/mapping
+        /** controller/common/supplier/import/csv/mapping
          * List of mappings between the position in the CSV file and item keys
          *
          * The importer have to know which data is at which position in the CSV
          * file. Therefore, you need to specify a mapping between each position
-         * and the MShop domain item key (e.g. "product.code") it represents.
+         * and the MShop domain item key (e.g. "supplier.code") it represents.
          *
          * You can use all domain item keys which are used in the fromArray()
          * methods of the item classes.
          *
          * These mappings are grouped together by their processor names, which
          * are responsible for importing the data, e.g. all mappings in "item"
-         * will be processed by the base product importer while the mappings in
+         * will be processed by the base supplier importer while the mappings in
          * "text" will be imported by the text processor.
          *
          * @param array Associative list of processor names and lists of key/position pairs
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/common/product/import/csv/domains
-         * @see controller/common/product/import/csv/converter
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/common/supplier/import/csv/domains
+         * @see controller/common/supplier/import/csv/converter
+         * @see controller/common/supplier/import/csv/max-size
          */
         $mappings = $config->get(
-            'controller/common/product/import/csv/mapping',
-            $this->getDefaultMapping()
+            'controller/common/supplier/import/csv/mapping',
+            $mappings
         );
 
-        /** controller/jobs/product/import/csv/mapping
+        /** controller/jobs/supplier/import/csv/mapping
          * List of mappings between the position in the CSV file and item keys
          *
          * This configuration setting overwrites the shared option
-         * "controller/common/product/import/csv/mapping" if you need a
+         * "controller/common/supplier/import/csv/mapping" if you need a
          * specific setting for the job controller. Otherwise, you should
          * use the shared option for consistency.
          *
          * @param array Associative list of processor names and lists of key/position pairs
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/jobs/product/import/csv/domains
-         * @see controller/jobs/product/import/csv/skip-lines
-         * @see controller/jobs/product/import/csv/converter
-         * @see controller/jobs/product/import/csv/strict
-         * @see controller/jobs/product/import/csv/backup
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/jobs/supplier/import/csv/domains
+         * @see controller/jobs/supplier/import/csv/skip-lines
+         * @see controller/jobs/supplier/import/csv/converter
+         * @see controller/jobs/supplier/import/csv/strict
+         * @see controller/jobs/supplier/import/csv/backup
+         * @see controller/common/supplier/import/csv/max-size
          */
         $mappings = $config->get(
-            'controller/jobs/product/import/csv/mapping',
+            'controller/jobs/supplier/import/csv/mapping',
             $mappings
         );
 
-        /** controller/common/product/import/csv/converter
+        /** controller/common/supplier/import/csv/converter
          * List of converter names for the values at the position in the CSV file
          *
          * Not all data in the CSV file is already in the required format. Maybe
@@ -195,41 +200,41 @@ class Standard
          * really need!
          *
          * @param array Associative list of position/converter name (or list of names) pairs
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/common/product/import/csv/domains
-         * @see controller/common/product/import/csv/mapping
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/common/supplier/import/csv/domains
+         * @see controller/common/supplier/import/csv/mapping
+         * @see controller/common/supplier/import/csv/max-size
          */
         $converters = $config->get(
-            'controller/common/product/import/csv/converter',
+            'controller/common/supplier/import/csv/converter',
             []
         );
 
-        /** controller/jobs/product/import/csv/converter
+        /** controller/jobs/supplier/import/csv/converter
          * List of converter names for the values at the position in the CSV file
          *
          * This configuration setting overwrites the shared option
-         * "controller/common/product/import/csv/converter" if you need a
+         * "controller/common/supplier/import/csv/converter" if you need a
          * specific setting for the job controller. Otherwise, you should
          * use the shared option for consistency.
          *
          * @param array Associative list of position/converter name (or list of names) pairs
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/jobs/product/import/csv/domains
-         * @see controller/jobs/product/import/csv/mapping
-         * @see controller/jobs/product/import/csv/skip-lines
-         * @see controller/jobs/product/import/csv/strict
-         * @see controller/jobs/product/import/csv/backup
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/jobs/supplier/import/csv/domains
+         * @see controller/jobs/supplier/import/csv/mapping
+         * @see controller/jobs/supplier/import/csv/skip-lines
+         * @see controller/jobs/supplier/import/csv/strict
+         * @see controller/jobs/supplier/import/csv/backup
+         * @see controller/common/supplier/import/csv/max-size
          */
         $converters = $config->get(
-            'controller/jobs/product/import/csv/converter',
+            'controller/jobs/supplier/import/csv/converter',
             $converters
         );
 
-        /** controller/common/product/import/csv/max-size
+        /** controller/common/supplier/import/csv/max-size
          * Maximum number of CSV rows to import at once
          *
          * It's more efficient to read and import more than one row at a time
@@ -240,18 +245,18 @@ class Standard
          * import speed.
          *
          * @param integer Number of rows
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/common/product/import/csv/domains
-         * @see controller/common/product/import/csv/mapping
-         * @see controller/common/product/import/csv/converter
+         * @see controller/common/supplier/import/csv/domains
+         * @see controller/common/supplier/import/csv/mapping
+         * @see controller/common/supplier/import/csv/converter
          */
         $maxcnt = (int) $config->get(
-            'controller/common/product/import/csv/max-size',
+            'controller/common/supplier/import/csv/max-size',
             1000
         );
 
-        /** controller/jobs/product/import/csv/skip-lines
+        /** controller/jobs/supplier/import/csv/skip-lines
          * Number of rows skipped in front of each CSV files
          *
          * Some CSV files contain header information describing the content of
@@ -263,19 +268,19 @@ class Standard
          * @param integer Number of rows
          * @since 2015.08
          * @category Developer
-         * @see controller/jobs/product/import/csv/domains
-         * @see controller/jobs/product/import/csv/mapping
-         * @see controller/jobs/product/import/csv/converter
-         * @see controller/jobs/product/import/csv/strict
-         * @see controller/jobs/product/import/csv/backup
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/jobs/supplier/import/csv/domains
+         * @see controller/jobs/supplier/import/csv/mapping
+         * @see controller/jobs/supplier/import/csv/converter
+         * @see controller/jobs/supplier/import/csv/strict
+         * @see controller/jobs/supplier/import/csv/backup
+         * @see controller/common/supplier/import/csv/max-size
          */
         $skiplines = (int) $config->get(
-            'controller/jobs/product/import/csv/skip-lines',
+            'controller/jobs/supplier/import/csv/skip-lines',
             0
         );
 
-        /** controller/jobs/product/import/csv/strict
+        /** controller/jobs/supplier/import/csv/strict
          * Log all columns from the file that are not mapped and therefore not imported
          *
          * Depending on the mapping, there can be more columns in the CSV file
@@ -289,19 +294,19 @@ class Standard
          * @since 2015.08
          * @category User
          * @category Developer
-         * @see controller/jobs/product/import/csv/domains
-         * @see controller/jobs/product/import/csv/mapping
-         * @see controller/jobs/product/import/csv/skip-lines
-         * @see controller/jobs/product/import/csv/converter
-         * @see controller/jobs/product/import/csv/backup
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/jobs/supplier/import/csv/domains
+         * @see controller/jobs/supplier/import/csv/mapping
+         * @see controller/jobs/supplier/import/csv/skip-lines
+         * @see controller/jobs/supplier/import/csv/converter
+         * @see controller/jobs/supplier/import/csv/backup
+         * @see controller/common/supplier/import/csv/max-size
          */
         $strict = (bool) $config->get(
-            'controller/jobs/product/import/csv/strict',
+            'controller/jobs/supplier/import/csv/strict',
             true
         );
 
-        /** controller/jobs/product/import/csv/backup
+        /** controller/jobs/supplier/import/csv/backup
          * Name of the backup for sucessfully imported files
          *
          * After a CSV file was imported successfully, you can move it to another
@@ -322,16 +327,16 @@ class Standard
          * moved.
          *
          * @param integer Name of the backup file, optionally with date/time placeholders
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
-         * @see controller/jobs/product/import/csv/domains
-         * @see controller/jobs/product/import/csv/mapping
-         * @see controller/jobs/product/import/csv/skip-lines
-         * @see controller/jobs/product/import/csv/converter
-         * @see controller/jobs/product/import/csv/strict
-         * @see controller/common/product/import/csv/max-size
+         * @see controller/jobs/supplier/import/csv/domains
+         * @see controller/jobs/supplier/import/csv/mapping
+         * @see controller/jobs/supplier/import/csv/skip-lines
+         * @see controller/jobs/supplier/import/csv/converter
+         * @see controller/jobs/supplier/import/csv/strict
+         * @see controller/common/supplier/import/csv/max-size
          */
-        $backup = $config->get('controller/jobs/product/import/csv/backup');
+        $backup = $config->get('controller/jobs/supplier/import/csv/backup');
 
         if (!isset($mappings['item']) || !is_array($mappings['item'])) {
             $msg = sprintf(
@@ -348,11 +353,12 @@ class Standard
             $codePos = $this->getCodePosition($mappings['item']);
             $convlist = $this->getConverterList($converters);
             $processor = $this->getProcessors($procMappings);
+            $supplierMap = $this->getSupplierMap($domains);
             $container = $this->getContainer();
             $path = $container->getName();
 
             $msg = sprintf(
-                'Started product import from "%1$s" (%2$s)',
+                'Started supplier import from "%1$s" (%2$s)',
                 $path,
                 __CLASS__
             );
@@ -369,19 +375,16 @@ class Standard
                     ($data = $this->getData($content, $maxcnt, $codePos)) !== []
                 ) {
                     $data = $this->convertData($convlist, $data);
-                    $products = $this->getProducts(array_keys($data), $domains);
                     $errcnt = $this->import(
-                        $products,
+                        $supplierMap,
                         $data,
                         $mappings['item'],
-                        [],
                         $processor,
                         $strict
                     );
                     $chunkcnt = count($data);
-
                     $msg =
-                        'Imported product lines from "%1$s": %2$d/%3$d (%4$s)';
+                        'Imported supplier lines from "%1$s": %2$d/%3$d (%4$s)';
                     $logger->log(
                         sprintf(
                             $msg,
@@ -395,22 +398,20 @@ class Standard
 
                     $errors += $errcnt;
                     $total += $chunkcnt;
-                    unset($products, $data);
+                    unset($data);
                 }
             }
 
             $container->close();
         } catch (\Exception $e) {
-            $logger->log('Product import error: ' . $e->getMessage());
+            $logger->log('Supplier import error: ' . $e->getMessage());
             $logger->log($e->getTraceAsString());
 
             throw new \Aimeos\Controller\Jobs\Exception($e->getMessage());
         }
 
-        $processor->finish();
-
         $msg =
-            'Finished product import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
+            'Finished supplier import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
         $logger->log(
             sprintf($msg, $path, $total - $errors, $errors, $total, __CLASS__),
             \Aimeos\MW\Logger\Base::NOTICE
@@ -418,7 +419,7 @@ class Standard
 
         if ($errors > 0) {
             $msg = sprintf(
-                'Invalid product lines in "%1$s": %2$d/%3$d',
+                'Invalid supplier lines in "%1$s": %2$d/%3$d',
                 $path,
                 $errors,
                 $total
@@ -437,52 +438,27 @@ class Standard
     }
 
     /**
-     * Checks the given product type for validity
-     *
-     * @param string|null $type Product type or null for no type
-     * @return string New product type
-     */
-    protected function checkType($type)
-    {
-        if (!isset($this->types)) {
-            $this->types = [];
-
-            $manager = \Aimeos\MShop::create(
-                $this->getContext(),
-                'product/type'
-            );
-            $search = $manager->createSearch()->setSlice(0, 10000);
-
-            foreach ($manager->searchItems($search) as $item) {
-                $this->types[$item->getCode()] = $item->getCode();
-            }
-        }
-
-        return isset($this->types[$type]) ? $this->types[$type] : 'default';
-    }
-
-    /**
-     * Returns the position of the "product.code" column from the product item mapping
+     * Returns the position of the "supplier.code" column from the supplier item mapping
      *
      * @param array $mapping Mapping of the "item" columns with position as key and code as value
-     * @return integer Position of the "product.code" column
-     * @throws \Aimeos\Controller\Jobs\Exception If no mapping for "product.code" is found
+     * @return integer Position of the "supplier.code" column
+     * @throws \Aimeos\Controller\Jobs\Exception If no mapping for "supplier.code" is found
      */
     protected function getCodePosition(array $mapping)
     {
         foreach ($mapping as $pos => $key) {
-            if ($key === 'product.code') {
+            if ($key === 'supplier.code') {
                 return $pos;
             }
         }
 
         throw new \Aimeos\Controller\Jobs\Exception(
-            sprintf('No "product.code" column in CSV mapping found')
+            sprintf('No "supplier.code" column in CSV mapping found')
         );
     }
 
     /**
-     * Opens and returns the container which includes the product data
+     * Opens and returns the container which includes the supplier data
      *
      * @return \Aimeos\MW\Container\Iface Container object
      */
@@ -490,7 +466,7 @@ class Standard
     {
         $config = $this->getContext()->getConfig();
 
-        /** controller/jobs/product/import/csv/location
+        /** controller/jobs/supplier/import/csv/location
          * File or directory where the content is stored which should be imported
          *
          * You need to configure the file or directory that acts as container
@@ -505,16 +481,18 @@ class Standard
          * * PHPExcel container / PHPExcel sheet
          *
          * @param string Absolute file or directory path
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
          * @category User
-         * @see controller/jobs/product/import/csv/container/type
-         * @see controller/jobs/product/import/csv/container/content
-         * @see controller/jobs/product/import/csv/container/options
+         * @see controller/jobs/supplier/import/csv/container/type
+         * @see controller/jobs/supplier/import/csv/container/content
+         * @see controller/jobs/supplier/import/csv/container/options
          */
-        $location = $config->get('controller/jobs/product/import/csv/location');
+        $location = $config->get(
+            'controller/jobs/supplier/import/csv/location'
+        );
 
-        /** controller/jobs/product/import/csv/container/type
+        /** controller/jobs/supplier/import/csv/container/type
          * Nave of the container type to read the data from
          *
          * The container type tells the importer how it should retrieve the data.
@@ -528,19 +506,19 @@ class Standard
          * "ai-container" extension.
          *
          * @param string Container type name
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
          * @category User
-         * @see controller/jobs/product/import/csv/location
-         * @see controller/jobs/product/import/csv/container/content
-         * @see controller/jobs/product/import/csv/container/options
+         * @see controller/jobs/supplier/import/csv/location
+         * @see controller/jobs/supplier/import/csv/container/content
+         * @see controller/jobs/supplier/import/csv/container/options
          */
         $container = $config->get(
-            'controller/jobs/product/import/csv/container/type',
+            'controller/jobs/supplier/import/csv/container/type',
             'Directory'
         );
 
-        /** controller/jobs/product/import/csv/container/content
+        /** controller/jobs/supplier/import/csv/container/content
          * Name of the content type inside the container to read the data from
          *
          * The content type must always be a CSV-like format and there are
@@ -552,20 +530,20 @@ class Standard
          * "ai-container" extension.
          *
          * @param array Content type name
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
          * @category User
-         * @see controller/jobs/product/import/csv/location
-         * @see controller/jobs/product/import/csv/container/type
-         * @see controller/jobs/product/import/csv/container/options
+         * @see controller/jobs/supplier/import/csv/location
+         * @see controller/jobs/supplier/import/csv/container/type
+         * @see controller/jobs/supplier/import/csv/container/options
          */
         $content = $config->get(
-            'controller/jobs/product/import/csv/container/content',
+            'controller/jobs/supplier/import/csv/container/content',
             'CSV'
         );
 
-        /** controller/jobs/product/import/csv/container/options
-         * List of file container options for the product import files
+        /** controller/jobs/supplier/import/csv/container/options
+         * List of file container options for the supplier import files
          *
          * Some container/content type allow you to hand over additional settings
          * for configuration. Please have a look at the article about
@@ -573,22 +551,22 @@ class Standard
          * for more information.
          *
          * @param array Associative list of option name/value pairs
-         * @since 2015.05
+         * @since 2018.04
          * @category Developer
          * @category User
-         * @see controller/jobs/product/import/csv/location
-         * @see controller/jobs/product/import/csv/container/content
-         * @see controller/jobs/product/import/csv/container/type
+         * @see controller/jobs/supplier/import/csv/location
+         * @see controller/jobs/supplier/import/csv/container/content
+         * @see controller/jobs/supplier/import/csv/container/type
          */
         $options = $config->get(
-            'controller/jobs/product/import/csv/container/options',
+            'controller/jobs/supplier/import/csv/container/options',
             []
         );
 
         if ($location === null) {
             $msg = sprintf(
                 'Required configuration for "%1$s" is missing',
-                'controller/jobs/product/import/csv/location'
+                'controller/jobs/supplier/import/csv/location'
             );
             throw new \Aimeos\Controller\Jobs\Exception($msg);
         }
@@ -602,66 +580,72 @@ class Standard
     }
 
     /**
-     * Imports the CSV data and creates new products or updates existing ones
+     * Returns the supplier items building the tree as list
      *
-     * @param array $products List of products items implementing \Aimeos\MShop\Product\Item\Iface
+     * @param array $domains List of domain names whose items should be fetched too
+     * @return array Associative list of supplier codes as keys and items implementing \Aimeos\MShop\Supplier\Item\Iface as values
+     */
+    protected function getSupplierMap(array $domains)
+    {
+        $map = [];
+        $manager = \Aimeos\MShop::create($this->getContext(), 'supplier');
+        $search = $manager->createSearch()->setSlice(0, 0x7fffffff);
+
+        foreach ($manager->searchItems($search, $domains) as $item) {
+            $map[$item->getCode()] = $item;
+        }
+
+        return $map;
+    }
+
+    /**
+     * Imports the CSV data and creates new categories or updates existing ones
+     *
+     * @param array &$supplierMap Associative list of supplier items with codes as keys and items implementing \Aimeos\MShop\Supplier\Item\Iface as values
      * @param array $data Associative list of import data as index/value pairs
      * @param array $mapping Associative list of positions and domain item keys
-     * @param array $types List of allowed product type codes
-     * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor Processor object
+     * @param \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $processor Processor object
      * @param boolean $strict Log columns not mapped or silently ignore them
-     * @return integer Number of products that couldn't be imported
+     * @return integer Number of suppliers that couldn't be imported
      * @throws \Aimeos\Controller\Jobs\Exception
      */
     protected function import(
-        array $products,
+        array &$supplierMap,
         array $data,
         array $mapping,
-        array $types,
-        \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor,
+        \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $processor,
         $strict
     ) {
-        $items = [];
         $errors = 0;
         $context = $this->getContext();
-        $manager = \Aimeos\MShop::create($context, 'product');
-        $indexManager = \Aimeos\MShop::create($context, 'index');
+        $manager = \Aimeos\MShop::create($context, 'supplier');
 
         foreach ($data as $code => $list) {
             $manager->begin();
-
             try {
                 $code = trim($code);
-
-                if (isset($products[$code])) {
-                    $product = $products[$code];
+                if (isset($supplierMap[$code])) {
+                    $item = $supplierMap[$code];
                 } else {
-                    $product = $manager->createItem();
+                    $item = $manager->createItem();
                 }
-
                 $map = $this->getMappedChunk($list, $mapping);
-                if (isset($map[0])) {
-                    // there can only be one chunk for the base product data
-                    $type = $this->checkType(
-                        $this->getValue(
-                            $map[0],
-                            'product.type',
-                            $product->getType()
-                        )
-                    );
 
-                    $product = $product->fromArray($map[0], true);
-                    $product = $manager->saveItem($product->setType($type));
-                    $list = $processor->process($product, $list);
-                    $product = $manager->saveItem($product);
-                    $items[$product->getId()] = $product;
+                if (isset($map[0])) {
+                    $map = $map[0]; // there can only be one chunk for the base supplier data
+                    $item->fromArray($map, true);
+                    $item = $manager->saveItem($item);
+                    $list = $processor->process($item, $list);
+                    $supplierMap[$code] = $item;
+                    $manager->saveItem($item);
                 }
+
                 $manager->commit();
             } catch (\Exception $e) {
                 $manager->rollback();
 
                 $msg = sprintf(
-                    'Unable to import product with code "%1$s": %2$s',
+                    'Unable to import supplier with code "%1$s": %2$s',
                     $code,
                     $e->getMessage()
                 );
@@ -676,8 +660,6 @@ class Standard
                     ->log('Not imported: ' . print_r($list, true));
             }
         }
-
-        $indexManager->rebuildIndex($items);
 
         return $errors;
     }
