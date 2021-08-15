@@ -143,7 +143,7 @@ class Standard
 				{
 					$orderItem = $orderItems->get( $item->getOrderBaseId() );
 
-					if( $orderItem && $orderItem->getPaymentStatus() >= $status )
+					if( $orderItem && $orderItem->getStatusPayment() >= $status )
 					{
 						foreach( $processors as $processor ) {
 							$processor->begin( $item, $orderItem );
