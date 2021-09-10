@@ -80,7 +80,7 @@ class Standard
 		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '<', 'order.mtime', $limit ),
-			$search->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_UNFINISHED ),
+			$search->compare( '==', 'order.statuspayment', null ),
 		);
 		$search->setConditions( $search->and( $expr ) );
 
