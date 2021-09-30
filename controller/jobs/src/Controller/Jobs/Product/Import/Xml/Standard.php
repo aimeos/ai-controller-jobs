@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Product\Import\Xml;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for XML product imports
@@ -120,7 +122,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/product' );
 			$this->mail( 'Product XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -328,7 +330,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$msg = 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/product' );
 		}
 
 		return $item;

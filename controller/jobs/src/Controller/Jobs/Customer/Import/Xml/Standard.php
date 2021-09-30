@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Customer\Import\Xml;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for XML customer imports
@@ -118,7 +120,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/customer' );
 			$this->mail( 'Customer XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -319,7 +321,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$msg = 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/customer' );
 		}
 
 		return $item;

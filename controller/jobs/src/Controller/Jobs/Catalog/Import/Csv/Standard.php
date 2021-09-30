@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Catalog\Import\Csv;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for CSV catalog imports.
@@ -357,7 +359,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/catalog' );
 			$this->mail( 'Catalog CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
@@ -610,8 +612,9 @@ class Standard
 			{
 				$manager->rollback();
 
-				$msg = sprintf( 'Unable to import catalog with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->getLogger()->log( $msg );
+				$str = 'Unable to import catalog with code "%1$s": %2$s';
+				$msg = sprintf( $str, $code, $e->getMessage() . "\n" . $e->getTraceAsString() );
+				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/catalog' );
 
 				$errors++;
 			}

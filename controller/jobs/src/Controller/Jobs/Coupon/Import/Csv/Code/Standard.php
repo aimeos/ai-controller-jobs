@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Coupon\Import\Csv\Code;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for CSV coupon imports.
@@ -82,7 +84,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$context->getLogger()->log( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/coupon/code' );
 			$this->mail( 'Coupon CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -214,8 +216,9 @@ class Standard
 			{
 				$manager->rollback();
 
-				$msg = sprintf( 'Unable to import coupon with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->getLogger()->log( $msg );
+				$str = 'Unable to import coupon with code "%1$s": %2$s';
+				$msg = sprintf( $str, $code, $e->getMessage() . "\n" . $e->getTraceAsString() );
+				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/coupon/code' );
 
 				$errors++;
 			}

@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Stock\Import\Csv;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for CSV stock imports
@@ -128,7 +130,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Stock import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Stock import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/stock' );
 			$this->mail( 'Stock CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}

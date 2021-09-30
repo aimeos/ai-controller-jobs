@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Catalog\Import\Xml;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for XML catalog imports
@@ -118,7 +120,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/catalog' );
 			$this->mail( 'Catalog XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -322,7 +324,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$msg = 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/catalog' );
 		}
 
 		return $item;

@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Supplier\Import\Xml;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for XML supplier imports
@@ -116,7 +118,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/supplier' );
 			$this->mail( 'Supplier XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -313,7 +315,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$msg = 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/supplier' );
 		}
 
 		return $item;

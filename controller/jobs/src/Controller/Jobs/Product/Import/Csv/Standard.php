@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Product\Import\Csv;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for CSV product imports.
@@ -357,7 +359,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/product' );
 			$this->mail( 'Product CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
@@ -582,7 +584,7 @@ class Standard
 				$manager->rollback();
 
 				$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->getLogger()->log( $msg );
+				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/product' );
 
 				$errors++;
 			}

@@ -11,6 +11,8 @@
 
 namespace Aimeos\Controller\Jobs\Order\Service\Payment;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Captures the money for authorized orders
@@ -147,7 +149,8 @@ class Standard
 							catch( \Exception $e )
 							{
 								$str = 'Error while capturing payment for order with ID "%1$s": %2$s';
-								$context->getLogger()->log( sprintf( $str, $orderItem->getId(), $e->getMessage() ) );
+								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+								$context->getLogger()->log( $msg, Log::ERR, 'order/service/payment' );
 							}
 						}
 
@@ -160,7 +163,8 @@ class Standard
 				catch( \Exception $e )
 				{
 					$str = 'Error while capturing payments for service with ID "%1$s": %2$s';
-					$context->getLogger()->log( sprintf( $str, $serviceItem->getId(), $e->getMessage() ) );
+					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$context->getLogger()->log( $msg, Log::ERR, 'order/service/payment' );
 				}
 			}
 

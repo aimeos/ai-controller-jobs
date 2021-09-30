@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Attribute\Import\Xml;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for XML attribute imports
@@ -119,7 +121,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/attribute' );
 			$this->mail( 'Attribute XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -337,7 +339,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$msg = 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/attribute' );
 		}
 
 		return $item;

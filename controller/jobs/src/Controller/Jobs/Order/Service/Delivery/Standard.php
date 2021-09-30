@@ -11,6 +11,8 @@
 
 namespace Aimeos\Controller\Jobs\Order\Service\Delivery;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Sends paid orders to the ERP system or logistic partner.
@@ -133,7 +135,8 @@ class Standard
 							catch( \Exception $e )
 							{
 								$str = 'Error while processing orders by delivery service "%1$s": %2$s';
-								$context->getLogger()->log( sprintf( $str, $serviceItem->getLabel(), $e->getMessage() ) );
+								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+								$context->getLogger()->log( $msg, Log::ERR, 'order/service/delivery' );
 							}
 						}
 
@@ -145,7 +148,8 @@ class Standard
 				catch( \Exception $e )
 				{
 					$str = 'Error while processing service with ID "%1$s": %2$s';
-					$context->getLogger()->log( sprintf( $str, $serviceItem->getId(), $e->getMessage() ) );
+					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$context->getLogger()->log( $msg, Log::ERR, 'order/service/delivery' );
 				}
 			}
 

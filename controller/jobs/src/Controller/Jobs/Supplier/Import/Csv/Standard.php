@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Supplier\Import\Csv;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Job controller for CSV supplier imports.
@@ -356,9 +358,10 @@ class Standard
 			}
 
 			$container->close();
-		} catch( \Exception $e )
+		}
+		catch( \Exception $e )
 		{
-			$logger->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString() );
+			$logger->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/supplier' );
 			$this->mail( 'Supplier CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
@@ -570,12 +573,13 @@ class Standard
 				}
 
 				$manager->commit();
-			} catch( \Exception $e )
+			}
+			catch( \Exception $e )
 			{
 				$manager->rollback();
 
 				$msg = sprintf( 'Unable to import supplier with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->getLogger()->log( $msg );
+				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/supplier' );
 
 				$errors++;
 			}
