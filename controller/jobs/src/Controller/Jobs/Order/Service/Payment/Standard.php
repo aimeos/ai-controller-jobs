@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Capture authorized payments' );
+		return $this->getContext()->translate( 'controller/jobs', 'Capture authorized payments' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Authorized payments of orders will be captured after dispatching or after a configurable amount of time' );
+		return $this->getContext()->translate( 'controller/jobs', 'Authorized payments of orders will be captured after dispatching or after a configurable amount of time' );
 	}
 
 

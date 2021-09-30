@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Process order delivery services' );
+		return $this->getContext()->translate( 'controller/jobs', 'Process order delivery services' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Sends paid orders to the ERP system or logistic partner' );
+		return $this->getContext()->translate( 'controller/jobs', 'Sends paid orders to the ERP system or logistic partner' );
 	}
 
 

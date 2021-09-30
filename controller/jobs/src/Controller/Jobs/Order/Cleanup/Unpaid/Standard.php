@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Removes unpaid orders' );
+		return $this->getContext()->translate( 'controller/jobs', 'Removes unpaid orders' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Deletes unpaid orders to keep the database clean' );
+		return $this->getContext()->translate( 'controller/jobs', 'Deletes unpaid orders to keep the database clean' );
 	}
 
 

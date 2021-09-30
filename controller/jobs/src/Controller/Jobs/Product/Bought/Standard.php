@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Products bought together' );
+		return $this->getContext()->translate( 'controller/jobs', 'Products bought together' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Creates bought together product suggestions' );
+		return $this->getContext()->translate( 'controller/jobs', 'Creates bought together product suggestions' );
 	}
 
 

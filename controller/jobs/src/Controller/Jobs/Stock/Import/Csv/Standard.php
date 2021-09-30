@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Stock import CSV' );
+		return $this->getContext()->translate( 'controller/jobs', 'Stock import CSV' );
 	}
 
 
@@ -51,7 +51,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing stocks from CSV files' );
+		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing stocks from CSV files' );
 	}
 
 

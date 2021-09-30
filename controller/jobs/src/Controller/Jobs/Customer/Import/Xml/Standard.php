@@ -31,7 +31,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Customer import XML' );
+		return $this->getContext()->translate( 'controller/jobs', 'Customer import XML' );
 	}
 
 
@@ -42,7 +42,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing customers from XML files' );
+		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing customers from XML files' );
 	}
 
 

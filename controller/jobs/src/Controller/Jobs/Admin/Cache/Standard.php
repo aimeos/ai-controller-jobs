@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Cache cleanup' );
+		return $this->getContext()->translate( 'controller/jobs', 'Cache cleanup' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Removes the expired entries from the cache' );
+		return $this->getContext()->translate( 'controller/jobs', 'Removes the expired entries from the cache' );
 	}
 
 

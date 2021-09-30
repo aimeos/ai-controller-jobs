@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'All XML import' );
+		return $this->getContext()->translate( 'controller/jobs', 'All XML import' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Executes all XML importers and rebuild the index' );
+		return $this->getContext()->translate( 'controller/jobs', 'Executes all XML importers and rebuild the index' );
 	}
 
 

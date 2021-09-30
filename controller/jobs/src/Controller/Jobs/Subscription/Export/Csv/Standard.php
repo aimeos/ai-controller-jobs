@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Subscription export CSV' );
+		return $this->getContext()->translate( 'controller/jobs', 'Subscription export CSV' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Exports subscriptions to CSV file' );
+		return $this->getContext()->translate( 'controller/jobs', 'Exports subscriptions to CSV file' );
 	}
 
 

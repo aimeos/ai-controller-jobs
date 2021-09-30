@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Batch update of payment/delivery status' );
+		return $this->getContext()->translate( 'controller/jobs', 'Batch update of payment/delivery status' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Executes payment or delivery service providers that uses batch updates' );
+		return $this->getContext()->translate( 'controller/jobs', 'Executes payment or delivery service providers that uses batch updates' );
 	}
 
 

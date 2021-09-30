@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Subscription process start' );
+		return $this->getContext()->translate( 'controller/jobs', 'Subscription process start' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Process subscriptions initially' );
+		return $this->getContext()->translate( 'controller/jobs', 'Process subscriptions initially' );
 	}
 
 

@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Subscription process renew' );
+		return $this->getContext()->translate( 'controller/jobs', 'Subscription process renew' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Renews subscriptions at next date' );
+		return $this->getContext()->translate( 'controller/jobs', 'Renews subscriptions at next date' );
 	}
 
 

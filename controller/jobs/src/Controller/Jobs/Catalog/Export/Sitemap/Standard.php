@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Catalog site map' );
+		return $this->getContext()->translate( 'controller/jobs', 'Catalog site map' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Creates a catalog site map for search engines' );
+		return $this->getContext()->translate( 'controller/jobs', 'Creates a catalog site map for search engines' );
 	}
 
 

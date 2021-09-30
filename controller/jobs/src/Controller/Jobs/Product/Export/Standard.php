@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Product export' );
+		return $this->getContext()->translate( 'controller/jobs', 'Product export' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Exports all available products' );
+		return $this->getContext()->translate( 'controller/jobs', 'Exports all available products' );
 	}
 
 

@@ -32,7 +32,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Product import XML' );
+		return $this->getContext()->translate( 'controller/jobs', 'Product import XML' );
 	}
 
 
@@ -43,7 +43,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Imports new and updates existing products from XML files' );
+		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing products from XML files' );
 	}
 
 

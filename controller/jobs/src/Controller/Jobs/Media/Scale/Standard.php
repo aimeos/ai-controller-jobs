@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rescale product images' );
+		return $this->getContext()->translate( 'controller/jobs', 'Rescale product images' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Rescales product images to the new sizes' );
+		return $this->getContext()->translate( 'controller/jobs', 'Rescales product images to the new sizes' );
 	}
 
 
