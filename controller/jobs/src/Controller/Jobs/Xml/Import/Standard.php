@@ -54,7 +54,7 @@ class Standard
 		$context = $this->getContext();
 		$logger = $context->getLogger();
 
-		$logger->log( 'Started XML import', \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( 'Started XML import', \Aimeos\MW\Logger\Base::INFO, 'import/xml' );
 
 		\Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Factory::create( $context, $aimeos )->run();
 		\Aimeos\Controller\Jobs\Customer\Import\Xml\Factory::create( $context, $aimeos )->run();
@@ -67,6 +67,6 @@ class Standard
 
 		$context->getCache()->deleteByTags( ['product'] );
 
-		$logger->log( 'Finished XML import', \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( 'Finished XML import', \Aimeos\MW\Logger\Base::INFO, 'import/xml' );
 	}
 }

@@ -346,8 +346,9 @@ class Standard
 					$errcnt = $this->import( $catalogMap, $data, $mappings['item'], $processor, $strict );
 					$chunkcnt = count( $data );
 
-					$msg = 'Imported catalog lines from "%1$s": %2$d/%3$d (%4$s)';
-					$logger->log( sprintf( $msg, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
+					$str = 'Imported catalog lines from "%1$s": %2$d/%3$d (%4$s)';
+					$msg = sprintf( $str, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
+					$logger->log( $msg, Log::NOTICE, 'import/csv/catalog' );
 
 					$errors += $errcnt;
 					$total += $chunkcnt;
@@ -364,8 +365,9 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
 
-		$msg = 'Finished catalog import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
-		$logger->log( sprintf( $msg, $path, $total - $errors, $errors, $total, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
+		$str = 'Finished catalog import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
+		$msg = sprintf( $str, $path, $total - $errors, $errors, $total, __CLASS__ );
+		$logger->log( $msg, Log::NOTICE, 'import/csv/catalog' );
 
 		if( $errors > 0 )
 		{
@@ -620,7 +622,7 @@ class Standard
 			}
 
 			if( $strict && !empty( $list ) ) {
-				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ) );
+				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/catalog' );
 			}
 		}
 

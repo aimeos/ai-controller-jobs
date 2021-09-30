@@ -295,7 +295,7 @@ class Standard
 
 
 		$msg = sprintf( 'Started coupon import from "%1$s" (%2$s)', $path, __CLASS__ );
-		$logger->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
+		$logger->log( $msg, Log::NOTICE, 'import/csv/coupon/code' );
 
 		$processor = $this->getProcessors( $mappings );
 		$codePos = $this->getCodePosition( $mappings['code'] );
@@ -312,8 +312,9 @@ class Standard
 				$errcnt = $this->import( $items, $data, $couponId, $processor );
 				$chunkcnt = count( $data );
 
-				$msg = 'Imported coupon lines from "%1$s": %2$d/%3$d (%4$s)';
-				$logger->log( sprintf( $msg, $path, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
+				$str = 'Imported coupon lines from "%1$s": %2$d/%3$d (%4$s)';
+				$msg = sprintf( $str, $path, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
+				$logger->log( $msg, Log::NOTICE, 'import/csv/coupon/code' );
 
 				$errors += $errcnt;
 				$total += $chunkcnt;
@@ -321,8 +322,9 @@ class Standard
 			}
 		}
 
-		$msg = 'Finished coupon import: %1$d successful, %2$s errors, %3$s total (%4$s)';
-		$logger->log( sprintf( $msg, $total - $errors, $errors, $total, __CLASS__ ), \Aimeos\MW\Logger\Base::NOTICE );
+		$str = 'Finished coupon import: %1$d successful, %2$s errors, %3$s total (%4$s)';
+		$msg = sprintf( $str, $total - $errors, $errors, $total, __CLASS__ );
+		$logger->log( $msg, Log::INFO, 'import/csv/coupon/code' );
 
 		$container->close();
 		$context->getFileSystemManager()->get( 'fs-import' )->rm( $path );

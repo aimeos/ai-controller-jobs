@@ -80,7 +80,7 @@ class Standard
 		try
 		{
 			$msg = sprintf( 'Started supplier import from "%1$s" (%2$s)', $location, __CLASS__ );
-			$logger->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( $msg, Log::INFO, 'import/xml/supplier' );
 
 			if( !file_exists( $location ) )
 			{
@@ -114,7 +114,7 @@ class Standard
 			$msg = 'Finished supplier import from "%1$s": %2$s total (%3$s MB)';
 			$mem = number_format( memory_get_peak_usage() / 1024 / 1024, 2 );
 
-			$logger->log( sprintf( $msg, $location, $total, $mem ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( $msg, $location, $total, $mem ), Log::INFO, 'import/xml/supplier' );
 		}
 		catch( \Exception $e )
 		{

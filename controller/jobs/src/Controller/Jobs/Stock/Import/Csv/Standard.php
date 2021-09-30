@@ -89,7 +89,7 @@ class Standard
 
 		try
 		{
-			$logger->log( sprintf( 'Started stock import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Started stock import from "%1$s"', $location ), Log::INFO, 'import/csv/stock' );
 
 			if( !file_exists( $location ) )
 			{
@@ -126,7 +126,7 @@ class Standard
 
 			$context->getProcess()->wait();
 
-			$logger->log( sprintf( 'Finished stock import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Finished stock import from "%1$s"', $location ), Log::INFO, 'import/csv/stock' );
 		}
 		catch( \Exception $e )
 		{
@@ -217,7 +217,7 @@ class Standard
 
 		$container = $this->getContainer( $filename );
 
-		$logger->log( sprintf( 'Started stock import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( sprintf( 'Started stock import from file "%1$s"', $filename ), Log::INFO, 'import/csv/stock' );
 
 		foreach( $container as $content )
 		{
@@ -228,7 +228,7 @@ class Standard
 			$this->importStocks( $content, $maxcnt );
 		}
 
-		$logger->log( sprintf( 'Finished stock import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( sprintf( 'Finished stock import from file "%1$s"', $filename ), Log::INFO, 'import/csv/stock' );
 
 		$container->close();
 

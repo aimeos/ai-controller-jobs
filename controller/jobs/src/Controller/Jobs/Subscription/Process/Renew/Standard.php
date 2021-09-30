@@ -54,7 +54,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$logger = $context->getLogger();
 
 		/** controller/common/subscription/process/payment-ends
 		 * Subscriptions ends if payment couldn't be captured
@@ -148,7 +147,7 @@ class Standard
 				{
 					$str = 'Unable to renew subscription with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$logger->log( $msg, Log::ERR, 'subscription' );
+					$context->getLogger()->log( $msg, Log::ERR, 'subscription/process/renew' );
 				}
 
 				$manager->save( $item );
@@ -196,7 +195,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to add current address for customer with ID "%1$s"', $newBasket->getCustomerId() );
-			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$context->getLogger()->log( $msg, Log::INFO, 'subscription/process/renew' );
 		}
 
 		return $newBasket;

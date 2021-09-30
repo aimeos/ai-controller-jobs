@@ -79,7 +79,7 @@ class Standard
 
 		try
 		{
-			$logger->log( sprintf( 'Started customer import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Started customer import from "%1$s"', $location ), Log::INFO, 'import/xml/customer' );
 
 			if( !file_exists( $location ) )
 			{
@@ -116,7 +116,7 @@ class Standard
 
 			$context->getProcess()->wait();
 
-			$logger->log( sprintf( 'Finished customer import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Finished customer import from "%1$s"', $location ), Log::INFO, 'import/xml/customer' );
 		}
 		catch( \Exception $e )
 		{
@@ -212,7 +212,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
 
-		$logger->log( sprintf( 'Started customer import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( sprintf( 'Started customer import from file "%1$s"', $filename ), Log::INFO, 'import/xml/customer' );
 
 		while( $xml->read() === true )
 		{
@@ -243,7 +243,7 @@ class Standard
 			$proc->finish();
 		}
 
-		$logger->log( sprintf( 'Finished customer import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( sprintf( 'Finished customer import from file "%1$s"', $filename ), Log::INFO, 'import/xml/customer' );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{

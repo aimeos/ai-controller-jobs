@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Media;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Media list processor for XML imports
@@ -132,7 +134,8 @@ class Standard
 		}
 		catch( \Aimeos\Controller\Common\Exception $e )
 		{
-			$context->getLogger()->log( sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() ) );
+			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
+			$context->getLogger()->log( $msg, Log::ERR, 'import/xml/product' );
 		}
 
 		return $refItem->fromArray( $list );

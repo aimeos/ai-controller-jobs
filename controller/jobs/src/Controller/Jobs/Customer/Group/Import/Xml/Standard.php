@@ -79,7 +79,7 @@ class Standard
 
 		try
 		{
-			$logger->log( sprintf( 'Started customer group import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Started customer group import from "%1$s"', $location ), Log::INFO, 'import/xml/customer/group' );
 
 			if( !file_exists( $location ) )
 			{
@@ -116,11 +116,11 @@ class Standard
 
 			$context->getProcess()->wait();
 
-			$logger->log( sprintf( 'Finished customer group import from "%1$s"', $location ), \Aimeos\MW\Logger\Base::INFO );
+			$logger->log( sprintf( 'Finished customer group import from "%1$s"', $location ), Log::INFO, 'import/xml/customer/group' );
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Customer group import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/group' );
+			$logger->log( 'Customer group import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/customer/group' );
 			$this->mail( 'Customer group XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -194,7 +194,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
 
-		$logger->log( sprintf( 'Started customer group import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( sprintf( 'Started customer group import from file "%1$s"', $filename ), Log::INFO, 'import/xml/customer/group' );
 
 		while( $xml->read() === true )
 		{
@@ -225,7 +225,7 @@ class Standard
 			$proc->finish();
 		}
 
-		$logger->log( sprintf( 'Finished customer group import from file "%1$s"', $filename ), \Aimeos\MW\Logger\Base::INFO );
+		$logger->log( sprintf( 'Finished customer group import from file "%1$s"', $filename ), Log::INFO, 'import/xml/customer/group' );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{

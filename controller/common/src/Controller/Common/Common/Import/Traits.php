@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Common\Common\Import;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Shared class for XML importers
@@ -81,7 +83,9 @@ trait Traits
 				catch( \Exception $e )
 				{
 					$manager->rollback();
-					$this->getContext()->getLogger()->log( 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+
+					$msg = 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
+					$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import' );
 				}
 			}
 		}

@@ -54,7 +54,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$logger = $context->getLogger();
 
 		/** controller/common/subscription/process/processors
 		 * List of processor names that should be executed for subscriptions
@@ -166,7 +165,7 @@ class Standard
 				{
 					$str = 'Unable to begin subscription with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->getLogger()->log( $msg, Log::ERR, 'subscription' );
+					$context->getLogger()->log( $msg, Log::ERR, 'subscription/process/begin' );
 				}
 			}
 
