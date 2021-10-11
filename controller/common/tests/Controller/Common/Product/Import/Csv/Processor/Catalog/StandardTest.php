@@ -67,13 +67,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'job_csv_test',
 		);
 
-		$this->create( 'job_csv_test' );
+		$catItem = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
 
 		$category = $this->get( 'job_csv_test' );
-		$this->delete( $category );
+		$this->delete( $catItem );
 
 
 		$pos = 0;
@@ -112,8 +112,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => "job_csv_test\njob_csv_test2",
 		);
 
-		$this->create( 'job_csv_test' );
-		$this->create( 'job_csv_test2' );
+		$catItem = $this->create( 'job_csv_test' );
+		$catItem2 = $this->create( 'job_csv_test2' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -121,8 +121,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$category = $this->get( 'job_csv_test' );
 		$category2 = $this->get( 'job_csv_test2' );
 
-		$this->delete( $category );
-		$this->delete( $category2 );
+		$this->delete( $catItem );
+		$this->delete( $catItem2 );
 
 
 		$pos = 0;
@@ -161,14 +161,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			1 => 'job_csv_test',
 		);
 
-		$this->create( 'job_csv_test' );
+		$catItem = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
 		$object->process( self::$product, $dataUpdate );
 
 		$category = $this->get( 'job_csv_test' );
-		$this->delete( $category );
+		$this->delete( $catItem );
 
 
 		$listItems = $category->getListItems();
@@ -193,7 +193,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			1 => 'job_csv_test',
 		);
 
-		$this->create( 'job_csv_test' );
+		$catItem = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
@@ -202,7 +202,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->process( self::$product, [] );
 
 		$category = $this->get( 'job_csv_test' );
-		$this->delete( $category );
+		$this->delete( $catItem );
 
 
 		$listItems = $category->getListItems();
@@ -227,13 +227,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'job_csv_test',
 		);
 
-		$this->create( 'job_csv_test' );
+		$catItem = $this->create( 'job_csv_test' );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( self::$product, $data );
 
 		$category = $this->get( 'job_csv_test' );
-		$this->delete( $category );
+		$this->delete( $catItem );
 
 
 		$listItems = $category->getListItems();
@@ -260,8 +260,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/catalog/listtypes', array( 'default' ) );
 
-		$this->create( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 
 		$this->expectException( '\Aimeos\Controller\Common\Exception' );
@@ -275,23 +273,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function create( $code )
 	{
 		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-
-		$item = $manager->create();
-		$item->setCode( $code );
-
-		$manager->insert( $item );
-
-		return $item;
+		return $manager->insert( $manager->create()->setCode( $code ) );
 	}
 
 
 	protected function delete( \Aimeos\MShop\Catalog\Item\Iface $catItem )
 	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-		$listManager = $manager->getSubManager( 'lists' );
-
-		$listManager->delete( $catItem->getListItems( 'product' )->keys()->toArray() );
-		$manager->delete( $catItem->getId() );
+		\Aimeos\MShop\Catalog\Manager\Factory::create( $this->context )->delete( $catItem->getId() );
 	}
 
 
@@ -300,15 +288,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function get( $code )
 	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
-
-		if( ( $item = $manager->search( $search, ['product'] )->first() ) === null ) {
-			throw new \RuntimeException( sprintf( 'No catalog item for code "%1$s"', $code ) );
-		}
-
-		return $item;
+		return \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context )->find( $code, ['product'] );
 	}
 }

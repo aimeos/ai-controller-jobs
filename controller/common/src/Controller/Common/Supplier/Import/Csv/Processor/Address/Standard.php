@@ -32,6 +32,7 @@ class Standard
 	 * @category Developer
 	 */
 
+
 	/**
 	 * Initializes the object
 	 *
@@ -45,6 +46,7 @@ class Standard
 		parent::__construct( $context, $mapping, $object );
 	}
 
+
 	/**
 	 * Saves the supplier related data to the storage
 	 *
@@ -54,42 +56,27 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Supplier\Item\Iface $supplier, array $data ) : array
 	{
+		$map = $this->getMappedChunk( $data, $this->getMapping() );
+		$items = $supplier->getAddressItems();
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier/address' );
-		$manager->begin();
-
-		try
+		foreach( $map as $pos => $list )
 		{
-			$map = $this->getMappedChunk( $data, $this->getMapping() );
-			$items = $supplier->getAddressItems();
-
-			foreach( $map as $pos => $list )
-			{
-				if( $this->checkEntry( $list ) === false )
-				{
-					continue;
-				}
-
-				if( ( $item = $items->pop() ) === null )
-				{
-					$item = $manager->create();
-				}
-
-				$item->fromArray( $list );
-				$supplier->addAddressItem( $item, $items->lastKey() );
+			if( $this->checkEntry( $list ) === false ) {
+				continue;
 			}
 
-			$data = $this->getObject()->process( $supplier, $data );
+			$key = $items->lastKey();
+			if( ( $item = $items->pop() ) === null ) {
+				$item = \Aimeos\MShop::create( $this->getContext(), 'supplier/address' )->create();
+			}
 
-			$manager->commit();
-		} catch( \Exception $e )
-		{
-			$manager->rollback();
-			throw $e;
+			$item->fromArray( $list );
+			$supplier->addAddressItem( $item, $key );
 		}
 
-		return $data;
+		return $this->getObject()->process( $supplier, $data );
 	}
+
 
 	/**
 	 * Checks if an entry can be used for updating a media item
@@ -99,18 +86,18 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'supplier.address.languageid' ) === null )
-		{
+		if( $this->getValue( $list, 'supplier.address.languageid' ) === null ) {
 			return false;
 		}
-		if( $this->getValue( $list, 'supplier.address.countryid' ) === null )
-		{
+
+		if( $this->getValue( $list, 'supplier.address.countryid' ) === null ) {
 			return false;
 		}
-		if( $this->getValue( $list, 'supplier.address.city' ) === null )
-		{
+
+		if( $this->getValue( $list, 'supplier.address.city' ) === null ) {
 			return false;
 		}
+
 		return true;
 	}
 }
