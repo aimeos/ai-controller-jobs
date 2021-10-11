@@ -13,7 +13,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 	private $endpoint;
-	protected static $supplierManager;
+	private $manager;
 
 
 	protected function setUp() : void
@@ -21,8 +21,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::cache( true );
 
 		$this->context = \TestHelperCntl::getContext();
+		$this->manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
 		$this->endpoint = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Done( $this->context, [] );
-		self::$supplierManager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
 	}
 
 
@@ -57,8 +57,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Address\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $supplier, $data );
 
-		self::$supplierManager->save( $supplier );
-
 		$addressItems = $supplier->getAddressItems();
 		$address = $addressItems->first();
 
@@ -71,8 +69,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'John', $address->getFirstname() );
 		$this->assertEquals( 'Dummy', $address->getLastname() );
 		$this->assertEquals( 'john@dummies-domains.de', $address->getEmail() );
-
-		$this->delete( $supplier );
 	}
 
 
@@ -157,17 +153,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Address\Standard( $this->context, $mapping, $this->endpoint );
 		$object->process( $supplier, $data );
-		self::$supplierManager->save( $supplier );
-
 		$object->process( $supplier, $dataUpdate );
-		self::$supplierManager->save( $supplier );
-
-		$this->reloadSupplier( $supplier );
 
 		$addressItems = $supplier->getAddressItems();
 		$address = $addressItems->first();
-
-		$this->delete( $supplier );
 
 		$this->assertEquals( 1, count( $addressItems ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Supplier\\Item\\Address\\Iface', $address );
@@ -200,8 +189,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$listItems = $supplier->getListItems();
 		$this->assertEquals( 0, count( $listItems ) );
-
-		$this->delete( $supplier );
 	}
 
 
@@ -241,25 +228,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function create( $code )
 	{
-		$item = self::$supplierManager->create();
-		$item->setCode( $code );
-
-		self::$supplierManager->save( $item );
-
-		return $item;
+		return $this->manager->create()->setCode( $code );
 	}
-
-	protected function delete( \Aimeos\MShop\Supplier\Item\Iface $item )
-	{
-		$listManager = self::$supplierManager->getSubManager( 'lists' );
-
-		$listManager->delete( $item->getListItems( 'product' )->keys()->toArray() );
-		self::$supplierManager->delete( $item->getId() );
-	}
-
-	public function reloadSupplier( &$supplier )
-	{
-		$supplier = self::$supplierManager->get( $supplier->getId(), ['supplier/address'] );
-	}
-
 }

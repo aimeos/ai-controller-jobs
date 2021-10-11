@@ -12,7 +12,6 @@ namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $product;
-	private static $supplier;
 	private $context;
 	private $endpoint;
 
@@ -20,11 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public static function setUpBeforeClass() : void
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
-
-		$item = $manager->create();
-		$item->setCode( 'job_csv_prod' );
-		$item->setType( 'default' );
-		$item->setStatus( 1 );
+		$item = $manager->create()->setCode( 'job_csv_prod' )->setType( 'default' );
 
 		self::$product = $manager->save( $item );
 	}
@@ -32,8 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function tearDownAfterClass() : void
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
-		$manager->delete( self::$product->getId() );
+		\Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() )->delete( self::$product );
 	}
 
 
@@ -48,11 +42,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		if( self::$supplier != null )
-		{
-			$this->delete( self::$supplier );
-		}
-
 		\Aimeos\MShop::cache( false );
 	}
 
@@ -75,8 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
 
-		foreach( $suppliersCodes as $code )
-		{
+		foreach( $suppliersCodes as $code ) {
 			$this->create( $code );
 		}
 
@@ -111,8 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$suppliersCodes = ['job_csv_test', 'job_csv_test2'];
 
-		foreach( $suppliersCodes as $code )
-		{
+		foreach( $suppliersCodes as $code ) {
 			$this->create( $code );
 		}
 
@@ -249,8 +236,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/supplier/listtypes', array( 'default' ) );
 
-		self::$supplier = $this->create( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
 
 		$this->expectException( '\Aimeos\Controller\Common\Exception' );
@@ -264,14 +249,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function create( $code )
 	{
 		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
-
-		$item = $manager->create();
-		$item->setCode( $code );
-
-		$manager->save( $item );
-
-		return $item;
+		return $manager->save( $manager->create()->setCode( $code ) );
 	}
+
 
 	/**
 	 * @param string $code
@@ -288,18 +268,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setLabel( $code );
 		$item->setStatus( 1 );
 
-		$supplierListTypeManager->save( $item );
-
-		return $item;
+		return $supplierListTypeManager->save( $item );
 	}
+
 
 	protected function delete( \Aimeos\MShop\Supplier\Item\Iface $item )
 	{
-		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
-		$listManager = $manager->getSubManager( 'lists' );
-
-		$listManager->delete( $item->getListItems( 'product' )->keys()->toArray() );
-		$manager->delete( $item->getId() );
+		\Aimeos\MShop\Supplier\Manager\Factory::create( $this->context )->delete( $item->getId() );
 	}
 
 
@@ -318,16 +293,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function get( $code )
 	{
-		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
-
-		if( ( $item = $manager->search( $search, ['product'] )->first() ) === null )
-		{
-			throw new \RuntimeException( sprintf( 'No supplier item for code "%1$s"', $code ) );
-		}
-
-		return $item;
+		return \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context )->find( $code, ['product'] );
 	}
 }
