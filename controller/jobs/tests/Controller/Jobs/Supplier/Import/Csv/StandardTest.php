@@ -58,9 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
-		$nondelete = array( 'address' );
-		$delete = array( 'media', 'text' );
+		$codes = ['job_csv_test', 'job_csv_test2'];
 
 		$convert = array(
 			1 => 'Text/LatinUTF8',
@@ -70,17 +68,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->run();
 
-		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
-
-
+		$result = $this->get( $codes, ['address', 'media', 'text'] );
 		$addresses = $this->getAddresses( $result->keys()->toArray() );
-		$this->delete( $prodcodes, $delete, $nondelete );
+
+		$this->delete( $codes, ['media', 'text'] );
 
 		$this->assertEquals( 2, count( $result ) );
 		$this->assertEquals( 2, count( $addresses ) );
 
-		foreach( $result as $supplier )
-		{
+		foreach( $result as $supplier ) {
 			$this->assertEquals( 2, count( $supplier->getListItems() ) );
 		}
 	}
@@ -88,22 +84,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunUpdate()
 	{
-		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
-		$nondelete = array( 'address' );
-		$delete = array( 'media', 'text' );
+		$codes = ['job_csv_test', 'job_csv_test2'];
 
 		$this->object->run();
 		$this->object->run();
 
-		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
+		$result = $this->get( $codes, ['address', 'media', 'text'] );
 		$addresses = $this->getAddresses( $result->keys()->toArray() );
-		$this->delete( $prodcodes, $delete, $nondelete );
+
+		$this->delete( $codes, ['media', 'text'] );
 
 		$this->assertEquals( 2, count( $result ) );
 		$this->assertEquals( 2, count( $addresses ) );
 
-		foreach( $result as $supplier )
-		{
+		foreach( $result as $supplier ) {
 			$this->assertEquals( 2, count( $supplier->getListItems() ) );
 		}
 	}
@@ -111,9 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunPosition()
 	{
-		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
-		$nondelete = array( 'address' );
-		$delete = array( 'media', 'text' );
+		$codes = ['job_csv_test', 'job_csv_test2'];
 
 		$config = $this->context->getConfig();
 		$mapping = $config->get( 'controller/jobs/supplier/import/csv/mapping', [] );
@@ -124,8 +116,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->run();
 
-		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
-		$this->delete( $prodcodes, $delete, $nondelete );
+		$result = $this->get( $codes, ['address', 'media', 'text'] );
+		$this->delete( $codes, ['media', 'text'] );
 
 		$this->assertEquals( 2, count( $result ) );
 	}
@@ -184,57 +176,36 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function delete( array $prodcodes, array $delete, array $nondelete )
+	protected function delete( array $codes, array $delete )
 	{
-		$catListManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context )->getSubmanager( 'lists' );
 		$supplierManager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
-		$listManager = $supplierManager->getSubManager( 'lists' );
 
-		foreach( $this->get( $prodcodes, $delete + $nondelete ) as $id => $supplier )
+		foreach( $this->get( $codes, $delete ) as $id => $supplier )
 		{
 			foreach( $delete as $domain )
 			{
 				$manager = \Aimeos\MShop::create( $this->context, $domain );
 
-				foreach( $supplier->getListItems( $domain ) as $listItem )
-				{
+				foreach( $supplier->getListItems( $domain ) as $listItem ) {
 					$manager->delete( $listItem->getRefItem()->getId() );
-					$listManager->delete( $listItem->getId() );
 				}
 			}
 
-			foreach( $nondelete as $domain )
-			{
-				$listManager->delete( $supplier->getListItems( $domain )->toArray() );
-			}
-
-			$supplierManager->delete( $supplier->getId() );
-
-			$search = $catListManager->filter();
-			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );
-			$result = $catListManager->search( $search );
-
-			$catListManager->delete( $result->toArray() );
+			$supplierManager->delete( $id );
 		}
 
 
 		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$search = $attrManager->filter()->add( ['attribute.code' => 'import-test'] );
 
-		$search = $attrManager->filter();
-		$search->setConditions( $search->compare( '==', 'attribute.code', 'import-test' ) );
-
-		$result = $attrManager->search( $search );
-
-		$attrManager->delete( $result->toArray() );
+		$attrManager->delete( $attrManager->search( $search ) );
 	}
 
 
-	protected function get( array $prodcodes, array $domains )
+	protected function get( array $codes, array $domains )
 	{
 		$supplierManager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
-
-		$search = $supplierManager->filter();
-		$search->setConditions( $search->compare( '==', 'supplier.code', $prodcodes ) );
+		$search = $supplierManager->filter()->add( ['supplier.code' => $codes] );
 
 		return $supplierManager->search( $search, $domains );
 	}
@@ -242,9 +213,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getAddresses( array $prodids )
 	{
 		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context )->getSubManager( 'address' );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'supplier.address.parentid', $prodids ) );
+		$search = $manager->filter()->add( ['supplier.address.parentid' => $prodids] );
 
 		return $manager->search( $search );
 	}
