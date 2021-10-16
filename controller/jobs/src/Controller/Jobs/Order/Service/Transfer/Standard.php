@@ -51,8 +51,6 @@ class Standard
 	public function run()
 	{
 		$context = $this->getContext();
-		$config = $context->getConfig();
-
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 		$serviceSearch = $serviceManager->filter()->add( ['service.type' => 'payment'] );
 
