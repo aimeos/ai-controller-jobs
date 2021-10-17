@@ -90,7 +90,7 @@ class Standard
 						{
 							try
 							{
-								$serviceProvider->transfer( $orderItem );
+								$orderManager->save( $serviceProvider->transfer( $orderItem ) );
 							}
 							catch( \Exception $e )
 							{
