@@ -50,9 +50,25 @@ class Standard
 	 */
 	public function run()
 	{
+		/** controller/jobs/catalog/export/sitemap/hidden
+		 * Export hidden categories in site map
+		 *
+		 * The catalog site map contains no hidden categories by default. If they
+		 * should be part of the export, set this configuration option to TRUE.
+		 *
+		 * @param bool TRUE to export hidden categories, FALSE if not
+		 * @since 2022.01
+		 * @see controller/jobs/catalog/export/sitemap/container/options
+		 * @see controller/jobs/catalog/export/sitemap/location
+		 * @see controller/jobs/catalog/export/sitemap/max-items
+		 * @see controller/jobs/catalog/export/sitemap/max-query
+		 * @see controller/jobs/catalog/export/sitemap/changefreq
+		 */
+		$hidden = $this->getContext()->config()->get( 'controller/jobs/catalog/export/sitemap/hidden', false );
+
 		$container = $this->createContainer();
 
-		$files = $this->export( $container );
+		$files = $this->export( $container, $hidden ? null : true );
 		$this->createSitemapIndex( $container, $files );
 
 		$container->close();
@@ -379,10 +395,10 @@ class Standard
 	 * Exports the catalogs into the given container
 	 *
 	 * @param \Aimeos\MW\Container\Iface $container Container object
-	 * @param bool $default True to filter exported catalogs by default criteria
+	 * @param bool|null $default TRUE to use default criteria, NULL for relaxed criteria
 	 * @return array List of content (file) names
 	 */
-	protected function export( \Aimeos\MW\Container\Iface $container, bool $default = true ) : array
+	protected function export( \Aimeos\MW\Container\Iface $container, ?bool $default = true ) : array
 	{
 		$config = $this->getContext()->getConfig();
 		/** controller/jobs/catalog/export/sitemap/domains
