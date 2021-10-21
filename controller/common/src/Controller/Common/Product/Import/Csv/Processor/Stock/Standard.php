@@ -47,6 +47,7 @@ class Standard
 
 		try
 		{
+			$stock = 0;
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$items = $manager->search( $manager->filter()->add( ['stock.productid' => $product->getId()] ) );
 
@@ -68,9 +69,14 @@ class Standard
 				}
 
 				$manager->save( $item->fromArray( $list ), false );
+
+				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
+					$stock = 1;
+				}
 			}
 
 			$manager->delete( $items->toArray() );
+			$product->inStock( $stock );
 
 			$data = $this->getObject()->process( $product, $data );
 
