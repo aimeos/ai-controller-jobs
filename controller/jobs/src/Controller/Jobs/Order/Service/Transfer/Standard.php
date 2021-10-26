@@ -75,7 +75,7 @@ class Standard
 					}
 
 					$orderSearch->setConditions( $orderSearch->and( [
-						$orderSearch->compare( '==', 'order.payment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
+						$orderSearch->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
 						$orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
 						$orderSearch->compare( '==', 'order.base.service.type', 'payment' )
 					] ) );
