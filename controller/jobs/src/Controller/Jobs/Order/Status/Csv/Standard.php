@@ -79,14 +79,14 @@ class Standard
 
 			try
 			{
-				$handle = $fs->reads(  $dirname . '/' . $name );
+				$handle = $fs->reads( $dirname . '/' . $name );
 
 				$this->import( $handle );
 
 				if( $dir ) {
-					$fs->move(  $dirname . '/' . $name,  $dirname . '/_done/' . $name );
+					$fs->move( $dirname . '/' . $name, $dirname . '/_done/' . $name );
 				} else {
-					$fs->rm(  $dirname . '/' . $name );
+					$fs->rm( $dirname . '/' . $name );
 				}
 			}
 			catch( \Exception $e )
