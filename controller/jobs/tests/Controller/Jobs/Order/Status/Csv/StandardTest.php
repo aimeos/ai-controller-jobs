@@ -53,8 +53,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		copy( __DIR__ . '/_test/status.csv', $dir . '/status.csv' );
 
 
-		$this->context->config()->set( 'controller/common/order/status/csv/separator', ';' );
-		$this->context->config()->set( 'controller/common/order/status/csv/skip', 1 );
+		$this->context->config()->set( 'controller/jobs/order/status/csv/separator', ';' );
+		$this->context->config()->set( 'controller/jobs/order/status/csv/skip', 1 );
 
 
 		$orderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
@@ -72,10 +72,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$orderStub->create()] ) ) );
+			->will( $this->returnValue( map( [$orderStub->create()->setId( 1 )] ) ) );
 
 		$oProdStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$oProdStub->create()] ) ) );
+			->will( $this->returnValue( map( [$oProdStub->create()->setId( 2 )] ) ) );
 
 		$orderStub->expects( $this->once() )->method( 'save' );
 		$oProdStub->expects( $this->once() )->method( 'save' );

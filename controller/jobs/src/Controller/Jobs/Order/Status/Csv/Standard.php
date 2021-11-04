@@ -50,7 +50,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		/** controller/common/order/status/csv/directory
+		/** controller/jobs/order/status/csv/directory
 		 * Path to the CSV files relative to the order status file system
 		 *
 		 * The CSV files for importing the order status values are expected to
@@ -63,7 +63,7 @@ class Standard
 		 * @param string Relative sub-directory name, path or empty string
 		 * @since 2021.10
 		 */
-		$dirname = $context->config()->get( 'controller/common/order/status/csv/directory', 'orderstatus' );
+		$dirname = $context->config()->get( 'controller/jobs/order/status/csv/directory', 'orderstatus' );
 
 		$fs = $context->fs( 'fs-import' );
 
@@ -148,7 +148,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->config();
 
-		/** controller/common/order/status/csv/max-size
+		/** controller/jobs/order/status/csv/max-size
 		 * Maximum number of CSV rows to import at once
 		 *
 		 * It's more efficient to read and status more than one row at a time
@@ -161,9 +161,9 @@ class Standard
 		 * @param int Number of rows
 		 * @since 2021.10
 		 */
-		$maxcnt = (int) $config->get( 'controller/common/order/status/csv/max-size', 1000 );
+		$maxcnt = (int) $config->get( 'controller/jobs/order/status/csv/max-size', 1000 );
 
-		/** controller/common/order/status/csv/separator
+		/** controller/jobs/order/status/csv/separator
 		 * Character separating the values in the CSV file
 		 *
 		 * By default, a comma (",") is used but it can be changed to e.g. a
@@ -172,9 +172,9 @@ class Standard
 		 * @param string Single byte separator character
 		 * @since 2021.10
 		 */
-		$sep = $config->get( 'controller/common/order/status/csv/separator', ',' );
+		$sep = $config->get( 'controller/jobs/order/status/csv/separator', ',' );
 
-		/** controller/common/order/status/csv/skip
+		/** controller/jobs/order/status/csv/skip
 		 * Number of rows that should be skipped
 		 *
 		 * If the CSV file contains a header that shouldn't be imported, set
@@ -183,7 +183,7 @@ class Standard
 		 * @param int Number of header rows to skip
 		 * @since 2021.10
 		 */
-		$skip = (int) $config->get( 'controller/common/order/status/csv/skip', 0 );
+		$skip = (int) $config->get( 'controller/jobs/order/status/csv/skip', 0 );
 
 		for( $i = 0; $i < $skip; $i++ ) {
 			fgetcsv( $handle, 0, $sep );
@@ -201,7 +201,7 @@ class Standard
 				$items = $manager->search( $filter );
 
 				foreach( $items as $item ) {
-					$item->setStatusDelivery( $orders[$item->getId()] ?? $item->getStatusDelivery() );
+					$item->setStatusDelivery( $orders[$item->getId()][2] ?? $item->getStatusDelivery() );
 				}
 
 				$manager->save( $items );
@@ -215,7 +215,7 @@ class Standard
 				$items = $pmanager->search( $filter );
 
 				foreach( $items as $item ) {
-					$item->setStatusDelivery( $orders[$item->getId()] ?? $item->getStatusDelivery() );
+					$item->setStatusDelivery( $orders[$item->getId()][2] ?? $item->getStatusDelivery() );
 				}
 
 				$pmanager->save( $items );
