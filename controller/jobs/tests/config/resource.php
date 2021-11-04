@@ -9,8 +9,4 @@ return [
 		'adapter' => 'Standard',
 		'basedir' => 'tmp/import',
 	],
-	'fs-orderstatus' => [
-		'adapter' => 'Standard',
-		'basedir' => 'Controller/Jobs/Order/Status/Csv/_test',
-	],
 ];

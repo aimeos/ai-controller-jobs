@@ -65,28 +65,28 @@ class Standard
 		 */
 		$dirname = $context->config()->get( 'controller/common/order/status/csv/directory', 'orderstatus' );
 
-		$fs = $context->fs( 'fs-orderstatus' );
+		$fs = $context->fs( 'fs-import' );
 
-		if( ( $dir = ( $fs instanceof \Aimeos\MW\Filesystem\DirIface ) ) && !$fs->has( '_done' ) ) {
-			$fs->mkDir( '_done' );
+		if( ( $dir = ( $fs instanceof \Aimeos\MW\Filesystem\DirIface ) ) && !$fs->has( $dirname . '/_done' ) ) {
+			$fs->mkDir( $dirname . '/_done' );
 		}
 
 		foreach( $fs->scan( $dirname ) as $name )
 		{
-			if( $dir && $fs->isDir( $name ) ) {
+			if( $dir && $fs->isDir( $dirname . '/' . $name ) ) {
 				continue;
 			}
 
 			try
 			{
-				$handle = $fs->reads( $name );
+				$handle = $fs->reads(  $dirname . '/' . $name );
 
 				$this->import( $handle );
 
 				if( $dir ) {
-					$fs->move( $name, '_done/' . $name );
+					$fs->move(  $dirname . '/' . $name,  $dirname . '/_done/' . $name );
 				} else {
-					$fs->rm( $name );
+					$fs->rm(  $dirname . '/' . $name );
 				}
 			}
 			catch( \Exception $e )
@@ -96,7 +96,7 @@ class Standard
 			}
 			finally
 			{
-				!is_resource( $handle ) ?: fclose( $handle );
+				!is_resource( $handle ?? null ) ?: fclose( $handle );
 			}
 		}
 	}
@@ -183,7 +183,7 @@ class Standard
 		 * @param int Number of header rows to skip
 		 * @since 2021.10
 		 */
-		$skip = $config->get( 'controller/common/order/status/csv/skip', 0 );
+		$skip = (int) $config->get( 'controller/common/order/status/csv/skip', 0 );
 
 		for( $i = 0; $i < $skip; $i++ ) {
 			fgetcsv( $handle, 0, $sep );

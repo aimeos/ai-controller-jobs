@@ -48,7 +48,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$this->context->config()->set( 'controller/common/order/status/csv/directory', '' );
+		$dir = dirname( __DIR__, 5 ) . '/tmp/import/orderstatus';
+		file_exists( $dir ) ?: mkdir( $dir );
+		copy( __DIR__ . '/_test/status.csv', $dir . '/status.csv' );
+
+
 		$this->context->config()->set( 'controller/common/order/status/csv/separator', ';' );
 		$this->context->config()->set( 'controller/common/order/status/csv/skip', 1 );
 
@@ -79,7 +83,5 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Jobs\Order\Status\Csv\Standard( $this->context, $this->aimeos );
 		$object->run();
-
-		$this->context->fs( 'fs-orderstatus' )->move( '_done/status.csv', 'status.csv' );
 	}
 }
