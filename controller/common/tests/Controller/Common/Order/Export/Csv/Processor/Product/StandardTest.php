@@ -26,7 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			9 => 'order.base.product.costs',
 			10 => 'order.base.product.rebate',
 			11 => 'order.base.product.taxrate',
-			12 => 'order.base.product.status',
+			12 => 'order.base.product.statusdelivery',
 			13 => 'order.base.product.position',
 			14 => 'order.base.product.attribute.type',
 			15 => 'order.base.product.attribute.code',

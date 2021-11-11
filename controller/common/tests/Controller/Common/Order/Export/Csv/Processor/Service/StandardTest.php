@@ -41,26 +41,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 12, count( $data[0] ) );
 		$this->assertEquals( 'payment', $data[0][0] );
-		$this->assertEquals( 'OGONE', $data[0][1] );
-		$this->assertEquals( 'ogone', $data[0][2] );
+		$this->assertEquals( 'unitpaymentcode', $data[0][1] );
+		$this->assertEquals( 'unitpaymentcode', $data[0][2] );
 		$this->assertEquals( 'somewhere/thump1.jpg', $data[0][3] );
 		$this->assertEquals( '0.00', $data[0][4] );
 		$this->assertEquals( '0.00', $data[0][5] );
 		$this->assertEquals( '0.00', $data[0][6] );
 		$this->assertEquals( '0.00', $data[0][7] );
 		$this->assertEquals( "payment\npayment\npayment\npayment\npayment\npayment\npayment\npayment\npayment", $data[0][8] );
-		$this->assertEquals( "ACOWNER\nACSTRING\nNAME\nREFID\nTXDATE\nX-ACCOUNT\nX-STATUS\nOgone-alias-name\nOgone-alias-value", $data[0][9] );
-		$this->assertEquals( "account owner\naccount number\npayment method\nreference id\ntransaction date\ntransaction account\ntransaction status\nogone alias name\nogone alias value", $data[0][10] );
+		$this->assertEquals( "ACOWNER\nACSTRING\nNAME\nREFID\nTXDATE\nX-ACCOUNT\nX-STATUS\nunitpaymentcode-alias-name\nunitpaymentcode-alias-value", $data[0][9] );
+		$this->assertEquals( "account owner\naccount number\npayment method\nreference id\ntransaction date\ntransaction account\ntransaction status\nunitpaymentcode alias name\nunitpaymentcode alias value", $data[0][10] );
 		$this->assertEquals( "test user\n9876543\nCreditCard\n12345678\n2009-08-18\nKraft02\n9\naliasName\naliasValue", $data[0][11] );
 
 		$this->assertEquals( 12, count( $data[1] ) );
 		$this->assertEquals( 'delivery', $data[1][0] );
-		$this->assertEquals( '73', $data[1][1] );
-		$this->assertEquals( 'solucia', $data[1][2] );
+		$this->assertEquals( 'unitdeliverycode', $data[1][1] );
+		$this->assertEquals( 'unitdeliverycode', $data[1][2] );
 		$this->assertEquals( 'somewhere/thump1.jpg', $data[1][3] );
 		$this->assertEquals( '0.00', $data[1][4] );
-		$this->assertEquals( '5.00', $data[1][5] );
-		$this->assertEquals( '0.00', $data[1][6] );
+		$this->assertEquals( '0.00', $data[1][5] );
+		$this->assertEquals( '5.00', $data[1][6] );
 		$this->assertEquals( '0.00', $data[1][7] );
 		$this->assertEquals( '', $data[1][8] );
 		$this->assertEquals( '', $data[1][9] );
