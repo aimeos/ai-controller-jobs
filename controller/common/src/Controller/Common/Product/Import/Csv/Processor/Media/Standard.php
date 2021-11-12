@@ -162,7 +162,7 @@ class Standard
 					$refItem = $manager->create()->setType( $type );
 				}
 
-				$ext = pathinfo( $url, PATHINFO_EXTENSION );
+				$ext = strtolower( pathinfo( $url, PATHINFO_EXTENSION ) );
 				if( isset( $this->mimes[$ext] ) ) {
 					$refItem->setMimeType( $this->mimes[$ext] );
 				}
