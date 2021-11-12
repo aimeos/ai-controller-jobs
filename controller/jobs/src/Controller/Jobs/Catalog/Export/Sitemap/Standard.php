@@ -141,7 +141,7 @@ class Standard
 		$default = 'catalog/export/sitemap-items-body-standard';
 
 		$context = $this->getContext();
-		$view = $context->getView();
+		$view = $context->view();
 
 		$view->siteItems = $items;
 		$view->siteFreq = $changefreq;
@@ -262,7 +262,7 @@ class Standard
 		$default = 'catalog/export/sitemap-items-header-standard';
 
 		$context = $this->getContext();
-		$view = $context->getView();
+		$view = $context->view();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
 		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
@@ -305,7 +305,7 @@ class Standard
 		$default = 'catalog/export/sitemap-items-footer-standard';
 
 		$context = $this->getContext();
-		$view = $context->getView();
+		$view = $context->view();
 
 		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 	}
@@ -321,7 +321,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$view = $context->getView();
+		$view = $context->view();
 
 		/** controller/jobs/catalog/export/sitemap/template-index
 		 * Relative path to the XML site map index template of the catalog site map job controller.

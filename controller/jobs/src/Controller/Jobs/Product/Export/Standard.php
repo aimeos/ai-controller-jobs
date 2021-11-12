@@ -90,7 +90,7 @@ class Standard
 		$default = 'product/export/items-body-standard';
 
 		$context = $this->getContext();
-		$view = $context->getView();
+		$view = $context->view();
 
 		$view->exportItems = $items;
 
@@ -221,7 +221,7 @@ class Standard
 		$default = 'product/export/items-header-standard';
 
 		$context = $this->getContext();
-		$view = $context->getView();
+		$view = $context->view();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
 		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
@@ -264,7 +264,7 @@ class Standard
 		$default = 'product/export/items-footer-standard';
 
 		$context = $this->getContext();
-		$view = $context->getView();
+		$view = $context->view();
 
 		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
 	}
