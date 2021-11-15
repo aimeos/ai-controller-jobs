@@ -148,7 +148,7 @@ class Standard
 
 		$product->deleteListItems( $listItems->toArray() );
 
-		return $this->getObject()->process( $product, $data );
+		return $this->object()->process( $product, $data );
 	}
 
 

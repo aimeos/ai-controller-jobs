@@ -179,7 +179,7 @@ class Standard
 
 		$supplier->deleteListItems( $listItems->toArray(), true );
 
-		return $this->getObject()->process( $supplier, $data );
+		return $this->object()->process( $supplier, $data );
 	}
 
 

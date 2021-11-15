@@ -175,7 +175,7 @@ class Standard
 
 		$catalog->deleteListItems( $listItems->toArray(), true );
 
-		return $this->getObject()->process( $catalog, $data );
+		return $this->object()->process( $catalog, $data );
 	}
 
 

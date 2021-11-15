@@ -76,6 +76,6 @@ class Standard
 
 		$product->deletePropertyItems( $items->toArray() );
 
-		return $this->getObject()->process( $product, $data );
+		return $this->object()->process( $product, $data );
 	}
 }

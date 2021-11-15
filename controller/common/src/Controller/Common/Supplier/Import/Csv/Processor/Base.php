@@ -69,7 +69,7 @@ class Base
 	 * @return \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface Processor object
 	 * @throws \Aimeos\Controller\Jobs\Exception If no processor object is available
 	 */
-	protected function getObject() : Iface
+	protected function object() : Iface
 	{
 		if( $this->object === null )
 		{

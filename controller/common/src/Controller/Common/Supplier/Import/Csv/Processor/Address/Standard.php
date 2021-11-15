@@ -74,7 +74,7 @@ class Standard
 			$supplier->addAddressItem( $item, $key );
 		}
 
-		return $this->getObject()->process( $supplier, $data );
+		return $this->object()->process( $supplier, $data );
 	}
 
 
