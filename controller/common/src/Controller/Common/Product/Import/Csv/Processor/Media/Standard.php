@@ -167,6 +167,7 @@ class Standard
 					$refItem->setMimeType( $this->mimes[$ext] );
 				}
 
+				$refItem->setDomain( 'product' );
 				$refItem = $this->update( $refItem, $list, $url );
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
 
