@@ -167,6 +167,7 @@ class Standard
 					$refItem->setMimeType( $this->mimes[$ext] );
 				}
 
+				$refItem->setDomain( 'product' );
 				$refItem = $this->update( $refItem, $list, $url );
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
 
@@ -218,7 +219,8 @@ class Standard
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list, string $url ) : \Aimeos\MShop\Media\Item\Iface
 	{
 		$context = $this->getContext();
-		$fs = $context->fs( 'fs-media' );
+		$fsname = 'fs-media';
+		$fs = $context->fs( $fsname );
 
 		try
 		{
@@ -231,7 +233,7 @@ class Standard
 			} elseif( \Aimeos\MW\Str::starts( $url, ['http:', 'https:'] ) ) {
 				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), 'fs-media', true );
 			} elseif( $fs->has( $url ) && ( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) ) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ) );
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), $fsname, true );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );
