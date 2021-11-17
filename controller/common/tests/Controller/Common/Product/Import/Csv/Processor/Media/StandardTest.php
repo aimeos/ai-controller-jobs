@@ -29,6 +29,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs->write( 'path/to/2', 'test' );
 		$fs->write( 'path/to/3', 'test' );
 
+		$fs = $this->context->getFileSystemManager()->get( 'fs-mimeicon' );
+		$fs->write( 'unknown.png', 'test' );
+
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
 	}
 

@@ -112,7 +112,7 @@ class Standard
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list )
 	{
 		$context = $this->getContext();
-		$fs = $context->fs( 'fs-media' );
+		$fs = $context->fs( $refItem->getFileSystem() );
 		$url = $list['media.url'] ?? '';
 
 		try

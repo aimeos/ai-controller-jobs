@@ -219,8 +219,7 @@ class Standard
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list, string $url ) : \Aimeos\MShop\Media\Item\Iface
 	{
 		$context = $this->getContext();
-		$fsname = 'fs-media';
-		$fs = $context->fs( $fsname );
+		$fs = $context->fs( $refItem->getFileSystem() );
 
 		try
 		{
@@ -231,9 +230,9 @@ class Standard
 			} elseif( \Aimeos\MW\Str::starts( $url, 'data:' ) ) {
 				$refItem->setPreview( $url )->setUrl( $url );
 			} elseif( \Aimeos\MW\Str::starts( $url, ['http:', 'https:'] ) ) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), 'fs-media', true );
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), true );
 			} elseif( $fs->has( $url ) && ( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) ) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), $fsname, true );
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), true );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );

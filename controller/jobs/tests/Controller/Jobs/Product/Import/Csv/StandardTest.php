@@ -28,6 +28,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs->write( 'path/to/image2.jpg', 'test' );
 		$fs->write( 'path/to/image.jpg', 'test' );
 
+		$fs = $this->context->getFileSystemManager()->get( 'fs-mimeicon' );
+		$fs->write( 'unknown.png', 'test' );
+
 		$config = $this->context->getConfig();
 		$config->set( 'controller/jobs/product/import/csv/skip-lines', 1 );
 		$config->set( 'controller/jobs/product/import/csv/location', __DIR__ . '/_testfiles/valid' );

@@ -9,4 +9,8 @@ return [
 		'adapter' => 'Standard',
 		'basedir' => 'tmp/import',
 	],
+	'fs-mimeicon' => [
+		'adapter' => 'Standard',
+		'basedir' => 'tmp',
+	],
 ];

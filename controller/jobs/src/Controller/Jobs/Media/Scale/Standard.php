@@ -121,7 +121,7 @@ class Standard
 		foreach( $items as $item )
 		{
 			try {
-				$manager->save( $cntl->scale( $item, 'fs-media', $force ) );
+				$manager->save( $cntl->scale( $item, $force ) );
 			} catch( \Exception $e ) {
 				$msg = sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() );
 				$logger->log( $msg, Log::ERR, 'media/scale' );
