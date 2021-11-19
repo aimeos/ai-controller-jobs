@@ -128,10 +128,10 @@ class Standard
 				continue;
 			}
 
-			$type = $this->getValue( $list, 'text.type', 'name' );
-			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
-			$language = $this->getValue( $list, 'text.languageid', '' );
-			$content = $this->getValue( $list, 'text.content', '' );
+			$type = $this->val( $list, 'text.type', 'name' );
+			$listtype = $this->val( $list, 'product.lists.type', 'default' );
+			$language = $this->val( $list, 'text.languageid', '' );
+			$content = $this->val( $list, 'text.content', '' );
 
 			$this->addType( 'product/lists/type', 'text', $listtype );
 			$this->addType( 'text/type', 'product', $type );
@@ -150,7 +150,7 @@ class Standard
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
 
-			$label = mb_strcut( $this->getValue( $list, 'text.content', '' ), 0, 255 );
+			$label = mb_strcut( $this->val( $list, 'text.content', '' ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );
 
 			$product->addListItem( 'text', $listItem, $refItem );
@@ -170,17 +170,17 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'text.content' ) === null ) {
+		if( $this->val( $list, 'text.content' ) === null ) {
 			return false;
 		}
 
-		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = $this->val( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->getValue( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = $this->val( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

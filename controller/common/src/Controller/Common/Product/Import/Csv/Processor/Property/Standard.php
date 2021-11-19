@@ -54,11 +54,11 @@ class Standard
 
 		foreach( $map as $list )
 		{
-			if( ( $value = $this->getValue( $list, 'product.property.value' ) ) === null ) {
+			if( ( $value = $this->val( $list, 'product.property.value' ) ) === null ) {
 				continue;
 			}
 
-			$type = $this->getValue( $list, 'product.property.type' );
+			$type = $this->val( $list, 'product.property.type' );
 			$this->addType( 'product/property/type', 'product', $type );
 
 			if( isset( $propMap[$value][$type] ) )

@@ -128,8 +128,8 @@ class Standard
 				continue;
 			}
 
-			$type = $this->getValue( $list, 'price.type', 'default' );
-			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
+			$type = $this->val( $list, 'price.type', 'default' );
+			$listtype = $this->val( $list, 'product.lists.type', 'default' );
 
 			$this->addType( 'product/lists/type', 'price', $listtype );
 			$this->addType( 'price/type', 'product', $type );
@@ -146,7 +146,7 @@ class Standard
 
 			$listItem = $listItem->setType( $listtype )->setPosition( $pos )->fromArray( $list );
 
-			$label = $this->getValue( $list, 'price.currencyid', '' ) . ' ' . $this->getValue( $list, 'price.value', '' );
+			$label = $this->val( $list, 'price.currencyid', '' ) . ' ' . $this->val( $list, 'price.value', '' );
 			$refItem = $refItem->setType( $type )->setLabel( $label )->fromArray( $list );
 
 			$product->addListItem( 'price', $listItem, $refItem );
@@ -168,17 +168,17 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'price.value' ) === null ) {
+		if( $this->val( $list, 'price.value' ) === null ) {
 			return false;
 		}
 
-		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = $this->val( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->getValue( $list, 'price.type' ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = $this->val( $list, 'price.type' ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'price' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

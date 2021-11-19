@@ -342,7 +342,7 @@ class Standard
 					continue;
 				}
 
-				$type = $this->getValue( $row, 2, 'default' );
+				$type = $this->val( $row, 2, 'default' );
 				$types[$type] = null;
 				$codes[] = $row[0];
 				$row[2] = $type;
@@ -374,8 +374,8 @@ class Standard
 				$item = $map[$product->getId()][$type] ?? $manager->create();
 
 				$items[] = $item->setProductId( $product->getId() )->setType( $type )
-					->setStocklevel( $this->getValue( $entry, 1 ) )
-					->setDateBack( $this->getValue( $entry, 3 ) );
+					->setStocklevel( $this->val( $entry, 1 ) )
+					->setDateBack( $this->val( $entry, 3 ) );
 
 				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
 					$product->inStock( 1 );

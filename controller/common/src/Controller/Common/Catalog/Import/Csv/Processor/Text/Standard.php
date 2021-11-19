@@ -128,9 +128,9 @@ class Standard
 				continue;
 			}
 
-			$type = $this->getValue( $list, 'text.type', 'name' );
-			$listtype = $this->getValue( $list, 'catalog.lists.type', 'default' );
-			$content = $this->getValue( $list, 'text.content', '' );
+			$type = $this->val( $list, 'text.type', 'name' );
+			$listtype = $this->val( $list, 'catalog.lists.type', 'default' );
+			$content = $this->val( $list, 'text.content', '' );
 
 			if( isset( $listMap[$content][$type][$listtype] ) )
 			{
@@ -146,7 +146,7 @@ class Standard
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
 
-			$label = mb_strcut( $this->getValue( $list, 'text.content', '' ), 0, 255 );
+			$label = mb_strcut( $this->val( $list, 'text.content', '' ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );
 
 			$catalog->addListItem( 'text', $listItem, $refItem );
@@ -166,17 +166,17 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'text.content' ) === null ) {
+		if( $this->val( $list, 'text.content' ) === null ) {
 			return false;
 		}
 
-		if( ( $type = $this->getValue( $list, 'catalog.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = $this->val( $list, 'catalog.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'catalog list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->getValue( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = $this->val( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

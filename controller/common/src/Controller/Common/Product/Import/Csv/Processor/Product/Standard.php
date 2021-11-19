@@ -122,10 +122,10 @@ class Standard
 				continue;
 			}
 
-			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
+			$listtype = $this->val( $list, 'product.lists.type', 'default' );
 			$this->addType( 'product/lists/type', 'product', $listtype );
 
-			foreach( explode( $separator, $this->getValue( $list, 'product.code', '' ) ) as $code )
+			foreach( explode( $separator, $this->val( $list, 'product.code', '' ) ) as $code )
 			{
 				$code = trim( $code );
 
@@ -160,11 +160,11 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'product.code' ) === null ) {
+		if( $this->val( $list, 'product.code' ) === null ) {
 			return false;
 		}
 
-		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = $this->val( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

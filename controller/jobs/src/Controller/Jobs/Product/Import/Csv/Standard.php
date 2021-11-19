@@ -566,7 +566,7 @@ class Standard
 
 				if( isset( $map[0] ) ) // there can only be one chunk for the base product data
 				{
-					$type = $this->checkType( $this->getValue( $map[0], 'product.type', $product->getType() ) );
+					$type = $this->checkType( $this->val( $map[0], 'product.type', $product->getType() ) );
 					$map[0]['product.config'] = json_decode( $map[0]['product.config'] ?? '[]', true ) ?: [];
 
 					$product = $product->fromArray( $map[0], true );

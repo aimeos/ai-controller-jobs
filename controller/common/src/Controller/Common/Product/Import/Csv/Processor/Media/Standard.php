@@ -136,10 +136,10 @@ class Standard
 				continue;
 			}
 
-			$type = $this->getValue( $list, 'media.type', 'default' );
-			$langId = $this->getValue( $list, 'media.languageid', '' );
-			$listtype = $this->getValue( $list, 'product.lists.type', 'default' );
-			$urls = explode( $separator, $this->getValue( $list, 'media.url', '' ) );
+			$type = $this->val( $list, 'media.type', 'default' );
+			$langId = $this->val( $list, 'media.languageid', '' );
+			$listtype = $this->val( $list, 'product.lists.type', 'default' );
+			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
 
 			unset( $list['media.url'] );
 
@@ -189,17 +189,17 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'media.url' ) === null ) {
+		if( $this->val( $list, 'media.url' ) === null ) {
 			return false;
 		}
 
-		if( ( $type = $this->getValue( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = $this->val( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->getValue( $list, 'media.type' ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = $this->val( $list, 'media.type' ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

@@ -86,15 +86,15 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->getValue( $list, 'supplier.address.languageid' ) === null ) {
+		if( $this->val( $list, 'supplier.address.languageid' ) === null ) {
 			return false;
 		}
 
-		if( $this->getValue( $list, 'supplier.address.countryid' ) === null ) {
+		if( $this->val( $list, 'supplier.address.countryid' ) === null ) {
 			return false;
 		}
 
-		if( $this->getValue( $list, 'supplier.address.city' ) === null ) {
+		if( $this->val( $list, 'supplier.address.city' ) === null ) {
 			return false;
 		}
 

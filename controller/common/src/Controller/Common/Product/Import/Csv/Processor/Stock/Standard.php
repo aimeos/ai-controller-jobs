@@ -58,9 +58,9 @@ class Standard
 				}
 
 				$list['stock.productid'] = $product->getId();
-				$list['stock.dateback'] = $this->getValue( $list, 'stock.dateback' );
-				$list['stock.stocklevel'] = $this->getValue( $list, 'stock.stocklevel' );
-				$list['stock.type'] = $this->getValue( $list, 'stock.type', 'default' );
+				$list['stock.dateback'] = $this->val( $list, 'stock.dateback' );
+				$list['stock.stocklevel'] = $this->val( $list, 'stock.stocklevel' );
+				$list['stock.type'] = $this->val( $list, 'stock.type', 'default' );
 
 				$this->addType( 'stock/type', 'product', $list['stock.type'] );
 
