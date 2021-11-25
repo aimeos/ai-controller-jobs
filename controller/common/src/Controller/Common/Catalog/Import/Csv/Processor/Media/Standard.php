@@ -108,7 +108,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data ) : array
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$listManager = \Aimeos\MShop::create( $context, 'catalog/lists' );
 

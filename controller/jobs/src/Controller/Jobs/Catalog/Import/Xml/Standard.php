@@ -33,7 +33,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Catalog import XML' );
+		return $this->context()->translate( 'controller/jobs', 'Catalog import XML' );
 	}
 
 
@@ -44,7 +44,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing categories from XML files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing categories from XML files' );
 	}
 
 
@@ -55,7 +55,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -134,7 +134,7 @@ class Standard
 	 */
 	protected function import( string $filename )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -219,7 +219,7 @@ class Standard
 	 */
 	protected function importNode( \DomElement $node, array $domains, string $parentid = null, array &$map ) : string
 	{
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 
 		if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null )
 		{
@@ -286,7 +286,7 @@ class Standard
 			}
 			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' )
 			{
-				\Aimeos\MShop::create( $this->getContext(), 'catalog' )->delete( $map );
+				\Aimeos\MShop::create( $this->context(), 'catalog' )->delete( $map );
 				break;
 			}
 		}
@@ -325,7 +325,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/catalog' );
+			$this->context()->getLogger()->log( $msg, Log::ERR, 'import/xml/catalog' );
 		}
 
 		return $item;

@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->aimeos = \TestHelperJobs::getAimeos();
-		$this->context = \TestHelperJobs::getContext();
+		$this->context = \TestHelperJobs::context();
 
 		$this->object = new \Aimeos\Controller\Jobs\Subscription\Export\Csv\Standard( $this->context, $this->aimeos );
 	}

@@ -12,7 +12,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	public function testProcess()
 	{
-		$context = \TestHelperCntl::getContext();
+		$context = \TestHelperCntl::context();
 		$mapping = array(
 			0 => 'order.base.service.type',
 			1 => 'order.base.service.code',

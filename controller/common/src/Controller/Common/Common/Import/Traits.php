@@ -24,7 +24,7 @@ trait Traits
 	private $typeMap = [];
 
 
-	abstract protected function getContext() : \Aimeos\MShop\Context\Item\Iface;
+	abstract protected function context() : \Aimeos\MShop\Context\Item\Iface;
 
 
 	/**
@@ -51,7 +51,7 @@ trait Traits
 	{
 		foreach( $this->typeMap as $path => $list )
 		{
-			$manager = \Aimeos\MShop::create( $this->getContext(), $path );
+			$manager = \Aimeos\MShop::create( $this->context(), $path );
 			$prefix = str_replace( '/', '.', $path );
 
 			foreach( $list as $domain => $codes )
@@ -85,7 +85,7 @@ trait Traits
 					$manager->rollback();
 
 					$msg = 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-					$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import' );
+					$this->context()->getLogger()->log( $msg, Log::ERR, 'import' );
 				}
 			}
 		}

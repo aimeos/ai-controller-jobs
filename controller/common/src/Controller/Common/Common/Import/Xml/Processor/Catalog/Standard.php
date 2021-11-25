@@ -47,7 +47,7 @@ class Standard
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\ListsRef\Iface::class, $item );
 
-		$listManager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
+		$listManager = \Aimeos\MShop::create( $this->context(), 'catalog/lists' );
 		$listItems = $this->getListItems( $item->getResourceType(), $item->getId() );
 		$catItems = $this->getCatalogItems( $node );
 		$map = [];
@@ -124,7 +124,7 @@ class Standard
 
 		if( !empty( $codes ) )
 		{
-			$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
+			$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 
 			$search = $manager->filter()->slice( 0, count( $codes ) );
 			$search->setConditions( $search->compare( '==', 'catalog.code', $codes ) );
@@ -147,7 +147,7 @@ class Standard
 	 */
 	protected function getListItems( $domain, $id ) : \Aimeos\Map
 	{
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'catalog/lists' );
 		$search = $manager->filter()->slice( 0, 10000 );
 
 		$expr = [
@@ -172,7 +172,7 @@ class Standard
 		{
 			$this->listTypes[$domain] = [];
 
-			$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists/type' );
+			$manager = \Aimeos\MShop::create( $this->context(), 'catalog/lists/type' );
 
 			$search = $manager->filter()->slice( 0, 10000 );
 			$search->setConditions( $search->compare( '==', 'catalog.lists.type.domain', $domain ) );

@@ -112,7 +112,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$listManager = \Aimeos\MShop::create( $context, 'product/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
 
@@ -206,7 +206,7 @@ class Standard
 	{
 		if( ( $item = $this->cache->get( $code, $type ) ) === null )
 		{
-			$manager = \Aimeos\MShop::create( $this->getContext(), 'attribute' );
+			$manager = \Aimeos\MShop::create( $this->context(), 'attribute' );
 
 			$item = $manager->create();
 			$item->setType( $type );

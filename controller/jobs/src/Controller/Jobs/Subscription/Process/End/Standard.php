@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Subscription process end' );
+		return $this->context()->translate( 'controller/jobs', 'Subscription process end' );
 	}
 
 
@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Terminates expired subscriptions' );
+		return $this->context()->translate( 'controller/jobs', 'Terminates expired subscriptions' );
 	}
 
 
@@ -52,7 +52,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		/** controller/common/subscription/process/processors

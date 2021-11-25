@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'All XML import' );
+		return $this->context()->translate( 'controller/jobs', 'All XML import' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Executes all XML importers and rebuild the index' );
+		return $this->context()->translate( 'controller/jobs', 'Executes all XML importers and rebuild the index' );
 	}
 
 
@@ -51,7 +51,7 @@ class Standard
 	public function run()
 	{
 		$aimeos = $this->getAimeos();
-		$context = $this->getContext();
+		$context = $this->context();
 		$logger = $context->getLogger();
 
 		$logger->log( 'Started XML import', \Aimeos\MW\Logger\Base::INFO, 'import/xml' );

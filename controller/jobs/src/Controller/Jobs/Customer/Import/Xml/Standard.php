@@ -33,7 +33,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Customer import XML' );
+		return $this->context()->translate( 'controller/jobs', 'Customer import XML' );
 	}
 
 
@@ -44,7 +44,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing customers from XML files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing customers from XML files' );
 	}
 
 
@@ -55,7 +55,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -134,7 +134,7 @@ class Standard
 	 */
 	protected function import( string $filename )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -270,7 +270,7 @@ class Standard
 			}
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'customer' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
 		$search = $manager->filter()->slice( 0, count( $codes ) );
 		$search->setConditions( $search->compare( '==', 'customer.code', array_keys( $codes ) ) );
 
@@ -322,7 +322,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/customer' );
+			$this->context()->getLogger()->log( $msg, Log::ERR, 'import/xml/customer' );
 		}
 
 		return $item;

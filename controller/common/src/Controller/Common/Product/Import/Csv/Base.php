@@ -52,7 +52,7 @@ class Base
 	 */
 	protected function getCache( string $type, string $name = null ) : \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		if( ctype_alnum( $type ) === false )
@@ -248,7 +248,7 @@ class Base
 	 */
 	protected function getProcessors( array $mappings ) : \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $context, [] );
 
@@ -293,7 +293,7 @@ class Base
 	protected function getProducts( array $codes, array $domains ) : array
 	{
 		$result = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $codes ) );

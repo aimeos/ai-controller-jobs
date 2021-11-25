@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::cache( true );
 
 		$aimeos = \TestHelperJobs::getAimeos();
-		$this->context = \TestHelperJobs::getContext();
+		$this->context = \TestHelperJobs::context();
 
 		$this->object = new \Aimeos\Controller\Jobs\Xml\Import\Standard( $this->context, $aimeos );
 	}

@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Product export' );
+		return $this->context()->translate( 'controller/jobs', 'Product export' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Exports all available products' );
+		return $this->context()->translate( 'controller/jobs', 'Exports all available products' );
 	}
 
 
@@ -89,7 +89,7 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/template-items';
 		$default = 'product/export/items-body-standard';
 
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $context->view();
 
 		$view->exportItems = $items;
@@ -105,7 +105,7 @@ class Standard
 	 */
 	protected function createContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** controller/jobs/product/export/location
 		 * Directory where the generated site maps should be placed into
@@ -220,7 +220,7 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/template-header';
 		$default = 'product/export/items-header-standard';
 
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $context->view();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
@@ -263,7 +263,7 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/template-footer';
 		$default = 'product/export/items-footer-standard';
 
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $context->view();
 
 		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
@@ -288,7 +288,7 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 
 		$search = $manager->filter( $default );
 		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
@@ -333,7 +333,7 @@ class Standard
 	 */
 	protected function getConfig( string $name, $default = null )
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		switch( $name )
 		{

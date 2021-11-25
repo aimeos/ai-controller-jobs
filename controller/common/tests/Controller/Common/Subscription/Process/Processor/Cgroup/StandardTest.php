@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		\Aimeos\MShop::cache( true );
 
-		$this->context = \TestHelperCntl::getContext();
+		$this->context = \TestHelperCntl::context();
 		$this->context->getConfig()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1', '2'] );
 
 		$this->custStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )

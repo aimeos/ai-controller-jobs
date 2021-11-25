@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Order export CSV' );
+		return $this->context()->translate( 'controller/jobs', 'Order export CSV' );
 	}
 
 
@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Exports orders to CSV file' );
+		return $this->context()->translate( 'controller/jobs', 'Exports orders to CSV file' );
 	}
 
 
@@ -52,7 +52,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 		$mappings = $this->getDefaultMapping();
@@ -165,7 +165,7 @@ class Standard
 	 */
 	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** controller/jobs/order/export/csv/location
 		 * Temporary file or directory where the content is stored which should be exported
@@ -305,7 +305,7 @@ class Standard
 	 */
 	protected function getLocaleContext( array $msg ) : \Aimeos\MShop\Context\Item\Iface
 	{
-		$lcontext = clone $this->getContext();
+		$lcontext = clone $this->context();
 		$manager = \Aimeos\MShop::create( $lcontext, 'locale' );
 
 		$sitecode = ( isset( $msg['sitecode'] ) ? $msg['sitecode'] : 'default' );

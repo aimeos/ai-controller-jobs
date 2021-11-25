@@ -49,7 +49,7 @@ class Standard
 
 		$listItems = $item->getListItems( 'price', null, null, false )->reverse();
 		$resource = $item->getResourceType();
-		$context = $this->getContext();
+		$context = $this->context();
 
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
 		$manager = \Aimeos\MShop::create( $context, 'price' );

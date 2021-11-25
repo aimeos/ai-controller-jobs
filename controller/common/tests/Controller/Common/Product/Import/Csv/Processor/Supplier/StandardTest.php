@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function setUpBeforeClass() : void
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::context() );
 		$item = $manager->create()->setCode( 'job_csv_prod' )->setType( 'default' );
 
 		self::$product = $manager->save( $item );
@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function tearDownAfterClass() : void
 	{
-		\Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::getContext() )->delete( self::$product );
+		\Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::context() )->delete( self::$product );
 	}
 
 
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		\Aimeos\MShop::cache( true );
 
-		$this->context = \TestHelperCntl::getContext();
+		$this->context = \TestHelperCntl::context();
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
 	}
 

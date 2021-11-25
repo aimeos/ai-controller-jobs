@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Coupon code import CSV' );
+		return $this->context()->translate( 'controller/jobs', 'Coupon code import CSV' );
 	}
 
 
@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing coupon code from CSV files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing coupon code from CSV files' );
 	}
 
 
@@ -58,7 +58,7 @@ class Standard
 
 		try
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 			$process = $context->getProcess();
 			$fs = $context->getFileSystemManager()->get( 'fs-import' );
 			$dir = 'couponcode/' . $context->getLocale()->getSiteItem()->getCode();
@@ -119,7 +119,7 @@ class Standard
 	 */
 	protected function getContainer( string $filepath ) : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** controller/jobs/coupon/import/csv/code/container/type
 		 * Name of the container type to read the data from
@@ -192,7 +192,7 @@ class Standard
 		\Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$errors = 0;
-		$context = $this->getContext();
+		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'coupon/code' );
 
 		foreach( $data as $code => $list )

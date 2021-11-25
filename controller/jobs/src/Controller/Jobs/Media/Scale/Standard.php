@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Rescale product images' );
+		return $this->context()->translate( 'controller/jobs', 'Rescale product images' );
 	}
 
 
@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Rescales product images to the new sizes' );
+		return $this->context()->translate( 'controller/jobs', 'Rescales product images to the new sizes' );
 	}
 
 
@@ -52,7 +52,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$process = $context->getProcess();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 

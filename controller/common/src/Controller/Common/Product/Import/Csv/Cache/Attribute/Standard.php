@@ -66,7 +66,7 @@ class Standard
 			return $this->attributes[$code][$type];
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'attribute' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute' );
 
 		$search = $manager->filter();
 		$expr = array(

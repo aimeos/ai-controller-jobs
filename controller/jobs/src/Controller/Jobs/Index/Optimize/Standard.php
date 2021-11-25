@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Index optimization' );
+		return $this->context()->translate( 'controller/jobs', 'Index optimization' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Optimizes the index for searching products faster' );
+		return $this->context()->translate( 'controller/jobs', 'Optimizes the index for searching products faster' );
 	}
 
 
@@ -51,6 +51,6 @@ class Standard
 	 */
 	public function run()
 	{
-		\Aimeos\MShop\Index\Manager\Factory::create( $this->getContext() )->optimize();
+		\Aimeos\MShop\Index\Manager\Factory::create( $this->context() )->optimize();
 	}
 }

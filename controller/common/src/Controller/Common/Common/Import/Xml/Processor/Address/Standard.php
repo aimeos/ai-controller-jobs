@@ -44,7 +44,7 @@ class Standard
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\AddressRef\Iface::class, $item );
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), $item->getResourceType() . '/address' );
+		$manager = \Aimeos\MShop::create( $this->context(), $item->getResourceType() . '/address' );
 		$addrItems = $item->getAddressItems()->reverse();
 
 		foreach( $node->childNodes as $addrNode )

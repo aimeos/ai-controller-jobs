@@ -68,7 +68,7 @@ class Standard
 			return $this->suppliers[$code];
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'supplier' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );

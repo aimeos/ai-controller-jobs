@@ -18,7 +18,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 	{
 		\Aimeos\MShop::cache( true );
 
-		$context = \TestHelperCntl::getContext();
+		$context = \TestHelperCntl::context();
 		$aimeos = \TestHelperCntl::getAimeos();
 
 		$this->object = new TestAbstract( $context, $aimeos );
@@ -93,9 +93,9 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 class TestAbstract
 	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 {
-	public function getContext() : \Aimeos\MShop\Context\Item\Iface
+	public function context() : \Aimeos\MShop\Context\Item\Iface
 	{
-		return \TestHelperCntl::getContext();
+		return \TestHelperCntl::context();
 	}
 
 	public function getCachePublic( $type, $name = null )

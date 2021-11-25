@@ -29,7 +29,7 @@ class Base
 	protected function getCouponCodeItems( array $codes ) : array
 	{
 		$result = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'coupon/code' );
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'coupon.code.code', $codes ) );
@@ -128,7 +128,7 @@ class Base
 	 */
 	protected function getProcessors( array $mappings )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$object = new \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Done( $context, [] );
 

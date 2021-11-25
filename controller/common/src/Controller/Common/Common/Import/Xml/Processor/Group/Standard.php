@@ -75,7 +75,7 @@ class Standard
 	protected function getItems( \DomNodeList $nodes ) : array
 	{
 		$keys = $map = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'customer/group' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'customer/group' );
 
 		foreach( $nodes as $node )
 		{

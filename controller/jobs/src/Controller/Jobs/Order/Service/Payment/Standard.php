@@ -31,7 +31,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Capture authorized payments' );
+		return $this->context()->translate( 'controller/jobs', 'Capture authorized payments' );
 	}
 
 
@@ -42,7 +42,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Authorized payments of orders will be captured after dispatching or after a configurable amount of time' );
+		return $this->context()->translate( 'controller/jobs', 'Authorized payments of orders will be captured after dispatching or after a configurable amount of time' );
 	}
 
 
@@ -53,7 +53,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 

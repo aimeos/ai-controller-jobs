@@ -113,7 +113,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$listManager = \Aimeos\MShop::create( $context, 'product/lists' );
 		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
@@ -218,7 +218,7 @@ class Standard
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list, string $url ) : \Aimeos\MShop\Media\Item\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$fs = $context->fs( $refItem->getFileSystem() );
 
 		try

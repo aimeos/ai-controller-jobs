@@ -45,7 +45,7 @@ class Standard
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\PropertyRef\Iface::class, $item );
 
 		$resource = $item->getResourceType();
-		$manager = \Aimeos\MShop::create( $this->getContext(), $resource . '/property' );
+		$manager = \Aimeos\MShop::create( $this->context(), $resource . '/property' );
 		$propItems = $item->getPropertyItems( null, false );
 		$map = [];
 

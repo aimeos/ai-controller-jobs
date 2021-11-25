@@ -42,7 +42,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Stock import CSV' );
+		return $this->context()->translate( 'controller/jobs', 'Stock import CSV' );
 	}
 
 
@@ -53,7 +53,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing stocks from CSV files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing stocks from CSV files' );
 	}
 
 
@@ -64,7 +64,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -144,7 +144,7 @@ class Standard
 	 */
 	public function import( string $filename )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -246,7 +246,7 @@ class Standard
 	 */
 	protected function getContainer( string $location ) : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** controller/jobs/stock/import/csv/container/type
 		 * Nave of the container type to read the data from
@@ -298,7 +298,7 @@ class Standard
 	protected function getStockItems( array $ids, array $types ) : array
 	{
 		$map = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'stock' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'stock' );
 
 		$search = $manager->filter()->slice( 0, 10000 );
 		$search->setConditions( $search->and( [
@@ -324,7 +324,7 @@ class Standard
 	protected function importStocks( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt ) : int
 	{
 		$total = 0;
-		$context = $this->getContext();
+		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'stock' );
 		$prodManager = \Aimeos\MShop::create( $context, 'product' );
 

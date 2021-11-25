@@ -51,7 +51,7 @@ class Standard
 
 		$listItems = $item->getListItems( 'media', null, null, false )->reverse();
 		$resource = $item->getResourceType();
-		$context = $this->getContext();
+		$context = $this->context();
 
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
 		$manager = \Aimeos\MShop::create( $context, 'media' );
@@ -111,7 +111,7 @@ class Standard
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$fs = $context->fs( $refItem->getFileSystem() );
 		$url = $list['media.url'] ?? '';
 

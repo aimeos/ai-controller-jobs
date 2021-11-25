@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Subscription process renew' );
+		return $this->context()->translate( 'controller/jobs', 'Subscription process renew' );
 	}
 
 
@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Renews subscriptions at next date' );
+		return $this->context()->translate( 'controller/jobs', 'Renews subscriptions at next date' );
 	}
 
 
@@ -52,7 +52,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		/** controller/common/subscription/process/payment-ends
@@ -329,7 +329,7 @@ class Standard
 	 */
 	protected function createContext( string $baseId ) : \Aimeos\MShop\Context\Item\Iface
 	{
-		$context = clone $this->getContext();
+		$context = clone $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 		$baseItem = $manager->get( $baseId );

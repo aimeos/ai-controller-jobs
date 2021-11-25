@@ -47,7 +47,7 @@ class Standard
 	{
 		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\ListsRef\Iface::class, $item );
 
-		$context = $this->getContext();
+		$context = $this->context();
 		$resource = $item->getResourceType();
 		$listItems = $item->getListItems( 'product', null, null, false );
 		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
@@ -102,7 +102,7 @@ class Standard
 	protected function getItems( \DomNodeList $nodes ) : array
 	{
 		$codes = $map = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 
 		foreach( $nodes as $node )
 		{

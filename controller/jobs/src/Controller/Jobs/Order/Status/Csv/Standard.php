@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Order status import CSV' );
+		return $this->context()->translate( 'controller/jobs', 'Order status import CSV' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Status import for orders from CSV file' );
+		return $this->context()->translate( 'controller/jobs', 'Status import for orders from CSV file' );
 	}
 
 
@@ -48,7 +48,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** controller/jobs/order/status/csv/directory
 		 * Path to the CSV files relative to the order status file system
@@ -145,7 +145,7 @@ class Standard
 	 */
 	protected function import( $handle )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->config();
 
 		/** controller/jobs/order/status/csv/max-size

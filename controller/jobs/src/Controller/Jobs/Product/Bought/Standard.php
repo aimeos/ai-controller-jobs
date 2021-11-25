@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Products bought together' );
+		return $this->context()->translate( 'controller/jobs', 'Products bought together' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Creates bought together product suggestions' );
+		return $this->context()->translate( 'controller/jobs', 'Creates bought together product suggestions' );
 	}
 
 
@@ -51,7 +51,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 
@@ -207,7 +207,7 @@ class Standard
 		float $minSupport, float $minConfidence, string $date ) : array
 	{
 		$refIds = [];
-		$context = $this->getContext();
+		$context = $this->context();
 
 		$catalogListManager = \Aimeos\MShop::create( $context, 'catalog/lists' );
 		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
@@ -272,7 +272,7 @@ class Standard
 			return;
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product/lists' );
 		$item = $manager->create();
 
 		foreach( $productIds as $pos => $refid )
@@ -297,7 +297,7 @@ class Standard
 	 */
 	protected function removeListItems( string $productId )
 	{
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product/lists' );
 
 		$search = $manager->filter();
 		$expr = array(

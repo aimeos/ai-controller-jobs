@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Removes unpaid orders' );
+		return $this->context()->translate( 'controller/jobs', 'Removes unpaid orders' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Deletes unpaid orders to keep the database clean' );
+		return $this->context()->translate( 'controller/jobs', 'Deletes unpaid orders to keep the database clean' );
 	}
 
 
@@ -51,7 +51,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$manager = \Aimeos\MShop::create( $context, 'order' );

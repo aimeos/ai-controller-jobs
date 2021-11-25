@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Index rebuild' );
+		return $this->context()->translate( 'controller/jobs', 'Index rebuild' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Rebuilds the index for searching products' );
+		return $this->context()->translate( 'controller/jobs', 'Rebuilds the index for searching products' );
 	}
 
 
@@ -52,7 +52,7 @@ class Standard
 	public function run()
 	{
 		$timestamp = date( 'Y-m-d H:i:s' );
-		$context = clone $this->getContext();
+		$context = clone $this->context();
 
 		$context->getLocale()->setLanguageId( null );
 		$context->getLocale()->setCurrencyId( null );

@@ -34,7 +34,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Product import XML' );
+		return $this->context()->translate( 'controller/jobs', 'Product import XML' );
 	}
 
 
@@ -45,7 +45,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing products from XML files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing products from XML files' );
 	}
 
 
@@ -56,7 +56,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -136,7 +136,7 @@ class Standard
 	 */
 	protected function import( string $filename )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -272,7 +272,7 @@ class Standard
 			}
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 		$search = $manager->filter()->slice( 0, count( $codes ) );
 		$search->setConditions( $search->compare( '==', 'product.code', array_keys( $codes ) ) );
 
@@ -321,7 +321,7 @@ class Standard
 
 			$list['product.config'] = isset( $list['product.config'] ) ? json_decode( $list['product.config'], true ) : [];
 
-			$item = \Aimeos\MShop::create( $this->getContext(), 'product' )->save( $item->fromArray( $list, true ) );
+			$item = \Aimeos\MShop::create( $this->context(), 'product' )->save( $item->fromArray( $list, true ) );
 			$this->addType( 'product/type', 'product', $item->getType() );
 
 			foreach( $subnodes as $name => $subnode ) {
@@ -331,7 +331,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'import/xml/product' );
+			$this->context()->getLogger()->log( $msg, Log::ERR, 'import/xml/product' );
 		}
 
 		return $item;

@@ -108,8 +108,8 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data ) : array
 	{
-		$listManager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'text' );
+		$listManager = \Aimeos\MShop::create( $this->context(), 'catalog/lists' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'text' );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );

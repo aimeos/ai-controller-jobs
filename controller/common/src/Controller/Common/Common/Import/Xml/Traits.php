@@ -27,7 +27,7 @@ trait Traits
 	 *
 	 * @return \Aimeos\MShop\Context\Item\Iface Context object
 	 */
-	abstract protected function getContext() : \Aimeos\MShop\Context\Item\Iface;
+	abstract protected function context() : \Aimeos\MShop\Context\Item\Iface;
 
 
 	/**
@@ -66,7 +66,7 @@ trait Traits
 	 */
 	protected function createProcessor( string $type ) : \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$parts = explode( '/', $type );
 

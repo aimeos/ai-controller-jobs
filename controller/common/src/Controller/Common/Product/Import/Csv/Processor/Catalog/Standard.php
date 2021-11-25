@@ -100,7 +100,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'catalog' );
 		$listManager = \Aimeos\MShop::create( $context, 'catalog/lists' );
 
@@ -248,7 +248,7 @@ class Standard
 			return map();
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog/lists' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'catalog/lists' );
 		$search = $manager->filter()->slice( 0, 0x7FFFFFFF );
 
 		$expr = [

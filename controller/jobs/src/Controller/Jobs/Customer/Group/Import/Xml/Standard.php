@@ -33,7 +33,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Customer group import XML' );
+		return $this->context()->translate( 'controller/jobs', 'Customer group import XML' );
 	}
 
 
@@ -44,7 +44,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing customer groups from XML files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing customer groups from XML files' );
 	}
 
 
@@ -55,7 +55,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -134,7 +134,7 @@ class Standard
 	 */
 	protected function import( string $filename )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 
@@ -252,7 +252,7 @@ class Standard
 			}
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'customer/group' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'customer/group' );
 		$search = $manager->filter()->slice( 0, count( $codes ) );
 		$search->setConditions( $search->compare( '==', 'customer.group.code', array_keys( $codes ) ) );
 

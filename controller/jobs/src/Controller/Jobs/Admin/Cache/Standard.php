@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Cache cleanup' );
+		return $this->context()->translate( 'controller/jobs', 'Cache cleanup' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Removes the expired entries from the cache' );
+		return $this->context()->translate( 'controller/jobs', 'Removes the expired entries from the cache' );
 	}
 
 
@@ -51,6 +51,6 @@ class Standard
 	 */
 	public function run()
 	{
-		\Aimeos\MAdmin\Cache\Manager\Factory::create( $this->getContext() )->getCache()->cleanup();
+		\Aimeos\MAdmin\Cache\Manager\Factory::create( $this->context() )->getCache()->cleanup();
 	}
 }

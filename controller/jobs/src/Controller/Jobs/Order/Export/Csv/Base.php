@@ -145,7 +145,7 @@ class Base
 	protected function getProcessors( array $mappings ) : array
 	{
 		$list = [];
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		foreach( $mappings as $type => $mapping )

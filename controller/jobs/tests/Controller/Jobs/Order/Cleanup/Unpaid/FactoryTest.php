@@ -15,7 +15,7 @@ class FactoryTest
 {
 	public function testCreateController()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$obj = \Aimeos\Controller\Jobs\Order\Cleanup\Unpaid\Factory::create( $context, $aimeos );
@@ -25,7 +25,7 @@ class FactoryTest
 
 	public function testFactoryExceptionWrongName()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
@@ -35,7 +35,7 @@ class FactoryTest
 
 	public function testFactoryExceptionWrongClass()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
@@ -45,7 +45,7 @@ class FactoryTest
 
 	public function testFactoryExceptionWrongInterface()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );

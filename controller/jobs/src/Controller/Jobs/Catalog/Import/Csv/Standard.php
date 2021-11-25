@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Catalog import CSV' );
+		return $this->context()->translate( 'controller/jobs', 'Catalog import CSV' );
 	}
 
 
@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Imports new and updates existing categories from CSV files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing categories from CSV files' );
 	}
 
 
@@ -53,7 +53,7 @@ class Standard
 	public function run()
 	{
 		$total = $errors = 0;
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$logger = $context->getLogger();
 		$domains = array( 'media', 'text' );
@@ -411,7 +411,7 @@ class Standard
 	 */
 	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** controller/jobs/catalog/import/csv/location
 		 * File or directory where the content is stored which should be imported
@@ -512,7 +512,7 @@ class Standard
 	protected function getCatalogMap( array $domains ) : array
 	{
 		$map = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 		$search = $manager->filter()->slice( 0, 0x7fffffff );
 
 		foreach( $manager->search( $search, $domains ) as $item ) {
@@ -566,7 +566,7 @@ class Standard
 		\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor, bool $strict ) : int
 	{
 		$errors = 0;
-		$context = $this->getContext();
+		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'catalog' );
 
 		foreach( $data as $code => $list )

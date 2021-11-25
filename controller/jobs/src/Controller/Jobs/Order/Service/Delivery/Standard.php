@@ -31,7 +31,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Process order delivery services' );
+		return $this->context()->translate( 'controller/jobs', 'Process order delivery services' );
 	}
 
 
@@ -42,7 +42,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Sends paid orders to the ERP system or logistic partner' );
+		return $this->context()->translate( 'controller/jobs', 'Sends paid orders to the ERP system or logistic partner' );
 	}
 
 
@@ -53,7 +53,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** controller/jobs/order/service/delivery/limit-days
 		 * Only start the delivery process of orders that were created in the past within the configured number of days

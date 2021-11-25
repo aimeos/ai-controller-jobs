@@ -17,7 +17,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperCntl::getContext();
+		$this->context = \TestHelperCntl::context();
 		$this->object = new \Aimeos\Controller\Common\Common\Import\Xml\Processor\Lists\Text\Standard( $this->context );
 	}
 

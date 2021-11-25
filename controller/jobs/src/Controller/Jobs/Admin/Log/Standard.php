@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Log cleanup' );
+		return $this->context()->translate( 'controller/jobs', 'Log cleanup' );
 	}
 
 
@@ -40,7 +40,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Removes the old log entries from the database and archives them (optional)' );
+		return $this->context()->translate( 'controller/jobs', 'Removes the old log entries from the database and archives them (optional)' );
 	}
 
 
@@ -51,7 +51,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$container = null;
 

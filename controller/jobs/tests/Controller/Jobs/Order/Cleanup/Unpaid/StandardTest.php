@@ -18,7 +18,7 @@ class StandardTest
 
 	protected function setUp() : void
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->object = new \Aimeos\Controller\Jobs\Order\Cleanup\Unpaid\Standard( $context, $aimeos );
@@ -46,7 +46,7 @@ class StandardTest
 
 	public function testRun()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 

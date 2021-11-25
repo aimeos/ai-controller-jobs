@@ -68,7 +68,7 @@ class Standard
 	 */
 	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
@@ -94,7 +94,7 @@ class Standard
 	 */
 	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );

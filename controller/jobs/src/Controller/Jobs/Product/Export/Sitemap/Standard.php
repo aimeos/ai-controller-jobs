@@ -28,7 +28,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Product site map' );
+		return $this->context()->translate( 'controller/jobs', 'Product site map' );
 	}
 
 
@@ -39,7 +39,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Creates a product site map for search engines' );
+		return $this->context()->translate( 'controller/jobs', 'Creates a product site map for search engines' );
 	}
 
 
@@ -64,7 +64,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/max-query
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 */
-		$hidden = $this->getContext()->config()->get( 'controller/jobs/product/export/sitemap/hidden', false );
+		$hidden = $this->context()->config()->get( 'controller/jobs/product/export/sitemap/hidden', false );
 
 		$container = $this->createContainer();
 
@@ -83,7 +83,7 @@ class Standard
 	 */
 	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, \Aimeos\Map $items )
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** controller/jobs/product/export/sitemap/changefreq
 		 * Change frequency of the products
@@ -140,7 +140,7 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/template-items';
 		$default = 'product/export/sitemap-items-body-standard';
 
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $context->view();
 
 		$view->siteItems = $items;
@@ -157,7 +157,7 @@ class Standard
 	 */
 	protected function createContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** controller/jobs/product/export/sitemap/location
 		 * Directory where the generated site maps should be placed into
@@ -261,7 +261,7 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/template-header';
 		$default = 'product/export/sitemap-items-header-standard';
 
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $context->view();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
@@ -304,7 +304,7 @@ class Standard
 		$tplconf = 'controller/jobs/product/export/sitemap/template-footer';
 		$default = 'product/export/sitemap-items-footer-standard';
 
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $context->view();
 
 		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
@@ -319,7 +319,7 @@ class Standard
 	 */
 	protected function createSitemapIndex( \Aimeos\MW\Container\Iface $container, array $files )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$view = $context->view();
 
@@ -408,7 +408,7 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'index' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 
 		$search = $manager->filter( $default );
 		$search->setConditions( $search->and( [
@@ -459,7 +459,7 @@ class Standard
 	 */
 	protected function getConfig( string $name, $default = null )
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		switch( $name )
 		{

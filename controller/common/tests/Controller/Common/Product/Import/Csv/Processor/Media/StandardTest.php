@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
-		$this->context = \TestHelperCntl::getContext();
+		$this->context = \TestHelperCntl::context();
 
 		$fs = $this->context->getFileSystemManager()->get( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );

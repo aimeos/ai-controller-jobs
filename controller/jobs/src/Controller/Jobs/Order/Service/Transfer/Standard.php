@@ -30,7 +30,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Transfers money to vendors' );
+		return $this->context()->translate( 'controller/jobs', 'Transfers money to vendors' );
 	}
 
 
@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Transfers the price of ordered products to the vendors incl. commission handling' );
+		return $this->context()->translate( 'controller/jobs', 'Transfers the price of ordered products to the vendors incl. commission handling' );
 	}
 
 
@@ -50,7 +50,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 		$serviceSearch = $serviceManager->filter()->add( ['service.type' => 'payment'] );
 

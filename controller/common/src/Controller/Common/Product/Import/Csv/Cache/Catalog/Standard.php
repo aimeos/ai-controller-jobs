@@ -66,7 +66,7 @@ class Standard
 			return $this->categories[$code];
 		}
 
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'catalog' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );

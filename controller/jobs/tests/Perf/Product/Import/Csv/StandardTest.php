@@ -14,7 +14,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperJobs::getContext( 'unitperf' );
+		$this->context = \TestHelperJobs::context( 'unitperf' );
 
 		$config = $this->context->getConfig();
 		$config->set( 'controller/jobs/product/import/csv/location', 'tmp/product-import.zip' );
