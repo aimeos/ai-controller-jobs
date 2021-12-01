@@ -196,7 +196,7 @@ class Standard
 		 * @see controller/jobs/supplier/import/xml/domains
 		 * @see controller/jobs/supplier/import/xml/backup
 		 */
-		$maxquery = $config->get( 'controller/jobs/supplier/import/xml/max-query', 1000 );
+		$maxquery = $config->get( 'controller/jobs/supplier/import/xml/max-query', 100 );
 
 		$nodes = [];
 		$total = $slice = 0;
