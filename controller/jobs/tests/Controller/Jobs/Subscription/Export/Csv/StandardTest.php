@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$mqmStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
-			->setConstructorArgs( [$this->context->getConfig()] )
+			->setConstructorArgs( [$this->context->config()] )
 			->setMethods( ['get'] )
 			->getMock();
 
@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunCollapsedLines()
 	{
 		$mqmStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
-			->setConstructorArgs( [$this->context->getConfig()] )
+			->setConstructorArgs( [$this->context->config()] )
 			->setMethods( ['get'] )
 			->getMock();
 
@@ -138,8 +138,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$this->context->setMessageQueueManager( $mqmStub );
-		$this->context->getConfig()->set( 'controller/jobs/subscription/export/csv/collapse', true );
-		$this->context->getConfig()->set( 'controller/jobs/subscription/export/csv/mapping', [
+		$this->context->config()->set( 'controller/jobs/subscription/export/csv/collapse', true );
+		$this->context->config()->set( 'controller/jobs/subscription/export/csv/mapping', [
 			'subscription' => array(
 				0 => 'subscription.interval',
 				1 => 'subscription.period',

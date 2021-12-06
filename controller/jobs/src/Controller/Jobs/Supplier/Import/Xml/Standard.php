@@ -56,7 +56,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 		/** controller/jobs/supplier/import/xml/location
@@ -134,7 +134,7 @@ class Standard
 	protected function import( string $filename ) : int
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** controller/jobs/supplier/import/xml/domains
 		 * List of item domain names that should be retrieved along with the supplier items

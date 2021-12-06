@@ -68,7 +68,7 @@ class Standard
 		 * @see controller/common/catalog/import/csv/processor/catalog/listtypes
 		 */
 		$key = 'controller/common/catalog/import/csv/processor/text/listtypes';
-		$this->listTypes = $context->getConfig()->get( $key );
+		$this->listTypes = $context->config()->get( $key );
 
 		if( $this->listTypes === null )
 		{

@@ -53,7 +53,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** controller/common/subscription/process/processors
 		 * List of processor names that should be executed for subscriptions

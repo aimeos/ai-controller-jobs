@@ -87,7 +87,7 @@ class Standard
 
 		$process->wait();
 
-		$context->getCache()->clear();
+		$context->cache()->clear();
 	}
 
 
@@ -116,7 +116,7 @@ class Standard
 		 * @category User
 		 * @since 2019.10
 		 */
-		$force = $context->getConfig()->get( 'controller/jobs/media/scale/force', true );
+		$force = $context->config()->get( 'controller/jobs/media/scale/force', true );
 
 		foreach( $items as $item )
 		{

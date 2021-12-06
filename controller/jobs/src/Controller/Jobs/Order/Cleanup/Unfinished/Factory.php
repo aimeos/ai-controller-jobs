@@ -66,7 +66,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'controller/jobs/order/cleanup/unfinished/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/order/cleanup/unfinished/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';

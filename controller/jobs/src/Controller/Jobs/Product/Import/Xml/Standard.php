@@ -57,7 +57,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 
@@ -137,7 +137,7 @@ class Standard
 	protected function import( string $filename )
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 

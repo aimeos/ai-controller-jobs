@@ -66,7 +66,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'controller/jobs/order/service/async/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/order/service/async/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';

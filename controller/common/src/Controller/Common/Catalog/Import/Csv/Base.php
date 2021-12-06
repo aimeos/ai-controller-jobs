@@ -53,7 +53,7 @@ class Base
 	protected function getCache( string $type, $name = null ) : \Aimeos\Controller\Common\Catalog\Import\Csv\Cache\Iface
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		if( ctype_alnum( $type ) === false )
 		{
@@ -206,7 +206,7 @@ class Base
 	protected function getProcessors( array $mappings ) : \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Done( $context, [] );
 
 		foreach( $mappings as $type => $mapping )

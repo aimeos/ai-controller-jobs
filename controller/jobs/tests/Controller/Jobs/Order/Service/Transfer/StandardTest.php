@@ -49,8 +49,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$name = 'ControllerJobsServiceTransferProcessDefaultRun';
-		$context->getConfig()->set( 'mshop/service/manager/name', $name );
-		$context->getConfig()->set( 'mshop/order/manager/name', $name );
+		$context->config()->set( 'mshop/service/manager/name', $name );
+		$context->config()->set( 'mshop/order/manager/name', $name );
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
@@ -103,8 +103,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$name = 'ControllerJobsServiceTransferProcessDefaultRun';
-		$context->getConfig()->set( 'mshop/service/manager/name', $name );
-		$context->getConfig()->set( 'mshop/order/manager/name', $name );
+		$context->config()->set( 'mshop/service/manager/name', $name );
+		$context->config()->set( 'mshop/order/manager/name', $name );
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
@@ -160,8 +160,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$name = 'ControllerJobsServiceTransferProcessDefaultRun';
-		$context->getConfig()->set( 'mshop/service/manager/name', $name );
-		$context->getConfig()->set( 'mshop/order/manager/name', $name );
+		$context->config()->set( 'mshop/service/manager/name', $name );
+		$context->config()->set( 'mshop/order/manager/name', $name );
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )

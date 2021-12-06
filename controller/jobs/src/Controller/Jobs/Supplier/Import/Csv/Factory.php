@@ -66,7 +66,7 @@ class Factory
 		 */
 		if( $name === null )
 		{
-			$name = $context->getConfig()->get( 'controller/jobs/supplier/import/csv/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/supplier/import/csv/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';

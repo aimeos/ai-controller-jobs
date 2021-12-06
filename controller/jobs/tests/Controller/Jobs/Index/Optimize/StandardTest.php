@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$name = 'ControllerJobsCatalogIndexOptimizeDefaultRun';
-		$context->getConfig()->set( 'mshop/index/manager/name', $name );
+		$context->config()->set( 'mshop/index/manager/name', $name );
 
 
 		$indexManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Index\\Manager\\Standard' )

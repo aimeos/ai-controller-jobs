@@ -112,7 +112,7 @@ class Base
 	{
 		$list = [];
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		foreach( $mappings as $type => $mapping )
 		{

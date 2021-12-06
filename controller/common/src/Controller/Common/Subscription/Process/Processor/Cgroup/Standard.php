@@ -44,7 +44,7 @@ class Standard
 	{
 		parent::__construct( $context );
 
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** controller/common/subscription/process/processor/cgroup/groupids
 		 * List of group IDs that should be added to the customer account

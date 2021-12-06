@@ -65,7 +65,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'controller/jobs/catalog/export/sitemap/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/catalog/export/sitemap/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';

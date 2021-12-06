@@ -51,7 +51,7 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		$this->mimes = array_flip( $context->getConfig()->get( 'controller/common/media/extensions', [] ) );
+		$this->mimes = array_flip( $context->config()->get( 'controller/common/media/extensions', [] ) );
 
 		/** controller/common/product/import/csv/processor/media/listtypes
 		 * Names of the product list types for media that are updated or removed
@@ -73,7 +73,7 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/text/listtypes
 		 */
 		$key = 'controller/common/product/import/csv/processor/media/listtypes';
-		$this->listTypes = $context->getConfig()->get( $key );
+		$this->listTypes = $context->config()->get( $key );
 
 		if( $this->listTypes === null )
 		{
@@ -116,7 +116,7 @@ class Standard
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$listManager = \Aimeos\MShop::create( $context, 'product/lists' );
-		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
+		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );

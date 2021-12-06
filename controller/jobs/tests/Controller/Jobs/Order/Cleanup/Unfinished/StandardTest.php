@@ -51,8 +51,8 @@ class StandardTest
 
 
 		$name = 'ControllerJobsOrderCleanupUnfinishedDefaultRun';
-		$context->getConfig()->set( 'mshop/order/manager/name', $name );
-		$context->getConfig()->set( 'controller/common/order/name', $name );
+		$context->config()->set( 'mshop/order/manager/name', $name );
+		$context->config()->set( 'controller/common/order/name', $name );
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )

@@ -234,7 +234,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'job_csv_test',
 		);
 
-		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/supplier/listtypes', array( 'default' ) );
+		$this->context->config()->set( 'controller/common/product/import/csv/processor/supplier/listtypes', array( 'default' ) );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
 

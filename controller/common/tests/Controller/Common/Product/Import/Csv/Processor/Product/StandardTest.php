@@ -214,7 +214,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'CNE',
 		);
 
-		$this->context->getConfig()->set( 'controller/common/product/import/csv/processor/product/listtypes', array( 'default' ) );
+		$this->context->config()->set( 'controller/common/product/import/csv/processor/product/listtypes', array( 'default' ) );
 
 		$product = $this->create( 'job_csv_test' );
 

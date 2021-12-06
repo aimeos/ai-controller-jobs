@@ -94,7 +94,7 @@ class Standard
 
 		$view->exportItems = $items;
 
-		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );
 	}
 
 
@@ -105,7 +105,7 @@ class Standard
 	 */
 	protected function createContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/product/export/location
 		 * Directory where the generated site maps should be placed into
@@ -224,7 +224,7 @@ class Standard
 		$view = $context->view();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
-		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );
 		$container->add( $content );
 
 		return $content;
@@ -266,7 +266,7 @@ class Standard
 		$context = $this->context();
 		$view = $context->view();
 
-		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );
 	}
 
 
@@ -333,7 +333,7 @@ class Standard
 	 */
 	protected function getConfig( string $name, $default = null )
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		switch( $name )
 		{

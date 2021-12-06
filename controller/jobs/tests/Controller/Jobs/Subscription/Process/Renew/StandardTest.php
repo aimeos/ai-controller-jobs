@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$this->context->getConfig()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
+		$this->context->config()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
 		$item = $this->getSubscription();
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Subscription\\Process\\Renew\\Standard' )
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
-		$this->context->getConfig()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
+		$this->context->config()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddBasketCoupons()
 	{
-		$this->context->getConfig()->set( 'controller/jobs/subscription/process/renew/use-coupons', true );
+		$this->context->config()->set( 'controller/jobs/subscription/process/renew/use-coupons', true );
 
 		$basket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC', ['price'] );

@@ -71,7 +71,7 @@ class Standard
 		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/order/service/delivery/batch-max
 		 */
-		$days = $context->getConfig()->get( 'controller/jobs/order/service/delivery/limit-days', 90 );
+		$days = $context->config()->get( 'controller/jobs/order/service/delivery/limit-days', 90 );
 		$date = date( 'Y-m-d 00:00:00', time() - 86400 * $days );
 
 		/** controller/jobs/order/service/delivery/batch-max
@@ -87,7 +87,7 @@ class Standard
 		 * @category Developer
 		 * @see controller/jobs/order/service/delivery/limit-days
 		 */
-		$maxItems = $context->getConfig()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
+		$maxItems = $context->config()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
 
 
 		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $context );

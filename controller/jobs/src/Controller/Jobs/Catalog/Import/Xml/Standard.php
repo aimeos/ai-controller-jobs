@@ -56,7 +56,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 		/** controller/jobs/catalog/import/xml/location
@@ -135,7 +135,7 @@ class Standard
 	protected function import( string $filename )
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 

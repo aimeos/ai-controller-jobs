@@ -68,7 +68,7 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/text/listtypes
 		 */
 		$key = 'controller/common/product/import/csv/processor/supplier/listtypes';
-		$this->listTypes = $context->getConfig()->get( $key );
+		$this->listTypes = $context->config()->get( $key );
 
 		if( $this->listTypes === null )
 		{
@@ -122,7 +122,7 @@ class Standard
 		 * @category Developer
 		 * @see controller/common/product/import/csv/domains
 		 */
-		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
+		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$manager->begin();
 

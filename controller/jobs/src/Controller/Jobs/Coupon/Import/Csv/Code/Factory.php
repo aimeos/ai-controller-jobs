@@ -65,7 +65,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'controller/jobs/coupon/import/csv/code/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/coupon/import/csv/code/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';

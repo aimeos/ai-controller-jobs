@@ -53,7 +53,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 		$mappings = $this->getDefaultMapping();
 
@@ -165,7 +165,7 @@ class Standard
 	 */
 	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/order/export/csv/location
 		 * Temporary file or directory where the content is stored which should be exported

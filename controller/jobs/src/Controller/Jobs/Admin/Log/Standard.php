@@ -52,7 +52,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$container = null;
 
 		/** controller/jobs/admin/log/limit-days

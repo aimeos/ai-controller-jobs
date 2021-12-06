@@ -71,7 +71,7 @@ class Standard
 		 * @since 2014.07
 		 * @category User
 		 */
-		$days = $context->getConfig()->get( 'controller/jobs/order/cleanup/unpaid/keep-days', 3 );
+		$days = $context->config()->get( 'controller/jobs/order/cleanup/unpaid/keep-days', 3 );
 		$limit = date( 'Y-m-d H:i:s', time() - 86400 * $days );
 
 		$search = $manager->filter();

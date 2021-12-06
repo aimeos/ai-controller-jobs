@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperJobs::context();
 		$this->aimeos = \TestHelperJobs::getAimeos();
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/customer/group/import/xml/location', __DIR__ . '/_testfiles' );
 
 		$this->object = new \Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Standard( $this->context, $this->aimeos );

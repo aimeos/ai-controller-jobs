@@ -65,7 +65,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 
@@ -145,7 +145,7 @@ class Standard
 	public function import( string $filename )
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 
@@ -246,7 +246,7 @@ class Standard
 	 */
 	protected function getContainer( string $location ) : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/stock/import/csv/container/type
 		 * Nave of the container type to read the data from

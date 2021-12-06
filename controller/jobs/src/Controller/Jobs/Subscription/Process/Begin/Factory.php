@@ -65,7 +65,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'controller/jobs/subscription/process/begin/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/subscription/process/begin/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';

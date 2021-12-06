@@ -49,8 +49,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/max-items', 5 );
-		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/baseurl', 'https://www.yourshop.com/sitemaps/' );
+		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/max-items', 5 );
+		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/baseurl', 'https://www.yourshop.com/sitemaps/' );
 
 		$this->object->run();
 
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunEmptyLocation()
 	{
-		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', '' );
+		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/location', '' );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 
@@ -86,7 +86,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunNoLocation()
 	{
-		$this->context->getConfig()->set( 'controller/jobs/catalog/export/sitemap/location', null );
+		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/location', null );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 

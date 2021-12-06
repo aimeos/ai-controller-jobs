@@ -67,7 +67,7 @@ trait Traits
 	protected function createProcessor( string $type ) : \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$parts = explode( '/', $type );
 
 		foreach( $parts as $part )

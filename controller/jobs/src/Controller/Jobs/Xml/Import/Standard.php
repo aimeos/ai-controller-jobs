@@ -65,7 +65,7 @@ class Standard
 
 		\Aimeos\Controller\Jobs\Index\Rebuild\Factory::create( $context, $aimeos )->run();
 
-		$context->getCache()->deleteByTags( ['product'] );
+		$context->cache()->deleteByTags( ['product'] );
 
 		$logger->log( 'Finished XML import', \Aimeos\MW\Logger\Base::INFO, 'import/xml' );
 	}

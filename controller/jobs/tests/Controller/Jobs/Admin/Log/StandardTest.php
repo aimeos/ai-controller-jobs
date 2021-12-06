@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\MAdmin\\Log\\Manager\\Standard' )
 			->setMethods( array( 'delete' ) )

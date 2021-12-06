@@ -83,7 +83,7 @@ class Standard
 	 */
 	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, \Aimeos\Map $items )
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/catalog/export/sitemap/changefreq
 		 * Change frequency of the catalog
@@ -146,7 +146,7 @@ class Standard
 		$view->siteItems = $items;
 		$view->siteFreq = $changefreq;
 
-		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );
 	}
 
 
@@ -157,7 +157,7 @@ class Standard
 	 */
 	protected function createContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/catalog/export/sitemap/location
 		 * Directory where the generated site maps should be placed into
@@ -265,7 +265,7 @@ class Standard
 		$view = $context->view();
 
 		$content = $container->create( $this->getFilename( $filenum ) );
-		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );
 		$container->add( $content );
 
 		return $content;
@@ -307,7 +307,7 @@ class Standard
 		$context = $this->context();
 		$view = $context->view();
 
-		$content->add( $view->render( $context->getConfig()->get( $tplconf, $default ) ) );
+		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );
 	}
 
 
@@ -320,7 +320,7 @@ class Standard
 	protected function createSitemapIndex( \Aimeos\MW\Container\Iface $container, array $files )
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$view = $context->view();
 
 		/** controller/jobs/catalog/export/sitemap/template-index
@@ -400,7 +400,7 @@ class Standard
 	 */
 	protected function export( \Aimeos\MW\Container\Iface $container, ?bool $default = true ) : array
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 		/** controller/jobs/catalog/export/sitemap/domains
 		 * List of associated items from other domains that should be fetched for the sitemap
 		 *

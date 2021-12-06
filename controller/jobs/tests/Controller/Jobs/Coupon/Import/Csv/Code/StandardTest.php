@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context = \TestHelperJobs::context();
 		$this->aimeos = \TestHelperJobs::getAimeos();
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 
 		$config->set( 'controller/jobs/product/import/csv/skip-lines', 1 );
 

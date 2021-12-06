@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context = \TestHelperJobs::context();
 		$this->aimeos = \TestHelperJobs::getAimeos();
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 
 		$config->set( 'controller/jobs/catalog/import/csv/skip-lines', 1 );
 		$config->set( 'controller/jobs/catalog/import/csv/location', __DIR__ . '/_testfiles/valid' );
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			1 => 'Text/LatinUTF8',
 		);
 
-		$this->context->getConfig()->set( 'controller/jobs/catalog/import/csv/converter', $convert );
+		$this->context->config()->set( 'controller/jobs/catalog/import/csv/converter', $convert );
 
 		$this->object->run();
 
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunPosition()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$mapping = $config->get( 'controller/jobs/catalog/import/csv/mapping', [] );
 		$mapping['item'] = array( 0 => 'catalog.label', 1 => 'catalog.code', 2 => 'catalog.parent' );
 
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$this->context->getConfig()->set( 'controller/jobs/catalog/import/csv/mapping', $mapping );
+		$this->context->config()->set( 'controller/jobs/catalog/import/csv/mapping', $mapping );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
@@ -147,9 +147,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$this->context->getConfig()->set( 'controller/jobs/catalog/import/csv/mapping', $mapping );
+		$this->context->config()->set( 'controller/jobs/catalog/import/csv/mapping', $mapping );
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/catalog/import/csv/skip-lines', 0 );
 		$config->set( 'controller/jobs/catalog/import/csv/location', __DIR__ . '/_testfiles/invalid' );
 
@@ -162,7 +162,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunBackup()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/catalog/import/csv/container/type', 'Zip' );
 		$config->set( 'controller/jobs/catalog/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/catalog/import/csv/backup', 'tmp/test-%Y-%m-%d.zip' );
@@ -182,7 +182,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunBackupInvalid()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/catalog/import/csv/container/type', 'Zip' );
 		$config->set( 'controller/jobs/catalog/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/catalog/import/csv/backup', 'tmp/notexist/import.zip' );

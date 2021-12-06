@@ -54,7 +54,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 
 		/** controller/jobs/order/service/payment/limit-days

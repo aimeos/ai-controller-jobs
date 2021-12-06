@@ -129,7 +129,7 @@ class Base
 	protected function getProcessors( array $mappings )
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$object = new \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Done( $context, [] );
 
 		foreach( $mappings as $type => $mapping )

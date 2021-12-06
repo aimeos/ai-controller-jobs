@@ -54,7 +54,7 @@ class Standard
 	{
 		$total = $errors = 0;
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 		$domains = array( 'media', 'text', 'supplier/address' );
 		$mappings = $this->getDefaultMapping();
@@ -414,7 +414,7 @@ class Standard
 	 */
 	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/supplier/import/csv/location
 		 * File or directory where the content is stored which should be imported

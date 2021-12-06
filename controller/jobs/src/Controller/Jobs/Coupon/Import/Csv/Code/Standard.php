@@ -119,7 +119,7 @@ class Standard
 	 */
 	protected function getContainer( string $filepath ) : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/coupon/import/csv/code/container/type
 		 * Name of the container type to read the data from
@@ -239,7 +239,7 @@ class Standard
 	protected function process( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MW\Container\Iface $container, string $couponId, string $path )
 	{
 		$total = $errors = 0;
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 
 		/** controller/jobs/coupon/import/csv/code/mapping

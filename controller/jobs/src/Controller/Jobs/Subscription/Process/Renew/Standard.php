@@ -53,7 +53,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** controller/common/subscription/process/payment-ends
 		 * Subscriptions ends if payment couldn't be captured
@@ -226,7 +226,7 @@ class Standard
 		 * @category User
 		 * @since 2018.10
 		 */
-		if( $context->getConfig()->get( 'controller/jobs/subscription/process/renew/use-coupons', false ) )
+		if( $context->config()->get( 'controller/jobs/subscription/process/renew/use-coupons', false ) )
 		{
 			foreach( $codes as $code )
 			{

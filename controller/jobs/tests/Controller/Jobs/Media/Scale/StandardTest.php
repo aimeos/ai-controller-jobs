@@ -49,8 +49,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$name = 'ControllerJobsMediaScaleStandardRun';
-		$context->getConfig()->set( 'mshop/media/manager/name', $name );
-		$context->getConfig()->set( 'controller/common/media/name', $name );
+		$context->config()->set( 'mshop/media/manager/name', $name );
+		$context->config()->set( 'controller/common/media/name', $name );
 
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Media\\Manager\\Standard' )

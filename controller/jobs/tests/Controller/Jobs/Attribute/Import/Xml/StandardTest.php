@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs->write( 'path/to/file2.jpg', 'test' );
 		$fs->write( 'path/to/file.jpg', 'test' );
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/attribute/import/xml/location', __DIR__ . '/_testfiles' );
 
 		$this->object = new \Aimeos\Controller\Jobs\Attribute\Import\Xml\Standard( $this->context, $this->aimeos );

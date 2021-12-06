@@ -69,7 +69,7 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/text/listtypes
 		 */
 		$key = 'controller/common/product/import/csv/processor/attribute/listtypes';
-		$this->listTypes = $context->getConfig()->get( $key );
+		$this->listTypes = $context->config()->get( $key );
 
 		if( $this->listTypes === null )
 		{
@@ -114,7 +114,7 @@ class Standard
 	{
 		$context = $this->context();
 		$listManager = \Aimeos\MShop::create( $context, 'product/lists' );
-		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
+		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );

@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs = $this->context->getFileSystemManager()->get( 'fs-mimeicon' );
 		$fs->write( 'unknown.png', 'test' );
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/product/import/csv/skip-lines', 1 );
 		$config->set( 'controller/jobs/product/import/csv/location', __DIR__ . '/_testfiles/valid' );
 
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			1 => 'Text/LatinUTF8',
 		);
 
-		$this->context->getConfig()->set( 'controller/jobs/product/import/csv/converter', $convert );
+		$this->context->config()->set( 'controller/jobs/product/import/csv/converter', $convert );
 
 		$this->object->run();
 
@@ -118,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$nondelete = array( 'attribute', 'product' );
 		$delete = array( 'media', 'price', 'text' );
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$mapping = $config->get( 'controller/jobs/product/import/csv/mapping', [] );
 		$mapping['item'] = array( 0 => 'product.label', 1 => 'product.code' );
 
@@ -142,7 +142,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$this->context->getConfig()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
+		$this->context->config()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunBackup()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/product/import/csv/container/type', 'Zip' );
 		$config->set( 'controller/jobs/product/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/product/import/csv/backup', 'tmp/test-%Y-%m-%d.zip' );
@@ -171,7 +171,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunBackupInvalid()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/product/import/csv/container/type', 'Zip' );
 		$config->set( 'controller/jobs/product/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/product/import/csv/backup', 'tmp/notexist/import.zip' );

@@ -76,7 +76,7 @@ class Standard
 		 * @see controller/common/product/import/csv/processor/text/listtypes
 		 */
 		$key = 'controller/common/product/import/csv/processor/product/listtypes';
-		$this->listTypes = $context->getConfig()->get( $key, ['default', 'suggestion'] );
+		$this->listTypes = $context->config()->get( $key, ['default', 'suggestion'] );
 
 		if( $this->listTypes === null )
 		{
@@ -111,7 +111,7 @@ class Standard
 		$context = $this->context();
 		$logger = $context->getLogger();
 		$manager = \Aimeos\MShop::create( $context, 'product/lists' );
-		$separator = $context->getConfig()->get( 'controller/common/product/import/csv/separator', "\n" );
+		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$listItems = $product->getListItems( 'product', null, null, false );
 		$this->cache->set( $product );

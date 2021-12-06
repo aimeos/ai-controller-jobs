@@ -236,7 +236,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			5 => 'default',
 		);
 
-		$this->context->getConfig()->set( 'controller/common/catalog/import/csv/processor/text/listtypes', array( 'default' ) );
+		$this->context->config()->set( 'controller/common/catalog/import/csv/processor/text/listtypes', array( 'default' ) );
 
 		$catalog = $this->create( 'job_csv_test' );
 

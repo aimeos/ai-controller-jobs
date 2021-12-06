@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context = \TestHelperJobs::context();
 		$this->aimeos = \TestHelperJobs::getAimeos();
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 
 		$config->set( 'controller/jobs/supplier/import/csv/skip-lines', 1 );
 		$config->set( 'controller/jobs/supplier/import/csv/location', __DIR__ . '/_testfiles/valid' );
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			1 => 'Text/LatinUTF8',
 		);
 
-		$this->context->getConfig()->set( 'controller/jobs/supplier/import/csv/converter', $convert );
+		$this->context->config()->set( 'controller/jobs/supplier/import/csv/converter', $convert );
 
 		$this->object->run();
 
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$codes = ['job_csv_test', 'job_csv_test2'];
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$mapping = $config->get( 'controller/jobs/supplier/import/csv/mapping', [] );
 		$mapping['item'] = array( 0 => 'supplier.label', 1 => 'supplier.code' );
 
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$this->context->getConfig()->set( 'controller/jobs/supplier/import/csv/mapping', $mapping );
+		$this->context->config()->set( 'controller/jobs/supplier/import/csv/mapping', $mapping );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
@@ -140,7 +140,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunBackup()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/supplier/import/csv/container/type', 'Zip' );
 		$config->set( 'controller/jobs/supplier/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/supplier/import/csv/backup', 'tmp/test-%Y-%m-%d.zip' );
@@ -161,7 +161,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunBackupInvalid()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/supplier/import/csv/container/type', 'Zip' );
 		$config->set( 'controller/jobs/supplier/import/csv/location', 'tmp/import.zip' );
 		$config->set( 'controller/jobs/supplier/import/csv/backup', 'tmp/notexist/import.zip' );

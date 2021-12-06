@@ -65,7 +65,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'controller/jobs/stock/import/csv/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/stock/import/csv/name', 'Standard' );
 		}
 
 		if( ctype_alnum( $name ) === false )

@@ -53,7 +53,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$logger = $context->getLogger();
 		$mappings = $this->getDefaultMapping();
 
@@ -156,7 +156,7 @@ class Standard
 	 */
 	protected function getContainer() : \Aimeos\MW\Container\Iface
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** controller/jobs/subscription/export/csv/location
 		 * Temporary file or directory where the content is stored which should be exported
@@ -260,7 +260,7 @@ class Standard
 		 * @param bool True to collapse all lines of one subscription, false for separate lines
 		 * @since 2020.07
 		 */
-		$collapse = $lcontext->getConfig()->get( 'controller/jobs/subscription/export/csv/collapse', false );
+		$collapse = $lcontext->config()->get( 'controller/jobs/subscription/export/csv/collapse', false );
 
 		$manager = \Aimeos\MShop::create( $lcontext, 'subscription' );
 		$baseManager = \Aimeos\MShop::create( $lcontext, 'order/base' );

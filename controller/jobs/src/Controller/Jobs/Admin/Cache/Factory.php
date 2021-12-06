@@ -66,7 +66,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'controller/jobs/admin/cache/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/admin/cache/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';

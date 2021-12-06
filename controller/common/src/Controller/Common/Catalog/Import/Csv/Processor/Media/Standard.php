@@ -68,7 +68,7 @@ class Standard
 		 * @see controller/common/catalog/import/csv/processor/text/listtypes
 		 */
 		$key = 'controller/common/catalog/import/csv/processor/media/listtypes';
-		$this->listTypes = $context->getConfig()->get( $key );
+		$this->listTypes = $context->config()->get( $key );
 
 		if( $this->listTypes === null )
 		{
@@ -129,7 +129,7 @@ class Standard
 		 * @see controller/common/catalog/import/csv/domains
 		 * @see controller/common/supplier/import/csv/domains
 		 */
-		$separator = $context->getConfig()->get( 'controller/common/catalog/import/csv/separator', "\n" );
+		$separator = $context->config()->get( 'controller/common/catalog/import/csv/separator', "\n" );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );

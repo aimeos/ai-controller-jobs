@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$mqmStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
-			->setConstructorArgs( [$this->context->getConfig()] )
+			->setConstructorArgs( [$this->context->config()] )
 			->setMethods( ['get'] )
 			->getMock();
 
