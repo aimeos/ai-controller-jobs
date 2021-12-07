@@ -153,36 +153,55 @@ class Standard
 		$days = $config->get( 'controller/jobs/product/bought/limit-days', 180 );
 		$date = date( 'Y-m-d H:i:s', time() - $days * 86400 );
 
+		$domains = [
+			'attribute', 'catalog', 'media', 'media/property', 'price',
+			'product', 'product/property', 'supplier', 'text'
+		];
 
+
+		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
-		$search = $baseManager->filter();
-		$search->setConditions( $search->compare( '>', 'order.base.ctime', $date ) );
-		$search->slice( 0, 0 );
-		$totalOrders = 0;
-		$baseManager->search( $search, [], $totalOrders );
-
 		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
-		$search = $baseProductManager->filter();
-		$search->setConditions( $search->compare( '>', 'order.base.product.ctime', $date ) );
-		$start = 0;
+
+		$search = $baseProductManager->filter()->add( 'order.base.product.ctime', '>', $date );
+		$filter = $baseManager->filter()->add( 'order.base.ctime', '>', $date )->slice( 0, 0 );
+
+		$start = $total = 0;
+		$baseManager->search( $filter, [], $total );
 
 		do
 		{
-			$totalCounts = $baseProductManager->aggregate( $search, 'order.base.product.productid' );
-			$prodIds = $totalCounts->keys()->toArray();
+			$counts = $baseProductManager->aggregate( $search, 'order.base.product.productid' );
+			$prodIds = $counts->keys()->all();
+			$products = $manager->search( $manager->filter()->add( 'product.id', '==', $prodIds ), $domains );
 
-			foreach( $totalCounts as $id => $count )
+			foreach( $counts as $id => $count )
 			{
-				$this->removeListItems( $id );
-
-				if( $count / $totalOrders > $minSupport )
-				{
-					$productIds = $this->getSuggestions( $id, $prodIds, $count, $totalOrders, $maxItems, $minSupport, $minConfidence, $date );
-					$this->addListItems( $id, $productIds );
+				if( ( $item = $products->get( $id ) ) === null ) {
+					continue;
 				}
+
+				$listItems = $item->getListItems( 'product', 'bought-together' );
+
+				if( $count / $total > $minSupport )
+				{
+					$productIds = $this->getSuggestions( $id, $prodIds, $count, $total, $maxItems,
+						$minSupport, $minConfidence, $date );
+
+					foreach( $productIds as $pid )
+					{
+						$litem = $item->getListItem( 'product', 'bought-together', $pid ) ?: $manager->createListItem();
+						$item->addListItem( 'product', $litem->setRefId( $pid ) );
+						$listItems->remove( $litem->getId() );
+					}
+				}
+
+				$item->deleteListItems( $listItems );
 			}
 
-			$count = count( $totalCounts );
+			$manager->save( $products );
+
+			$count = count( $counts );
 			$start += $count;
 			$search->slice( $start );
 		}
@@ -206,35 +225,15 @@ class Standard
 	protected function getSuggestions( string $id, array $prodIds, int $count, int $total, int $maxItems,
 		float $minSupport, float $minConfidence, string $date ) : array
 	{
-		$refIds = [];
-		$context = $this->context();
-
-		$catalogListManager = \Aimeos\MShop::create( $context, 'catalog/lists' );
-		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
-
+		$baseProductManager = \Aimeos\MShop::create( $this->context(), 'order/base/product' );
 
 		$search = $baseProductManager->filter();
-		$func = $search->make( 'order.base.product.count', array( (string) $id ) );
-		$expr = array(
-			$search->compare( '==', 'order.base.product.productid', $prodIds ),
-			$search->compare( '>', 'order.base.product.ctime', $date ),
-			$search->compare( '==', $func, 1 ),
-		);
-		$search->setConditions( $search->and( $expr ) );
-
+		$search->add( $search->and( [
+			$search->is( 'order.base.product.productid', '==', $prodIds ),
+			$search->is( 'order.base.product.ctime', '>', $date ),
+			$search->is( $search->make( 'order.base.product.count', [(string) $id] ), '==', 1 ),
+		] ) );
 		$relativeCounts = $baseProductManager->aggregate( $search, 'order.base.product.productid' );
-
-
-		$search = $catalogListManager->filter();
-		$expr = array(
-			$search->compare( '==', 'catalog.lists.refid', $relativeCounts->keys()->toArray() ),
-			$search->compare( '==', 'catalog.lists.domain', 'product' ),
-		);
-		$search->setConditions( $search->and( $expr ) );
-
-		foreach( $catalogListManager->search( $search ) as $listItem ) {
-			$refIds[$listItem->getRefId()] = true;
-		}
 
 
 		unset( $relativeCounts[$id] );
@@ -243,10 +242,6 @@ class Standard
 
 		foreach( $relativeCounts as $prodId => $relCnt )
 		{
-			if( !isset( $refIds[$prodId] ) ) {
-				continue;
-			}
-
 			$supportAB = $relCnt / $total;
 
 			if( $supportAB > $minSupport && ( $conf = ( $supportAB / $supportA ) ) > $minConfidence ) {
@@ -257,58 +252,5 @@ class Standard
 		arsort( $products );
 
 		return array_keys( array_slice( $products, 0, $maxItems, true ) );
-	}
-
-
-	/**
-	 * Adds products as referenced products to the product list.
-	 *
-	 * @param string $productId Unique ID of the product the given products should be referenced to
-	 * @param array $productIds List of position as key and product ID as value
-	 */
-	protected function addListItems( string $productId, array $productIds )
-	{
-		if( empty( $productIds ) ) {
-			return;
-		}
-
-		$manager = \Aimeos\MShop::create( $this->context(), 'product/lists' );
-		$item = $manager->create();
-
-		foreach( $productIds as $pos => $refid )
-		{
-			$item->setId( null );
-			$item->setParentId( $productId );
-			$item->setDomain( 'product' );
-			$item->setType( 'bought-together' );
-			$item->setPosition( $pos );
-			$item->setRefId( $refid );
-			$item->setStatus( 1 );
-
-			$manager->save( $item, false );
-		}
-	}
-
-
-	/**
-	 * Remove all suggested products from product list.
-	 *
-	 * @param string $productId Unique ID of the product the references should be removed from
-	 */
-	protected function removeListItems( string $productId )
-	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'product/lists' );
-
-		$search = $manager->filter();
-		$expr = array(
-			$search->compare( '==', 'product.lists.parentid', $productId ),
-			$search->compare( '==', 'product.lists.domain', 'product' ),
-			$search->compare( '==', 'product.lists.type', 'bought-together' ),
-		);
-		$search->setConditions( $search->and( $expr ) );
-
-		$listItems = $manager->search( $search );
-
-		$manager->delete( $listItems->toArray() );
 	}
 }

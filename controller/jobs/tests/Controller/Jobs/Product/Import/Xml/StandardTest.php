@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->run();
 
-		$domains = ['attribute', 'media', 'media/property', 'price', 'product', 'product/property', 'text'];
+		$domains = ['attribute', 'catalog', 'media', 'media/property', 'price', 'product', 'product/property', 'supplier', 'text'];
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$item = $manager->find( 'unittest-xml', $domains );
 		$manager->delete( $item->getId() );
@@ -63,6 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'Test product', $item->getLabel() );
 		$this->assertEquals( ['css' => 'new'], $item->getConfig() );
 		$this->assertEquals( 1, count( $item->getRefItems( 'attribute' ) ) );
+		$this->assertEquals( 1, count( $item->getRefItems( 'catalog' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'product' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'media' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'price' ) ) );

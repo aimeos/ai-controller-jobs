@@ -50,14 +50,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Product\\Manager\\Lists\\Standard' )
-			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'delete', 'save' ) )
+		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Product\\Manager\\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['save'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'product/lists', $stub );
+		\Aimeos\MShop::inject( 'product', $stub );
 
-		$stub->expects( $this->atLeastOnce() )->method( 'delete' );
 		$stub->expects( $this->atLeastOnce() )->method( 'save' );
 
 		$this->object->run();

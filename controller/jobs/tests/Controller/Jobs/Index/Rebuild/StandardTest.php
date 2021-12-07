@@ -61,8 +61,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Catalog\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Index\\Manager\\' . $name, $indexManagerStub );
 
 
-		$indexManagerStub->expects( $this->once() )->method( 'rebuild' );
-		$indexManagerStub->expects( $this->once() )->method( 'cleanup' );
+		$indexManagerStub->expects( $this->once() )->method( 'rebuild' )->will( $this->returnSelf() );
+		$indexManagerStub->expects( $this->once() )->method( 'cleanup' )->will( $this->returnSelf() );
 
 
 		$object = new \Aimeos\Controller\Jobs\Index\Rebuild\Standard( $context, $aimeos );

@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
-		$nondelete = array( 'attribute', 'product' );
+		$nondelete = array( 'attribute', 'product', 'catalog' );
 		$delete = array( 'media', 'price', 'text' );
 
 		$convert = array(
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $properties ) );
 
 		foreach( $result as $product ) {
-			$this->assertEquals( 5, count( $product->getListItems() ) );
+			$this->assertEquals( 6, count( $product->getListItems() ) );
 		}
 	}
 
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunUpdate()
 	{
 		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
-		$nondelete = array( 'attribute', 'product' );
+		$nondelete = array( 'attribute', 'product', 'catalog' );
 		$delete = array( 'media', 'price', 'text' );
 
 		$this->object->run();
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $properties ) );
 
 		foreach( $result as $product ) {
-			$this->assertEquals( 5, count( $product->getListItems() ) );
+			$this->assertEquals( 6, count( $product->getListItems() ) );
 		}
 	}
 
@@ -209,12 +209,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			}
 
 			$productManager->delete( $product->getId() );
-
-			$search = $catListManager->filter();
-			$search->setConditions( $search->compare( '==', 'catalog.lists.refid', $id ) );
-			$result = $catListManager->search( $search );
-
-			$catListManager->delete( $result->toArray() );
 		}
 
 

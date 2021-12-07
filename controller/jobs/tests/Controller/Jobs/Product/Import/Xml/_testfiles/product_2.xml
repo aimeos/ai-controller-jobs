@@ -55,6 +55,9 @@
 			<product>
 				<productitem ref="CNE" lists.type="test" />
 			</product>
+			<catalog>
+				<catalogitem ref="cafe" lists.type="promotion" />
+			</catalog>
 			<attribute>
 				<attributeitem ref="product|color|white" />
 			</attribute>

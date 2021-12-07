@@ -11,29 +11,9 @@ namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
-	private static $product;
 	private $context;
 	private $endpoint;
-
-
-	public static function setUpBeforeClass() : void
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::context() );
-
-		$item = $manager->create();
-		$item->setCode( 'job_csv_prod' );
-		$item->setType( 'default' );
-		$item->setStatus( 1 );
-
-		self::$product = $manager->save( $item );
-	}
-
-
-	public static function tearDownAfterClass() : void
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperCntl::context() );
-		$manager->delete( self::$product->getId() );
-	}
+	private $product;
 
 
 	protected function setUp() : void
@@ -41,6 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::cache( true );
 
 		$this->context = \TestHelperCntl::context();
+		$this->product = \Aimeos\MShop\Product\Manager\Factory::create( $this->context )->create();
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );
 	}
 
@@ -54,30 +35,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$mapping = array(
-			0 => 'catalog.lists.type',
+			0 => 'product.lists.type',
 			1 => 'catalog.code',
-			2 => 'catalog.lists.type',
+			2 => 'product.lists.type',
 			3 => 'catalog.code',
 		);
 
 		$data = array(
 			0 => 'default',
-			1 => 'job_csv_test',
+			1 => 'cafe',
 			2 => 'promotion',
-			3 => 'job_csv_test',
+			3 => 'cafe',
 		);
 
-		$catItem = $this->create( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$object->process( self::$product, $data );
-
-		$category = $this->get( 'job_csv_test' );
-		$this->delete( $catItem );
-
+		$object->process( $this->product, $data );
 
 		$pos = 0;
-		$listItems = $category->getListItems();
+		$listItems = $this->product->getListItems();
 		$expected = array(
 			array( 'default', 'job_csv_prod' ),
 			array( 'promotion', 'job_csv_prod' ),
@@ -88,9 +63,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		foreach( $listItems as $listItem )
 		{
 			$this->assertEquals( 1, $listItem->getStatus() );
-			$this->assertEquals( 'product', $listItem->getDomain() );
+			$this->assertEquals( 'catalog', $listItem->getDomain() );
 			$this->assertEquals( $expected[$pos][0], $listItem->getType() );
-			$this->assertEquals( $expected[$pos][1], $listItem->getRefItem()->getCode() );
+			$this->assertGreaterThan( 0, $listItem->getRefId() );
 			$pos++;
 		}
 	}
@@ -99,47 +74,36 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessMultiple()
 	{
 		$mapping = array(
-			0 => 'catalog.lists.type',
+			0 => 'product.lists.type',
 			1 => 'catalog.code',
-			2 => 'catalog.lists.type',
+			2 => 'product.lists.type',
 			3 => 'catalog.code',
 		);
 
 		$data = array(
 			0 => 'default',
-			1 => "job_csv_test\njob_csv_test2",
+			1 => "cafe\ntea",
 			2 => 'promotion',
-			3 => "job_csv_test\njob_csv_test2",
+			3 => "cafe\ntea",
 		);
 
-		$catItem = $this->create( 'job_csv_test' );
-		$catItem2 = $this->create( 'job_csv_test2' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$object->process( self::$product, $data );
-
-		$category = $this->get( 'job_csv_test' );
-		$category2 = $this->get( 'job_csv_test2' );
-
-		$this->delete( $catItem );
-		$this->delete( $catItem2 );
+		$object->process( $this->product, $data );
 
 
 		$pos = 0;
-		$types = array( 'default', 'promotion', 'default', 'promotion' );
+		$listItems = $this->product->getListItems();
+		$types = ['default', 'default', 'promotion', 'promotion'];
 
-		foreach( array( $category->getListItems(), $category2->getListItems() ) as $listItems )
+		$this->assertEquals( 4, count( $listItems ) );
+
+		foreach( $listItems as $listItem )
 		{
-			$this->assertEquals( 2, count( $listItems ) );
-
-			foreach( $listItems as $listItem )
-			{
-				$this->assertEquals( 1, $listItem->getStatus() );
-				$this->assertEquals( 'product', $listItem->getDomain() );
-				$this->assertEquals( $types[$pos], $listItem->getType() );
-				$this->assertEquals( 'job_csv_prod', $listItem->getRefItem()->getCode() );
-				$pos++;
-			}
+			$this->assertEquals( 1, $listItem->getStatus() );
+			$this->assertEquals( 'catalog', $listItem->getDomain() );
+			$this->assertEquals( $types[$pos], $listItem->getType() );
+			$this->assertGreaterThan( 0, $listItem->getRefId() );
+			$pos++;
 		}
 	}
 
@@ -147,65 +111,52 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessUpdate()
 	{
 		$mapping = array(
-			0 => 'catalog.lists.type',
+			0 => 'product.lists.type',
 			1 => 'catalog.code',
 		);
 
 		$data = array(
 			0 => 'default',
-			1 => 'job_csv_test',
+			1 => 'cafe',
 		);
 
 		$dataUpdate = array(
 			0 => 'promotion',
-			1 => 'job_csv_test',
+			1 => 'cafe',
 		);
 
-		$catItem = $this->create( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$object->process( self::$product, $data );
-		$object->process( self::$product, $dataUpdate );
+		$object->process( $this->product, $data );
+		$object->process( $this->product, $dataUpdate );
 
-		$category = $this->get( 'job_csv_test' );
-		$this->delete( $catItem );
-
-
-		$listItems = $category->getListItems();
+		$listItems = $this->product->getListItems();
 		$listItem = $listItems->first();
 
 		$this->assertEquals( 1, count( $listItems ) );
 		$this->assertInstanceOf( '\\Aimeos\\MShop\\Common\\Item\\Lists\\Iface', $listItem );
-
-		$this->assertEquals( 'job_csv_prod', $listItem->getRefItem()->getCode() );
+		$this->assertGreaterThan( 0, $listItem->getRefId() );
 	}
 
 
 	public function testProcessDelete()
 	{
 		$mapping = array(
-			0 => 'catalog.lists.type',
+			0 => 'product.lists.type',
 			1 => 'catalog.code',
 		);
 
 		$data = array(
 			0 => 'default',
-			1 => 'job_csv_test',
+			1 => 'cafe',
 		);
 
-		$catItem = $this->create( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$object->process( self::$product, $data );
+		$object->process( $this->product, $data );
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, [], $this->endpoint );
-		$object->process( self::$product, [] );
+		$object->process( $this->product, [] );
 
-		$category = $this->get( 'job_csv_test' );
-		$this->delete( $catItem );
-
-
-		$listItems = $category->getListItems();
+		$listItems = $this->product->getListItems();
 
 		$this->assertEquals( 0, count( $listItems ) );
 	}
@@ -214,9 +165,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessEmpty()
 	{
 		$mapping = array(
-			0 => 'catalog.lists.type',
+			0 => 'product.lists.type',
 			1 => 'catalog.code',
-			2 => 'catalog.lists.type',
+			2 => 'product.lists.type',
 			3 => 'catalog.code',
 		);
 
@@ -224,19 +175,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			0 => '',
 			1 => '',
 			2 => 'default',
-			3 => 'job_csv_test',
+			3 => 'cafe',
 		);
 
-		$catItem = $this->create( 'job_csv_test' );
-
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
-		$object->process( self::$product, $data );
+		$object->process( $this->product, $data );
 
-		$category = $this->get( 'job_csv_test' );
-		$this->delete( $catItem );
-
-
-		$listItems = $category->getListItems();
+		$listItems = $this->product->getListItems();
 
 		$this->assertEquals( 1, count( $listItems ) );
 	}
@@ -245,17 +190,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessListtypes()
 	{
 		$mapping = array(
-			0 => 'catalog.lists.type',
+			0 => 'product.lists.type',
 			1 => 'catalog.code',
-			2 => 'catalog.lists.type',
+			2 => 'product.lists.type',
 			3 => 'catalog.code',
 		);
 
 		$data = array(
 			0 => 'promotion',
-			1 => 'job_csv_test',
+			1 => 'cafe',
 			2 => 'default',
-			3 => 'job_csv_test',
+			3 => 'cafe',
 		);
 
 		$this->context->config()->set( 'controller/common/product/import/csv/processor/catalog/listtypes', array( 'default' ) );
@@ -263,31 +208,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 
 		$this->expectException( '\Aimeos\Controller\Common\Exception' );
-		$object->process( self::$product, $data );
-	}
-
-
-	/**
-	 * @param string $code
-	 */
-	protected function create( $code )
-	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-		return $manager->insert( $manager->create()->setCode( $code ) );
-	}
-
-
-	protected function delete( \Aimeos\MShop\Catalog\Item\Iface $catItem )
-	{
-		\Aimeos\MShop\Catalog\Manager\Factory::create( $this->context )->delete( $catItem->getId() );
-	}
-
-
-	/**
-	 * @param string $code
-	 */
-	protected function get( $code )
-	{
-		return \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context )->find( $code, ['product'] );
+		$object->process( $this->product, $data );
 	}
 }

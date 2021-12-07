@@ -51,15 +51,10 @@ class Standard
 	 */
 	public function run()
 	{
-		$timestamp = date( 'Y-m-d H:i:s' );
+		$date = date( 'Y-m-d H:i:s' );
 		$context = clone $this->context();
+		$context->getLocale()->setLanguageId( null )->setCurrencyId( null );
 
-		$context->getLocale()->setLanguageId( null );
-		$context->getLocale()->setCurrencyId( null );
-
-		$manager = \Aimeos\MShop\Index\Manager\Factory::create( $context );
-
-		$manager->rebuild();
-		$manager->cleanup( $timestamp );
+		\Aimeos\MShop\Index\Manager\Factory::create( $context )->rebuild()->cleanup( $date );
 	}
 }
