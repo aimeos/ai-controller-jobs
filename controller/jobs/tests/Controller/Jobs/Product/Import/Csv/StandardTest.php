@@ -79,7 +79,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
 		$properties = $this->getProperties( $result->keys()->toArray() );
-		$this->delete( $prodcodes, $delete, $nondelete );
+		$this->delete( $prodcodes, $delete );
 
 		$this->assertEquals( 2, count( $result ) );
 		$this->assertEquals( 2, count( $properties ) );
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
 		$properties = $this->getProperties( $result->keys()->toArray() );
-		$this->delete( $prodcodes, $delete, $nondelete );
+		$this->delete( $prodcodes, $delete );
 
 		$this->assertEquals( 2, count( $result ) );
 		$this->assertEquals( 2, count( $properties ) );
@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$result = $this->get( $prodcodes, array_merge( $delete, $nondelete ) );
-		$this->delete( $prodcodes, $delete, $nondelete );
+		$this->delete( $prodcodes, $delete );
 
 		$this->assertEquals( 2, count( $result ) );
 	}
@@ -185,27 +185,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function delete( array $prodcodes, array $delete, array $nondelete )
+	protected function delete( array $prodcodes, array $delete )
 	{
-		$catListManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context )->getSubmanager( 'lists' );
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$listManager = $productManager->getSubManager( 'lists' );
 
-		foreach( $this->get( $prodcodes, $delete + $nondelete ) as $id => $product )
+		foreach( $this->get( $prodcodes, $delete ) as $id => $product )
 		{
 			foreach( $delete as $domain )
 			{
-				$manager = \Aimeos\MShop::create( $this->context, $domain );
-
-				foreach( $product->getListItems( $domain ) as $listItem )
-				{
-					$manager->delete( $listItem->getRefItem()->getId() );
-					$listManager->delete( $listItem->getId() );
-				}
-			}
-
-			foreach( $nondelete as $domain ) {
-				$listManager->delete( $product->getListItems( $domain )->toArray() );
+				$ids = $product->getListItems( $domain )->getRefId()->all();
+				\Aimeos\MShop::create( $this->context, $domain )->delete( $ids );
 			}
 
 			$productManager->delete( $product->getId() );
@@ -217,9 +207,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $attrManager->filter();
 		$search->setConditions( $search->compare( '==', 'attribute.code', 'import-test' ) );
 
-		$result = $attrManager->search( $search );
-
-		$attrManager->delete( $result->toArray() );
+		$attrManager->delete( $attrManager->search( $search ) );
 	}
 
 
