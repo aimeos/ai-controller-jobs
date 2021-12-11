@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Supplier processor for CSV imports
@@ -101,6 +103,8 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->context();
+		$logger = $context->getLogger();
+
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
 		$listManager = \Aimeos\MShop::create( $context, 'supplier/lists' );
 
