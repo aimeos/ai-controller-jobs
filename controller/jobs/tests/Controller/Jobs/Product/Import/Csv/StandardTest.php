@@ -188,7 +188,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function delete( array $prodcodes, array $delete )
 	{
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$listManager = $productManager->getSubManager( 'lists' );
 
 		foreach( $this->get( $prodcodes, $delete ) as $id => $product )
 		{

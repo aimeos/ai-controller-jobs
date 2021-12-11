@@ -156,7 +156,7 @@ class Standard
 					if( ( $supid = $this->cache->get( $code ) ) === null )
 					{
 						$msg = 'No supplier for code "%1$s" available when importing product with code "%2$s"';
-						throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
+						$logger->log( sprintf( $msg, $code, $product->getCode() ), Log::WARN, 'import/csv/product' );
 						continue;
 					}
 
