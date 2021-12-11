@@ -132,6 +132,7 @@ class Standard
 				{
 					$msg = 'No catalog for code "%1$s" available when importing product with code "%2$s"';
 					$logger->log( sprintf( $msg, $code, $product->getCode() ), Log::WARN, 'import/csv/product' );
+					continue;
 				}
 
 				if( ( $listItem = $product->getListItem( 'catalog', $listtype, $catid ) ) === null ) {

@@ -157,6 +157,7 @@ class Standard
 					{
 						$msg = 'No supplier for code "%1$s" available when importing product with code "%2$s"';
 						throw new \Aimeos\Controller\Jobs\Exception( sprintf( $msg, $code, $product->getCode() ) );
+						continue;
 					}
 
 					$list['supplier.lists.parentid'] = $supid;
