@@ -61,7 +61,7 @@ class Standard
 			$context = $this->context();
 			$process = $context->getProcess();
 			$fs = $context->getFileSystemManager()->get( 'fs-import' );
-			$dir = 'couponcode/' . $context->getLocale()->getSiteItem()->getCode();
+			$dir = 'couponcode/' . $context->locale()->getSiteItem()->getCode();
 
 			if( $fs->isDir( $dir ) === false ) {
 				return;

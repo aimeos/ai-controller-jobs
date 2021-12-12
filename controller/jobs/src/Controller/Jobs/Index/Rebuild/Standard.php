@@ -53,7 +53,7 @@ class Standard
 	{
 		$date = date( 'Y-m-d H:i:s' );
 		$context = clone $this->context();
-		$context->getLocale()->setLanguageId( null )->setCurrencyId( null );
+		$context->locale()->setLanguageId( null )->setCurrencyId( null );
 
 		\Aimeos\MShop\Index\Manager\Factory::create( $context )->rebuild()->cleanup( $date );
 	}

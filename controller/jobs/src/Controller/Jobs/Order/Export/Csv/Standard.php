@@ -256,7 +256,7 @@ class Standard
 	protected function export( array $processors, array $msg, int $maxcnt )
 	{
 		$lcontext = $this->getLocaleContext( $msg );
-		$siteId = $lcontext->getLocale()->getSiteId();
+		$siteId = $lcontext->locale()->getSiteId();
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
 		$ref = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 

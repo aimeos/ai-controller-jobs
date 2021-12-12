@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$invoice = $this->getInvoice( $context );
 		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $invoice->getBaseId() );
 
-		$data = $object->process( $invoice, $order, $context->getLocale()->getSiteId() );
+		$data = $object->process( $invoice, $order, $context->locale()->getSiteId() );
 
 
 		$this->assertEquals( 4, count( $data ) );

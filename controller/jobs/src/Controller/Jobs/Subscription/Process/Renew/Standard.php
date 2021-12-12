@@ -335,7 +335,7 @@ class Standard
 		$baseItem = $manager->get( $baseId );
 		$sitecode = $baseItem->getSiteCode();
 
-		$locale = $baseItem->getLocale();
+		$locale = $baseItem->locale();
 		$level = \Aimeos\MShop\Locale\Manager\Base::SITE_ALL;
 
 		$manager = \Aimeos\MShop::create( $context, 'locale' );

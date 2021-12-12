@@ -58,7 +58,7 @@ class Standard
 
 		$search = $manager->filter();
 		$expr = array(
-			$search->compare( '==', 'media.siteid', $context->getLocale()->getSiteId() ),
+			$search->compare( '==', 'media.siteid', $context->locale()->getSiteId() ),
 			$search->compare( '==', 'media.domain', ['attribute', 'catalog', 'product', 'service', 'supplier'] ),
 			$search->compare( '=~', 'media.mimetype', 'image/' ),
 		);
