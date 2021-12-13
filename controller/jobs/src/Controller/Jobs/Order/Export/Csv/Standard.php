@@ -113,7 +113,7 @@ class Standard
 
 		$processed = [];
 		$processors = $this->getProcessors( $mappings );
-		$mq = $context->getMessageQueueManager()->get( 'mq-admin' )->getQueue( 'order-export' );
+		$mq = $context->queue( 'mq-admin', 'order-export' );
 
 		while( $msg = $mq->get() )
 		{

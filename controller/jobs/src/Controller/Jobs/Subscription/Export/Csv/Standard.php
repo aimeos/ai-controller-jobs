@@ -112,7 +112,7 @@ class Standard
 
 
 		$processors = $this->getProcessors( $mappings );
-		$mq = $context->getMessageQueueManager()->get( 'mq-admin' )->getQueue( 'subscription-export' );
+		$mq = $context->queue( 'mq-admin', 'subscription-export' );
 
 		while( ( $msg = $mq->get() ) !== null )
 		{
