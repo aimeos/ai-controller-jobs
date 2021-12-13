@@ -89,7 +89,7 @@ abstract class Base
 					$manager->rollback();
 
 					$msg = 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-					$this->context->getLogger()->log( $msg, Log::ERR, 'import/csv/product' );
+					$this->context->logger()->log( $msg, Log::ERR, 'import/csv/product' );
 				}
 			}
 		}

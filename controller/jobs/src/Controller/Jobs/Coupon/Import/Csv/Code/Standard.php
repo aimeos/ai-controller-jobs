@@ -84,7 +84,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/coupon/code' );
+			$context->logger()->log( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/coupon/code' );
 			$this->mail( 'Coupon CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -218,7 +218,7 @@ class Standard
 
 				$str = 'Unable to import coupon with code "%1$s": %2$s';
 				$msg = sprintf( $str, $code, $e->getMessage() . "\n" . $e->getTraceAsString() );
-				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/coupon/code' );
+				$context->logger()->log( $msg, Log::ERR, 'import/csv/coupon/code' );
 
 				$errors++;
 			}
@@ -240,7 +240,7 @@ class Standard
 	{
 		$total = $errors = 0;
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 		/** controller/jobs/coupon/import/csv/code/mapping
 		 * List of mappings between the position in the CSV file and item keys

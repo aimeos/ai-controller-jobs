@@ -58,7 +58,7 @@ class Standard
 		$total = $errors = 0;
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 
 		if( file_exists( $config->get( 'controller/jobs/product/import/csv/location' ) ) === false ) {
@@ -585,13 +585,13 @@ class Standard
 				$manager->rollback();
 
 				$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/product' );
+				$context->logger()->log( $msg, Log::ERR, 'import/csv/product' );
 
 				$errors++;
 			}
 
 			if( $strict && !empty( $list ) ) {
-				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/product' );
+				$context->logger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/product' );
 			}
 		}
 

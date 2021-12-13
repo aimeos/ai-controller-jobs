@@ -55,7 +55,7 @@ class Standard
 		$total = $errors = 0;
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 		$domains = array( 'media', 'text', 'supplier/address' );
 		$mappings = $this->getDefaultMapping();
 
@@ -581,14 +581,14 @@ class Standard
 				$manager->rollback();
 
 				$msg = sprintf( 'Unable to import supplier with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/supplier' );
+				$context->logger()->log( $msg, Log::ERR, 'import/csv/supplier' );
 
 				$errors++;
 			}
 
 			if( $strict && !empty( $list ) )
 			{
-				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/supplier' );
+				$context->logger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/supplier' );
 			}
 		}
 

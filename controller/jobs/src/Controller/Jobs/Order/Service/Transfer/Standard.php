@@ -108,7 +108,7 @@ class Standard
 				{
 					$str = 'Error while transferring payment for service with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->getLogger()->log( $msg, Log::ERR, 'order/service/transfer' );
+					$context->logger()->log( $msg, Log::ERR, 'order/service/transfer' );
 				}
 			}
 

@@ -103,7 +103,7 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->context();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
 		$listManager = \Aimeos\MShop::create( $context, 'supplier/lists' );

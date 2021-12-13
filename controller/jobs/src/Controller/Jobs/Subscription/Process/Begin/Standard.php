@@ -165,7 +165,7 @@ class Standard
 				{
 					$str = 'Unable to begin subscription with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->getLogger()->log( $msg, Log::ERR, 'subscription/process/begin' );
+					$context->logger()->log( $msg, Log::ERR, 'subscription/process/begin' );
 				}
 			}
 

@@ -109,7 +109,7 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->context();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 

@@ -57,7 +57,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 		/** controller/jobs/catalog/import/xml/location
 		 * File or directory where the content is stored which should be imported
@@ -136,7 +136,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 
 		/** controller/jobs/catalog/import/xml/domains
@@ -325,7 +325,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->context()->getLogger()->log( $msg, Log::ERR, 'import/xml/catalog' );
+			$this->context()->logger()->log( $msg, Log::ERR, 'import/xml/catalog' );
 		}
 
 		return $item;

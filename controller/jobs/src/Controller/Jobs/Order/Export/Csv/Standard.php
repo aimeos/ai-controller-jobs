@@ -54,7 +54,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 		$mappings = $this->getDefaultMapping();
 
 

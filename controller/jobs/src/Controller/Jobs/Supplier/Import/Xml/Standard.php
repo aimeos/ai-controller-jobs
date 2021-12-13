@@ -57,7 +57,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 		/** controller/jobs/supplier/import/xml/location
 		 * File or directory where the content is stored which should be imported
@@ -316,7 +316,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->context()->getLogger()->log( $msg, Log::ERR, 'import/xml/supplier' );
+			$this->context()->logger()->log( $msg, Log::ERR, 'import/xml/supplier' );
 		}
 
 		return $item;

@@ -58,7 +58,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 
 		/** controller/jobs/product/import/xml/location
@@ -138,7 +138,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 
 		/** controller/jobs/product/import/xml/domains
@@ -331,7 +331,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->context()->getLogger()->log( $msg, Log::ERR, 'import/xml/product' );
+			$this->context()->logger()->log( $msg, Log::ERR, 'import/xml/product' );
 		}
 
 		return $item;

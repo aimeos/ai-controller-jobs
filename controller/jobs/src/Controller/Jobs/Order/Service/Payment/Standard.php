@@ -150,7 +150,7 @@ class Standard
 							{
 								$str = 'Error while capturing payment for order with ID "%1$s": %2$s';
 								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-								$context->getLogger()->log( $msg, Log::ERR, 'order/service/payment' );
+								$context->logger()->log( $msg, Log::ERR, 'order/service/payment' );
 							}
 						}
 
@@ -164,7 +164,7 @@ class Standard
 				{
 					$str = 'Error while capturing payments for service with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->getLogger()->log( $msg, Log::ERR, 'order/service/payment' );
+					$context->logger()->log( $msg, Log::ERR, 'order/service/payment' );
 				}
 			}
 

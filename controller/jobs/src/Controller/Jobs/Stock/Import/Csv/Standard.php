@@ -66,7 +66,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 
 		/** controller/jobs/stock/import/csv/location
@@ -146,7 +146,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 
 		/** controller/common/stock/import/csv/max-size

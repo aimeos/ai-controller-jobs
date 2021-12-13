@@ -73,7 +73,7 @@ class Standard
 				{
 					$str = 'Executing updateAsyc() of "%1$s" failed: %2$s';
 					$msg = sprintf( $str, $serviceItem->getProvider(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->getLogger()->log( $msg, Log::ERR, 'order/service/async' );
+					$context->logger()->log( $msg, Log::ERR, 'order/service/async' );
 				}
 			}
 

@@ -55,7 +55,7 @@ class Standard
 		$total = $errors = 0;
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 		$domains = array( 'media', 'text' );
 		$mappings = $this->getDefaultMapping();
 
@@ -616,13 +616,13 @@ class Standard
 
 				$str = 'Unable to import catalog with code "%1$s": %2$s';
 				$msg = sprintf( $str, $code, $e->getMessage() . "\n" . $e->getTraceAsString() );
-				$context->getLogger()->log( $msg, Log::ERR, 'import/csv/catalog' );
+				$context->logger()->log( $msg, Log::ERR, 'import/csv/catalog' );
 
 				$errors++;
 			}
 
 			if( $strict && !empty( $list ) ) {
-				$context->getLogger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/catalog' );
+				$context->logger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/catalog' );
 			}
 		}
 

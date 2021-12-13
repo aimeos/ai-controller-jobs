@@ -135,7 +135,7 @@ class Standard
 		catch( \Aimeos\Controller\Common\Exception $e )
 		{
 			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
-			$context->getLogger()->log( $msg, Log::ERR, 'import/xml/product' );
+			$context->logger()->log( $msg, Log::ERR, 'import/xml/product' );
 		}
 
 		return $refItem->fromArray( $list );

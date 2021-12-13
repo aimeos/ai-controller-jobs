@@ -52,7 +52,7 @@ class Standard
 	{
 		$aimeos = $this->getAimeos();
 		$context = $this->context();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 		$logger->log( 'Started XML import', \Aimeos\MW\Logger\Base::INFO, 'import/xml' );
 

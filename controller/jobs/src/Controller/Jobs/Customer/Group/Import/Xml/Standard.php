@@ -57,7 +57,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 		/** controller/jobs/customer/group/import/xml/location
 		 * File or directory where the content is stored which should be imported
@@ -136,7 +136,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 
 
 		/** controller/jobs/customer/group/import/xml/backup

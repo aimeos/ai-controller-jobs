@@ -99,7 +99,7 @@ class Standard
 	 */
 	protected function rescale( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Map $items )
 	{
-		$logger = $context->getLogger();
+		$logger = $context->logger();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 

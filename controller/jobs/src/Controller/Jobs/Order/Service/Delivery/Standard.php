@@ -136,7 +136,7 @@ class Standard
 							{
 								$str = 'Error while processing orders by delivery service "%1$s": %2$s';
 								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-								$context->getLogger()->log( $msg, Log::ERR, 'order/service/delivery' );
+								$context->logger()->log( $msg, Log::ERR, 'order/service/delivery' );
 							}
 						}
 
@@ -149,7 +149,7 @@ class Standard
 				{
 					$str = 'Error while processing service with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->getLogger()->log( $msg, Log::ERR, 'order/service/delivery' );
+					$context->logger()->log( $msg, Log::ERR, 'order/service/delivery' );
 				}
 			}
 

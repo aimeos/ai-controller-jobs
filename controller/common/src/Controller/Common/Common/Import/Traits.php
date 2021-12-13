@@ -85,7 +85,7 @@ trait Traits
 					$manager->rollback();
 
 					$msg = 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-					$this->context()->getLogger()->log( $msg, Log::ERR, 'import' );
+					$this->context()->logger()->log( $msg, Log::ERR, 'import' );
 				}
 			}
 		}
