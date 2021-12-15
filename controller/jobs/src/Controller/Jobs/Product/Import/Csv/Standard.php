@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Product\Import\Csv;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for CSV product imports.
@@ -329,7 +327,7 @@ class Standard
 			$path = $container->getName();
 
 			$msg = sprintf( 'Started product import from "%1$s" (%2$s)', $path, __CLASS__ );
-			$logger->log( $msg, Log::NOTICE, 'import/csv/product' );
+			$logger->notice( $msg, 'import/csv/product' );
 
 			foreach( $container as $content )
 			{
@@ -348,7 +346,7 @@ class Standard
 
 					$str = 'Imported product lines from "%1$s": %2$d/%3$d (%4$s)';
 					$msg = sprintf( $str, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
-					$logger->log( $msg, Log::INFO, 'import/csv/product' );
+					$logger->info( $msg, 'import/csv/product' );
 
 					$errors += $errcnt;
 					$total += $chunkcnt;
@@ -360,7 +358,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/product' );
+			$logger->error( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/product' );
 			$this->mail( 'Product CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
@@ -368,7 +366,7 @@ class Standard
 		$processor->finish();
 
 		$msg = 'Finished product import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
-		$logger->log( sprintf( $msg, $path, $total - $errors, $errors, $total, __CLASS__ ), Log::NOTICE, 'import/csv/product' );
+		$logger->notice( sprintf( $msg, $path, $total - $errors, $errors, $total, __CLASS__ ), 'import/csv/product' );
 
 		if( $errors > 0 )
 		{
@@ -585,13 +583,13 @@ class Standard
 				$manager->rollback();
 
 				$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->logger()->log( $msg, Log::ERR, 'import/csv/product' );
+				$context->logger()->error( $msg, 'import/csv/product' );
 
 				$errors++;
 			}
 
 			if( $strict && !empty( $list ) ) {
-				$context->logger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/product' );
+				$context->logger()->error( 'Not imported: ' . print_r( $list, true ), 'import/csv/product' );
 			}
 		}
 

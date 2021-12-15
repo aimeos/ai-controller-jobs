@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Coupon\Import\Csv\Code;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for CSV coupon imports.
@@ -84,7 +82,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$context->logger()->log( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/coupon/code' );
+			$context->logger()->error( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/coupon/code' );
 			$this->mail( 'Coupon CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -218,7 +216,7 @@ class Standard
 
 				$str = 'Unable to import coupon with code "%1$s": %2$s';
 				$msg = sprintf( $str, $code, $e->getMessage() . "\n" . $e->getTraceAsString() );
-				$context->logger()->log( $msg, Log::ERR, 'import/csv/coupon/code' );
+				$context->logger()->error( $msg, 'import/csv/coupon/code' );
 
 				$errors++;
 			}
@@ -295,7 +293,7 @@ class Standard
 
 
 		$msg = sprintf( 'Started coupon import from "%1$s" (%2$s)', $path, __CLASS__ );
-		$logger->log( $msg, Log::NOTICE, 'import/csv/coupon/code' );
+		$logger->notice( $msg, 'import/csv/coupon/code' );
 
 		$processor = $this->getProcessors( $mappings );
 		$codePos = $this->getCodePosition( $mappings['code'] );
@@ -314,7 +312,7 @@ class Standard
 
 				$str = 'Imported coupon lines from "%1$s": %2$d/%3$d (%4$s)';
 				$msg = sprintf( $str, $path, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
-				$logger->log( $msg, Log::NOTICE, 'import/csv/coupon/code' );
+				$logger->notice( $msg, 'import/csv/coupon/code' );
 
 				$errors += $errcnt;
 				$total += $chunkcnt;
@@ -324,7 +322,7 @@ class Standard
 
 		$str = 'Finished coupon import: %1$d successful, %2$s errors, %3$s total (%4$s)';
 		$msg = sprintf( $str, $total - $errors, $errors, $total, __CLASS__ );
-		$logger->log( $msg, Log::INFO, 'import/csv/coupon/code' );
+		$logger->info( $msg, 'import/csv/coupon/code' );
 
 		$container->close();
 		$context->getFileSystemManager()->get( 'fs-import' )->rm( $path );

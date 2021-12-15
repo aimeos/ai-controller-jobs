@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Supplier;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Supplier processor for CSV imports
@@ -160,7 +158,7 @@ class Standard
 					if( ( $supid = $this->cache->get( $code ) ) === null )
 					{
 						$msg = 'No supplier for code "%1$s" available when importing product with code "%2$s"';
-						$logger->log( sprintf( $msg, $code, $product->getCode() ), Log::WARN, 'import/csv/product' );
+						$logger->warning( sprintf( $msg, $code, $product->getCode() ), 'import/csv/product' );
 						continue;
 					}
 

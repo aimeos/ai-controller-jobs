@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Attribute\Import\Xml;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for XML attribute imports
@@ -80,7 +78,7 @@ class Standard
 
 		try
 		{
-			$logger->log( sprintf( 'Started attribute import from "%1$s"', $location ), Log::INFO, 'import/xml/attribute' );
+			$logger->info( sprintf( 'Started attribute import from "%1$s"', $location ), 'import/xml/attribute' );
 
 			if( !file_exists( $location ) )
 			{
@@ -117,11 +115,11 @@ class Standard
 
 			$context->getProcess()->wait();
 
-			$logger->log( sprintf( 'Finished attribute import from "%1$s"', $location ), Log::INFO, 'import/xml/attribute' );
+			$logger->info( sprintf( 'Finished attribute import from "%1$s"', $location ), 'import/xml/attribute' );
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/attribute' );
+			$logger->error( 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/xml/attribute' );
 			$this->mail( 'Attribute XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -237,7 +235,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
 
-		$logger->log( sprintf( 'Started attribute import from file "%1$s"', $filename ), Log::INFO, 'import/xml/attribute' );
+		$logger->info( sprintf( 'Started attribute import from file "%1$s"', $filename ), 'import/xml/attribute' );
 
 		while( $xml->read() === true )
 		{
@@ -270,7 +268,7 @@ class Standard
 			$proc->finish();
 		}
 
-		$logger->log( sprintf( 'Finished attribute import from file "%1$s"', $filename ), Log::INFO, 'import/xml/attribute' );
+		$logger->info( sprintf( 'Finished attribute import from file "%1$s"', $filename ), 'import/xml/attribute' );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{
@@ -340,7 +338,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Attribute import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->context()->logger()->log( $msg, Log::ERR, 'import/xml/attribute' );
+			$this->context()->logger()->error( $msg, 'import/xml/attribute' );
 		}
 
 		return $item;

@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Order\Export\Csv;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for CSV order exports.
@@ -136,7 +134,7 @@ class Standard
 			catch( \Exception $e )
 			{
 				$msg = 'Order export error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-				$logger->log( $msg, Log::ERR, 'order/export/csv' );
+				$logger->error( $msg, 'order/export/csv' );
 			}
 
 			$mq->del( $msg );

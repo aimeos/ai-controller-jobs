@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Subscription\Process\End;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for subscription processs end.
@@ -119,7 +117,7 @@ class Standard
 				{
 					$str = 'Unable to end subscription with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->logger()->log( $msg, Log::ERR, 'subscription/process/end' );
+					$context->logger()->error( $msg, 'subscription/process/end' );
 				}
 			}
 

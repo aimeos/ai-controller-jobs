@@ -11,8 +11,6 @@
 
 namespace Aimeos\Controller\Jobs\Order\Service\Async;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Updates the payment or delivery status for services with asynchronous methods.
@@ -73,7 +71,7 @@ class Standard
 				{
 					$str = 'Executing updateAsyc() of "%1$s" failed: %2$s';
 					$msg = sprintf( $str, $serviceItem->getProvider(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->logger()->log( $msg, Log::ERR, 'order/service/async' );
+					$context->logger()->error( $msg, 'order/service/async' );
 				}
 			}
 

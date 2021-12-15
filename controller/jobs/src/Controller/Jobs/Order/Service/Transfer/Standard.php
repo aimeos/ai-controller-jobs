@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Order\Service\Transfer;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Transfers the money to the vendors
@@ -94,7 +92,7 @@ class Standard
 							{
 								$str = 'Error while transferring payment for order with ID "%1$s": %2$s';
 								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-								$context->logger()->log( $msg, Log::ERR, 'order/service/transfer' );
+								$context->logger()->error( $msg, 'order/service/transfer' );
 							}
 						}
 
@@ -108,7 +106,7 @@ class Standard
 				{
 					$str = 'Error while transferring payment for service with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->logger()->log( $msg, Log::ERR, 'order/service/transfer' );
+					$context->logger()->error( $msg, 'order/service/transfer' );
 				}
 			}
 

@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Catalog;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Catalog processor for CSV imports
@@ -131,7 +129,7 @@ class Standard
 				if( ( $catid = $this->cache->get( $code ) ) === null )
 				{
 					$msg = 'No catalog for code "%1$s" available when importing product with code "%2$s"';
-					$logger->log( sprintf( $msg, $code, $product->getCode() ), Log::WARN, 'import/csv/product' );
+					$logger->warning( sprintf( $msg, $code, $product->getCode() ), 'import/csv/product' );
 					continue;
 				}
 

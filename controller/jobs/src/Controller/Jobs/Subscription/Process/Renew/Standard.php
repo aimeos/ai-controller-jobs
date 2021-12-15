@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Subscription\Process\Renew;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for subscription processs renew.
@@ -147,7 +145,7 @@ class Standard
 				{
 					$str = 'Unable to renew subscription with ID "%1$s": %2$s';
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->logger()->log( $msg, Log::ERR, 'subscription/process/renew' );
+					$context->logger()->error( $msg, 'subscription/process/renew' );
 				}
 
 				$manager->save( $item );
@@ -195,7 +193,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to add current address for customer with ID "%1$s"', $newBasket->getCustomerId() );
-			$context->logger()->log( $msg, Log::INFO, 'subscription/process/renew' );
+			$context->logger()->info( $msg, 'subscription/process/renew' );
 		}
 
 		return $newBasket;

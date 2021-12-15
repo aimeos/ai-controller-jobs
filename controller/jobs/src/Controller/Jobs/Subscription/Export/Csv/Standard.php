@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Subscription\Export\Csv;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for CSV subscription exports.
@@ -127,7 +125,7 @@ class Standard
 			catch( \Exception $e )
 			{
 				$msg = 'Subscription export error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-				$logger->log( $msg, Log::ERR, 'export/csv/subscription' );
+				$logger->error( $msg, 'export/csv/subscription' );
 			}
 
 			$mq->del( $msg );

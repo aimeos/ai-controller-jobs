@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Stock\Import\Csv;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for CSV stock imports
@@ -89,7 +87,7 @@ class Standard
 
 		try
 		{
-			$logger->log( sprintf( 'Started stock import from "%1$s"', $location ), Log::INFO, 'import/csv/stock' );
+			$logger->info( sprintf( 'Started stock import from "%1$s"', $location ), 'import/csv/stock' );
 
 			if( !file_exists( $location ) )
 			{
@@ -126,11 +124,11 @@ class Standard
 
 			$context->getProcess()->wait();
 
-			$logger->log( sprintf( 'Finished stock import from "%1$s"', $location ), Log::INFO, 'import/csv/stock' );
+			$logger->info( sprintf( 'Finished stock import from "%1$s"', $location ), 'import/csv/stock' );
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Stock import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/stock' );
+			$logger->error( 'Stock import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/stock' );
 			$this->mail( 'Stock CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -217,7 +215,7 @@ class Standard
 
 		$container = $this->getContainer( $filename );
 
-		$logger->log( sprintf( 'Started stock import from file "%1$s"', $filename ), Log::INFO, 'import/csv/stock' );
+		$logger->info( sprintf( 'Started stock import from file "%1$s"', $filename ), 'import/csv/stock' );
 
 		foreach( $container as $content )
 		{
@@ -228,7 +226,7 @@ class Standard
 			$this->importStocks( $content, $maxcnt );
 		}
 
-		$logger->log( sprintf( 'Finished stock import from file "%1$s"', $filename ), Log::INFO, 'import/csv/stock' );
+		$logger->info( sprintf( 'Finished stock import from file "%1$s"', $filename ), 'import/csv/stock' );
 
 		$container->close();
 

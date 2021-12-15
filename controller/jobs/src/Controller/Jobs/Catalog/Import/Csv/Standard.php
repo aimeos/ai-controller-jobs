@@ -330,7 +330,7 @@ class Standard
 
 
 			$msg = sprintf( 'Started catalog import from "%1$s" (%2$s)', $path, __CLASS__ );
-			$logger->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
+			$logger->notice( $msg, 'import/csv/catalog' );
 
 			foreach( $container as $content )
 			{
@@ -348,7 +348,7 @@ class Standard
 
 					$str = 'Imported catalog lines from "%1$s": %2$d/%3$d (%4$s)';
 					$msg = sprintf( $str, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
-					$logger->log( $msg, Log::NOTICE, 'import/csv/catalog' );
+					$logger->notice( $msg, 'import/csv/catalog' );
 
 					$errors += $errcnt;
 					$total += $chunkcnt;
@@ -360,14 +360,14 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/catalog' );
+			$logger->error( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/catalog' );
 			$this->mail( 'Catalog CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
 
 		$str = 'Finished catalog import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
 		$msg = sprintf( $str, $path, $total - $errors, $errors, $total, __CLASS__ );
-		$logger->log( $msg, Log::NOTICE, 'import/csv/catalog' );
+		$logger->notice( $msg, 'import/csv/catalog' );
 
 		if( $errors > 0 )
 		{
@@ -616,13 +616,13 @@ class Standard
 
 				$str = 'Unable to import catalog with code "%1$s": %2$s';
 				$msg = sprintf( $str, $code, $e->getMessage() . "\n" . $e->getTraceAsString() );
-				$context->logger()->log( $msg, Log::ERR, 'import/csv/catalog' );
+				$context->logger()->error( $msg, 'import/csv/catalog' );
 
 				$errors++;
 			}
 
 			if( $strict && !empty( $list ) ) {
-				$context->logger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/catalog' );
+				$context->logger()->error( 'Not imported: ' . print_r( $list, true ), 'import/csv/catalog' );
 			}
 		}
 

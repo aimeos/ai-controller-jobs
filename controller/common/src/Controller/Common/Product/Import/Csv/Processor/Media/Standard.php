@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Common\Product\Import\Csv\Processor\Media;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Media processor for CSV imports
@@ -240,7 +238,7 @@ class Standard
 		catch( \Aimeos\Controller\Common\Exception $e )
 		{
 			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
-			$context->logger()->log( $msg, Log::ERR, 'import/csv/product' );
+			$context->logger()->error( $msg, 'import/csv/product' );
 		}
 
 		return $refItem->fromArray( $list );

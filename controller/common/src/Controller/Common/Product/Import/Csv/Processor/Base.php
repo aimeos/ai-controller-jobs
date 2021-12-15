@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Common\Product\Import\Csv\Processor;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Abstract class with common methods for all CSV import processors
@@ -89,7 +87,7 @@ abstract class Base
 					$manager->rollback();
 
 					$msg = 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-					$this->context->logger()->log( $msg, Log::ERR, 'import/csv/product' );
+					$this->context->logger()->error( $msg, 'import/csv/product' );
 				}
 			}
 		}

@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Order\Status\Csv;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for CSV order status imports.
@@ -92,7 +90,7 @@ class Standard
 			catch( \Exception $e )
 			{
 				$msg = 'Order status import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-				$context->logger()->log( $msg, Log::ERR, 'order/status/csv' );
+				$context->logger()->error( $msg, 'order/status/csv' );
 			}
 			finally
 			{

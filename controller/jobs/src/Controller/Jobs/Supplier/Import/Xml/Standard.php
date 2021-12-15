@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Supplier\Import\Xml;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for XML supplier imports
@@ -80,7 +78,7 @@ class Standard
 		try
 		{
 			$msg = sprintf( 'Started supplier import from "%1$s" (%2$s)', $location, __CLASS__ );
-			$logger->log( $msg, Log::INFO, 'import/xml/supplier' );
+			$logger->info( $msg, 'import/xml/supplier' );
 
 			if( !file_exists( $location ) )
 			{
@@ -114,11 +112,11 @@ class Standard
 			$msg = 'Finished supplier import from "%1$s": %2$s total (%3$s MB)';
 			$mem = number_format( memory_get_peak_usage() / 1024 / 1024, 2 );
 
-			$logger->log( sprintf( $msg, $location, $total, $mem ), Log::INFO, 'import/xml/supplier' );
+			$logger->info( sprintf( $msg, $location, $total, $mem ), 'import/xml/supplier' );
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/supplier' );
+			$logger->error( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/xml/supplier' );
 			$this->mail( 'Supplier XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -316,7 +314,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->context()->logger()->log( $msg, Log::ERR, 'import/xml/supplier' );
+			$this->context()->logger()->error( $msg, 'import/xml/supplier' );
 		}
 
 		return $item;

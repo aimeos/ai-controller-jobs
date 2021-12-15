@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Customer\Import\Xml;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for XML customer imports
@@ -79,7 +77,7 @@ class Standard
 
 		try
 		{
-			$logger->log( sprintf( 'Started customer import from "%1$s"', $location ), Log::INFO, 'import/xml/customer' );
+			$logger->info( sprintf( 'Started customer import from "%1$s"', $location ), 'import/xml/customer' );
 
 			if( !file_exists( $location ) )
 			{
@@ -116,11 +114,11 @@ class Standard
 
 			$context->getProcess()->wait();
 
-			$logger->log( sprintf( 'Finished customer import from "%1$s"', $location ), Log::INFO, 'import/xml/customer' );
+			$logger->info( sprintf( 'Finished customer import from "%1$s"', $location ), 'import/xml/customer' );
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/customer' );
+			$logger->error( 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/xml/customer' );
 			$this->mail( 'Customer XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -212,7 +210,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
 
-		$logger->log( sprintf( 'Started customer import from file "%1$s"', $filename ), Log::INFO, 'import/xml/customer' );
+		$logger->info( sprintf( 'Started customer import from file "%1$s"', $filename ), 'import/xml/customer' );
 
 		while( $xml->read() === true )
 		{
@@ -243,7 +241,7 @@ class Standard
 			$proc->finish();
 		}
 
-		$logger->log( sprintf( 'Finished customer import from file "%1$s"', $filename ), Log::INFO, 'import/xml/customer' );
+		$logger->info( sprintf( 'Finished customer import from file "%1$s"', $filename ), 'import/xml/customer' );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{
@@ -322,7 +320,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Customer import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->context()->logger()->log( $msg, Log::ERR, 'import/xml/customer' );
+			$this->context()->logger()->error( $msg, 'import/xml/customer' );
 		}
 
 		return $item;

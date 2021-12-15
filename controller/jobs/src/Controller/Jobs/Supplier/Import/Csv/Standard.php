@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Supplier\Import\Csv;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for CSV supplier imports.
@@ -331,7 +329,7 @@ class Standard
 
 
 			$msg = sprintf( 'Started supplier import from "%1$s" (%2$s)', $path, __CLASS__ );
-			$logger->log( $msg, Log::NOTICE, 'import/csv/supplier' );
+			$logger->notice( $msg, 'import/csv/supplier' );
 
 			foreach( $container as $content )
 			{
@@ -350,7 +348,7 @@ class Standard
 
 					$str = 'Imported supplier lines from "%1$s": %2$d/%3$d (%4$s)';
 					$msg = sprintf( $str, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
-					$logger->log( $msg, Log::NOTICE, 'import/csv/supplier' );
+					$logger->notice( $msg, 'import/csv/supplier' );
 
 					$errors += $errcnt;
 					$total += $chunkcnt;
@@ -362,14 +360,14 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/csv/supplier' );
+			$logger->error( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/supplier' );
 			$this->mail( 'Supplier CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
 
 		$str = 'Finished supplier import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
 		$msg = sprintf( $str, $path, $total - $errors, $errors, $total, __CLASS__ );
-		$logger->log( $msg, Log::NOTICE, 'import/csv/supplier' );
+		$logger->notice( $msg, 'import/csv/supplier' );
 
 		if( $errors > 0 )
 		{
@@ -581,14 +579,14 @@ class Standard
 				$manager->rollback();
 
 				$msg = sprintf( 'Unable to import supplier with code "%1$s": %2$s', $code, $e->getMessage() );
-				$context->logger()->log( $msg, Log::ERR, 'import/csv/supplier' );
+				$context->logger()->error( $msg, 'import/csv/supplier' );
 
 				$errors++;
 			}
 
 			if( $strict && !empty( $list ) )
 			{
-				$context->logger()->log( 'Not imported: ' . print_r( $list, true ), Log::ERR, 'import/csv/supplier' );
+				$context->logger()->error( 'Not imported: ' . print_r( $list, true ), 'import/csv/supplier' );
 			}
 		}
 

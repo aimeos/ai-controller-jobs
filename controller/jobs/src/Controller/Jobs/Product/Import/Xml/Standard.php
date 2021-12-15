@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Product\Import\Xml;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Job controller for XML product imports
@@ -81,7 +79,7 @@ class Standard
 
 		try
 		{
-			$logger->log( sprintf( 'Started product import from "%1$s"', $location ), Log::INFO, 'import/xml/product' );
+			$logger->info( sprintf( 'Started product import from "%1$s"', $location ), 'import/xml/product' );
 
 			if( !file_exists( $location ) )
 			{
@@ -118,11 +116,11 @@ class Standard
 
 			$context->getProcess()->wait();
 
-			$logger->log( sprintf( 'Finished product import from "%1$s"', $location ), Log::INFO, 'import/xml/product' );
+			$logger->info( sprintf( 'Finished product import from "%1$s"', $location ), 'import/xml/product' );
 		}
 		catch( \Exception $e )
 		{
-			$logger->log( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), Log::ERR, 'import/xml/product' );
+			$logger->error( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/xml/product' );
 			$this->mail( 'Product XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -212,7 +210,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
 
-		$logger->log( sprintf( 'Started product import from file "%1$s"', $filename ), Log::INFO, 'import/xml/product' );
+		$logger->info( sprintf( 'Started product import from file "%1$s"', $filename ), 'import/xml/product' );
 
 		while( $xml->read() === true )
 		{
@@ -245,7 +243,7 @@ class Standard
 			$proc->finish();
 		}
 
-		$logger->log( sprintf( 'Finished product import from file "%1$s"', $filename ), Log::INFO, 'import/xml/product' );
+		$logger->info( sprintf( 'Finished product import from file "%1$s"', $filename ), 'import/xml/product' );
 
 		if( !empty( $backup ) && @rename( $filename, strftime( $backup ) ) === false )
 		{
@@ -331,7 +329,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-			$this->context()->logger()->log( $msg, Log::ERR, 'import/xml/product' );
+			$this->context()->logger()->error( $msg, 'import/xml/product' );
 		}
 
 		return $item;

@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Media\Scale;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Image rescale job controller.
@@ -124,7 +122,7 @@ class Standard
 				$manager->save( $cntl->scale( $item, $force ) );
 			} catch( \Exception $e ) {
 				$msg = sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() );
-				$logger->log( $msg, Log::ERR, 'media/scale' );
+				$logger->error( $msg, 'media/scale' );
 			}
 		}
 	}
