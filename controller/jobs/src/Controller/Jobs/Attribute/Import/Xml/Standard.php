@@ -110,10 +110,10 @@ class Standard
 			};
 
 			foreach( $files as $filepath ) {
-				$context->getProcess()->start( $fcn, [$filepath] );
+				$context->process()->start( $fcn, [$filepath] );
 			}
 
-			$context->getProcess()->wait();
+			$context->process()->wait();
 
 			$logger->info( sprintf( 'Finished attribute import from "%1$s"', $location ), 'import/xml/attribute' );
 		}

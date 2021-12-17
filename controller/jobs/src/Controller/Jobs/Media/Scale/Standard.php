@@ -51,7 +51,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$process = $context->getProcess();
+		$process = $context->process();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
 		$search = $manager->filter();

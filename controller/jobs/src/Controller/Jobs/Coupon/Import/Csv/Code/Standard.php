@@ -57,7 +57,7 @@ class Standard
 		try
 		{
 			$context = $this->context();
-			$process = $context->getProcess();
+			$process = $context->process();
 			$fs = $context->getFileSystemManager()->get( 'fs-import' );
 			$dir = 'couponcode/' . $context->locale()->getSiteItem()->getCode();
 
