@@ -360,7 +360,7 @@ class Standard
 	protected function moveFile( \Aimeos\MShop\Context\Item\Iface $context, string $path ) : string
 	{
 		$filename = basename( $path );
-		$context->getFileSystemManager()->get( 'fs-admin' )->writef( $filename, $path );
+		$context->fs( 'fs-admin' )->writef( $filename, $path );
 
 		unlink( $path );
 		return $filename;

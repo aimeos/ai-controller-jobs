@@ -58,7 +58,7 @@ class Standard
 		{
 			$context = $this->context();
 			$process = $context->process();
-			$fs = $context->getFileSystemManager()->get( 'fs-import' );
+			$fs = $context->fs( 'fs-import' );
 			$dir = 'couponcode/' . $context->locale()->getSiteItem()->getCode();
 
 			if( $fs->isDir( $dir ) === false ) {
@@ -325,6 +325,6 @@ class Standard
 		$logger->info( $msg, 'import/csv/coupon/code' );
 
 		$container->close();
-		$context->getFileSystemManager()->get( 'fs-import' )->rm( $path );
+		$context->fs( 'fs-import' )->rm( $path );
 	}
 }

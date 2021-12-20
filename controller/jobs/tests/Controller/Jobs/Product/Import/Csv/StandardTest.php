@@ -23,12 +23,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperJobs::context();
 		$this->aimeos = \TestHelperJobs::getAimeos();
 
-		$fs = $this->context->getFileSystemManager()->get( 'fs-media' );
+		$fs = $this->context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
 		$fs->write( 'path/to/image2.jpg', 'test' );
 		$fs->write( 'path/to/image.jpg', 'test' );
 
-		$fs = $this->context->getFileSystemManager()->get( 'fs-mimeicon' );
+		$fs = $this->context->fs( 'fs-mimeicon' );
 		$fs->write( 'unknown.png', 'test' );
 
 		$config = $this->context->config();

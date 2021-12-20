@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::cache( true );
 		$this->context = \TestHelperCntl::context();
 
-		$fs = $this->context->getFileSystemManager()->get( 'fs-media' );
+		$fs = $this->context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
 		$fs->write( 'path/to/new.jpg', 'test' );
 		$fs->write( 'path/to/file', 'test' );
@@ -29,7 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs->write( 'path/to/2', 'test' );
 		$fs->write( 'path/to/3', 'test' );
 
-		$fs = $this->context->getFileSystemManager()->get( 'fs-mimeicon' );
+		$fs = $this->context->fs( 'fs-mimeicon' );
 		$fs->write( 'unknown.png', 'test' );
 
 		$this->endpoint = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $this->context, [] );

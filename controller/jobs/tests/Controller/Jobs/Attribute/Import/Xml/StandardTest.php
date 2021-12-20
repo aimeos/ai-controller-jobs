@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperJobs::context();
 		$this->aimeos = \TestHelperJobs::getAimeos();
 
-		$fs = $this->context->getFileSystemManager()->get( 'fs-media' );
+		$fs = $this->context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
 		$fs->write( 'path/to/file2.jpg', 'test' );
 		$fs->write( 'path/to/file.jpg', 'test' );

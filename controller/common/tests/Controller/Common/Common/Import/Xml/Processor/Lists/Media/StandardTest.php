@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperCntl::context();
 
-		$fs = $this->context->getFileSystemManager()->get( 'fs-media' );
+		$fs = $this->context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
 		$fs->write( 'path/to/file2.jpg', 'test2' );
 		$fs->write( 'path/to/file.jpg', 'test' );
