@@ -18,7 +18,7 @@ $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
 foreach( $this->get( 'siteItems', [] ) as $id => $item )
 {
 	$texts = [];
-	$date = str_replace( ' ', 'T', $item->getTimeModified() ) . date( 'P' );
+	$date = str_replace( ' ', 'T', $item->getTimeModified() ?? '' ) . date( 'P' );
 
 	foreach( $item->getListItems( 'text', 'default', 'url', false ) as $listItem )
 	{
