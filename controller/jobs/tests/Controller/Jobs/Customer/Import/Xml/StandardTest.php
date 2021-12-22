@@ -57,12 +57,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
+		error_log( __METHOD__ . ': start' );
 		$this->object->run();
+		error_log( __METHOD__ . ': run finished' );
 
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$item = $manager->find( 'me@example.com', ['customer/address', 'customer/property', 'media', 'text'] );
 		$manager->delete( $item->getId() );
 
+		error_log( __METHOD__ . ': assert' );
 		$this->assertEquals( 'Test user', $item->getLabel() );
 		$this->assertEquals( 1, count( $item->getPropertyItems() ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'text' ) ) );
