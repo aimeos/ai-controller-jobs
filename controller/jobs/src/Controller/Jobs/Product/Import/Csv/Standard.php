@@ -288,10 +288,11 @@ class Standard
 		 * You should use an absolute path to be sure but can be relative path
 		 * if you absolutely know from where the job will be executed from. The
 		 * name of the new backup location can contain placeholders understood
-		 * by the PHP strftime() function to create dynamic paths, e.g. "backup/%Y-%m-%d"
-		 * which would create "backup/2000-01-01". For more information about the
-		 * strftime() placeholders, please have a look into the PHP documentation of
-		 * the {@link http://php.net/manual/en/function.strftime.php strftime() function}.
+		 * by the PHP DateTime::format() method (with percent signs prefix) to
+		 * create dynamic paths, e.g. "backup/%Y-%m-%d" which would create
+		 * "backup/2000-01-01". For more information about the date() placeholders,
+		 * please have a look  into the PHP documentation of the
+		 * {@link https://www.php.net/manual/en/datetime.format.php format() method}.
 		 *
 		 * **Note:** If no backup name is configured, the file or directory
 		 * won't be moved away. Please make also sure that the parent directory
@@ -376,9 +377,9 @@ class Standard
 			$this->mail( 'Product CSV import', $msg );
 		}
 
-		if( !empty( $backup ) && @rename( $path, strftime( $backup ) ) === false )
+		if( !empty( $backup ) && @rename( $path, $backup = \Aimeos\MW\Str::strtime( $backup ) ) === false )
 		{
-			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, strftime( $backup ) );
+			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 	}

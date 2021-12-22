@@ -159,7 +159,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->run();
 
-		$filename = strftime( 'tmp/test-%Y-%m-%d.zip' );
+		$filename = \Aimeos\MW\Str::strtime( 'tmp/test-%Y-%m-%d.zip' );
 		$this->assertTrue( file_exists( $filename ) );
 
 		unlink( $filename );

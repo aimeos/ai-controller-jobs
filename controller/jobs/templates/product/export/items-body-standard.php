@@ -15,8 +15,8 @@ $enc = $this->encoder()
 	<product.label><![CDATA[<?= $enc->xml( $item->getLabel() ) ?>]]></product.label>
 	<product.status><![CDATA[<?= $enc->xml( $item->getStatus() ) ?>]]></product.status>
 	<product.config><![CDATA[<?= $enc->xml( json_encode( $item->getConfig() ) ) ?>]]></product.config>
-	<product.datestart><![CDATA[<?= $enc->xml( str_replace( ' ', 'T', $item->getDateStart() ) ) ?>]]></product.datestart>
-	<product.dateend><![CDATA[<?= $enc->xml( str_replace( ' ', 'T', $item->getDateEnd() ) ) ?>]]></product.dateend>
+	<product.datestart><![CDATA[<?= $enc->xml( str_replace( ' ', 'T', $item->getDateStart() ?? '' ) ) ?>]]></product.datestart>
+	<product.dateend><![CDATA[<?= $enc->xml( str_replace( ' ', 'T', $item->getDateEnd() ?? '' ) ) ?>]]></product.dateend>
 	<lists>
 		<?php foreach( $item->getDomains() as $domain ) : ?>
 			<?= $this->partial(
