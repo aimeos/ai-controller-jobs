@@ -103,7 +103,6 @@ class Standard
 
 			sort( $files );
 			$context->__sleep();
-			error_log( __METHOD__ . ': files: ' . print_r( $files, true ) );
 
 			$fcn = function( $filepath ) {
 				$this->import( $filepath );
@@ -133,7 +132,6 @@ class Standard
 	 */
 	protected function import( string $filename )
 	{
-		error_log( __METHOD__ . ': ' . $filename );
 		$context = $this->context();
 		$config = $context->config();
 		$logger = $context->logger();
@@ -251,7 +249,6 @@ class Standard
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
-		error_log( __METHOD__ . ': done' );
 	}
 
 
@@ -263,7 +260,7 @@ class Standard
 	 */
 	protected function importNodes( array $nodes, array $ref )
 	{
-		$codes = $map = [];
+		$codes = [];
 
 		foreach( $nodes as $node )
 		{
@@ -273,17 +270,13 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
-		$search = $manager->filter()->slice( 0, count( $codes ) );
-		$search->setConditions( $search->compare( '==', 'customer.code', array_keys( $codes ) ) );
-
-		foreach( $manager->search( $search, $ref ) as $item ) {
-			$map[$item->getCode()] = $item;
-		}
+		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['customer.code'=> array_keys( $codes )] );
+		$map = $manager->search( $search, $ref )->col( null, 'customer.code' );
 
 		foreach( $nodes as $node )
 		{
 			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[$attr->nodeValue] ) ) {
-				$item = $this->process( $map[$attr->nodeValue], $node );
+				$item = $this->process( $map->get( $attr->nodeValue ), $node );
 			} else {
 				$item = $this->process( $manager->create(), $node );
 			}
@@ -314,7 +307,7 @@ class Standard
 			{
 				if( in_array( $tag->nodeName, ['address', 'lists', 'property', 'group'] ) ) {
 					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-				} else {
+				} elseif( $tag->nodeName[0] !== '#' ) {
 					$list[$tag->nodeName] = $tag->nodeValue;
 				}
 			}
