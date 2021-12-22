@@ -16,17 +16,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
-	protected function setUp() : void
+	public static function setUpBeforeClass() : void
 	{
-		\Aimeos\MShop::cache( true );
+		$context = \TestHelperJobs::context();
 
-		$this->context = \TestHelperJobs::context();
-		$this->aimeos = \TestHelperJobs::getAimeos();
-
-		$fs = $this->context->fs( 'fs-media' );
+		$fs = $context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
 		$fs->write( 'path/to/file2.jpg', 'test' );
 		$fs->write( 'path/to/file.jpg', 'test' );
+
+		$fs = $context->fs( 'fs-mimeicon' );
+		$fs->write( 'unknown.png', 'icon' );
+	}
+
+
+	protected function setUp() : void
+	{
+		$this->context = \TestHelperJobs::context();
+		$this->aimeos = \TestHelperJobs::getAimeos();
 
 		$config = $this->context->config();
 		$config->set( 'controller/jobs/attribute/import/xml/location', __DIR__ . '/_testfiles' );
@@ -37,7 +44,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\MShop::cache( false );
 		unset( $this->object, $this->context, $this->aimeos );
 	}
 

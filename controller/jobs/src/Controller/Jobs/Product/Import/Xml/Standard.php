@@ -262,7 +262,7 @@ class Standard
 	 */
 	protected function importNodes( array $nodes, array $ref )
 	{
-		$codes = $map = [];
+		$codes = [];
 
 		foreach( $nodes as $node )
 		{
@@ -272,12 +272,8 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
-		$search = $manager->filter()->slice( 0, count( $codes ) );
-		$search->setConditions( $search->compare( '==', 'product.code', array_keys( $codes ) ) );
-
-		foreach( $manager->search( $search, $ref ) as $item ) {
-			$map[$item->getCode()] = $item;
-		}
+		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['product.code' => array_keys( $codes )] );
+		$map = $manager->search( $search, $ref )->col( null, 'product.code' );
 
 		foreach( $nodes as $node )
 		{
@@ -286,6 +282,9 @@ class Standard
 			} else {
 				$item = $this->process( $manager->create(), $node );
 			}
+
+			$manager->save( $item );
+			$this->addType( 'product/type', 'product', $item->getType() );
 		}
 	}
 
@@ -301,7 +300,7 @@ class Standard
 	{
 		try
 		{
-			$list = $subnodes = [];
+			$list = [];
 
 			foreach( $node->attributes as $attr ) {
 				$list[$attr->nodeName] = $attr->nodeValue;
@@ -311,21 +310,13 @@ class Standard
 			{
 				if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
 					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-				} elseif( in_array( $tag->nodeName, ['catalog'] ) ) {
-					$subnodes[$tag->nodeName] = $tag;
-				} else {
+				} elseif( $tag->nodeName[0] !== '#' ) {
 					$list[$tag->nodeName] = $tag->nodeValue;
 				}
 			}
 
 			$list['product.config'] = isset( $list['product.config'] ) ? json_decode( $list['product.config'], true ) : [];
-
-			$item = \Aimeos\MShop::create( $this->context(), 'product' )->save( $item->fromArray( $list, true ) );
-			$this->addType( 'product/type', 'product', $item->getType() );
-
-			foreach( $subnodes as $name => $subnode ) {
-				$item = $this->getProcessor( $name )->process( $item, $subnode );
-			}
+			$item->fromArray( $list, true );
 		}
 		catch( \Exception $e )
 		{

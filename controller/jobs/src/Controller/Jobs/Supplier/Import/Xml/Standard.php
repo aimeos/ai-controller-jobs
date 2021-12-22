@@ -254,7 +254,7 @@ class Standard
 	 */
 	protected function importNodes( array $nodes, array $ref )
 	{
-		$codes = $map = [];
+		$codes = [];
 
 		foreach( $nodes as $node )
 		{
@@ -264,12 +264,8 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
-		$search = $manager->filter()->slice( 0, count( $codes ) );
-		$search->setConditions( $search->compare( '==', 'supplier.code', array_keys( $codes ) ) );
-
-		foreach( $manager->search( $search, $ref ) as $item ) {
-			$map[$item->getCode()] = $item;
-		}
+		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['supplier.code' => array_keys( $codes )] );
+		$map = $manager->search( $search, $ref )->col( null, 'supplier.code' );
 
 		foreach( $nodes as $node )
 		{
@@ -305,7 +301,7 @@ class Standard
 			{
 				if( in_array( $tag->nodeName, ['address', 'lists', 'property'] ) ) {
 					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-				} else {
+				} elseif( $tag->nodeName[0] !== '#' ) {
 					$list[$tag->nodeName] = $tag->nodeValue;
 				}
 			}

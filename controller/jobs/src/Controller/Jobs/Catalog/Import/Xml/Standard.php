@@ -313,7 +313,7 @@ class Standard
 			{
 				if( $tag->nodeName === 'lists' ) {
 					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-				} else {
+				} elseif( $tag->nodeName[0] !== '#' ) {
 					$list[$tag->nodeName] = $tag->nodeValue;
 				}
 			}

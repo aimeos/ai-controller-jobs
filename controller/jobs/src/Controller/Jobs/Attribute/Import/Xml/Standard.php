@@ -127,32 +127,6 @@ class Standard
 
 
 	/**
-	 * Returns the attribute items for the given nodes
-	 *
-	 * @param \DomElement[] $nodes List of XML attribute item nodes
-	 * @param string[] $ref Domain names of referenced items that should be fetched too
-	 * @return \Aimeos\Map List of attribute items implementing \Aimeos\MShop\Attribute\Item\Iface with IDs as keys
-	 */
-	protected function getItems( array $nodes, array $ref ) : \Aimeos\Map
-	{
-		$keys = [];
-
-		foreach( $nodes as $node )
-		{
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$keys[] = $attr->nodeValue;
-			}
-		}
-
-		$manager = \Aimeos\MShop::create( $this->context(), 'attribute' );
-		$search = $manager->filter()->slice( 0, count( $keys ) );
-		$search->setConditions( $search->compare( '==', 'attribute.key', $keys ) );
-
-		return $manager->search( $search, $ref );
-	}
-
-
-	/**
 	 * Imports the XML file given by its path
 	 *
 	 * @param string $filename Absolute or relative path to the XML file
@@ -287,12 +261,19 @@ class Standard
 	 */
 	protected function importNodes( array $nodes, array $ref )
 	{
-		$map = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'attribute' );
+		$keys = [];
 
-		foreach( $this->getItems( $nodes, $ref ) as $item ) {
-			$map[$item->getKey()] = $item;
+		foreach( $nodes as $node )
+		{
+			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
+				$keys[] = $attr->nodeValue;
+			}
 		}
+
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute' );
+		$search = $manager->filter()->slice( 0, count( $keys ) )->add( ['attribute.key' => $keys] );
+		$items = $manager->search( $search, $ref );
+		$map = $items->getKey()->combine( $items );
 
 		foreach( $nodes as $node )
 		{
@@ -329,7 +310,7 @@ class Standard
 			{
 				if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
 					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
-				} else {
+				} elseif( $tag->nodeName[0] !== '#' ) {
 					$list[$tag->nodeName] = $tag->nodeValue;
 				}
 			}

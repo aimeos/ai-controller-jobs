@@ -11,6 +11,6 @@ return [
 	],
 	'fs-mimeicon' => [
 		'adapter' => 'Standard',
-		'basedir' => 'tmp',
+		'basedir' => 'tmp/mime',
 	],
 ];
