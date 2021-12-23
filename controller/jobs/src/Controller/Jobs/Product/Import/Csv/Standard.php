@@ -252,30 +252,6 @@ class Standard
 		$skiplines = (int) $config->get( 'controller/jobs/product/import/csv/skip-lines', 0 );
 
 
-		/** controller/jobs/product/import/csv/strict
-		 * Log all columns from the file that are not mapped and therefore not imported
-		 *
-		 * Depending on the mapping, there can be more columns in the CSV file
-		 * than those which will be imported. This can be by purpose if you want
-		 * to import only selected columns or if you've missed to configure one
-		 * or more columns. This configuration option will log all columns that
-		 * have not been imported if set to true. Otherwise, the left over fields
-		 * in the imported line will be silently ignored.
-		 *
-		 * @param boolen True if not imported columns should be logged, false if not
-		 * @since 2015.08
-		 * @category User
-		 * @category Developer
-		 * @see controller/jobs/product/import/csv/domains
-		 * @see controller/jobs/product/import/csv/mapping
-		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/converter
-		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$strict = (bool) $config->get( 'controller/jobs/product/import/csv/strict', true );
-
-
 		/** controller/jobs/product/import/csv/backup
 		 * Name of the backup for sucessfully imported files
 		 *
@@ -343,7 +319,7 @@ class Standard
 					$chunkcnt = count( $data );
 					$data = $this->convertData( $convlist, $data );
 					$products = $this->getProducts( array_keys( $data ), $domains );
-					$errcnt = $this->import( $products, $data, $mappings['item'], [], $processor, $strict );
+					$errcnt = $this->import( $products, $data, $mappings['item'], [], $processor );
 
 					$str = 'Imported product lines from "%1$s": %2$d/%3$d (%4$s)';
 					$msg = sprintf( $str, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
@@ -534,12 +510,11 @@ class Standard
 	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param array $types List of allowed product type codes
 	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor Processor object
-	 * @param bool $strict Log columns not mapped or silently ignore them
 	 * @return int Number of products that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
 	protected function import( array $products, array $data, array $mapping, array $types,
-		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor, bool $strict ) : int
+		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$items = [];
 		$errors = 0;
@@ -586,10 +561,6 @@ class Standard
 				$context->logger()->error( $msg, 'import/csv/product' );
 
 				$errors++;
-			}
-
-			if( $strict && !empty( $list ) ) {
-				$context->logger()->error( 'Not imported: ' . print_r( $list, true ), 'import/csv/product' );
 			}
 		}
 

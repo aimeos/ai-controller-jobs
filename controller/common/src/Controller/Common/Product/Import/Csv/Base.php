@@ -229,10 +229,8 @@ class Base
 				$idx++;
 			}
 
-			if( isset( $data[$pos] ) )
-			{
+			if( isset( $data[$pos] ) ) {
 				$map[$idx][$key] = $data[$pos];
-				unset( $data[$pos] );
 			}
 		}
 
