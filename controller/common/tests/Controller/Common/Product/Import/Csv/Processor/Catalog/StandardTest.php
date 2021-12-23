@@ -52,11 +52,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->process( $this->product, $data );
 
 		$pos = 0;
+		$types = ['default', 'promotion'];
 		$listItems = $this->product->getListItems();
-		$expected = array(
-			array( 'default', 'job_csv_prod' ),
-			array( 'promotion', 'job_csv_prod' ),
-		);
 
 		$this->assertEquals( 2, count( $listItems ) );
 
@@ -64,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		{
 			$this->assertEquals( 1, $listItem->getStatus() );
 			$this->assertEquals( 'catalog', $listItem->getDomain() );
-			$this->assertEquals( $expected[$pos][0], $listItem->getType() );
+			$this->assertEquals( $types[$pos], $listItem->getType() );
 			$this->assertGreaterThan( 0, $listItem->getRefId() );
 			$pos++;
 		}

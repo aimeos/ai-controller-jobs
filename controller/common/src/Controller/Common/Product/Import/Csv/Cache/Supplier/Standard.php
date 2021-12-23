@@ -63,8 +63,7 @@ class Standard
 	 */
 	public function get( string $code, string $type = null )
 	{
-		if( isset( $this->suppliers[$code] ) )
-		{
+		if( isset( $this->suppliers[$code] ) ) {
 			return $this->suppliers[$code];
 		}
 
