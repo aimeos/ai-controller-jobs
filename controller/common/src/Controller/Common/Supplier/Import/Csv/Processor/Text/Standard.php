@@ -109,8 +109,9 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Supplier\Item\Iface $supplier, array $data ) : array
 	{
-		$listManager = \Aimeos\MShop::create( $this->context(), 'supplier/lists' );
-		$manager = \Aimeos\MShop::create( $this->context(), 'text' );
+		$context = $this->context();
+		$manager = \Aimeos\MShop::create( $context, 'supplier' );
+		$refManager = \Aimeos\MShop::create( $context, 'text' );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
@@ -118,16 +119,14 @@ class Standard
 
 		foreach( $listItems as $listItem )
 		{
-			if( ( $refItem = $listItem->getRefItem() ) !== null )
-			{
+			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
 				$listMap[$refItem->getContent()][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
 		}
 
 		foreach( $map as $pos => $list )
 		{
-			if( $this->checkEntry( $list ) === false )
-			{
+			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
@@ -140,10 +139,11 @@ class Standard
 				$listItem = $listMap[$content][$type][$listtype];
 				$refItem = $listItem->getRefItem();
 				unset( $listItems[$listItem->getId()] );
-			} else
+			}
+			else
 			{
-				$listItem = $listManager->create()->setType( $listtype );
-				$refItem = $manager->create()->setType( $type );
+				$listItem = $manager->createListItem()->setType( $listtype );
+				$refItem = $refManager->create()->setType( $type );
 			}
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
@@ -168,8 +168,7 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->val( $list, 'text.content' ) === null )
-		{
+		if( $this->val( $list, 'text.content' ) === null ) {
 			return false;
 		}
 

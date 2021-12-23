@@ -112,8 +112,8 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'media' );
-		$listManager = \Aimeos\MShop::create( $context, 'product/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'product' );
+		$refManager = \Aimeos\MShop::create( $context, 'media' );
 		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$listMap = [];
@@ -156,8 +156,8 @@ class Standard
 				}
 				else
 				{
-					$listItem = $listManager->create()->setType( $listtype );
-					$refItem = $manager->create()->setType( $type );
+					$listItem = $manager->createListItem()->setType( $listtype );
+					$refItem = $refManager->create()->setType( $type );
 				}
 
 				$ext = strtolower( pathinfo( $url, PATHINFO_EXTENSION ) );

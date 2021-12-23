@@ -113,7 +113,7 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->context();
-		$listManager = \Aimeos\MShop::create( $context, 'product/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$listMap = [];
@@ -150,7 +150,7 @@ class Standard
 				}
 				else
 				{
-					$listItem = $listManager->create()->setType( $listtype );
+					$listItem = $manager->createListItem()->setType( $listtype );
 				}
 
 				$attrItem = $this->getAttributeItem( $code, $attrType );

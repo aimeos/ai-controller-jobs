@@ -109,8 +109,8 @@ class Standard
 	public function process( \Aimeos\MShop\Catalog\Item\Iface $catalog, array $data ) : array
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'media' );
-		$listManager = \Aimeos\MShop::create( $context, 'catalog/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'catalog' );
+		$refManager = \Aimeos\MShop::create( $context, 'media' );
 
 		/** controller/common/catalog/import/csv/separator
 		 * Single separator character for multiple entries in one field of the import file
@@ -162,8 +162,8 @@ class Standard
 				}
 				else
 				{
-					$listItem = $listManager->create()->setType( $listtype );
-					$refItem = $manager->create()->setType( $type );
+					$listItem = $manager->createListItem()->setType( $listtype );
+					$refItem = $refManager->create()->setType( $type );
 				}
 
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );

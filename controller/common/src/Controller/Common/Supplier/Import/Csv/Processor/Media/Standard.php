@@ -110,8 +110,8 @@ class Standard
 	public function process( \Aimeos\MShop\Supplier\Item\Iface $supplier, array $data ) : array
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'media' );
-		$listManager = \Aimeos\MShop::create( $context, 'supplier/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'supplier' );
+		$refManager = \Aimeos\MShop::create( $context, 'media' );
 
 		/** controller/common/supplier/import/csv/separator
 		 * Single separator character for multiple entries in one field of the import file
@@ -140,16 +140,14 @@ class Standard
 
 		foreach( $listItems as $listItem )
 		{
-			if( ( $refItem = $listItem->getRefItem() ) !== null )
-			{
+			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
 				$listMap[$refItem->getUrl()][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
 		}
 
 		foreach( $map as $pos => $list )
 		{
-			if( $this->checkEntry( $list ) === false )
-			{
+			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
@@ -164,10 +162,11 @@ class Standard
 					$listItem = $listMap[$url][$type][$listtype];
 					$refItem = $listItem->getRefItem();
 					unset( $listItems[$listItem->getId()] );
-				} else
+				}
+				else
 				{
-					$listItem = $listManager->create()->setType( $listtype );
-					$refItem = $manager->create()->setType( $type );
+					$listItem = $manager->createListItem()->setType( $listtype );
+					$refItem = $refManager->create()->setType( $type );
 				}
 
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
@@ -191,8 +190,7 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->val( $list, 'media.url' ) === null )
-		{
+		if( $this->val( $list, 'media.url' ) === null ) {
 			return false;
 		}
 

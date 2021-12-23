@@ -51,8 +51,8 @@ class Standard
 		$resource = $item->getResourceType();
 		$context = $this->context();
 
-		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
-		$manager = \Aimeos\MShop::create( $context, 'text' );
+		$manager = \Aimeos\MShop::create( $context, $resource );
+		$textManager = \Aimeos\MShop::create( $context, 'text' );
 
 		foreach( $node->childNodes as $refNode )
 		{
@@ -61,11 +61,11 @@ class Standard
 			}
 
 			if( ( $listItem = $listItems->pop() ) === null ) {
-				$listItem = $listManager->create();
+				$listItem = $manager->createListItem();
 			}
 
 			if( ( $refItem = $listItem->getRefItem() ) === null ) {
-				$refItem = $manager->create();
+				$refItem = $textManager->create();
 			}
 
 			$list = [];

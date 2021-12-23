@@ -50,7 +50,7 @@ class Standard
 		$context = $this->context();
 		$resource = $item->getResourceType();
 		$listItems = $item->getListItems( 'attribute', null, null, false );
-		$listManager = \Aimeos\MShop::create( $context, $resource . '/lists' );
+		$manager = \Aimeos\MShop::create( $context, $resource );
 		$map = $this->getItems( $node->childNodes );
 
 		foreach( $node->childNodes as $node )
@@ -76,7 +76,7 @@ class Standard
 			$type = ( $attr = $attributes->getNamedItem( 'lists.type' ) ) !== null ? $attr->nodeValue : 'default';
 
 			if( ( $listItem = $item->getListItem( 'attribute', $type, $refId ) ) === null ) {
-				$listItem = $listManager->create();
+				$listItem = $manager->createListItem();
 			} else {
 				unset( $listItems[$listItem->getId()] );
 			}

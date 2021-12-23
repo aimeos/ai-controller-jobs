@@ -108,8 +108,9 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
-		$listManager = \Aimeos\MShop::create( $this->context(), 'product/lists' );
-		$manager = \Aimeos\MShop::create( $this->context(), 'text' );
+		$context = $this->context();
+		$manager = \Aimeos\MShop::create( $context, 'product' );
+		$refManager = \Aimeos\MShop::create( $context, 'text' );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
@@ -144,8 +145,8 @@ class Standard
 			}
 			else
 			{
-				$listItem = $listManager->create()->setType( $listtype );
-				$refItem = $manager->create()->setType( $type );
+				$listItem = $manager->createListItem()->setType( $listtype );
+				$refItem = $refManager->create()->setType( $type );
 			}
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list );

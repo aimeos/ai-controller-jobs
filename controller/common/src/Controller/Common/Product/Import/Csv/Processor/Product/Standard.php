@@ -108,7 +108,7 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
-		$manager = \Aimeos\MShop::create( $context, 'product/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
 		$listItems = $product->getListItems( 'product', null, null, false );
@@ -135,7 +135,7 @@ class Standard
 				}
 
 				if( ( $listItem = $product->getListItem( 'product', $listtype, $prodid ) ) === null ) {
-					$listItem = $manager->create()->setType( $listtype );
+					$listItem = $manager->createListItem()->setType( $listtype );
 				} else {
 					unset( $listItems[$listItem->getId()] );
 				}
