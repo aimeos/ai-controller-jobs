@@ -505,7 +505,7 @@ class Standard
 	/**
 	 * Imports the CSV data and creates new products or updates existing ones
 	 *
-	 * @param array $products List of products items implementing \Aimeos\MShop\Product\Item\Iface
+	 * @param \Aimeos\Map $products List of products items implementing \Aimeos\MShop\Product\Item\Iface
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param array $types List of allowed product type codes
@@ -513,7 +513,7 @@ class Standard
 	 * @return int Number of products that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
-	protected function import( array $products, array $data, array $mapping, array $types,
+	protected function import( \Aimeos\Map $products, array $data, array $mapping, array $types,
 		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$items = [];
@@ -527,15 +527,8 @@ class Standard
 
 			try
 			{
-				$code = trim( $code );
-
-				if( isset( $products[$code] ) ) {
-					$product = $products[$code];
-				} else {
-					$product = $manager->create();
-				}
-
 				$map = $this->getMappedChunk( $list, $mapping );
+				$product = $products->get( trim( $code ) ) ?: $manager->create();
 
 				if( isset( $map[0] ) ) // there can only be one chunk for the base product data
 				{

@@ -286,21 +286,13 @@ class Base
 	 *
 	 * @param array $codes List of product codes
 	 * @param array $domains List of domains whose items should be fetched too
-	 * @return array Associative list of product codes as key and product items as value
+	 * @return \Aimeos\Map Associative list of product codes as key and product items as value
 	 */
-	protected function getProducts( array $codes, array $domains ) : array
+	protected function getProducts( array $codes, array $domains ) : \Aimeos\Map
 	{
-		$result = [];
 		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$search = $manager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'product.code', $codes ) );
-		$search->slice( 0, count( $codes ) );
-
-		foreach( $manager->search( $search, $domains ) as $item ) {
-			$result[$item->getCode()] = $item;
-		}
-
-		return $result;
+		return $manager->search( $search, $domains )->col( null, 'product.code' );
 	}
 }
