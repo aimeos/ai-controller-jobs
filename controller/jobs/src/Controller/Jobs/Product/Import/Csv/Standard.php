@@ -538,7 +538,7 @@ class Standard
 					$product = $product->fromArray( $map[0], true );
 					$product = $manager->save( $product->setType( $type ) );
 
-					$list = $processor->process( $product, $list );
+					$processor->process( $product, $list );
 
 					$product = $manager->save( $product );
 					$items[$product->getId()] = $product;
