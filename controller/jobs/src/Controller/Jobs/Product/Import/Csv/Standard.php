@@ -544,8 +544,7 @@ class Standard
 		$items = [];
 		$errors = 0;
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'product' );
-		$indexManager = \Aimeos\MShop::create( $context, 'index' );
+		$manager = \Aimeos\MShop::create( $context, 'index' );
 
 		foreach( $data as $code => $list )
 		{
@@ -593,8 +592,6 @@ class Standard
 				$context->logger()->error( 'Not imported: ' . print_r( $list, true ), 'import/csv/product' );
 			}
 		}
-
-		$indexManager->rebuild( $items );
 
 		return $errors;
 	}

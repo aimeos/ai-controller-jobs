@@ -271,7 +271,7 @@ class Standard
 			}
 		}
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['product.code' => array_keys( $codes )] );
 		$map = $manager->search( $search, $ref )->col( null, 'product.code' );
 
