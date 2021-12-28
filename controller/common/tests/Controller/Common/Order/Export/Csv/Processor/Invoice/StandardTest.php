@@ -14,7 +14,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelperCntl::context();
 		$mapping = array(
-			0 => 'order.type',
+			0 => 'order.channel',
 			1 => 'order.datepayment',
 			2 => 'order.statuspayment',
 			3 => 'order.datedelivery',

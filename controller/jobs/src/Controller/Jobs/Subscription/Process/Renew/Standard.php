@@ -368,7 +368,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 		$basket = $this->createOrderBase( $context, $subscription );
 
-		return $manager->create()->setBaseItem( $basket )->setType( 'subscription' );
+		return $manager->create()->setBaseItem( $basket )->setChannel( 'subscription' );
 	}
 
 
@@ -406,7 +406,7 @@ class Standard
 	protected function createOrderInvoice( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
-		$item = $manager->create()->setBaseItem( $basket )->setBaseId( $basket->getId() )->setType( 'subscription' );
+		$item = $manager->create()->setBaseItem( $basket )->setBaseId( $basket->getId() )->setChannel( 'subscription' );
 
 		return $manager->save( $item );
 	}
