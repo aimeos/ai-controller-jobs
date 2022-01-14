@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @copyright Aimeos GmbH (aimeos.com), 2019-2022
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Aimeos (aimeos.org), 2019-2022
  * @package Controller
  * @subpackage Common
  */
