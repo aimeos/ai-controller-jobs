@@ -556,26 +556,15 @@ class Standard
 			try
 			{
 				$code = trim( $code );
+				$product = $products[$code] ?? $manager->create();
+				$map = current( $this->getMappedChunk( $list, $mapping ) ); // there can only be one chunk for the base product data
 
-				if( isset( $products[$code] ) ) {
-					$product = $products[$code];
-				} else {
-					$product = $manager->create();
-				}
-
-				$map = $this->getMappedChunk( $list, $mapping );
-
-				if( isset( $map[0] ) ) // there can only be one chunk for the base product data
+				if( $map )
 				{
-					$type = $this->checkType( $this->getValue( $map[0], 'product.type', $product->getType() ) );
+					$type = $this->checkType( $this->getValue( $map, 'product.type', $product->getType() ) );
+					$map['product.config'] = $this->getValue( $map, 'product.config', $product->getConfig() );
 
-					if( isset( $map[0]['product.config'] ) ) {
-						$map[0]['product.config'] = json_decode( $map[0]['product.config'], true ) ?: [];
-					} else {
-						$map[0]['product.config'] = $product->getConfig();
-					}
-
-					$product = $product->fromArray( $map[0], true );
+					$product = $product->fromArray( $map, true );
 					$product = $manager->save( $product->setType( $type ) );
 
 					$list = $processor->process( $product, $list );
