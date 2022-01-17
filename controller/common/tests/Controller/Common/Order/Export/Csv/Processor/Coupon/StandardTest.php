@@ -29,7 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $data ) );
 
 		$this->assertEquals( 1, count( $data[0] ) );
-		$this->assertEquals( '5678', $data[0][0] );
+		$this->assertEquals( '1234', $data[0][0] );
 
 		$this->assertEquals( 1, count( $data[1] ) );
 		$this->assertEquals( 'OPQR', $data[1][0] );
