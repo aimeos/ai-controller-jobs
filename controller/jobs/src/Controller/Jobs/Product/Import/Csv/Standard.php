@@ -562,8 +562,11 @@ class Standard
 				if( $map )
 				{
 					$type = $this->checkType( $this->getValue( $map, 'product.type', $product->getType() ) );
-					$map['product.config'] = $this->getValue( $map, 'product.config', $product->getConfig() );
-
+					
+					if( $config = $this->getValue( $map, 'product.config' ) ) {
+						$map['product.config'] = json_decode( $config ) ?: [];
+					}
+						
 					$product = $product->fromArray( $map, true );
 					$product = $manager->save( $product->setType( $type ) );
 
