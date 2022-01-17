@@ -55,8 +55,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'de', $data[0][8] );
 		$this->assertEquals( 'EUR', $data[0][9] );
 		$this->assertEquals( '53.50', $data[0][10] );
-		$this->assertEquals( '1.50', $data[0][11] );
-		$this->assertEquals( '14.50', $data[0][12] );
+		$this->assertEquals( '6.50', $data[0][11] );
+		$this->assertEquals( '9.50', $data[0][12] );
 		$this->assertEquals( '0.0000', $data[0][13] );
 		$this->assertEquals( '1', $data[0][14] );
 		$this->assertEquals( 'This is a comment if an order. It can be added by the user.', $data[0][15] );
