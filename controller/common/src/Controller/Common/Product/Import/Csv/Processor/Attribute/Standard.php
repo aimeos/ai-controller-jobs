@@ -138,6 +138,7 @@ class Standard
 			$this->addType( 'product/lists/type', 'attribute', $listtype );
 
 			$codes = explode( $separator, $this->val( $list, 'attribute.code', '' ) );
+			unset( $list['attribute.code'] );
 
 			foreach( $codes as $code )
 			{
