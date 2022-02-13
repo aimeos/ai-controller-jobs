@@ -351,7 +351,7 @@ class Standard
 			$this->mail( 'Product CSV import', $msg );
 		}
 
-		if( !empty( $backup ) && @rename( $path, $backup = \Aimeos\MW\Str::strtime( $backup ) ) === false )
+		if( !empty( $backup ) && @rename( $path, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );

@@ -225,9 +225,9 @@ class Standard
 				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
-			} elseif( \Aimeos\MW\Str::starts( $url, 'data:' ) ) {
+			} elseif( \Aimeos\Base\Str::starts( $url, 'data:' ) ) {
 				$refItem->setPreview( $url )->setUrl( $url );
-			} elseif( \Aimeos\MW\Str::starts( $url, ['http:', 'https:'] ) ) {
+			} elseif( \Aimeos\Base\Str::starts( $url, ['http:', 'https:'] ) ) {
 				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), true );
 			} elseif( $fs->has( $url ) && ( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) ) {
 				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), true );
