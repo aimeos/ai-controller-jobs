@@ -121,7 +121,7 @@ class Standard
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
 			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url
 				|| $fs->has( $url ) && (
-					!( $fs instanceof \Aimeos\MW\Filesystem\MetaIface )
+					!( $fs instanceof \Aimeos\Base\Filesystem\MetaIface )
 					|| date( 'Y-m-d H:i:s', $fs->time( $url ) ) > $refItem->getTimeModified()
 				)
 			) {

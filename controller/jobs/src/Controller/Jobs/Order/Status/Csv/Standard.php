@@ -65,7 +65,7 @@ class Standard
 
 		$fs = $context->fs( 'fs-import' );
 
-		if( ( $dir = ( $fs instanceof \Aimeos\MW\Filesystem\DirIface ) ) && !$fs->has( $dirname . '/_done' ) ) {
+		if( ( $dir = ( $fs instanceof \Aimeos\Base\Filesystem\DirIface ) ) && !$fs->has( $dirname . '/_done' ) ) {
 			$fs->mkDir( $dirname . '/_done' );
 		}
 
