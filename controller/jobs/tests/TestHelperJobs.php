@@ -89,7 +89,7 @@ class TestHelperJobs
 		$ctx->setCache( $cache );
 
 
-		$mail = new \Aimeos\MW\Mail\None();
+		$mail = new \Aimeos\Base\Mail\None();
 		$ctx->setMail( $mail );
 
 
