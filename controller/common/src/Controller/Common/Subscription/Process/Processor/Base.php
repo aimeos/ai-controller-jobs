@@ -19,6 +19,9 @@ namespace Aimeos\Controller\Common\Subscription\Process\Processor;
  */
 class Base
 {
+	use \Aimeos\Macro\Macroable;
+
+
 	private $context;
 
 
