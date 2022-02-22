@@ -97,7 +97,7 @@ class TestHelperJobs
 		$ctx->setSession( $session );
 
 
-		$process = new \Aimeos\MW\Process\None();
+		$process = new \Aimeos\Base\Process\None();
 		$ctx->setProcess( $process );
 
 
