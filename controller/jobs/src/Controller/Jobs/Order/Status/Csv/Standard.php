@@ -64,14 +64,11 @@ class Standard
 		$dirname = $context->config()->get( 'controller/jobs/order/status/csv/directory', 'orderstatus' );
 
 		$fs = $context->fs( 'fs-import' );
-
-		if( ( $dir = ( $fs instanceof \Aimeos\Base\Filesystem\DirIface ) ) && !$fs->has( $dirname . '/_done' ) ) {
-			$fs->mkDir( $dirname . '/_done' );
-		}
+		$fs->has( $dirname . '/_done' ) ?: $fs->mkDir( $dirname . '/_done' );
 
 		foreach( $fs->scan( $dirname ) as $name )
 		{
-			if( $dir && $fs->isDir( $dirname . '/' . $name ) ) {
+			if( in_array( $name, ['.', '..'] ) || $fs->isDir( $dirname . '/' . $name ) ) {
 				continue;
 			}
 
@@ -81,11 +78,7 @@ class Standard
 
 				$this->import( $handle );
 
-				if( $dir ) {
-					$fs->move( $dirname . '/' . $name, $dirname . '/_done/' . $name );
-				} else {
-					$fs->rm( $dirname . '/' . $name );
-				}
+				$fs->move( $dirname . '/' . $name, $dirname . '/_done/' . $name );
 			}
 			catch( \Exception $e )
 			{
@@ -213,7 +206,7 @@ class Standard
 				$items = $pmanager->search( $filter );
 
 				foreach( $items as $item ) {
-					$item->setStatusDelivery( $orders[$item->getId()][2] ?? $item->getStatusDelivery() );
+					$item->setStatusDelivery( $products[$item->getId()][2] ?? $item->getStatusDelivery() );
 				}
 
 				$pmanager->save( $items );
