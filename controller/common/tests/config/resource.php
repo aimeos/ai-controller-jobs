@@ -1,6 +1,9 @@
 <?php
 
 return array(
+	'email' => [
+		'from-email' => 'root@localhost',
+	],
 	'fs-media' => array(
 		'adapter' => 'Standard',
 		'basedir' => 'tmp/',

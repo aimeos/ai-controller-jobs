@@ -1,6 +1,9 @@
 <?php
 
 return [
+	'email' => [
+		'from-email' => 'root@localhost',
+	],
 	'fs' => [
 		'adapter' => 'Standard',
 		'basedir' => 'tmp',
