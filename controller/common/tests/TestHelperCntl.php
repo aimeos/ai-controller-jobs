@@ -67,8 +67,8 @@ class TestHelperCntl
 		$ctx->setDatabaseManager( $dbm );
 
 
-		$fsm = new \Aimeos\Base\Filesystem\Manager\Standard( $conf->get( 'resource' ) );
-		$ctx->setFilesystemManager( $fsm );
+		$fs = new \Aimeos\Base\Filesystem\Manager\Standard( $conf->get( 'resource' ) );
+		$ctx->setFilesystemManager( $fs );
 
 
 		$logger = new \Aimeos\MW\Logger\File( 'unittest.log', \Aimeos\MW\Logger\Iface::DEBUG );
@@ -79,13 +79,47 @@ class TestHelperCntl
 		$ctx->setSession( $session );
 
 
+		$i18n = new \Aimeos\Base\Translation\None( 'de' );
+		$ctx->setI18n( array( 'de' => $i18n ) );
+
+
 		$localeManager = \Aimeos\MShop\Locale\Manager\Factory::create( $ctx );
 		$locale = $localeManager->bootstrap( $site, '', '', false );
 		$ctx->setLocale( $locale );
 
 
-		$ctx->setEditor( 'ai-controller-jobs:cntl/common' );
+		$view = self::createView( $conf );
+		$ctx->setView( $view );
+
+
+		$ctx->setEditor( 'core:controller/common' );
 
 		return $ctx;
+	}
+
+
+	protected static function createView( \Aimeos\MW\Config\Iface $config )
+	{
+		$view = new \Aimeos\MW\View\Standard( self::getAimeos()->getTemplatePaths( 'controller/jobs/templates' ) );
+
+		$trans = new \Aimeos\Base\Translation\None( 'de_DE' );
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $trans );
+		$view->addHelper( 'translate', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Url\Standard( $view, 'http://baseurl' );
+		$view->addHelper( 'url', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, '.', '' );
+		$view->addHelper( 'number', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Date\Standard( $view, 'Y-m-d' );
+		$view->addHelper( 'date', $helper );
+
+		$paths = ['version', 'controller/jobs', 'client/html', 'resource/fs/baseurl', 'resource/fs-media/baseurl'];
+		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, $paths );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
+		$view->addHelper( 'config', $helper );
+
+		return $view;
 	}
 }

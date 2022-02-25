@@ -15,7 +15,8 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": "~7.1||~8.0",
-		"aimeos/aimeos-core": "dev-master"
+		"aimeos/aimeos-core": "dev-master",
+		"tecnickcom/tcpdf": "^6.4.1"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~7.0||~8.0||~9.0"

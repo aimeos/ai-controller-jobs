@@ -16,6 +16,13 @@ return [
 				],
 			],
 		],
+		'subscription' => [
+			'process' => [
+				'processors' => [
+					'Email' => 'Email',
+				],
+			],
+		],
 	],
 	'jobs' => [
 		'attribute' => [
