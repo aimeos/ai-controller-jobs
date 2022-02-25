@@ -48,6 +48,6 @@ class JobsTest extends \PHPUnit\Framework\TestCase
 
 		$list = \Aimeos\Controller\Jobs::get( $context, $aimeos, \TestHelperJobs::getControllerPaths() );
 
-		$this->assertGreaterThanOrEqual( 39, count( $list ) );
+		$this->assertGreaterThanOrEqual( 38, count( $list ) );
 	}
 }

@@ -87,7 +87,7 @@ abstract class Base
 	protected static function addControllerDecorators( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos,
 		\Aimeos\Controller\Jobs\Iface $controller, string $domain ) : \Aimeos\Controller\Jobs\Iface
 	{
-		if( !is_string( $domain ) || $domain === '' ) {
+		if( empty( $domain ) ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid domain "%1$s"', $domain ) );
 		}
 
