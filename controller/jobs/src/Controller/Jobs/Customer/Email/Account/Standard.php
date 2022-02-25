@@ -109,6 +109,36 @@ class Standard
 		$msg = $this->call( 'mailTo', $address );
 		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
 
+		/** controller/jobs/customer/email/account/template-html
+		 * Relative path to the template for the HTML part of the account emails.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in controller/jobs/templates).
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates.
+		 *
+		 * @param string Relative path to the template
+		 * @since 2022.04
+		 * @see controller/jobs/customer/email/account/template-text
+		 */
+
+		/** controller/jobs/customer/email/account/template-text
+		 * Relative path to the template for the text part of the account emails.
+		 *
+		 * The template file contains the text and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in controller/jobs/templates).
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates.
+		 *
+		 * @param string Relative path to the template
+		 * @since 2022.04
+		 * @see controller/jobs/customer/email/account/template-html
+		 */
+
 		$msg->subject( $context->translate( 'client', 'Your new account' ) )
 			->html( $view->render( $config->get( 'controller/jobs/customer/email/account/template-html', 'customer/email/account/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/customer/email/account/template-text', 'customer/email/account/text' ) ) )

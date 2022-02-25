@@ -82,7 +82,6 @@ class Standard
 		 * @param string Relative path to the template creating XML code for the site map items
 		 * @since 2015.01
 		 * @category Developer
-		 * @see client/html/account/favorite/template-header
 		 * @see controller/jobs/product/export/template-footer
 		 * @see controller/jobs/product/export/template-index
 		 */

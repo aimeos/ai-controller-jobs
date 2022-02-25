@@ -11,16 +11,6 @@
  */
 
 
-/** client/html/email/common/summary/text
- * Template partial used for redering the order summary details for text e-mails
- *
- * The setting must be the path to the partial relative to the template directory
- * in your own extension and must include the file name without the file extension.
- *
- * @param string Relative path to the partial file without file extension
- * @since 2019.10
- */
-
 $key = 'stat:' . $this->orderItem->getStatusDelivery();
 $orderStatus = $this->translate( 'mshop/code', $key );
 $orderDate = date_create( $this->orderItem->getTimeCreated() )->format( $this->translate( 'client', 'Y-m-d' ) );

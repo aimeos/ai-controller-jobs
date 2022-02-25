@@ -17,35 +17,96 @@ $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'client', '%1$s 
 ?>
 <?= strip_tags( $this->translate( 'client', 'Billing address' ) ) ?>:
 
-<?= $this->partial(
-		/** client/html/email/common/summary/address/text
-		 * Location of the address partial template for the text e-mails
-		 *
-		 * To configure an alternative template for the address partial, you
-		 * have to configure its path relative to the template directory
-		 * (usually client/html/templates/). It's then used to display the
-		 * payment or delivery address block in the text e-mails.
-		 *
-		 * @param string Relative path to the address partial
-		 * @since 2017.01
-		 * @see client/html/email/common/summary/detail/text
-		 * @see client/html/email/common/summary/service/text
-		 */
-		$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address' ),
-		['addresses' => $this->summaryBasket->getAddress( 'payment' ), 'separator' => "\n"]
-	)
+<?php foreach( $this->summaryBasket->getAddress( 'payment' ) as $addr ) : ?>
+<?= preg_replace( ["/\n+/m", '/ +/'], ["\n", ' '], trim( $this->encoder()->html( sprintf(
+		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+		/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+		/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+		/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+		$this->translate( 'client', '%1$s
+%2$s %3$s %4$s %5$s
+%6$s %7$s
+%8$s
+%9$s %10$s
+%11$s
+%12$s
+%13$s
+%14$s
+%15$s
+%16$s
+%17$s
+%18$s
+'
+		),
+		$addr->getCompany(),
+		$this->translate( 'mshop/code', $addr->getSalutation() ),
+		$addr->getTitle(),
+		$addr->getFirstName(),
+		$addr->getLastName(),
+		$addr->getAddress1(),
+		$addr->getAddress2(),
+		$addr->getAddress3(),
+		$addr->getPostal(),
+		$addr->getCity(),
+		$addr->getState(),
+		$this->translate( 'country', $addr->getCountryId() ),
+		$this->translate( 'language', $addr->getLanguageId() ),
+		$addr->getEmail(),
+		$addr->getTelephone(),
+		$addr->getTelefax(),
+		$addr->getWebsite(),
+		$addr->getVatID()
+	) ) ) )
 ?>
+<?php endforeach ?>
 
 
 
 <?= strip_tags( $this->translate( 'client', 'Delivery address' ) ) ?>:
 
-<?php if( ( $addrItems = $this->summaryBasket->getAddress( 'delivery' ) ) !== [] ) : ?>
-<?=		$this->partial(
-			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address' ),
-			array( 'addresses' => $addrItems, 'separator' => "\n" )
-		)
+<?php if( !empty( $addrItems = $this->summaryBasket->getAddress( 'delivery' ) ) ) : ?>
+<?php	foreach( $addrItems as $addr ) : ?>
+<?= preg_replace( ["/\n+/m", '/ +/'], ["\n", ' '], trim( $this->encoder()->html( sprintf(
+		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+		/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+		/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+		/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+		$this->translate( 'client', '%1$s
+%2$s %3$s %4$s %5$s
+%6$s %7$s
+%8$s
+%9$s %10$s
+%11$s
+%12$s
+%13$s
+%14$s
+%15$s
+%16$s
+%17$s
+%18$s
+'
+		),
+		$addr->getCompany(),
+		$this->translate( 'mshop/code', $addr->getSalutation() ),
+		$addr->getTitle(),
+		$addr->getFirstName(),
+		$addr->getLastName(),
+		$addr->getAddress1(),
+		$addr->getAddress2(),
+		$addr->getAddress3(),
+		$addr->getPostal(),
+		$addr->getCity(),
+		$addr->getState(),
+		$this->translate( 'country', $addr->getCountryId() ),
+		$this->translate( 'language', $addr->getLanguageId() ),
+		$addr->getEmail(),
+		$addr->getTelephone(),
+		$addr->getTelefax(),
+		$addr->getWebsite(),
+		$addr->getVatID()
+	) ) ) )
 ?>
+<?php	endforeach ?>
 <?php else : ?>
 <?=		$this->translate( 'client', 'like billing address' ) ?>
 <?php endif ?>
@@ -129,7 +190,7 @@ $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'client', '%1$s 
 <?php foreach( $this->summaryBasket->getProducts() as $product ) : $priceItem = $product->getPrice() ?>
 
 <?=		strip_tags( $product->getName() ) ?> (<?= $product->getProductCode() ?>)
-<?php	foreach( $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] ) as $attrType ) : ?>
+<?php	foreach( ['variant', 'config', 'custom'] as $attrType ) : ?>
 <?php		foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
 - <?php 		echo strip_tags( $this->translate( 'client/code', $attribute->getCode() ) ) ?>: <?= $attribute->getQuantity() > 1 ? $attribute->getQuantity() . '× ' : '' ?><?= strip_tags( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ) ?>
 

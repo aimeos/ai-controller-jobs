@@ -42,7 +42,7 @@ $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'client', '%1$s 
 				<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
 					<p class="product-description"><?= $enc->html( $desc ) ?></p>
 				<?php endif ?>
-				<?php foreach( $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] ) as $attrType ) : ?>
+				<?php foreach( ['variant', 'config', 'custom'] as $attrType ) : ?>
 					<?php if( !( $attributes = $product->getAttributeItems( $attrType ) )->isEmpty() ) : ?>
 						<ul class="attr-list attr-type-<?= $enc->attr( $attrType ) ?>">
 							<?php foreach( $attributes as $attribute ) : ?>

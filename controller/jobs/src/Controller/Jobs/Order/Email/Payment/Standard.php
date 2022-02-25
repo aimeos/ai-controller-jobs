@@ -164,7 +164,7 @@ class Standard
 		$context = $this->context();
 		$fs = $context->fs();
 
-		/** client/html/email/payment/attachments
+		/** controller/jobs/order/email/payment/attachments
 		 * List of file paths whose content should be attached to all payment e-mails
 		 *
 		 * This configuration option allows you to add files to the e-mails that are
@@ -173,14 +173,14 @@ class Standard
 		 *
 		 * @param array List of absolute file paths
 		 * @since 2016.10
-		 * @see client/html/email/delivery/attachments
+		 * @see controller/jobs/order/email/delivery/attachments
 		 */
-		$files = $context->config()->get( 'client/html/email/payment/attachments', [] );
+		$files = $context->config()->get( 'controller/jobs/order/email/payment/attachments', [] );
 
 		foreach( $files as $filepath )
 		{
 			if( $fs->has( $filepath ) ) {
-				$msg->attach( $fs->read( $filepath ), basename( $filename ) );
+				$msg->attach( $fs->read( $filepath ), basename( $filepath ) );
 			}
 		}
 
@@ -290,7 +290,7 @@ class Standard
 		$msg = $this->attachments( $msg );
 		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
 
-		/** client/html/email/payment/bcc-email
+		/** controller/jobs/order/email/payment/bcc-email
 		 * E-Mail address all payment e-mails should be also sent to
 		 *
 		 * Using this option you can send a copy of all payment related e-mails
@@ -304,7 +304,37 @@ class Standard
 		 * @param string|array E-mail address or list of e-mail addresses
 		 * @since 2014.03
 		 */
-		$msg->bcc( $config->get( 'client/html/email/payment/bcc-email', [] ) );
+		$msg->bcc( $config->get( 'controller/jobs/order/email/payment/bcc-email', [] ) );
+
+		/** controller/jobs/order/email/payment/template-html
+		 * Relative path to the template for the HTML part of the payment emails.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in controller/jobs/templates).
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates.
+		 *
+		 * @param string Relative path to the template
+		 * @since 2022.04
+		 * @see controller/jobs/order/email/payment/template-text
+		 */
+
+		/** controller/jobs/order/email/payment/template-text
+		 * Relative path to the template for the text part of the payment emails.
+		 *
+		 * The template file contains the text and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in controller/jobs/templates).
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates.
+		 *
+		 * @param string Relative path to the template
+		 * @since 2022.04
+		 * @see controller/jobs/order/email/payment/template-html
+		 */
 
 		$msg->subject( sprintf( $context->translate( 'client', 'Your order %1$s' ), $view->orderItem->getOrderNumber() ) )
 			->html( $view->render( $config->get( 'controller/jobs/order/email/payment/template-html', 'order/email/payment/html' ) ) )

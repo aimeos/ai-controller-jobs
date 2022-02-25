@@ -122,11 +122,7 @@ class TestHelperJobs
 
 	protected static function createView( \Aimeos\MW\Config\Iface $config )
 	{
-		$tmplpaths = array_merge_recursive(
-			self::getAimeos()->getTemplatePaths( 'client/html/templates' ),
-			self::getAimeos()->getTemplatePaths( 'controller/jobs/templates' )
-		);
-
+		$tmplpaths = self::getAimeos()->getTemplatePaths( 'controller/jobs/templates' );
 		$view = new \Aimeos\MW\View\Standard( $tmplpaths );
 
 		$trans = new \Aimeos\Base\Translation\None( 'de_DE' );
