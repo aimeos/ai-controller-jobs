@@ -21,7 +21,7 @@ jobs:
       - restore_cache:
           keys:
             - php71-{{ checksum "composer.json" }}
-      - run: composer update -n --prefer-dist
+      - run: composer update -n --prefer-dist "tecnickcom/tcpdf:dev-main"
       - save_cache:
           key: php71-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -45,7 +45,7 @@ jobs:
       - restore_cache:
           keys:
             - php72-{{ checksum "composer.json" }}
-      - run: composer update -n --prefer-dist
+      - run: composer update -n --prefer-dist "tecnickcom/tcpdf:dev-main"
       - save_cache:
           key: php72-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -68,7 +68,7 @@ jobs:
       - restore_cache:
           keys:
             - php73-{{ checksum "composer.json" }}
-      - run: composer update -n --prefer-dist
+      - run: composer update -n --prefer-dist "tecnickcom/tcpdf:dev-main"
       - save_cache:
           key: php73-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -92,7 +92,7 @@ jobs:
       - restore_cache:
           keys:
             - php74-{{ checksum "composer.json" }}
-      - run: composer update -n --prefer-dist
+      - run: composer update -n --prefer-dist "tecnickcom/tcpdf:dev-main"
       - save_cache:
           key: php74-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -116,7 +116,7 @@ jobs:
       - restore_cache:
           keys:
             - php80-{{ checksum "composer.json" }}
-      - run: composer update -n --prefer-dist
+      - run: composer update -n --prefer-dist "tecnickcom/tcpdf:dev-main"
       - save_cache:
           key: php80-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -140,14 +140,14 @@ jobs:
       - restore_cache:
           keys:
             - php81-{{ checksum "composer.json" }}
-      - run: composer update -n --prefer-dist
+      - run: composer update -n --prefer-dist "tecnickcom/tcpdf:dev-main"
       - save_cache:
           key: php81-{{ checksum "composer.json" }}
           paths: [./vendor]
       - run: echo "<?php return array( 'db' => array( 'adapter' => 'mysql', 'host' => '127.0.0.1', 'port' => 3306, 'database' => 'aimeos', 'username' => 'aimeos', 'password' => 'aimeos', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array( \"SET SESSIOn sort_buffer_size=2097144; SET NAMES 'utf8'; SET SESSION sql_mode='ANSI'\" ) ), 'fs' => array( 'adapter' => 'Standard', 'basedir' => '.' ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
       - run: for i in `seq 1 10`; do nc -z 127.0.0.1 3306 && echo OK && exit 0; echo -n .; sleep 1; done
       - run: ./vendor/bin/phing -Ddir=ext/ai-controller-jobs setup coverageext
-      - run: ./vendor/bin/php-coveralls -x ext/ai-controller-jobs/controller/jobs/tests/coverage.xml -vvv
+      - run: ./vendor/bin/php-coveralls -x ext/ai-controller-jobs/controller/common/tests/coverage.xml -x ext/ai-controller-jobs/controller/jobs/tests/coverage.xml -vvv
 
 workflows:
   version: 2
