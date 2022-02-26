@@ -69,7 +69,7 @@ class TestHelperJobs
 		$ctx->setConfig( $conf );
 
 
-		$logger = new \Aimeos\MW\Logger\File( $site . '.log', \Aimeos\MW\Logger\Iface::DEBUG );
+		$logger = new \Aimeos\Base\Logger\File( $site . '.log', \Aimeos\Base\Logger\Iface::DEBUG );
 		$ctx->setLogger( $logger );
 
 

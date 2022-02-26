@@ -71,7 +71,7 @@ class TestHelperCntl
 		$ctx->setFilesystemManager( $fs );
 
 
-		$logger = new \Aimeos\MW\Logger\File( 'unittest.log', \Aimeos\MW\Logger\Iface::DEBUG );
+		$logger = new \Aimeos\Base\Logger\File( 'unittest.log', \Aimeos\Base\Logger\Iface::DEBUG );
 		$ctx->setLogger( $logger );
 
 

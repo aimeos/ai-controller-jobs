@@ -10,7 +10,7 @@
 
 namespace Aimeos\Controller\Jobs\Catalog\Import\Csv;
 
-use \Aimeos\MW\Logger\Base as Log;
+use \Aimeos\Base\Logger\Base as Log;
 
 
 /**
