@@ -63,9 +63,9 @@ class TestHelperJobs
 		$paths[] = __DIR__ . DIRECTORY_SEPARATOR . 'config';
 		$file = __DIR__ . DIRECTORY_SEPARATOR . 'confdoc.ser';
 
-		$conf = new \Aimeos\MW\Config\PHPArray( [], $paths );
-		$conf = new \Aimeos\MW\Config\Decorator\Memory( $conf );
-		$conf = new \Aimeos\MW\Config\Decorator\Documentor( $conf, $file );
+		$conf = new \Aimeos\Base\Config\PHPArray( [], $paths );
+		$conf = new \Aimeos\Base\Config\Decorator\Memory( $conf );
+		$conf = new \Aimeos\Base\Config\Decorator\Documentor( $conf, $file );
 		$ctx->setConfig( $conf );
 
 
@@ -120,7 +120,7 @@ class TestHelperJobs
 	}
 
 
-	protected static function createView( \Aimeos\MW\Config\Iface $config )
+	protected static function createView( \Aimeos\Base\Config\Iface $config )
 	{
 		$tmplpaths = self::getAimeos()->getTemplatePaths( 'controller/jobs/templates' );
 		$view = new \Aimeos\MW\View\Standard( $tmplpaths );
@@ -138,7 +138,7 @@ class TestHelperJobs
 		$helper = new \Aimeos\MW\View\Helper\Date\Standard( $view, 'Y-m-d' );
 		$view->addHelper( 'date', $helper );
 
-		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, ['controller/jobs', 'client/html'] );
+		$config = new \Aimeos\Base\Config\Decorator\Protect( $config, ['controller/jobs', 'client/html'] );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 
