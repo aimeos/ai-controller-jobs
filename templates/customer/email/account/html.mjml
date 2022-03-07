@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Aimeos (aimeos.org), 2019
+ */
+
+$enc = $this->encoder();
+
+?>
+<mjml>
+	<mj-head>
+		<mj-title><?= $enc->html( $this->translate( 'controller/jobs', 'Your new account' ) ) ?></mj-title>
+	</mj-head>
+	<mj-body css-class="aimeos">
+		<mj-section>
+			<mj-column>
+				<mj-image css-class="logo" src="<?= $this->get( 'logo' ) ?>" align="center"/>
+			</mj-column>
+		</mj-section>
+		<mj-section>
+			<mj-column>
+				<mj-text css-class="email-common-salutation">
+					<?= $enc->html( $this->get( 'intro' ) ) ?>
+				</mj-text>
+				<mj-text css-class="email-common-intro">
+					<?= $enc->html( nl2br( $this->translate( 'controller/jobs', 'An account has been created for you.' ) ) ) ?>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+		<mj-wrapper css-class="account-detail">
+			<mj-section css-class="account-code" padding="inherit">
+				<mj-column>
+					<mj-text css-class="name">
+						<?= $enc->html( $this->translate( 'controller/jobs', 'Account' ) ) ?>:
+					</mj-text>
+				</mj-column>
+				<mj-column>
+					<mj-text css-class="value">
+						<?= $enc->html( $this->get( 'account' ) ) ?>
+					</mj-text>
+				</mj-column>
+			</mj-section>
+			<mj-section css-class="account-password" padding="inherit">
+				<mj-column>
+					<mj-text css-class="name">
+						<?= $enc->html( $this->translate( 'controller/jobs', 'Password' ) ) ?>:
+					</mj-text>
+				</mj-column>
+				<mj-column>
+					<mj-text css-class="value">
+						<?= $enc->html( $this->get( 'password' ) ?: $this->translate( 'controller/jobs', 'Like entered by you' ) ) ?>
+					</mj-text>
+				</mj-column>
+			</mj-section>
+			<mj-section css-class="account-login">
+				<mj-column>
+					<mj-button css-class="btn btn-primary" background-color="inherit" color="inherit"
+						href="<?= $enc->attr( $this->link( 'client/html/account/index/url', ['locale' => $this->addressItem->getLanguageId()], ['absoluteUri' => 1] ) ) ?>">
+						<?= $enc->html( $this->translate( 'controller/jobs', 'Login' ) ) ?>
+					</mj-button>
+				</mj-column>
+			</mj-section>
+		</mj-wrapper>
+		<mj-section css-class="email-common-outro">
+			<mj-column>
+				<mj-text>
+					<?= $enc->html( nl2br( $this->translate( 'controller/jobs', 'If you have any questions, please reply to this e-mail' ) ) ) ?>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+	</mj-body>
+</mjml>

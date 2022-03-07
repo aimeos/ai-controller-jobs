@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 
 [aimeos-core.controller-jobs]
-file_filter = controller/jobs/i18n/<lang>.po
-source_file = controller/jobs/i18n/core-controller-jobs.pot
+file_filter = i18n/<lang>.po
+source_file = i18n/source.pot
 source_lang = en
 type = PO

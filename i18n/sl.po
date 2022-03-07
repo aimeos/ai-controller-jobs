@@ -1,0 +1,567 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Goran Sabo <info@noaset.pro>, 2020
+# Goran Sabo <info@noaset.pro>, 2020
+msgid ""
+msgstr ""
+"Project-Id-Version: aimeos-core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-04 18:23+0100\n"
+"PO-Revision-Date: 2022-03-04 17:34+0000\n"
+"Last-Translator: Aimeos\n"
+"Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+
+#, php-format
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#. / Rebate format with rebate value (%1$s) and currency (%2$s)
+#, php-format
+msgid "%1$s %2$s off"
+msgstr "%1$s %2$s popust"
+
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
+#, php-format
+msgid "+ %1$s %2$s/item"
+msgstr "+ %1$s %2$s/izdelek"
+
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr "+ %1$s%% %2$s"
+
+msgid "+ Payment costs"
+msgstr "+ Provizija plačil"
+
+msgid "+ Shipping"
+msgstr "+ Dostava"
+
+#. / Rebate percent format with rebate percent value (%1$s)
+#, php-format
+msgid "-%1$s%%"
+msgstr "-%1$s%%"
+
+msgid "Account"
+msgstr "Moj račun"
+
+msgid "All XML import"
+msgstr "All XML import"
+
+msgid "All orders are subject to our terms and conditions."
+msgstr ""
+
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2022
+msgid "An account has been created for you."
+msgstr "Naročniški račun je ustvarjen"
+
+msgid "Article no."
+msgstr "Šifra"
+
+msgid "Attribute import XML"
+msgstr "Attribute import XML"
+
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
+msgstr "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+
+msgid "Batch update of payment/delivery status"
+msgstr "Batch update of payment/delivery status"
+
+msgid "Billing address"
+msgstr "Billing address"
+
+msgid "Cache cleanup"
+msgstr "Cache cleanup"
+
+msgid "Capture authorized payments"
+msgstr "Capture authorized payments"
+
+msgid "Catalog import CSV"
+msgstr "Catalog import CSV"
+
+msgid "Catalog import XML"
+msgstr "Catalog import XML"
+
+msgid "Catalog site map"
+msgstr "Catalog site map"
+
+msgid "Coupon code import CSV"
+msgstr "Coupon code import CSV"
+
+msgid "Coupon codes"
+msgstr "Kode za popust"
+
+msgid "Coupons"
+msgstr "Kuponi"
+
+msgid "Creates a catalog site map for search engines"
+msgstr "Creates a catalog site map for search engines"
+
+msgid "Creates a product site map for search engines"
+msgstr "Creates a product site map for search engines"
+
+msgid "Creates bought together product suggestions"
+msgstr "Creates bought together product suggestions"
+
+msgid "Customer account e-mails"
+msgstr ""
+
+msgid "Customer group import XML"
+msgstr "Customer group import XML"
+
+msgid "Customer import XML"
+msgstr "Customer import XML"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear %1$s %2$s"
+msgstr "Spoštovani %1$s %2$s"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr "Spoštovani gospod %1$s %2$s"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
+msgid "Dear customer"
+msgstr "Spoštovani naročnik"
+
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
+msgstr "Deletes unfinished orders an makes their products and coupon codes available again"
+
+msgid "Deletes unpaid orders to keep the database clean"
+msgstr "Deletes unpaid orders to keep the database clean"
+
+msgid "Delivery address"
+msgstr "Delivery address"
+
+msgid "Delivery within"
+msgstr "Delivery within"
+
+msgid "Details"
+msgstr "Podrobnosti"
+
+msgid "Executes all XML importers and rebuild the index"
+msgstr "Executes all XML importers and rebuild the index"
+
+msgid "Executes payment or delivery service providers that uses batch updates"
+msgstr "Executes payment or delivery service providers that uses batch updates"
+
+msgid "Exports all available products"
+msgstr "Exports all available products"
+
+msgid "Exports orders to CSV file"
+msgstr "Exports orders to CSV file"
+
+msgid "Exports subscriptions to CSV file"
+msgstr "Exports subscriptions to CSV file"
+
+msgid "If you have any questions, please reply to this e-mail"
+msgstr "V primeru dodatnih vprašanj, le odgovorite na to sporočilo"
+
+msgid "Imports new and updates existing attributes from XML files"
+msgstr "Imports new and updates existing attributes from XML files"
+
+msgid "Imports new and updates existing categories from CSV files"
+msgstr "Imports new and updates existing categories from CSV files"
+
+msgid "Imports new and updates existing categories from XML files"
+msgstr "Imports new and updates existing categories from XML files"
+
+msgid "Imports new and updates existing coupon code from CSV files"
+msgstr "Imports new and updates existing coupon code from CSV files"
+
+msgid "Imports new and updates existing customer groups from XML files"
+msgstr "Imports new and updates existing customer groups from XML files"
+
+msgid "Imports new and updates existing customers from XML files"
+msgstr "Imports new and updates existing customers from XML files"
+
+msgid "Imports new and updates existing products from CSV files"
+msgstr "Imports new and updates existing products from CSV files"
+
+msgid "Imports new and updates existing products from XML files"
+msgstr "Imports new and updates existing products from XML files"
+
+msgid "Imports new and updates existing stocks from CSV files"
+msgstr "Imports new and updates existing stocks from CSV files"
+
+msgid "Imports new and updates existing suppliers from CSV files"
+msgstr "Imports new and updates existing suppliers from CSV files"
+
+msgid "Imports new and updates existing suppliers from XML files"
+msgstr "Imports new and updates existing suppliers from XML files"
+
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr "Vključno z %1$s%% %2$s"
+
+#. / Tax rate format with tax rate in percent (%1$s)
+#, php-format
+msgid "Incl. %1$s%% VAT"
+msgstr "Vključno z %1$s%% DDV"
+
+msgid "Included rebates"
+msgstr "Vključeni rabati"
+
+msgid "Index optimization"
+msgstr "Index optimization"
+
+msgid "Index rebuild"
+msgstr "Index rebuild"
+
+msgid "Like entered by you"
+msgstr "Vi ste všečkali"
+
+msgid "Log cleanup"
+msgstr "Log cleanup"
+
+msgid "Login"
+msgstr "Prijava"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "One or more products you are watching have been updated."
+msgstr "Eden ali več izdelkov, ki jih opazujete, so spremenjeni."
+
+msgid "Optimizes the index for searching products faster"
+msgstr "Optimizes the index for searching products faster"
+
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+msgid "Order"
+msgstr "Order"
+
+#, php-format
+msgid "Order %1$s"
+msgstr "Naročilo %1$s"
+
+msgid "Order date"
+msgstr "Datum naročila"
+
+msgid "Order delivery related e-mails"
+msgstr ""
+
+msgid "Order details"
+msgstr "Podrobnosti naročila"
+
+msgid "Order export CSV"
+msgstr "Order export CSV"
+
+msgid "Order payment related e-mails"
+msgstr ""
+
+msgid "Order status import CSV"
+msgstr "Order status import CSV"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Price"
+msgstr "Price"
+
+msgid "Process order delivery services"
+msgstr "Process order delivery services"
+
+msgid "Process subscriptions initially"
+msgstr "Process subscriptions initially"
+
+msgid "Product export"
+msgstr "Product export"
+
+msgid "Product import CSV"
+msgstr "Product import CSV"
+
+msgid "Product import XML"
+msgstr "Product import XML"
+
+msgid "Product notification e-mails"
+msgstr ""
+
+msgid "Product site map"
+msgstr "Product site map"
+
+msgid "Products bought together"
+msgstr "Products bought together"
+
+msgid "Qty"
+msgstr "Kol."
+
+msgid "Quantity"
+msgstr "Quantity"
+
+msgid "Rebuilds the index for searching products"
+msgstr "Rebuilds the index for searching products"
+
+msgid "Reference"
+msgstr "Referenca"
+
+msgid "Removes the expired entries from the cache"
+msgstr "Removes the expired entries from the cache"
+
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
+msgstr "Removes the old log entries from the database and archives them (optional)"
+
+msgid "Removes unfinished orders"
+msgstr "Removes unfinished orders"
+
+msgid "Removes unpaid orders"
+msgstr "Removes unpaid orders"
+
+msgid "Renews subscriptions at next date"
+msgstr "Renews subscriptions at next date"
+
+msgid "Rescale product images"
+msgstr "Rescale product images"
+
+msgid "Rescales product images to the new sizes"
+msgstr "Rescales product images to the new sizes"
+
+msgid "Sends e-mails for new customer accounts"
+msgstr ""
+
+msgid "Sends e-mails for watched products"
+msgstr ""
+
+msgid "Sends order confirmation or payment status update e-mails"
+msgstr ""
+
+msgid "Sends order delivery status update e-mails"
+msgstr ""
+
+msgid "Sends paid orders to the ERP system or logistic partner"
+msgstr "Sends paid orders to the ERP system or logistic partner"
+
+msgid "Sends the e-mail with the voucher to the customer"
+msgstr ""
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Status import for orders from CSV file"
+msgstr ""
+
+msgid "Stock import CSV"
+msgstr "Stock import CSV"
+
+msgid "Sub-total"
+msgstr "Sub-total"
+
+msgid "Subscription export CSV"
+msgstr "Subscription export CSV"
+
+msgid "Subscription process end"
+msgstr "Subscription process end"
+
+msgid "Subscription process renew"
+msgstr "Subscription process renew"
+
+msgid "Subscription process start"
+msgstr "Subscription process start"
+
+msgid "Subscription product"
+msgstr "Izdelek v naročnini"
+
+msgid "Sum"
+msgstr "Sum"
+
+msgid "Supplier import CSV"
+msgstr "Supplier import CSV"
+
+msgid "Supplier import XML"
+msgstr "Supplier import XML"
+
+msgid "Terminates expired subscriptions"
+msgstr "Terminates expired subscriptions"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid "Thank you for your order %1$s from %2$s."
+msgstr "Zahvaljujemo se za naročilo  opravljeno %2$s.\nPri plačilu se sklicujte na SI00 00%1$s"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
+msgstr "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
+msgstr "Vaše naročilo bo zadržano do nadaljnjega oziroma dokler ne prejmemo vašega plačila. Če želite plačate preko neposredne bančne transakcije ne pozabite vpisati številko naročila, ki je %1$s."
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "The parcel for your order %1$s from %2$s could not be delivered."
+msgstr "The parcel for your order %1$s from %2$s could not be delivered."
+
+msgid "The payment couldn't be renewed"
+msgstr "Plačila ni možno obnoviti"
+
+#. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
+#, php-format
+msgid "The payment for your order %1$s from %2$s has been refunded."
+msgstr "The payment for your order %1$s from %2$s has been refunded."
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid ""
+"The payment status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
+msgstr ""
+
+msgid "The subscription for the product has ended"
+msgstr "Vaša naročnina je potekla"
+
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Transfers money to vendors"
+msgstr ""
+
+msgid ""
+"Transfers the price of ordered products to the vendors incl. commission "
+"handling"
+msgstr ""
+
+msgid "Voucher related e-mails"
+msgstr ""
+
+msgid "Watched products"
+msgstr "Spremljaj izdelke"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+msgid ""
+"We have received your payment, and will take care of your order immediately."
+msgstr "Prejeli smo vaše plačilo. Za vaše naročilo bomo poskrbeli v najkrajšem možnem času!"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "We received the returned parcel for your order %1$s from %2$s."
+msgstr "We received the returned parcel for your order %1$s from %2$s."
+
+msgid "Y-m-d"
+msgstr "d.m.Y"
+
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You've cancelled the subscription"
+msgstr "Preklicali ste naročnino"
+
+msgid "Your account"
+msgstr "Vaš račun"
+
+msgid "Your comment"
+msgstr "Vaše mnenje"
+
+msgid "Your new account"
+msgstr "Vaš nov račun"
+
+#, php-format
+msgid "Your order %1$s"
+msgstr "Vaše naročilo %1$s"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "Your order %1$s from %2$s has been dispatched."
+msgstr "Vaše naročilo %1$s od %2$s je odposlano."
+
+msgid "Your reference"
+msgstr "Vaše referenca"
+
+msgid "Your reference number"
+msgstr "Vaša referenčna številka"
+
+msgid "Your subscription"
+msgstr "Vaša naročnina"
+
+msgid "Your voucher"
+msgstr "Vaš darilni bon"
+
+msgid "Your vouchers"
+msgstr ""
+
+msgid "Your watched products"
+msgstr "Izdelki, ki jih opazujete"
+
+msgid "delivery"
+msgstr "dostava"
+
+#. / Price quantity format with quantity (%1$s)
+#, php-format
+msgid "from %1$s"
+msgstr "od %1$s"
+
+msgid "like billing address"
+msgstr "enako podatkom za plačilo"
+
+msgid "payment"
+msgstr "plačilo"
+
+#. / Price format with price value (%1$s) and currency (%2$s)
+msgid "price:default"
+msgstr "cena:privzeto"

@@ -1,6 +1,6 @@
 {
 	"name": "aimeos/ai-controller-jobs",
-	"description": "Aimeos ai-controller-jobs extension",
+	"description": "Aimeos job controllers for long running tasks",
 	"keywords": ["aimeos", "extension", "controller", "jobs"],
 	"homepage": "https://aimeos.org/",
 	"type": "aimeos-extension",
@@ -23,12 +23,18 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Aimeos\\Controller\\Common\\": "controller/jobs/src/Controller/Common/",
-			"Aimeos\\Controller\\Jobs\\": "controller/jobs/src/Controller/Jobs/"
+			"Aimeos\\": "src"
 		},
 		"classmap": [
-			"controller/common/src",
-			"controller/jobs/src"
+			"src"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Aimeos\\": "tests"
+		},
+		"classmap": [
+			"tests"
 		]
 	}
 }

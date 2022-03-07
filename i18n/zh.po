@@ -1,0 +1,565 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Bruce Liu <zcon.bruce@gmail.com>, 2016
+# stevechen <steve.stevechen@gmail.com>, 2018
+# stevechen <steve.stevechen@gmail.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: aimeos-core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-04 18:23+0100\n"
+"PO-Revision-Date: 2022-03-04 17:34+0000\n"
+"Last-Translator: Aimeos\n"
+"Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+
+#, php-format
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#. / Rebate format with rebate value (%1$s) and currency (%2$s)
+#, php-format
+msgid "%1$s %2$s off"
+msgstr "%1$s %2$s 折扣"
+
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
+#, php-format
+msgid "+ %1$s %2$s/item"
+msgstr "+ %1$s %2$s/項目"
+
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr "+ %1$s%%%2$s"
+
+msgid "+ Payment costs"
+msgstr "+ 支付系統手續費"
+
+msgid "+ Shipping"
+msgstr "+運送"
+
+#. / Rebate percent format with rebate percent value (%1$s)
+#, php-format
+msgid "-%1$s%%"
+msgstr "-%1$s%%"
+
+msgid "Account"
+msgstr "帳戶"
+
+msgid "All XML import"
+msgstr ""
+
+msgid "All orders are subject to our terms and conditions."
+msgstr ""
+
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2022
+msgid "An account has been created for you."
+msgstr "已為您創建帳戶。"
+
+msgid "Article no."
+msgstr "產品號."
+
+msgid "Attribute import XML"
+msgstr ""
+
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
+msgstr "已授權的訂單付款將會在dispatching或是配置時間過後被獲取"
+
+msgid "Batch update of payment/delivery status"
+msgstr "批次更新 支付/配送 狀態"
+
+msgid "Billing address"
+msgstr "帳單地址"
+
+msgid "Cache cleanup"
+msgstr "清除快取"
+
+msgid "Capture authorized payments"
+msgstr "獲取已授權完成的支付"
+
+msgid "Catalog import CSV"
+msgstr "型錄匯入CSV"
+
+msgid "Catalog import XML"
+msgstr ""
+
+msgid "Catalog site map"
+msgstr ""
+
+msgid "Coupon code import CSV"
+msgstr ""
+
+msgid "Coupon codes"
+msgstr "優惠券代碼"
+
+msgid "Coupons"
+msgstr "優惠券"
+
+msgid "Creates a catalog site map for search engines"
+msgstr ""
+
+msgid "Creates a product site map for search engines"
+msgstr "創建供搜尋引擎使用的商品網站地圖"
+
+msgid "Creates bought together product suggestions"
+msgstr "創建一起購買商品推薦"
+
+msgid "Customer account e-mails"
+msgstr "顧客帳號e-mails"
+
+msgid "Customer group import XML"
+msgstr ""
+
+msgid "Customer import XML"
+msgstr ""
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear %1$s %2$s"
+msgstr "親愛的 %1$s %2$s"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr "親愛的先生 %1$s %2$s"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
+msgid "Dear customer"
+msgstr ""
+
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
+msgstr "刪除未完成的訂單讓商品以及優惠券可再次使用"
+
+msgid "Deletes unpaid orders to keep the database clean"
+msgstr "刪除未付款的訂單"
+
+msgid "Delivery address"
+msgstr "配送地址"
+
+msgid "Delivery within"
+msgstr "交貨在之內"
+
+msgid "Details"
+msgstr "明細"
+
+msgid "Executes all XML importers and rebuild the index"
+msgstr ""
+
+msgid "Executes payment or delivery service providers that uses batch updates"
+msgstr "執行使用批次更新的支付或配送服務提供者"
+
+msgid "Exports all available products"
+msgstr "匯出所有可用商品"
+
+msgid "Exports orders to CSV file"
+msgstr "訂單匯出至 CVS 檔案"
+
+msgid "Exports subscriptions to CSV file"
+msgstr "訂閱匯出至 CVS 檔案"
+
+msgid "If you have any questions, please reply to this e-mail"
+msgstr "如果您有任何疑問，請回覆此郵件。"
+
+msgid "Imports new and updates existing attributes from XML files"
+msgstr ""
+
+msgid "Imports new and updates existing categories from CSV files"
+msgstr ""
+
+msgid "Imports new and updates existing categories from XML files"
+msgstr ""
+
+msgid "Imports new and updates existing coupon code from CSV files"
+msgstr ""
+
+msgid "Imports new and updates existing customer groups from XML files"
+msgstr ""
+
+msgid "Imports new and updates existing customers from XML files"
+msgstr ""
+
+msgid "Imports new and updates existing products from CSV files"
+msgstr "從CSV匯入新的商品並更新既有商品"
+
+msgid "Imports new and updates existing products from XML files"
+msgstr ""
+
+msgid "Imports new and updates existing stocks from CSV files"
+msgstr ""
+
+msgid "Imports new and updates existing suppliers from CSV files"
+msgstr ""
+
+msgid "Imports new and updates existing suppliers from XML files"
+msgstr ""
+
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr "包括 %1$s %% %2$s"
+
+#. / Tax rate format with tax rate in percent (%1$s)
+#, php-format
+msgid "Incl. %1$s%% VAT"
+msgstr "包含 %1$s%% 增值稅"
+
+msgid "Included rebates"
+msgstr "折扣過後"
+
+msgid "Index optimization"
+msgstr "索引最佳化"
+
+msgid "Index rebuild"
+msgstr "索引重新建立"
+
+msgid "Like entered by you"
+msgstr "您輸入的密碼"
+
+msgid "Log cleanup"
+msgstr "清除log"
+
+msgid "Login"
+msgstr "登錄"
+
+msgid "Name"
+msgstr "姓名"
+
+msgid "One or more products you are watching have been updated."
+msgstr "一個或多個您關注中的商品已被更新。"
+
+msgid "Optimizes the index for searching products faster"
+msgstr ""
+
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+msgid "Order"
+msgstr "訂單"
+
+#, php-format
+msgid "Order %1$s"
+msgstr "訂單 %1$s"
+
+msgid "Order date"
+msgstr "訂單日期"
+
+msgid "Order delivery related e-mails"
+msgstr "訂單配送相關的e-mail"
+
+msgid "Order details"
+msgstr "訂單明細"
+
+msgid "Order export CSV"
+msgstr "訂單匯出 CSV"
+
+msgid "Order payment related e-mails"
+msgstr "訂單支付相關的e-mail"
+
+msgid "Order status import CSV"
+msgstr ""
+
+msgid "Password"
+msgstr "密碼"
+
+msgid "Price"
+msgstr "價格"
+
+msgid "Process order delivery services"
+msgstr "處理訂單配送服務"
+
+msgid "Process subscriptions initially"
+msgstr ""
+
+msgid "Product export"
+msgstr "商品匯出"
+
+msgid "Product import CSV"
+msgstr "商品匯入CSV"
+
+msgid "Product import XML"
+msgstr ""
+
+msgid "Product notification e-mails"
+msgstr "商品通知e-mail"
+
+msgid "Product site map"
+msgstr "商品網站地圖"
+
+msgid "Products bought together"
+msgstr "一起購買商品"
+
+msgid "Qty"
+msgstr "數量"
+
+msgid "Quantity"
+msgstr "數量"
+
+msgid "Rebuilds the index for searching products"
+msgstr "產品搜尋索引重新建立"
+
+msgid "Reference"
+msgstr "參考"
+
+msgid "Removes the expired entries from the cache"
+msgstr "從快取中移除過期的條目"
+
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
+msgstr "從資料庫移除舊的log條目並將其封存(選用)"
+
+msgid "Removes unfinished orders"
+msgstr "移除未完成的訂單"
+
+msgid "Removes unpaid orders"
+msgstr "移除未付款的訂單"
+
+msgid "Renews subscriptions at next date"
+msgstr ""
+
+msgid "Rescale product images"
+msgstr "重新縮放產品圖像"
+
+msgid "Rescales product images to the new sizes"
+msgstr ""
+
+msgid "Sends e-mails for new customer accounts"
+msgstr "發送新顧客帳號的e-mails"
+
+msgid "Sends e-mails for watched products"
+msgstr "發送關注商品的e-mails"
+
+msgid "Sends order confirmation or payment status update e-mails"
+msgstr "發送訂單確認 或是 支付狀態變更通知的e-mail"
+
+msgid "Sends order delivery status update e-mails"
+msgstr "發送訂單配送狀態變更的e-mail"
+
+msgid "Sends paid orders to the ERP system or logistic partner"
+msgstr "發送已支付的訂單到ERP系統或是物流合作夥伴"
+
+msgid "Sends the e-mail with the voucher to the customer"
+msgstr ""
+
+msgid "Status"
+msgstr "狀態"
+
+msgid "Status import for orders from CSV file"
+msgstr ""
+
+msgid "Stock import CSV"
+msgstr ""
+
+msgid "Sub-total"
+msgstr "小計"
+
+msgid "Subscription export CSV"
+msgstr ""
+
+msgid "Subscription process end"
+msgstr ""
+
+msgid "Subscription process renew"
+msgstr ""
+
+msgid "Subscription process start"
+msgstr ""
+
+msgid "Subscription product"
+msgstr "訂閱產品"
+
+msgid "Sum"
+msgstr "合計"
+
+msgid "Supplier import CSV"
+msgstr ""
+
+msgid "Supplier import XML"
+msgstr ""
+
+msgid "Terminates expired subscriptions"
+msgstr ""
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid "Thank you for your order %1$s from %2$s."
+msgstr "非常感謝您從 %2$s下訂了訂單 %1$s。"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
+msgstr "您從 %2$s 下訂的訂單 %1$s 的配送狀態已變更為 \"%3$s\"。"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
+msgstr "該訂單待處理，直到我們收到最後付款. 如果您選擇提前付款，請以訂單ID %1$s 作為參​​考，將款項轉入我們的銀行帳戶."
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "The parcel for your order %1$s from %2$s could not be delivered."
+msgstr "您從%2$s下訂的訂單%1$s包裹無法送達。"
+
+msgid "The payment couldn't be renewed"
+msgstr "付款無法續期"
+
+#. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
+#, php-format
+msgid "The payment for your order %1$s from %2$s has been refunded."
+msgstr "您從%2$s下單的訂單%1$s已退款完成。"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid ""
+"The payment status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
+msgstr ""
+
+msgid "The subscription for the product has ended"
+msgstr "此產品的訂閱已結束"
+
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Transfers money to vendors"
+msgstr ""
+
+msgid ""
+"Transfers the price of ordered products to the vendors incl. commission "
+"handling"
+msgstr ""
+
+msgid "Voucher related e-mails"
+msgstr ""
+
+msgid "Watched products"
+msgstr "關注中的商品"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+msgid ""
+"We have received your payment, and will take care of your order immediately."
+msgstr "我們已經收到款項，馬上將處理您的訂單。"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "We received the returned parcel for your order %1$s from %2$s."
+msgstr "我們收到了您來自於%2$s的訂單%1$s的退回貨物。"
+
+msgid "Y-m-d"
+msgstr "Y-m-d"
+
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You've cancelled the subscription"
+msgstr "您已取消此訂閱"
+
+msgid "Your account"
+msgstr "您的帳戶"
+
+msgid "Your comment"
+msgstr "您的備註"
+
+msgid "Your new account"
+msgstr "您的新帳戶"
+
+#, php-format
+msgid "Your order %1$s"
+msgstr "您的訂單 %1$s"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "Your order %1$s from %2$s has been dispatched."
+msgstr "您從%2$s下訂的訂單%1$s已出貨。"
+
+msgid "Your reference"
+msgstr "您的參考"
+
+msgid "Your reference number"
+msgstr "您的參考號碼"
+
+msgid "Your subscription"
+msgstr "您的訂閱"
+
+msgid "Your voucher"
+msgstr "您的優惠券"
+
+msgid "Your vouchers"
+msgstr ""
+
+msgid "Your watched products"
+msgstr "您關注中的商品"
+
+msgid "delivery"
+msgstr "運送"
+
+#. / Price quantity format with quantity (%1$s)
+#, php-format
+msgid "from %1$s"
+msgstr "從 %1$s"
+
+msgid "like billing address"
+msgstr "同帳單地址"
+
+msgid "payment"
+msgstr "支付"
+
+#. / Price format with price value (%1$s) and currency (%2$s)
+msgid "price:default"
+msgstr "價格: 標準"

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="bootstrap.php">
+	<testsuites>
+		<testsuite name="Controller common suite">
+			<directory>Controller/Common</directory>
+		</testsuite>
+		<testsuite name="Controller jobs suite">
+			<directory>Controller/Jobs</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>
