@@ -115,7 +115,7 @@ class Base
 			'product' => array(
 				2 => 'order.base.product.type',
 				3 => 'order.base.product.stocktype',
-				4 => 'order.base.product.suppliername',
+				4 => 'order.base.product.vendor',
 				5 => 'order.base.product.prodcode',
 				6 => 'order.base.product.productid',
 				7 => 'order.base.product.quantity',
