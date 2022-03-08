@@ -39,7 +39,7 @@ $orderDate = date_create( $this->orderItem->getTimeCreated() )->format( $this->t
 <?php endswitch ?>
 
 
-<?= $this->partial( 'order/email/summary-text', ['summaryBasket' => $this->summaryBasket] ) ?>
+<?= $this->partial( 'order/email/summary-text', ['orderItem' => $this->orderItem, 'summaryBasket' => $this->summaryBasket] ) ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'controller/jobs', 'If you have any questions, please reply to this e-mail' ) ) ) ?>

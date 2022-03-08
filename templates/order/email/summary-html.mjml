@@ -247,8 +247,9 @@
 								</ul>
 							<?php endif ?>
 						<?php endforeach ?>
-						<?php if( $this->orderItem->getStatusPayment() >= $this->config( 'client/html/common/summary/detail/download/payment-status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
-								&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) !== null ) : ?>
+						<?php if( $this->orderItem->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED
+								&& ( $product->getStatusPayment() < 0 || $product->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
+								&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) ) : ?>
 							<ul class="attr-list attr-list-hidden">
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
 									<span class="name"><?= $enc->html( $this->translate( 'controller/jobs', $attribute->getCode() ) ) ?></span>

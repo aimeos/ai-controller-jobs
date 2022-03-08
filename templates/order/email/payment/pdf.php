@@ -199,5 +199,5 @@ $barcode = new TCPDF2DBarcode( join( "\n", $data ), 'QRCODE,M' );
 	 * @since 2020.07
 	 */
 	$this->config( 'controller/jobs/order/email/payment/pdf-partial', 'order/email/summary-pdf' ),
-	['summaryBasket' => $this->summaryBasket]
+	['orderItem' => $this->orderItem, 'summaryBasket' => $this->summaryBasket]
 ) ?>

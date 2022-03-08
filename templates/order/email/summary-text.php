@@ -6,6 +6,7 @@
  */
 
 /** Available data
+ * - orderItem: Order Item
  * - summaryBasket : Order base item (basket) with addresses, services, products, etc.
  */
 
@@ -198,12 +199,12 @@ $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'controller/jobs
 
 <?php		endforeach ?>
 <?php	endforeach ?>
-<?php	foreach( $product->getAttributeItems( 'hidden' ) as $attribute ) : ?>
-<?php		if( $this->orderItem->getStatusPayment() >= $this->config( 'client/html/common/summary/detail/download/payment-status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ) && $attribute->getCode() === 'download' ) : ?>
+<?php	if( $this->orderItem->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED
+			&& ( $product->getStatusPayment() < 0 || $product->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
+			&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) ) : ?>
 - <?=			strip_tags( $attribute->getName() ) ?>: <?= $this->link( 'client/html/account/download/url', ['dl_id' => $attribute->getId()], ['absoluteUri' => true] ) ?>
 
-<?php		endif ?>
-<?php	endforeach ?>
+<?php	endif ?>
 <?=		strip_tags( $this->translate( 'controller/jobs', 'Quantity' ) ) ?>: <?= $product->getQuantity() ?>
 
 <?=		strip_tags( $this->translate( 'controller/jobs', 'Price' ) ) ?>: <?php printf( $pricefmt, $this->number( $priceItem->getValue() * $product->getQuantity(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
