@@ -74,7 +74,7 @@ class Standard
 			}
 
 			$manager->delete( $items->toArray() );
-			$product->inStock( $stock );
+			$product->setInStock( $stock );
 
 			$data = $this->object()->process( $product, $data );
 

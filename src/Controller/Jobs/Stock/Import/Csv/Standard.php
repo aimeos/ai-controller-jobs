@@ -379,7 +379,7 @@ class Standard
 					->setDateBack( $this->val( $entry, 3 ) );
 
 				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
-					$product->inStock( 1 );
+					$product->setInStock( 1 );
 				}
 
 				$this->addType( 'stock/type', 'product', $type );
