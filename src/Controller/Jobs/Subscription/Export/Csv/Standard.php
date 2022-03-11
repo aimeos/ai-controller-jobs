@@ -340,11 +340,11 @@ class Standard
 	/**
 	 * Initializes the search criteria
 	 *
-	 * @param \Aimeos\MW\Criteria\Iface $criteria New criteria object
+	 * @param \Aimeos\Base\Criteria\Iface $criteria New criteria object
 	 * @param array $msg Message data
-	 * @return \Aimeos\MW\Criteria\Iface Initialized criteria object
+	 * @return \Aimeos\Base\Criteria\Iface Initialized criteria object
 	 */
-	protected function initCriteria( \Aimeos\MW\Criteria\Iface $criteria, array $msg ) : \Aimeos\MW\Criteria\Iface
+	protected function initCriteria( \Aimeos\Base\Criteria\Iface $criteria, array $msg ) : \Aimeos\Base\Criteria\Iface
 	{
 		return $criteria->add( $criteria->parse( $msg['filter'] ?? [] ) )->order( $msg['sort'] ?? [] );
 	}
