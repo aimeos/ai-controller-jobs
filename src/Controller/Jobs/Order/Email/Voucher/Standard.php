@@ -305,12 +305,12 @@ class Standard
 	/**
 	 * Sends the voucher related e-mail for a single order
 	 *
-	 * @param \Aimeos\MW\View\Iface $view Populated view object
+	 * @param \Aimeos\Base\View\Iface $view Populated view object
 	 * @param \Aimeos\Map $orderProducts List of ordered voucher products
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\MW\View\Iface $view, \Aimeos\Map $orderProducts,
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\Map $orderProducts,
 		\Aimeos\MShop\Common\Item\Address\Iface $address, string $logoPath = null )
 	{
 		/** controller/jobs/order/email/voucher/template-html
@@ -411,9 +411,9 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
 	 * @param string|null $theme Theme name
-	 * @return \Aimeos\MW\View\Iface View object
+	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = $this->address( $base );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

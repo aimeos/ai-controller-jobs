@@ -109,24 +109,24 @@ class TestHelper
 
 	protected static function createView( \Aimeos\Base\Config\Iface $config )
 	{
-		$view = new \Aimeos\MW\View\Standard( self::getAimeos()->getTemplatePaths( 'controller/jobs/templates' ) );
+		$view = new \Aimeos\Base\View\Standard( self::getAimeos()->getTemplatePaths( 'controller/jobs/templates' ) );
 
 		$trans = new \Aimeos\Base\Translation\None( 'de_DE' );
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $trans );
+		$helper = new \Aimeos\Base\View\Helper\Translate\Standard( $view, $trans );
 		$view->addHelper( 'translate', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Url\Standard( $view, 'http://baseurl' );
+		$helper = new \Aimeos\Base\View\Helper\Url\Standard( $view, 'http://baseurl' );
 		$view->addHelper( 'url', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, '.', '' );
+		$helper = new \Aimeos\Base\View\Helper\Number\Standard( $view, '.', '' );
 		$view->addHelper( 'number', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Date\Standard( $view, 'Y-m-d' );
+		$helper = new \Aimeos\Base\View\Helper\Date\Standard( $view, 'Y-m-d' );
 		$view->addHelper( 'date', $helper );
 
 		$paths = ['version', 'controller/jobs', 'client/html', 'resource/fs/baseurl', 'resource/fs-media/baseurl'];
 		$config = new \Aimeos\Base\Config\Decorator\Protect( $config, $paths );
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
+		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 
 		return $view;

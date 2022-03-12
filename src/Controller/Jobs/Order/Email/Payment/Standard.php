@@ -230,10 +230,10 @@ class Standard
 	/**
 	 * Returns the generated PDF file for the order
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object with address and order item assigned
+	 * @param \Aimeos\Base\View\Iface $view View object with address and order item assigned
 	 * @return string|null PDF content or NULL for no PDF file
 	 */
-	protected function pdf( \Aimeos\MW\View\Iface $view ) : ?string
+	protected function pdf( \Aimeos\Base\View\Iface $view ) : ?string
 	{
 		$config = $this->context()->config();
 
@@ -277,10 +277,10 @@ class Standard
 	/**
 	 * Sends the payment related e-mail for a single order
 	 *
-	 * @param \Aimeos\MW\View\Iface $view Populated view object
+	 * @param \Aimeos\Base\View\Iface $view Populated view object
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\MW\View\Iface $view, string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, string $logoPath = null )
 	{
 		/** controller/jobs/order/email/payment/template-html
 		 * Relative path to the template for the HTML part of the payment emails.
@@ -389,9 +389,9 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
 	 * @param string|null $theme Theme name
-	 * @return \Aimeos\MW\View\Iface View object
+	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = $this->address( $base );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

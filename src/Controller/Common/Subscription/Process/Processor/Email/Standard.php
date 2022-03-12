@@ -80,11 +80,11 @@ class Standard
 	/**
 	 * Sends the subscription e-mail to the customer
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $address Address item
 	 * @param string|null $logoPath Path to the logo
 	 */
-	protected function send( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Order\Item\Base\Address\Iface $address, string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Base\Address\Iface $address, string $logoPath = null )
 	{
 		/** controller/jobs/order/email/subscription/template-html
 		 * Relative path to the template for the HTML part of the subscription emails.
@@ -134,9 +134,9 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
 	 * @param string|null $theme Theme name
-	 * @return \Aimeos\MW\View\Iface View object
+	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = current( $base->getAddress( 'payment' ) );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

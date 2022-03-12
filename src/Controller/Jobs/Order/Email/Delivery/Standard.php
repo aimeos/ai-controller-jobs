@@ -235,10 +235,10 @@ class Standard
 	/**
 	 * Sends the delivery related e-mail for a single order
 	 *
-	 * @param \Aimeos\MW\View\Iface $view Populated view object
+	 * @param \Aimeos\Base\View\Iface $view Populated view object
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\MW\View\Iface $view, string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, string $logoPath = null )
 	{
 		/** controller/jobs/order/email/delivery/template-html
 		 * Relative path to the template for the HTML part of the delivery emails.
@@ -345,9 +345,9 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
 	 * @param string|null $theme Theme name
-	 * @return \Aimeos\MW\View\Iface View object
+	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = $this->address( $base );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

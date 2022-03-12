@@ -233,7 +233,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$base->addAddress( $address->setLanguageId( 'de' )->setEmail( 'a@b.com' ), 'delivery' );
 
 		$result = $this->access( 'view' )->invokeArgs( $this->object, [$base] );
-		$this->assertInstanceof( \Aimeos\MW\View\Iface::class, $result );
+		$this->assertInstanceof( \Aimeos\Base\View\Iface::class, $result );
 	}
 
 

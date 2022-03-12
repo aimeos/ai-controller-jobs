@@ -97,11 +97,11 @@ class Standard
 	/**
 	 * Sends the account creation e-mail to the e-mail address of the customer
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
 	 * @param string|null $logoPath Path to the logo
 	 */
-	protected function send( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $address, string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $address, string $logoPath = null )
 	{
 		/** controller/jobs/customer/email/account/template-html
 		 * Relative path to the template for the HTML part of the account emails.
@@ -175,9 +175,9 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
 	 * @param string|null $theme Theme name
-	 * @return \Aimeos\MW\View\Iface View object
+	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Common\Item\Address\Iface $address, string $theme = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Common\Item\Address\Iface $address, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$view = $this->call( 'mailView', $address->getLanguageId() );
 		$view->intro = $this->call( 'mailIntro', $address );

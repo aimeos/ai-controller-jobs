@@ -103,16 +103,16 @@ trait Mail
 	 * Returns the view for generating the mail message content
 	 *
 	 * @param string|null $langId Language ID the content should be generated for
-	 * @return \Aimeos\MW\View\Iface View object
+	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function mailView( string $langId = null ) : \Aimeos\MW\View\Iface
+	protected function mailView( string $langId = null ) : \Aimeos\Base\View\Iface
 	{
 		$view = $this->context()->view();
 
-		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $langId );
+		$helper = new \Aimeos\Base\View\Helper\Number\Locale( $view, $langId );
 		$view->addHelper( 'number', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $this->context()->i18n( $langId ?: 'en' ) );
+		$helper = new \Aimeos\Base\View\Helper\Translate\Standard( $view, $this->context()->i18n( $langId ?: 'en' ) );
 		$view->addHelper( 'translate', $helper );
 
 		return $view;

@@ -174,7 +174,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->access( 'view' )->invokeArgs( $this->object, [$baseItem->addAddress( $addrItem, 'delivery' )] );
 
-		$this->assertInstanceof( \Aimeos\MW\View\Iface::class, $result );
+		$this->assertInstanceof( \Aimeos\Base\View\Iface::class, $result );
 	}
 
 
