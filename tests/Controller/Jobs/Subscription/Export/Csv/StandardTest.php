@@ -45,22 +45,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$mqmStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
+		$mqmStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context->config()] )
 			->setMethods( ['get'] )
 			->getMock();
 
-		$mqStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Standard' )
+		$mqStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Standard' )
 			->disableOriginalConstructor()
 			->setMethods( ['getQueue'] )
 			->getMock();
 
-		$queueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Queue\\Standard' )
+		$queueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' )
 			->disableOriginalConstructor()
 			->setMethods( ['del', 'get'] )
 			->getMock();
 
-		$msgStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Message\\Standard' )
+		$msgStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Message\\Standard' )
 			->disableOriginalConstructor()
 			->setMethods( ['getBody'] )
 			->getMock();
@@ -116,22 +116,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunCollapsedLines()
 	{
-		$mqmStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
+		$mqmStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context->config()] )
 			->setMethods( ['get'] )
 			->getMock();
 
-		$mqStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Standard' )
+		$mqStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Standard' )
 			->disableOriginalConstructor()
 			->setMethods( ['getQueue'] )
 			->getMock();
 
-		$queueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Queue\\Standard' )
+		$queueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' )
 			->disableOriginalConstructor()
 			->setMethods( ['del', 'get'] )
 			->getMock();
 
-		$msgStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Message\\Standard' )
+		$msgStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Message\\Standard' )
 			->disableOriginalConstructor()
 			->setMethods( ['getBody'] )
 			->getMock();

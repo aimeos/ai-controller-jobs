@@ -63,17 +63,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setMail( $mailStub );
 
 
-		$queueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Queue\\Standard' )
+		$queueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
-			->will( $this->onConsecutiveCalls( new \Aimeos\MW\MQueue\Message\Standard( array( 'message' => '{"customer.languageid": "de"}' ) ), null ) );
+			->will( $this->onConsecutiveCalls( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => '{"customer.languageid": "de"}' ) ), null ) );
 
 		$queueStub->expects( $this->once() )->method( 'del' );
 
 
-		$mqueueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Standard' )
+		$mqueueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Standard' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( $queueStub ) );
 
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
+		$managerStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -98,17 +98,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
-		$queueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Queue\\Standard' )
+		$queueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
-			->will( $this->onConsecutiveCalls( new \Aimeos\MW\MQueue\Message\Standard( array( 'message' => 'error' ) ), null ) );
+			->will( $this->onConsecutiveCalls( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => 'error' ) ), null ) );
 
 		$queueStub->expects( $this->once() )->method( 'del' );
 
 
-		$mqueueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Standard' )
+		$mqueueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Standard' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -116,7 +116,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( $queueStub ) );
 
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
+		$managerStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
 			->disableOriginalConstructor()
 			->getMock();
 
