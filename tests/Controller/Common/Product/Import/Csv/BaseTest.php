@@ -93,7 +93,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 class TestAbstract
 	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 {
-	public function context() : \Aimeos\MShop\Context\Item\Iface
+	public function context() : \Aimeos\MShop\ContextIface
 	{
 		return \TestHelper::context();
 	}

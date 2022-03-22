@@ -65,7 +65,7 @@ class Standard
 
 		$start = 0;
 
-		$fcn = function( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Map $items ) {
+		$fcn = function( \Aimeos\MShop\ContextIface $context, \Aimeos\Map $items ) {
 			$this->rescale( $context, $items );
 		};
 
@@ -92,10 +92,10 @@ class Standard
 	/**
 	 * Recreates the preview images for the given media items
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param \Aimeos\Map $items List of media items implementing \Aimeos\MShop\Media\Item\Iface
 	 */
-	protected function rescale( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Map $items )
+	protected function rescale( \Aimeos\MShop\ContextIface $context, \Aimeos\Map $items )
 	{
 		$logger = $context->logger();
 		$manager = \Aimeos\MShop::create( $context, 'media' );

@@ -28,13 +28,13 @@ class Jobs
 	 * a specific implementation, you need to use the factory class of the
 	 * controller to hand over specifc implementation names.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object required by controllers
+	 * @param \Aimeos\MShop\ContextIface $context Context object required by controllers
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 * @param string $path Name of the domain
 	 * @return \Aimeos\Controller\Jobs\Iface Controller class instance
 	 * @throws \Aimeos\Controller\Jobs\Exception If the given path is invalid or the controllers wasn't found
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, string $path ) : \Aimeos\Controller\Jobs\Iface
+	public static function create( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos, string $path ) : \Aimeos\Controller\Jobs\Iface
 	{
 		if( empty( $path ) ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Controller path is empty' ) );
@@ -68,12 +68,12 @@ class Jobs
 	/**
 	 * Returns all available controller instances.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object required by controllers
+	 * @param \Aimeos\MShop\ContextIface $context Context object required by controllers
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 * @param array $cntlPaths Associative list of the base path as key and all relative job controller paths (core and extensions)
 	 * @return \Aimeos\Controller\Jobs\Iface[] Associative list of controller names as values and class instance as values
 	 */
-	public static function get( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, array $cntlPaths ) : array
+	public static function get( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos, array $cntlPaths ) : array
 	{
 		$cntlList = [];
 		$ds = DIRECTORY_SEPARATOR;
@@ -104,13 +104,13 @@ class Jobs
 	 * Instantiates all found factories and stores the controller instances in the class variable.
 	 *
 	 * @param \DirectoryIterator $dir Iterator over the (sub-)directory which might contain a factory
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object required by controllers
+	 * @param \Aimeos\MShop\ContextIface $context Context object required by controllers
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 * @param string $prefix Part of the class name between "\Aimeos\Controller\Jobs" and "Factory"
 	 * @return \Aimeos\Controller\Jobs\Iface[] Associative list if prefixes as values and job controller instances as values
 	 * @throws \Aimeos\Controller\Jobs\Exception If factory name is invalid or if the controller couldn't be instantiated
 	 */
-	protected static function createControllers( \DirectoryIterator $dir, \Aimeos\MShop\Context\Item\Iface $context,
+	protected static function createControllers( \DirectoryIterator $dir, \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Bootstrap $aimeos, string $prefix = '' ) : array
 	{
 		$list = [];

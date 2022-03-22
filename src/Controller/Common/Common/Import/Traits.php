@@ -22,7 +22,7 @@ trait Traits
 	private $typeMap = [];
 
 
-	abstract protected function context() : \Aimeos\MShop\Context\Item\Iface;
+	abstract protected function context() : \Aimeos\MShop\ContextIface;
 
 
 	/**

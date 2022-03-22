@@ -39,11 +39,11 @@ class Standard
 	/**
 	 * Initializes the object
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param array $mapping Associative list of field position in CSV as key and domain item key as value
 	 * @param \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $object Decorated processor
 	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $mapping,
+	public function __construct( \Aimeos\MShop\ContextIface $context, array $mapping,
 			\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $object = null )
 	{
 		parent::__construct( $context, $mapping, $object );

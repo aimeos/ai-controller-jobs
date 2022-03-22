@@ -28,11 +28,11 @@ abstract class Base
 	 * Initializes a new controller decorator object.
 	 *
 	 * @param \Aimeos\Controller\Jobs\Iface $controller Controller object
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object with required objects
+	 * @param \Aimeos\MShop\ContextIface $context Context object with required objects
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 */
 	public function __construct( \Aimeos\Controller\Jobs\Iface $controller,
-		\Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos )
+		\Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos )
 	{
 		parent::__construct( $context, $aimeos );
 

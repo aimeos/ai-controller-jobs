@@ -22,10 +22,10 @@ interface Iface
 	/**
 	 * Initializes the object
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param array $mapping Associative list of field position in CSV as key and domain item key as value
 	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $mapping );
+	public function __construct( \Aimeos\MShop\ContextIface $context, array $mapping );
 
 
 	/**

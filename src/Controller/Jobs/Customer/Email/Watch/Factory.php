@@ -25,12 +25,12 @@ class Factory
 	/**
 	 * Creates a new controller specified by the given name.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object required by controllers
+	 * @param \Aimeos\MShop\ContextIface $context Context object required by controllers
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 * @param string|null $name Name of the controller or "Standard" if null
 	 * @return \Aimeos\Controller\Jobs\Iface New controller object
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos, string $name = null ) : \Aimeos\Controller\Jobs\Iface
+	public static function create( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos, string $name = null ) : \Aimeos\Controller\Jobs\Iface
 	{
 		/** controller/jobs/customer/email/watch/name
 		 * Class name of the used product notification e-mail scheduler controller implementation

@@ -136,10 +136,10 @@ class Standard
 	/**
 	 * Creates a new job entry for the exported file
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
+	 * @param \Aimeos\MShop\ContextIface $context Context item
 	 * @param string $path Absolute path to the exported file
 	 */
-	protected function addJob( \Aimeos\MShop\Context\Item\Iface $context, string $path )
+	protected function addJob( \Aimeos\MShop\ContextIface $context, string $path )
 	{
 		$manager = \Aimeos\MAdmin::create( $context, 'job' );
 		$item = $manager->create()->setPath( $path )->setLabel( $path );
@@ -323,9 +323,9 @@ class Standard
 	 * Returns a new context including the locale from the message data
 	 *
 	 * @param array $msg Message data including a "sitecode" value
-	 * @return \Aimeos\MShop\Context\Item\Iface New context item with updated locale
+	 * @return \Aimeos\MShop\ContextIface New context item with updated locale
 	 */
-	protected function getLocaleContext( array $msg ) : \Aimeos\MShop\Context\Item\Iface
+	protected function getLocaleContext( array $msg ) : \Aimeos\MShop\ContextIface
 	{
 		$lcontext = clone $this->context();
 		$manager = \Aimeos\MShop::create( $lcontext, 'locale' );
@@ -353,11 +353,11 @@ class Standard
 	/**
 	 * Moves the exported file to the final storage
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
+	 * @param \Aimeos\MShop\ContextIface $context Context item
 	 * @param string $path Absolute path to the exported file
 	 * @return string Relative path of the file in the storage
 	 */
-	protected function moveFile( \Aimeos\MShop\Context\Item\Iface $context, string $path ) : string
+	protected function moveFile( \Aimeos\MShop\ContextIface $context, string $path ) : string
 	{
 		$filename = basename( $path );
 		$context->fs( 'fs-admin' )->writef( $filename, $path );

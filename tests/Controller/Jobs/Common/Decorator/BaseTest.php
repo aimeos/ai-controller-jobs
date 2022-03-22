@@ -34,7 +34,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetContext()
 	{
-		$this->assertInstanceOf( \Aimeos\MShop\Context\Item\Iface::class, $this->object->getContextPublic() );
+		$this->assertInstanceOf( \Aimeos\MShop\ContextIface::class, $this->object->getContextPublic() );
 	}
 
 

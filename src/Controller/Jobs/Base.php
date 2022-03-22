@@ -31,10 +31,10 @@ abstract class Base
 	/**
 	 * Initializes the object.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context MShop context object
+	 * @param \Aimeos\MShop\ContextIface $context MShop context object
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap main object
 	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Bootstrap $aimeos )
+	public function __construct( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos )
 	{
 		$this->context = $context;
 		$this->aimeos = $aimeos;
@@ -57,9 +57,9 @@ abstract class Base
 	/**
 	 * Returns the context object.
 	 *
-	 * @return \Aimeos\MShop\Context\Item\Iface Context object
+	 * @return \Aimeos\MShop\ContextIface Context object
 	 */
-	protected function context() : \Aimeos\MShop\Context\Item\Iface
+	protected function context() : \Aimeos\MShop\ContextIface
 	{
 		return $this->context;
 	}

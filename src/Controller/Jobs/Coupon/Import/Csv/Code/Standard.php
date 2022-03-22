@@ -50,7 +50,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$fcn = function( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MW\Container\Iface $container, $couponId, $path ) {
+		$fcn = function( \Aimeos\MShop\ContextIface $context, \Aimeos\MW\Container\Iface $container, $couponId, $path ) {
 			$this->process( $context, $container, $couponId, $path );
 		};
 
@@ -229,12 +229,12 @@ class Standard
 	/**
 	 * Imports content from the given container
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param \Aimeos\MW\Container\Iface $container File container object
 	 * @param string $couponId Unique coupon ID the codes should be imported for
 	 * @param string $path Path to the container file
 	 */
-	protected function process( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MW\Container\Iface $container, string $couponId, string $path )
+	protected function process( \Aimeos\MShop\ContextIface $context, \Aimeos\MW\Container\Iface $container, string $couponId, string $path )
 	{
 		$total = $errors = 0;
 		$config = $context->config();

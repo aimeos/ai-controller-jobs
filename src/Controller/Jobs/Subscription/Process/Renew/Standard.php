@@ -161,12 +161,12 @@ class Standard
 	/**
 	 * Adds the given addresses to the basket
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the addresses to
 	 * @param \Aimeos\Map $addresses List of type as key and address object implementing \Aimeos\MShop\Order\Item\Base\Address\Iface as value
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with addresses added
 	 */
-	protected function addBasketAddresses( \Aimeos\MShop\Context\Item\Iface $context,
+	protected function addBasketAddresses( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, \Aimeos\Map $addresses ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		foreach( $addresses as $type => $orderAddresses )
@@ -203,12 +203,12 @@ class Standard
 	/**
 	 * Adds the given coupon codes to basket if enabled
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Order including product and addresses
 	 * @param \Aimeos\Map $codes List of coupon codes that should be added to the given basket
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Basket, maybe with coupons added
 	 */
-	protected function addBasketCoupons( \Aimeos\MShop\Context\Item\Iface $context,
+	protected function addBasketCoupons( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\Map $codes ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		/** controller/jobs/subscription/process/renew/use-coupons
@@ -243,13 +243,13 @@ class Standard
 	/**
 	 * Adds the given products to the basket
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the products to
 	 * @param \Aimeos\Map $orderProducts List of product items Implementing \Aimeos\MShop\Order\Item\Base\Product\Iface
 	 * @param string $orderProductId Unique ID of the ordered subscription product
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with products added
 	 */
-	protected function addBasketProducts( \Aimeos\MShop\Context\Item\Iface $context,
+	protected function addBasketProducts( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, \Aimeos\Map $orderProducts, $orderProductId ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		foreach( $orderProducts as $orderProduct )
@@ -270,12 +270,12 @@ class Standard
 	/**
 	 * Adds a matching delivery and payment service to the basket
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object to add the services to
 	 * @param \Aimeos\Map $services Associative list of type as key and list of service objects implementing \Aimeos\MShop\Order\Item\Base\Service\Iface as values
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Order with delivery and payment service added
 	 */
-	protected function addBasketServices( \Aimeos\MShop\Context\Item\Iface $context,
+	protected function addBasketServices( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\MShop\Order\Item\Base\Iface $newBasket, \Aimeos\Map $services ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT;
@@ -322,10 +322,10 @@ class Standard
 	 * Creates a new context based on the order and the customer the subscription belongs to
 	 *
 	 * @param string $baseId Unique order base ID
-	 * @return \Aimeos\MShop\Context\Item\Iface New context object
+	 * @return \Aimeos\MShop\ContextIface New context object
 	 * @todo 2021.01 Pass site and locale as parameters instead of $baseId
 	 */
-	protected function createContext( string $baseId ) : \Aimeos\MShop\Context\Item\Iface
+	protected function createContext( string $baseId ) : \Aimeos\MShop\ContextIface
 	{
 		$context = clone $this->context();
 
@@ -358,11 +358,11 @@ class Standard
 	/**
 	 * Creates and stores a new invoice for the given order basket
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Complete order with product, addresses and services saved to the storage
 	 * @return \Aimeos\MShop\Order\Item\Iface New invoice item including the order base item
 	 */
-	protected function createOrder( \Aimeos\MShop\Context\Item\Iface $context,
+	protected function createOrder( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\MShop\Subscription\Item\Iface $subscription ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
@@ -375,11 +375,11 @@ class Standard
 	/**
 	 * Creates and stores a new order for the subscribed product
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item with order base ID and order product ID
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface Complete order with product, addresses and services saved to the storage
 	 */
-	protected function createOrderBase( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription ) : \Aimeos\MShop\Order\Item\Base\Iface
+	protected function createOrderBase( \Aimeos\MShop\ContextIface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription ) : \Aimeos\MShop\Order\Item\Base\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 
@@ -398,12 +398,12 @@ class Standard
 	/**
 	 * Creates and stores a new invoice for the given order basket
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Complete order with product, addresses and services saved to the storage
 	 * @return \Aimeos\MShop\Order\Item\Iface New invoice item associated to the order saved to the storage
 	 * @deprecated Use createOrder() instead
 	 */
-	protected function createOrderInvoice( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Order\Item\Iface
+	protected function createOrderInvoice( \Aimeos\MShop\ContextIface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 		$item = $manager->create()->setBaseItem( $basket )->setBaseId( $basket->getId() )->setChannel( 'subscription' );
@@ -415,12 +415,12 @@ class Standard
 	/**
 	 * Creates a new payment for the given order and invoice
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context object
+	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Complete order with product, addresses and services
 	 * @param \Aimeos\MShop\Order\Item\Iface New invoice item associated to the order
 	 * @deprecated 2021.01 $basket will be removed, use $invoice->getBaseItem() instead
 	 */
-	protected function createPayment( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket,
+	protected function createPayment( \Aimeos\MShop\ContextIface $context, \Aimeos\MShop\Order\Item\Base\Iface $basket,
 		\Aimeos\MShop\Order\Item\Iface $invoice )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'service' );

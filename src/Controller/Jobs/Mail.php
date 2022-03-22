@@ -22,9 +22,9 @@ trait Mail
 	/**
 	 * Returns the context object
 	 *
-	 * @return \Aimeos\MShop\Context\Item\Iface Context object
+	 * @return \Aimeos\MShop\ContextIface Context object
 	 */
-	abstract protected function context() : \Aimeos\MShop\Context\Item\Iface;
+	abstract protected function context() : \Aimeos\MShop\ContextIface;
 
 
 	/**
