@@ -109,7 +109,7 @@ class Standard
 
 					$expr = array(
 						$orderSearch->compare( '>=', 'order.datepayment', $date ),
-						$orderSearch->compare( '==', 'order.statusdelivery', null ),
+						$orderSearch->compare( '==', 'order.statusdelivery', \Aimeos\MShop\Order\Item\Base::STAT_UNFINISHED ),
 						$orderSearch->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING ),
 						$orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
 						$orderSearch->compare( '==', 'order.base.service.type', 'delivery' ),
