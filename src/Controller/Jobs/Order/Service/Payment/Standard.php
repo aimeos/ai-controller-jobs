@@ -71,6 +71,27 @@ class Standard
 		$days = $config->get( 'controller/jobs/order/service/payment/limit-days', 90 );
 		$date = date( 'Y-m-d 00:00:00', time() - 86400 * $days );
 
+		/** controller/jobs/order/service/payment/domains
+		 * Associated items that should be available too in the order
+		 *
+		 * Orders consist of address, coupons, products and services. They can be
+		 * fetched together with the order items and passed to the payment service
+		 * providers. Available domains for those items are:
+		 *
+		 * - order/base
+		 * - order/base/address
+		 * - order/base/coupon
+		 * - order/base/product
+		 * - order/base/service
+		 *
+		 * @param array Referenced domain names
+		 * @since 2022.04
+		 * @see controller/jobs/order/email/payment/limit-days
+		 * @see controller/jobs/order/service/payment/capture-days
+		 */
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = $context->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
+
 		/** controller/jobs/order/service/payment/capture-days
 		 * Automatically capture payments after the configured amount of days
 		 *
@@ -136,7 +157,7 @@ class Standard
 
 					do
 					{
-						$orderItems = $orderManager->search( $orderSearch );
+						$orderItems = $orderManager->search( $orderSearch, $domains );
 
 						foreach( $orderItems as $orderItem )
 						{

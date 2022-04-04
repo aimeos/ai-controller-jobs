@@ -63,14 +63,32 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
-		 * @see controller/jobs/order/email/payment/limit-days
-		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/order/service/delivery/batch-max
+		 * @see controller/jobs/order/service/delivery/domains
 		 */
 		$days = $context->config()->get( 'controller/jobs/order/service/delivery/limit-days', 90 );
 		$date = date( 'Y-m-d 00:00:00', time() - 86400 * $days );
+
+		/** controller/jobs/order/service/delivery/domains
+		 * Associated items that should be available too in the order
+		 *
+		 * Orders consist of address, coupons, products and services. They can be
+		 * fetched together with the order items and passed to the delivery service
+		 * providers. Available domains for those items are:
+		 *
+		 * - order/base
+		 * - order/base/address
+		 * - order/base/coupon
+		 * - order/base/product
+		 * - order/base/service
+		 *
+		 * @param array Referenced domain names
+		 * @since 2022.04
+		 * @see controller/jobs/order/email/delivery/limit-days
+		 * @see controller/jobs/order/service/delivery/batch-max
+		 */
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = $context->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
 
 		/** controller/jobs/order/service/delivery/batch-max
 		 * Maximum number of orders processed at once by the delivery service provider
@@ -82,7 +100,7 @@ class Standard
 		 *
 		 * @param integer Number of orders
 		 * @since 2018.07
-		 * @category Developer
+		 * @see controller/jobs/order/service/delivery/domains
 		 * @see controller/jobs/order/service/delivery/limit-days
 		 */
 		$maxItems = $context->config()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
@@ -121,7 +139,7 @@ class Standard
 					do
 					{
 						$orderSearch->slice( $orderStart, $maxItems );
-						$orderItems = $orderManager->search( $orderSearch )->toArray();
+						$orderItems = $orderManager->search( $orderSearch, $domains )->toArray();
 
 						if( !empty( $orderItems ) )
 						{

@@ -49,6 +49,26 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
+
+		/** controller/jobs/order/service/transfer/domains
+		 * Associated items that should be available too in the order
+		 *
+		 * Orders consist of address, coupons, products and services. They can be
+		 * fetched together with the order items and passed to the payment service
+		 * providers. Available domains for those items are:
+		 *
+		 * - order/base
+		 * - order/base/address
+		 * - order/base/coupon
+		 * - order/base/product
+		 * - order/base/service
+		 *
+		 * @param array Referenced domain names
+		 * @since 2022.04
+		 */
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = $context->config()->get( 'controller/jobs/order/service/transfer/domains', $domains );
+
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 		$serviceSearch = $serviceManager->filter()->add( ['service.type' => 'payment'] );
 
@@ -80,7 +100,7 @@ class Standard
 
 					do
 					{
-						$orderItems = $orderManager->search( $orderSearch );
+						$orderItems = $orderManager->search( $orderSearch, $domains );
 
 						foreach( $orderItems as $orderItem )
 						{
