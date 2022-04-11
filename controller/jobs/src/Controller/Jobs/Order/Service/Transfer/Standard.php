@@ -53,6 +53,38 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
+		/** controller/jobs/order/service/transfer/domains
+		 * Associated items that should be available too in the order
+		 *
+		 * Orders consist of address, coupons, products and services. They can be
+		 * fetched together with the order items and passed to the payment service
+		 * providers. Available domains for those items are:
+		 *
+		 * - order/base
+		 * - order/base/address
+		 * - order/base/coupon
+		 * - order/base/product
+		 * - order/base/service
+		 *
+		 * @param array Referenced domain names
+		 * @since 2021.10
+		 */
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = $config->get( 'controller/jobs/order/service/transfer/domains', $domains );
+
+		/** controller/jobs/order/service/transfer/transfer-days
+		 * Automatically transfers payments after the configured amount of days
+		 *
+		 * You can start transferring payments after the configured amount of days.
+		 * Before, the money is hold back and not available to vendors.
+		 *
+		 * @param integer Number of days
+		 * @since 2010.10
+		 * @category User
+		 * @category Developer
+		 */
+		$days = $config->get( 'controller/jobs/order/service/transfer/transfer-days', 0 );
+
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
 		$serviceSearch = $serviceManager->filter()->add( ['service.type' => 'payment'] );
 
@@ -75,6 +107,7 @@ class Standard
 					}
 
 					$orderSearch->setConditions( $orderSearch->and( [
+						$orderSearch->compare( '<=', 'order.ctime', date( 'Y-m-d 00:00:00', time() - 86400 * $days ) ),
 						$orderSearch->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
 						$orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
 						$orderSearch->compare( '==', 'order.base.service.type', 'payment' )
