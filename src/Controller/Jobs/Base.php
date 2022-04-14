@@ -140,7 +140,7 @@ abstract class Base
 		$message = $this->context->mail()->create();
 
 		foreach( (array) $to as $addr ) {
-			$message->to( $addr, $name );
+			$message->to( $addr );
 		}
 
 		/** controller/jobs/from-email

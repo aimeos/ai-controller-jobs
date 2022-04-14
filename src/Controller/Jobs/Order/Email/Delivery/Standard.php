@@ -211,6 +211,9 @@ class Standard
 				$basket = $item->getBaseItem();
 				$list = $sites->get( $basket->getSiteId(), map() );
 
+				$addr = $this->address( $basket );
+				$context->locale()->setLanguageId( $addr->getLanguageId() );
+
 				$view = $this->view( $basket, $list->getTheme()->filter()->last() );
 				$view->summaryBasket = $basket;
 				$view->orderItem = $item;
@@ -218,8 +221,7 @@ class Standard
 				$this->send( $view, $list->getLogo()->filter()->last() );
 				$this->status( $id, $status );
 
-				$email = $this->address( $basket )->getEmail();
-				$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $email );
+				$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
 				$context->logger()->info( $str, 'email/order/delivery' );
 			}
 			catch( \Exception $e )

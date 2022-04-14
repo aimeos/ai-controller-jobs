@@ -229,10 +229,13 @@ class Standard
 				$base = $item->getBaseItem();
 				$orderProdManager->save( $this->createCoupons( $this->products( $base ) ) );
 
+				$addr = $this->address( $base );
+				$context->locale()->setLanguageId( $addr->getLanguageId() );
+
 				$list = $sites->get( $base->getSiteId(), map() );
 				$view = $this->view( $base, $list->getTheme()->filter()->last() );
 
-				$this->send( $view, $this->products( $base ), $this->address( $base ), $list->getLogo()->filter()->last() );
+				$this->send( $view, $this->products( $base ), $addr, $list->getLogo()->filter()->last() );
 				$this->status( $id );
 
 				$orderProdManager->commit();
