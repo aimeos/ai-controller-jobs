@@ -74,13 +74,16 @@ class Standard
 				$item = $custManager->create()->fromArray( $list, true );
 				$sites = $this->sites( $item->getSiteId() );
 
-				$view = $this->view( $item->getPaymentAddress(), $sites->getTheme()->filter()->last() );
+				$address = $item->getPaymentAddress();
+				$context->locale()->setLanguageId( $address->getLanguageId() ); // for translation
+
+				$view = $this->view( $address, $sites->getTheme()->filter()->last() );
 				$view->account = $item->getCode();
 				$view->password = $password;
 
-				$this->send( $view, $item->getPaymentAddress(), $sites->getLogo()->filter()->last() );
+				$this->send( $view, $address, $sites->getLogo()->filter()->last() );
 
-				$str = sprintf( 'Sent customer account e-mail to "%1$s"', $item->getPaymentAddress()->getEmail() );
+				$str = sprintf( 'Sent customer account e-mail to "%1$s"', $address->getEmail() );
 				$context->logger()->debug( $str, 'email/customer/account' );
 			}
 			catch( \Exception $e )

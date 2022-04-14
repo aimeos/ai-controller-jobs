@@ -99,6 +99,7 @@ class Standard
 				if( !empty( $products ) )
 				{
 					$sites = $this->sites( $customer->getSiteId() );
+					$context->locale()->setLanguageId( $customer->getPaymentAddress()->getLanguageId() );
 
 					$view = $this->view( $customer->getPaymentAddress(), $sites->getTheme()->filter()->last() );
 					$view->products = $products;

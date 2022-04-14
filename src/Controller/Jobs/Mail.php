@@ -54,16 +54,18 @@ trait Mail
 		{
 			case \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_UNKNOWN:
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
-				return $this->context()->translate( 'client', 'Dear %1$s %2$s' );
+				$msg = $this->context()->translate( 'client', 'Dear %1$s %2$s' ); break;
 			case \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR:
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
-				return $this->context()->translate( 'client', 'Dear Mr %1$s %2$s' );
+				$msg = $this->context()->translate( 'client', 'Dear Mr %1$s %2$s' ); break;
 			case \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MS:
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
-				return $this->context()->translate( 'client', 'Dear Ms %1$s %2$s' );
+				$msg = $this->context()->translate( 'client', 'Dear Ms %1$s %2$s' ); break;
+			default:
+				$msg = $this->context()->translate( 'client', 'Dear customer' );
 		}
 
-		return $this->context()->translate( 'client', 'Dear customer' );
+		return sprintf( $msg, $addr->getFirstName(), $addr->getLastName() );
 	}
 
 

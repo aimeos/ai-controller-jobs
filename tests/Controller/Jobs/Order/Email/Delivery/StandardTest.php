@@ -119,10 +119,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['view'] )
+			->setMethods( ['address'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'view' )->will( $this->throwException( new \RuntimeException() ) );
+		$object->expects( $this->once() )->method( 'address' )->will( $this->throwException( new \RuntimeException() ) );
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create()->setBaseId( '-1' )
 			->setBaseItem( \Aimeos\MShop::create( $this->context, 'order/base' )->create() );
