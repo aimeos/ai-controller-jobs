@@ -377,8 +377,8 @@ class Standard
 				$item = $map[$product->getId()][$type] ?? $manager->create();
 
 				$items[] = $item->setProductId( $product->getId() )->setType( $type )
-					->setStocklevel( $this->val( $entry, 1 ) )
-					->setDateBack( $this->val( $entry, 3 ) );
+					->setStocklevel( $this->getValue( $entry, 1 ) )
+					->setDateBack( $this->getValue( $entry, 3 ) );
 
 				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
 					$product->setInStock( 1 );
