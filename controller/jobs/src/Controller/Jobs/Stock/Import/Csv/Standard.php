@@ -359,8 +359,10 @@ class Standard
 			}
 
 			$filter = $prodManager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
-			$prodMap = $prodManager->search( $filter )->col( 'product.id', 'product.code' )->toArray();
-			$map = $this->getStockItems( $prodMap, array_keys( $types ) );
+			$products = $prodManager->search( $filter );
+			$prodMap = $products->col( null, 'product.code' );
+
+			$map = $this->getStockItems( $products->keys()->all(), array_keys( $types ) );
 			$items = [];
 
 			foreach( $data as $entry )
@@ -368,20 +370,25 @@ class Standard
 				$code = $entry[0];
 				$type = $entry[2];
 
-				if( ( $prodid = $prodMap[$code] ?? null ) && isset( $map[$prodid][$type] ) ) {
-					$item = $map[$prodid][$type];
-				} else {
-					$item = $manager->create();
+				if( ( $product = $prodMap->get( $code ) ) === null ) {
+					continue;
 				}
 
-				$items[] = $item->setProductId( $prodMap[$code] ?? null )->setType( $type )
-					->setStocklevel( $this->getValue( $entry, 1 ) )
-					->setDateBack( $this->getValue( $entry, 3 ) );
+				$item = $map[$product->getId()][$type] ?? $manager->create();
+
+				$items[] = $item->setProductId( $product->getId() )->setType( $type )
+					->setStocklevel( $this->val( $entry, 1 ) )
+					->setDateBack( $this->val( $entry, 3 ) );
+
+				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
+					$product->setInStock( 1 );
+				}
 
 				$this->addType( 'stock/type', 'product', $type );
 				unset( $map[$code][$type] );
 			}
 
+			$prodManager->save( $products );
 			$manager->save( $items );
 			unset( $items );
 
