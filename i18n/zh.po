@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Bruce Liu <zcon.bruce@gmail.com>, 2016
+# Hans He, 2022
 # stevechen <steve.stevechen@gmail.com>, 2018
 # stevechen <steve.stevechen@gmail.com>, 2018
 msgid ""
@@ -12,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-04 18:23+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: stevechen <steve.stevechen@gmail.com>, 2018\n"
+"Last-Translator: Hans He, 2022\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,10 +80,10 @@ msgid "Account"
 msgstr "帳戶"
 
 msgid "All XML import"
-msgstr ""
+msgstr "全部 XML 导入"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "所有订单均受我们的条款和条件约束。"
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2022
@@ -93,7 +94,7 @@ msgid "Article no."
 msgstr "產品號."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "属性导入 XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
@@ -116,13 +117,13 @@ msgid "Catalog import CSV"
 msgstr "型錄匯入CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "目录导入 XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "站点目录地图"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "优惠码导入 CSV"
 
 msgid "Coupon codes"
 msgstr "優惠券代碼"
@@ -131,7 +132,7 @@ msgid "Coupons"
 msgstr "優惠券"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "为搜索引擎创建站点目录地图"
 
 msgid "Creates a product site map for search engines"
 msgstr "創建供搜尋引擎使用的商品網站地圖"
@@ -143,10 +144,10 @@ msgid "Customer account e-mails"
 msgstr "顧客帳號e-mails"
 
 msgid "Customer group import XML"
-msgstr ""
+msgstr "客户分组导入 XML"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "客户导入 XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
@@ -161,10 +162,10 @@ msgstr "親愛的先生 %1$s %2$s"
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "亲爱的 %1$s %2$s 女士\n "
 
 msgid "Dear customer"
-msgstr ""
+msgstr "亲爱的客户"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
@@ -184,7 +185,7 @@ msgid "Details"
 msgstr "明細"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "执行全部 XML 导入并重建索引"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
 msgstr "執行使用批次更新的支付或配送服務提供者"
@@ -202,37 +203,37 @@ msgid "If you have any questions, please reply to this e-mail"
 msgstr "如果您有任何疑問，請回覆此郵件。"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "从 XML 文件导入新属性并更新已存在的属性"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "从 CSV 文件导入新分类并更新已存在的分类"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "从 XML 文件导入新分类并更新已存在的分类"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "从 CSV 文件导入新优惠码并更新已存在的优惠码"
 
 msgid "Imports new and updates existing customer groups from XML files"
-msgstr ""
+msgstr "从 XML 文件导入新客户组并更新已存在的客户组"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "从 XML 文件导入新客户并更新已存在的客户"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "從CSV匯入新的商品並更新既有商品"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "从 XML 文件导入新产品并更新已存在的产品"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "从 CSV 文件导入新库存并更新已存在的库存"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "从 CSV 文件导入新供应商并更新已存在的供应商"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "从 XML 文件导入新供应商并更新已存在的供应商"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
@@ -268,7 +269,7 @@ msgid "One or more products you are watching have been updated."
 msgstr "一個或多個您關注中的商品已被更新。"
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "优化索引加速产品搜索"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -295,7 +296,7 @@ msgid "Order payment related e-mails"
 msgstr "訂單支付相關的e-mail"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "订单状态导入 CSV"
 
 msgid "Password"
 msgstr "密碼"
@@ -307,7 +308,7 @@ msgid "Process order delivery services"
 msgstr "處理訂單配送服務"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "处理订阅初始化"
 
 msgid "Product export"
 msgstr "商品匯出"
@@ -316,7 +317,7 @@ msgid "Product import CSV"
 msgstr "商品匯入CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "产品导入 XML"
 
 msgid "Product notification e-mails"
 msgstr "商品通知e-mail"
@@ -353,13 +354,13 @@ msgid "Removes unpaid orders"
 msgstr "移除未付款的訂單"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "在下个日期续订"
 
 msgid "Rescale product images"
 msgstr "重新縮放產品圖像"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "将产品图像重新缩放为新尺寸"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "發送新顧客帳號的e-mails"
@@ -377,31 +378,31 @@ msgid "Sends paid orders to the ERP system or logistic partner"
 msgstr "發送已支付的訂單到ERP系統或是物流合作夥伴"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "向客户发送代金券邮件"
 
 msgid "Status"
 msgstr "狀態"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "从 CSV 文件导入订单状态"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "库存导入 CSV"
 
 msgid "Sub-total"
 msgstr "小計"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "订阅导入 CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "订阅处理结束"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "订阅处理续订"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "订阅处理开始"
 
 msgid "Subscription product"
 msgstr "訂閱產品"
@@ -410,13 +411,13 @@ msgid "Sum"
 msgstr "合計"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "供应商导入 CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "供应商导入 XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "终止过期的订阅"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -461,7 +462,7 @@ msgstr "您從%2$s下單的訂單%1$s已退款完成。"
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "您的订单 %1$s 支付状态已由 %2$s 更新为  \"%3$s\"."
 
 msgid "The subscription for the product has ended"
 msgstr "此產品的訂閱已結束"
@@ -469,21 +470,21 @@ msgstr "此產品的訂閱已結束"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
+msgstr[0] "您的代金券价值 %1$s"
 
 msgid "Total"
 msgstr "合計"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "向商户转账"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "将订购产品的价格转移给供应商，包括佣金处理费"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "代金券相关的邮件"
 
 msgid "Watched products"
 msgstr "關注中的商品"
@@ -504,7 +505,7 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "您可随时在我们的线上店使用您的代金券"
 
 msgid "You've cancelled the subscription"
 msgstr "您已取消此訂閱"
@@ -541,7 +542,7 @@ msgid "Your voucher"
 msgstr "您的優惠券"
 
 msgid "Your vouchers"
-msgstr ""
+msgstr "您的代金券"
 
 msgid "Your watched products"
 msgstr "您關注中的商品"
