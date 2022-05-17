@@ -7,10 +7,12 @@ return [
 				'csv' => [
 					'domains' => [
 						'attribute' => 'attribute',
+						'catalog' => 'catalog',
 						'media' => 'media',
 						'price' => 'price',
 						'product' => 'product',
 						'product/property' => 'product/property',
+						'supplier' => 'supplier',
 						'text' => 'text',
 					],
 				],
@@ -53,10 +55,12 @@ return [
 				'xml' => [
 					'domains' => [
 						'attribute' => 'attribute',
+						'catalog' => 'catalog',
 						'media' => 'media',
 						'price' => 'price',
 						'product' => 'product',
 						'product/property' => 'product/property',
+						'supplier' => 'supplier',
 						'text' => 'text'
 					]
 				]
