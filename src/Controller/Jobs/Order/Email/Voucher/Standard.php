@@ -102,12 +102,12 @@ class Standard
 
 		$filter = $manager->filter();
 		$func = $filter->make( 'order:status', [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1'] );
-		$filter->add( [
+		$filter->add( $filter->and( [
 			$filter->compare( '>=', 'order.mtime', $limitDate ),
 			$filter->compare( '==', 'order.statuspayment', $status ),
 			$filter->compare( '==', 'order.base.product.type', 'voucher' ),
 			$filter->compare( '==', $func, 0 ),
-		] );
+		] ) );
 
 		$start = 0;
 
