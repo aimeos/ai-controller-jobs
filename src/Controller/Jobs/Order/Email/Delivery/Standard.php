@@ -113,11 +113,11 @@ class Standard
 		{
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
 			$filter = $orderManager->filter();
-			$filter->add( [
+			$filter->add( $filter->and( [
 				$filter->compare( '>=', 'order.mtime', $limitDate ),
 				$filter->compare( '==', 'order.statusdelivery', $status ),
 				$filter->compare( '==', $filter->make( 'order:status', $param ), 0 ),
-			] );
+			] ) );
 
 			$start = 0;
 			$domains = ['order/base', 'order/base/address', 'order/base/product', 'order/base/service'];
