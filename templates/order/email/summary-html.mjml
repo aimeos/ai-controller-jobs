@@ -220,9 +220,7 @@
 					</td>
 					<td class="label">
 						<?php $params = array_merge( $this->param(), ['d_name' => $product->getName( 'url' ), 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''] ) ?>
-						<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $target ), $cntl, $action, $params, [], $config ) ) ?>">
-							<?= $enc->html( $product->getName(), $enc::TRUST ) ?>
-						</a>
+						<span class="product-name"><?= $enc->html( $product->getName(), $enc::TRUST ) ?></span>
 						<p class="code">
 							<span class="name"><?= $enc->html( $this->translate( 'controller/jobs', 'Article no.' ), $enc::TRUST ) ?>: </span>
 							<span class="value"><?= $product->getProductCode() ?></span>
