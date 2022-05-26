@@ -208,12 +208,9 @@ class Standard
 
 				$addr = $this->address( $basket );
 				$context->locale()->setLanguageId( $addr->getLanguageId() );
-
 				$view = $this->view( $basket, $list->getTheme()->filter()->last() );
-				$view->summaryBasket = $basket;
-				$view->orderItem = $item;
 
-				$this->send( $view, $list->getLogo()->filter()->last() );
+				$this->send( $view, $item, $addr, $list->getLogo()->filter()->last() );
 				$this->status( $id, $status );
 
 				$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
@@ -280,9 +277,12 @@ class Standard
 	 * Sends the payment related e-mail for a single order
 	 *
 	 * @param \Aimeos\Base\View\Iface $view Populated view object
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
+	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\Base\View\Iface $view, string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Iface $order,
+		\Aimeos\MShop\Common\Item\Address\Iface $address, string $logoPath = null )
 	{
 		/** controller/jobs/order/email/payment/template-html
 		 * Relative path to the template for the HTML part of the payment emails.
@@ -316,11 +316,15 @@ class Standard
 
 		$context = $this->context();
 		$config = $context->config();
-		$filename = $context->translate( 'client', 'Order' ) . '-' . $view->orderItem->getOrderNumber() . '.pdf';
+		$filename = $context->translate( 'client', 'Order' ) . '-' . $order->getOrderNumber() . '.pdf';
 
-		$msg = $this->call( 'mailTo', $view->addressItem );
+		$msg = $this->call( 'mailTo', $address );
 		$msg = $this->attachments( $msg );
+
 		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
+		$view->summaryBasket = $order->getBaseItem();
+		$view->addressItem = $address;
+		$view->orderItem = $order;
 
 		/** controller/jobs/order/email/payment/bcc-email
 		 * E-Mail address all payment e-mails should be also sent to
@@ -338,7 +342,7 @@ class Standard
 		 */
 		$msg->bcc( $config->get( 'controller/jobs/order/email/payment/bcc-email', [] ) );
 
-		$msg->subject( sprintf( $context->translate( 'client', 'Your order %1$s' ), $view->orderItem->getOrderNumber() ) )
+		$msg->subject( sprintf( $context->translate( 'client', 'Your order %1$s' ), $order->getOrderNumber() ) )
 			->html( $view->render( $config->get( 'controller/jobs/order/email/payment/template-html', 'order/email/payment/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/order/email/payment/template-text', 'order/email/payment/text' ) ) )
 			->attach( $this->pdf( $view ), $filename, 'application/pdf' )

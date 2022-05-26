@@ -158,12 +158,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'a@b.com' );
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create( ['order.ctime' => '2000-01-01 00:00:00'] );
 
-		$view = $this->access( 'view' )->invokeArgs( $object, [$baseItem->addAddress( $addrItem, 'delivery' )] );
-		$view->summaryBasket = $baseItem;
-		$view->addressItem = $addrItem;
-		$view->orderItem = $orderItem;
+		$orderItem->setBaseItem( $baseItem->addAddress( $addrItem, 'delivery' ) );
 
-		$this->access( 'send' )->invokeArgs( $object, [$view, 'RE-001'] );
+		$view = $this->access( 'view' )->invokeArgs( $object, [$baseItem->addAddress( $addrItem, 'delivery' )] );
+
+		$this->access( 'send' )->invokeArgs( $object, [$view, $orderItem, $addrItem, 'RE-001'] );
 	}
 
 
