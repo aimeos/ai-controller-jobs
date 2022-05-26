@@ -203,17 +203,12 @@ class Standard
 		{
 			try
 			{
-				$basket = $item->getBaseItem();
-				$list = $sites->get( $basket->getSiteId(), map() );
+				$list = $sites->get( $item->getBaseItem()->getSiteId(), map() );
 
-				$addr = $this->address( $basket );
-				$context->locale()->setLanguageId( $addr->getLanguageId() );
-				$view = $this->view( $basket, $list->getTheme()->filter()->last() );
-
-				$this->send( $view, $item, $addr, $list->getLogo()->filter()->last() );
+				$this->send( $item, $list->getTheme()->filter()->last(), $list->getLogo()->filter()->last() );
 				$this->status( $id, $status );
 
-				$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
+				$str = sprintf( 'Sent order payment e-mail for order "%1$s" and status "%2$s"', $item->getId(), $status );
 				$context->logger()->info( $str, 'email/order/payment' );
 			}
 			catch( \Exception $e )
@@ -276,13 +271,11 @@ class Standard
 	/**
 	 * Sends the payment related e-mail for a single order
 	 *
-	 * @param \Aimeos\Base\View\Iface $view Populated view object
 	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
-	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
+	 * @param string|null $theme Theme name or NULL for default theme
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Iface $order,
-		\Aimeos\MShop\Common\Item\Address\Iface $address, string $logoPath = null )
+	protected function send( \Aimeos\MShop\Order\Item\Iface $order, string $theme = null, string $logoPath = null )
 	{
 		/** controller/jobs/order/email/payment/template-html
 		 * Relative path to the template for the HTML part of the payment emails.
@@ -314,17 +307,23 @@ class Standard
 		 * @see controller/jobs/order/email/payment/template-html
 		 */
 
+		$basket = $order->getBaseItem();
+		$address = $this->address( $basket );
+
 		$context = $this->context();
-		$config = $context->config();
-		$filename = $context->translate( 'client', 'Order' ) . '-' . $order->getOrderNumber() . '.pdf';
+		$context->locale()->setLanguageId( $address->getLanguageId() );
 
 		$msg = $this->call( 'mailTo', $address );
 		$msg = $this->attachments( $msg );
 
+		$view = $this->view( $basket, $theme );
 		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
-		$view->summaryBasket = $order->getBaseItem();
+		$view->summaryBasket = $basket;
 		$view->addressItem = $address;
 		$view->orderItem = $order;
+
+		$config = $context->config();
+		$filename = $context->translate( 'client', 'Order' ) . '-' . $order->getOrderNumber() . '.pdf';
 
 		/** controller/jobs/order/email/payment/bcc-email
 		 * E-Mail address all payment e-mails should be also sent to

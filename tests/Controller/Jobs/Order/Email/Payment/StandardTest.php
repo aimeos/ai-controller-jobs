@@ -103,7 +103,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'me@example.com' );
-		$object->expects( $this->exactly( 2 ) )->method( 'address' )->will( $this->returnValue( $addrItem ) );
 		$object->expects( $this->once() )->method( 'status' );
 		$object->expects( $this->once() )->method( 'send' );
 
@@ -119,10 +118,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['address'] )
+			->setMethods( ['send'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'address' )->will( $this->throwException( new \RuntimeException() ) );
+		$object->expects( $this->once() )->method( 'send' )->will( $this->throwException( new \RuntimeException() ) );
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create()->setBaseId( '-1' )
 			->setBaseItem( \Aimeos\MShop::create( $this->context, 'order/base' )->create() );
@@ -160,9 +159,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderItem->setBaseItem( $baseItem->addAddress( $addrItem, 'payment' ) );
 
-		$view = $this->access( 'view' )->invokeArgs( $object, [$baseItem->addAddress( $addrItem, 'payment' )] );
-
-		$this->access( 'send' )->invokeArgs( $object, [$view, $orderItem, $addrItem, 'RE-001'] );
+		$this->access( 'send' )->invokeArgs( $object, [$orderItem] );
 	}
 
 
