@@ -99,10 +99,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['address', 'status', 'send'] )
+			->setMethods( ['status', 'send'] )
 			->getMock();
 
-		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'me@example.com' );
 		$object->expects( $this->once() )->method( 'status' );
 		$object->expects( $this->once() )->method( 'send' );
 

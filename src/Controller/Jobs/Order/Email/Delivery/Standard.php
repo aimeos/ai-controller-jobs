@@ -281,7 +281,6 @@ class Standard
 		$view->orderItem = $order;
 
 		$config = $context->config();
-		$filename = $context->translate( 'client', 'Order' ) . '-' . $order->getOrderNumber() . '.pdf';
 
 		/** controller/jobs/order/email/delivery/bcc-email
 		 * E-Mail address all delivery e-mails should be also sent to
