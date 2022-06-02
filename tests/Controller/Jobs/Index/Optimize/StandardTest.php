@@ -48,21 +48,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
-
-		$name = 'ControllerJobsCatalogIndexOptimizeDefaultRun';
-		$context->config()->set( 'mshop/index/manager/name', $name );
-
-
 		$indexManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Index\\Manager\\Standard' )
 			->setMethods( array( 'optimize' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Catalog\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Index\\Manager\\' . $name, $indexManagerStub );
-
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Index\\Manager\\Standard', $indexManagerStub );
 
 		$indexManagerStub->expects( $this->once() )->method( 'optimize' );
-
 
 		$object = new \Aimeos\Controller\Jobs\Index\Optimize\Standard( $context, $aimeos );
 		$object->run();

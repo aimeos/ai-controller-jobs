@@ -17,12 +17,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\MShop::cache( true );
+
 		$aimeos = \TestHelper::getAimeos();
 		$this->context = \TestHelper::context();
 
 		$this->object = new \Aimeos\Controller\Jobs\Subscription\Process\Begin\Standard( $this->context, $aimeos );
-
-		\Aimeos\MShop::cache( true );
 	}
 
 
@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['search', 'save'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'subscription', $managerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$item] ) ) );
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['search', 'save'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'subscription', $managerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
 		$managerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$managerStub->create()] ) ) );

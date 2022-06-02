@@ -198,7 +198,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function delete( \Aimeos\MShop\Catalog\Item\Iface $tree, array $domains = [] )
 	{
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
+		$catalogManager = \Aimeos\MShop::create( $this->context, 'catalog' );
 
 		foreach( $domains as $domain )
 		{
@@ -219,7 +219,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function get( $catcode, array $domains = [] )
 	{
-		$manager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'catalog' );
 		$root = $manager->find( $catcode );
 
 		return $manager->getTree( $root->getId(), $domains, \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );

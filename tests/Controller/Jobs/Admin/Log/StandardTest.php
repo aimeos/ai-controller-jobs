@@ -18,6 +18,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\MAdmin::cache( true );
+
 		$this->context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
@@ -27,7 +29,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		$this->object = null;
+		\Aimeos\MAdmin::cache( false );
+		unset( $this->object, $this->context );
 	}
 
 
@@ -49,19 +52,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\MAdmin\\Log\\Manager\\Standard' )
-			->setMethods( array( 'delete' ) )
 			->setConstructorArgs( array( $this->context ) )
+			->setMethods( array( 'delete' ) )
 			->getMock();
 
 		$mock->expects( $this->atLeastOnce() )->method( 'delete' );
 
 		$tmppath = dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) . DIRECTORY_SEPARATOR . 'tmp';
-		$name = 'ControllerJobsAdminLogDefaultRun';
-		$config->set( 'madmin/log/manager/name', $name );
-		$config->set( 'controller/jobs/admin/log/limit-days', 0 );
 		$config->set( 'controller/jobs/admin/log/path', $tmppath );
+		$config->set( 'controller/jobs/admin/log/limit-days', 0 );
 
-		\Aimeos\MAdmin\Log\Manager\Factory::injectManager( '\\Aimeos\\MAdmin\\Log\\Manager\\' . $name, $mock );
+		\Aimeos\MAdmin::inject( '\\Aimeos\\MAdmin\\Log\\Manager\\Standard', $mock );
 
 		if( !is_dir( $tmppath ) && mkdir( $tmppath ) === false ) {
 			throw new \RuntimeException( sprintf( 'Unable to create temporary path "%1$s"', $tmppath ) );

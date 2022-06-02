@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::cache( true );
 
 		$this->context = \TestHelper::context();
-		$this->manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
+		$this->manager = \Aimeos\MShop::create( $this->context, 'supplier' );
 		$this->endpoint = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Done( $this->context, [] );
 	}
 

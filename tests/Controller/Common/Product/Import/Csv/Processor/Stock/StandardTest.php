@@ -187,13 +187,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function create( $code )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-
-		$item = $manager->create();
-		$item->setType( 'default' );
-		$item->setCode( $code );
-
-		return $manager->save( $item );
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
+		return $manager->save( $manager->create()->setCode( $code ) );
 	}
 
 
@@ -203,8 +198,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$filter = $manager->filter()->add( ['stock.productid' => $product->getId()] );
 		$manager->delete( $manager->search( $filter )->toArray() );
 
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$manager->delete( $product->getId() );
+		\Aimeos\MShop::create( $this->context, 'product' )->delete( $product->getId() );
 	}
 
 

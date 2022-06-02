@@ -17,6 +17,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\MShop::cache( true );
+
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
@@ -26,7 +28,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		$this->object = null;
+		\Aimeos\MShop::cache( false );
+		unset( $this->object );
 	}
 
 
@@ -49,11 +52,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceDeliveryProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-		$context->config()->set( 'mshop/order/manager/name', $name );
-
-
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
 			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
@@ -64,8 +62,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
-		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
@@ -101,11 +99,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceDeliveryProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-		$context->config()->set( 'mshop/order/manager/name', $name );
-
-
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
@@ -116,8 +109,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
-		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
@@ -154,11 +147,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceDeliveryProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-		$context->config()->set( 'mshop/order/manager/name', $name );
-
-
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setMethods( array( 'save', 'search' ) )
 			->setConstructorArgs( array( $context ) )
@@ -169,8 +157,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
-		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
@@ -179,7 +167,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
-			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test sorder service delivery: getProvider' ) ) );
+			->will( $this->throwException( new \Aimeos\MShop\Service\Exception() ) );
 
 		$orderManagerStub->expects( $this->never() )->method( 'search' );
 

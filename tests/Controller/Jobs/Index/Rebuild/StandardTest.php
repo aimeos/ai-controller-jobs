@@ -17,6 +17,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\MShop::cache( true );
+
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
@@ -26,7 +28,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		$this->object = null;
+		\Aimeos\MShop::cache( false );
+		unset( $this->object );
 	}
 
 
@@ -48,22 +51,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
-
-		$name = 'ControllerJobsCatalogIndexRebuildDefaultRun';
-		$context->config()->set( 'mshop/index/manager/name', $name );
-
-
 		$indexManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Index\\Manager\\Standard' )
 			->setMethods( array( 'rebuild', 'cleanup' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Catalog\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Index\\Manager\\' . $name, $indexManagerStub );
-
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Index\\Manager\\Standard', $indexManagerStub );
 
 		$indexManagerStub->expects( $this->once() )->method( 'rebuild' )->will( $this->returnSelf() );
 		$indexManagerStub->expects( $this->once() )->method( 'cleanup' )->will( $this->returnSelf() );
-
 
 		$object = new \Aimeos\Controller\Jobs\Index\Rebuild\Standard( $context, $aimeos );
 		$object->run();

@@ -16,6 +16,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\MShop::cache( true );
+
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
@@ -25,6 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\MShop::cache( false );
 		unset( $this->object );
 	}
 
@@ -48,11 +51,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceTransferProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-		$context->config()->set( 'mshop/order/manager/name', $name );
-
-
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
 			->setMethods( ['getProvider', 'search'] )
 			->setConstructorArgs( [$context] )
@@ -63,8 +61,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setConstructorArgs( [$context] )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
-		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
@@ -102,11 +100,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceTransferProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-		$context->config()->set( 'mshop/order/manager/name', $name );
-
-
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setMethods( ['save', 'search'] )
 			->setConstructorArgs( [$context] )
@@ -117,8 +110,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setConstructorArgs( [$context] )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
-		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
@@ -159,11 +152,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceTransferProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-		$context->config()->set( 'mshop/order/manager/name', $name );
-
-
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setMethods( ['save', 'search'] )
 			->setConstructorArgs( [$context] )
@@ -174,8 +162,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setConstructorArgs( [$context] )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
-		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );

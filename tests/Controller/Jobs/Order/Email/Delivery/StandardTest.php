@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['search'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'order', $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
 
 		$orderItem = $orderManagerStub->create();
 

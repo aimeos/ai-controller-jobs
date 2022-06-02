@@ -16,6 +16,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\MShop::cache( true );
+
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
@@ -25,7 +27,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		$this->object = null;
+		\Aimeos\MShop::cache( false );
+		unset( $this->object );
 	}
 
 
@@ -58,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Media\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Media\\Manager\\' . $name, $managerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Media\\Manager\\' . $name, $managerStub );
 
 		$managerStub->expects( $this->atLeast( 1 ) )->method( 'save' );
 

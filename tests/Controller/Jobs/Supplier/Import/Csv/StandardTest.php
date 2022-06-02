@@ -178,7 +178,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function delete( array $codes, array $delete )
 	{
-		$supplierManager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
+		$supplierManager = \Aimeos\MShop::create( $this->context, 'supplier' );
 
 		foreach( $this->get( $codes, $delete ) as $id => $supplier )
 		{
@@ -195,7 +195,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$attrManager = \Aimeos\MShop::create( $this->context, 'attribute' );
 		$search = $attrManager->filter()->add( ['attribute.code' => 'import-test'] );
 
 		$attrManager->delete( $attrManager->search( $search ) );
@@ -204,15 +204,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function get( array $codes, array $domains ) : array
 	{
-		$supplierManager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context );
+		$supplierManager = \Aimeos\MShop::create( $this->context, 'supplier' );
 		$search = $supplierManager->filter()->add( ['supplier.code' => $codes] );
 
 		return $supplierManager->search( $search, $domains )->all();
 	}
 
+
 	protected function getAddresses( array $prodids ) : array
 	{
-		$manager = \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context )->getSubManager( 'address' );
+		$manager = \Aimeos\MShop::create( $this->context, 'supplier/address' );
 		$search = $manager->filter()->add( ['supplier.address.parentid' => $prodids] );
 
 		return $manager->search( $search )->all();

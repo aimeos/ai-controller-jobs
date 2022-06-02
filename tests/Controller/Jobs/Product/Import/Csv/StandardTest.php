@@ -187,7 +187,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function delete( array $prodcodes, array $delete )
 	{
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
+		$productManager = \Aimeos\MShop::create( $this->context, 'product' );
 
 		foreach( $this->get( $prodcodes, $delete ) as $id => $product )
 		{
@@ -201,7 +201,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$attrManager = \Aimeos\MShop::create( $this->context, 'attribute' );
 
 		$search = $attrManager->filter();
 		$search->setConditions( $search->compare( '==', 'attribute.code', 'import-test' ) );
@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function get( array $prodcodes, array $domains ) : array
 	{
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
+		$productManager = \Aimeos\MShop::create( $this->context, 'product' );
 
 		$search = $productManager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $prodcodes ) );
@@ -223,11 +223,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getProperties( array $prodids ) : array
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context )->getSubManager( 'property' );
+		$manager = \Aimeos\MShop::create( $this->context, 'product/property' );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'product.property.parentid', $prodids ) );
-		$search->setSortations( array( $search->sort( '+', 'product.property.type' ) ) );
+		$search = $manager->filter()->order( 'product.property.type' )
+			->add( ['product.property.parentid' => $prodids] );
 
 		return $manager->search( $search )->all();
 	}

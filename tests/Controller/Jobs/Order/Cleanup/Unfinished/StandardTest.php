@@ -18,6 +18,8 @@ class StandardTest
 
 	protected function setUp() : void
 	{
+		\Aimeos\MShop::cache( true );
+
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
@@ -27,7 +29,8 @@ class StandardTest
 
 	protected function tearDown() : void
 	{
-		$this->object = null;
+		\Aimeos\MShop::cache( false );
+		unset( $this->object );
 	}
 
 
@@ -50,11 +53,6 @@ class StandardTest
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsOrderCleanupUnfinishedDefaultRun';
-		$context->config()->set( 'mshop/order/manager/name', $name );
-		$context->config()->set( 'controller/common/order/name', $name );
-
-
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setMethods( ['search', 'getSubManager'] )
 			->setConstructorArgs( array( $context ) )
@@ -71,17 +69,15 @@ class StandardTest
 			->getMock();
 
 
-		\Aimeos\MShop\Order\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Order\\Manager\\' . $name, $orderManagerStub );
-		\Aimeos\Controller\Common\Order\Factory::inject( '\\Aimeos\\Controller\\Common\\Order\\' . $name, $orderCntlStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard', $orderBaseManagerStub );
+		\Aimeos\Controller\Common\Order\Factory::inject( '\\Aimeos\\Controller\\Common\\Order\\Standard', $orderCntlStub );
 
 
 		$orderItem = $orderManagerStub->create();
 		$orderItem->setBaseId( 1 );
 		$orderItem->setId( 2 );
 
-
-		$orderManagerStub->expects( $this->once() )->method( 'getSubManager' )
-			->will( $this->returnValue( $orderBaseManagerStub ) );
 
 		$orderManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$orderItem->getId() => $orderItem] ) ) );

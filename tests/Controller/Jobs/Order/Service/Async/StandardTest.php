@@ -17,6 +17,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\MShop::cache( true );
+
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
@@ -26,7 +28,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		$this->object = null;
+		\Aimeos\MShop::cache( false );
+		unset( $this->object );
 	}
 
 
@@ -49,16 +52,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceAsyncProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-
-
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
 			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
@@ -88,16 +87,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 
-		$name = 'ControllerJobsServiceAsyncProcessDefaultRun';
-		$context->config()->set( 'mshop/service/manager/name', $name );
-
-
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
 			->setMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop\Service\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Service\\Manager\\' . $name, $serviceManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
 
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );

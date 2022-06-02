@@ -19,17 +19,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::cache( true );
 
 		$this->context = \TestHelper::context();
-		$this->context->config()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1', '2'] );
 
 		$this->custStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['get', 'save'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'customer', $this->custStub );
-
-		$this->custStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $this->custStub->create() ) );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Customer\\Manager\\Standard', $this->custStub );
 	}
 
 
@@ -47,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['get'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
 		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
@@ -59,6 +55,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$ordProdStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ordProdItem ) );
+
+		$this->custStub->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $this->custStub->create() ) );
 
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
@@ -73,6 +72,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBeginCustomGroups()
 	{
+		$this->custStub->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $this->custStub->create()->setGroups( ['1', '2'] ) ) );
+
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
 				return $subject->getGroups() === ['1', '2'];
@@ -91,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['get'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'order/base/product', $ordProdStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
 		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
@@ -103,6 +105,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$ordProdStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ordProdItem ) );
+
+		$this->custStub->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $this->custStub->create() ) );
 
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
@@ -116,6 +121,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testEndCustomGroups()
 	{
+		$this->custStub->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $this->custStub->create() ) );
+
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
 				return $subject->getGroups() === [];
@@ -129,14 +137,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getSubscription()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
+		$search = $manager->filter()->add( ['subscription.dateend' => '2010-01-01'] );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No subscription item found' );
+		return $manager->search( $search )->first( new \Exception( 'No subscription item found' ) );
 	}
 }

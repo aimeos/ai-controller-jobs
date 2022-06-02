@@ -254,7 +254,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function create( $code )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		return $manager->create()->setCode( $code );
+		return \Aimeos\MShop::create( $this->context, 'product' )->create()->setCode( $code );
 	}
 }

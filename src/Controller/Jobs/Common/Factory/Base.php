@@ -17,6 +17,7 @@ namespace Aimeos\Controller\Jobs\Common\Factory;
  *
  * @package Controller
  * @subpackage Jobs
+ * @deprecated 2023.01
  */
 abstract class Base
 {

@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$codeManager->expects( $this->any() )->method( 'save' );
-		\Aimeos\MShop::inject( 'coupon/code', $codeManager );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard', $codeManager );
 
 		$this->object = new \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard( $this->context, $aimeos );
 	}
@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['search'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( 'order', $orderManagerStub );
+		\Aimeos\MShop::inject( \Aimeos\MShop\Order\Manager\Standard::class, $orderManagerStub );
 
 		$orderItem = $orderManagerStub->create();
 
@@ -173,7 +173,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub->expects( $this->once() )->method( 'save' );
 
-		\Aimeos\MShop::inject( 'coupon/code', $managerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard', $managerStub );
 
 		$this->access( 'saveCoupons' )->invokeArgs( $this->object, [['test' => 1]] );
 	}
@@ -220,7 +220,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$statusManagerStub->expects( $this->once() )->method( 'save' );
 
-		\Aimeos\MShop::inject( 'order/status', $statusManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Status\\Standard', $statusManagerStub );
 
 		$this->access( 'status' )->invokeArgs( $this->object, array( -1, +1 ) );
 	}
