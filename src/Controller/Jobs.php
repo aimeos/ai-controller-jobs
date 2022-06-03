@@ -52,14 +52,7 @@ class Jobs
 		$iface = '\\Aimeos\\Controller\\Jobs\\Iface';
 		$classname = '\\Aimeos\\Controller\\Jobs\\' . str_replace( '/', '\\', ucwords( $path, '/' ) ) . '\\' . $name;
 
-		if( class_exists( $classname ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname, 404 ) );
-		}
-
-		$cntl = self::createController( $context, $aimeos, $classname, $iface );
-		$cntl = self::addControllerDecorators( $context, $aimeos, $cntl, $path );
-
-		return $cntl;
+		return self::createController( $context, $aimeos, $classname, $iface, $path );
 	}
 
 
@@ -220,10 +213,11 @@ class Jobs
 	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap object
 	 * @param string $classname Name of the controller class
 	 * @param string $interface Name of the controller interface
+	 * @param string $path Name of the domain
 	 * @return \Aimeos\Controller\Jobs\Iface Controller object
 	 */
 	protected static function createController( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos,
-		string $classname, string $interface ) : \Aimeos\Controller\Jobs\Iface
+		string $classname, string $interface, string $path ) : \Aimeos\Controller\Jobs\Iface
 	{
 		if( isset( self::$objects[$classname] ) ) {
 			return self::$objects[$classname];
@@ -233,15 +227,15 @@ class Jobs
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ), 404 );
 		}
 
-		$controller = new $classname( $context, $aimeos );
+		$cntl = new $classname( $context, $aimeos );
 
-		if( !( $controller instanceof $interface ) )
+		if( !( $cntl instanceof $interface ) )
 		{
 			$msg = sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $interface );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg, 400 );
 		}
 
-		return $controller;
+		return self::addControllerDecorators( $context, $aimeos, $cntl, $path );
 	}
 
 
