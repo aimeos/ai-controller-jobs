@@ -99,7 +99,7 @@ class TestHelper
 		$ctx->setView( $view );
 
 
-		return $ctx->setEditor( 'core:controller/common' );
+		return $ctx->setEditor( 'ai-controller-jobs' );
 	}
 
 
