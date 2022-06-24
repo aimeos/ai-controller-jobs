@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml.gz' );
 		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml.gz' );
 
-		$this->assertStringContainsString( 'Kaffee', $file1 );
+		$this->assertStringContainsString( 'kaffee', $file1 );
 		$this->assertStringContainsString( 'Misc', $file1 );
 		$this->assertStringContainsString( 'Groups', $file2 );
 
@@ -75,21 +75,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-2.xml.gz', $index );
 	}
 
+
 	public function testRunEmptyLocation()
 	{
 		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/location', '' );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-
 		$this->object->run();
 	}
+
 
 	public function testRunNoLocation()
 	{
 		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/location', null );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-
 		$this->object->run();
 	}
 }

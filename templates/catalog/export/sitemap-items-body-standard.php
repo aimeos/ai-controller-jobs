@@ -10,31 +10,33 @@ $enc = $this->encoder();
 $treeTarget = $this->config( 'client/html/catalog/tree/url/target' );
 $treeCntl = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
 $treeAction = $this->config( 'client/html/catalog/tree/url/action', 'list' );
+$treeFilter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] ) );
 $treeConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
 $treeConfig['absoluteUri'] = true;
 
 $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
+$locales = $this->get( 'siteLocales', [] );
+
 
 foreach( $this->get( 'siteItems', [] ) as $id => $item )
 {
-	$texts = [];
+	$langIds = [];
 	$date = str_replace( ' ', 'T', $item->getTimeModified() ?? '' ) . date( 'P' );
 
-	foreach( $item->getListItems( 'text', 'default', 'url', false ) as $listItem )
+	foreach( $locales as $locale )
 	{
-		if( $listItem->isAvailable() && ( $text = $listItem->getRefItem() ) !== null && $text->getStatus() > 0 ) {
-			$texts[$text->getLanguageId()] = \Aimeos\Base\Str::slug( $text->getContent() );
+		if( isset( $langIds[$locale->getLanguageId()] ) ) {
+			continue;
 		}
-	}
 
-	if( empty( $texts ) ) {
-		$texts[''] = $item->getLabel();
-	}
+		$name = $item->getName( 'url', $locale->getLanguageId() );
+		$params = ['site' => $locale->getSiteCode(), 'f_name' => \Aimeos\Base\Str::slug( $name ), 'f_catid' => $id];
 
-	foreach( $texts as $name )
-	{
-		$params = ['f_name' => \Aimeos\Base\Str::slug( $name ), 'f_catid' => $id];
-		$url = $this->url( $item->getTarget() ?: $treeTarget, $treeCntl, $treeAction, $params, [], $treeConfig );
+		if( count( $locales ) > 1 ) {
+			$params['locale'] = $locale->getLanguageId();
+		}
+
+		$url = $this->url( $item->getTarget() ?: $treeTarget, $treeCntl, $treeAction, array_diff_key( $params, $treeFilter ), [], $treeConfig );
 
 		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
 	}

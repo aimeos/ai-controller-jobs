@@ -256,6 +256,7 @@ class Standard
 
 		$view->siteItems = $items;
 		$view->siteFreq = $changefreq;
+		$view->siteLocales = $this->locales();
 
 		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );
 	}
@@ -630,5 +631,24 @@ class Standard
 	protected function getFilename( int $number ) : string
 	{
 		return sprintf( 'aimeos-catalog-sitemap-%d.xml', $number );
+	}
+
+
+	/**
+	 * Returns the available locale items for the current site
+	 *
+	 * @return \Aimeos\Map List of locale items
+	 */
+	protected function locales() : \Aimeos\Map
+	{
+		if( !isset( $this->locales ) )
+		{
+			$manager = \Aimeos\MShop::create( $this->context(), 'locale' );
+			$filter = $manager->filter()->add( ['locale.siteid' => $this->context()->locale()->getSiteId()] );
+
+			$this->locales = $manager->search( $filter->order( 'locale.position' )->slice( 0, 10000 ) );
+		}
+
+		return $this->locales;
 	}
 }
