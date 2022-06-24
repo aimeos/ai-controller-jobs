@@ -26,16 +26,19 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 
 	foreach( $locales as $locale )
 	{
-		if( isset( $langIds[$locale->getLanguageId()] ) ) {
+		$langId = $locale->getLanguageId();
+
+		if( isset( $langIds[$langId] ) ) {
 			continue;
 		}
+		$langIds[$langId] = true;
 
-		$name = $item->getName( 'url', $locale->getLanguageId() );
+		$name = $item->getName( 'url', $langId );
 		$params = ['site' => $locale->getSiteCode(), 'd_name' => \Aimeos\Base\Str::slug( $name ), 'd_prodid' => $id, 'd_pos' => ''];
 
 		if( count( $locales ) > 1 )
 		{
-			$params['locale'] = $locale->getLanguageId();
+			$params['locale'] = $langId;
 			$params['currency'] = $locale->getCurrencyId();
 		}
 

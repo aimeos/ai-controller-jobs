@@ -25,15 +25,18 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 
 	foreach( $locales as $locale )
 	{
-		if( isset( $langIds[$locale->getLanguageId()] ) ) {
+		$langId = $locale->getLanguageId();
+
+		if( isset( $langIds[$langId] ) ) {
 			continue;
 		}
+		$langIds[$langId] = true;
 
-		$name = $item->getName( 'url', $locale->getLanguageId() );
+		$name = $item->getName( 'url', $langId );
 		$params = ['site' => $locale->getSiteCode(), 'f_name' => \Aimeos\Base\Str::slug( $name ), 'f_catid' => $id];
 
 		if( count( $locales ) > 1 ) {
-			$params['locale'] = $locale->getLanguageId();
+			$params['locale'] = $langId;
 		}
 
 		$url = $this->url( $item->getTarget() ?: $treeTarget, $treeCntl, $treeAction, array_diff_key( $params, $treeFilter ), [], $treeConfig );
