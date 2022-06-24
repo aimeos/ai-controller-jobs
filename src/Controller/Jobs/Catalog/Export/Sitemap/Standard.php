@@ -132,6 +132,9 @@ class Standard
 	 */
 
 
+	private $locales;
+
+
 	/**
 	 * Returns the localized name of the job.
 	 *
