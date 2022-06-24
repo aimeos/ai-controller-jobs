@@ -489,9 +489,10 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/changefreq
 		 * @see controller/jobs/catalog/export/sitemap/location
 		 */
-		$baseUrl = $config->get( 'controller/jobs/catalog/export/sitemap/baseurl' );
+		$baseUrl = $config->get( 'resource/fs/baseurl' );
+		$baseUrl = $config->get( 'controller/jobs/catalog/export/sitemap/baseurl', $baseUrl );
 
-		if( $baseUrl == null )
+		if( empty( $baseUrl ) )
 		{
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/export/sitemap/baseurl' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
