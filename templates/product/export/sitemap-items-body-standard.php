@@ -15,27 +15,31 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailConfig['absoluteUri'] = true;
 
 $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
+$locales = $this->get( 'siteLocales', [] );
+
 
 foreach( $this->get( 'siteItems', [] ) as $id => $item )
 {
-	$texts = [];
+	$langIds = [];
+	$slug = $item->getName( 'url' );
 	$date = str_replace( ' ', 'T', $item->getTimeModified() ?? '' ) . date( 'P' );
 
-	foreach( $item->getListItems( 'text', 'default', 'url', false ) as $listItem )
+	foreach( $locales as $locale )
 	{
-		if( $listItem->isAvailable() && ( $text = $listItem->getRefItem() ) !== null && $text->getStatus() > 0 ) {
-			$texts[$text->getLanguageId()] = \Aimeos\Base\Str::slug( $text->getContent() );
+		if( isset( $langIds[$locale->getLanguageId()] ) ) {
+			continue;
 		}
-	}
 
-	if( empty( $texts ) ) {
-		$texts[''] = $item->getLabel();
-	}
+		$name = $item->getName( 'url', $locale->getLanguageId() );
+		$params = ['site' => $locale->getSiteCode(), 'd_name' => \Aimeos\Base\Str::slug( $name ), 'd_prodid' => $id, 'd_pos' => ''];
 
-	foreach( $texts as $name )
-	{
-		$params = array_diff_key( ['d_name' => \Aimeos\Base\Str::slug( $name ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter );
-		$url = $this->url( $item->getTarget() ?: $detailTarget, $detailCntl, $detailAction, $params, [], $detailConfig );
+		if( count( $locales ) > 1 )
+		{
+			$params['locale'] = $locale->getLanguageId();
+			$params['currency'] = $locale->getCurrencyId();
+		}
+
+		$url = $this->url( $item->getTarget() ?: $detailTarget, $detailCntl, $detailAction, array_diff_key( $params, $detailFilter ), [], $detailConfig );
 
 		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
 	}
