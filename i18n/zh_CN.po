@@ -1,30 +1,26 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:23+0100\n"
+"POT-Creation-Date: 2022-07-05 11:54+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -40,7 +36,20 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -51,8 +60,7 @@ msgstr "%1$s %2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s 扣减"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/条目"
@@ -83,6 +91,7 @@ msgstr ""
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2022
+#.
 msgid "An account has been created for you."
 msgstr "已经为您生成一个账户。"
 
@@ -92,9 +101,7 @@ msgstr ""
 msgid "Attribute import XML"
 msgstr ""
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr ""
 
 msgid "Batch update of payment/delivery status"
@@ -163,9 +170,7 @@ msgstr ""
 msgid "Dear customer"
 msgstr ""
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr ""
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -339,8 +344,7 @@ msgstr ""
 msgid "Removes the expired entries from the cache"
 msgstr ""
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr ""
 
 msgid "Removes unfinished orders"
@@ -415,31 +419,22 @@ msgstr ""
 msgid "Terminates expired subscriptions"
 msgstr ""
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "谢谢您的订单 %1$s （日期 %2$s）。"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "订单%1$s （日期%2$s）的配送状态已经更新为\"%3$s\"。"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr ""
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "日期%2$s的订单%1$s包裹无法送到"
@@ -452,12 +447,9 @@ msgstr ""
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "日期为%2$s的订单%1$s退款已经完成。"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr ""
 
 msgid "The subscription for the product has ended"
@@ -474,9 +466,7 @@ msgstr "合计"
 msgid "Transfers money to vendors"
 msgstr ""
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr ""
 
 msgid "Voucher related e-mails"
@@ -485,14 +475,11 @@ msgstr ""
 msgid "Watched products"
 msgstr "浏览过的产品"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr ""
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "我们收到了退回来的包裹，是关于您的订单%1$s （日期 %2$s）。"
@@ -519,8 +506,7 @@ msgstr "您的新账户"
 msgid "Your order %1$s"
 msgstr "您的订单 %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "您的订单%1$s（日期为 %2$s）已经安排送货"
