@@ -57,23 +57,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Media\\Manager\\Standard' )
-			->setMethods( array( 'save' ) )
+			->setMethods( array( 'save', 'scale' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Media\\Manager\\' . $name, $managerStub );
 
 		$managerStub->expects( $this->atLeast( 1 ) )->method( 'save' );
-
-
-		$cntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Common\\Media\\Standard' )
-			->setMethods( array( 'scale' ) )
-			->setConstructorArgs( array( $context ) )
-			->getMock();
-
-		\Aimeos\Controller\Common\Media\Factory::inject( '\\Aimeos\\Controller\\Common\\Media\\' . $name, $cntlStub );
-
-		$cntlStub->expects( $this->atLeast( 1 ) )->method( 'scale' )->will( $this->returnArgument( 0 ) );
+		$managerStub->expects( $this->atLeast( 1 ) )->method( 'scale' )->will( $this->returnArgument( 0 ) );
 
 
 		$object = new \Aimeos\Controller\Jobs\Media\Scale\Standard( $context, $aimeos );

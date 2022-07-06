@@ -209,7 +209,6 @@ class Standard
 	{
 		$logger = $context->logger();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
-		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 
 		/** controller/jobs/media/scale/force
 		 * Enforce rescaling all images
@@ -229,7 +228,7 @@ class Standard
 		foreach( $items as $item )
 		{
 			try {
-				$manager->save( $cntl->scale( $item, $force ) );
+				$manager->save( $manager->scale( $item, $force ) );
 			} catch( \Exception $e ) {
 				$msg = sprintf( 'Scaling media item "%1$s" failed: %2$s', $item->getId(), $e->getMessage() );
 				$logger->error( $msg, 'media/scale' );
