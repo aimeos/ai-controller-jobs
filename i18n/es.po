@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -472,6 +472,7 @@ msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 msgid "Total"
 msgstr "Total"
