@@ -164,14 +164,12 @@ class Standard
 		$process = $context->process();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
-		$search = $manager->filter();
-		$expr = array(
+		$search = $manager->filter()->order( 'media.id' );
+		$search->add( $search->and( [
 			$search->compare( '==', 'media.siteid', $context->locale()->getSiteId() ),
 			$search->compare( '==', 'media.domain', ['attribute', 'catalog', 'product', 'service', 'supplier'] ),
 			$search->compare( '=~', 'media.mimetype', 'image/' ),
-		);
-		$search->setConditions( $search->and( $expr ) );
-		$search->setSortations( array( $search->sort( '+', 'media.id' ) ) );
+		] ) );
 
 		$start = 0;
 
