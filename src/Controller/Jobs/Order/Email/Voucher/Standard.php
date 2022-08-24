@@ -472,7 +472,7 @@ class Standard
 					$msg = $this->call( 'mailTo', $address );
 					$view->logo = $msg->embed( $logo, basename( (string) $logoPath ) );
 
-					$msg->subject( $context->translate( 'client', 'Your voucher' ) )
+					$msg->subject( $context->translate( 'controller/jobs', 'Your voucher' ) )
 						->html( $view->render( $config->get( 'controller/jobs/order/email/voucher/template-html', 'order/email/voucher/html' ) ) )
 						->text( $view->render( $config->get( 'controller/jobs/order/email/voucher/template-text', 'order/email/voucher/text' ) ) )
 						->send();

@@ -408,7 +408,7 @@ class Standard
 		 */
 		$msg->bcc( $config->get( 'controller/jobs/order/email/delivery/bcc-email', [] ) );
 
-		$msg->subject( sprintf( $context->translate( 'client', 'Your order %1$s' ), $order->getOrderNumber() ) )
+		$msg->subject( sprintf( $context->translate( 'controller/jobs', 'Your order %1$s' ), $order->getOrderNumber() ) )
 			->html( $view->render( $config->get( 'controller/jobs/order/email/delivery/template-html', 'order/email/delivery/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/order/email/delivery/template-text', 'order/email/delivery/text' ) ) )
 			->send();
