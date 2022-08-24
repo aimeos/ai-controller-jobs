@@ -16,7 +16,7 @@ $enc = $this->encoder();
 
 $this->pdf->setMargins( 15, 30, 15 );
 $this->pdf->setAutoPageBreak( true, 30 );
-$this->pdf->setTitle( sprintf( $this->translate( 'controller/jobs', 'Order %1$s' ), $this->orderItem->getOrderNumber() ) );
+$this->pdf->setTitle( sprintf( $this->translate( 'controller/jobs', 'Invoice %1$s' ), $this->orderItem->getInvoiceNumber() ) );
 $this->pdf->setFont( 'dejavusans', '', 10 );
 
 $vmargin = [
@@ -101,7 +101,7 @@ $data = [
 	$this->summaryBasket->getPrice()->getCurrencyId() . $total,    // Currency and value (required)
 	'',    // Purpose (optional, 4 char code, https://wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 	'',    // ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-	$this->translate( 'controller/jobs', 'Order' ) . ' ' . $this->orderItem->getOrderNumber(), // Reference of order and other data (optional, max. 140 characters)
+	$this->translate( 'controller/jobs', 'Invoioce' ) . ' ' . $this->orderItem->getInvoiceNumber(), // Reference of order and other data (optional, max. 140 characters)
 	$this->summaryBasket->getCustomerReference(), // Notice to the customer (optional, max. 70 characters)
 ];
 
@@ -186,7 +186,7 @@ $barcode = new TCPDF2DBarcode( join( "\n", $data ), 'QRCODE,M' );
 		</td>
 	</tr>
 </table>
-<h2><?= $enc->html( $this->translate( 'controller/jobs', 'Order' ) ) ?>: <?= $enc->html( $this->orderItem->getOrderNumber() ) ?></h2>
+<h2><?= $enc->html( $this->translate( 'controller/jobs', 'Invoice' ) ) ?>: <?= $enc->html( $this->orderItem->getInvoiceNumber() ) ?></h2>
 <?= $this->partial(
 	/** controller/jobs/order/email/payment/pdf-partial
 	 * Location of the address partial template for the text e-mails
