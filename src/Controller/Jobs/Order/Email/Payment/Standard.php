@@ -299,6 +299,18 @@ class Standard
 
 
 	/**
+	 * Returns the PDF file name
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
+	 * @return string PDF file name
+	 */
+	protected function filename( \Aimeos\MShop\Order\Item\Iface $order ) : string
+	{
+		return $this->context()->translate( 'controller/jobs', 'Invoice' ) . ' ' . $order->getInvoiceNumber() . '.pdf';
+	}
+
+
+	/**
 	 * Sends the payment e-mail for the given orders
 	 *
 	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
@@ -433,7 +445,6 @@ class Standard
 		$view->orderItem = $order;
 
 		$config = $context->config();
-		$filename = $context->translate( 'client', 'Order' ) . '-' . $order->getOrderNumber() . '.pdf';
 
 		/** controller/jobs/order/email/payment/bcc-email
 		 * E-Mail address all payment e-mails should be also sent to
@@ -454,7 +465,7 @@ class Standard
 		$msg->subject( sprintf( $context->translate( 'controller/jobs', 'Your order %1$s' ), $order->getOrderNumber() ) )
 			->html( $view->render( $config->get( 'controller/jobs/order/email/payment/template-html', 'order/email/payment/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/order/email/payment/template-text', 'order/email/payment/text' ) ) )
-			->attach( $this->pdf( $view ), $filename, 'application/pdf' )
+			->attach( $this->pdf( $view ), $this->call( 'filename', $order ), 'application/pdf' )
 			->send();
 	}
 
