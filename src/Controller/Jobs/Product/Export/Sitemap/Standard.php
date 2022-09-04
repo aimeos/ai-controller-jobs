@@ -523,15 +523,10 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 
-		$search = $manager->filter( $default );
-		$search->setConditions( $search->and( [
-			$search->compare( '!=', 'index.catalog.id', null ),
-			$search->getConditions()
-		] ) );
-		$search->setSortations( array( $search->sort( '+', 'product.id' ) ) );
-		$search->slice( 0, $maxQuery );
+		$search = $manager->filter( $default )->order( 'product.id' )->slice( 0, $maxQuery );
+		$search->add( $search->make( 'product:has', ['catalog'] ), '!=', null );
 
 		$content = $this->createContent( $container, $filenum );
 		$names[] = $content->getResource();
