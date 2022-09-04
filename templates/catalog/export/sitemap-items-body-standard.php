@@ -15,7 +15,8 @@ $treeConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
 $treeConfig['absoluteUri'] = true;
 
 $freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
-$locales = $this->get( 'siteLocales', [] );
+$locales = $this->get( 'siteLocales', map() );
+$sites = $locales->groupBy( 'locale.siteid' );
 
 
 foreach( $this->get( 'siteItems', [] ) as $id => $item )
@@ -33,7 +34,11 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 		$langIds[$langId] = true;
 
 		$name = $item->getName( 'url', $langId );
-		$params = ['site' => $locale->getSiteCode(), 'f_name' => \Aimeos\Base\Str::slug( $name ), 'f_catid' => $id];
+		$params = ['f_name' => \Aimeos\Base\Str::slug( $name ), 'f_catid' => $id];
+
+		if( count( $sites ) > 1 ) {
+			$params['site'] = $locale->getSiteCode();
+		}
 
 		if( count( $locales ) > 1 ) {
 			$params['locale'] = $langId;
