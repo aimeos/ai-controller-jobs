@@ -523,17 +523,17 @@ class Standard
 		$start = 0; $filenum = 1;
 		$names = [];
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 
-		$search = $manager->filter( $default )->order( 'product.id' )->slice( 0, $maxQuery );
+		$search = $manager->filter( $default )->slice( 0, $maxQuery );
 		$search->add( $search->make( 'product:has', ['catalog'] ), '!=', null );
+		$iterator = $manager->iterator( $search, $domains );
 
 		$content = $this->createContent( $container, $filenum );
 		$names[] = $content->getResource();
 
-		do
+		while( $items = $manager->iterate( $iterator, $domains, $maxQuery ) )
 		{
-			$items = $manager->search( $search, $domains );
 			$remaining = $maxItems * $filenum - $start;
 			$count = count( $items );
 
@@ -550,9 +550,7 @@ class Standard
 			$this->addItems( $content, $items );
 
 			$start += $count;
-			$search->slice( $start, $maxQuery );
 		}
-		while( $count >= $search->getLimit() );
 
 		$this->closeContent( $content );
 
