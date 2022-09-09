@@ -171,8 +171,6 @@ class Standard
 			$search->compare( '=~', 'media.mimetype', 'image/' ),
 		] ) );
 
-		$start = 0;
-
 		$fcn = function( \Aimeos\MShop\ContextIface $context, \Aimeos\Map $items ) {
 			$this->rescale( $context, $items );
 		};
