@@ -177,19 +177,11 @@ class Standard
 			$this->rescale( $context, $items );
 		};
 
-		do
+		while( !( $items = $manager->search( ( clone $search )->add( 'media.id', '>', $lastId ?? 0 ) ) )->isEmpty() )
 		{
-			$search->slice( $start );
-			$items = $manager->search( $search );
-
-			if( !$items->isEmpty() ) {
-				$process->start( $fcn, [$context, $items] );
-			}
-
-			$count = count( $items );
-			$start += $count;
+			$process->start( $fcn, [$context, $items] );
+			$lastId = $items->last()->getId();
 		}
-		while( $count === $search->getLimit() );
 
 		$process->wait();
 
