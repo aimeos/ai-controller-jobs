@@ -256,8 +256,9 @@ class Jobs
 
 		foreach( $dir as $entry )
 		{
-			if( $entry->getType() === 'dir' && $entry->isDot() === false && $entry->getBaseName() !== 'Common' )
-			{
+			if( $entry->getType() === 'dir' && $entry->isDot() === false
+				&& !in_array( $entry->getBaseName(), ['Common', 'Decorator'] )
+			) {
 				$name = strtolower( $entry->getBaseName() );
 				$it = new \DirectoryIterator( $entry->getPathName() );
 				$pref = ( $prefix !== '' ? $prefix . '/' : '' ) . $name;
