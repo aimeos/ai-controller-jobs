@@ -166,5 +166,7 @@ class Standard
 		$date = date( 'Y-m-d H:i:s' );
 
 		\Aimeos\MShop::create( $context, 'index' )->rebuild()->cleanup( $date );
+
+		$context->cache()->deleteByTags( ['product'] );
 	}
 }
