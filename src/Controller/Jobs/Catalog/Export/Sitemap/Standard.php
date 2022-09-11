@@ -307,7 +307,8 @@ class Standard
 		 * @see controller/jobs/catalog/export/sitemap/max-query
 		 * @see controller/jobs/catalog/export/sitemap/changefreq
 		 */
-		$location = $config->get( 'controller/jobs/catalog/export/sitemap/location' );
+		$location = $config->get( 'resource/fs/basedir' );
+		$location = $config->get( 'controller/jobs/catalog/export/sitemap/location', $location );
 
 		/** controller/jobs/catalog/export/sitemap/container/options
 		 * List of file container options for the site map files
@@ -332,7 +333,7 @@ class Standard
 		$default = array( 'gzip-mode' => 'wb' );
 		$options = $config->get( 'controller/jobs/catalog/export/sitemap/container/options', $default );
 
-		if( $location == null )
+		if( empty( $baseUrl ) )
 		{
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/export/sitemap/location' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );

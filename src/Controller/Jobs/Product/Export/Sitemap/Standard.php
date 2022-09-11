@@ -307,7 +307,8 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/max-query
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 */
-		$location = $config->get( 'controller/jobs/product/export/sitemap/location' );
+		$location = $config->get( 'resource/fs/basedir' );
+		$location = $config->get( 'controller/jobs/product/export/sitemap/location', $location );
 
 		/** controller/jobs/product/export/sitemap/container/options
 		 * List of file container options for the site map files
