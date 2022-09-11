@@ -333,7 +333,7 @@ class Standard
 		$default = array( 'gzip-mode' => 'wb' );
 		$options = $config->get( 'controller/jobs/catalog/export/sitemap/container/options', $default );
 
-		if( empty( $baseUrl ) )
+		if( empty( $location ) )
 		{
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/export/sitemap/location' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
