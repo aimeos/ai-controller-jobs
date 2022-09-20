@@ -591,16 +591,14 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 
-		$search = $manager->filter( $default );
-		$search->setSortations( array( $search->sort( '+', 'catalog.id' ) ) );
-		$search->slice( 0, $maxQuery );
+		$search = $manager->filter( $default )->order( '+', 'catalog.id' )->slice( 0, $maxQuery );
+		$cursor = $manager->cursor( $search );
 
 		$content = $this->createContent( $container, $filenum );
 		$names[] = $content->getResource();
 
-		do
+		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
-			$items = $manager->search( $search, $domains );
 			$free = $maxItems * $filenum - $start;
 			$count = count( $items );
 
@@ -617,9 +615,7 @@ class Standard
 			$this->addItems( $content, $items );
 
 			$start += $count;
-			$search->slice( $start, $maxQuery );
 		}
-		while( $count >= $search->getLimit() );
 
 		$this->closeContent( $content );
 
