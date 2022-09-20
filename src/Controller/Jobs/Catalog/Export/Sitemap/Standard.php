@@ -591,7 +591,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 
-		$search = $manager->filter( $default )->order( '+', 'catalog.id' )->slice( 0, $maxQuery );
+		$search = $manager->filter( $default )->slice( 0, $maxQuery );
 		$cursor = $manager->cursor( $search );
 
 		$content = $this->createContent( $container, $filenum );
