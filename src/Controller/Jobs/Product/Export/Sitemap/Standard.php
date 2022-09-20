@@ -528,12 +528,12 @@ class Standard
 
 		$search = $manager->filter( $default )->slice( 0, $maxQuery );
 		$search->add( $search->make( 'product:has', ['catalog'] ), '!=', null );
-		$iterator = $manager->iterator( $search, $domains );
+		$cursor = $manager->cursor( $search );
 
 		$content = $this->createContent( $container, $filenum );
 		$names[] = $content->getResource();
 
-		while( $items = $manager->iterate( $iterator, $domains, $maxQuery ) )
+		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
 			$remaining = $maxItems * $filenum - $start;
 			$count = count( $items );
