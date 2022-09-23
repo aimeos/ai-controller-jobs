@@ -197,8 +197,6 @@ class Standard
 	 */
 	protected function addItems( \Aimeos\MW\Container\Content\Iface $content, \Aimeos\Map $items )
 	{
-		$config = $this->context()->config();
-
 		/** controller/jobs/catalog/export/sitemap/template-items
 		 * Relative path to the XML items template of the catalog site map job controller.
 		 *
