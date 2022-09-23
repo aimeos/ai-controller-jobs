@@ -14,7 +14,6 @@ $treeFilter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', 
 $treeConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
 $treeConfig['absoluteUri'] = true;
 
-$freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
 $locales = $this->get( 'siteLocales', map() );
 $sites = $locales->groupBy( 'locale.siteid' );
 
@@ -46,6 +45,6 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 
 		$url = $this->url( $item->getTarget() ?: $treeTarget, $treeCntl, $treeAction, array_diff_key( $params, $treeFilter ), [], $treeConfig );
 
-		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
+		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . "</lastmod></url>\n";
 	}
 }

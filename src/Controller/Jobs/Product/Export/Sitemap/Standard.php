@@ -199,36 +199,6 @@ class Standard
 	{
 		$config = $this->context()->config();
 
-		/** controller/jobs/product/export/sitemap/changefreq
-		 * Change frequency of the products
-		 *
-		 * Depending on how often the product content changes (e.g. price updates)
-		 * and the site map files are generated you can give search engines a
-		 * hint how often they should reindex your site. The site map schema
-		 * allows a few pre-defined strings for the change frequency:
-		 *
-		 * * always
-		 * * hourly
-		 * * daily
-		 * * weekly
-		 * * monthly
-		 * * yearly
-		 * * never
-		 *
-		 * More information can be found at
-		 * {@link http://www.sitemaps.org/protocol.html#xmlTagDefinitions sitemap.org}
-		 *
-		 * @param string One of the pre-defined strings (see description)
-		 * @since 2015.01
-		 * @category User
-		 * @category Developer
-		 * @see controller/jobs/product/export/sitemap/container/options
-		 * @see controller/jobs/product/export/sitemap/location
-		 * @see controller/jobs/product/export/sitemap/max-items
-		 * @see controller/jobs/product/export/sitemap/max-query
-		 */
-		$changefreq = $config->get( 'controller/jobs/product/export/sitemap/changefreq', 'daily' );
-
 		/** controller/jobs/product/export/sitemap/template-items
 		 * Relative path to the XML items template of the product site map job controller.
 		 *
@@ -258,7 +228,6 @@ class Standard
 		$view = $context->view();
 
 		$view->siteItems = $items;
-		$view->siteFreq = $changefreq;
 		$view->siteLocales = $this->locales();
 
 		$content->add( $view->render( $context->config()->get( $tplconf, $default ) ) );

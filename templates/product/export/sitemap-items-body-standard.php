@@ -14,7 +14,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailConfig['absoluteUri'] = true;
 
-$freq = $enc->xml( $this->get( 'siteFreq', 'daily' ) );
 $locales = $this->get( 'siteLocales', map() );
 $sites = $locales->groupBy( 'locale.siteid' );
 
@@ -49,6 +48,6 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 
 		$url = $this->url( $item->getTarget() ?: $detailTarget, $detailCntl, $detailAction, array_diff_key( $params, $detailFilter ), [], $detailConfig );
 
-		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . '</lastmod><changefreq>' . $freq . "</changefreq></url>\n";
+		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . "</lastmod></url>\n";
 	}
 }
