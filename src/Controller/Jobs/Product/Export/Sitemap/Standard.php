@@ -297,8 +297,7 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/max-query
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 */
-		$default = array( 'gzip-mode' => 'wb' );
-		$options = $config->get( 'controller/jobs/product/export/sitemap/container/options', $default );
+		$options = $config->get( 'controller/jobs/product/export/sitemap/container/options', [] );
 
 		if( $location == null )
 		{
@@ -306,7 +305,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		return \Aimeos\MW\Container\Factory::getContainer( $location, 'Directory', 'Gzip', $options );
+		return \Aimeos\MW\Container\Factory::getContainer( $location, 'Directory', 'Binary', $options );
 	}
 
 

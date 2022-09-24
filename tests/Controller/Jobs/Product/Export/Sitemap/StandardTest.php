@@ -55,22 +55,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$ds = DIRECTORY_SEPARATOR;
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz' );
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-1.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-2.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-index.xml' );
 
-		$file1 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz', 'rb' ), 0x1000 );
-		$file2 = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz', 'rb' ), 0x1000 );
-		$index = gzread( gzopen( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz', 'rb' ), 0x1000 );
+		$file1 = file_get_contents( 'tmp' . $ds . 'aimeos-sitemap-1.xml' );
+		$file2 = file_get_contents( 'tmp' . $ds . 'aimeos-sitemap-2.xml' );
+		$index = file_get_contents( 'tmp' . $ds . 'aimeos-sitemap-index.xml' );
 
-		unlink( 'tmp' . $ds . 'aimeos-sitemap-1.xml.gz' );
-		unlink( 'tmp' . $ds . 'aimeos-sitemap-2.xml.gz' );
-		unlink( 'tmp' . $ds . 'aimeos-sitemap-index.xml.gz' );
+		unlink( 'tmp' . $ds . 'aimeos-sitemap-1.xml' );
+		unlink( 'tmp' . $ds . 'aimeos-sitemap-2.xml' );
+		unlink( 'tmp' . $ds . 'aimeos-sitemap-index.xml' );
 
 		$this->assertStringContainsString( 'cafe-noire-expresso', $file2 );
 		$this->assertStringContainsString( 'unittest-bundle', $file2 );
 
-		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-1.xml.gz', $index );
-		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-2.xml.gz', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-1.xml', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-sitemap-2.xml', $index );
 	}
 }

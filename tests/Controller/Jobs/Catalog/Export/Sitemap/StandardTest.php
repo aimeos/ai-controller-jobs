@@ -55,24 +55,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$ds = DIRECTORY_SEPARATOR;
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-catalog-sitemap-1.xml.gz' );
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml.gz' );
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml.gz' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-catalog-sitemap-1.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml' );
 
-		$file1 = gzread( gzopen( 'tmp' . $ds . 'aimeos-catalog-sitemap-1.xml.gz', 'rb' ), 0x1000 );
-		$file2 = gzread( gzopen( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml.gz', 'rb' ), 0x1000 );
-		$index = gzread( gzopen( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml.gz', 'rb' ), 0x1000 );
+		$file1 = file_get_contents( 'tmp' . $ds . 'aimeos-catalog-sitemap-1.xml' );
+		$file2 = file_get_contents( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml' );
+		$index = file_get_contents( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml' );
 
-		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-1.xml.gz' );
-		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml.gz' );
-		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml.gz' );
+		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-1.xml' );
+		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-2.xml' );
+		unlink( 'tmp' . $ds . 'aimeos-catalog-sitemap-index.xml' );
 
 		$this->assertStringContainsString( 'kaffee', $file1 );
 		$this->assertStringContainsString( 'misc', $file1 );
 		$this->assertStringContainsString( 'groups', $file2 );
 
-		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-1.xml.gz', $index );
-		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-2.xml.gz', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-1.xml', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-2.xml', $index );
 	}
 
 
