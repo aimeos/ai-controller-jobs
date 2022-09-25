@@ -18,6 +18,10 @@ $locales = $this->get( 'siteLocales', map() );
 $sites = $locales->groupBy( 'locale.siteid' );
 
 
+echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+
 foreach( $this->get( 'siteItems', [] ) as $id => $item )
 {
 	$langIds = [];
@@ -48,3 +52,5 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 		echo '<url><loc>' . $enc->xml( $url ) . '</loc><lastmod>' . $date . "</lastmod></url>\n";
 	}
 }
+
+echo "</urlset>\n";

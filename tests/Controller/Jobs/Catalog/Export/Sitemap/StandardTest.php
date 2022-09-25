@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/max-items', 5 );
-		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/baseurl', 'https://www.yourshop.com/sitemaps/' );
+		$this->context->config()->set( 'resource/fs/baseurl', 'https://www.yourshop.com/' );
 
 		$this->object->run();
 
@@ -71,8 +71,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'misc', $file1 );
 		$this->assertStringContainsString( 'groups', $file2 );
 
-		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-1.xml', $index );
-		$this->assertStringContainsString( 'https://www.yourshop.com/sitemaps/aimeos-catalog-sitemap-2.xml', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/aimeos-catalog-sitemap-1.xml', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/aimeos-catalog-sitemap-2.xml', $index );
 	}
 
 
