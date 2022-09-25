@@ -201,7 +201,7 @@ class Standard
 	 * Creates a temporary sitemap file with the given categories
 	 *
 	 * @param \Aimeos\Map $items List of catalog items implementing \Aimeos\MShop\Catalog\Item\Iface
-	 * @param resource File handle
+	 * @return resource File handle
 	 */
 	protected function create( \Aimeos\Map $items )
 	{
@@ -334,6 +334,7 @@ class Standard
 	 */
 	protected function createSitemaps( ?bool $default = true ) : array
 	{
+		$files = [];
 		$config = $this->context()->config();
 
 		/** controller/jobs/catalog/export/sitemap/domains

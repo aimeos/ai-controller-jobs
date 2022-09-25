@@ -201,7 +201,7 @@ class Standard
 	 * Creates a temporary sitemap file with the given products
 	 *
 	 * @param \Aimeos\Map $items List of product items implementing \Aimeos\MShop\Product\Item\Iface
-	 * @param resource File handle
+	 * @return resource File handle
 	 */
 	protected function create( \Aimeos\Map $items )
 	{
@@ -283,7 +283,6 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/template-footer
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/template-index';
-		$default = 'product/export/sitemap-index-standard';
 
 		/** controller/jobs/product/export/sitemap/baseurl
 		 * URL to the folder where the site maps can be accessed, without the filenames.
@@ -335,6 +334,7 @@ class Standard
 	 */
 	protected function createSitemaps( ?bool $default = true ) : array
 	{
+		$files = [];
 		$config = $this->context()->config();
 
 		/** controller/jobs/product/export/sitemap/domains
