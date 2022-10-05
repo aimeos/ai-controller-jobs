@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 12:22+0200\n"
+"POT-Creation-Date: 2022-10-05 07:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,6 +246,18 @@ msgstr ""
 msgid "Index rebuild"
 msgstr ""
 
+msgid "Invoice"
+msgstr ""
+
+#, php-format
+msgid "Invoice %1$s"
+msgstr ""
+
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+msgid "Invoioce"
+msgstr ""
+
 msgid "Like entered by you"
 msgstr ""
 
@@ -262,15 +274,6 @@ msgid "One or more products you are watching have been updated."
 msgstr ""
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
-
-#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
-#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-msgid "Order"
-msgstr ""
-
-#, php-format
-msgid "Order %1$s"
 msgstr ""
 
 msgid "Order date"
