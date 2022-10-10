@@ -393,7 +393,7 @@ class Standard
 		if( !isset( $this->locales ) )
 		{
 			$manager = \Aimeos\MShop::create( $this->context(), 'locale' );
-			$filter = $manager->filter()->add( ['locale.siteid' => $this->context()->locale()->getSiteId()] );
+			$filter = $manager->filter( true )->add( ['locale.siteid' => $this->context()->locale()->getSiteId()] );
 
 			$this->locales = $manager->search( $filter->order( 'locale.position' )->slice( 0, 10000 ) );
 		}
