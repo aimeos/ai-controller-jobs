@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:23+0100\n"
+"POT-Creation-Date: 2022-10-14 13:36+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Aimeos, 2015-2020,2022\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
@@ -252,6 +252,15 @@ msgstr "Optimieren des Produktindex"
 msgid "Index rebuild"
 msgstr "Aktualisieren des Produktindex"
 
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+msgid "Invoice"
+msgstr "Rechnung"
+
+#, php-format
+msgid "Invoice %1$s"
+msgstr "Rechnung %1$s"
+
 msgid "Like entered by you"
 msgstr "Wie von Ihnen eingegeben"
 
@@ -269,15 +278,6 @@ msgstr "Ein oder mehrere Produkte die Sie beobachten wurden aktualisiert"
 
 msgid "Optimizes the index for searching products faster"
 msgstr "Optimiert den Produktindex für die Suche"
-
-#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
-#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-msgid "Order"
-msgstr "Bestellung"
-
-#, php-format
-msgid "Order %1$s"
-msgstr "Bestellung %1$s"
 
 msgid "Order date"
 msgstr "Bestelldatum"
@@ -563,4 +563,4 @@ msgstr "Zahlung"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr "%1$s %2$s"
+msgstr " %1$s %2$s"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:23+0100\n"
+"POT-Creation-Date: 2022-10-14 13:36+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
@@ -249,6 +249,15 @@ msgstr ""
 msgid "Index rebuild"
 msgstr ""
 
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+msgid "Invoice"
+msgstr "請求書"
+
+#, php-format
+msgid "Invoice %1$s"
+msgstr ""
+
 msgid "Like entered by you"
 msgstr "あなたが入力したLike"
 
@@ -265,15 +274,6 @@ msgid "One or more products you are watching have been updated."
 msgstr "あなたが見ている1つ以上の商品が更新されました。"
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
-
-#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
-#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-msgid "Order"
-msgstr "注文"
-
-#, php-format
-msgid "Order %1$s"
 msgstr ""
 
 msgid "Order date"
@@ -559,4 +559,4 @@ msgstr "支払い"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr "%1$s%2$s"
+msgstr ""

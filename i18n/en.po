@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-05 07:36+0200\n"
+"POT-Creation-Date: 2022-10-14 13:36+0200\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -241,16 +241,13 @@ msgstr ""
 msgid "Index rebuild"
 msgstr ""
 
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
 msgstr ""
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
-
-#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
-#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-msgid "Invoioce"
 msgstr ""
 
 msgid "Like entered by you"

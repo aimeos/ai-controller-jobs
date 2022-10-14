@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 18:23+0100\n"
+"POT-Creation-Date: 2022-10-14 13:36+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Goran Sabo <info@noaset.pro>, 2020\n"
 "Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
@@ -251,6 +251,15 @@ msgstr "Index optimization"
 msgid "Index rebuild"
 msgstr "Index rebuild"
 
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+msgid "Invoice"
+msgstr "Invoice"
+
+#, php-format
+msgid "Invoice %1$s"
+msgstr ""
+
 msgid "Like entered by you"
 msgstr "Vi ste všečkali"
 
@@ -268,15 +277,6 @@ msgstr "Eden ali več izdelkov, ki jih opazujete, so spremenjeni."
 
 msgid "Optimizes the index for searching products faster"
 msgstr "Optimizes the index for searching products faster"
-
-#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
-#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-msgid "Order"
-msgstr "Order"
-
-#, php-format
-msgid "Order %1$s"
-msgstr "Naročilo %1$s"
 
 msgid "Order date"
 msgstr "Datum naročila"
