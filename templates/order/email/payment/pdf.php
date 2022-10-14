@@ -101,7 +101,7 @@ $data = [
 	$this->summaryBasket->getPrice()->getCurrencyId() . $total,    // Currency and value (required)
 	'',    // Purpose (optional, 4 char code, https://wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 	'',    // ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-	$this->translate( 'controller/jobs', 'Invoioce' ) . ' ' . $this->orderItem->getInvoiceNumber(), // Reference of order and other data (optional, max. 140 characters)
+	$this->translate( 'controller/jobs', 'Invoice' ) . ' ' . $this->orderItem->getInvoiceNumber(), // Reference of order and other data (optional, max. 140 characters)
 	$this->summaryBasket->getCustomerReference(), // Notice to the customer (optional, max. 70 characters)
 ];
 
