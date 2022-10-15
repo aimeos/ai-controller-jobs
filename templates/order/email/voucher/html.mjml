@@ -5,6 +5,13 @@
  * @copyright Aimeos (aimeos.org), 2018-2022
  */
 
+/** Available data
+ * - orderProductItem : Order product item
+ * - orderAddressItem : Order address item
+ * - voucher : Voucher code
+ */
+
+
 $enc = $this->encoder();
 
 
@@ -39,14 +46,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'co
 		<mj-section>
 			<mj-column>
 				<mj-text css-class="email-common-intro">
-					<?php if( is_array( $this->voucher ) ) : ?>
-						<?= nl2br( $enc->html( $this->translate( 'controller/jobs', 'Your vouchers' ) ) ) ?>:<br/>
-						<?php foreach( $this->voucher as $code ) : ?>
-							- <?= $code ?><br/>
-						<?php endforeach ?>
-					<?php else : ?>
-						<?= nl2br( $enc->html( $this->translate( 'controller/jobs', 'Your voucher' ) . ': ' . $this->voucher, $enc::TRUST ) ) ?>
-					<?php endif ?>
+					<?= nl2br( $enc->html( $this->translate( 'controller/jobs', 'Your voucher' ) . ': ' . $this->voucher, $enc::TRUST ) ) ?>
 				</mj-text>
 				<mj-text css-class="email-common-body">
 					<?php $priceCurrency = $this->translate( 'currency', $this->orderProductItem->getPrice()->getCurrencyId() ) ?>

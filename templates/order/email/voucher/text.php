@@ -5,6 +5,13 @@
  * @copyright Aimeos (aimeos.org), 2018-2022
  */
 
+/** Available data
+ * - orderProductItem : Order product item
+ * - orderAddressItem : Order address item
+ * - voucher : Voucher code
+ */
+
+
 $enc = $this->encoder();
 
 
@@ -17,14 +24,8 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'co
 <?= wordwrap( strip_tags( $this->get( 'intro', '' ) ) ) ?>
 
 
-<?php if( is_array( $this->voucher ) ) : ?>
-<?= wordwrap( strip_tags( $this->translate( 'controller/jobs', 'Your vouchers' ) ) ) ?>:
-<?php foreach( $this->voucher as $code ) : ?>
-- <?= $code ?>
-<?php endforeach ?>
-<?php else : ?>
 <?= wordwrap( strip_tags( $this->translate( 'controller/jobs', 'Your voucher' ) . ': ' . $this->voucher ) ) ?>
-<?php endif ?>
+
 
 <?php $price = $this->orderProductItem->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ) ?>
 <?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate(), $price->getPrecision() ), $priceCurrency ) ?>

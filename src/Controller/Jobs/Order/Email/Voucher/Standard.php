@@ -223,7 +223,7 @@ class Standard
 
 		do
 		{
-			$items = $manager->search( $filter->slice( $start ), ['order/base', 'order/base/addres', 'order/base/product'] );
+			$items = $manager->search( $filter->slice( $start ), ['order/base', 'order/base/address', 'order/base/product'] );
 
 			$this->notify( $items );
 
@@ -317,6 +317,18 @@ class Standard
 
 
 	/**
+	 * Returns the PDF file name
+	 *
+	 * @param string $code Voucher code
+	 * @return string PDF file name
+	 */
+	protected function filename( string $code ) : string
+	{
+		return $this->context()->translate( 'controller/jobs', 'Voucher' ) . '-' . $code . '.pdf';
+	}
+
+
+	/**
 	 * Sends the voucher e-mail for the given orders
 	 *
 	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
@@ -364,6 +376,52 @@ class Standard
 				$context->logger()->info( $msg, 'email/order/voucher' );
 			}
 		}
+	}
+
+
+	/**
+	 * Returns the generated PDF file for the order
+	 *
+	 * @param \Aimeos\Base\View\Iface $view View object with address and order item assigned
+	 * @return string|null PDF content or NULL for no PDF file
+	 */
+	protected function pdf( \Aimeos\Base\View\Iface $view ) : ?string
+	{
+		$config = $this->context()->config();
+
+		/** controller/jobs/order/email/voucher/pdf
+		 * Enables attaching a PDF to the voucher e-mail
+		 *
+		 * The voucher PDF contains the same information like the HTML e-mail.
+		 *
+		 * @param bool TRUE to enable attaching the PDF, FALSE to skip the PDF
+		 * @since 2022.10
+		 */
+		if( !$config->get( 'controller/jobs/order/email/voucher/pdf', true ) ) {
+			return null;
+		}
+
+		$pdf = new class( PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false ) extends \TCPDF {
+			private $headerFcn;
+			private $footerFcn;
+
+			public function Footer() { return ( $fcn = $this->footerFcn ) ? $fcn( $this ) : null; }
+			public function Header() { return ( $fcn = $this->headerFcn ) ? $fcn( $this ) : null; }
+			public function setFooterFunction( \Closure $fcn ) { $this->footerFcn = $fcn; }
+			public function setHeaderFunction( \Closure $fcn ) { $this->headerFcn = $fcn; }
+		};
+		$pdf->setCreator( PDF_CREATOR );
+		$pdf->setAuthor( 'Aimeos' );
+
+		// Generate HTML before creating first PDF page to include header added in template
+		$template = $config->get( 'controller/jobs/order/email/voucher/template-pdf', 'order/email/voucher/pdf' );
+		$content = $view->set( 'pdf', $pdf )->render( $template );
+
+		$pdf->addPage();
+		$pdf->writeHtml( $content );
+		$pdf->lastPage();
+
+		return $pdf->output( '', 'S' );
 	}
 
 
@@ -459,6 +517,7 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 		$logo = $this->call( 'mailLogo', $logoPath );
+		$view->orderAddressItem = $address;
 
 		foreach( $orderProducts as $orderProductItem )
 		{
@@ -475,6 +534,7 @@ class Standard
 					$msg->subject( $context->translate( 'controller/jobs', 'Your voucher' ) )
 						->html( $view->render( $config->get( 'controller/jobs/order/email/voucher/template-html', 'order/email/voucher/html' ) ) )
 						->text( $view->render( $config->get( 'controller/jobs/order/email/voucher/template-text', 'order/email/voucher/text' ) ) )
+						->attach( $this->pdf( $view ), $this->call( 'filename', $code ), 'application/pdf' )
 						->send();
 				}
 			}
