@@ -5,6 +5,13 @@
  * @copyright Aimeos (aimeos.org), 2018-2022
  */
 
+/** Available data
+ * - orderProductItem : Order product item
+ * - orderAddressItem : Order address item
+ * - voucher : Voucher code
+ */
+
+
 $enc = $this->encoder();
 
 

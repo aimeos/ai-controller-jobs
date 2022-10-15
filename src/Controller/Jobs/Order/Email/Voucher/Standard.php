@@ -517,6 +517,7 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 		$logo = $this->call( 'mailLogo', $logoPath );
+		$view->orderAddressItem = $address;
 
 		foreach( $orderProducts as $orderProductItem )
 		{

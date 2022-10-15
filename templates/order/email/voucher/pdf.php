@@ -6,7 +6,8 @@
  */
 
 /** Available data
- * - orderProductItem: Ordered product item
+ * - orderProductItem : Order product item
+ * - orderAddressItem : Order address item
  * - voucher : Voucher code
  */
 
