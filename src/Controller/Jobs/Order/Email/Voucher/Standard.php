@@ -223,7 +223,7 @@ class Standard
 
 		do
 		{
-			$items = $manager->search( $filter->slice( $start ), ['order/base', 'order/base/addres', 'order/base/product'] );
+			$items = $manager->search( $filter->slice( $start ), ['order/base', 'order/base/address', 'order/base/product'] );
 
 			$this->notify( $items );
 
