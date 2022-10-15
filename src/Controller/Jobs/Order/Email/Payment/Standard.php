@@ -306,7 +306,7 @@ class Standard
 	 */
 	protected function filename( \Aimeos\MShop\Order\Item\Iface $order ) : string
 	{
-		return $this->context()->translate( 'controller/jobs', 'Invoice' ) . ' ' . $order->getInvoiceNumber() . '.pdf';
+		return $this->context()->translate( 'controller/jobs', 'Invoice' ) . '-' . $order->getInvoiceNumber() . '.pdf';
 	}
 
 
