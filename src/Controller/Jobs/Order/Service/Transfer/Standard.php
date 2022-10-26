@@ -182,7 +182,7 @@ class Standard
 					}
 
 					$orderSearch->setConditions( $orderSearch->and( [
-						$orderSearch->compare( '<=', 'order.ctime', date( 'Y-m-d 00:00:00', time() - 86400 * $this->days() ) ),
+						$orderSearch->compare( '<=', 'order.ctime', date( 'Y-m-d H:i:s', time() - 86400 * $this->days() ) ),
 						$orderSearch->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
 						$orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
 						$orderSearch->compare( '==', 'order.base.service.type', 'payment' )
