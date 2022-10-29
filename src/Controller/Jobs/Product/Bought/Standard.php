@@ -288,7 +288,9 @@ class Standard
 		{
 			$counts = $baseProductManager->aggregate( $search, 'order.base.product.productid' );
 			$prodIds = $counts->keys()->all();
-			$products = $manager->search( $manager->filter()->add( 'product.id', '==', $prodIds ), $domains );
+
+			$filter = $manager->filter()->add( 'product.id', '==', $prodIds )->slice( 0, 0x7fffffff );
+			$products = $manager->search( $filter, $domains );
 
 			foreach( $counts as $id => $count )
 			{
@@ -305,8 +307,8 @@ class Standard
 
 					foreach( $productIds as $pid )
 					{
-						$litem = $item->getListItem( 'product', 'bought-together', $pid ) ?: $manager->createListItem();
-						$item->addListItem( 'product', $litem->setRefId( $pid ) );
+						$litem = $item->getListItem( 'product', 'bought-together', $pid, false ) ?: $manager->createListItem();
+						$item->addListItem( 'product', $litem->setType( 'bought-together' )->setRefId( $pid ) );
 						$listItems->remove( $litem->getId() );
 					}
 				}
