@@ -162,9 +162,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$ctime = $this->ctime();
-
-		if( !( $total = $this->total( $ctime ) ) ) {
+		if( empty( $total = $this->total() ) ) {
 			return;
 		}
 
@@ -172,7 +170,7 @@ class Standard
 		$domains = $this->domains();
 		$size = $this->size();
 
-		$counts = $this->counts( $ctime );
+		$counts = $this->counts();
 		$ids = $counts->keys();
 		$start = 0;
 
@@ -223,6 +221,7 @@ class Standard
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/limit-days
+		 * @see controller/jobs/product/bought/size
 		 */
 		return $this->context()->config()->get( 'controller/jobs/product/bought/min-confidence', 0.66 );
 	}
@@ -231,13 +230,12 @@ class Standard
 	/**
 	 * Returns how often the product has been bought
 	 *
-	 * @param string $ctime Date of the oldest ordered product to use
 	 * @return \Aimeos\Map Map of product IDs as keys and count as values
 	 */
-	protected function counts( string $ctime ) : \Aimeos\Map
+	protected function counts() : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'order/base/product' );
-		$filter = $manager->filter()->add( 'order.base.product.ctime', '>', $ctime )->slice( 0, 0x7fffffff );
+		$filter = $manager->filter()->add( 'order.base.product.ctime', '>', $this->ctime() )->slice( 0, 0x7fffffff );
 
 		return $manager->aggregate( $filter, 'order.base.product.productid' );
 	}
@@ -271,6 +269,7 @@ class Standard
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
+		 * @see controller/jobs/product/bought/size
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/product/bought/limit-days', 360 );
 		return date( 'Y-m-d H:i:s', time() - $days * 86400 );
@@ -311,6 +310,7 @@ class Standard
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days
+		 * @see controller/jobs/product/bought/size
 		 */
 		return $this->context()->config()->get( 'controller/jobs/product/bought/max-items', 5 );
 	}
@@ -354,6 +354,7 @@ class Standard
 		 *
 		 * @param integer Number of items processed at once
 		 * @since 2023.01
+		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days
@@ -425,6 +426,7 @@ class Standard
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days
+		 * @see controller/jobs/product/bought/size
 		 */
 		return $this->context()->config()->get( 'controller/jobs/product/bought/min-support', 0.02 );
 	}
@@ -433,15 +435,14 @@ class Standard
 	/**
 	 * Returns the total number of orders available
 	 *
-	 * @param string $ctime Time of the oldest order to use
 	 * @return int Total number of orders
 	 */
-	protected function total( string $ctime ) : int
+	protected function total() : int
 	{
 		$total = 0;
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'order/base' );
-		$filter = $manager->filter()->add( 'order.base.ctime', '>', $ctime )->slice( 0, 0 );
+		$filter = $manager->filter()->add( 'order.base.ctime', '>', $this->ctime() )->slice( 0, 0 );
 		$manager->search( $filter, [], $total )->all();
 
 		return $total;
