@@ -166,27 +166,14 @@ class Standard
 			return;
 		}
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
-		$domains = $this->domains();
+		$start = 0;
 		$size = $this->size();
-
 		$counts = $this->counts();
 		$ids = $counts->keys();
-		$start = 0;
 
 		while( !( $prodIds = $ids->slice( $start, $size ) )->isEmpty() )
 		{
-			$filter = $manager->filter()->add( 'product.id', '==', $prodIds )->slice( 0, 0x7fffffff );
-			$products = $manager->search( $filter, $domains );
-
-			foreach( $counts as $id => $count )
-			{
-				if( $item = $products->get( $id ) ) {
-					$this->update( $item, $prodIds, $total, $count );
-				}
-			}
-
-			$manager->save( $products );
+			$this->update( $counts, $prodIds, $total );
 			$start += $size;
 		}
 	}
@@ -452,28 +439,38 @@ class Standard
 	/**
 	 * Updates the products bought together for the given item
 	 *
-	 * @param \Aimeos\MShop\Product\Item\Iface $item Product item to update
+	 * @param \Aimeos\Map $counts Map of product IDs as keys and count as values
 	 * @param iterable $prodIds List of product IDs to create suggestions for
-	 * @param int $count Number of ordered products
 	 * @param int $total Total number of orders
-	 * return \Aimeos\MShop\Product\Item\Iface Updated product item
 	 */
-	protected function update( \Aimeos\MShop\Product\Item\Iface $item, iterable $prodIds, int $count, int $total ) : \Aimeos\MShop\Product\Item\Iface
+	protected function update( iterable $counts, iterable $prodIds, int $total )
 	{
-		$listItems = $item->getListItems( 'product', 'bought-together' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$filter = $manager->filter()->add( 'product.id', '==', $prodIds )->slice( 0, 0x7fffffff );
+		$products = $manager->search( $filter, $this->domains() );
 
-		if( $count / $total > $this->support() )
+		foreach( $counts as $id => $count )
 		{
-			$productIds = $this->suggest( $item->getId(), $prodIds, $count, $total )->slice( 0, $this->max() );
-
-			foreach( $productIds as $pid )
+			if( $item = $products->get( $id ) )
 			{
-				$litem = $item->getListItem( 'product', 'bought-together', $pid, false ) ?: $manager->createListItem();
-				$item->addListItem( 'product', $litem->setType( 'bought-together' )->setRefId( $pid ) );
-				$listItems->remove( $litem->getId() );
+				$listItems = $item->getListItems( 'product', 'bought-together' );
+
+				if( $count / $total > $this->support() )
+				{
+					$productIds = $this->suggest( $id, $prodIds, $count, $total )->slice( 0, $this->max() );
+
+					foreach( $productIds as $pid )
+					{
+						$litem = $item->getListItem( 'product', 'bought-together', $pid, false ) ?: $manager->createListItem();
+						$item->addListItem( 'product', $litem->setType( 'bought-together' )->setRefId( $pid ) );
+						$listItems->remove( $litem->getId() );
+					}
+				}
+
+				$item->deleteListItems( $listItems );
 			}
 		}
 
-		return $item->deleteListItems( $listItems );
+		$manager->save( $products );
 	}
 }
