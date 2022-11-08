@@ -161,29 +161,37 @@ class Standard
 	 */
 	public function run()
 	{
+		$fh = $this->tempfile();
 		$context = $this->context();
-		$config = $context->config();
-		$container = null;
+		$fs = $context->fs( 'fs-admin' );
 
-		/** controller/jobs/admin/log/limit-days
-		 * Only remove log entries that were created berore the configured number of days
-		 *
-		 * This option specifies the number of days log entries will be kept in
-		 * the database. Afterwards, they will be removed and archived if a
-		 * path for storing the archive files is configured.
-		 *
-		 * @param integer Number of days
-		 * @since 2014.09
-		 * @category User
-		 * @category Developer
-		 * @see controller/jobs/admin/log/path
-		 * @see controller/jobs/admin/log/container/type
-		 * @see controller/jobs/admin/log/container/format
-		 * @see controller/jobs/admin/log/container/options
-		 */
-		$limit = $config->get( 'controller/jobs/admin/log/limit-days', 30 );
-		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
+		$manager = \Aimeos\MAdmin::create( $context, 'log' );
+		$filter = $manager->filter()->add( 'log.timestamp', '<=', $this->timestamp() )->order( 'log.timestamp' );
+		$cursor = $manager->cursor( $filter->slice( 0, 1000 ) );
 
+		while( $items = $manager->iterate( $cursor ) )
+		{
+			foreach( $items as $id => $item )
+			{
+				if( fputcsv( $fh, $item->toArray() ) === false ) {
+					throw new \Aimeos\Controller\Jobs\Exception( 'Unable to write log data to temporary file' );
+				}
+			}
+
+			$manager->delete( $items );
+		}
+
+		rewind( $fh );
+		$fs->writes( $this->path(), $fh );
+		fclose( $fh );
+	}
+
+
+	/**
+	 * Returns the path where the export file should be stored
+	 */
+	protected function path() : string
+	{
 		/** controller/jobs/admin/log/path
 		 * Path to a writable directory where the log archive files should be stored
 		 *
@@ -191,156 +199,51 @@ class Standard
 		 * errors that have occured. By default, these data is written into the
 		 * log database and its size will grow if old log entries are not
 		 * removed. There's a job controller available that can delete old log
-		 * entries.
+		 * entries and save the old log entries to the given relative path.
 		 *
-		 * If an absolute path to a writeable directory in the file system is
-		 * set via this configuration option, the job controller will save the
-		 * old log entries to a file in this path. They can be analysed later
-		 * if required.
-		 *
-		 * The type and format of these files as well as the time frame after
-		 * the log entries are removed from the log database can be configured
-		 * too.
-		 *
-		 * @param string Absolute file system path to a writable directory
+		 * @param string Relative file system path in the fs-admin filesystem
 		 * @since 2014.09
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/admin/log/container/type
-		 * @see controller/jobs/admin/log/container/format
-		 * @see controller/jobs/admin/log/container/options
 		 * @see controller/jobs/admin/log/limit-days
 		 */
-		$path = $config->get( 'controller/jobs/admin/log/path', sys_get_temp_dir() );
+		$path = $this->context()->config()->get( 'controller/jobs/admin/log/path', 'logs' );
 
-		/** controller/jobs/admin/log/container/type
-		 * Container file type storing all coupon code files to import
-		 *
-		 * All coupon code files or content objects must be put into one
-		 * container file so editors don't have to upload one file for each
-		 * coupon code file.
-		 *
-		 * The container file types that are supported by default are:
-		 *
-		 * * Zip
-		 *
-		 * Extensions implement other container types like spread sheets, XMLs or
-		 * more advanced ways of handling the exported data.
-		 *
-		 * @param string Container file type
-		 * @since 2014.09
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/admin/log/path
-		 * @see controller/jobs/admin/log/container/format
-		 * @see controller/jobs/admin/log/container/options
-		 * @see controller/jobs/admin/log/limit-days
-		 */
+		return $path . '/aimeos_' . date( 'Y-m-d' ) . '.log';
+	}
 
-		/** controller/jobs/admin/log/container/format
-		 * Format of the coupon code files to import
-		 *
-		 * The coupon codes are stored in one or more files or content
-		 * objects. The format of that file or content object can be configured
-		 * with this option but most formats are bound to a specific container
-		 * type.
-		 *
-		 * The formats that are supported by default are:
-		 *
-		 * * CSV (requires container type "Zip")
-		 *
-		 * Extensions implement other container types like spread sheets, XMLs or
-		 * more advanced ways of handling the exported data.
-		 *
-		 * @param string Content file type
-		 * @since 2014.09
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/admin/log/path
-		 * @see controller/jobs/admin/log/container/type
-		 * @see controller/jobs/admin/log/container/options
-		 * @see controller/jobs/admin/log/limit-days
-		 */
 
-		/** controller/jobs/admin/log/container/options
-		 * Options changing the expected format of the coupon codes to import
-		 *
-		 * Each content format may support some configuration options to change
-		 * the output for that content type.
-		 *
-		 * The options for the CSV content format are:
-		 *
-		 * * csv-separator, default ','
-		 * * csv-enclosure, default '"'
-		 * * csv-escape, default '"'
-		 * * csv-lineend, default '\n'
-		 *
-		 * For format options provided by other container types implemented by
-		 * extensions, please have a look into the extension documentation.
-		 *
-		 * @param array Associative list of options with the name as key and its value
-		 * @since 2014.09
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/admin/log/path
-		 * @see controller/jobs/admin/log/container/type
-		 * @see controller/jobs/admin/log/container/format
-		 * @see controller/jobs/admin/log/limit-days
-		 */
-
-		$type = $config->get( 'controller/jobs/admin/log/container/type', 'Zip' );
-		$format = $config->get( 'controller/jobs/admin/log/container/format', 'CSV' );
-		$options = $config->get( 'controller/jobs/admin/log/container/options', [] );
-
-		$path .= DIRECTORY_SEPARATOR . str_replace( ' ', '_', $limitDate );
-		$container = \Aimeos\MW\Container\Factory::getContainer( $path, $type, $format, $options );
-
-		$manager = \Aimeos\MAdmin::create( $context, 'log' );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '<=', 'log.timestamp', $limitDate ) );
-		$search->setSortations( array( $search->sort( '+', 'log.timestamp' ) ) );
-
-		$start = 0;
-		$contents = [];
-
-		do
-		{
-			$ids = [];
-			$items = $manager->search( $search );
-
-			foreach( $items as $id => $item )
-			{
-				if( $container !== null )
-				{
-					$facility = $item->getFacility();
-
-					if( !isset( $contents[$facility] ) ) {
-						$contents[$facility] = $container->create( $facility );
-					}
-
-					$contents[$facility]->add( $item->toArray() );
-				}
-
-				$ids[] = $id;
-			}
-
-			$manager->delete( $ids );
-
-			$count = count( $items );
-			$start += $count;
-			$search->slice( $start );
+	/**
+	 * Returns a file handle for a temporary file
+	 *
+	 * @return resource Temporary file handle
+	 */
+	protected function tempfile()
+	{
+		if( ( $fh = tmpfile() ) === false ) {
+			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to create temporary file' );
 		}
-		while( $count >= $search->getLimit() );
+
+		return $fh;
+	}
 
 
-		if( $container !== null && !empty( $contents ) )
-		{
-			foreach( $contents as $content ) {
-				$container->add( $content );
-			}
-
-			$container->close();
-		}
+	/**
+	 * Returns the timestamp until the logs entries should be moved
+	 *
+	 * @return string Timestamp in "YYYY-MM-DD HH:mm:ss" format
+	 */
+	protected function timestamp() : string
+	{
+		/** controller/jobs/admin/log/limit-days
+		 * Only remove log entries that were created berore the configured number of days
+		 *
+		 * This option specifies the number of days log entries will be kept in
+		 * the database. Afterwards, they will be removed and archived.
+		 *
+		 * @param integer Number of days
+		 * @since 2014.09
+		 * @see controller/jobs/admin/log/path
+		 */
+		$limit = $this->context()->config()->get( 'controller/jobs/admin/log/limit-days', 30 );
+		return date( 'Y-m-d H:i:s', time() - $limit * 86400 );
 	}
 }

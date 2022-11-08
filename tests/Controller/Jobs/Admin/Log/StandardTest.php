@@ -50,37 +50,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$config = $this->context->config();
+		$config->set( 'controller/jobs/admin/log/limit-days', 0 );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\MAdmin\\Log\\Manager\\Standard' )
-			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'delete' ) )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['delete'] )
 			->getMock();
 
 		$mock->expects( $this->atLeastOnce() )->method( 'delete' );
 
-		$tmppath = dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) . DIRECTORY_SEPARATOR . 'tmp';
-		$config->set( 'controller/jobs/admin/log/path', $tmppath );
-		$config->set( 'controller/jobs/admin/log/limit-days', 0 );
-
 		\Aimeos\MAdmin::inject( '\\Aimeos\\MAdmin\\Log\\Manager\\Standard', $mock );
-
-		if( !is_dir( $tmppath ) && mkdir( $tmppath ) === false ) {
-			throw new \RuntimeException( sprintf( 'Unable to create temporary path "%1$s"', $tmppath ) );
-		}
 
 		$this->object->run();
 
-		foreach( new \DirectoryIterator( $tmppath ) as $file )
-		{
-			if( $file->isFile() && $file->getExtension() === 'zip' )
-			{
-				$container = \Aimeos\MW\Container\Factory::getContainer( $file->getPathName(), 'Zip', 'CSV', [] );
-				$container->get( 'unittest facility.csv' );
-				unlink( $file->getPathName() );
-				return;
-			}
-		}
+		$expected = dirname( __DIR__, 4) . '/tmp/logs/aimeos_' . date( 'Y-m-d' ) . '.log';
+		$this->assertFileExists( $expected );
 
-		$this->fail( 'Log archive file not found' );
+		unlink( $expected );
 	}
 }
