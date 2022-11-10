@@ -348,59 +348,11 @@ class Standard
 	protected function process( \Aimeos\MShop\ContextIface $context, \Aimeos\MW\Container\Iface $container, string $couponId, string $path )
 	{
 		$total = $errors = 0;
-		$config = $context->config();
 		$logger = $context->logger();
 
-		/** controller/jobs/coupon/import/csv/code/mapping
-		 * List of mappings between the position in the CSV file and item keys
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/coupon/import/csv/mapping" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
-		 * @since 2017.10
-		 * @category Developer
-		 * @see controller/jobs/coupon/import/csv/code/skip-lines
-		 * @see controller/jobs/coupon/import/csv/code/max-size
-		 */
-		$mappings = $config->get( 'controller/jobs/coupon/import/csv/code/mapping', $this->getDefaultMapping() );
-
-		/** controller/jobs/coupon/import/csv/code/max-size
-		 * Maximum number of CSV rows to import at once
-		 *
-		 * It's more efficient to read and import more than one row at a time
-		 * to speed up the import. Usually, the bigger the chunk that is imported
-		 * at once, the less time the importer will need. The downside is that
-		 * the amount of memory required by the import process will increase as
-		 * well. Therefore, it's a trade-off between memory consumption and
-		 * import speed.
-		 *
-		 * @param integer Number of rows
-		 * @since 2017.10
-		 * @category Developer
-		 * @see controller/jobs/coupon/import/csv/code/skip-lines
-		 * @see controller/jobs/coupon/import/csv/code/mapping
-		 */
-		$maxcnt = (int) $config->get( 'controller/jobs/coupon/import/csv/code/max-size', 1000 );
-
-		/** controller/jobs/coupon/import/csv/code/skip-lines
-		 * Number of rows skipped in front of each CSV files
-		 *
-		 * Some CSV files contain header information describing the content of
-		 * the column values. These data is for informational purpose only and
-		 * can't be imported into the database. Using this option, you can
-		 * define the number of lines that should be left out before the import
-		 * begins.
-		 *
-		 * @param integer Number of rows
-		 * @since 2015.08
-		 * @category Developer
-		 * @see controller/jobs/coupon/import/csv/code/mapping
-		 * @see controller/jobs/coupon/import/csv/code/max-size
-		 */
-		$skiplines = (int) $config->get( 'controller/jobs/coupon/import/csv/code/skip-lines', 0 );
+		$maxcnt = $this->size();
+		$skiplines = $this->skip();
+		$mappings = $this->mapping();
 
 
 		$msg = sprintf( 'Started coupon import from "%1$s" (%2$s)', $path, __CLASS__ );
@@ -437,5 +389,83 @@ class Standard
 
 		$container->close();
 		$context->fs( 'fs-import' )->rm( $path );
+	}
+
+
+	/**
+	 * Returns the column mapping
+	 *
+	 * @return array Mapping of the columns
+	 */
+	protected function mapping() : array
+	{
+		/** controller/jobs/coupon/import/csv/code/mapping
+		 * List of mappings between the position in the CSV file and item keys
+		 *
+		 * This configuration setting overwrites the shared option
+		 * "controller/common/coupon/import/csv/mapping" if you need a
+		 * specific setting for the job controller. Otherwise, you should
+		 * use the shared option for consistency.
+		 *
+		 * @param array Associative list of processor names and lists of key/position pairs
+		 * @since 2017.10
+		 * @category Developer
+		 * @see controller/jobs/coupon/import/csv/code/skip-lines
+		 * @see controller/jobs/coupon/import/csv/code/max-size
+		 */
+		return $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/mapping', $this->getDefaultMapping() );
+	}
+
+
+	/**
+	 * Returns the maximum number of items processed at once
+	 *
+	 * @return int Maximum number of items
+	 */
+	protected function size() : int
+	{
+		/** controller/jobs/coupon/import/csv/code/max-size
+		 * Maximum number of CSV rows to import at once
+		 *
+		 * It's more efficient to read and import more than one row at a time
+		 * to speed up the import. Usually, the bigger the chunk that is imported
+		 * at once, the less time the importer will need. The downside is that
+		 * the amount of memory required by the import process will increase as
+		 * well. Therefore, it's a trade-off between memory consumption and
+		 * import speed.
+		 *
+		 * @param integer Number of rows
+		 * @since 2017.10
+		 * @category Developer
+		 * @see controller/jobs/coupon/import/csv/code/skip-lines
+		 * @see controller/jobs/coupon/import/csv/code/mapping
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/max-size', 1000 );
+	}
+
+
+	/**
+	 * Returns the number of lines to skip at the beginning of the file
+	 *
+	 * @return int Number of linees to skip
+	 */
+	protected function skip() : int
+	{
+		/** controller/jobs/coupon/import/csv/code/skip-lines
+		 * Number of rows skipped in front of each CSV files
+		 *
+		 * Some CSV files contain header information describing the content of
+		 * the column values. These data is for informational purpose only and
+		 * can't be imported into the database. Using this option, you can
+		 * define the number of lines that should be left out before the import
+		 * begins.
+		 *
+		 * @param integer Number of rows
+		 * @since 2015.08
+		 * @category Developer
+		 * @see controller/jobs/coupon/import/csv/code/mapping
+		 * @see controller/jobs/coupon/import/csv/code/max-size
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/skip-lines', 0 );
 	}
 }
