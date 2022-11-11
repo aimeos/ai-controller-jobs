@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/cleanup/unfinished/decorators/excludes
@@ -76,7 +75,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/cleanup/unfinished/decorators/global
 	 * @see controller/jobs/order/cleanup/unfinished/decorators/local
@@ -100,7 +98,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/cleanup/unfinished/decorators/excludes
 	 * @see controller/jobs/order/cleanup/unfinished/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/cleanup/unfinished/decorators/excludes
 	 * @see controller/jobs/order/cleanup/unfinished/decorators/global
@@ -162,10 +158,33 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
-		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$manager = \Aimeos\MShop::create( $context, 'order' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
+		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
 
+		$filter = $manager->filter()
+			->add( 'order.statuspayment', '==', -1 )
+			->add( 'order.mtime', '<', $this->ctime() );
+		$cursor = $manager->cursor( $filter );
+
+		while( $items = $manager->iterate( $cursor ) )
+		{
+			foreach( $items as $item ) {
+				$controller->unblock( $item );
+			}
+
+			$baseManager->delete( $items->getBaseId() );
+		}
+	}
+
+
+	/**
+	 * Returns the creation time when orders can be deleted
+	 *
+	 * @return string Date/time in "YYYY-mm-dd HH:mm:ss" format
+	 */
+	protected function ctime() : string
+	{
 		/** controller/jobs/order/cleanup/unfinished/keep-hours
 		 * Release the ordered products after the configured time if no payment was confirmed
 		 *
@@ -182,37 +201,8 @@ class Standard
 		 *
 		 * @param integer Number of hours
 		 * @since 2014.07
-		 * @category User
 		 */
-		$hours = $context->config()->get( 'controller/jobs/order/cleanup/unfinished/keep-hours', 24 );
-		$limit = date( 'Y-m-d H:i:s', time() - 3600 * $hours );
-
-		$search = $manager->filter();
-		$expr = array(
-			$search->compare( '<', 'order.mtime', $limit ),
-			$search->compare( '==', 'order.statuspayment', null ),
-		);
-		$search->setConditions( $search->and( $expr ) );
-
-		$start = 0;
-
-		do
-		{
-			$baseIds = [];
-			$items = $manager->search( $search );
-
-			foreach( $items as $item )
-			{
-				$controller->unblock( $item );
-				$baseIds[] = $item->getBaseId();
-			}
-
-			$baseManager->delete( $baseIds );
-
-			$count = count( $items );
-			$start += $count;
-			$search->slice( $start );
-		}
-		while( $count >= $search->getLimit() );
+		$hours = $this->context()->config()->get( 'controller/jobs/order/cleanup/unfinished/keep-hours', 24 );
+		return date( 'Y-m-d H:i:s', time() - 3600 * $hours );
 	}
 }

@@ -54,7 +54,7 @@ class StandardTest
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( ['search', 'getSubManager'] )
+			->setMethods( ['iterate', 'getSubManager'] )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -79,8 +79,8 @@ class StandardTest
 		$orderItem->setId( 2 );
 
 
-		$orderManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$orderItem->getId() => $orderItem] ) ) );
+		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$orderItem->getId() => $orderItem] ), null ) );
 
 		$orderBaseManagerStub->expects( $this->once() )->method( 'delete' );
 
