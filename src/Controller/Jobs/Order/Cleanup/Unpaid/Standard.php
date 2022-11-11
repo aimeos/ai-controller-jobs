@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.07
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/cleanup/unpaid/decorators/excludes
@@ -76,7 +75,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/cleanup/unpaid/decorators/global
 	 * @see controller/jobs/order/cleanup/unpaid/decorators/local
@@ -100,7 +98,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/cleanup/unpaid/decorators/excludes
 	 * @see controller/jobs/order/cleanup/unpaid/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/cleanup/unpaid/decorators/excludes
 	 * @see controller/jobs/order/cleanup/unpaid/decorators/global
@@ -162,10 +158,33 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
-		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$manager = \Aimeos\MShop::create( $context, 'order' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
+		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
 
+		$filter = $manager->filter()
+			->add( 'order.mtime', '<', $this->mtime() )
+			->add( 'order.statuspayment', '<', \Aimeos\MShop\Order\Item\Base::PAY_REFUND );
+		$cursor = $manager->cursor( $filter );
+
+		while( $items = $manager->iterate( $cursor ) )
+		{
+			foreach( $items as $item ) {
+				$controller->unblock( $item );
+			}
+
+			$baseManager->delete( $items->getBaseId() );
+		}
+	}
+
+
+	/**
+	 * Returns the modifiction time when orders can be deleted
+	 *
+	 * @return string Date/time in "YYYY-mm-dd HH:mm:ss" format
+	 */
+	protected function mtime() : string
+	{
 		/** controller/jobs/order/cleanup/unpaid/keep-days
 		 * Removes all orders from the database that are unpaid
 		 *
@@ -181,35 +200,7 @@ class Standard
 		 * @since 2014.07
 		 * @category User
 		 */
-		$days = $context->config()->get( 'controller/jobs/order/cleanup/unpaid/keep-days', 3 );
-		$limit = date( 'Y-m-d H:i:s', time() - 86400 * $days );
-
-		$search = $manager->filter();
-		$expr = array(
-			$search->compare( '<', 'order.mtime', $limit ),
-			$search->compare( '<', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_REFUND ),
-		);
-		$search->setConditions( $search->and( $expr ) );
-
-		$start = 0;
-
-		do
-		{
-			$baseIds = [];
-			$items = $manager->search( $search );
-
-			foreach( $items as $item )
-			{
-				$controller->unblock( $item );
-				$baseIds[] = $item->getBaseId();
-			}
-
-			$baseManager->delete( $baseIds );
-
-			$count = count( $items );
-			$start += $count;
-			$search->slice( $start );
-		}
-		while( $count >= $search->getLimit() );
+		$days = $this->context()->config()->get( 'controller/jobs/order/cleanup/unpaid/keep-days', 3 );
+		return date( 'Y-m-d H:i:s', time() - 86400 * $days );
 	}
 }
