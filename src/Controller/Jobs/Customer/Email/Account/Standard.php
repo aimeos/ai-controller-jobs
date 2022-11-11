@@ -180,7 +180,6 @@ class Standard
 					throw new \Aimeos\Controller\Jobs\Exception( $str );
 				}
 
-				$password = $list['customer.password'] ?? null;
 				$item = $custManager->create()->fromArray( $list, true );
 				$sites = $this->sites( $item->getSiteId() );
 
@@ -188,8 +187,8 @@ class Standard
 				$context->locale()->setLanguageId( $address->getLanguageId() ); // for translation
 
 				$view = $this->view( $address, $sites->getTheme()->filter()->last() );
+				$view->password = $list['customer.password'] ?? null;
 				$view->account = $item->getCode();
-				$view->password = $password;
 
 				$this->send( $view, $address, $sites->getLogo()->filter()->last() );
 
