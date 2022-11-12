@@ -76,7 +76,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/global
 	 * @see controller/jobs/order/service/payment/decorators/local
@@ -100,7 +99,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/excludes
 	 * @see controller/jobs/order/service/payment/decorators/local
@@ -125,7 +123,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/excludes
 	 * @see controller/jobs/order/service/payment/decorators/global
@@ -162,25 +159,66 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
+		$manager = \Aimeos\MShop::create( $context, 'service' );
+
+		$filter = $manager->filter()->add( ['service.type' => 'payment'] );
+		$cursor = $manager->cursor( $filter );
+
+		while( $items = $manager->iterate( $cursor ) )
+		{
+			foreach( $items as $item )
+			{
+				try
+				{
+					$provider = $manager->getProvider( $item, $item->getType() );
+
+					if( $provider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_CAPTURE ) ) {
+						$this->orders( $provider );
+					}
+				}
+				catch( \Exception $e )
+				{
+					$str = 'Error while capturing payments for service with ID "%1$s": %2$s';
+					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$context->logger()->error( $msg, 'order/service/payment' );
+				}
+			}
+		}
+	}
 
 
-		/** controller/jobs/order/service/payment/limit-days
-		 * Only start capturing payments of orders that were created in the past within the configured number of days
+	/**
+	 * Returns the date after the payments are captured
+	 *
+	 * @return string|null Date/time in "YYYY-MM-DD HH:mm:ss" format or NULL if not configured
+	 */
+	protected function capture() : ?string
+	{
+		/** controller/jobs/order/service/payment/capture-days
+		 * Automatically capture payments after the configured amount of days
 		 *
-		 * Capturing payments is normally done immediately after the delivery
-		 * status changed to "dispatched" or "delivered". This option prevents
-		 * payments from being captured in case anything went wrong and payments
-		 * of old orders would be captured now.
+		 * You can capture authorized payments after a configured amount of days
+		 * even if the parcel for the order wasn't dispatched yet. This is useful
+		 * for payment methods like credit cards where autorizations are revoked
+		 * by the aquirers after some time (usually seven days).
 		 *
 		 * @param integer Number of days
 		 * @since 2014.07
 		 * @category User
 		 * @category Developer
 		 */
-		$days = $config->get( 'controller/jobs/order/service/payment/limit-days', 90 );
-		$date = date( 'Y-m-d 00:00:00', time() - 86400 * $days );
+		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/capture-days', null );
+		return $days ? date( 'Y-m-d 00:00:00', time() - 86400 * $days ) : null;
+	}
 
+
+	/**
+	 * Returns the domains that should be fetched together with the order data
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
 		/** controller/jobs/order/service/payment/domains
 		 * Associated items that should be available too in the order
 		 *
@@ -200,107 +238,103 @@ class Standard
 		 * @see controller/jobs/order/service/payment/capture-days
 		 */
 		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-		$domains = $context->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
+		return $this->context()->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
+	}
 
-		/** controller/jobs/order/service/payment/capture-days
-		 * Automatically capture payments after the configured amount of days
+
+	/**
+	 * Returns the date until orders should be processed
+	 *
+	 * @return string Date/time in "YYYY-MM-DD HH:mm:ss" format
+	 */
+	protected function limit() : string
+	{
+		/** controller/jobs/order/service/payment/limit-days
+		 * Only start capturing payments of orders that were created in the past within the configured number of days
 		 *
-		 * You can capture authorized payments after a configured amount of days
-		 * even if the parcel for the order wasn't dispatched yet. This is useful
-		 * for payment methods like credit cards where autorizations are revoked
-		 * by the aquirers after some time (usually seven days).
+		 * Capturing payments is normally done immediately after the delivery
+		 * status changed to "dispatched" or "delivered". This option prevents
+		 * payments from being captured in case anything went wrong and payments
+		 * of old orders would be captured now.
 		 *
 		 * @param integer Number of days
 		 * @since 2014.07
 		 * @category User
 		 * @category Developer
 		 */
-		$capDays = $config->get( 'controller/jobs/order/service/payment/capture-days', null );
+		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/limit-days', 90 );
+		return date( 'Y-m-d 00:00:00', time() - 86400 * $days );
+	}
 
 
-		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
-		$serviceSearch = $serviceManager->filter();
-		$serviceSearch->setConditions( $serviceSearch->compare( '==', 'service.type', 'payment' ) );
+	/**
+	 * Returns the maximum number of orders processed at once
+	 *
+	 * @return int Maximum number of items
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/order/service/delivery/batch-max
+		 * Maximum number of orders processed at once by the delivery service provider
+		 *
+		 * Orders are sent in batches if the delivery service provider supports it.
+		 * This setting configures the maximum orders that will be handed over to
+		 * the delivery service provider at once. Bigger batches an improve the
+		 * performance but requires more memory.
+		 *
+		 * @param integer Number of orders
+		 * @since 2018.07
+		 * @see controller/jobs/order/service/delivery/domains
+		 * @see controller/jobs/order/service/delivery/limit-days
+		 */
+		return $this->context()->config()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
+	}
 
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
-		$orderSearch = $orderManager->filter();
 
-		$status = array( \Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED, \Aimeos\MShop\Order\Item\Base::STAT_DELIVERED );
-		$start = 0;
+	/**
+	 * Fetches and processes the order items
+	 *
+	 * @param \Aimeos\MShop\Service\Provider\Iface $provider Service provider for processing the orders
+	 */
+	protected function orders( \Aimeos\MShop\Service\Provider\Iface $provider )
+	{
+		$context = $this->context();
+		$domains = $this->domains();
 
-		do
+		$item = $provider->getServiceItem();
+		$manager = \Aimeos\MShop::create( $context, 'order' );
+
+		$filter = $manager->filter()->slice( 0, $this->max() );
+		$filter->add( $filter->and( [
+			$filter->compare( '>=', 'order.datepayment', $this->limit() ),
+			$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ),
+			$filter->compare( '==', 'order.base.service.code', $item->getCode() ),
+			$filter->compare( '==', 'order.base.service.type', 'payment' ),
+		] ) );
+		$cursor = $manager->cursor( $filter );
+
+		if( ( $capture = $this->capture() ) !== null ) {
+			$filter->add( $filter->compare( '<=', 'order.datepayment', $capture ) );
+		} else {
+			$status = [\Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED, \Aimeos\MShop\Order\Item\Base::STAT_DELIVERED];
+			$filter->add( $filter->compare( '==', 'order.statusdelivery', $status ) );
+		}
+
+		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
-			$serviceItems = $serviceManager->search( $serviceSearch );
-
-			foreach( $serviceItems as $serviceItem )
+			foreach( $items as $item )
 			{
 				try
 				{
-					$serviceProvider = $serviceManager->getProvider( $serviceItem, $serviceItem->getType() );
-
-					if( !$serviceProvider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_CAPTURE ) ) {
-						continue;
-					}
-
-
-					$expr = [];
-					$expr[] = $orderSearch->compare( '>', 'order.datepayment', $date );
-
-					if( $capDays !== null )
-					{
-						$capdate = date( 'Y-m-d 00:00:00', time() - 86400 * $capDays );
-						$expr[] = $orderSearch->compare( '<=', 'order.datepayment', $capdate );
-					}
-					else
-					{
-						$expr[] = $orderSearch->compare( '==', 'order.statusdelivery', $status );
-					}
-
-					$expr[] = $orderSearch->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
-					$expr[] = $orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() );
-					$expr[] = $orderSearch->compare( '==', 'order.base.service.type', 'payment' );
-
-					$orderSearch->setConditions( $orderSearch->and( $expr ) );
-
-
-					$orderStart = 0;
-
-					do
-					{
-						$orderItems = $orderManager->search( $orderSearch, $domains );
-
-						foreach( $orderItems as $orderItem )
-						{
-							try
-							{
-								$serviceProvider->capture( $orderItem );
-							}
-							catch( \Exception $e )
-							{
-								$str = 'Error while capturing payment for order with ID "%1$s": %2$s';
-								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-								$context->logger()->error( $msg, 'order/service/payment' );
-							}
-						}
-
-						$orderCount = count( $orderItems );
-						$orderStart += $orderCount;
-						$orderSearch->slice( $orderStart );
-					}
-					while( $orderCount >= $orderSearch->getLimit() );
+					$provider->capture( $item );
 				}
 				catch( \Exception $e )
 				{
-					$str = 'Error while capturing payments for service with ID "%1$s": %2$s';
-					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$str = 'Error while capturing payment for order with ID "%1$s": %2$s';
+					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'order/service/payment' );
 				}
 			}
-
-			$count = count( $serviceItems );
-			$start += $count;
-			$serviceSearch->slice( $start );
 		}
-		while( $count >= $serviceSearch->getLimit() );
 	}
 }
