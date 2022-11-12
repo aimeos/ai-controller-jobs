@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.07
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/service/async/decorators/excludes
@@ -76,7 +75,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/async/decorators/global
 	 * @see controller/jobs/order/service/async/decorators/local
@@ -100,7 +98,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/async/decorators/excludes
 	 * @see controller/jobs/order/service/async/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/async/decorators/excludes
 	 * @see controller/jobs/order/service/async/decorators/global
@@ -162,32 +158,26 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
+		$manager = \Aimeos\MShop::create( $context, 'service' );
 
-		$search = $serviceManager->filter();
-		$start = 0;
+		$filter = $manager->filter();
+		$cursor = $manager->cursor( $filter );
 
-		do
+		while( $items = $manager->iterate( $cursor ) )
 		{
-			$serviceItems = $serviceManager->search( $search->slice( $start ) );
-
-			foreach( $serviceItems as $serviceItem )
+			foreach( $items as $item )
 			{
 				try
 				{
-					$serviceManager->getProvider( $serviceItem, $serviceItem->getType() )->updateAsync();
+					$manager->getProvider( $item, $item->getType() )->updateAsync();
 				}
 				catch( \Exception $e )
 				{
 					$str = 'Executing updateAsyc() of "%1$s" failed: %2$s';
-					$msg = sprintf( $str, $serviceItem->getProvider(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$msg = sprintf( $str, $item->getProvider(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'order/service/async' );
 				}
 			}
-
-			$count = count( $serviceItems );
-			$start += $count;
 		}
-		while( $count >= $search->getLimit() );
 	}
 }
