@@ -53,12 +53,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'search' ) )
+			->setMethods( array( 'getProvider', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'save', 'search' ) )
+			->setMethods( array( 'save', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -74,14 +74,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 
-		$serviceManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
+		$serviceManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), null ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->returnValue( $serviceProviderStub ) );
 
-		$orderManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$orderItem] ), map() ) );
+		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$orderItem] ), null ) );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'processBatch' );
 
@@ -100,12 +100,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'save', 'search' ) )
+			->setMethods( array( 'save', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'search' ) )
+			->setMethods( array( 'getProvider', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -121,14 +121,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 
-		$serviceManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
+		$serviceManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), null ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->returnValue( $serviceProviderStub ) );
 
-		$orderManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$orderItem] ), map() ) );
+		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$orderItem] ), null ) );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'processBatch' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test order service delivery: process' ) ) );
@@ -148,12 +148,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'save', 'search' ) )
+			->setMethods( array( 'save', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'search' ) )
+			->setMethods( array( 'getProvider', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -163,13 +163,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
 
-		$serviceManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
+		$serviceManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), null ) );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception() ) );
 
-		$orderManagerStub->expects( $this->never() )->method( 'search' );
+		$orderManagerStub->expects( $this->never() )->method( 'iterate' );
 
 
 		$object = new \Aimeos\Controller\Jobs\Order\Service\Delivery\Standard( $context, $aimeos );

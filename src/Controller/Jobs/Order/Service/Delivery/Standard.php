@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/service/delivery/decorators/excludes
@@ -76,7 +75,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/delivery/decorators/global
 	 * @see controller/jobs/order/service/delivery/decorators/local
@@ -100,7 +98,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/delivery/decorators/excludes
 	 * @see controller/jobs/order/service/delivery/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/delivery/decorators/excludes
 	 * @see controller/jobs/order/service/delivery/decorators/global
@@ -162,23 +158,37 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
+		$manager = \Aimeos\MShop::create( $context, 'service' );
 
-		/** controller/jobs/order/service/delivery/limit-days
-		 * Only start the delivery process of orders that were created in the past within the configured number of days
-		 *
-		 * The delivery process is normally started immediately after the
-		 * notification about a successful payment arrived. This option prevents
-		 * orders from being shipped in case anything went wrong or an update
-		 * failed and old orders would have been shipped now.
-		 *
-		 * @param integer Number of days
-		 * @since 2014.03
-		 * @see controller/jobs/order/service/delivery/batch-max
-		 * @see controller/jobs/order/service/delivery/domains
-		 */
-		$days = $context->config()->get( 'controller/jobs/order/service/delivery/limit-days', 90 );
-		$date = date( 'Y-m-d 00:00:00', time() - 86400 * $days );
+		$filter = $manager->filter()->add( ['service.type' => 'delivery'] );
+		$cursor = $manager->cursor( $filter );
 
+		while( $items = $manager->iterate( $cursor ) )
+		{
+			foreach( $items as $item )
+			{
+				try
+				{
+					$this->orders( $manager->getProvider( $item, $item->getType() ) );
+				}
+				catch( \Exception $e )
+				{
+					$str = 'Error while processing service with ID "%1$s": %2$s';
+					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$context->logger()->error( $msg, 'order/service/delivery' );
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Returns the domains that should be fetched together with the order data
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
 		/** controller/jobs/order/service/delivery/domains
 		 * Associated items that should be available too in the order
 		 *
@@ -198,8 +208,42 @@ class Standard
 		 * @see controller/jobs/order/service/delivery/batch-max
 		 */
 		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-		$domains = $context->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
+		return $this->context()->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
+	}
 
+
+	/**
+	 * Returns the payment date until orders should be processed
+	 *
+	 * @return string Date/time in "YYYY-MM-DD HH:mm:ss" format
+	 */
+	protected function limit() : string
+	{
+		/** controller/jobs/order/service/delivery/limit-days
+		 * Only start the delivery process of orders that were created in the past within the configured number of days
+		 *
+		 * The delivery process is normally started immediately after the
+		 * notification about a successful payment arrived. This option prevents
+		 * orders from being shipped in case anything went wrong or an update
+		 * failed and old orders would have been shipped now.
+		 *
+		 * @param integer Number of days
+		 * @since 2014.03
+		 * @see controller/jobs/order/service/delivery/batch-max
+		 * @see controller/jobs/order/service/delivery/domains
+		 */
+		$days = $this->context()->config()->get( 'controller/jobs/order/service/delivery/limit-days', 90 );
+		return date( 'Y-m-d 00:00:00', time() - 86400 * $days );
+	}
+
+
+	/**
+	 * Returns the maximum number of orders processed at once
+	 *
+	 * @return int Maximum number of items
+	 */
+	protected function max() : int
+	{
 		/** controller/jobs/order/service/delivery/batch-max
 		 * Maximum number of orders processed at once by the delivery service provider
 		 *
@@ -213,75 +257,49 @@ class Standard
 		 * @see controller/jobs/order/service/delivery/domains
 		 * @see controller/jobs/order/service/delivery/limit-days
 		 */
-		$maxItems = $context->config()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
+		return $this->context()->config()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
+	}
 
 
-		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
-		$serviceSearch = $serviceManager->filter()->add( ['service.type' => 'delivery'] );
+	/**
+	 * Fetches and processes the order items
+	 *
+	 * @param \Aimeos\MShop\Service\Provider\Iface $provider Service provider for processing the orders
+	 */
+	protected function orders( \Aimeos\MShop\Service\Provider\Iface $provider )
+	{
+		$context = $this->context();
+		$domains = $this->domains();
 
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
-		$orderSearch = $orderManager->filter();
+		$serviceItem = $provider->getServiceItem();
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 
-		$start = 0;
+		$filter = $manager->filter()->slice( 0, $this->max() );
+		$filter->add( $filter->and( [
+			$filter->compare( '>=', 'order.datepayment', $this->limit() ),
+			$filter->compare( '==', 'order.statusdelivery', \Aimeos\MShop\Order\Item\Base::STAT_UNFINISHED ),
+			$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING ),
+			$filter->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
+			$filter->compare( '==', 'order.base.service.type', 'delivery' ),
+		] ) );
+		$cursor = $manager->cursor( $filter );
 
-		do
+		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
-			$serviceItems = $serviceManager->search( $serviceSearch );
-
-			foreach( $serviceItems as $serviceItem )
+			try
 			{
-				try
-				{
-					$serviceProvider = $serviceManager->getProvider( $serviceItem, $serviceItem->getType() );
+				$provider->processBatch( $items );
 
-					$expr = array(
-						$orderSearch->compare( '>=', 'order.datepayment', $date ),
-						$orderSearch->compare( '==', 'order.statusdelivery', \Aimeos\MShop\Order\Item\Base::STAT_UNFINISHED ),
-						$orderSearch->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING ),
-						$orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
-						$orderSearch->compare( '==', 'order.base.service.type', 'delivery' ),
-					);
-					$orderSearch->setConditions( $orderSearch->and( $expr ) );
-
-					$orderStart = 0;
-
-					do
-					{
-						$orderSearch->slice( $orderStart, $maxItems );
-						$orderItems = $orderManager->search( $orderSearch, $domains )->toArray();
-
-						if( !empty( $orderItems ) )
-						{
-							try
-							{
-								$serviceProvider->processBatch( $orderItems );
-								$orderManager->save( $orderItems );
-							}
-							catch( \Exception $e )
-							{
-								$str = 'Error while processing orders by delivery service "%1$s": %2$s';
-								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-								$context->logger()->error( $msg, 'order/service/delivery' );
-							}
-						}
-
-						$orderCount = count( $orderItems );
-						$orderStart += $orderCount;
-					}
-					while( $orderCount >= $orderSearch->getLimit() );
-				}
-				catch( \Exception $e )
-				{
-					$str = 'Error while processing service with ID "%1$s": %2$s';
-					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->logger()->error( $msg, 'order/service/delivery' );
-				}
+				$manager->begin();
+				$manager->save( $items );
+				$manager->commit();
 			}
-
-			$count = count( $serviceItems );
-			$start += $count;
-			$serviceSearch->slice( $start );
+			catch( \Exception $e )
+			{
+				$str = 'Error while processing orders by delivery service "%1$s": %2$s';
+				$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+				$context->logger()->error( $msg, 'order/service/delivery' );
+			}
 		}
-		while( $count >= $serviceSearch->getLimit() );
 	}
 }
