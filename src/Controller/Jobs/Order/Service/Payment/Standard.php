@@ -301,17 +301,16 @@ class Standard
 		$context = $this->context();
 		$domains = $this->domains();
 
-		$item = $provider->getServiceItem();
+		$serviceItem = $provider->getServiceItem();
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 
 		$filter = $manager->filter()->slice( 0, $this->max() );
 		$filter->add( $filter->and( [
 			$filter->compare( '>=', 'order.datepayment', $this->limit() ),
 			$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ),
-			$filter->compare( '==', 'order.base.service.code', $item->getCode() ),
+			$filter->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
 			$filter->compare( '==', 'order.base.service.type', 'payment' ),
 		] ) );
-		$cursor = $manager->cursor( $filter );
 
 		if( ( $capture = $this->capture() ) !== null ) {
 			$filter->add( $filter->compare( '<=', 'order.datepayment', $capture ) );
@@ -320,13 +319,15 @@ class Standard
 			$filter->add( $filter->compare( '==', 'order.statusdelivery', $status ) );
 		}
 
+		$cursor = $manager->cursor( $filter );
+
 		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
 			foreach( $items as $item )
 			{
 				try
 				{
-					$provider->capture( $item );
+					$manager->save( $provider->capture( $item ) );
 				}
 				catch( \Exception $e )
 				{
