@@ -52,7 +52,6 @@ class Standard
 		 *
 		 * @param string Last part of the class name
 		 * @since 2021.10
-		 * @category Developer
 		 */
 
 		/** controller/jobs/order/service/transfer/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2021.10
-		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/global
 		 * @see controller/jobs/order/service/transfer/decorators/local
@@ -99,7 +97,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2021.10
-		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/excludes
 		 * @see controller/jobs/order/service/transfer/decorators/local
@@ -124,7 +121,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2021.10
-		 * @category Developer
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/excludes
 		 * @see controller/jobs/order/service/transfer/decorators/global
@@ -159,83 +155,40 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
+		$manager = \Aimeos\MShop::create( $context, 'service' );
 
-		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
-		$serviceSearch = $serviceManager->filter()->add( ['service.type' => 'payment'] );
+		$filter = $manager->filter()->add( ['service.type' => 'payment'] );
+		$cursor = $manager->cursor( $filter );
 
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
-		$orderSearch = $orderManager->filter();
-		$start = 0;
-
-		do
+		while( $items = $manager->iterate( $cursor ) )
 		{
-			$serviceItems = $serviceManager->search( $serviceSearch );
-
-			foreach( $serviceItems as $serviceItem )
+			foreach( $items as $item )
 			{
 				try
 				{
-					$serviceProvider = $serviceManager->getProvider( $serviceItem, $serviceItem->getType() );
+					$provider = $manager->getProvider( $item, $item->getType() );
 
-					if( !$serviceProvider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_TRANSFER ) ) {
-						continue;
+					if( $provider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_TRANSFER ) ) {
+						$this->orders( $provider );
 					}
-
-					$orderSearch->setConditions( $orderSearch->and( [
-						$orderSearch->compare( '<=', 'order.ctime', date( 'Y-m-d H:i:s', time() - 86400 * $this->days() ) ),
-						$orderSearch->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
-						$orderSearch->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
-						$orderSearch->compare( '==', 'order.base.service.type', 'payment' )
-					] ) );
-
-					$orderStart = 0;
-
-					do
-					{
-						$orderItems = $orderManager->search( $orderSearch, $this->domains() );
-
-						foreach( $orderItems as $orderItem )
-						{
-							try
-							{
-								$orderManager->save( $serviceProvider->transfer( $orderItem ) );
-							}
-							catch( \Exception $e )
-							{
-								$str = 'Error while transferring payment for order with ID "%1$s": %2$s';
-								$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-								$context->logger()->error( $msg, 'order/service/transfer' );
-							}
-						}
-
-						$orderCount = count( $orderItems );
-						$orderStart += $orderCount;
-						$orderSearch->slice( $orderStart );
-					}
-					while( $orderCount >= $orderSearch->getLimit() );
 				}
 				catch( \Exception $e )
 				{
 					$str = 'Error while transferring payment for service with ID "%1$s": %2$s';
-					$msg = sprintf( $str, $serviceItem->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'order/service/transfer' );
 				}
 			}
-
-			$count = count( $serviceItems );
-			$start += $count;
-			$serviceSearch->slice( $start );
 		}
-		while( $count >= $serviceSearch->getLimit() );
 	}
 
 
 	/**
 	 * Returns the number of days to postpone transfers
 	 *
-	 * @return int Number of days
+	 * @return string Date/time in "YYYY-MM-DD HH:mm:ss" format
 	 */
-	protected function days() : int
+	protected function limit() : string
 	{
 		/** controller/jobs/order/service/transfer/transfer-days
 		 * Automatically transfers payments after the configured amount of days
@@ -245,10 +198,9 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2010.10
-		 * @category User
-		 * @category Developer
 		 */
-		return $this->context()->config()->get( 'controller/jobs/order/service/transfer/transfer-days', 0 );
+		$days = $this->context()->config()->get( 'controller/jobs/order/service/transfer/transfer-days', 0 );
+		return date( 'Y-m-d H:i:s', time() - 86400 * $days );
 	}
 
 
@@ -277,5 +229,70 @@ class Standard
 		 */
 		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 		return $this->context()->config()->get( 'controller/jobs/order/service/transfer/domains', $domains );
+	}
+
+
+	/**
+	 * Returns the maximum number of orders processed at once
+	 *
+	 * @return int Maximum number of items
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/order/service/transfer/batch-max
+		 * Maximum number of orders processed at once by the payment service provider
+		 *
+		 * Orders are sent in batches if the payment service provider supports it.
+		 * This setting configures the maximum orders that will be handed over to
+		 * the payment service provider at once. Bigger batches an improve the
+		 * performance but requires more memory.
+		 *
+		 * @param integer Number of orders
+		 * @since 2023.04
+		 * @see controller/jobs/order/service/transfer/domains
+		 * @see controller/jobs/order/service/transfer/limit-days
+		 */
+		return $this->context()->config()->get( 'controller/jobs/order/service/transfer/batch-max', 100 );
+	}
+
+
+	/**
+	 * Fetches and processes the order items
+	 *
+	 * @param \Aimeos\MShop\Service\Provider\Iface $provider Service provider for processing the orders
+	 */
+	protected function orders( \Aimeos\MShop\Service\Provider\Iface $provider )
+	{
+		$context = $this->context();
+		$domains = $this->domains();
+
+		$serviceItem = $provider->getServiceItem();
+		$manager = \Aimeos\MShop::create( $context, 'order' );
+
+		$filter = $manager->filter()->slice( 0, $this->max() );
+		$filter->setConditions( $filter->and( [
+			$filter->compare( '<=', 'order.ctime', $this->limit() ),
+			$filter->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
+			$filter->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
+			$filter->compare( '==', 'order.base.service.type', 'payment' )
+		] ) );
+		$cursor = $manager->cursor( $filter );
+
+		while( $items = $manager->iterate( $cursor, $domains ) )
+		{
+			foreach( $items as $item )
+			{
+				try
+				{
+					$manager->save( $provider->transfer( $item ) );
+				}
+				catch( \Exception $e )
+				{
+					$str = 'Error while transferring payment for order with ID "%1$s": %2$s';
+					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$context->logger()->error( $msg, 'order/service/transfer' );
+				}
+			}
+		}
 	}
 }
