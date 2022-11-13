@@ -162,43 +162,88 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
+		$processors = $this->getProcessors( $this->names() );
 
-		/** controller/common/subscription/process/processors
-		 * List of processor names that should be executed for subscriptions
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
+		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+
+		$filter = $manager->filter( true )->add( 'subscription.datenext', '==', null )->slice( 0, $this->max() );
+		$cursor = $manager->cursor( $filter );
+
+		while( $items = $manager->iterate( $cursor ) )
+		{
+			$search = $orderManager->filter()->add( 'order.baseid', '==', $items->getOrderBaseId() )->slice( 0, 0x7fffffff );
+			$orders = $orderManager->search( $search, $this->domains() )->col( null, 'order.baseid' );
+
+			foreach( $items as $item )
+			{
+				if( ( $order = $orders->get( $item->getOrderBaseId() ) ) === null ) {
+					continue;
+				}
+
+				$manager->begin();
+				$orderManager->begin();
+
+				try
+				{
+					$manager->save( $this->process( $item, $order, $processors ) );
+					$orderManager->save( $order );
+
+					$orderManager->commit();
+					$manager->commit();
+				}
+				catch( \Exception $e )
+				{
+					$orderManager->rollback();
+					$manager->rollback();
+
+					$str = 'Unable to begin subscription with ID "%1$s": %2$s';
+					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$context->logger()->error( $msg, 'subscription/process/begin' );
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Returns the domains that should be fetched together with the order data
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		/** controller/jobs/subscription/process/domains
+		 * Associated items that should be available too in the subscription
 		 *
-		 * For each subscription a number of processors for different tasks can be executed.
-		 * They can for example add a group to the customers' account during the customer
-		 * has an active subscribtion.
+		 * Orders consist of address, coupons, products and services. They can be
+		 * fetched together with the subscription items and passed to the processor.
+		 * Available domains for those items are:
 		 *
-		 * @param array List of processor names
-		 * @since 2018.04
-		 * @category Developer
-		 * @see controller/common/subscription/process/payment-status
-		 * @see controller/common/subscription/process/payment-days
+		 * - order/base
+		 * - order/base/address
+		 * - order/base/coupon
+		 * - order/base/product
+		 * - order/base/service
+		 *
+		 * @param array Referenced domain names
+		 * @since 2022.04
+		 * @see controller/jobs/order/email/delivery/limit-days
+		 * @see controller/jobs/order/service/delivery/batch-max
 		 */
-		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		return $this->context()->config()->get( 'controller/jobs/subscription/process/domains', $domains );
+	}
 
-		/** controller/common/subscription/process/payment-status
-		 * Minimum payment status that will activate the subscription
-		 *
-		 * Subscriptions will be activated if the payment status of the order is
-		 * at least the configured payment constant. The default payment status
-		 * is "authorized" so orders with a payment status of "authorized" (5) and
-		 * "received" (6) will cause the subscription to be activated. Lower
-		 * payment status values, e.g. "pending" (4) won't activate the subscription.
-		 *
-		 * @param integer Payment status constant
-		 * @since 2018.07
-		 * @category Developer
-		 * @category User
-		 * @see controller/common/subscription/process/processors
-		 * @see controller/common/subscription/process/payment-days
-		 */
-		$status = \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;
-		$status = $config->get( 'controller/common/subscription/process/payment-status', $status );
 
-		/** controller/common/subscription/process/payment-days
+	/**
+	 * Returns the payment date until orders should be processed
+	 *
+	 * @return string Date/time in "YYYY-MM-DD HH:mm:ss" format
+	 */
+	protected function limit() : string
+	{
+		/** controller/jobs/subscription/process/payment-days
 		 * Number of days to wait for the payment until subscription is removed
 		 *
 		 * Subscriptions wait for the confiugrable number of days until the payment
@@ -209,78 +254,119 @@ class Standard
 		 *
 		 * @param float Number of days
 		 * @since 2018.07
-		 * @category Developer
-		 * @category User
-		 * @see controller/common/subscription/process/processors
-		 * @see controller/common/subscription/process/payment-status
+		 * @see controller/jobs/subscription/process/processors
+		 * @see controller/jobs/subscription/process/payment-status
 		 */
-		$days = (float) $config->get( 'controller/common/subscription/process/payment-days', 3 );
+		$days = $this->context()->config()->get( 'controller/jobs/subscription/process/payment-days', 90 );
+		return date( 'Y-m-d H:i:s', time() - 86400 * $days );
+	}
 
-		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 
-		$processors = $this->getProcessors( $names );
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
-		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+	/**
+	 * Returns the maximum number of orders processed at once
+	 *
+	 * @return int Maximum number of items
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/subscription/process/batch-max
+		 * Maximum number of subscriptions processed at once by the subscription process job
+		 *
+		 * This setting configures the maximum number of subscriptions including
+		 * orders that will be processed at once. Bigger batches an improve the
+		 * performance but requires more memory.
+		 *
+		 * @param integer Number of subscriptions
+		 * @since 2023.04
+		 * @see controller/jobs/subscription/process/domains
+		 * @see controller/jobs/subscription/process/names
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
+		 */
+		return $this->context()->config()->get( 'controller/jobs/subscription/process/batch-max', 100 );
+	}
 
-		$search = $manager->filter( true );
-		$expr = [
-			$search->compare( '==', 'subscription.datenext', null ),
-			$search->getConditions(),
-		];
-		$search->setConditions( $search->and( $expr ) );
-		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
 
-		$date = date( 'Y-m-d H:i:s', time() - 86400 * $days );
-		$start = 0;
+	/**
+	 * Returns the names of the subscription processors
+	 *
+	 * @return array List of processor names
+	 */
+	protected function names() : array
+	{
+		/** controller/jobs/subscription/process/processors
+		 * List of processor names that should be executed for subscriptions
+		 *
+		 * For each subscription a number of processors for different tasks can be executed.
+		 * They can for example add a group to the customers' account during the customer
+		 * has an active subscribtion.
+		 *
+		 * @param array List of processor names
+		 * @since 2018.04
+		 * @see controller/jobs/subscription/process/domains
+		 * @see controller/jobs/subscription/process/max
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
+		 */
+		return (array) $this->context()->config()->get( 'controller/jobs/subscription/process/processors', [] );
+	}
 
-		do
+
+	/**
+	 * Runs the passed processors over all items and updates the properties
+	 *
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $item Subscription item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item including associated items
+	 * @param iterable $processors List of processor objects
+	 * @return \Aimeos\MShop\Subscription\Item\Iface Updated subscription item
+	 */
+	protected function process( \Aimeos\MShop\Subscription\Item\Iface $item,
+		\Aimeos\MShop\Order\Item\Iface $order, iterable $processors ) : \Aimeos\MShop\Subscription\Item\Iface
+	{
+		if( $order->getStatusPayment() >= $this->status() )
 		{
-			$orderItems = [];
-
-			$search->slice( $start, 100 );
-			$items = $manager->search( $search );
-			$ordBaseIds = $items->getOrderBaseId()->toArray();
-
-			$orderSearch = $orderManager->filter()->slice( 0, $search->getLimit() );
-			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
-			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
-
-			$orderItems = $orderManager->search( $orderSearch, $domains )->col( null, 'order.baseid' );
-
-			foreach( $items as $item )
-			{
-				try
-				{
-					$orderItem = $orderItems->get( $item->getOrderBaseId() );
-
-					if( $orderItem && $orderItem->getStatusPayment() >= $status )
-					{
-						foreach( $processors as $processor ) {
-							$processor->begin( $item, $orderItem );
-						}
-
-						$interval = new \DateInterval( $item->getInterval() );
-						$dateNext = date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' );
-						$item = $item->setDateNext( $dateNext )->setPeriod( 1 );
-					}
-					elseif( $item->getTimeCreated() < $date )
-					{
-						$item->setStatus( 0 );
-					}
-
-					$manager->save( $item );
-				}
-				catch( \Exception $e )
-				{
-					$str = 'Unable to begin subscription with ID "%1$s": %2$s';
-					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->logger()->error( $msg, 'subscription/process/begin' );
-				}
+			foreach( $processors as $processor ) {
+				$processor->begin( $item, $order );
 			}
 
-			$count = count( $items );
-			$start += $count;
+			$interval = new \DateInterval( $item->getInterval() );
+			$dateNext = date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' );
+
+			return $item->setDateNext( $dateNext )->setPeriod( 1 );
 		}
-		while( $count === $search->getLimit() );
+
+		if( $item->getTimeCreated() < $this->limit() ) {
+			$item->setStatus( 0 );
+		}
+
+		return $item;
+	}
+
+
+	/**
+	 * Returns the minimum payment status to activate subscriptions
+	 *
+	 * @return int Minimum payment status
+	 */
+	protected function status() : int
+	{
+		/** controller/jobs/subscription/process/payment-status
+		 * Minimum payment status that will activate the subscription
+		 *
+		 * Subscriptions will be activated if the payment status of the order is
+		 * at least the configured payment constant. The default payment status
+		 * is "authorized" so orders with a payment status of "authorized" (5) and
+		 * "received" (6) will cause the subscription to be activated. Lower
+		 * payment status values, e.g. "pending" (4) won't activate the subscription.
+		 *
+		 * @param integer Payment status constant
+		 * @since 2018.07
+		 * @see controller/jobs/subscription/process/begin/domains
+		 * @see controller/jobs/subscription/process/begin/max
+		 * @see controller/jobs/subscription/process/begin/names
+		 * @see controller/jobs/subscription/process/payment-days
+		 */
+		$status = \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;
+		return $this->context()->config()->get( 'controller/jobs/subscription/process/payment-status', $status );
 	}
 }
