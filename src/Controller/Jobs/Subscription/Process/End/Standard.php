@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2018.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/subscription/process/end/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/end/decorators/global
 	 * @see controller/jobs/subscription/process/end/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/end/decorators/excludes
 	 * @see controller/jobs/subscription/process/end/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/end/decorators/excludes
 	 * @see controller/jobs/subscription/process/end/decorators/global
@@ -162,9 +158,113 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
+		$processors = $this->getProcessors( $this->names() );
 
-		/** controller/common/subscription/process/processors
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
+		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+
+		$filter = $manager->filter( true )->add( 'subscription.dateend', '<', date( 'Y-m-d' ) )->slice( 0, $this->max() );
+		$cursor = $manager->cursor( $filter );
+
+		while( $items = $manager->iterate( $cursor ) )
+		{
+			$search = $orderManager->filter()->add( 'order.baseid', '==', $items->getOrderBaseId() )->slice( 0, 0x7fffffff );
+			$orders = $orderManager->search( $search, $this->domains() )->col( null, 'order.baseid' );
+
+			foreach( $items as $item )
+			{
+				if( ( $order = $orders->get( $item->getOrderBaseId() ) ) === null ) {
+					continue;
+				}
+
+				$manager->begin();
+				$orderManager->begin();
+
+				try
+				{
+					$manager->save( $this->process( $item, $order, $processors ) );
+					$orderManager->save( $order );
+
+					$orderManager->commit();
+					$manager->commit();
+				}
+				catch( \Exception $e )
+				{
+					$orderManager->rollback();
+					$manager->rollback();
+
+					$str = 'Unable to end subscription with ID "%1$s": %2$s';
+					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
+					$context->logger()->error( $msg, 'subscription/process/end' );
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Returns the domains that should be fetched together with the order data
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		/** controller/jobs/subscription/process/domains
+		 * Associated items that should be available too in the subscription
+		 *
+		 * Orders consist of address, coupons, products and services. They can be
+		 * fetched together with the subscription items and passed to the processor.
+		 * Available domains for those items are:
+		 *
+		 * - order/base
+		 * - order/base/address
+		 * - order/base/coupon
+		 * - order/base/product
+		 * - order/base/service
+		 *
+		 * @param array Referenced domain names
+		 * @since 2022.04
+		 * @see controller/jobs/order/email/delivery/limit-days
+		 * @see controller/jobs/order/service/delivery/batch-max
+		 */
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		return $this->context()->config()->get( 'controller/jobs/subscription/process/domains', $domains );
+	}
+
+
+	/**
+	 * Returns the maximum number of orders processed at once
+	 *
+	 * @return int Maximum number of items
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/subscription/process/batch-max
+		 * Maximum number of subscriptions processed at once by the subscription process job
+		 *
+		 * This setting configures the maximum number of subscriptions including
+		 * orders that will be processed at once. Bigger batches an improve the
+		 * performance but requires more memory.
+		 *
+		 * @param integer Number of subscriptions
+		 * @since 2023.04
+		 * @see controller/jobs/subscription/process/domains
+		 * @see controller/jobs/subscription/process/names
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
+		 */
+		return $this->context()->config()->get( 'controller/jobs/subscription/process/batch-max', 100 );
+	}
+
+
+	/**
+	 * Returns the names of the subscription processors
+	 *
+	 * @return array List of processor names
+	 */
+	protected function names() : array
+	{
+		/** controller/jobs/subscription/process/processors
 		 * List of processor names that should be executed for subscriptions
 		 *
 		 * For each subscription a number of processors for different tasks can be executed.
@@ -173,68 +273,34 @@ class Standard
 		 *
 		 * @param array List of processor names
 		 * @since 2018.04
-		 * @category Developer
+		 * @see controller/jobs/subscription/process/domains
+		 * @see controller/jobs/subscription/process/max
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
 		 */
-		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
+		return (array) $this->context()->config()->get( 'controller/jobs/subscription/process/processors', [] );
+	}
 
-		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 
-		$processors = $this->getProcessors( $names );
-		$manager = \Aimeos\MShop::create( $context, 'subscription' );
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
-
-		$search = $manager->filter( true );
-		$expr = [
-			$search->compare( '<', 'subscription.dateend', date( 'Y-m-d' ) ),
-			$search->getConditions(),
-		];
-		$search->setConditions( $search->and( $expr ) );
-		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
-
-		$start = 0;
-
-		do
-		{
-			$orderItems = [];
-
-			$search->slice( $start, 100 );
-			$items = $manager->search( $search );
-			$ordBaseIds = $items->getOrderBaseId()->toArray();
-
-			$orderSearch = $orderManager->filter()->slice( 0, $search->getLimit() );
-			$orderSearch->setConditions( $orderSearch->compare( '==', 'order.baseid', $ordBaseIds ) );
-			$orderSearch->setSortations( [$orderSearch->sort( '+', 'order.id' )] );
-
-			$orderItems = $orderManager->search( $orderSearch, $domains )->col( null, 'order.baseid' );
-
-			foreach( $items as $item )
-			{
-				try
-				{
-					if( $orderItem = $orderItems->get( $item->getOrderBaseId() ) )
-					{
-						foreach( $processors as $processor ) {
-							$processor->end( $item, $orderItem );
-						}
-					}
-
-					if( ( $reason = $item->getReason() ) === null ) {
-						$reason = \Aimeos\MShop\Subscription\Item\Iface::REASON_END;
-					}
-
-					$manager->save( $item->setReason( $reason )->setStatus( 0 ) );
-				}
-				catch( \Exception $e )
-				{
-					$str = 'Unable to end subscription with ID "%1$s": %2$s';
-					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
-					$context->logger()->error( $msg, 'subscription/process/end' );
-				}
-			}
-
-			$count = count( $items );
-			$start += $count;
+	/**
+	 * Runs the passed processors over all items and updates the properties
+	 *
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $item Subscription item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item including associated items
+	 * @param iterable $processors List of processor objects
+	 * @return \Aimeos\MShop\Subscription\Item\Iface Updated subscription item
+	 */
+	protected function process( \Aimeos\MShop\Subscription\Item\Iface $item,
+		\Aimeos\MShop\Order\Item\Iface $order, iterable $processors ) : \Aimeos\MShop\Subscription\Item\Iface
+	{
+		foreach( $processors as $processor ) {
+			$processor->end( $item, $orderItem );
 		}
-		while( $count === $search->getLimit() );
+
+		if( ( $reason = $item->getReason() ) === null ) {
+			$reason = \Aimeos\MShop\Subscription\Item\Iface::REASON_END;
+		}
+
+		return $item->setReason( $reason )->setStatus( 0 );
 	}
 }

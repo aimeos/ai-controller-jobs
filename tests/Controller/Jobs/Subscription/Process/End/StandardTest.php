@@ -48,17 +48,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$this->context->config()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
-		$item = $this->getSubscription();
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'save'] )
+			->setMethods( ['iterate', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$item] ) ) );
+		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$this->getSubscription()] ), null ) );
 
 		$managerStub->expects( $this->once() )->method( 'save' );
 
@@ -68,20 +67,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
-		$item = $this->getSubscription();
-
 		$this->context->config()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
 		$this->context->config()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1'] );
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'save'] )
+			->setMethods( ['iterate', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$item] ) ) );
+		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$this->getSubscription()] ), null ) );
 
 		$managerStub->expects( $this->once() )->method( 'save' )
 			->will( $this->throwException( new \Exception() ) );
