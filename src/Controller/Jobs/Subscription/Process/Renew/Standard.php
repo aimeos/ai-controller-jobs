@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2018.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/subscription/process/renew/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/renew/decorators/global
 	 * @see controller/jobs/subscription/process/renew/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/renew/decorators/excludes
 	 * @see controller/jobs/subscription/process/renew/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/renew/decorators/excludes
 	 * @see controller/jobs/subscription/process/renew/decorators/global
@@ -161,96 +157,26 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->context();
-		$config = $context->config();
-
-		/** controller/common/subscription/process/payment-ends
-		 * Subscriptions ends if payment couldn't be captured
-		 *
-		 * By default, a subscription ends automatically if the next payment couldn't
-		 * be captured. When setting this configuration to FALSE, the subscription job
-		 * controller will try to capture the payment at the next run again until the
-		 * subscription is deactivated manually.
-		 *
-		 * @param bool TRUE if payment failures ends the subscriptions, FALSE if not
-		 * @since 2019.10
-		 * @category Developer
-		 * @category User
-		 * @see controller/common/subscription/process/processors
-		 * @see controller/common/subscription/process/payment-days
-		 * @see controller/common/subscription/process/payment-status
-		 */
-		$end = (bool) $config->get( 'controller/common/subscription/process/payment-ends', true );
-
-		$names = (array) $config->get( 'controller/common/subscription/process/processors', [] );
-
 		$date = date( 'Y-m-d' );
-		$processors = $this->getProcessors( $names );
+		$context = $this->context();
+
+		$processors = $this->getProcessors( $this->names() );
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
-		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
-		$search = $manager->filter( true );
-		$expr = [
-			$search->compare( '<=', 'subscription.datenext', $date ),
-			$search->or( [
-				$search->compare( '==', 'subscription.dateend', null ),
-				$search->compare( '>', 'subscription.dateend', $date ),
-			] ),
-			$search->getConditions(),
-		];
-		$search->setConditions( $search->and( $expr ) );
-		$search->setSortations( [$search->sort( '+', 'subscription.id' )] );
+		$search = $manager->filter( true )->add( 'subscription.datenext', '<=', $date )->slice( 0, $this->max() );
+		$search->add( $search->or( [
+			$search->compare( '==', 'subscription.dateend', null ),
+			$search->compare( '>', 'subscription.dateend', $date ),
+		] ) );
+		$cursor = $manager->cursor( $search );
 
-		$start = 0;
-
-		do
+		while( $items = $manager->iterate( $cursor ) )
 		{
-			$search->slice( $start, 100 );
-			$items = $manager->search( $search );
-
 			foreach( $items as $item )
 			{
 				try
 				{
-					$context = $this->createContext( $item->getOrderBaseId() );
-					$newOrder = $this->createOrder( $context, $item );
-
-					foreach( $processors as $processor ) {
-						$processor->renewBefore( $item, $newOrder );
-					}
-
-					$basket = $baseManager->store( $newOrder->getBaseItem()->check() );
-					$newOrder = $orderManager->save( $newOrder->setBaseId( $basket->getId() ) );
-
-					try
-					{
-						$this->createPayment( $context, $basket, $newOrder );
-
-						$interval = new \DateInterval( $item->getInterval() );
-						$date = date_create( $item->getDateNext() )->add( $interval )->format( 'Y-m-d' );
-
-						$item = $item->setDateNext( $date )->setPeriod( $item->getPeriod() + 1 )->setReason( null );
-					}
-					catch( \Exception $e )
-					{
-						if( $e->getCode() < 1 ) // not a soft error
-						{
-							$item->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
-
-							if( $end ) {
-								$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
-							}
-						}
-
-						throw $e;
-					}
-					finally // will be always executed, even if exception is rethrown in catch()
-					{
-						foreach( $processors as $processor ) {
-							$processor->renewAfter( $item, $newOrder );
-						}
-					}
+					$manager->save( $this->process( $item, $processors ) );
 				}
 				catch( \Exception $e )
 				{
@@ -258,14 +184,8 @@ class Standard
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'subscription/process/renew' );
 				}
-
-				$manager->save( $item );
 			}
-
-			$count = count( $items );
-			$start += $count;
 		}
-		while( $count === $search->getLimit() );
 	}
 
 
@@ -539,5 +459,137 @@ class Standard
 		foreach( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) as $service ) {
 			$manager->getProvider( $manager->get( $service->getServiceId() ), 'payment' )->repay( $invoice );
 		}
+	}
+
+
+	/**
+	 * Returns if subscriptions should end if payment couldn't be captured
+	 *
+	 * @return bool TRUE if subscription should end, FALSE if not
+	 */
+	protected function ends() : bool
+	{
+		/** controller/common/subscription/process/payment-ends
+		 * Subscriptions ends if payment couldn't be captured
+		 *
+		 * By default, a subscription ends automatically if the next payment couldn't
+		 * be captured. When setting this configuration to FALSE, the subscription job
+		 * controller will try to capture the payment at the next run again until the
+		 * subscription is deactivated manually.
+		 *
+		 * @param bool TRUE if payment failures ends the subscriptions, FALSE if not
+		 * @since 2019.10
+		 * @see controller/common/subscription/process/processors
+		 * @see controller/common/subscription/process/payment-days
+		 * @see controller/common/subscription/process/payment-status
+		 */
+		return (bool) $config->get( 'controller/common/subscription/process/payment-ends', true );
+	}
+
+
+	/**
+	 * Returns the maximum number of orders processed at once
+	 *
+	 * @return int Maximum number of items
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/subscription/process/batch-max
+		 * Maximum number of subscriptions processed at once by the subscription process job
+		 *
+		 * This setting configures the maximum number of subscriptions including
+		 * orders that will be processed at once. Bigger batches an improve the
+		 * performance but requires more memory.
+		 *
+		 * @param integer Number of subscriptions
+		 * @since 2023.04
+		 * @see controller/jobs/subscription/process/domains
+		 * @see controller/jobs/subscription/process/names
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
+		 */
+		return $this->context()->config()->get( 'controller/jobs/subscription/process/batch-max', 100 );
+	}
+
+
+	/**
+	 * Returns the names of the subscription processors
+	 *
+	 * @return array List of processor names
+	 */
+	protected function names() : array
+	{
+		/** controller/jobs/subscription/process/processors
+		 * List of processor names that should be executed for subscriptions
+		 *
+		 * For each subscription a number of processors for different tasks can be executed.
+		 * They can for example add a group to the customers' account during the customer
+		 * has an active subscribtion.
+		 *
+		 * @param array List of processor names
+		 * @since 2018.04
+		 * @see controller/jobs/subscription/process/domains
+		 * @see controller/jobs/subscription/process/max
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
+		 */
+		return (array) $this->context()->config()->get( 'controller/jobs/subscription/process/processors', [] );
+	}
+
+
+	/**
+	 * Runs the subscription processors for the passed item
+	 *
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $item Subscription item
+	 * @param iterable $processors List of processor objects to run on the item
+	 * @return \Aimeos\MShop\Subscription\Item\Iface Updated subscription item
+	 */
+	protected function process( \Aimeos\MShop\Subscription\Item\Iface $item, iterable $processors
+		) : \Aimeos\MShop\Subscription\Item\Iface
+	{
+		$context = $this->context();
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
+		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
+
+		$context = $this->createContext( $item->getOrderBaseId() );
+		$newOrder = $this->createOrder( $context, $item );
+
+		foreach( $processors as $processor ) {
+			$processor->renewBefore( $item, $newOrder );
+		}
+
+		$basket = $baseManager->store( $newOrder->getBaseItem()->check() );
+		$newOrder = $orderManager->save( $newOrder->setBaseId( $basket->getId() ) );
+
+		try
+		{
+			$this->createPayment( $context, $basket, $newOrder );
+
+			$interval = new \DateInterval( $item->getInterval() );
+			$date = date_create( $item->getDateNext() )->add( $interval )->format( 'Y-m-d' );
+
+			$item->setDateNext( $date )->setPeriod( $item->getPeriod() + 1 )->setReason( null );
+		}
+		catch( \Exception $e )
+		{
+			if( $e->getCode() < 1 ) // not a soft error
+			{
+				$item->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
+
+				if( $this->ends() ) {
+					$item->setDateEnd( date_create()->format( 'Y-m-d' ) );
+				}
+			}
+
+			throw $e;
+		}
+		finally // will be always executed, even if exception is rethrown in catch()
+		{
+			foreach( $processors as $processor ) {
+				$processor->renewAfter( $item, $newOrder );
+			}
+		}
+
+		return $item;
 	}
 }

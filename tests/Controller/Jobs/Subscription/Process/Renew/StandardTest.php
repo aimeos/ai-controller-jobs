@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'save'] )
+			->setMethods( ['iterate', 'save'] )
 			->getMock();
 
 		$baseStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard' )
@@ -77,8 +77,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->expects( $this->once() )->method( 'createPayment' );
 
-		$managerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$item] ) ) );
+		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$item] ), null ) );
 
 		$managerStub->expects( $this->once() )->method( 'save' );
 		$orderStub->expects( $this->once() )->method( 'save' )->will( $this->returnArgument( 0 ) );
@@ -97,15 +97,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search', 'save'] )
+			->setMethods( ['iterate', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
-		$managerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$managerStub->create()->setOrderBaseId( -1 )] ) ) );
+		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->will( $this->onConsecutiveCalls( map( [$managerStub->create()->setOrderBaseId( -1 )] ), null ) );
 
-		$managerStub->expects( $this->once() )->method( 'save' );
+		$managerStub->expects( $this->never() )->method( 'save' );
 
 		$this->object->run();
 	}
