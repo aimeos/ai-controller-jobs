@@ -75,7 +75,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/begin/decorators/global
 	 * @see controller/jobs/subscription/process/begin/decorators/local
@@ -99,7 +98,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/begin/decorators/excludes
 	 * @see controller/jobs/subscription/process/begin/decorators/local
@@ -125,7 +123,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/begin/decorators/excludes
 	 * @see controller/jobs/subscription/process/begin/decorators/global
