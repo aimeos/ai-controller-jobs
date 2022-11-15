@@ -193,7 +193,7 @@ $barcode = new TCPDF2DBarcode( join( "\n", $data ), 'QRCODE,M' );
 	 *
 	 * To configure an alternative template for the address partial, you
 	 * have to configure its path relative to the template directory
-	 * (usually controller/jobs/templates/). It's then used to display the
+	 * (usually templates/controller/jobs/). It's then used to display the
 	 * payment or delivery address block in the text e-mails.
 	 *
 	 * @param string Relative path to the address partial
