@@ -483,7 +483,7 @@ class Standard
 		 * @see controller/common/subscription/process/payment-days
 		 * @see controller/common/subscription/process/payment-status
 		 */
-		return (bool) $config->get( 'controller/common/subscription/process/payment-ends', true );
+		return (bool) $this->context()->config()->get( 'controller/common/subscription/process/payment-ends', true );
 	}
 
 
@@ -566,7 +566,7 @@ class Standard
 			$this->createPayment( $context, $basket, $newOrder );
 
 			$interval = new \DateInterval( $item->getInterval() );
-			$date = date_create( $item->getDateNext() )->add( $interval )->format( 'Y-m-d' );
+			$date = date_create( (string) $item->getDateNext() )->add( $interval )->format( 'Y-m-d' );
 
 			$item->setDateNext( $date )->setPeriod( $item->getPeriod() + 1 )->setReason( null );
 		}

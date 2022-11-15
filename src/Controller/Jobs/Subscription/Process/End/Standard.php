@@ -294,7 +294,7 @@ class Standard
 		\Aimeos\MShop\Order\Item\Iface $order, iterable $processors ) : \Aimeos\MShop\Subscription\Item\Iface
 	{
 		foreach( $processors as $processor ) {
-			$processor->end( $item, $orderItem );
+			$processor->end( $item, $order );
 		}
 
 		if( ( $reason = $item->getReason() ) === null ) {
