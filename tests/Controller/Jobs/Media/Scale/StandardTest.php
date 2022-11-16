@@ -27,7 +27,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\MShop::cache( false );
 		unset( $this->object );
 	}
 
@@ -50,18 +49,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
-
-		$name = 'ControllerJobsMediaScaleStandardRun';
-		$context->config()->set( 'mshop/media/manager/name', $name );
-		$context->config()->set( 'controller/common/media/name', $name );
-
-
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Media\\Manager\\Standard' )
 			->setMethods( array( 'save', 'scale' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Media\\Manager\\' . $name, $managerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Media\\Manager\\Standard', $managerStub );
 
 		$managerStub->expects( $this->atLeast( 1 ) )->method( 'save' );
 		$managerStub->expects( $this->atLeast( 1 ) )->method( 'scale' )->will( $this->returnArgument( 0 ) );
