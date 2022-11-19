@@ -236,15 +236,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$invoice = $this->getOrderItem();
 		$baseItem = $this->getOrderBaseItem( $item->getOrderBaseId() );
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save'] )
-			->getMock();
-
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $managerStub );
-
-		$managerStub->expects( $this->once() )->method( 'save' )->will( $this->returnArgument( 0 ) );
-
 		$this->access( 'createPayment' )->invokeArgs( $this->object, [$this->context, $baseItem, $invoice] );
 	}
 
@@ -264,15 +255,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getSubscription()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
+		$search = $manager->filter()->add( 'subscription.dateend', '==', '2010-01-01' );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No subscription item found' );
+		return $manager->search( $search )->first( new \Exception( 'No subscription item found' ) );
 	}
 
 
