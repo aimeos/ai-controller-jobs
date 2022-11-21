@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$mqmStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
-			->setConstructorArgs( [$this->context->config()] )
+			->setConstructorArgs( [[]] )
 			->setMethods( ['get'] )
 			->getMock();
 
@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunCollapsedLines()
 	{
 		$mqmStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
-			->setConstructorArgs( [$this->context->config()] )
+			->setConstructorArgs( [[]] )
 			->setMethods( ['get'] )
 			->getMock();
 
