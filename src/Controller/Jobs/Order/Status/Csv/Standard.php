@@ -291,7 +291,7 @@ class Standard
 			fgetcsv( $handle, 0, $sep );
 		}
 
-		$pmanager = \Aimeos\MShop::create( $context, 'order/base/product' );
+		$pmanager = \Aimeos\MShop::create( $context, 'order/product' );
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 
 		while( $data = $this->getData( $handle, $maxcnt, $sep ) )
@@ -313,7 +313,7 @@ class Standard
 			if( !empty( $products = $data[1] ) )
 			{
 				$filter = $pmanager->filter()->slice( 0, count( $products ) )
-					->add( ['order.base.product.id' => array_keys( $products )] );
+					->add( ['order.product.id' => array_keys( $products )] );
 				$items = $pmanager->search( $filter );
 
 				foreach( $items as $item ) {

@@ -38,12 +38,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBegin()
 	{
-		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard' )
+		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['get'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard', $ordProdStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
 		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
@@ -88,12 +88,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testEnd()
 	{
-		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard' )
+		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['get'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Standard', $ordProdStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
 
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
 		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
@@ -138,7 +138,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
 		$search = $manager->filter()->add( ['subscription.dateend' => '2010-01-01'] );
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 
-		return $manager->search( $search )->first( new \Exception( 'No subscription item found' ) );
+		return $manager->search( $search, $domains )->first( new \Exception( 'No subscription item found' ) );
 	}
 }

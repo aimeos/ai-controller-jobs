@@ -226,18 +226,17 @@ class Standard
 		 * fetched together with the order items and passed to the payment service
 		 * providers. Available domains for those items are:
 		 *
-		 * - order/base
-		 * - order/base/address
-		 * - order/base/coupon
-		 * - order/base/product
-		 * - order/base/service
+		 * - order/address
+		 * - order/coupon
+		 * - order/product
+		 * - order/service
 		 *
 		 * @param array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/payment/limit-days
 		 * @see controller/jobs/order/service/payment/capture-days
 		 */
-		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = ['order/address', 'order/coupon', 'order/product', 'order/service'];
 		return $this->context()->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
 	}
 
@@ -308,8 +307,8 @@ class Standard
 		$filter->add( $filter->and( [
 			$filter->compare( '>=', 'order.datepayment', $this->limit() ),
 			$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ),
-			$filter->compare( '==', 'order.base.service.code', $serviceItem->getCode() ),
-			$filter->compare( '==', 'order.base.service.type', 'payment' ),
+			$filter->compare( '==', 'order.service.code', $serviceItem->getCode() ),
+			$filter->compare( '==', 'order.service.type', 'payment' ),
 		] ) );
 
 		if( ( $capture = $this->capture() ) !== null ) {

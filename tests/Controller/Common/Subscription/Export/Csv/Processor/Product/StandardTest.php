@@ -14,33 +14,29 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelper::context();
 		$mapping = array(
-			0 => 'order.base.product.type',
-			1 => 'order.base.product.stocktype',
-			2 => 'order.base.product.vendor',
-			3 => 'order.base.product.prodcode',
-			4 => 'order.base.product.productid',
-			5 => 'order.base.product.quantity',
-			6 => 'order.base.product.name',
-			7 => 'order.base.product.mediaurl',
-			8 => 'order.base.product.price',
-			9 => 'order.base.product.costs',
-			10 => 'order.base.product.rebate',
-			11 => 'order.base.product.taxrate',
-			12 => 'order.base.product.statusdelivery',
-			13 => 'order.base.product.position',
-			14 => 'order.base.product.attribute.type',
-			15 => 'order.base.product.attribute.code',
-			16 => 'order.base.product.attribute.name',
-			17 => 'order.base.product.attribute.value',
+			0 => 'order.product.type',
+			1 => 'order.product.stocktype',
+			2 => 'order.product.vendor',
+			3 => 'order.product.prodcode',
+			4 => 'order.product.productid',
+			5 => 'order.product.quantity',
+			6 => 'order.product.name',
+			7 => 'order.product.mediaurl',
+			8 => 'order.product.price',
+			9 => 'order.product.costs',
+			10 => 'order.product.rebate',
+			11 => 'order.product.taxrate',
+			12 => 'order.product.statusdelivery',
+			13 => 'order.product.position',
+			14 => 'order.product.attribute.type',
+			15 => 'order.product.attribute.code',
+			16 => 'order.product.attribute.name',
+			17 => 'order.product.attribute.value',
 		);
 
 
 		$object = new \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Product\Standard( $context, $mapping );
-
-		$subscription = $this->getSubscription( $context );
-		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $subscription->getOrderBaseId() );
-
-		$data = $object->process( $subscription, $order );
+		$data = $object->process( $this->getSubscription( $context ) );
 
 
 		$this->assertEquals( 1, count( $data ) );
@@ -70,14 +66,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getSubscription( $context )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+		$search = $manager->filter()->add( 'subscription.dateend', '==', '2010-01-01' );
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No subscription item found' );
+		return $manager->search( $search, $domains )->first( new \Exception( 'No subscription item found' ) );
 	}
 }

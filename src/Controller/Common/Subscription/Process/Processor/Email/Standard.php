@@ -56,19 +56,17 @@ class Standard
 	 */
 	protected function notify( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'order/base' );
-		$base = $manager->get( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
+		$order = $subscription->getOrderItem();
+		$address = current( $order->getAddress( 'payment' ) );
 
-		$address = current( $base->getAddress( 'payment' ) );
-		$siteIds = explode( '.', trim( $base->getSiteId(), '.' ) );
-		$sites = \Aimeos\MShop::create( $context, 'locale/site' )->getPath( end( $siteIds ) );
+		$siteIds = explode( '.', trim( $order->getSiteId(), '.' ) );
+		$sites = \Aimeos\MShop::create( $this->context(), 'locale/site' )->getPath( end( $siteIds ) );
 
-		$view = $this->view( $base, $sites->getTheme()->filter()->last() );
+		$view = $this->view( $order, $sites->getTheme()->filter()->last() );
 		$view->subscriptionItem = $subscription;
 		$view->addressItem = $address;
 
-		foreach( $base->getProducts() as $orderProduct )
+		foreach( $order->getProducts() as $orderProduct )
 		{
 			if( $orderProduct->getId() == $subscription->getOrderProductId() ) {
 				$this->send( $view->set( 'orderProductItem', $orderProduct ), $address, $sites->getLogo()->filter()->last() );
@@ -81,10 +79,10 @@ class Standard
 	 * Sends the subscription e-mail to the customer
 	 *
 	 * @param \Aimeos\Base\View\Iface $view View object
-	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $address Address item
+	 * @param \Aimeos\MShop\Order\Item\Address\Iface $address Address item
 	 * @param string|null $logoPath Path to the logo
 	 */
-	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Base\Address\Iface $address, string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Address\Iface $address, string $logoPath = null )
 	{
 		/** controller/jobs/order/email/subscription/template-html
 		 * Relative path to the template for the HTML part of the subscription emails.
@@ -132,11 +130,11 @@ class Standard
 	/**
 	 * Returns the view populated with common data
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
+	 * @param \Aimeos\MShop\Order\Item\Iface $base Basket including addresses
 	 * @param string|null $theme Theme name
 	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = current( $base->getAddress( 'payment' ) );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

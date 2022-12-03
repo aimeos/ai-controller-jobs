@@ -54,12 +54,7 @@ class StandardTest
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( ['iterate', 'getSubManager'] )
-			->setConstructorArgs( array( $context ) )
-			->getMock();
-
-		$orderBaseManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard' )
-			->setMethods( array( 'delete' ) )
+			->setMethods( ['iterate', 'delete'] )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -70,19 +65,15 @@ class StandardTest
 
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard', $orderBaseManagerStub );
 		\Aimeos\Controller\Common\Order\Factory::inject( '\\Aimeos\\Controller\\Common\\Order\\Standard', $orderCntlStub );
 
 
-		$orderItem = $orderManagerStub->create();
-		$orderItem->setBaseId( 1 );
-		$orderItem->setId( 2 );
-
+		$orderItem = $orderManagerStub->create()->setId( 2 );
 
 		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
 			->will( $this->onConsecutiveCalls( map( [$orderItem->getId() => $orderItem] ), null ) );
 
-		$orderBaseManagerStub->expects( $this->once() )->method( 'delete' );
+		$orderManagerStub->expects( $this->once() )->method( 'delete' );
 
 		$orderCntlStub->expects( $this->once() )->method( 'unblock' );
 

@@ -73,8 +73,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddress()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
-		$addrManager = \Aimeos\MShop::create( $this->context, 'order/base/address' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
+		$addrManager = \Aimeos\MShop::create( $this->context, 'order/address' );
 
 		$item = $manager->create();
 		$item->addAddress( $addrManager->create(), 'delivery' );
@@ -82,13 +82,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->access( 'address' )->invokeArgs( $this->object, [$item] );
 
-		$this->assertInstanceof( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $result );
+		$this->assertInstanceof( \Aimeos\MShop\Order\Item\Address\Iface::class, $result );
 	}
 
 
 	public function testAddressNone()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
 
 		$this->expectException( \Aimeos\Controller\Jobs\Exception::class );
 		$this->access( 'address' )->invokeArgs( $this->object, [$manager->create()] );
@@ -106,8 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'send' );
 
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create()->setBaseId( '-1' )
-			->setBaseItem( \Aimeos\MShop::create( $this->context, 'order/base' )->create() );
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
 
 		$this->access( 'notify' )->invokeArgs( $object, [map( [$orderItem] ), -1] );
 	}
@@ -122,8 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->expects( $this->once() )->method( 'send' )->will( $this->throwException( new \RuntimeException() ) );
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create()->setBaseId( '-1' )
-			->setBaseItem( \Aimeos\MShop::create( $this->context, 'order/base' )->create() );
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
 
 		$this->access( 'notify' )->invokeArgs( $object, [map( [$orderItem] ), -1] );
 	}
@@ -152,11 +150,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['status'] )
 			->getMock();
 
-		$baseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'a@b.com' );
+		$addrItem = \Aimeos\MShop::create( $this->context, 'order/address' )->create()->setEmail( 'a@b.com' );
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create( ['order.ctime' => '2000-01-01 00:00:00'] );
 
-		$orderItem->setBaseItem( $baseItem->addAddress( $addrItem, 'delivery' ) );
+		$orderItem->addAddress( $addrItem, 'delivery' );
 
 		$this->access( 'send' )->invokeArgs( $object, [$orderItem] );
 	}
@@ -164,10 +161,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testView()
 	{
-		$baseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'a@b.com' );
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
+		$addrItem = \Aimeos\MShop::create( $this->context, 'order/address' )->create()->setEmail( 'a@b.com' );
 
-		$result = $this->access( 'view' )->invokeArgs( $this->object, [$baseItem->addAddress( $addrItem, 'delivery' )] );
+		$result = $this->access( 'view' )->invokeArgs( $this->object, [$orderItem->addAddress( $addrItem, 'delivery' )] );
 
 		$this->assertInstanceof( \Aimeos\Base\View\Iface::class, $result );
 	}

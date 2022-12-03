@@ -14,16 +14,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelper::context();
 		$mapping = array(
-			0 => 'order.base.coupon.code',
+			0 => 'order.coupon.code',
 		);
 
 
 		$object = new \Aimeos\Controller\Common\Order\Export\Csv\Processor\Coupon\Standard( $context, $mapping );
-
-		$invoice = $this->getInvoice( $context );
-		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $invoice->getBaseId() );
-
-		$data = $object->process( $invoice, $order );
+		$data = $object->process( $this->getInvoice( $context ) );
 
 
 		$this->assertEquals( 2, count( $data ) );
@@ -39,14 +35,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getInvoice( $context )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
+		$search = $manager->filter()->add( 'order.datepayment', '==', '2008-02-15 12:34:56' );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'order.datepayment', '2008-02-15 12:34:56' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No order item found' );
+		return $manager->search( $search, ['order', 'order/coupon'] )->first( new \Exception( 'No order item found' ) );
 	}
 }

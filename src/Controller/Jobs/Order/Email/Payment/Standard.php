@@ -229,7 +229,7 @@ class Standard
 			] ) );
 
 			$start = 0;
-			$domains = ['order/base', 'order/base/address', 'order/base/product', 'order/base/service'];
+			$domains = ['order', 'order/address', 'order/product', 'order/service'];
 
 			do
 			{
@@ -248,11 +248,11 @@ class Standard
 	/**
 	 * Returns the address item from the order
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Order including address items
+	 * @param \Aimeos\MShop\Order\Item\Iface $basket Order including address items
 	 * @return \Aimeos\MShop\Common\Item\Address\Iface Address item
 	 * @throws \Aimeos\Controller\Jobs\Exception If no suitable address item is available
 	 */
-	protected function address( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Common\Item\Address\Iface
+	protected function address( \Aimeos\MShop\Order\Item\Iface $basket ) : \Aimeos\MShop\Common\Item\Address\Iface
 	{
 		if( ( $addr = current( $basket->getAddress( 'payment' ) ) ) !== false && $addr->getEmail() ) {
 			return $addr;
@@ -319,13 +319,13 @@ class Standard
 	protected function notify( \Aimeos\Map $items, int $status )
 	{
 		$context = $this->context();
-		$sites = $this->sites( $items->getBaseItem()->getSiteId()->unique() );
+		$sites = $this->sites( $items->getSiteId()->unique() );
 
 		foreach( $items as $id => $item )
 		{
 			try
 			{
-				$list = $sites->get( $item->getBaseItem()->getSiteId(), map() );
+				$list = $sites->get( $item->getSiteId(), map() );
 
 				$this->send( $item, $list->getTheme()->filter()->last(), $list->getLogo()->filter()->last() );
 				$this->status( $id, $status );
@@ -429,8 +429,7 @@ class Standard
 		 * @see controller/jobs/order/email/payment/template-html
 		 */
 
-		$basket = $order->getBaseItem();
-		$address = $this->address( $basket );
+		$address = $this->address( $order );
 
 		$context = $this->context();
 		$context->locale()->setLanguageId( $address->getLanguageId() );
@@ -438,9 +437,9 @@ class Standard
 		$msg = $this->call( 'mailTo', $address );
 		$msg = $this->attachments( $msg );
 
-		$view = $this->view( $basket, $theme );
+		$view = $this->view( $order, $theme );
 		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
-		$view->summaryBasket = $basket;
+		$view->summaryBasket = $order;
 		$view->addressItem = $address;
 		$view->orderItem = $order;
 
@@ -513,11 +512,11 @@ class Standard
 	/**
 	 * Returns the view populated with common data
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
+	 * @param \Aimeos\MShop\Order\Item\Iface $base Basket including addresses
 	 * @param string|null $theme Theme name
 	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = $this->address( $base );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

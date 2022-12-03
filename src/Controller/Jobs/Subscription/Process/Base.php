@@ -57,7 +57,7 @@ abstract class Base
 
 			$object = new $classname( $context );
 
-			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\Iface', $object );
+			map( $object )->implements( '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\Iface' );
 
 			$list[$pname] = $object;
 		}

@@ -72,7 +72,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop::create( \TestHelper::context(), 'subscription' );
 		$search = $manager->filter()->add( ['subscription.dateend' => '2010-01-01'] );
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 
-		return $manager->search( $search )->first( new \RuntimeException( 'No subscription item found' ) );
+		return $manager->search( $search, $domains )->first( new \Exception( 'No subscription item found' ) );
 	}
 }

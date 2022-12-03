@@ -14,27 +14,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelper::context();
 		$mapping = array(
-			0 => 'order.base.service.type',
-			1 => 'order.base.service.code',
-			2 => 'order.base.service.name',
-			3 => 'order.base.service.mediaurl',
-			4 => 'order.base.service.price',
-			5 => 'order.base.service.costs',
-			6 => 'order.base.service.rebate',
-			7 => 'order.base.service.taxrate',
-			8 => 'order.base.service.attribute.type',
-			9 => 'order.base.service.attribute.code',
-			10 => 'order.base.service.attribute.name',
-			11 => 'order.base.service.attribute.value',
+			0 => 'order.service.type',
+			1 => 'order.service.code',
+			2 => 'order.service.name',
+			3 => 'order.service.mediaurl',
+			4 => 'order.service.price',
+			5 => 'order.service.costs',
+			6 => 'order.service.rebate',
+			7 => 'order.service.taxrate',
+			8 => 'order.service.attribute.type',
+			9 => 'order.service.attribute.code',
+			10 => 'order.service.attribute.name',
+			11 => 'order.service.attribute.value',
 		);
 
 
 		$object = new \Aimeos\Controller\Common\Order\Export\Csv\Processor\Service\Standard( $context, $mapping );
-
-		$invoice = $this->getInvoice( $context );
-		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $invoice->getBaseId() );
-
-		$data = $object->process( $invoice, $order );
+		$data = $object->process( $this->getInvoice( $context ) );
 
 
 		$this->assertEquals( 2, count( $data ) );
@@ -72,14 +68,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getInvoice( $context )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
+		$search = $manager->filter()->add( 'order.datepayment', '==', '2008-02-15 12:34:56' );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'order.datepayment', '2008-02-15 12:34:56' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No order item found' );
+		return $manager->search( $search, ['order', 'order/service'] )->first( new \Exception( 'No order item found' ) );
 	}
 }

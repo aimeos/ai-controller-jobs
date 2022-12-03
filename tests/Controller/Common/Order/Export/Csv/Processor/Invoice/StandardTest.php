@@ -20,25 +20,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'order.datedelivery',
 			4 => 'order.statusdelivery',
 			5 => 'order.relatedid',
-			6 => 'order.base.customerid',
-			7 => 'order.base.sitecode',
-			8 => 'order.base.languageid',
-			9 => 'order.base.currencyid',
-			10 => 'order.base.price',
-			11 => 'order.base.costs',
-			12 => 'order.base.rebate',
-			13 => 'order.base.taxvalue',
-			14 => 'order.base.taxflag',
-			15 => 'order.base.comment',
+			6 => 'order.customerid',
+			7 => 'order.sitecode',
+			8 => 'order.languageid',
+			9 => 'order.currencyid',
+			10 => 'order.price',
+			11 => 'order.costs',
+			12 => 'order.rebate',
+			13 => 'order.taxvalue',
+			14 => 'order.taxflag',
+			15 => 'order.comment',
 		);
 
 
 		$object = new \Aimeos\Controller\Common\Order\Export\Csv\Processor\Invoice\Standard( $context, $mapping );
-
-		$invoice = $this->getInvoice( $context );
-		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $invoice->getBaseId() );
-
-		$data = $object->process( $invoice, $order );
+		$data = $object->process( $this->getInvoice( $context ) );
 
 
 		$this->assertEquals( 1, count( $data ) );
@@ -66,14 +62,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getInvoice( $context )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'order' );
+		$search = $manager->filter()->add( 'order.datepayment', '==', '2008-02-15 12:34:56' );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'order.datepayment', '2008-02-15 12:34:56' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No order item found' );
+		return $manager->search( $search, ['order'] )->first( new \Exception( 'No order item found' ) );
 	}
 }

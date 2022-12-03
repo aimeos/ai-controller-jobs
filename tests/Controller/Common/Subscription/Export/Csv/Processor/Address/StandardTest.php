@@ -14,36 +14,32 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelper::context();
 		$mapping = array(
-			0 => 'order.base.address.type',
-			1 => 'order.base.address.salutation',
-			2 => 'order.base.address.company',
-			3 => 'order.base.address.vatid',
-			4 => 'order.base.address.title',
-			5 => 'order.base.address.firstname',
-			6 => 'order.base.address.lastname',
-			7 => 'order.base.address.address1',
-			8 => 'order.base.address.address2',
-			9 => 'order.base.address.address3',
-			10 => 'order.base.address.postal',
-			11 => 'order.base.address.city',
-			12 => 'order.base.address.state',
-			13 => 'order.base.address.countryid',
-			14 => 'order.base.address.languageid',
-			15 => 'order.base.address.telephone',
-			16 => 'order.base.address.telefax',
-			17 => 'order.base.address.email',
-			18 => 'order.base.address.website',
-			19 => 'order.base.address.longitude',
-			20 => 'order.base.address.latitude',
+			0 => 'order.address.type',
+			1 => 'order.address.salutation',
+			2 => 'order.address.company',
+			3 => 'order.address.vatid',
+			4 => 'order.address.title',
+			5 => 'order.address.firstname',
+			6 => 'order.address.lastname',
+			7 => 'order.address.address1',
+			8 => 'order.address.address2',
+			9 => 'order.address.address3',
+			10 => 'order.address.postal',
+			11 => 'order.address.city',
+			12 => 'order.address.state',
+			13 => 'order.address.countryid',
+			14 => 'order.address.languageid',
+			15 => 'order.address.telephone',
+			16 => 'order.address.telefax',
+			17 => 'order.address.email',
+			18 => 'order.address.website',
+			19 => 'order.address.longitude',
+			20 => 'order.address.latitude',
 		);
 
 
 		$object = new \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Address\Standard( $context, $mapping );
-
-		$subscription = $this->getSubscription( $context );
-		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $subscription->getOrderBaseId() );
-
-		$data = $object->process( $subscription, $order );
+		$data = $object->process( $this->getSubscription( $context ) );
 
 
 		$this->assertEquals( 2, count( $data ) );
@@ -99,14 +95,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getSubscription( $context )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+		$search = $manager->filter()->add( 'subscription.dateend', '==', '2010-01-01' );
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No subscription item found' );
+		return $manager->search( $search, $domains )->first( new \Exception( 'No subscription item found' ) );
 	}
 }

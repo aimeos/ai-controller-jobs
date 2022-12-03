@@ -215,7 +215,7 @@ class Standard
 		$filter->add( $filter->and( [
 			$filter->compare( '>=', 'order.mtime', $limitDate ),
 			$filter->compare( '==', 'order.statuspayment', $status ),
-			$filter->compare( '==', 'order.base.product.type', 'voucher' ),
+			$filter->compare( '==', 'order.product.type', 'voucher' ),
 			$filter->compare( '==', $func, 0 ),
 		] ) );
 
@@ -223,7 +223,7 @@ class Standard
 
 		do
 		{
-			$items = $manager->search( $filter->slice( $start ), ['order/base', 'order/base/address', 'order/base/product'] );
+			$items = $manager->search( $filter->slice( $start ), ['order/address', 'order/product'] );
 
 			$this->notify( $items );
 
@@ -237,18 +237,18 @@ class Standard
 	/**
 	 * Returns the delivery address item of the order
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including address items
-	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or voucher address item
+	 * @param \Aimeos\MShop\Order\Item\Iface $orderBaseItem Order including address items
+	 * @return \Aimeos\MShop\Order\Item\Address\Iface Delivery or voucher address item
 	 * @throws \Aimeos\Controller\Jobs\Exception If no address item is available
 	 */
-	protected function address( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Base\Address\Iface
+	protected function address( \Aimeos\MShop\Order\Item\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Address\Iface
 	{
-		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
+		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY;
 		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
 			return $addr;
 		}
 
-		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
 			return $addr;
 		}
@@ -266,7 +266,7 @@ class Standard
 	protected function createCoupons( \Aimeos\Map $orderProdItems )
 	{
 		$map = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/base/product/attribute' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/product/attribute' );
 
 		foreach( $orderProdItems as $orderProductItem )
 		{
@@ -336,10 +336,10 @@ class Standard
 	protected function notify( \Aimeos\Map $items )
 	{
 		$context = $this->context();
-		$sites = $this->sites( $items->getBaseItem()->getSiteId()->unique() );
+		$sites = $this->sites( $items->getSiteId()->unique() );
 
 		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
-		$orderProdManager = \Aimeos\MShop::create( $context, 'order/base/product' );
+		$orderProdManager = \Aimeos\MShop::create( $context, 'order/product' );
 
 		foreach( $items as $id => $item )
 		{
@@ -348,16 +348,16 @@ class Standard
 
 			try
 			{
-				$base = $item->getBaseItem();
-				$orderProdManager->save( $this->createCoupons( $this->products( $base ) ) );
+				$products = $this->products( $item );
+				$orderProdManager->save( $this->createCoupons( $products ) );
 
-				$addr = $this->address( $base );
+				$addr = $this->address( $item );
 				$context->locale()->setLanguageId( $addr->getLanguageId() );
 
-				$list = $sites->get( $base->getSiteId(), map() );
-				$view = $this->view( $base, $list->getTheme()->filter()->last() );
+				$list = $sites->get( $item->getSiteId(), map() );
+				$view = $this->view( $item, $list->getTheme()->filter()->last() );
 
-				$this->send( $view, $this->products( $base ), $addr, $list->getLogo()->filter()->last() );
+				$this->send( $view, $products, $addr, $list->getLogo()->filter()->last() );
 				$this->status( $id );
 
 				$orderProdManager->commit();
@@ -428,10 +428,10 @@ class Standard
 	/**
 	 * Returns the ordered voucher products from the basket.
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Basket object
+	 * @param \Aimeos\MShop\Order\Item\Iface $orderBaseItem Basket object
 	 * @return \Aimeos\Map List of order product items for the voucher products
 	 */
-	protected function products( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\Map
+	protected function products( \Aimeos\MShop\Order\Item\Iface $orderBaseItem ) : \Aimeos\Map
 	{
 		$list = [];
 
@@ -582,11 +582,11 @@ class Standard
 	/**
 	 * Returns the view populated with common data
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
+	 * @param \Aimeos\MShop\Order\Item\Iface $base Basket including addresses
 	 * @param string|null $theme Theme name
 	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = $this->address( $base );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

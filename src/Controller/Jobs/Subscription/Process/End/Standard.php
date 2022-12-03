@@ -158,39 +158,27 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
+		$domains = $this->domains();
 		$processors = $this->getProcessors( $this->names() );
 
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
 		$filter = $manager->filter( true )->add( 'subscription.dateend', '<', date( 'Y-m-d' ) )->slice( 0, $this->max() );
 		$cursor = $manager->cursor( $filter );
 
-		while( $items = $manager->iterate( $cursor ) )
+		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
-			$search = $orderManager->filter()->add( 'order.baseid', '==', $items->getOrderBaseId() )->slice( 0, 0x7fffffff );
-			$orders = $orderManager->search( $search, $this->domains() )->col( null, 'order.baseid' );
-
 			foreach( $items as $item )
 			{
-				if( ( $order = $orders->get( $item->getOrderBaseId() ) ) === null ) {
-					continue;
-				}
-
 				$manager->begin();
-				$orderManager->begin();
 
 				try
 				{
-					$manager->save( $this->process( $item, $order, $processors ) );
-					$orderManager->save( $order );
-
-					$orderManager->commit();
+					$manager->save( $this->process( $item, $processors ) );
 					$manager->commit();
 				}
 				catch( \Exception $e )
 				{
-					$orderManager->rollback();
 					$manager->rollback();
 
 					$str = 'Unable to end subscription with ID "%1$s": %2$s';
@@ -216,18 +204,19 @@ class Standard
 		 * fetched together with the subscription items and passed to the processor.
 		 * Available domains for those items are:
 		 *
-		 * - order/base
-		 * - order/base/address
-		 * - order/base/coupon
-		 * - order/base/product
-		 * - order/base/service
+		 * - order
+		 * - order/address
+		 * - order/coupon
+		 * - order/product
+		 * - order/service
 		 *
 		 * @param array Referenced domain names
 		 * @since 2022.04
-		 * @see controller/jobs/order/email/delivery/limit-days
-		 * @see controller/jobs/order/service/delivery/batch-max
+		 * @see controller/common/subscription/process/processors
+		 * @see controller/common/subscription/process/payment-days
+		 * @see controller/common/subscription/process/payment-status
 		 */
-		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 		return $this->context()->config()->get( 'controller/jobs/subscription/process/domains', $domains );
 	}
 
@@ -286,15 +275,13 @@ class Standard
 	 * Runs the passed processors over all items and updates the properties
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $item Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item including associated items
 	 * @param iterable $processors List of processor objects
 	 * @return \Aimeos\MShop\Subscription\Item\Iface Updated subscription item
 	 */
-	protected function process( \Aimeos\MShop\Subscription\Item\Iface $item,
-		\Aimeos\MShop\Order\Item\Iface $order, iterable $processors ) : \Aimeos\MShop\Subscription\Item\Iface
+	protected function process( \Aimeos\MShop\Subscription\Item\Iface $item, iterable $processors ) : \Aimeos\MShop\Subscription\Item\Iface
 	{
 		foreach( $processors as $processor ) {
-			$processor->end( $item, $order );
+			$processor->end( $item, $item->getOrderItem() );
 		}
 
 		if( ( $reason = $item->getReason() ) === null ) {

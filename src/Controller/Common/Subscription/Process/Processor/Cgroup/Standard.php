@@ -71,12 +71,10 @@ class Standard
 		$context = $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
-		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
-		$productManager = \Aimeos\MShop::create( $context, 'order/base/product' );
+		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
 
-		$baseItem = $baseManager->get( $subscription->getOrderBaseId() );
 		$productItem = $productManager->get( $subscription->getOrderProductId() );
-		$item = $manager->get( $baseItem->getCustomerId(), ['customer/group'] );
+		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['customer/group'] );
 
 		if( ( $groupIds = (array) $productItem->getAttribute( 'customer/group', 'hidden' ) ) === [] ) {
 			$groupIds = $this->groupIds;
@@ -97,12 +95,10 @@ class Standard
 		$context = $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
-		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
-		$productManager = \Aimeos\MShop::create( $context, 'order/base/product' );
+		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
 
-		$baseItem = $baseManager->get( $subscription->getOrderBaseId() );
 		$productItem = $productManager->get( $subscription->getOrderProductId() );
-		$item = $manager->get( $baseItem->getCustomerId(), ['customer/group'] );
+		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['customer/group'] );
 
 		if( ( $groupIds = (array) $productItem->getAttribute( 'customer/group', 'hidden' ) ) === [] ) {
 			$groupIds = $this->groupIds;

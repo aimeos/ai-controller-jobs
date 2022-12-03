@@ -21,11 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$object = new \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Subscription\Standard( $context, $mapping );
-
-		$subscription = $this->getSubscription( $context );
-		$order = \Aimeos\MShop::create( $context, 'order/base' )->load( $subscription->getOrderBaseId() );
-
-		$data = $object->process( $subscription, $order );
+		$data = $object->process( $this->getSubscription( $context ) );
 
 
 		$this->assertEquals( 1, count( $data ) );
@@ -40,14 +36,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getSubscription( $context )
 	{
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+		$search = $manager->filter()->add( 'subscription.dateend', '==', '2010-01-01' );
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No subscription item found' );
+		return $manager->search( $search, $domains )->first( new \Exception( 'No subscription item found' ) );
 	}
 }

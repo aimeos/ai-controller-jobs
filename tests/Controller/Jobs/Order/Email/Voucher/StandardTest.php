@@ -81,22 +81,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddress()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
-		$addrManager = \Aimeos\MShop::create( $this->context, 'order/base/address' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
+		$addrManager = \Aimeos\MShop::create( $this->context, 'order/address' );
 
 		$item = $manager->create();
-		$item->addAddress( $addrManager->create()->setEmail( 'a@b.c' ), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-		$item->addAddress( $addrManager->create(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+		$item->addAddress( $addrManager->create()->setEmail( 'a@b.c' ), \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT );
+		$item->addAddress( $addrManager->create(), \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY );
 
 		$result = $this->access( 'address' )->invokeArgs( $this->object, [$item] );
 
-		$this->assertInstanceof( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $result );
+		$this->assertInstanceof( \Aimeos\MShop\Order\Item\Address\Iface::class, $result );
 	}
 
 
 	public function testAddressNone()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
 
 		$this->expectException( \Aimeos\Controller\Jobs\Exception::class );
 		$this->access( 'address' )->invokeArgs( $this->object, [$manager->create()] );
@@ -111,7 +111,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateCoupons()
 	{
-		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
+		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/product' )->create();
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
@@ -130,7 +130,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testNotify()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'order' );
-		$domains = ['order/base', 'order/base/address', 'order/base/product'];
+		$domains = ['order', 'order/address', 'order/product'];
 
 		$order = $manager->search( $manager->filter()->slice( 0, 1 ), $domains )
 			->first( new \RuntimeException( 'No orders available' ) );
@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testNotifyException()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'order' );
-		$order = $manager->search( $manager->filter()->slice( 0, 1 ), ['order/base', 'order/base/product'] )->first();
+		$order = $manager->search( $manager->filter()->slice( 0, 1 ), ['order', 'order/product'] )->first();
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
@@ -181,8 +181,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testSend()
 	{
-		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'a@b.com' );
-		$product = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create()->setProductCode( 'voucher-test' );
+		$address = \Aimeos\MShop::create( $this->context, 'order/address' )->create()->setEmail( 'a@b.com' );
+		$product = \Aimeos\MShop::create( $this->context, 'order/product' )->create()->setProductCode( 'voucher-test' );
 
 
 		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
@@ -228,8 +228,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testView()
 	{
-		$base = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
+		$base = \Aimeos\MShop::create( $this->context, 'order' )->create();
+		$address = \Aimeos\MShop::create( $this->context, 'order/address' )->create();
 		$base->addAddress( $address->setLanguageId( 'de' )->setEmail( 'a@b.com' ), 'delivery' );
 
 		$result = $this->access( 'view' )->invokeArgs( $this->object, [$base] );

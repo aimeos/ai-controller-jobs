@@ -356,7 +356,6 @@ class Standard
 	protected function export( array $processors, array $msg, int $maxcnt )
 	{
 		$lcontext = $this->getLocaleContext( $msg );
-		$baseRef = ['order/base/address', 'order/base/product'];
 
 		/** controller/jobs/subscription/export/csv/collapse
 		 * Collapse all lines in the subscription export on only one line
@@ -372,7 +371,6 @@ class Standard
 		$collapse = $lcontext->config()->get( 'controller/jobs/subscription/export/csv/collapse', false );
 
 		$manager = \Aimeos\MShop::create( $lcontext, 'subscription' );
-		$baseManager = \Aimeos\MShop::create( $lcontext, 'order/base' );
 
 		$container = $this->getContainer();
 		$content = $container->create( 'subscription-export_' . date( 'Y-m-d_H-i-s' ) );
@@ -383,17 +381,7 @@ class Standard
 		{
 			$baseIds = [];
 			$search->slice( $start, $maxcnt );
-			$items = $manager->search( $search );
-
-			foreach( $items as $item ) {
-				$baseIds[] = $item->getOrderBaseId();
-			}
-
-			$baseSearch = $baseManager->filter( false, true );
-			$baseSearch->setConditions( $baseSearch->compare( '==', 'order.base.id', $baseIds ) );
-			$baseSearch->slice( 0, count( $baseIds ) );
-
-			$baseItems = $baseManager->search( $baseSearch, $baseRef );
+			$items = $manager->search( $search, ['order', 'order/address', 'order/product'] );
 
 			foreach( $items as $id => $item )
 			{
@@ -401,7 +389,7 @@ class Standard
 
 				foreach( $processors as $type => $processor )
 				{
-					foreach( $processor->process( $item, $baseItems[$item->getOrderBaseId()] ) as $line )
+					foreach( $processor->process( $item ) as $line )
 					{
 						if( !$collapse ) {
 							$lines[] = [0 => $type, 1 => $id] + $line;

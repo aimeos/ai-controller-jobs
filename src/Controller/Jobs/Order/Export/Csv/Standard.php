@@ -367,7 +367,7 @@ class Standard
 		$lcontext = $this->getLocaleContext( $msg );
 		$siteId = $lcontext->locale()->getSiteId();
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
-		$ref = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$ref = ['order/address', 'order/coupon', 'order/product', 'order/service'];
 
 		$container = $this->getContainer();
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
@@ -386,7 +386,7 @@ class Standard
 			{
 				foreach( $processors as $type => $processor )
 				{
-					foreach( $processor->process( $item, $item->getBaseItem(), $siteId ) as $line ) {
+					foreach( $processor->process( $item, $siteId ) as $line ) {
 						$content->add( [0 => $type, 1 => $id] + $line );
 					}
 				}

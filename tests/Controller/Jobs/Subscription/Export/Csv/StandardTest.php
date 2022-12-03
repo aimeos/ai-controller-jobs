@@ -146,12 +146,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				2 => 'subscription.ordbaseid',
 			),
 			'address' => array(
-				3 => 'order.base.address.firstname',
-				4 => 'order.base.address.lastname',
+				3 => 'order.address.firstname',
+				4 => 'order.address.lastname',
 			),
 			'product' => array(
-				5 => 'order.base.product.prodcode',
-				6 => 'order.base.product.price',
+				5 => 'order.product.prodcode',
+				6 => 'order.product.price',
 			),
 		] );
 

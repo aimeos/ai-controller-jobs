@@ -36,15 +36,14 @@ class Standard
 	/**
 	 * Returns the order related data
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Iface $invoice Invoice item
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $order Full order with associated items
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Full order with associated items
 	 * @param string|null $siteId ID of the site for which the export is done, NULL for no site check
 	 * @return array Two dimensional associative list of order data representing the lines in CSV
 	 */
-	public function process( \Aimeos\MShop\Order\Item\Iface $invoice, \Aimeos\MShop\Order\Item\Base\Iface $order, ?string $siteId = null ) : array
+	public function process( \Aimeos\MShop\Order\Item\Iface $order, ?string $siteId = null ) : array
 	{
 		$result = [];
-		$list = $invoice->toArray( true ) + $order->toArray( true );
+		$list = $order->toArray( true );
 
 		foreach( $this->getMapping() as $pos => $key )
 		{

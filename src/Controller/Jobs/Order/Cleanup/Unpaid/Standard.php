@@ -159,7 +159,6 @@ class Standard
 	{
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'order' );
-		$baseManager = \Aimeos\MShop::create( $context, 'order/base' );
 		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
 
 		$filter = $manager->filter()
@@ -173,7 +172,7 @@ class Standard
 				$controller->unblock( $item );
 			}
 
-			$baseManager->delete( $items->getBaseId() );
+			$manager->delete( $items );
 		}
 	}
 

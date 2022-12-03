@@ -221,10 +221,10 @@ class Standard
 	 */
 	protected function counts() : \Aimeos\Map
 	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/base/product' );
-		$filter = $manager->filter()->add( 'order.base.product.ctime', '>', $this->ctime() )->slice( 0, 0x7fffffff );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/product' );
+		$filter = $manager->filter()->add( 'order.product.ctime', '>', $this->ctime() )->slice( 0, 0x7fffffff );
 
-		return $manager->aggregate( $filter, 'order.base.product.productid' );
+		return $manager->aggregate( $filter, 'order.product.productid' );
 	}
 
 
@@ -312,16 +312,16 @@ class Standard
 	 */
 	protected function relative( string $id, iterable $prodIds ) : \Aimeos\Map
 	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/base/product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/product' );
 
 		$search = $manager->filter();
 		$search->add( $search->and( [
-			$search->is( 'order.base.product.productid', '==', $prodIds ),
-			$search->is( 'order.base.product.ctime', '>', $this->ctime() ),
-			$search->is( $search->make( 'order.base.product.count', [$id] ), '==', 1 ),
+			$search->is( 'order.product.productid', '==', $prodIds ),
+			$search->is( 'order.product.ctime', '>', $this->ctime() ),
+			$search->is( $search->make( 'order.product.count', [$id] ), '==', 1 ),
 		] ) );
 
-		return $manager->aggregate( $search, 'order.base.product.productid' )->remove( $id );
+		return $manager->aggregate( $search, 'order.product.productid' )->remove( $id );
 	}
 
 
@@ -428,8 +428,8 @@ class Standard
 	{
 		$total = 0;
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/base' );
-		$filter = $manager->filter()->add( 'order.base.ctime', '>', $this->ctime() )->slice( 0, 0 );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order' );
+		$filter = $manager->filter()->add( 'order.ctime', '>', $this->ctime() )->slice( 0, 0 );
 		$manager->search( $filter, [], $total )->all();
 
 		return $total;

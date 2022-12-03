@@ -36,15 +36,14 @@ class Standard
 	/**
 	 * Returns the subscription/order related data
 	 *
-	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $order Full order with associated items
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item with associated order
 	 * @return array Two dimensional associative list of order data representing the lines in CSV
 	 */
-	public function process( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Base\Iface $order ) : array
+	public function process( \Aimeos\MShop\Subscription\Item\Iface $subscription ) : array
 	{
 		$result = [];
 
-		foreach( $order->getProducts() as $item )
+		foreach( $subscription->getOrderItem()->getProducts() as $item )
 		{
 			if( $subscription->getOrderProductId() != $item->getId() ) {
 				continue;

@@ -11,6 +11,7 @@ namespace Aimeos\Controller\Jobs\Subscription\Process\Begin;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
+	private $aimeos;
 	private $context;
 	private $object;
 
@@ -19,17 +20,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		\Aimeos\MShop::cache( true );
 
-		$aimeos = \TestHelper::getAimeos();
+		$this->aimeos = \TestHelper::getAimeos();
 		$this->context = \TestHelper::context();
 
-		$this->object = new \Aimeos\Controller\Jobs\Subscription\Process\Begin\Standard( $this->context, $aimeos );
+		$this->object = new \Aimeos\Controller\Jobs\Subscription\Process\Begin\Standard( $this->context, $this->aimeos );
 	}
 
 
 	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->aimeos );
 	}
 
 
@@ -68,7 +69,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunException()
 	{
 		$this->context->config()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
-		$this->context->config()->set( 'controller/common/subscription/process/processor/cgroup/groupids', ['1'] );
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -77,27 +77,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
+		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Subscription\\Process\\Begin\\Standard' )
+			->setConstructorArgs( [$this->context, $this->aimeos] )
+			->setMethods( ['process'] )
+			->getMock();
+
 		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$this->getSubscription()] ), null ) );
+			->will( $this->onConsecutiveCalls( map( [$managerStub->create()] ), null ) );
 
-		$managerStub->expects( $this->once() )->method( 'save' )
-			->will( $this->throwException( new \Exception() ) );
+		$managerStub->expects( $this->never() )->method( 'save' );
 
-		$this->object->run();
+		$object->expects( $this->once() )->method( 'process' )->will( $this->throwException( new \RuntimeException() ) );
+
+		$object->run();
 	}
 
 
 	protected function getSubscription()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
+		$search = $manager->filter()->add( ['subscription.dateend' => '2010-01-01'] );
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null ) {
-			return $item;
-		}
-
-		throw new \Exception( 'No subscription item found' );
+		return $manager->search( $search, $domains )->first( new \Exception( 'No subscription item found' ) );
 	}
 }
