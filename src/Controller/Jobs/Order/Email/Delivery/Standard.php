@@ -230,11 +230,11 @@ class Standard
 			] ) );
 
 			$start = 0;
-			$domains = ['order', 'order/address', 'order/product', 'order/service'];
+			$ref = ['order'] + $context->config()->get( 'mshop/order/manager/subdomains', [] );
 
 			do
 			{
-				$items = $orderManager->search( $filter->slice( $start ), $domains );
+				$items = $orderManager->search( $filter->slice( $start ), $ref );
 
 				$this->notify( $items, $status );
 

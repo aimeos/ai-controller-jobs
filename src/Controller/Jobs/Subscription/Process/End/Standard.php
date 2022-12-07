@@ -197,6 +197,8 @@ class Standard
 	 */
 	protected function domains() : array
 	{
+		$config = $this->context()->config();
+
 		/** controller/jobs/subscription/process/domains
 		 * Associated items that should be available too in the subscription
 		 *
@@ -216,8 +218,8 @@ class Standard
 		 * @see controller/common/subscription/process/payment-days
 		 * @see controller/common/subscription/process/payment-status
 		 */
-		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
-		return $this->context()->config()->get( 'controller/jobs/subscription/process/domains', $domains );
+		$ref = ['order'] + $config->get( 'mshop/order/manager/subdomains', [] );
+		return $config->get( 'controller/jobs/subscription/process/domains', $ref );
 	}
 
 

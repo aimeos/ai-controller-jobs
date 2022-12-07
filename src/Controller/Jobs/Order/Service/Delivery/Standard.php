@@ -189,6 +189,8 @@ class Standard
 	 */
 	protected function domains() : array
 	{
+		$config = $this->context()->config();
+
 		/** controller/jobs/order/service/delivery/domains
 		 * Associated items that should be available too in the order
 		 *
@@ -206,8 +208,8 @@ class Standard
 		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/order/service/delivery/batch-max
 		 */
-		$domains = ['order/address', 'order/coupon', 'order/product', 'order/service'];
-		return $this->context()->config()->get( 'controller/jobs/order/service/delivery/domains', $domains );
+		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+		return $config->get( 'controller/jobs/order/service/delivery/domains', $ref );
 	}
 
 

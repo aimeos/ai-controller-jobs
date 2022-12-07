@@ -367,7 +367,7 @@ class Standard
 		$lcontext = $this->getLocaleContext( $msg );
 		$siteId = $lcontext->locale()->getSiteId();
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
-		$ref = ['order/address', 'order/coupon', 'order/product', 'order/service'];
+		$ref = $lcontext->config()->get( 'mshop/order/manager/subdomains', [] );
 
 		$container = $this->getContainer();
 		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );

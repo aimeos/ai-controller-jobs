@@ -211,6 +211,8 @@ class Standard
 	 */
 	protected function domains() : array
 	{
+		$config = $this->context()->config();
+
 		/** controller/jobs/order/service/transfer/domains
 		 * Associated items that should be available too in the order
 		 *
@@ -226,8 +228,8 @@ class Standard
 		 * @param array Referenced domain names
 		 * @since 2022.04
 		 */
-		$domains = ['order/address', 'order/coupon', 'order/product', 'order/service'];
-		return $this->context()->config()->get( 'controller/jobs/order/service/transfer/domains', $domains );
+		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+		return $config->get( 'controller/jobs/order/service/transfer/domains', $ref );
 	}
 
 
