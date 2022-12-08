@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-14 13:36+0200\n"
+"POT-Creation-Date: 2022-12-07 11:38+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Javad Salehnia, 2022\n"
 "Language-Team: Persian (http://www.transifex.com/aimeos/aimeos-core/language/fa/)\n"
@@ -481,6 +481,13 @@ msgid ""
 "handling"
 msgstr ""
 
+msgid "Voucher"
+msgstr "کوپن"
+
+#, php-format
+msgid "Voucher %1$s"
+msgstr ""
+
 msgid "Voucher related e-mails"
 msgstr ""
 
@@ -537,9 +544,6 @@ msgid "Your subscription"
 msgstr ""
 
 msgid "Your voucher"
-msgstr ""
-
-msgid "Your vouchers"
 msgstr ""
 
 msgid "Your watched products"

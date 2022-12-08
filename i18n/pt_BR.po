@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-14 13:36+0200\n"
+"POT-Creation-Date: 2022-12-07 11:38+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Keite Clembet, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
@@ -485,6 +485,13 @@ msgid ""
 "handling"
 msgstr "Transfere o preço dos produtos encomendados para os fornecedores incl. comissão de manipulação"
 
+msgid "Voucher"
+msgstr "Voucher"
+
+#, php-format
+msgid "Voucher %1$s"
+msgstr ""
+
 msgid "Voucher related e-mails"
 msgstr "E-mails relacionados ao voucher"
 
@@ -542,9 +549,6 @@ msgstr "Sua subscrição"
 
 msgid "Your voucher"
 msgstr "Seu voucher"
-
-msgid "Your vouchers"
-msgstr "Seus vouchers"
 
 msgid "Your watched products"
 msgstr "Seus produtos observados"

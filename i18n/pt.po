@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-14 13:36+0200\n"
+"POT-Creation-Date: 2022-12-07 11:38+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
@@ -61,7 +61,7 @@ msgstr "+ %1$s %2$s/item"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ Custo de pagamento"
@@ -89,7 +89,7 @@ msgid "An account has been created for you."
 msgstr "Uma conta foi criada para você"
 
 msgid "Article no."
-msgstr ""
+msgstr " Item nº"
 
 msgid "Attribute import XML"
 msgstr ""
@@ -150,20 +150,20 @@ msgstr ""
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Caro %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Caro %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Cara %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Caro cliente"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
@@ -177,7 +177,7 @@ msgid "Delivery address"
 msgstr "Endereço de entrega"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Entrega em"
 
 msgid "Details"
 msgstr "Detalhes"
@@ -235,7 +235,7 @@ msgstr ""
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr " incl. %1$s %% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -261,13 +261,13 @@ msgid "Invoice %1$s"
 msgstr ""
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Como introduzido por sí"
 
 msgid "Log cleanup"
 msgstr "Limpeza de registros"
 
 msgid "Login"
-msgstr ""
+msgstr "Entrar"
 
 msgid "Name"
 msgstr "Nome"
@@ -279,7 +279,7 @@ msgid "Optimizes the index for searching products faster"
 msgstr ""
 
 msgid "Order date"
-msgstr ""
+msgstr "Data da encomenda"
 
 msgid "Order delivery related e-mails"
 msgstr ""
@@ -336,7 +336,7 @@ msgid "Rebuilds the index for searching products"
 msgstr ""
 
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 msgid "Removes the expired entries from the cache"
 msgstr "Remove entradas expiradas do cache"
@@ -483,6 +483,13 @@ msgid ""
 "handling"
 msgstr ""
 
+msgid "Voucher"
+msgstr ""
+
+#, php-format
+msgid "Voucher %1$s"
+msgstr ""
+
 msgid "Voucher related e-mails"
 msgstr ""
 
@@ -505,7 +512,7 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Pode usar os seus Vales de Desconto em qualquer altura na nossa loja online"
 
 msgid "You've cancelled the subscription"
 msgstr "Cancelou a subscrição"
@@ -530,19 +537,16 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Seu pedido %1$s de %2$s foi despachado."
 
 msgid "Your reference"
-msgstr ""
+msgstr "A sua referência"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "A sua referência"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "A sua subscrição"
 
 msgid "Your voucher"
 msgstr "O seu vale"
-
-msgid "Your vouchers"
-msgstr ""
 
 msgid "Your watched products"
 msgstr "Seus produtos observados"
@@ -563,4 +567,4 @@ msgstr "pagamento"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr ""
+msgstr "preço:omissão"

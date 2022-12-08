@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-14 13:36+0200\n"
+"POT-Creation-Date: 2022-12-07 11:38+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
@@ -479,6 +479,13 @@ msgid ""
 "handling"
 msgstr ""
 
+msgid "Voucher"
+msgstr "バウチャー"
+
+#, php-format
+msgid "Voucher %1$s"
+msgstr ""
+
 msgid "Voucher related e-mails"
 msgstr ""
 
@@ -536,9 +543,6 @@ msgstr ""
 
 msgid "Your voucher"
 msgstr "あなたのバウチャー"
-
-msgid "Your vouchers"
-msgstr ""
 
 msgid "Your watched products"
 msgstr "あなたの見た商品"
