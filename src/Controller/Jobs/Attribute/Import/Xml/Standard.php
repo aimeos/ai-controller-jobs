@@ -22,7 +22,7 @@ class Standard
 	implements \Aimeos\Controller\Jobs\Iface
 {
 	/** controller/jobs/attribute/import/xml/name
-	 * Class name of the used attribute suggestions scheduler controller implementation
+	 * Class name of the used attribute XML importer implementation
 	 *
 	 * Each default job controller can be replace by an alternative imlementation.
 	 * To use this implementation, you have to set the last part of the class
@@ -52,11 +52,10 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2019.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/attribute/import/xml/decorators/excludes
-	 * Excludes decorators added by the "common" option from the attribute import CSV job controller
+	 * Excludes decorators added by the "common" option from the attribute import XML job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
 	 * (e.g. log what is currently done), executing the methods of the underlying
@@ -75,14 +74,13 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/attribute/import/xml/decorators/global
 	 * @see controller/jobs/attribute/import/xml/decorators/local
 	 */
 
 	/** controller/jobs/attribute/import/xml/decorators/global
-	 * Adds a list of globally available decorators only to the attribute import CSV job controller
+	 * Adds a list of globally available decorators only to the attribute import XML job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
 	 * (e.g. log what is currently done), executing the methods of the underlying
@@ -99,14 +97,13 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/attribute/import/xml/decorators/excludes
 	 * @see controller/jobs/attribute/import/xml/decorators/local
 	 */
 
 	/** controller/jobs/attribute/import/xml/decorators/local
-	 * Adds a list of local decorators only to the attribute import CSV job controller
+	 * Adds a list of local decorators only to the attribute import XML job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
 	 * (e.g. log what is currently done), executing the methods of the underlying
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/attribute/import/xml/decorators/excludes
 	 * @see controller/jobs/attribute/import/xml/decorators/global
@@ -166,26 +162,8 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
 		$logger = $context->logger();
-
-		/** controller/jobs/attribute/import/xml/location
-		 * File or directory where the content is stored which should be imported
-		 *
-		 * You need to configure the XML file or directory with the XML files that
-		 * should be imported. It should be an absolute path to be sure but can be
-		 * relative path if you absolutely know from where the job will be executed
-		 * from.
-		 *
-		 * @param string Absolute file or directory path
-		 * @since 2019.04
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/attribute/import/xml/container/type
-		 * @see controller/jobs/attribute/import/xml/container/content
-		 * @see controller/jobs/attribute/import/xml/container/options
-		 */
-		$location = $config->get( 'controller/jobs/attribute/import/xml/location' );
+		$location = $this->location();
 
 		try
 		{
@@ -238,33 +216,12 @@ class Standard
 
 
 	/**
-	 * Imports the XML file given by its path
+	 * Returns the directory for storing imported files
 	 *
-	 * @param string $filename Absolute or relative path to the XML file
+	 * @return string Directory for storing imported files
 	 */
-	protected function import( string $filename )
+	protected function backup() : string
 	{
-		$context = $this->context();
-		$config = $context->config();
-		$logger = $context->logger();
-
-
-		/** controller/jobs/attribute/import/xml/domains
-		 * List of item domain names that should be retrieved along with the attribute items
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/attribute/import/xml/domains" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of MShop item domain names
-		 * @since 2019.04
-		 * @category Developer
-		 * @see controller/jobs/attribute/import/xml/backup
-		 * @see controller/jobs/attribute/import/xml/max-query
-		 */
-		$domains = $config->get( 'controller/jobs/attribute/import/xml/domains', [] );
-
 		/** controller/jobs/attribute/import/xml/backup
 		 * Name of the backup for sucessfully imported files
 		 *
@@ -288,34 +245,53 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
-		 * @category Developer
 		 * @see controller/jobs/attribute/import/xml/domains
+		 * @see controller/jobs/attribute/import/xml/location
 		 * @see controller/jobs/attribute/import/xml/max-query
 		 */
-		$backup = $config->get( 'controller/jobs/attribute/import/xml/backup' );
+		return (string) $this->context()->config()->get( 'controller/jobs/attribute/import/xml/backup' );
+	}
 
-		/** controller/jobs/attribute/import/xml/max-query
-		 * Maximum number of XML nodes processed at once
+
+	/**
+	 * Returns the list of domain names that should be retrieved along with the attribute items
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		/** controller/jobs/attribute/import/xml/domains
+		 * List of item domain names that should be retrieved along with the attribute items
 		 *
-		 * Processing and fetching several attribute items at once speeds up importing
-		 * the XML files. The more items can be processed at once, the faster the
-		 * import. More items also increases the memory usage of the importer and
-		 * thus, this parameter should be low enough to avoid reaching the memory
-		 * limit of the PHP process.
+		 * This configuration setting overwrites the shared option
+		 * "controller/common/attribute/import/xml/domains" if you need a
+		 * specific setting for the job controller. Otherwise, you should
+		 * use the shared option for consistency.
 		 *
-		 * @param integer Number of XML nodes
+		 * @param array Associative list of MShop item domain names
 		 * @since 2019.04
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/attribute/import/xml/domains
 		 * @see controller/jobs/attribute/import/xml/backup
+		 * @see controller/jobs/attribute/import/xml/location
+		 * @see controller/jobs/attribute/import/xml/max-query
 		 */
-		$maxquery = $config->get( 'controller/jobs/attribute/import/xml/max-query', 100 );
+		return $this->context()->config()->get( 'controller/jobs/attribute/import/xml/domains', [] );
+	}
 
 
+	/**
+	 * Imports the XML file given by its path
+	 *
+	 * @param string $filename Absolute or relative path to the XML file
+	 */
+	protected function import( string $filename )
+	{
 		$slice = 0;
 		$nodes = [];
+
 		$xml = new \XMLReader();
+		$maxquery = $this->max();
+		$logger = $this->context()->logger();
+
 
 		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
@@ -337,7 +313,7 @@ class Standard
 
 				if( $slice++ >= $maxquery )
 				{
-					$this->importNodes( $nodes, $domains );
+					$this->importNodes( $nodes );
 					unset( $nodes );
 					$nodes = [];
 					$slice = 0;
@@ -345,7 +321,7 @@ class Standard
 			}
 		}
 
-		$this->importNodes( $nodes, $domains );
+		$this->importNodes( $nodes );
 		unset( $nodes );
 
 		$this->saveTypes();
@@ -356,7 +332,7 @@ class Standard
 
 		$logger->info( sprintf( 'Finished attribute import from file "%1$s"', $filename ), 'import/xml/attribute' );
 
-		if( !empty( $backup ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
+		if( !empty( $backup = $this->backup() ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
@@ -368,9 +344,8 @@ class Standard
 	 * Imports the given DOM nodes
 	 *
 	 * @param \DomElement[] $nodes List of nodes to import
-	 * @param string[] $ref List of domain names whose referenced items will be updated in the attribute items
 	 */
-	protected function importNodes( array $nodes, array $ref )
+	protected function importNodes( array $nodes )
 	{
 		$keys = [];
 
@@ -383,7 +358,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute' );
 		$search = $manager->filter()->slice( 0, count( $keys ) )->add( ['attribute.key' => $keys] );
-		$items = $manager->search( $search, $ref );
+		$items = $manager->search( $search, $this->domains() );
 		$map = $items->getKey()->combine( $items );
 
 		foreach( $nodes as $node )
@@ -397,6 +372,57 @@ class Standard
 			$manager->save( $item );
 			$this->addType( 'attribute/type', $item->getDomain(), $item->getType() );
 		}
+	}
+
+
+	/**
+	 * Returns the path to the directory with the XML file
+	 *
+	 * @return string Path to the directory with the XML file
+	 */
+	protected function location() : string
+	{
+		/** controller/jobs/attribute/import/xml/location
+		 * File or directory where the content is stored which should be imported
+		 *
+		 * You need to configure the XML file or directory with the XML files that
+		 * should be imported. It should be an absolute path to be sure but can be
+		 * relative path if you absolutely know from where the job will be executed
+		 * from.
+		 *
+		 * @param string Relative path to the XML files
+		 * @since 2019.04
+		 * @see controller/jobs/attribute/import/xml/backup
+		 * @see controller/jobs/attribute/import/xml/domains
+		 * @see controller/jobs/attribute/import/xml/max-query
+		 */
+		return (string) $this->context()->config()->get( 'controller/jobs/attribute/import/xml/location', 'attribute' );
+	}
+
+
+	/**
+	 * Returns the maximum number of XML nodes processed at once
+	 *
+	 * @return Maximum number of XML nodes
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/attribute/import/xml/max-query
+		 * Maximum number of XML nodes processed at once
+		 *
+		 * Processing and fetching several attribute items at once speeds up importing
+		 * the XML files. The more items can be processed at once, the faster the
+		 * import. More items also increases the memory usage of the importer and
+		 * thus, this parameter should be low enough to avoid reaching the memory
+		 * limit of the PHP process.
+		 *
+		 * @param integer Number of XML nodes
+		 * @since 2019.04
+		 * @see controller/jobs/attribute/import/xml/domains
+		 * @see controller/jobs/attribute/import/xml/location
+		 * @see controller/jobs/attribute/import/xml/backup
+		 */
+		return $this->context()->config()->get( 'controller/jobs/attribute/import/xml/max-query', 100 );
 	}
 
 
