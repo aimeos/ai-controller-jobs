@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2019.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/catalog/import/xml/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/global
 	 * @see controller/jobs/catalog/import/xml/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/excludes
 	 * @see controller/jobs/catalog/import/xml/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/excludes
 	 * @see controller/jobs/catalog/import/xml/decorators/global
@@ -165,26 +161,8 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
 		$logger = $context->logger();
-
-		/** controller/jobs/catalog/import/xml/location
-		 * File or directory where the content is stored which should be imported
-		 *
-		 * You need to configure the XML file or directory with the XML files that
-		 * should be imported. It should be an absolute path to be sure but can be
-		 * relative path if you absolutely know from where the job will be executed
-		 * from.
-		 *
-		 * @param string Absolute file or directory path
-		 * @since 2019.04
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/catalog/import/xml/container/type
-		 * @see controller/jobs/catalog/import/xml/container/content
-		 * @see controller/jobs/catalog/import/xml/container/options
-		 */
-		$location = $config->get( 'controller/jobs/catalog/import/xml/location' );
+		$location = $this->location();
 
 		try
 		{
@@ -237,33 +215,12 @@ class Standard
 
 
 	/**
-	 * Imports the XML file given by its path
+	 * Returns the directory for storing imported files
 	 *
-	 * @param string $filename Absolute or relative path to the XML file
+	 * @return string Directory for storing imported files
 	 */
-	protected function import( string $filename )
+	protected function backup() : string
 	{
-		$context = $this->context();
-		$config = $context->config();
-		$logger = $context->logger();
-
-
-		/** controller/jobs/catalog/import/xml/domains
-		 * List of item domain names that should be retrieved along with the catalog items
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/catalog/import/xml/domains" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of MShop item domain names
-		 * @since 2019.04
-		 * @category Developer
-		 * @see controller/jobs/catalog/import/xml/backup
-		 * @see controller/jobs/catalog/import/xml/max-query
-		 */
-		$domains = $config->get( 'controller/jobs/catalog/import/xml/domains', [] );
-
 		/** controller/jobs/catalog/import/xml/backup
 		 * Name of the backup for sucessfully imported files
 		 *
@@ -287,13 +244,48 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
-		 * @category Developer
 		 * @see controller/jobs/catalog/import/xml/domains
+		 * @see controller/jobs/catalog/import/xml/location
 		 * @see controller/jobs/catalog/import/xml/max-query
 		 */
-		$backup = $config->get( 'controller/jobs/catalog/import/xml/backup' );
+		return (string) $this->context()->config()->get( 'controller/jobs/catalog/import/xml/backup' );
+	}
 
 
+	/**
+	 * Returns the list of domain names that should be retrieved along with the catalog items
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		/** controller/jobs/catalog/import/xml/domains
+		 * List of item domain names that should be retrieved along with the catalog items
+		 *
+		 * For efficient processing, the items associated to the products can be
+		 * fetched to, minimizing the number of database queries required. To be
+		 * most effective, the list of item domain names should be used in the
+		 * mapping configuration too, so the retrieved items will be used during
+		 * the import.
+		 *
+		 * @param array Associative list of MShop item domain names
+		 * @since 2019.04
+		 * @see controller/jobs/catalog/import/xml/backup
+		 * @see controller/jobs/catalog/import/xml/location
+		 * @see controller/jobs/catalog/import/xml/max-query
+		 */
+		return $this->context()->config()->get( 'controller/jobs/catalog/import/xml/domains', [] );
+	}
+
+
+	/**
+	 * Imports the XML file given by its path
+	 *
+	 * @param string $filename Absolute or relative path to the XML file
+	 */
+	protected function import( string $filename )
+	{
+		$logger = $this->context()->logger();
 		$xml = new \XMLReader();
 
 		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
@@ -302,7 +294,7 @@ class Standard
 
 		$logger->info( sprintf( 'Started catalog import from file "%1$s"', $filename ), 'import/xml/catalog' );
 
-		$this->importTree( $xml, $domains );
+		$this->importTree( $xml, $this->domains() );
 
 		foreach( $this->getProcessors() as $proc ) {
 			$proc->finish();
@@ -310,7 +302,7 @@ class Standard
 
 		$logger->info( sprintf( 'Finished catalog import from file "%1$s"', $filename ), 'import/xml/catalog' );
 
-		if( !empty( $backup ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
+		if( !empty( $backup = $this->backup() ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
@@ -400,6 +392,31 @@ class Standard
 				break;
 			}
 		}
+	}
+
+
+	/**
+	 * Returns the path to the directory with the XML file
+	 *
+	 * @return string Path to the directory with the XML file
+	 */
+	protected function location() : string
+	{
+		/** controller/jobs/catalog/import/xml/location
+		 * File or directory where the content is stored which should be imported
+		 *
+		 * You need to configure the XML file or directory with the XML files that
+		 * should be imported. It should be an absolute path to be sure but can be
+		 * relative path if you absolutely know from where the job will be executed
+		 * from.
+		 *
+		 * @param string Relative path to the XML files
+		 * @since 2019.04
+		 * @see controller/jobs/catalog/import/xml/backup
+		 * @see controller/jobs/catalog/import/xml/domains
+		 * @see controller/jobs/catalog/import/xml/max-query
+		 */
+		return (string) $this->context()->config()->get( 'controller/jobs/catalog/import/xml/location', 'catalog' );
 	}
 
 
