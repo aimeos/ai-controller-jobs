@@ -263,10 +263,11 @@ class Standard
 		/** controller/jobs/attribute/import/xml/domains
 		 * List of item domain names that should be retrieved along with the attribute items
 		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/attribute/import/xml/domains" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
+		 * For efficient processing, the items associated to the products can be
+		 * fetched to, minimizing the number of database queries required. To be
+		 * most effective, the list of item domain names should be used in the
+		 * mapping configuration too, so the retrieved items will be used during
+		 * the import.
 		 *
 		 * @param array Associative list of MShop item domain names
 		 * @since 2019.04
@@ -403,7 +404,7 @@ class Standard
 	/**
 	 * Returns the maximum number of XML nodes processed at once
 	 *
-	 * @return Maximum number of XML nodes
+	 * @return int Maximum number of XML nodes
 	 */
 	protected function max() : int
 	{
