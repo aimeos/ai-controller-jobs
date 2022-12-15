@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2019.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/supplier/import/xml/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/global
 	 * @see controller/jobs/supplier/import/xml/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/excludes
 	 * @see controller/jobs/supplier/import/xml/decorators/local
@@ -125,13 +122,13 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/excludes
 	 * @see controller/jobs/supplier/import/xml/decorators/global
 	 */
 
 
+	use \Aimeos\Controller\Common\Common\Import\Traits;
 	use \Aimeos\Controller\Common\Common\Import\Xml\Traits;
 
 
@@ -165,26 +162,8 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
 		$logger = $context->logger();
-
-		/** controller/jobs/supplier/import/xml/location
-		 * File or directory where the content is stored which should be imported
-		 *
-		 * You need to configure the XML file or directory with the XML files that
-		 * should be imported. It should be an absolute path to be sure but can be
-		 * relative path if you absolutely know from where the job will be executed
-		 * from.
-		 *
-		 * @param string Absolute file or directory path
-		 * @since 2019.04
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/supplier/import/xml/container/type
-		 * @see controller/jobs/supplier/import/xml/container/content
-		 * @see controller/jobs/supplier/import/xml/container/options
-		 */
-		$location = $config->get( 'controller/jobs/supplier/import/xml/location' );
+		$location = $this->location();
 
 		try
 		{
@@ -214,16 +193,19 @@ class Standard
 			}
 
 			sort( $files );
-			$total = 0;
+			$context->__sleep();
+
+			$fcn = function( $filepath ) {
+				$this->import( $filepath );
+			};
 
 			foreach( $files as $filepath ) {
-				$total += $this->import( $filepath );
+				$context->process()->start( $fcn, [$filepath] );
 			}
 
-			$msg = 'Finished supplier import from "%1$s": %2$s total (%3$s MB)';
-			$mem = number_format( memory_get_peak_usage() / 1024 / 1024, 2 );
+			$context->process()->wait();
 
-			$logger->info( sprintf( $msg, $location, $total, $mem ), 'import/xml/supplier' );
+			$logger->info( sprintf( 'Finished supplier import from "%1$s"', $location ), 'import/xml/supplier' );
 		}
 		catch( \Exception $e )
 		{
@@ -235,32 +217,12 @@ class Standard
 
 
 	/**
-	 * Imports the XML file given by its path
+	 * Returns the directory for storing imported files
 	 *
-	 * @param string $filename Absolute or relative path to the XML file
-	 * @return int Total number of imported suppliers
+	 * @return string Directory for storing imported files
 	 */
-	protected function import( string $filename ) : int
+	protected function backup() : string
 	{
-		$context = $this->context();
-		$config = $context->config();
-
-		/** controller/jobs/supplier/import/xml/domains
-		 * List of item domain names that should be retrieved along with the supplier items
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/supplier/import/xml/domains" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of MShop item domain names
-		 * @since 2019.04
-		 * @category Developer
-		 * @see controller/jobs/supplier/import/xml/backup
-		 * @see controller/jobs/supplier/import/xml/max-query
-		 */
-		$domains = $config->get( 'controller/jobs/supplier/import/xml/domains', [] );
-
 		/** controller/jobs/supplier/import/xml/backup
 		 * Name of the backup for sucessfully imported files
 		 *
@@ -284,37 +246,59 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
-		 * @category Developer
 		 * @see controller/jobs/supplier/import/xml/domains
+		 * @see controller/jobs/supplier/import/xml/location
 		 * @see controller/jobs/supplier/import/xml/max-query
 		 */
-		$backup = $config->get( 'controller/jobs/supplier/import/xml/backup' );
+		return (string) $this->context()->config()->get( 'controller/jobs/supplier/import/xml/backup' );
+	}
 
-		/** controller/jobs/supplier/import/xml/max-query
-		 * Maximum number of XML nodes processed at once
+
+	/**
+	 * Returns the list of domain names that should be retrieved along with the attribute items
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		/** controller/jobs/supplier/import/xml/domains
+		 * List of item domain names that should be retrieved along with the attribute items
 		 *
-		 * Processing and fetching several supplier items at once speeds up importing
-		 * the XML files. The more items can be processed at once, the faster the
-		 * import. More items also increases the memory usage of the importer and
-		 * thus, this parameter should be low enough to avoid reaching the memory
-		 * limit of the PHP process.
+		 * For efficient processing, the items associated to the suppliers can be
+		 * fetched to, minimizing the number of database queries required. To be
+		 * most effective, the list of item domain names should be used in the
+		 * mapping configuration too, so the retrieved items will be used during
+		 * the import.
 		 *
-		 * @param integer Number of XML nodes
+		 * @param array Associative list of MShop item domain names
 		 * @since 2019.04
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/supplier/import/xml/domains
 		 * @see controller/jobs/supplier/import/xml/backup
+		 * @see controller/jobs/supplier/import/xml/location
+		 * @see controller/jobs/supplier/import/xml/max-query
 		 */
-		$maxquery = $config->get( 'controller/jobs/supplier/import/xml/max-query', 100 );
+		return $this->context()->config()->get( 'controller/jobs/supplier/import/xml/domains', [] );
+	}
 
+
+	/**
+	 * Imports the XML file given by its path
+	 *
+	 * @param string $filename Absolute or relative path to the XML file
+	 */
+	protected function import( string $filename )
+	{
+		$slice = 0;
 		$nodes = [];
-		$total = $slice = 0;
+
 		$xml = new \XMLReader();
+		$maxquery = $this->max();
+		$logger = $this->context()->logger();
 
 		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
 		}
+
+		$logger->info( sprintf( 'Started supplier import from file "%1$s"', $filename ), 'import/xml/supplier' );
 
 		while( $xml->read() === true )
 		{
@@ -330,30 +314,30 @@ class Standard
 
 				if( $slice++ >= $maxquery )
 				{
-					$this->importNodes( $nodes, $domains );
+					$this->importNodes( $nodes );
 					unset( $nodes );
 					$nodes = [];
 					$slice = 0;
 				}
-
-				$total++;
 			}
 		}
 
-		$this->importNodes( $nodes, $domains );
+		$this->importNodes( $nodes );
 		unset( $nodes );
+
+		$this->saveTypes();
 
 		foreach( $this->getProcessors() as $proc ) {
 			$proc->finish();
 		}
 
-		if( !empty( $backup ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
+		$logger->info( sprintf( 'Finished supplier import from file "%1$s"', $filename ), 'import/xml/supplier' );
+
+		if( !empty( $backup = $this->backup() ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
-
-		return $total;
 	}
 
 
@@ -361,9 +345,8 @@ class Standard
 	 * Imports the given DOM nodes
 	 *
 	 * @param \DomElement[] $nodes List of nodes to import
-	 * @param string[] $ref List of domain names whose referenced items will be updated in the supplier items
 	 */
-	protected function importNodes( array $nodes, array $ref )
+	protected function importNodes( array $nodes )
 	{
 		$codes = [];
 
@@ -376,7 +359,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
 		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['supplier.code' => array_keys( $codes )] );
-		$map = $manager->search( $search, $ref )->col( null, 'supplier.code' );
+		$map = $manager->search( $search, $this->domains() )->col( null, 'supplier.code' );
 
 		foreach( $nodes as $node )
 		{
@@ -388,6 +371,57 @@ class Standard
 
 			$manager->save( $item );
 		}
+	}
+
+
+	/**
+	 * Returns the path to the directory with the XML file
+	 *
+	 * @return string Path to the directory with the XML file
+	 */
+	protected function location() : string
+	{
+		/** controller/jobs/supplier/import/xml/location
+		 * File or directory where the content is stored which should be imported
+		 *
+		 * You need to configure the XML file or directory with the XML files that
+		 * should be imported. It should be an absolute path to be sure but can be
+		 * relative path if you absolutely know from where the job will be executed
+		 * from.
+		 *
+		 * @param string Relative path to the XML files
+		 * @since 2019.04
+		 * @see controller/jobs/supplier/import/xml/backup
+		 * @see controller/jobs/supplier/import/xml/domains
+		 * @see controller/jobs/supplier/import/xml/max-query
+		 */
+		return (string) $this->context()->config()->get( 'controller/jobs/supplier/import/xml/location', 'supplier' );
+	}
+
+
+	/**
+	 * Returns the maximum number of XML nodes processed at once
+	 *
+	 * @return int Maximum number of XML nodes
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/supplier/import/xml/max-query
+		 * Maximum number of XML nodes processed at once
+		 *
+		 * Processing and fetching several attribute items at once speeds up importing
+		 * the XML files. The more items can be processed at once, the faster the
+		 * import. More items also increases the memory usage of the importer and
+		 * thus, this parameter should be low enough to avoid reaching the memory
+		 * limit of the PHP process.
+		 *
+		 * @param integer Number of XML nodes
+		 * @since 2019.04
+		 * @see controller/jobs/supplier/import/xml/domains
+		 * @see controller/jobs/supplier/import/xml/location
+		 * @see controller/jobs/supplier/import/xml/backup
+		 */
+		return $this->context()->config()->get( 'controller/jobs/supplier/import/xml/max-query', 100 );
 	}
 
 
