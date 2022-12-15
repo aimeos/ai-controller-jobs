@@ -275,7 +275,8 @@ class Standard
 		 * @see controller/jobs/attribute/import/xml/location
 		 * @see controller/jobs/attribute/import/xml/max-query
 		 */
-		return $this->context()->config()->get( 'controller/jobs/attribute/import/xml/domains', [] );
+		$domains = ['attribute/property', 'media', 'price', 'text'];
+		return $this->context()->config()->get( 'controller/jobs/attribute/import/xml/domains', $domains );
 	}
 
 

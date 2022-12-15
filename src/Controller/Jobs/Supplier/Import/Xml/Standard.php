@@ -276,7 +276,8 @@ class Standard
 		 * @see controller/jobs/supplier/import/xml/location
 		 * @see controller/jobs/supplier/import/xml/max-query
 		 */
-		return $this->context()->config()->get( 'controller/jobs/supplier/import/xml/domains', [] );
+		$domains = ['supplier/address', 'media', 'text'];
+		return $this->context()->config()->get( 'controller/jobs/supplier/import/xml/domains', $domains );
 	}
 
 
@@ -444,7 +445,7 @@ class Standard
 
 			foreach( $node->childNodes as $tag )
 			{
-				if( in_array( $tag->nodeName, ['address', 'lists', 'property'] ) ) {
+				if( in_array( $tag->nodeName, ['address', 'lists'] ) ) {
 					$item = $this->getProcessor( $tag->nodeName )->process( $item, $tag );
 				} elseif( $tag->nodeName[0] !== '#' ) {
 					$list[$tag->nodeName] = $tag->nodeValue;

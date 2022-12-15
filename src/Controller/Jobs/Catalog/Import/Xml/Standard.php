@@ -274,7 +274,7 @@ class Standard
 		 * @see controller/jobs/catalog/import/xml/location
 		 * @see controller/jobs/catalog/import/xml/max-query
 		 */
-		return $this->context()->config()->get( 'controller/jobs/catalog/import/xml/domains', [] );
+		return $this->context()->config()->get( 'controller/jobs/catalog/import/xml/domains', ['media', 'text'] );
 	}
 
 

@@ -275,7 +275,8 @@ class Standard
 		 * @see controller/jobs/product/import/xml/location
 		 * @see controller/jobs/product/import/xml/max-query
 		 */
-		return $this->context()->config()->get( 'controller/jobs/product/import/xml/domains', [] );
+		$domains = ['attribute', 'catalog', 'media', 'price', 'product', 'product/property', 'supplier', 'text'];
+		return $this->context()->config()->get( 'controller/jobs/product/import/xml/domains', $domains );
 	}
 
 
