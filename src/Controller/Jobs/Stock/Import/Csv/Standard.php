@@ -136,15 +136,6 @@ class Standard
 
 
 	/**
-	 * Cleanup before removing the object
-	 */
-	public function __destruct()
-	{
-		$this->saveTypes();
-	}
-
-
-	/**
 	 * Returns the localized name of the job.
 	 *
 	 * @return string Name of the job
@@ -174,27 +165,8 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
 		$logger = $context->logger();
-
-
-		/** controller/jobs/stock/import/csv/location
-		 * File or directory where the content is stored which should be imported
-		 *
-		 * You need to configure the CSV file or directory with the CSV files that
-		 * should be imported. It should be an absolute path to be sure but can be
-		 * relative path if you absolutely know from where the job will be executed
-		 * from.
-		 *
-		 * @param string Absolute file or directory path
-		 * @since 2019.04
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/stock/import/csv/container/type
-		 * @see controller/jobs/stock/import/csv/container/content
-		 * @see controller/jobs/stock/import/csv/container/options
-		 */
-		$location = $config->get( 'controller/jobs/stock/import/csv/location' );
+		$location = $this->location();
 
 		try
 		{
@@ -247,54 +219,12 @@ class Standard
 
 
 	/**
-	 * Executes the job.
+	 * Returns the directory for storing imported files
 	 *
-	 * @param string $filename Absolute path to the file that whould be imported
+	 * @return string Directory for storing imported files
 	 */
-	public function import( string $filename )
+	protected function backup() : string
 	{
-		$context = $this->context();
-		$config = $context->config();
-		$logger = $context->logger();
-
-
-		/** controller/common/stock/import/csv/max-size
-		 * Maximum number of CSV rows to import at once
-		 *
-		 * It's more efficient to read and import more than one row at a time
-		 * to speed up the import. Usually, the bigger the chunk that is imported
-		 * at once, the less time the importer will need. The downside is that
-		 * the amount of memory required by the import process will increase as
-		 * well. Therefore, it's a trade-off between memory consumption and
-		 * import speed.
-		 *
-		 * **Note:** The maximum size is 10000 records
-		 *
-		 * @param integer Number of rows
-		 * @since 2019.04
-		 * @category Developer
-		 * @see controller/jobs/stock/import/csv/backup
-		 * @see controller/jobs/stock/import/csv/skip-lines
-		 */
-		$maxcnt = (int) $config->get( 'controller/common/stock/import/csv/max-size', 1000 );
-
-		/** controller/jobs/stock/import/csv/skip-lines
-		 * Number of rows skipped in front of each CSV files
-		 *
-		 * Some CSV files contain header information describing the content of
-		 * the column values. These data is for informational purpose only and
-		 * can't be imported into the database. Using this option, you can
-		 * define the number of lines that should be left out before the import
-		 * begins.
-		 *
-		 * @param integer Number of rows
-		 * @since 2019.04
-		 * @category Developer
-		 * @see controller/jobs/stock/import/csv/backup
-		 * @see controller/common/stock/import/csv/max-size
-		 */
-		$skiplines = (int) $config->get( 'controller/jobs/stock/import/csv/skip-lines', 0 );
-
 		/** controller/jobs/stock/import/csv/backup
 		 * Name of the backup for sucessfully imported files
 		 *
@@ -318,13 +248,26 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
-		 * @category Developer
-		 * @see controller/common/stock/import/csv/max-size
+		 * @see controller/jobs/stock/import/csv/location
+		 * @see controller/jobs/stock/import/csv/max-size
 		 * @see controller/jobs/stock/import/csv/skip-lines
 		 */
-		$backup = $config->get( 'controller/jobs/stock/import/csv/backup' );
+		return (string) $this->context()->config()->get( 'controller/jobs/stock/import/csv/backup' );
+	}
 
 
+	/**
+	 * Executes the job.
+	 *
+	 * @param string $filename Absolute path to the file that whould be imported
+	 */
+	protected function import( string $filename )
+	{
+		$context = $this->context();
+		$logger = $context->logger();
+
+		$maxcnt = $this->max();
+		$skiplines = $this->skip();
 		$container = $this->getContainer( $filename );
 
 		$logger->info( sprintf( 'Started stock import from file "%1$s"', $filename ), 'import/csv/stock' );
@@ -341,8 +284,9 @@ class Standard
 		$logger->info( sprintf( 'Finished stock import from file "%1$s"', $filename ), 'import/csv/stock' );
 
 		$container->close();
+		$this->saveTypes();
 
-		if( !empty( $backup ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
+		if( !empty( $backup = $this->backup() ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
@@ -372,7 +316,6 @@ class Standard
 		 *
 		 * @param string Container type name
 		 * @since 2019.04
-		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/stock/import/csv/location
 		 * @see controller/jobs/stock/import/csv/container/options
@@ -389,7 +332,6 @@ class Standard
 		 *
 		 * @param array Associative list of option name/value pairs
 		 * @since 2019.04
-		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/stock/import/csv/location
 		 * @see controller/jobs/stock/import/csv/container/type
@@ -506,5 +448,83 @@ class Standard
 		while( $count > 0 );
 
 		return $total;
+	}
+
+
+	/**
+	 * Returns the path to the directory with the CSV file
+	 *
+	 * @return string Path to the directory with the CSV file
+	 */
+	protected function location() : string
+	{
+		/** controller/jobs/stock/import/csv/location
+		 * File or directory where the content is stored which should be imported
+		 *
+		 * You need to configure the CSV file or directory with the CSV files that
+		 * should be imported. It should be an absolute path to be sure but can be
+		 * relative path if you absolutely know from where the job will be executed
+		 * from.
+		 *
+		 * @param string Relative path to the CSV files
+		 * @since 2019.04
+		 * @see controller/jobs/stock/import/csv/backup
+		 * @see controller/jobs/stock/import/csv/max-size
+		 * @see controller/jobs/stock/import/csv/skip-lines
+		 */
+		return (string) $this->context()->config()->get( 'controller/jobs/stock/import/csv/location', 'stock' );
+	}
+
+
+	/**
+	 * Returns the maximum number of CSV rows to import at once
+	 *
+	 * @return int Maximum number of CSV rows to import at once
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/stock/import/csv/max-size
+		 * Maximum number of CSV rows to import at once
+		 *
+		 * It's more efficient to read and import more than one row at a time
+		 * to speed up the import. Usually, the bigger the chunk that is imported
+		 * at once, the less time the importer will need. The downside is that
+		 * the amount of memory required by the import process will increase as
+		 * well. Therefore, it's a trade-off between memory consumption and
+		 * import speed.
+		 *
+		 * @param integer Number of rows
+		 * @since 2019.04
+		 * @see controller/jobs/stock/import/csv/backup
+		 * @see controller/jobs/stock/import/csv/location
+		 * @see controller/jobs/stock/import/csv/skip-lines
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/stock/import/csv/max-size', 1000 );
+	}
+
+
+	/**
+	 * Returns the number of rows skipped in front of each CSV files
+	 *
+	 * @return int Number of rows skipped in front of each CSV files
+	 */
+	protected function skip() : int
+	{
+		/** controller/jobs/stock/import/csv/skip-lines
+		 * Number of rows skipped in front of each CSV files
+		 *
+		 * Some CSV files contain header information describing the content of
+		 * the column values. These data is for informational purpose only and
+		 * can't be imported into the database. Using this option, you can
+		 * define the number of lines that should be left out before the import
+		 * begins.
+		 *
+		 * @param integer Number of rows
+		 * @since 2019.04
+		 * @see controller/jobs/stock/import/csv/backup
+		 * @see controller/jobs/stock/import/csv/location
+		 * @see controller/jobs/stock/import/csv/max-size
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/stock/import/csv/skip-lines', 0 );
 	}
 }
