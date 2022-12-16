@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2015.01
-	 * @category Developer
 	 */
 
 	/** controller/jobs/product/import/csv/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/import/csv/decorators/global
 	 * @see controller/jobs/product/import/csv/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/import/csv/decorators/excludes
 	 * @see controller/jobs/product/import/csv/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/import/csv/decorators/excludes
 	 * @see controller/jobs/product/import/csv/decorators/global
@@ -164,238 +160,11 @@ class Standard
 	 */
 	public function run()
 	{
-		$total = $errors = 0;
-		$context = $this->context();
-		$config = $context->config();
-		$logger = $context->logger();
-
-
-		if( file_exists( $config->get( 'controller/jobs/product/import/csv/location' ) ) === false ) {
+		if( file_exists( $this->location() ) === false ) {
 			return;
 		}
 
-
-		/** controller/common/product/import/csv/domains
-		 * List of item domain names that should be retrieved along with the product items
-		 *
-		 * For efficient processing, the items associated to the products can be
-		 * fetched to, minimizing the number of database queries required. To be
-		 * most effective, the list of item domain names should be used in the
-		 * mapping configuration too, so the retrieved items will be used during
-		 * the import.
-		 *
-		 * @param array Associative list of MShop item domain names
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/common/product/import/csv/mapping
-		 * @see controller/common/product/import/csv/converter
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$domains = $config->get( 'controller/common/product/import/csv/domains', [] );
-
-		/** controller/jobs/product/import/csv/domains
-		 * List of item domain names that should be retrieved along with the product items
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/product/import/csv/domains" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of MShop item domain names
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/jobs/product/import/csv/mapping
-		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/converter
-		 * @see controller/jobs/product/import/csv/strict
-		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$domains = $config->get( 'controller/jobs/product/import/csv/domains', $domains );
-
-
-		/** controller/common/product/import/csv/mapping
-		 * List of mappings between the position in the CSV file and item keys
-		 *
-		 * The importer have to know which data is at which position in the CSV
-		 * file. Therefore, you need to specify a mapping between each position
-		 * and the MShop domain item key (e.g. "product.code") it represents.
-		 *
-		 * You can use all domain item keys which are used in the fromArray()
-		 * methods of the item classes.
-		 *
-		 * These mappings are grouped together by their processor names, which
-		 * are responsible for importing the data, e.g. all mappings in "item"
-		 * will be processed by the base product importer while the mappings in
-		 * "text" will be imported by the text processor.
-		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/common/product/import/csv/domains
-		 * @see controller/common/product/import/csv/converter
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$mappings = $config->get( 'controller/common/product/import/csv/mapping', $this->getDefaultMapping() );
-
-		/** controller/jobs/product/import/csv/mapping
-		 * List of mappings between the position in the CSV file and item keys
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/product/import/csv/mapping" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/jobs/product/import/csv/domains
-		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/converter
-		 * @see controller/jobs/product/import/csv/strict
-		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$mappings = $config->get( 'controller/jobs/product/import/csv/mapping', $mappings );
-
-
-		/** controller/common/product/import/csv/converter
-		 * List of converter names for the values at the position in the CSV file
-		 *
-		 * Not all data in the CSV file is already in the required format. Maybe
-		 * the text encoding isn't UTF-8, the date is not in ISO format or something
-		 * similar. In order to convert the data before it's imported, you can
-		 * specify a list of converter objects that should be applied to the data
-		 * from the CSV file.
-		 *
-		 * To each field in the CSV file, you can apply one or more converters,
-		 * e.g. to encode a Latin text to UTF8 for the second CSV field:
-		 *
-		 *  array( 1 => 'Text/LatinUTF8' )
-		 *
-		 * Similarly, you can also apply several converters at once to the same
-		 * field:
-		 *
-		 *  array( 1 => array( 'Text/LatinUTF8', 'DateTime/EnglishISO' ) )
-		 *
-		 * It would convert the data of the second CSV field first to UTF-8 and
-		 * afterwards try to translate it to an ISO date format.
-		 *
-		 * The available converter objects are named "\Aimeos\MW\Convert\<type>_<conversion>"
-		 * where <type> is the data type and <conversion> the way of the conversion.
-		 * In the configuration, the type and conversion must be separated by a
-		 * slash (<type>/<conversion>).
-		 *
-		 * **Note:** Keep in mind that the position of the CSV fields start at
-		 * zero (0). If you only need to convert a few fields, you don't have to
-		 * configure all fields. Only specify the positions in the array you
-		 * really need!
-		 *
-		 * @param array Associative list of position/converter name (or list of names) pairs
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/common/product/import/csv/domains
-		 * @see controller/common/product/import/csv/mapping
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$converters = $config->get( 'controller/common/product/import/csv/converter', [] );
-
-		/** controller/jobs/product/import/csv/converter
-		 * List of converter names for the values at the position in the CSV file
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/product/import/csv/converter" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of position/converter name (or list of names) pairs
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/jobs/product/import/csv/domains
-		 * @see controller/jobs/product/import/csv/mapping
-		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/strict
-		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$converters = $config->get( 'controller/jobs/product/import/csv/converter', $converters );
-
-
-		/** controller/common/product/import/csv/max-size
-		 * Maximum number of CSV rows to import at once
-		 *
-		 * It's more efficient to read and import more than one row at a time
-		 * to speed up the import. Usually, the bigger the chunk that is imported
-		 * at once, the less time the importer will need. The downside is that
-		 * the amount of memory required by the import process will increase as
-		 * well. Therefore, it's a trade-off between memory consumption and
-		 * import speed.
-		 *
-		 * @param integer Number of rows
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/common/product/import/csv/domains
-		 * @see controller/common/product/import/csv/mapping
-		 * @see controller/common/product/import/csv/converter
-		 */
-		$maxcnt = (int) $config->get( 'controller/common/product/import/csv/max-size', 1000 );
-
-
-		/** controller/jobs/product/import/csv/skip-lines
-		 * Number of rows skipped in front of each CSV files
-		 *
-		 * Some CSV files contain header information describing the content of
-		 * the column values. These data is for informational purpose only and
-		 * can't be imported into the database. Using this option, you can
-		 * define the number of lines that should be left out before the import
-		 * begins.
-		 *
-		 * @param integer Number of rows
-		 * @since 2015.08
-		 * @category Developer
-		 * @see controller/jobs/product/import/csv/domains
-		 * @see controller/jobs/product/import/csv/mapping
-		 * @see controller/jobs/product/import/csv/converter
-		 * @see controller/jobs/product/import/csv/strict
-		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$skiplines = (int) $config->get( 'controller/jobs/product/import/csv/skip-lines', 0 );
-
-
-		/** controller/jobs/product/import/csv/backup
-		 * Name of the backup for sucessfully imported files
-		 *
-		 * After a CSV file was imported successfully, you can move it to another
-		 * location, so it won't be imported again and isn't overwritten by the
-		 * next file that is stored at the same location in the file system.
-		 *
-		 * You should use an absolute path to be sure but can be relative path
-		 * if you absolutely know from where the job will be executed from. The
-		 * name of the new backup location can contain placeholders understood
-		 * by the PHP DateTime::format() method (with percent signs prefix) to
-		 * create dynamic paths, e.g. "backup/%Y-%m-%d" which would create
-		 * "backup/2000-01-01". For more information about the date() placeholders,
-		 * please have a look  into the PHP documentation of the
-		 * {@link https://www.php.net/manual/en/datetime.format.php format() method}.
-		 *
-		 * **Note:** If no backup name is configured, the file or directory
-		 * won't be moved away. Please make also sure that the parent directory
-		 * and the new directory are writable so the file or directory could be
-		 * moved.
-		 *
-		 * @param integer Name of the backup file, optionally with date/time placeholders
-		 * @since 2015.05
-		 * @category Developer
-		 * @see controller/jobs/product/import/csv/domains
-		 * @see controller/jobs/product/import/csv/mapping
-		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/converter
-		 * @see controller/jobs/product/import/csv/strict
-		 * @see controller/common/product/import/csv/max-size
-		 */
-		$backup = $config->get( 'controller/jobs/product/import/csv/backup' );
-
+		$mappings = $this->mapping();
 
 		if( !isset( $mappings['item'] ) || !is_array( $mappings['item'] ) )
 		{
@@ -408,11 +177,19 @@ class Standard
 			$procMappings = $mappings;
 			unset( $procMappings['item'] );
 
+			$total = $errors = 0;
+			$logger = $this->context()->logger();
+
 			$codePos = $this->getCodePosition( $mappings['item'] );
-			$convlist = $this->getConverterList( $converters );
+			$convlist = $this->getConverterList( $this->converters() );
 			$processor = $this->getProcessors( $procMappings );
 			$container = $this->getContainer();
 			$path = $container->getName();
+
+			$maxcnt = $this->max();
+			$strict = $this->strict();
+			$skiplines = $this->skip();
+			$domains = $this->domains();
 
 			$msg = sprintf( 'Started product import from "%1$s" (%2$s)', $path, __CLASS__ );
 			$logger->notice( $msg, 'import/csv/product' );
@@ -462,11 +239,53 @@ class Standard
 			$this->mail( 'Product CSV import', $msg );
 		}
 
-		if( !empty( $backup ) && @rename( $path, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
+		if( !empty( $backup = $this->backup() ) && @rename( $path, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
 		{
 			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, $backup );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
+	}
+
+
+	/**
+	 * Returns the directory for storing imported files
+	 *
+	 * @return string Directory for storing imported files
+	 */
+	protected function backup() : string
+	{
+		/** controller/jobs/product/import/csv/backup
+		 * Name of the backup for sucessfully imported files
+		 *
+		 * After a CSV file was imported successfully, you can move it to another
+		 * location, so it won't be imported again and isn't overwritten by the
+		 * next file that is stored at the same location in the file system.
+		 *
+		 * You should use an absolute path to be sure but can be relative path
+		 * if you absolutely know from where the job will be executed from. The
+		 * name of the new backup location can contain placeholders understood
+		 * by the PHP DateTime::format() method (with percent signs prefix) to
+		 * create dynamic paths, e.g. "backup/%Y-%m-%d" which would create
+		 * "backup/2000-01-01". For more information about the date() placeholders,
+		 * please have a look  into the PHP documentation of the
+		 * {@link https://www.php.net/manual/en/datetime.format.php format() method}.
+		 *
+		 * **Note:** If no backup name is configured, the file or directory
+		 * won't be moved away. Please make also sure that the parent directory
+		 * and the new directory are writable so the file or directory could be
+		 * moved.
+		 *
+		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @since 2018.04
+		 * @see controller/jobs/product/import/csv/converter
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/mapping
+		 * @see controller/jobs/product/import/csv/max-size
+		 * @see controller/jobs/product/import/csv/skip-lines
+		 * @see controller/jobs/product/import/csv/strict
+		 */
+		return (string) $this->context()->config()->get( 'controller/jobs/product/import/csv/backup' );
 	}
 
 
@@ -491,6 +310,89 @@ class Standard
 		}
 
 		return ( isset( $this->types[$type] ) ? $this->types[$type] : 'default' );
+	}
+
+
+	/**
+	 * Returns the list of converter names for the values at the position in the CSV file
+	 *
+	 * @return array List of converter names for the values at the position in the CSV file
+	 */
+	protected function converters() : array
+	{
+		/** controller/jobs/product/import/csv/converter
+		 * List of converter names for the values at the position in the CSV file
+		 *
+		 * Not all data in the CSV file is already in the required format. Maybe
+		 * the text encoding isn't UTF-8, the date is not in ISO format or something
+		 * similar. In order to convert the data before it's imported, you can
+		 * specify a list of converter objects that should be applied to the data
+		 * from the CSV file.
+		 *
+		 * To each field in the CSV file, you can apply one or more converters,
+		 * e.g. to encode a Latin text to UTF8 for the second CSV field:
+		 *
+		 *  [1 => 'Text/LatinUTF8']
+		 *
+		 * Similarly, you can also apply several converters at once to the same
+		 * field:
+		 *
+		 *  [1 => ['Text/LatinUTF8', 'DateTime/EnglishISO']]
+		 *
+		 * It would convert the data of the second CSV field first to UTF-8 and
+		 * afterwards try to translate it to an ISO date format.
+		 *
+		 * The available converter objects are named "\Aimeos\MW\Convert\<type>_<conversion>"
+		 * where <type> is the data type and <conversion> the way of the conversion.
+		 * In the configuration, the type and conversion must be separated by a
+		 * slash (<type>/<conversion>).
+		 *
+		 * **Note:** Keep in mind that the position of the CSV fields start at
+		 * zero (0). If you only need to convert a few fields, you don't have to
+		 * configure all fields. Only specify the positions in the array you
+		 * really need!
+		 *
+		 * @param array Associative list of position/converter name (or list of names) pairs
+		 * @since 2018.04
+		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/mapping
+		 * @see controller/jobs/product/import/csv/max-size
+		 * @see controller/jobs/product/import/csv/skip-lines
+		 * @see controller/jobs/product/import/csv/strict
+		 */
+		return (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/converter', [] );
+	}
+
+
+	/**
+	 * Returns the list of domain names that should be retrieved along with the attribute items
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		/** controller/jobs/product/import/csv/domains
+		 * List of item domain names that should be retrieved along with the product items
+		 *
+		 * For efficient processing, the items associated to the products can be
+		 * fetched to, minimizing the number of database queries required. To be
+		 * most effective, the list of item domain names should be used in the
+		 * mapping configuration too, so the retrieved items will be used during
+		 * the import.
+		 *
+		 * @param array Associative list of MShop item domain names
+		 * @since 2018.04
+		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/converter
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/mapping
+		 * @see controller/jobs/product/import/csv/max-size
+		 * @see controller/jobs/product/import/csv/skip-lines
+		 * @see controller/jobs/product/import/csv/strict
+		 */
+		return $this->context()->config()->get( 'controller/jobs/product/import/csv/domains', ['media', 'text'] );
 	}
 
 
@@ -539,7 +441,6 @@ class Standard
 		 *
 		 * @param string Absolute file or directory path
 		 * @since 2015.05
-		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/product/import/csv/container/type
 		 * @see controller/jobs/product/import/csv/container/content
@@ -559,7 +460,6 @@ class Standard
 		 *
 		 * @param string Container type name
 		 * @since 2015.05
-		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/container/content
@@ -577,7 +477,6 @@ class Standard
 		 *
 		 * @param array Content type name
 		 * @since 2015.05
-		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/container/type
@@ -595,7 +494,6 @@ class Standard
 		 *
 		 * @param array Associative list of option name/value pairs
 		 * @since 2015.05
-		 * @category Developer
 		 * @category User
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/container/content
@@ -673,5 +571,160 @@ class Standard
 		}
 
 		return $errors;
+	}
+
+
+	/**
+	 * Returns the path to the directory with the CSV file
+	 *
+	 * @return string Path to the directory with the CSV file
+	 */
+	protected function location() : string
+	{
+		/** controller/jobs/product/import/csv/location
+		 * File or directory where the content is stored which should be imported
+		 *
+		 * You need to configure the CSV file or directory with the CSV files that
+		 * should be imported. It should be an absolute path to be sure but can be
+		 * relative path if you absolutely know from where the job will be executed
+		 * from.
+		 *
+		 * @param string Relative path to the CSV files
+		 * @since 2015.08
+		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/converter
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/mapping
+		 * @see controller/jobs/product/import/csv/max-size
+		 * @see controller/jobs/product/import/csv/skip-lines
+		 */
+		return (string) $this->context()->config()->get( 'controller/jobs/product/import/csv/location', 'product' );
+	}
+
+
+	/**
+	 * Returns the CSV column mapping
+	 *
+	 * @return array CSV column mapping
+	 */
+	protected function mapping() : array
+	{
+		/** controller/jobs/product/import/csv/mapping
+		 * List of mappings between the position in the CSV file and item keys
+		 *
+		 * The importer have to know which data is at which position in the CSV
+		 * file. Therefore, you need to specify a mapping between each position
+		 * and the MShop domain item key (e.g. "product.code") it represents.
+		 *
+		 * You can use all domain item keys which are used in the fromArray()
+		 * methods of the item classes.
+		 *
+		 * These mappings are grouped together by their processor names, which
+		 * are responsible for importing the data, e.g. all mappings in "item"
+		 * will be processed by the base product importer while the mappings in
+		 * "text" will be imported by the text processor.
+		 *
+		 * @param array Associative list of processor names and lists of key/position pairs
+		 * @since 2018.04
+		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/converter
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/max-size
+		 * @see controller/jobs/product/import/csv/skip-lines
+		 * @see controller/jobs/product/import/csv/strict
+		 */
+		return (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/mapping', $this->getDefaultMapping() );
+	}
+
+
+	/**
+	 * Returns the maximum number of CSV rows to import at once
+	 *
+	 * @return int Maximum number of CSV rows to import at once
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/product/import/csv/max-size
+		 * Maximum number of CSV rows to import at once
+		 *
+		 * It's more efficient to read and import more than one row at a time
+		 * to speed up the import. Usually, the bigger the chunk that is imported
+		 * at once, the less time the importer will need. The downside is that
+		 * the amount of memory required by the import process will increase as
+		 * well. Therefore, it's a trade-off between memory consumption and
+		 * import speed.
+		 *
+		 * @param integer Number of rows
+		 * @since 2018.04
+		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/converter
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/mapping
+		 * @see controller/jobs/product/import/csv/skip-lines
+		 * @see controller/jobs/product/import/csv/strict
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/product/import/csv/max-size', 1000 );
+	}
+
+
+	/**
+	 * Returns the number of rows skipped in front of each CSV files
+	 *
+	 * @return int Number of rows skipped in front of each CSV files
+	 */
+	protected function skip() : int
+	{
+		/** controller/jobs/product/import/csv/skip-lines
+		 * Number of rows skipped in front of each CSV files
+		 *
+		 * Some CSV files contain header information describing the content of
+		 * the column values. These data is for informational purpose only and
+		 * can't be imported into the database. Using this option, you can
+		 * define the number of lines that should be left out before the import
+		 * begins.
+		 *
+		 * @param integer Number of rows
+		 * @since 2015.08
+		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/converter
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/mapping
+		 * @see controller/jobs/product/import/csv/max-size
+		 * @see controller/jobs/product/import/csv/strict
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/product/import/csv/skip-lines', 0 );
+	}
+
+
+	/**
+	 * Returns if all columns from the file should be logged that are not mapped and therefore not imported
+	 */
+	protected function strict() : bool
+	{
+		/** controller/jobs/product/import/csv/strict
+		 * Log all columns from the file that are not mapped and therefore not imported
+		 *
+		 * Depending on the mapping, there can be more columns in the CSV file
+		 * than those which will be imported. This can be by purpose if you want
+		 * to import only selected columns or if you've missed to configure one
+		 * or more columns. This configuration option will log all columns that
+		 * have not been imported if set to true. Otherwise, the left over fields
+		 * in the imported line will be silently ignored.
+		 *
+		 * @param boolen True if not imported columns should be logged, false if not
+		 * @since 2015.08
+		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/converter
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/location
+		 * @see controller/jobs/product/import/csv/mapping
+		 * @see controller/jobs/product/import/csv/max-size
+		 * @see controller/jobs/product/import/csv/skip-lines
+		 */
+		return (bool) $this->context()->config()->get( 'controller/jobs/product/import/csv/strict', true );
 	}
 }
