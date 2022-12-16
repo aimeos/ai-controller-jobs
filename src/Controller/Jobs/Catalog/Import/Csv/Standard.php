@@ -171,13 +171,13 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		$total = $errors = 0;
+		$logger = $this->context()->logger();
+
 		try
 		{
 			$procMappings = $mappings;
 			unset( $procMappings['item'] );
-
-			$total = $errors = 0;
-			$logger = $this->context()->logger();
 
 			$codePos = $this->getCodePosition( $mappings['item'] );
 			$convlist = $this->getConverterList( $this->converters() );

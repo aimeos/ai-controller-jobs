@@ -172,13 +172,13 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		$total = $errors = 0;
+		$logger = $this->context()->logger();
+
 		try
 		{
 			$procMappings = $mappings;
 			unset( $procMappings['item'] );
-
-			$total = $errors = 0;
-			$logger = $this->context()->logger();
 
 			$codePos = $this->getCodePosition( $mappings['item'] );
 			$convlist = $this->getConverterList( $this->converters() );
@@ -187,7 +187,6 @@ class Standard
 			$path = $container->getName();
 
 			$maxcnt = $this->max();
-			$strict = $this->strict();
 			$skiplines = $this->skip();
 			$domains = $this->domains();
 
@@ -283,7 +282,6 @@ class Standard
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/strict
 		 */
 		return (string) $this->context()->config()->get( 'controller/jobs/product/import/csv/backup' );
 	}
@@ -360,7 +358,6 @@ class Standard
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/strict
 		 */
 		return (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/converter', [] );
 	}
@@ -390,7 +387,6 @@ class Standard
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/strict
 		 */
 		return $this->context()->config()->get( 'controller/jobs/product/import/csv/domains', ['media', 'text'] );
 	}
@@ -633,7 +629,6 @@ class Standard
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/strict
 		 */
 		return (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/mapping', $this->getDefaultMapping() );
 	}
@@ -664,7 +659,6 @@ class Standard
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/skip-lines
-		 * @see controller/jobs/product/import/csv/strict
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/product/import/csv/max-size', 1000 );
 	}
@@ -694,37 +688,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/max-size
-		 * @see controller/jobs/product/import/csv/strict
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/product/import/csv/skip-lines', 0 );
-	}
-
-
-	/**
-	 * Returns if all columns from the file should be logged that are not mapped and therefore not imported
-	 */
-	protected function strict() : bool
-	{
-		/** controller/jobs/product/import/csv/strict
-		 * Log all columns from the file that are not mapped and therefore not imported
-		 *
-		 * Depending on the mapping, there can be more columns in the CSV file
-		 * than those which will be imported. This can be by purpose if you want
-		 * to import only selected columns or if you've missed to configure one
-		 * or more columns. This configuration option will log all columns that
-		 * have not been imported if set to true. Otherwise, the left over fields
-		 * in the imported line will be silently ignored.
-		 *
-		 * @param boolen True if not imported columns should be logged, false if not
-		 * @since 2015.08
-		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/converter
-		 * @see controller/jobs/product/import/csv/domains
-		 * @see controller/jobs/product/import/csv/location
-		 * @see controller/jobs/product/import/csv/mapping
-		 * @see controller/jobs/product/import/csv/max-size
-		 * @see controller/jobs/product/import/csv/skip-lines
-		 */
-		return (bool) $this->context()->config()->get( 'controller/jobs/product/import/csv/strict', true );
 	}
 }
