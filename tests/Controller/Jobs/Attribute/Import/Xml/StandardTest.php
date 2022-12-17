@@ -20,6 +20,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelper::context();
 
+		$fs = $context->fs( 'fs-import' );
+		$fs->has( 'attribute' ) ?: $fs->mkdir( 'attribute' );
+		$fs->writef( 'attribute/attribute_1.xml', __DIR__ . '/_testfiles/attribute_1.xml' );
+		$fs->writef( 'attribute/attribute_2.xml', __DIR__ . '/_testfiles/attribute_2.xml' );
+
 		$fs = $context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
 		$fs->write( 'path/to/file2.jpg', 'test' );
@@ -34,9 +39,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelper::context();
 		$this->aimeos = \TestHelper::getAimeos();
-
-		$config = $this->context->config();
-		$config->set( 'controller/jobs/attribute/import/xml/location', __DIR__ . '/_testfiles' );
 
 		$this->object = new \Aimeos\Controller\Jobs\Attribute\Import\Xml\Standard( $this->context, $this->aimeos );
 	}

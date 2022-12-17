@@ -163,46 +163,33 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
+		$process = $context->process();
+
 		$location = $this->location();
+		$fs = $context->fs( 'fs-import' );
+
+		if( $fs->isDir( $location ) === false ) {
+			return;
+		}
 
 		try
 		{
 			$logger->info( sprintf( 'Started attribute import from "%1$s"', $location ), 'import/xml/attribute' );
 
-			if( !file_exists( $location ) )
-			{
-				$msg = sprintf( 'File or directory "%1$s" doesn\'t exist', $location );
-				throw new \Aimeos\Controller\Jobs\Exception( $msg );
-			}
-
-			$files = [];
-
-			if( is_dir( $location ) )
-			{
-				foreach( new \DirectoryIterator( $location ) as $entry )
-				{
-					if( strncmp( $entry->getFilename(), 'attribute', 8 ) === 0 && $entry->getExtension() === 'xml' ) {
-						$files[] = $entry->getPathname();
-					}
-				}
-			}
-			else
-			{
-				$files[] = $location;
-			}
-
-			sort( $files );
-			$context->__sleep();
-
-			$fcn = function( $filepath ) {
-				$this->import( $filepath );
+			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
+				$this->import( $context, $path );
 			};
 
-			foreach( $files as $filepath ) {
-				$context->process()->start( $fcn, [$filepath] );
+			foreach( $fs->scan( $location ) as $filename )
+			{
+				$filename = (string) $filename;
+
+				if( $filename !== '.' && $filename !== '..' ) {
+					$process->start( $fcn, [$context, $fs->readf( $location . '/' . $filename )] );
+				}
 			}
 
-			$context->process()->wait();
+			$process->wait();
 
 			$logger->info( sprintf( 'Finished attribute import from "%1$s"', $location ), 'import/xml/attribute' );
 		}
@@ -283,16 +270,17 @@ class Standard
 	/**
 	 * Imports the XML file given by its path
 	 *
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param string $filename Absolute or relative path to the XML file
 	 */
-	protected function import( string $filename )
+	protected function import( \Aimeos\MShop\ContextIface $context, string $filename )
 	{
 		$slice = 0;
 		$nodes = [];
 
 		$xml = new \XMLReader();
 		$maxquery = $this->max();
-		$logger = $this->context()->logger();
+		$logger = $context->logger();
 
 
 		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
@@ -331,6 +319,8 @@ class Standard
 		foreach( $this->getProcessors() as $proc ) {
 			$proc->finish();
 		}
+
+		unlink( $filename );
 
 		$logger->info( sprintf( 'Finished attribute import from file "%1$s"', $filename ), 'import/xml/attribute' );
 
