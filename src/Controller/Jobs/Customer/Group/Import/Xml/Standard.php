@@ -162,46 +162,28 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
+		$process = $context->process();
+
 		$location = $this->location();
+		$fs = $context->fs( 'fs-import' );
+
+		if( $fs->isDir( $location ) === false ) {
+			return;
+		}
 
 		try
 		{
 			$logger->info( sprintf( 'Started customer group import from "%1$s"', $location ), 'import/xml/customer/group' );
 
-			if( !file_exists( $location ) )
-			{
-				$msg = sprintf( 'File or directory "%1$s" doesn\'t exist', $location );
-				throw new \Aimeos\Controller\Jobs\Exception( $msg );
-			}
-
-			$files = [];
-
-			if( is_dir( $location ) )
-			{
-				foreach( new \DirectoryIterator( $location ) as $entry )
-				{
-					if( strncmp( $entry->getFilename(), 'customergroup', 8 ) === 0 && $entry->getExtension() === 'xml' ) {
-						$files[] = $entry->getPathname();
-					}
-				}
-			}
-			else
-			{
-				$files[] = $location;
-			}
-
-			sort( $files );
-			$context->__sleep();
-
-			$fcn = function( $filepath ) {
-				$this->import( $filepath );
+			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
+				$this->import( $context, $path );
 			};
 
-			foreach( $files as $filepath ) {
-				$context->process()->start( $fcn, [$filepath] );
+			foreach( map( $fs->scan( $location ) )->sort() as $filename ) {
+				$process->start( $fcn, [$context, $fs->readf( $location . '/' . $filename )] );
 			}
 
-			$context->process()->wait();
+			$process->wait();
 
 			$logger->info( sprintf( 'Finished customer group import from "%1$s"', $location ), 'import/xml/customer/group' );
 		}
@@ -255,16 +237,17 @@ class Standard
 	/**
 	 * Imports the XML file given by its path
 	 *
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param string $filename Absolute or relative path to the XML file
 	 */
-	protected function import( string $filename )
+	protected function import( \Aimeos\MShop\ContextIface $context, string $filename )
 	{
 		$slice = 0;
 		$nodes = [];
 
 		$xml = new \XMLReader();
 		$maxquery = $this->max();
-		$logger = $this->context()->logger();
+		$logger = $context->logger();
 
 		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
