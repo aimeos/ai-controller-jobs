@@ -180,13 +180,8 @@ class Standard
 				$this->import( $context, $path );
 			};
 
-			foreach( $fs->scan( $location ) as $filename )
-			{
-				$filename = (string) $filename;
-
-				if( $filename !== '.' && $filename !== '..' ) {
-					$process->start( $fcn, [$context, $fs->readf( $location . '/' . $filename )] );
-				}
+			foreach( map( $fs->scan( $location ) )->sort() as $filename ) {
+				$process->start( $fcn, [$context, $fs->readf( $location . '/' . $filename )] );
 			}
 
 			$process->wait();
