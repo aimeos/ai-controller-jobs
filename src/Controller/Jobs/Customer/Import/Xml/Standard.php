@@ -275,7 +275,7 @@ class Standard
 
 		$xml = new \XMLReader();
 		$maxquery = $this->max();
-		$logger = $this->context()->logger();
+		$logger = $context->logger();
 
 		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
