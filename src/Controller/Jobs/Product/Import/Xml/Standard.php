@@ -314,6 +314,8 @@ class Standard
 			$proc->finish();
 		}
 
+		unlink( $filename );
+
 		$logger->info( sprintf( 'Finished product import from file "%1$s"', $filename ), 'import/xml/product' );
 
 		if( !empty( $backup = $this->backup() ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )

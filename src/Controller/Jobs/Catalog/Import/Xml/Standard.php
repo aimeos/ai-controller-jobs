@@ -128,6 +128,7 @@ class Standard
 	 */
 
 
+	use \Aimeos\Controller\Common\Common\Import\Traits;
 	use \Aimeos\Controller\Common\Common\Import\Xml\Traits;
 
 
@@ -280,10 +281,13 @@ class Standard
 		$logger->info( sprintf( 'Started catalog import from file "%1$s"', $filename ), 'import/xml/catalog' );
 
 		$this->importTree( $xml, $this->domains() );
+		$this->saveTypes();
 
 		foreach( $this->getProcessors() as $proc ) {
 			$proc->finish();
 		}
+
+		unlink( $filename );
 
 		$logger->info( sprintf( 'Finished catalog import from file "%1$s"', $filename ), 'import/xml/catalog' );
 
