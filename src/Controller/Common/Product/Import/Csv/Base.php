@@ -21,29 +21,6 @@ class Base
 	extends \Aimeos\Controller\Jobs\Base
 {
 	/**
-	 * Converts the CSV field data using the available converter objects
-	 *
-	 * @param array $convlist Associative list of CSV field indexes and converter objects
-	 * @param array $data Associative list of product codes and lists of CSV field indexes and their data
-	 * @return array Associative list of CSV field indexes and their converted data
-	 */
-	protected function convertData( array $convlist, array $data ) : array
-	{
-		foreach( $convlist as $idx => $converter )
-		{
-			foreach( $data as $code => $list )
-			{
-				if( isset( $list[$idx] ) ) {
-					$data[$code][$idx] = $converter->translate( $list[$idx] );
-				}
-			}
-		}
-
-		return $data;
-	}
-
-
-	/**
 	 * Returns the cache object for the given type
 	 *
 	 * @param string $type Type of the cached data
@@ -86,41 +63,20 @@ class Base
 
 
 	/**
-	 * Returns the list of converter objects based on the given converter map
-	 *
-	 * @param array $convmap List of converter names for the values at the position in the CSV file
-	 * @return array Associative list of positions and converter objects
-	 */
-	protected function getConverterList( array $convmap ) : array
-	{
-		$convlist = [];
-
-		foreach( $convmap as $idx => $name ) {
-			$convlist[$idx] = \Aimeos\MW\Convert\Factory::createConverter( $name );
-		}
-
-		return $convlist;
-	}
-
-
-	/**
 	 * Returns the rows from the CSV file up to the maximum count
 	 *
-	 * @param \Aimeos\MW\Container\Content\Iface $content CSV content object
+	 * @param resource $fh File handle to CSV file
 	 * @param int $maxcnt Maximum number of rows that should be retrieved at once
 	 * @param int $codePos Column position which contains the unique product code (starting from 0)
 	 * @return array List of arrays with product codes as keys and list of values from the CSV file
 	 */
-	protected function getData( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt, int $codePos ) : array
+	protected function getData( $fh, int $maxcnt, int $codePos ) : array
 	{
 		$count = 0;
 		$data = [];
 
-		while( $content->valid() && $count++ < $maxcnt )
-		{
-			$row = $content->current();
+		while( ( $row = fgetcsv( $fh ) ) !== false && $count++ < $maxcnt ) {
 			$data[$row[$codePos]] = $row;
-			$content->next();
 		}
 
 		return $data;
@@ -246,6 +202,8 @@ class Base
 	 */
 	protected function getProcessors( array $mappings ) : \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface
 	{
+		unset( $mappings['item'] );
+
 		$context = $this->context();
 		$config = $context->config();
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Done( $context, [] );

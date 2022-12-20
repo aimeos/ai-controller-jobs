@@ -328,7 +328,7 @@ class Standard
 		 *
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2017.10
-			 * @see controller/jobs/coupon/import/csv/code/skip-lines
+		 * @see controller/jobs/coupon/import/csv/code/skip-lines
 		 * @see controller/jobs/coupon/import/csv/code/max-size
 		 */
 		return $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/mapping', $this->getDefaultMapping() );
@@ -354,7 +354,7 @@ class Standard
 		 *
 		 * @param integer Number of rows
 		 * @since 2017.10
-			 * @see controller/jobs/coupon/import/csv/code/skip-lines
+		 * @see controller/jobs/coupon/import/csv/code/skip-lines
 		 * @see controller/jobs/coupon/import/csv/code/mapping
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/max-size', 1000 );
@@ -379,7 +379,7 @@ class Standard
 		 *
 		 * @param integer Number of rows
 		 * @since 2015.08
-			 * @see controller/jobs/coupon/import/csv/code/mapping
+		 * @see controller/jobs/coupon/import/csv/code/mapping
 		 * @see controller/jobs/coupon/import/csv/code/max-size
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/skip-lines', 0 );

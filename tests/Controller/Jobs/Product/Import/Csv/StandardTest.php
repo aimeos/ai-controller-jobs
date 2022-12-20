@@ -16,6 +16,32 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
+	public static function setUpBeforeClass() : void
+	{
+		$context = \TestHelper::context();
+
+		$fs = $context->fs( 'fs-import' );
+		$fs->has( 'product' ) ?: $fs->mkdir( 'product' );
+		$fs->writef( 'product/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
+
+		$fs->has( 'product/valid' ) ?: $fs->mkdir( 'product/valid' );
+		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
+		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
+
+		$fs->has( 'product/position' ) ?: $fs->mkdir( 'product/position' );
+		$fs->writef( 'product/position/products.csv', __DIR__ . '/_testfiles/position/products.csv' );
+		$fs->writef( 'product/position/products.csv', __DIR__ . '/_testfiles/position/products.csv' );
+
+		$fs = $context->fs( 'fs-media' );
+		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
+		$fs->write( 'path/to/file2.jpg', 'test' );
+		$fs->write( 'path/to/file.jpg', 'test' );
+
+		$fs = $context->fs( 'fs-mimeicon' );
+		$fs->write( 'unknown.png', 'icon' );
+	}
+
+
 	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
@@ -23,17 +49,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelper::context();
 		$this->aimeos = \TestHelper::getAimeos();
 
-		$fs = $this->context->fs( 'fs-media' );
-		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
-		$fs->write( 'path/to/image2.jpg', 'test' );
-		$fs->write( 'path/to/image.jpg', 'test' );
-
-		$fs = $this->context->fs( 'fs-mimeicon' );
-		$fs->write( 'unknown.png', 'test' );
-
 		$config = $this->context->config();
 		$config->set( 'controller/jobs/product/import/csv/skip-lines', 1 );
-		$config->set( 'controller/jobs/product/import/csv/location', __DIR__ . '/_testfiles/valid' );
+		$config->set( 'controller/jobs/product/import/csv/location', 'product/valid' );
 
 		$this->object = new \Aimeos\Controller\Jobs\Product\Import\Csv\Standard( $this->context, $this->aimeos );
 	}
@@ -42,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
-		$this->object = null;
+		unset( $this->object );
 
 		if( file_exists( 'tmp/import.zip' ) ) {
 			unlink( 'tmp/import.zip' );
@@ -68,12 +86,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
 		$nondelete = array( 'attribute', 'product', 'catalog' );
 		$delete = array( 'media', 'price', 'text' );
-
-		$convert = array(
-			1 => 'Text/LatinUTF8',
-		);
-
-		$this->context->config()->set( 'controller/jobs/product/import/csv/converter', $convert );
 
 		$this->object->run();
 
@@ -123,7 +135,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mapping['item'] = array( 0 => 'product.label', 1 => 'product.code' );
 
 		$config->set( 'controller/jobs/product/import/csv/mapping', $mapping );
-		$config->set( 'controller/jobs/product/import/csv/location', __DIR__ . '/_testfiles/position' );
+		$config->set( 'controller/jobs/product/import/csv/location', 'product/position' );
 
 		$this->object->run();
 
@@ -152,36 +164,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunBackup()
 	{
 		$config = $this->context->config();
-		$config->set( 'controller/jobs/product/import/csv/container/type', 'Zip' );
-		$config->set( 'controller/jobs/product/import/csv/location', 'tmp/import.zip' );
-		$config->set( 'controller/jobs/product/import/csv/backup', 'tmp/test-%Y-%m-%d.zip' );
-
-		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false ) {
-			throw new \RuntimeException( 'Unable to copy test file' );
-		}
+		$config->set( 'controller/jobs/product/import/csv/backup', 'backup-%Y-%m-%d.csv' );
+		$config->set( 'controller/jobs/product/import/csv/location', 'product' );
 
 		$this->object->run();
 
-		$filename = \Aimeos\Base\Str::strtime( 'tmp/test-%Y-%m-%d.zip' );
-		$this->assertTrue( file_exists( $filename ) );
+		$filename = \Aimeos\Base\Str::strtime( 'backup-%Y-%m-%d.csv' );
+		$this->assertTrue( $this->context->fs( 'fs-import' )->has( $filename ) );
 
-		unlink( $filename );
-	}
-
-
-	public function testRunBackupInvalid()
-	{
-		$config = $this->context->config();
-		$config->set( 'controller/jobs/product/import/csv/container/type', 'Zip' );
-		$config->set( 'controller/jobs/product/import/csv/location', 'tmp/import.zip' );
-		$config->set( 'controller/jobs/product/import/csv/backup', 'tmp/notexist/import.zip' );
-
-		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false ) {
-			throw new \RuntimeException( 'Unable to copy test file' );
-		}
-
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$this->object->run();
+		$this->context->fs( 'fs-import' )->rm( $filename );
 	}
 
 

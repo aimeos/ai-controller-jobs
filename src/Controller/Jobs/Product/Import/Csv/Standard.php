@@ -160,88 +160,74 @@ class Standard
 	 */
 	public function run()
 	{
-		if( file_exists( $this->location() ) === false ) {
-			return;
-		}
-
-		$mappings = $this->mapping();
-
-		if( !isset( $mappings['item'] ) || !is_array( $mappings['item'] ) )
-		{
-			$msg = sprintf( 'Required mapping key "%1$s" is missing or contains no array', 'item' );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		$total = $errors = 0;
-		$logger = $this->context()->logger();
+		$context = $this->context();
+		$logger = $context->logger();
 
 		try
 		{
-			$procMappings = $mappings;
-			unset( $procMappings['item'] );
+			$location = $this->location();
+			$fs = $context->fs( 'fs-import' );
 
-			$codePos = $this->getCodePosition( $mappings['item'] );
-			$convlist = $this->getConverterList( $this->converters() );
-			$processor = $this->getProcessors( $procMappings );
-			$container = $this->getContainer();
-			$path = $container->getName();
+			if( $fs->isDir( $location ) === false ) {
+				return;
+			}
 
 			$maxcnt = $this->max();
 			$skiplines = $this->skip();
 			$domains = $this->domains();
 
-			$msg = sprintf( 'Started product import from "%1$s" (%2$s)', $path, __CLASS__ );
-			$logger->notice( $msg, 'import/csv/product' );
+			$mappings = $this->mapping();
+			$processor = $this->getProcessors( $mappings );
+			$codePos = $this->getCodePosition( $mappings['item'] );
 
-			foreach( $container as $content )
+			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
-				$name = $content->getName();
+				$path = $location . '/' . $filename;
 
-				for( $i = 0; $i < $skiplines; $i++ ) {
-					$content->next();
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+					continue;
 				}
 
-				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
+				$logger->info( sprintf( 'Started product import from "%1$s"', $path ), 'import/csv/product' );
+
+				$total = $errors = 0;
+				$fh = $fs->reads( $path );
+
+				for( $i = 0; $i < $skiplines; $i++ ) {
+					fgetcsv( $fh );
+				}
+
+				while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
 				{
-					$chunkcnt = count( $data );
-					$data = $this->convertData( $convlist, $data );
 					$products = $this->getProducts( array_keys( $data ), $domains );
-					$errcnt = $this->import( $products, $data, $mappings['item'], [], $processor );
+					$errors += $this->import( $products, $data, $mappings['item'], [], $processor );
 
-					$str = 'Imported product lines from "%1$s": %2$d/%3$d (%4$s)';
-					$msg = sprintf( $str, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
-					$logger->info( $msg, 'import/csv/product' );
-
-					$errors += $errcnt;
-					$total += $chunkcnt;
+					$total += count( $data );
 					unset( $products, $data );
+				}
+
+				fclose( $fh );
+
+				$str = sprintf( 'Finished product import from "%1$s" (%2$d/%3$d)', $path, $errors, $total );
+				$logger->info( $str, 'import/csv/product' );
+
+
+				if( !empty( $backup = \Aimeos\Base\Str::strtime( $this->backup() ) ) ) {
+					$fs->move( $path, $backup );
+				}
+
+				if( $errors > 0 ) {
+					$this->mail( 'Product CSV import', sprintf( 'Invalid product lines in "%1$s": %2$d/%3$d', $path, $errors, $total ) );
 				}
 			}
 
-			$container->close();
+			$processor->finish();
 		}
 		catch( \Exception $e )
 		{
 			$logger->error( 'Product import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/product' );
 			$this->mail( 'Product CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
-		}
-
-		$processor->finish();
-
-		$msg = 'Finished product import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
-		$logger->notice( sprintf( $msg, $path, $total - $errors, $errors, $total, __CLASS__ ), 'import/csv/product' );
-
-		if( $errors > 0 )
-		{
-			$msg = sprintf( 'Invalid product lines in "%1$s": %2$d/%3$d', $path, $errors, $total );
-			$this->mail( 'Product CSV import', $msg );
-		}
-
-		if( !empty( $backup = $this->backup() ) && @rename( $path, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
-		{
-			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, $backup );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 	}
 
@@ -276,7 +262,6 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
-		 * @see controller/jobs/product/import/csv/converter
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -312,58 +297,6 @@ class Standard
 
 
 	/**
-	 * Returns the list of converter names for the values at the position in the CSV file
-	 *
-	 * @return array List of converter names for the values at the position in the CSV file
-	 */
-	protected function converters() : array
-	{
-		/** controller/jobs/product/import/csv/converter
-		 * List of converter names for the values at the position in the CSV file
-		 *
-		 * Not all data in the CSV file is already in the required format. Maybe
-		 * the text encoding isn't UTF-8, the date is not in ISO format or something
-		 * similar. In order to convert the data before it's imported, you can
-		 * specify a list of converter objects that should be applied to the data
-		 * from the CSV file.
-		 *
-		 * To each field in the CSV file, you can apply one or more converters,
-		 * e.g. to encode a Latin text to UTF8 for the second CSV field:
-		 *
-		 *  [1 => 'Text/LatinUTF8']
-		 *
-		 * Similarly, you can also apply several converters at once to the same
-		 * field:
-		 *
-		 *  [1 => ['Text/LatinUTF8', 'DateTime/EnglishISO']]
-		 *
-		 * It would convert the data of the second CSV field first to UTF-8 and
-		 * afterwards try to translate it to an ISO date format.
-		 *
-		 * The available converter objects are named "\Aimeos\MW\Convert\<type>_<conversion>"
-		 * where <type> is the data type and <conversion> the way of the conversion.
-		 * In the configuration, the type and conversion must be separated by a
-		 * slash (<type>/<conversion>).
-		 *
-		 * **Note:** Keep in mind that the position of the CSV fields start at
-		 * zero (0). If you only need to convert a few fields, you don't have to
-		 * configure all fields. Only specify the positions in the array you
-		 * really need!
-		 *
-		 * @param array Associative list of position/converter name (or list of names) pairs
-		 * @since 2018.04
-		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/domains
-		 * @see controller/jobs/product/import/csv/location
-		 * @see controller/jobs/product/import/csv/mapping
-		 * @see controller/jobs/product/import/csv/max-size
-		 * @see controller/jobs/product/import/csv/skip-lines
-		 */
-		return (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/converter', [] );
-	}
-
-
-	/**
 	 * Returns the list of domain names that should be retrieved along with the attribute items
 	 *
 	 * @return array List of domain names
@@ -382,7 +315,6 @@ class Standard
 		 * @param array Associative list of MShop item domain names
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/converter
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/max-size
@@ -409,101 +341,6 @@ class Standard
 		}
 
 		throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No "product.code" column in CSV mapping found' ) );
-	}
-
-
-	/**
-	 * Opens and returns the container which includes the product data
-	 *
-	 * @return \Aimeos\MW\Container\Iface Container object
-	 */
-	protected function getContainer() : \Aimeos\MW\Container\Iface
-	{
-		$config = $this->context()->config();
-
-		/** controller/jobs/product/import/csv/location
-		 * File or directory where the content is stored which should be imported
-		 *
-		 * You need to configure the file or directory that acts as container
-		 * for the CSV files that should be imported. It should be an absolute
-		 * path to be sure but can be relative path if you absolutely know from
-		 * where the job will be executed from.
-		 *
-		 * The path can point to any supported container format as long as the
-		 * content is in CSV format, e.g.
-		 *
-		 * * Directory container / CSV file
-		 * * Zip container / compressed CSV file
-		 *
-		 * @param string Absolute file or directory path
-		 * @since 2015.05
-		 * @category User
-		 * @see controller/jobs/product/import/csv/container/type
-		 * @see controller/jobs/product/import/csv/container/content
-		 * @see controller/jobs/product/import/csv/container/options
-		 */
-		$location = $config->get( 'controller/jobs/product/import/csv/location' );
-
-		/** controller/jobs/product/import/csv/container/type
-		 * Nave of the container type to read the data from
-		 *
-		 * The container type tells the importer how it should retrieve the data.
-		 * There are currently three container types that support the necessary
-		 * CSV content:
-		 *
-		 * * Directory
-		 * * Zip
-		 *
-		 * @param string Container type name
-		 * @since 2015.05
-		 * @category User
-		 * @see controller/jobs/product/import/csv/location
-		 * @see controller/jobs/product/import/csv/container/content
-		 * @see controller/jobs/product/import/csv/container/options
-		 */
-		$container = $config->get( 'controller/jobs/product/import/csv/container/type', 'Directory' );
-
-		/** controller/jobs/product/import/csv/container/content
-		 * Name of the content type inside the container to read the data from
-		 *
-		 * The content type must always be a CSV-like format and there are
-		 * currently two format types that are supported:
-		 *
-		 * * CSV
-		 *
-		 * @param array Content type name
-		 * @since 2015.05
-		 * @category User
-		 * @see controller/jobs/product/import/csv/location
-		 * @see controller/jobs/product/import/csv/container/type
-		 * @see controller/jobs/product/import/csv/container/options
-		 */
-		$content = $config->get( 'controller/jobs/product/import/csv/container/content', 'CSV' );
-
-		/** controller/jobs/product/import/csv/container/options
-		 * List of file container options for the product import files
-		 *
-		 * Some container/content type allow you to hand over additional settings
-		 * for configuration. Please have a look at the article about
-		 * {@link http://aimeos.org/docs/Developers/Utility/Create_and_read_files container/content files}
-		 * for more information.
-		 *
-		 * @param array Associative list of option name/value pairs
-		 * @since 2015.05
-		 * @category User
-		 * @see controller/jobs/product/import/csv/location
-		 * @see controller/jobs/product/import/csv/container/content
-		 * @see controller/jobs/product/import/csv/container/type
-		 */
-		$options = $config->get( 'controller/jobs/product/import/csv/container/options', [] );
-
-		if( $location === null )
-		{
-			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/product/import/csv/location' );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
 	}
 
 
@@ -588,7 +425,6 @@ class Standard
 		 * @param string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/converter
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -624,13 +460,20 @@ class Standard
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/converter
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
 		 */
-		return (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/mapping', $this->getDefaultMapping() );
+		$map = (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/mapping', $this->getDefaultMapping() );
+
+		if( !isset( $map['item'] ) || !is_array( $map['item'] ) )
+		{
+			$msg = sprintf( 'Required mapping key "%1$s" is missing or contains no array', 'item' );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
+
+		return $map;
 	}
 
 
@@ -654,7 +497,6 @@ class Standard
 		 * @param integer Number of rows
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/converter
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -683,7 +525,6 @@ class Standard
 		 * @param integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/converter
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
