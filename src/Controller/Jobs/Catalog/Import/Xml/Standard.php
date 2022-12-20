@@ -180,8 +180,15 @@ class Standard
 				$this->import( $context, $path );
 			};
 
-			foreach( map( $fs->scan( $location ) )->sort() as $filename ) {
-				$process->start( $fcn, [$context, $fs->readf( $location . '/' . $filename )] );
+			foreach( map( $fs->scan( $location ) )->sort() as $filename )
+			{
+				$path = $location . '/' . $filename;
+
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+					continue;
+				}
+
+				$process->start( $fcn, [$context, $fs->readf( $path )] );
 			}
 
 			$process->wait();
