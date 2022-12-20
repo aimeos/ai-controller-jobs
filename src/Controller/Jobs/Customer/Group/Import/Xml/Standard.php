@@ -175,8 +175,8 @@ class Standard
 		{
 			$logger->info( sprintf( 'Started customer group import from "%1$s"', $location ), 'import/xml/customer/group' );
 
-			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
-				$this->import( $context, $path );
+			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path, string $tmpfile ) {
+				$this->import( $context, $path, $tmpfile );
 			};
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
@@ -187,7 +187,7 @@ class Standard
 					continue;
 				}
 
-				$process->start( $fcn, [$context, $fs->readf( $path )] );
+				$process->start( $fcn, [$context, $path, $fs->readf( $path )] );
 			}
 
 			$process->wait();
@@ -226,10 +226,7 @@ class Standard
 		 * please have a look  into the PHP documentation of the
 		 * {@link https://www.php.net/manual/en/datetime.format.php format() method}.
 		 *
-		 * **Note:** If no backup name is configured, the file or directory
-		 * won't be moved away. Please make also sure that the parent directory
-		 * and the new directory are writable so the file or directory could be
-		 * moved.
+		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
@@ -237,7 +234,8 @@ class Standard
 		 * @see controller/jobs/customer/group/import/xml/location
 		 * @see controller/jobs/customer/group/import/xml/max-query
 		 */
-		return (string) $this->context()->config()->get( 'controller/jobs/customer/group/import/xml/backup' );
+		$backup = $this->context()->config()->get( 'controller/jobs/customer/group/import/xml/backup' );
+		return \Aimeos\Base\Str::strtime( (string) $backup );
 	}
 
 
@@ -245,22 +243,25 @@ class Standard
 	 * Imports the XML file given by its path
 	 *
 	 * @param \Aimeos\MShop\ContextIface $context Context object
-	 * @param string $filename Absolute or relative path to the XML file
+	 * @param string $path Relative path to the XML file in the file system
+	 * @param string $tmpfile Local, absolute path to the temporary XML file
 	 */
-	protected function import( \Aimeos\MShop\ContextIface $context, string $filename )
+	protected function import( \Aimeos\MShop\ContextIface $context, string $path, string $tmpfile )
 	{
 		$slice = 0;
 		$nodes = [];
 
 		$xml = new \XMLReader();
 		$maxquery = $this->max();
-		$logger = $context->logger();
 
-		if( $xml->open( $filename, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $filename ) );
+		$logger = $context->logger();
+		$fs = $context->fs( 'fs-import' );
+
+		if( $xml->open( $tmpfile, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
+			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $tmpfile ) );
 		}
 
-		$logger->info( sprintf( 'Started customer group import from file "%1$s"', $filename ), 'import/xml/customer/group' );
+		$logger->info( sprintf( 'Started customer group import from file "%1$s"', $path ), 'import/xml/customer/group' );
 
 		while( $xml->read() === true )
 		{
@@ -291,15 +292,15 @@ class Standard
 			$proc->finish();
 		}
 
-		unlink( $filename );
+		unlink( $tmpfile );
 
-		$logger->info( sprintf( 'Finished customer group import from file "%1$s"', $filename ), 'import/xml/customer/group' );
-
-		if( !empty( $backup = $this->backup() ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
-		{
-			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		if( !empty( $backup = $this->backup() ) ) {
+			$fs->move( $path, $backup );
+		} else {
+			$fs->rm( $path );
 		}
+
+		$logger->info( sprintf( 'Finished customer group import from file "%1$s"', $path ), 'import/xml/customer/group' );
 	}
 
 
