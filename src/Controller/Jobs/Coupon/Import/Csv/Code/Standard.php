@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2017.10
-	 * @category Developer
 	 */
 
 	/** controller/jobs/coupon/import/csv/code/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2017.10
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/coupon/import/csv/code/decorators/global
 	 * @see controller/jobs/coupon/import/csv/code/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2017.10
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/coupon/import/csv/code/decorators/excludes
 	 * @see controller/jobs/coupon/import/csv/code/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2017.10
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/coupon/import/csv/code/decorators/excludes
 	 * @see controller/jobs/coupon/import/csv/code/decorators/global
@@ -161,14 +157,11 @@ class Standard
 	 */
 	public function run()
 	{
-		$fcn = function( \Aimeos\MShop\ContextIface $context, \Aimeos\MW\Container\Iface $container, $couponId, $path ) {
-			$this->process( $context, $container, $couponId, $path );
-		};
-
 		try
 		{
 			$context = $this->context();
 			$process = $context->process();
+
 			$fs = $context->fs( 'fs-import' );
 			$dir = 'couponcode/' . $context->locale()->getSiteItem()->getCode();
 
@@ -176,24 +169,28 @@ class Standard
 				return;
 			}
 
+			$fcn = function( \Aimeos\MShop\ContextIface $context, $couponId, $fhandle, $path ) {
+				$this->process( $context, $couponId, $fhandle, $path );
+			};
+
 			foreach( $fs->scan( $dir ) as $filename )
 			{
-				if( $filename == '.' || $filename == '..' ) {
+				$path = $dir . '/' . $filename;
+
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
 					continue;
 				}
 
-				$path = $dir . '/' . $filename;
 				list( $couponId,) = explode( '.', $filename );
-				$container = $this->getContainer( $fs->readf( $path ) );
 
-				$process->start( $fcn, [$context, $container, $couponId, $path] );
+				$process->start( $fcn, [$context, $couponId, $fs->reads( $path ), $path] );
 			}
 
 			$process->wait();
 		}
 		catch( \Exception $e )
 		{
-			$context->logger()->error( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/coupon/code' );
+			$context->logger()->error( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/couponcode' );
 			$this->mail( 'Coupon CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -217,73 +214,6 @@ class Standard
 		}
 
 		throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No "coupon.code.code" column in CSV mapping found' ) );
-	}
-
-
-	/**
-	 * Opens and returns the container which includes the coupon data
-	 *
-	 * @param string $filepath Path to the container file
-	 * @return \Aimeos\MW\Container\Iface Container object
-	 */
-	protected function getContainer( string $filepath ) : \Aimeos\MW\Container\Iface
-	{
-		$config = $this->context()->config();
-
-		/** controller/jobs/coupon/import/csv/code/container/type
-		 * Name of the container type to read the data from
-		 *
-		 * The container type tells the importer how it should retrieve the data.
-		 * There are currently three container types that support the necessary
-		 * CSV content:
-		 *
-		 * * File (plain)
-		 * * Zip
-		 *
-		 * @param string Container type name
-		 * @since 2017.10
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/coupon/import/csv/code/container/content
-		 * @see controller/jobs/coupon/import/csv/code/container/options
-		 */
-		$container = $config->get( 'controller/jobs/coupon/import/csv/code/container/type', 'File' );
-
-		/** controller/jobs/coupon/import/csv/code/container/content
-		 * Name of the content type inside the container to read the data from
-		 *
-		 * The content type must always be a CSV-like format and there are
-		 * currently two format types that are supported:
-		 *
-		 * * CSV
-		 *
-		 * @param array Content type name
-		 * @since 2017.10
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/coupon/import/csv/code/container/type
-		 * @see controller/jobs/coupon/import/csv/code/container/options
-		 */
-		$content = $config->get( 'controller/jobs/coupon/import/csv/code/container/content', 'CSV' );
-
-		/** controller/jobs/coupon/import/csv/code/container/options
-		 * List of file container options for the coupon import files
-		 *
-		 * Some container/content type allow you to hand over additional settings
-		 * for configuration. Please have a look at the article about
-		 * {@link http://aimeos.org/docs/Developers/Utility/Create_and_read_files container/content files}
-		 * for more information.
-		 *
-		 * @param array Associative list of option name/value pairs
-		 * @since 2017.10
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/coupon/import/csv/code/container/content
-		 * @see controller/jobs/coupon/import/csv/code/container/type
-		 */
-		$options = $config->get( 'controller/jobs/coupon/import/csv/code/container/options', [] );
-
-		return \Aimeos\MW\Container\Factory::getContainer( $filepath, $container, $content, $options );
 	}
 
 
@@ -341,11 +271,11 @@ class Standard
 	 * Imports content from the given container
 	 *
 	 * @param \Aimeos\MShop\ContextIface $context Context object
-	 * @param \Aimeos\MW\Container\Iface $container File container object
 	 * @param string $couponId Unique coupon ID the codes should be imported for
+	 * @param resource $fhandle File handle of file to import
 	 * @param string $path Path to the container file
 	 */
-	protected function process( \Aimeos\MShop\ContextIface $context, \Aimeos\MW\Container\Iface $container, string $couponId, string $path )
+	protected function process( \Aimeos\MShop\ContextIface $context, string $couponId, $fhandle, string $path )
 	{
 		$total = $errors = 0;
 		$logger = $context->logger();
@@ -355,40 +285,29 @@ class Standard
 		$mappings = $this->mapping();
 
 
-		$msg = sprintf( 'Started coupon import from "%1$s" (%2$s)', $path, __CLASS__ );
-		$logger->notice( $msg, 'import/csv/coupon/code' );
+		$logger->info( sprintf( 'Started coupon code import from "%1$s"', $path ), 'import/csv/couponcode' );
 
 		$processor = $this->getProcessors( $mappings );
 		$codePos = $this->getCodePosition( $mappings['code'] );
 
-		foreach( $container as $content )
-		{
-			for( $i = 0; $i < $skiplines; $i++ ) {
-				$content->next();
-			}
-
-			while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
-			{
-				$items = $this->getCouponCodeItems( array_keys( $data ) );
-				$errcnt = $this->import( $items, $data, $couponId, $processor );
-				$chunkcnt = count( $data );
-
-				$str = 'Imported coupon lines from "%1$s": %2$d/%3$d (%4$s)';
-				$msg = sprintf( $str, $path, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
-				$logger->notice( $msg, 'import/csv/coupon/code' );
-
-				$errors += $errcnt;
-				$total += $chunkcnt;
-				unset( $items, $data );
-			}
+		for( $i = 0; $i < $skiplines; $i++ ) {
+			fgetcsv( $fhandle );
 		}
 
-		$str = 'Finished coupon import: %1$d successful, %2$s errors, %3$s total (%4$s)';
-		$msg = sprintf( $str, $total - $errors, $errors, $total, __CLASS__ );
-		$logger->info( $msg, 'import/csv/coupon/code' );
+		while( ( $data = $this->getData( $fhandle, $maxcnt, $codePos ) ) !== [] )
+		{
+			$items = $this->getCouponCodeItems( array_keys( $data ) );
+			$errors += $this->import( $items, $data, $couponId, $processor );
 
-		$container->close();
+			$total += count( $data );
+			unset( $items, $data );
+		}
+
+		fclose( $fhandle );
 		$context->fs( 'fs-import' )->rm( $path );
+
+		$str = 'Finished coupon import: %1$d successful, %2$s errors, %3$s total';
+		$logger->info( sprintf( $str, $total - $errors, $errors, $total ), 'import/csv/couponcode' );
 	}
 
 
@@ -409,8 +328,7 @@ class Standard
 		 *
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2017.10
-		 * @category Developer
-		 * @see controller/jobs/coupon/import/csv/code/skip-lines
+			 * @see controller/jobs/coupon/import/csv/code/skip-lines
 		 * @see controller/jobs/coupon/import/csv/code/max-size
 		 */
 		return $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/mapping', $this->getDefaultMapping() );
@@ -436,8 +354,7 @@ class Standard
 		 *
 		 * @param integer Number of rows
 		 * @since 2017.10
-		 * @category Developer
-		 * @see controller/jobs/coupon/import/csv/code/skip-lines
+			 * @see controller/jobs/coupon/import/csv/code/skip-lines
 		 * @see controller/jobs/coupon/import/csv/code/mapping
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/max-size', 1000 );
@@ -462,8 +379,7 @@ class Standard
 		 *
 		 * @param integer Number of rows
 		 * @since 2015.08
-		 * @category Developer
-		 * @see controller/jobs/coupon/import/csv/code/mapping
+			 * @see controller/jobs/coupon/import/csv/code/mapping
 		 * @see controller/jobs/coupon/import/csv/code/max-size
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/skip-lines', 0 );

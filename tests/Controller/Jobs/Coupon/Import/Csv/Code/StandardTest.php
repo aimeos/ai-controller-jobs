@@ -22,9 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context = \TestHelper::context();
 		$this->aimeos = \TestHelper::getAimeos();
-		$config = $this->context->config();
-
-		$config->set( 'controller/jobs/product/import/csv/skip-lines', 1 );
+		$this->context->config()->set( 'controller/jobs/coupon/import/csv/code/skip-lines', 1 );
 
 		$this->object = new \Aimeos\Controller\Jobs\Coupon\Import\Csv\Code\Standard( $this->context, $this->aimeos );
 	}
