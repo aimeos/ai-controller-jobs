@@ -487,7 +487,7 @@ msgstr "Kupon"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Kupon %1$s"
 
 msgid "Voucher related e-mails"
 msgstr "Kuponla ilgili e-postalar"
