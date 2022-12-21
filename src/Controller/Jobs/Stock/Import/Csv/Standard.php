@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2019.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/stock/import/csv/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/global
 	 * @see controller/jobs/stock/import/csv/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/excludes
 	 * @see controller/jobs/stock/import/csv/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/excludes
 	 * @see controller/jobs/stock/import/csv/decorators/global
@@ -166,46 +162,35 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
+		$process = $context->process();
+
 		$location = $this->location();
+		$fs = $context->fs( 'fs-import' );
+
+		if( $fs->isDir( $location ) === false ) {
+			return;
+		}
 
 		try
 		{
 			$logger->info( sprintf( 'Started stock import from "%1$s"', $location ), 'import/csv/stock' );
 
-			if( !file_exists( $location ) )
-			{
-				$msg = sprintf( 'File or directory "%1$s" doesn\'t exist', $location );
-				throw new \Aimeos\Controller\Jobs\Exception( $msg );
-			}
-
-			$files = [];
-
-			if( is_dir( $location ) )
-			{
-				foreach( new \DirectoryIterator( $location ) as $entry )
-				{
-					if( strncmp( $entry->getFilename(), 'stock', 5 ) === 0 && $entry->getExtension() === 'csv' ) {
-						$files[] = $entry->getPathname();
-					}
-				}
-			}
-			else
-			{
-				$files[] = $location;
-			}
-
-			sort( $files );
-			$context->__sleep();
-
-			$fcn = function( $filepath ) {
-				$this->import( $filepath );
+			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
+				$this->import( $context, $path );
 			};
 
-			foreach( $files as $filepath ) {
-				$context->process()->start( $fcn, [$filepath] );
+			foreach( map( $fs->scan( $location ) )->sort() as $filename )
+			{
+				$path = $location . '/' . $filename;
+
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+					continue;
+				}
+
+				$process->start( $fcn, [$context, $path] );
 			}
 
-			$context->process()->wait();
+			$process->wait();
 
 			$logger->info( sprintf( 'Finished stock import from "%1$s"', $location ), 'import/csv/stock' );
 		}
@@ -241,10 +226,7 @@ class Standard
 		 * please have a look  into the PHP documentation of the
 		 * {@link https://www.php.net/manual/en/datetime.format.php format() method}.
 		 *
-		 * **Note:** If no backup name is configured, the file or directory
-		 * won't be moved away. Please make also sure that the parent directory
-		 * and the new directory are writable so the file or directory could be
-		 * moved.
+		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
@@ -252,93 +234,45 @@ class Standard
 		 * @see controller/jobs/stock/import/csv/max-size
 		 * @see controller/jobs/stock/import/csv/skip-lines
 		 */
-		return (string) $this->context()->config()->get( 'controller/jobs/stock/import/csv/backup' );
+		$backup = $this->context()->config()->get( 'controller/jobs/stock/import/csv/backup' );
+		return \Aimeos\Base\Str::strtime( (string) $backup );
 	}
 
 
 	/**
-	 * Executes the job.
+	 * Imports the CSV file given by its path
 	 *
-	 * @param string $filename Absolute path to the file that whould be imported
+	 * @param \Aimeos\MShop\ContextIface $context Context object
+	 * @param string $path Relative path to the CSV file in the file system
 	 */
-	protected function import( string $filename )
+	protected function import( \Aimeos\MShop\ContextIface $context, string $path )
 	{
 		$context = $this->context();
 		$logger = $context->logger();
 
-		$maxcnt = $this->max();
 		$skiplines = $this->skip();
-		$container = $this->getContainer( $filename );
+		$fs = $context->fs( 'fs-import' );
 
-		$logger->info( sprintf( 'Started stock import from file "%1$s"', $filename ), 'import/csv/stock' );
+		$logger->info( sprintf( 'Started stock import from file "%1$s"', $path ), 'import/csv/stock' );
 
-		foreach( $container as $content )
-		{
-			for( $i = 0; $i < $skiplines; $i++ ) {
-				$content->next();
-			}
+		$fh = $fs->reads( $path );
 
-			$this->importStocks( $content, $maxcnt );
+		for( $i = 0; $i < $skiplines; $i++ ) {
+			fgetcsv( $fh );
 		}
 
-		$logger->info( sprintf( 'Finished stock import from file "%1$s"', $filename ), 'import/csv/stock' );
+		$this->importStocks( $fh );
 
-		$container->close();
+		fclose( $fh );
 		$this->saveTypes();
 
-		if( !empty( $backup = $this->backup() ) && @rename( $filename, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
-		{
-			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $filename, $backup );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		if( !empty( $backup = $this->backup() ) ) {
+			$fs->move( $path, $backup );
+		} else {
+			$fs->rm( $path );
 		}
-	}
 
-
-	/**
-	 * Opens and returns the container which includes the stock data
-	 *
-	 * @param string $location Absolute path to the file
-	 * @return \Aimeos\MW\Container\Iface Container object
-	 */
-	protected function getContainer( string $location ) : \Aimeos\MW\Container\Iface
-	{
-		$config = $this->context()->config();
-
-		/** controller/jobs/stock/import/csv/container/type
-		 * Nave of the container type to read the data from
-		 *
-		 * The container type tells the importer how it should retrieve the data.
-		 * There are currently two container types that support the necessary
-		 * CSV content:
-		 *
-		 * * File
-		 * * Zip
-		 *
-		 * @param string Container type name
-		 * @since 2019.04
-		 * @category User
-		 * @see controller/jobs/stock/import/csv/location
-		 * @see controller/jobs/stock/import/csv/container/options
-		 */
-		$container = $config->get( 'controller/jobs/stock/import/csv/container/type', 'File' );
-
-		/** controller/jobs/stock/import/csv/container/options
-		 * List of file container options for the stock import files
-		 *
-		 * Some container/content type allow you to hand over additional settings
-		 * for configuration. Please have a look at the article about
-		 * {@link http://aimeos.org/docs/Developers/Utility/Create_and_read_files container/content files}
-		 * for more information.
-		 *
-		 * @param array Associative list of option name/value pairs
-		 * @since 2019.04
-		 * @category User
-		 * @see controller/jobs/stock/import/csv/location
-		 * @see controller/jobs/stock/import/csv/container/type
-		 */
-		$options = $config->get( 'controller/jobs/stock/import/csv/container/options', [] );
-
-		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, 'CSV', $options );
+		$logger->info( sprintf( 'Finished stock import from file "%1$s"', $path ), 'import/csv/stock' );
 	}
 
 
@@ -351,15 +285,10 @@ class Standard
 	 */
 	protected function getStockItems( array $ids, array $types ) : array
 	{
-		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context(), 'stock' );
+		$search = $manager->filter()->add( ['stock.productid' => $ids, 'stock.type' => $types] )->slice( 0, 10000 );
 
-		$search = $manager->filter()->slice( 0, 10000 );
-		$search->setConditions( $search->and( [
-			$search->compare( '==', 'stock.productid', $ids ),
-			$search->compare( '==', 'stock.type', $types )
-		] ) );
-
+		$map = [];
 		foreach( $manager->search( $search ) as $item ) {
 			$map[$item->getProductId()][$item->getType()] = $item;
 		}
@@ -371,28 +300,22 @@ class Standard
 	/**
 	 * Imports the CSV data and creates new stocks or updates existing ones
 	 *
-	 * @param \Aimeos\MW\Container\Content\Iface $content Content object
-	 * @param int $maxcnt Maximum number of stock levels imported at once
+	 * @param resource $fhandle File handle for the CSV file to import
 	 * @return int Number of imported stocks
 	 */
-	protected function importStocks( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt ) : int
+	protected function importStocks( $fhandle ) : int
 	{
 		$total = 0;
-		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'stock' );
-		$prodManager = \Aimeos\MShop::create( $context, 'product' );
 
 		do
 		{
 			$count = 0;
+			$max = $this->max();
 			$codes = $data = $types = [];
 
-			while( $content->valid() && $count < $maxcnt )
+			while( ( $row = fgetcsv( $fhandle ) ) !== false && $count < $max )
 			{
-				$row = $content->current();
-				$content->next();
-
-				if( $row[0] == '' ) {
+				if( $row[0] === '' ) {
 					continue;
 				}
 
@@ -405,43 +328,9 @@ class Standard
 				$count++;
 			}
 
-			if( $count === 0 ) {
-				break;
+			if( !empty( $data ) ) {
+				$this->update( $data, $codes, array_keys( $types ) );
 			}
-
-			$filter = $prodManager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
-			$products = $prodManager->search( $filter );
-			$prodMap = $products->col( null, 'product.code' );
-
-			$map = $this->getStockItems( $products->keys()->all(), array_keys( $types ) );
-			$items = [];
-
-			foreach( $data as $entry )
-			{
-				$code = $entry[0];
-				$type = $entry[2];
-
-				if( ( $product = $prodMap->get( $code ) ) === null ) {
-					continue;
-				}
-
-				$item = $map[$product->getId()][$type] ?? $manager->create();
-
-				$items[] = $item->setProductId( $product->getId() )->setType( $type )
-					->setStocklevel( $this->val( $entry, 1 ) )
-					->setDateBack( $this->val( $entry, 3 ) );
-
-				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
-					$product->setInStock( 1 );
-				}
-
-				$this->addType( 'stock/type', 'product', $type );
-				unset( $map[$code][$type] );
-			}
-
-			$prodManager->save( $products );
-			$manager->save( $items );
-			unset( $items );
 
 			$total += $count;
 		}
@@ -526,5 +415,54 @@ class Standard
 		 * @see controller/jobs/stock/import/csv/max-size
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/stock/import/csv/skip-lines', 0 );
+	}
+
+
+	/**
+	 * Updates the stock items
+	 *
+	 * @param array $data List of stock entries
+	 * @param array $codes List of product codes the stock items are associated to
+	 * @param array $types List of stock types which should be updated
+	 */
+	protected function update( array $data, array $codes, array $types )
+	{
+		$context = $this->context();
+		$manager = \Aimeos\MShop::create( $context, 'stock' );
+		$prodManager = \Aimeos\MShop::create( $context, 'product' );
+
+		$filter = $prodManager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
+		$products = $prodManager->search( $filter );
+		$prodMap = $products->col( null, 'product.code' );
+
+		$map = $this->getStockItems( $products->keys()->all(), $types );
+		$items = [];
+
+		foreach( $data as $entry )
+		{
+			$code = $entry[0];
+			$type = $entry[2];
+
+			if( ( $product = $prodMap->get( $code ) ) === null ) {
+				continue;
+			}
+
+			$item = $map[$product->getId()][$type] ?? $manager->create();
+
+			$items[] = $item->setProductId( $product->getId() )->setType( $type )
+				->setStocklevel( $this->val( $entry, 1 ) )
+				->setDateBack( $this->val( $entry, 3 ) );
+
+			if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
+				$product->setInStock( 1 );
+			}
+
+			$this->addType( 'stock/type', 'product', $type );
+			unset( $map[$code][$type] );
+		}
+
+		$prodManager->save( $products );
+		$manager->save( $items );
+		unset( $items );
 	}
 }
