@@ -60,12 +60,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$codes = ['job_csv_test', 'job_csv_test2'];
 
-		$convert = array(
-			1 => 'Text/LatinUTF8',
-		);
-
-		$this->context->config()->set( 'controller/jobs/supplier/import/csv/converter', $convert );
-
 		$this->object->run();
 
 		$result = $this->get( $codes, ['address', 'media', 'text'] );

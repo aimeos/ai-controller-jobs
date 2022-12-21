@@ -21,30 +21,6 @@ class Base
 	extends \Aimeos\Controller\Jobs\Base
 {
 	/**
-	 * Converts the CSV field data using the available converter objects
-	 *
-	 * @param array $convlist Associative list of CSV field indexes and converter objects
-	 * @param array $data Associative list of supplier codes and lists of CSV field indexes and their data
-	 * @return array Associative list of CSV field indexes and their converted data
-	 */
-	protected function convertData( array $convlist, array $data ) : array
-	{
-		foreach( $convlist as $idx => $converter )
-		{
-			foreach( $data as $code => $list )
-			{
-				if( isset( $list[$idx] ) )
-				{
-					$data[$code][$idx] = $converter->translate( $list[$idx] );
-				}
-			}
-		}
-
-		return $data;
-	}
-
-
-	/**
 	 * Returns the cache object for the given type
 	 *
 	 * @param string $type Type of the cached data
@@ -85,25 +61,6 @@ class Base
 		\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Supplier\\Import\\Csv\\Cache\\Iface', $object );
 
 		return $object;
-	}
-
-
-	/**
-	 * Returns the list of converter objects based on the given converter map
-	 *
-	 * @param array $convmap List of converter names for the values at the position in the CSV file
-	 * @return array Associative list of positions and converter objects
-	 */
-	protected function getConverterList( array $convmap ) : array
-	{
-		$convlist = [];
-
-		foreach( $convmap as $idx => $name )
-		{
-			$convlist[$idx] = \Aimeos\MW\Convert\Factory::createConverter( $name );
-		}
-
-		return $convlist;
 	}
 
 
@@ -220,6 +177,8 @@ class Base
 	 */
 	protected function getProcessors( array $mappings ) : \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface
 	{
+		unset( $mappings['item'] );
+
 		$context = $this->context();
 		$config = $context->config();
 		$object = new \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Done( $context, [] );
