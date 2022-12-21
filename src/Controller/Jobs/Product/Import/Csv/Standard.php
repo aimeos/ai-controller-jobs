@@ -212,8 +212,10 @@ class Standard
 				$logger->info( $str, 'import/csv/product' );
 
 
-				if( !empty( $backup = \Aimeos\Base\Str::strtime( $this->backup() ) ) ) {
+				if( !empty( $backup = $this->backup() ) ) {
 					$fs->move( $path, $backup );
+				} else {
+					$fs->rm( $path );
 				}
 
 				if( $errors > 0 ) {
@@ -255,10 +257,7 @@ class Standard
 		 * please have a look  into the PHP documentation of the
 		 * {@link https://www.php.net/manual/en/datetime.format.php format() method}.
 		 *
-		 * **Note:** If no backup name is configured, the file or directory
-		 * won't be moved away. Please make also sure that the parent directory
-		 * and the new directory are writable so the file or directory could be
-		 * moved.
+		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
@@ -268,7 +267,8 @@ class Standard
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
 		 */
-		return (string) $this->context()->config()->get( 'controller/jobs/product/import/csv/backup' );
+		$backup = $this->context()->config()->get( 'controller/jobs/product/import/csv/backup' );
+		return \Aimeos\Base\Str::strtime( (string) $backup );
 	}
 
 

@@ -104,6 +104,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunUpdate()
 	{
+		$fs = $this->context->fs( 'fs-import' );
+		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
+		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
+
 		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
 		$nondelete = array( 'attribute', 'product', 'catalog' );
 		$delete = array( 'media', 'price', 'text' );
