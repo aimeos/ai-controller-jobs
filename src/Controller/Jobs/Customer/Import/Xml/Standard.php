@@ -176,8 +176,8 @@ class Standard
 		{
 			$logger->info( sprintf( 'Started customer import from "%1$s"', $location ), 'import/xml/customer' );
 
-			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path, string $tmpfile ) {
-				$this->import( $context, $path, $tmpfile );
+			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
+				$this->import( $context, $path );
 			};
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
@@ -188,7 +188,7 @@ class Standard
 					continue;
 				}
 
-				$process->start( $fcn, [$context, $path, $fs->readf( $path )] );
+				$process->start( $fcn, [$context, $path] );
 			}
 
 			$process->wait();
@@ -272,9 +272,8 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param string $path Relative path to the XML file in the file system
-	 * @param string $tmpfile Local, absolute path to the temporary XML file
 	 */
-	protected function import( \Aimeos\MShop\ContextIface $context, string $path, string $tmpfile )
+	protected function import( \Aimeos\MShop\ContextIface $context, string $path )
 	{
 		$slice = 0;
 		$nodes = [];
@@ -284,6 +283,7 @@ class Standard
 
 		$logger = $context->logger();
 		$fs = $context->fs( 'fs-import' );
+		$tmpfile = $fs->readf( $path );
 
 		if( $xml->open( $tmpfile, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $tmpfile ) );
