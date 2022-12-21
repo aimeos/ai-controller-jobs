@@ -163,25 +163,14 @@ class Standard
 			return;
 		}
 
-		$mappings = $this->mapping();
-
-		if( !isset( $mappings['item'] ) || !is_array( $mappings['item'] ) )
-		{
-			$msg = sprintf( 'Required mapping key "%1$s" is missing or contains no array', 'item' );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
 		$total = $errors = 0;
 		$logger = $this->context()->logger();
 
 		try
 		{
-			$procMappings = $mappings;
-			unset( $procMappings['item'] );
-
+			$mappings = $this->mapping();
 			$codePos = $this->getCodePosition( $mappings['item'] );
-			$convlist = $this->getConverterList( $this->converters() );
-			$processor = $this->getProcessors( $procMappings );
+			$processor = $this->getProcessors( $mappings );
 			$catalogMap = $this->getCatalogMap( $this->domains() );
 			$container = $this->getContainer();
 			$path = $container->getName();
@@ -203,7 +192,6 @@ class Standard
 
 				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
 				{
-					$data = $this->convertData( $convlist, $data );
 					$errcnt = $this->import( $catalogMap, $data, $mappings['item'], $processor, $strict );
 					$chunkcnt = count( $data );
 
@@ -268,10 +256,7 @@ class Standard
 		 * please have a look  into the PHP documentation of the
 		 * {@link https://www.php.net/manual/en/datetime.format.php format() method}.
 		 *
-		 * **Note:** If no backup name is configured, the file or directory
-		 * won't be moved away. Please make also sure that the parent directory
-		 * and the new directory are writable so the file or directory could be
-		 * moved.
+		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
@@ -283,60 +268,8 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/skip-lines
 		 * @see controller/jobs/catalog/import/csv/strict
 		 */
-		return (string) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/backup' );
-	}
-
-
-	/**
-	 * Returns the list of converter names for the values at the position in the CSV file
-	 *
-	 * @return array List of converter names for the values at the position in the CSV file
-	 */
-	protected function converters() : array
-	{
-		/** controller/jobs/catalog/import/csv/converter
-		 * List of converter names for the values at the position in the CSV file
-		 *
-		 * Not all data in the CSV file is already in the required format. Maybe
-		 * the text encoding isn't UTF-8, the date is not in ISO format or something
-		 * similar. In order to convert the data before it's imported, you can
-		 * specify a list of converter objects that should be applied to the data
-		 * from the CSV file.
-		 *
-		 * To each field in the CSV file, you can apply one or more converters,
-		 * e.g. to encode a Latin text to UTF8 for the second CSV field:
-		 *
-		 *  [1 => 'Text/LatinUTF8']
-		 *
-		 * Similarly, you can also apply several converters at once to the same
-		 * field:
-		 *
-		 *  [1 => ['Text/LatinUTF8', 'DateTime/EnglishISO']]
-		 *
-		 * It would convert the data of the second CSV field first to UTF-8 and
-		 * afterwards try to translate it to an ISO date format.
-		 *
-		 * The available converter objects are named "\Aimeos\MW\Convert\<type>_<conversion>"
-		 * where <type> is the data type and <conversion> the way of the conversion.
-		 * In the configuration, the type and conversion must be separated by a
-		 * slash (<type>/<conversion>).
-		 *
-		 * **Note:** Keep in mind that the position of the CSV fields start at
-		 * zero (0). If you only need to convert a few fields, you don't have to
-		 * configure all fields. Only specify the positions in the array you
-		 * really need!
-		 *
-		 * @param array Associative list of position/converter name (or list of names) pairs
-		 * @since 2018.04
-		 * @see controller/jobs/catalog/import/csv/backup
-		 * @see controller/jobs/catalog/import/csv/domains
-		 * @see controller/jobs/catalog/import/csv/location
-		 * @see controller/jobs/catalog/import/csv/mapping
-		 * @see controller/jobs/catalog/import/csv/max-size
-		 * @see controller/jobs/catalog/import/csv/skip-lines
-		 * @see controller/jobs/catalog/import/csv/strict
-		 */
-		return (array) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/converter', [] );
+		$backup = $this->context()->config()->get( 'controller/jobs/catalog/import/csv/backup' );
+		return \Aimeos\Base\Str::strtime( (string) $backup );
 	}
 
 
@@ -669,7 +602,15 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/skip-lines
 		 * @see controller/jobs/catalog/import/csv/strict
 		 */
-		return (array) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/mapping', $this->getDefaultMapping() );
+		$map = (array) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/mapping', $this->getDefaultMapping() );
+
+		if( !isset( $map['item'] ) || !is_array( $map['item'] ) )
+		{
+			$msg = sprintf( 'Required mapping key "%1$s" is missing or contains no array', 'item' );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
+
+		return $map;
 	}
 
 
