@@ -184,7 +184,7 @@ class Standard
 			}
 
 			if( $errors > 0 ) {
-				$this->mail( 'Catalog CSV import', sprintf( 'Invalid catalog lines in "%1$s": %2$d/%3$d', $path, $errors, $total ) );
+				$this->mail( 'Catalog CSV import', sprintf( 'Invalid catalog lines during import: %1$d', $errors ) );
 			}
 		}
 		catch( \Exception $e )
@@ -429,7 +429,7 @@ class Standard
 						$item = $manager->insert( $item, $parentid );
 					}
 
-					$list = $processor->process( $item, $list );
+					$processor->process( $item, $list );
 					$catalogItems[$code] = $item;
 
 					$manager->save( $item );
