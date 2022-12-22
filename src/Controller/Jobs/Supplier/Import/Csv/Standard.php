@@ -308,7 +308,6 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
-		$fs = $context->fs( 'fs-import' );
 
 		$logger->info( sprintf( 'Started supplier import from "%1$s"', $path ), 'import/csv/supplier' );
 
@@ -320,8 +319,9 @@ class Standard
 		$processor = $this->getProcessors( $mappings );
 		$codePos = $this->getCodePosition( $mappings['item'] );
 
-		$total = $errors = 0;
+		$fs = $context->fs( 'fs-import' );
 		$fh = $fs->reads( $path );
+		$total = $errors = 0;
 
 		for( $i = 0; $i < $skiplines; $i++ ) {
 			fgetcsv( $fh );
