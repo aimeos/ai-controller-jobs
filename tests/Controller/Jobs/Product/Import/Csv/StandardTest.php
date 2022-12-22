@@ -26,10 +26,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$fs->has( 'product/valid' ) ?: $fs->mkdir( 'product/valid' );
 		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
-		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
 
 		$fs->has( 'product/position' ) ?: $fs->mkdir( 'product/position' );
-		$fs->writef( 'product/position/products.csv', __DIR__ . '/_testfiles/position/products.csv' );
 		$fs->writef( 'product/position/products.csv', __DIR__ . '/_testfiles/position/products.csv' );
 
 		$fs = $context->fs( 'fs-media' );
@@ -60,11 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
-		unset( $this->object );
-
-		if( file_exists( 'tmp/import.zip' ) ) {
-			unlink( 'tmp/import.zip' );
-		}
+		unset( $this->object, $this->context, $this->aimeos );
 	}
 
 
@@ -105,7 +99,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunUpdate()
 	{
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
 		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
 
 		$prodcodes = array( 'job_csv_test', 'job_csv_test2' );
