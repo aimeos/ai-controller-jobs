@@ -159,76 +159,39 @@ class Standard
 	 */
 	public function run()
 	{
-		if( file_exists( $this->location() ) === false ) {
-			return;
-		}
-
-		$total = $errors = 0;
-		$logger = $this->context()->logger();
+		$context = $this->context();
+		$logger = $context->logger();
 
 		try
 		{
-			$mappings = $this->mapping();
-			$codePos = $this->getCodePosition( $mappings['item'] );
-			$processor = $this->getProcessors( $mappings );
-			$catalogMap = $this->getCatalogMap( $this->domains() );
-			$container = $this->getContainer();
-			$path = $container->getName();
+			$errors = 0;
+			$location = $this->location();
+			$fs = $context->fs( 'fs-import' );
 
-			$maxcnt = $this->max();
-			$strict = $this->strict();
-			$skiplines = $this->skip();
-
-			$msg = sprintf( 'Started catalog import from "%1$s" (%2$s)', $path, __CLASS__ );
-			$logger->notice( $msg, 'import/csv/catalog' );
-
-			foreach( $container as $content )
-			{
-				$name = $content->getName();
-
-				for( $i = 0; $i < $skiplines; $i++ ) {
-					$content->next();
-				}
-
-				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
-				{
-					$errcnt = $this->import( $catalogMap, $data, $mappings['item'], $processor, $strict );
-					$chunkcnt = count( $data );
-
-					$str = 'Imported catalog lines from "%1$s": %2$d/%3$d (%4$s)';
-					$msg = sprintf( $str, $name, $chunkcnt - $errcnt, $chunkcnt, __CLASS__ );
-					$logger->notice( $msg, 'import/csv/catalog' );
-
-					$errors += $errcnt;
-					$total += $chunkcnt;
-					unset( $data );
-				}
+			if( $fs->isDir( $location ) === false ) {
+				return;
 			}
 
-			$container->close();
+			foreach( map( $fs->scan( $location ) )->sort() as $filename )
+			{
+				$path = $location . '/' . $filename;
+
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+					continue;
+				}
+
+				$errors = $this->import( $path );
+			}
+
+			if( $errors > 0 ) {
+				$this->mail( 'Catalog CSV import', sprintf( 'Invalid catalog lines in "%1$s": %2$d/%3$d', $path, $errors, $total ) );
+			}
 		}
 		catch( \Exception $e )
 		{
 			$logger->error( 'Catalog import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/catalog' );
 			$this->mail( 'Catalog CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
-		}
-
-		$str = 'Finished catalog import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
-		$msg = sprintf( $str, $path, $total - $errors, $errors, $total, __CLASS__ );
-		$logger->notice( $msg, 'import/csv/catalog' );
-
-		if( $errors > 0 )
-		{
-			$msg = sprintf( 'Invalid catalog lines in "%1$s": %2$d/%3$d', $path, $errors, $total );
-			$this->mail( 'Catalog CSV import error', $msg );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		if( !empty( $backup = $this->backup() ) && @rename( $path, $backup = \Aimeos\Base\Str::strtime( $backup ) ) === false )
-		{
-			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, $backup );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 	}
 
@@ -266,7 +229,6 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/mapping
 		 * @see controller/jobs/catalog/import/csv/max-size
 		 * @see controller/jobs/catalog/import/csv/skip-lines
-		 * @see controller/jobs/catalog/import/csv/strict
 		 */
 		$backup = $this->context()->config()->get( 'controller/jobs/catalog/import/csv/backup' );
 		return \Aimeos\Base\Str::strtime( (string) $backup );
@@ -297,7 +259,6 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/mapping
 		 * @see controller/jobs/catalog/import/csv/max-size
 		 * @see controller/jobs/catalog/import/csv/skip-lines
-		 * @see controller/jobs/catalog/import/csv/strict
 		 */
 		return $this->context()->config()->get( 'controller/jobs/catalog/import/csv/domains', ['media', 'text'] );
 	}
@@ -324,108 +285,18 @@ class Standard
 
 
 	/**
-	 * Opens and returns the container which includes the catalog data
-	 *
-	 * @return \Aimeos\MW\Container\Iface Container object
-	 */
-	protected function getContainer() : \Aimeos\MW\Container\Iface
-	{
-		$config = $this->context()->config();
-
-		/** controller/jobs/catalog/import/csv/location
-		 * File or directory where the content is stored which should be imported
-		 *
-		 * You need to configure the file or directory that acts as container
-		 * for the CSV files that should be imported. It should be an absolute
-		 * path to be sure but can be relative path if you absolutely know from
-		 * where the job will be executed from.
-		 *
-		 * The path can point to any supported container format as long as the
-		 * content is in CSV format, e.g.
-		 *
-		 * * Directory container / CSV file
-		 * * Zip container / compressed CSV file
-		 *
-		 * @param string Absolute file or directory path
-		 * @since 2018.04
-		 * @see controller/jobs/catalog/import/csv/container/type
-		 * @see controller/jobs/catalog/import/csv/container/content
-		 * @see controller/jobs/catalog/import/csv/container/options
-		 */
-		$location = $config->get( 'controller/jobs/catalog/import/csv/location' );
-
-		/** controller/jobs/catalog/import/csv/container/type
-		 * Nave of the container type to read the data from
-		 *
-		 * The container type tells the importer how it should retrieve the data.
-		 * There are currently three container types that support the necessary
-		 * CSV content:
-		 *
-		 * * Directory
-		 * * Zip
-		 *
-		 * @param string Container type name
-		 * @since 2018.04
-		 * @see controller/jobs/catalog/import/csv/location
-		 * @see controller/jobs/catalog/import/csv/container/content
-		 * @see controller/jobs/catalog/import/csv/container/options
-		 */
-		$container = $config->get( 'controller/jobs/catalog/import/csv/container/type', 'Directory' );
-
-		/** controller/jobs/catalog/import/csv/container/content
-		 * Name of the content type inside the container to read the data from
-		 *
-		 * The content type must always be a CSV-like format and there are
-		 * currently two format types that are supported:
-		 *
-		 * * CSV
-		 *
-		 * @param array Content type name
-		 * @since 2018.04
-		 * @see controller/jobs/catalog/import/csv/location
-		 * @see controller/jobs/catalog/import/csv/container/type
-		 * @see controller/jobs/catalog/import/csv/container/options
-		 */
-		$content = $config->get( 'controller/jobs/catalog/import/csv/container/content', 'CSV' );
-
-		/** controller/jobs/catalog/import/csv/container/options
-		 * List of file container options for the catalog import files
-		 *
-		 * Some container/content type allow you to hand over additional settings
-		 * for configuration. Please have a look at the article about
-		 * {@link http://aimeos.org/docs/Developers/Utility/Create_and_read_files container/content files}
-		 * for more information.
-		 *
-		 * @param array Associative list of option name/value pairs
-		 * @since 2018.04
-		 * @see controller/jobs/catalog/import/csv/location
-		 * @see controller/jobs/catalog/import/csv/container/content
-		 * @see controller/jobs/catalog/import/csv/container/type
-		 */
-		$options = $config->get( 'controller/jobs/catalog/import/csv/container/options', [] );
-
-		if( $location === null )
-		{
-			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/catalog/import/csv/location' );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
-	}
-
-
-	/**
 	 * Returns the catalog items building the tree as list
 	 *
+	 * @param array $codes List of catalog item codes
 	 * @param array $domains List of domain names whose items should be fetched too
 	 * @return array Associative list of catalog codes as keys and items implementing \Aimeos\MShop\Catalog\Item\Iface as values
 	 */
-	protected function getCatalogMap( array $domains ) : array
+	protected function getCategories( array $codes, array $domains ) : array
 	{
-		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
-		$search = $manager->filter()->slice( 0, 0x7fffffff );
+		$search = $manager->filter()->add( ['catalog.code' => $codes] )->slice( 0, count( $codes ) );
 
+		$map = [];
 		foreach( $manager->search( $search, $domains ) as $item ) {
 			$map[$item->getCode()] = $item;
 		}
@@ -437,12 +308,12 @@ class Standard
 	/**
 	 * Returns the parent ID of the catalog node for the given code
 	 *
-	 * @param array $catalogMap Associative list of catalog items with codes as keys and items implementing \Aimeos\MShop\Catalog\Item\Iface as values
+	 * @param array $catalogItems Associative list of catalog items with codes as keys and items implementing \Aimeos\MShop\Catalog\Item\Iface as values
 	 * @param array $map Associative list of catalog item key/value pairs
 	 * @param string $code Catalog item code of the parent category
 	 * @return string|null ID of the parent category or null for top level nodes
 	 */
-	protected function getParentId( array $catalogMap, array $map, string $code ) : ?string
+	protected function getParentId( array $catalogItems, array $map, string $code ) : ?string
 	{
 		if( !isset( $map['catalog.parent'] ) )
 		{
@@ -452,29 +323,81 @@ class Standard
 
 		$parent = trim( $map['catalog.parent'] );
 
-		if( $parent != '' && !isset( $catalogMap[$parent] ) )
+		if( $parent != '' && !isset( $catalogItems[$parent] ) )
 		{
 			$msg = sprintf( 'Parent node for code "%1$s" not found', $parent );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		return ( $parent != '' ? $catalogMap[$parent]->getId() : null );
+		return ( $parent != '' ? $catalogItems[$parent]->getId() : null );
+	}
+
+
+	/**
+	 * Imports the CSV file from the given path
+	 *
+	 * @param string $path Relative path to the CSV file
+	 * @return int Number of lines which couldn't be imported
+	 */
+	protected function import( string $path ) : int
+	{
+		$context = $this->context();
+		$logger = $context->logger();
+
+		$logger->info( sprintf( 'Started catalog import from "%1$s"', $path ), 'import/csv/catalog' );
+
+		$maxcnt = $this->max();
+		$skiplines = $this->skip();
+		$domains = $this->domains();
+
+		$mappings = $this->mapping();
+		$processor = $this->getProcessors( $mappings );
+		$codePos = $this->getCodePosition( $mappings['item'] );
+
+		$fs = $context->fs( 'fs-import' );
+		$fh = $fs->reads( $path );
+		$total = $errors = 0;
+
+		for( $i = 0; $i < $skiplines; $i++ ) {
+			fgetcsv( $fh );
+		}
+
+		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
+		{
+			$catalogItems = $this->getCategories( array_keys( $data ), $domains );
+			$errors += $this->importCategories( $catalogItems, $data, $mappings['item'], $processor );
+
+			$total += count( $data );
+			unset( $catalogItems, $data );
+		}
+
+		fclose( $fh );
+
+		if( !empty( $backup = $this->backup() ) ) {
+			$fs->move( $path, $backup );
+		} else {
+			$fs->rm( $path );
+		}
+
+		$str = sprintf( 'Finished catalog import from "%1$s" (%2$d/%3$d)', $path, $errors, $total );
+		$logger->info( $str, 'import/csv/catalog' );
+
+		return $errors;
 	}
 
 
 	/**
 	 * Imports the CSV data and creates new categories or updates existing ones
 	 *
-	 * @param array &$catalogMap Associative list of catalog items with codes as keys and items implementing \Aimeos\MShop\Catalog\Item\Iface as values
+	 * @param array $catalogItems Associative list of catalog items with codes as keys and items implementing \Aimeos\MShop\Catalog\Item\Iface as values
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor Processor object
-	 * @param bool $strict Log columns not mapped or silently ignore them
 	 * @return int Number of catalogs that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
-	protected function import( array &$catalogMap, array $data, array $mapping,
-		\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor, bool $strict ) : int
+	protected function importCategories( array $catalogItems, array $data, array $mapping,
+		\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$errors = 0;
 		$context = $this->context();
@@ -487,23 +410,16 @@ class Standard
 			try
 			{
 				$code = trim( $code );
+				$item = $catalogItems[$code] ?? $manager->create();
+				$map = current( $this->getMappedChunk( $list, $mapping ) ); // there can only be one chunk for the base catalog data
 
-				if( isset( $catalogMap[$code] ) ) {
-					$item = $catalogMap[$code];
-				} else {
-					$item = $manager->create();
-				}
-
-				$map = $this->getMappedChunk( $list, $mapping );
-
-				if( isset( $map[0] ) )
+				if( $map )
 				{
-					$map = $map[0]; // there can only be one chunk for the base catalog data
 					$map['catalog.config'] = json_decode( $map['catalog.config'] ?? '[]', true ) ?: [];
-					$parentid = $this->getParentId( $catalogMap, $map, $code );
+					$parentid = $this->getParentId( $catalogItems, $map, $code );
 					$item->fromArray( $map, true );
 
-					if( isset( $catalogMap[$code] ) )
+					if( isset( $catalogItems[$code] ) )
 					{
 						$manager->move( $item->getId(), $item->getParentId(), $parentid );
 						$item = $manager->save( $item );
@@ -514,7 +430,7 @@ class Standard
 					}
 
 					$list = $processor->process( $item, $list );
-					$catalogMap[$code] = $item;
+					$catalogItems[$code] = $item;
 
 					$manager->save( $item );
 				}
@@ -530,10 +446,6 @@ class Standard
 				$context->logger()->error( $msg, 'import/csv/catalog' );
 
 				$errors++;
-			}
-
-			if( $strict && !empty( $list ) ) {
-				$context->logger()->error( 'Not imported: ' . print_r( $list, true ), 'import/csv/catalog' );
 			}
 		}
 
@@ -600,7 +512,6 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/max-size
 		 * @see controller/jobs/catalog/import/csv/skip-lines
-		 * @see controller/jobs/catalog/import/csv/strict
 		 */
 		$map = (array) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/mapping', $this->getDefaultMapping() );
 
@@ -639,7 +550,6 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/mapping
 		 * @see controller/jobs/catalog/import/csv/skip-lines
-		 * @see controller/jobs/catalog/import/csv/strict
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/max-size', 1000 );
 	}
@@ -669,37 +579,7 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/mapping
 		 * @see controller/jobs/catalog/import/csv/max-size
-		 * @see controller/jobs/catalog/import/csv/strict
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/skip-lines', 0 );
-	}
-
-
-	/**
-	 * Returns if all columns from the file should be logged that are not mapped and therefore not imported
-	 */
-	protected function strict() : bool
-	{
-		/** controller/jobs/catalog/import/csv/strict
-		 * Log all columns from the file that are not mapped and therefore not imported
-		 *
-		 * Depending on the mapping, there can be more columns in the CSV file
-		 * than those which will be imported. This can be by purpose if you want
-		 * to import only selected columns or if you've missed to configure one
-		 * or more columns. This configuration option will log all columns that
-		 * have not been imported if set to true. Otherwise, the left over fields
-		 * in the imported line will be silently ignored.
-		 *
-		 * @param boolen True if not imported columns should be logged, false if not
-		 * @since 2015.08
-		 * @see controller/jobs/catalog/import/csv/backup
-		 * @see controller/jobs/catalog/import/csv/converter
-		 * @see controller/jobs/catalog/import/csv/domains
-		 * @see controller/jobs/catalog/import/csv/location
-		 * @see controller/jobs/catalog/import/csv/mapping
-		 * @see controller/jobs/catalog/import/csv/max-size
-		 * @see controller/jobs/catalog/import/csv/skip-lines
-		 */
-		return (bool) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/strict', true );
 	}
 }
