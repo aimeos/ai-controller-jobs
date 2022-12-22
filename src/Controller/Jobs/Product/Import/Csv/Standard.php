@@ -165,20 +165,13 @@ class Standard
 
 		try
 		{
+			$errors = 0;
 			$location = $this->location();
 			$fs = $context->fs( 'fs-import' );
 
 			if( $fs->isDir( $location ) === false ) {
 				return;
 			}
-
-			$maxcnt = $this->max();
-			$skiplines = $this->skip();
-			$domains = $this->domains();
-
-			$mappings = $this->mapping();
-			$processor = $this->getProcessors( $mappings );
-			$codePos = $this->getCodePosition( $mappings['item'] );
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
@@ -188,42 +181,12 @@ class Standard
 					continue;
 				}
 
-				$logger->info( sprintf( 'Started product import from "%1$s"', $path ), 'import/csv/product' );
-
-				$total = $errors = 0;
-				$fh = $fs->reads( $path );
-
-				for( $i = 0; $i < $skiplines; $i++ ) {
-					fgetcsv( $fh );
-				}
-
-				while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
-				{
-					$products = $this->getProducts( array_keys( $data ), $domains );
-					$errors += $this->import( $products, $data, $mappings['item'], [], $processor );
-
-					$total += count( $data );
-					unset( $products, $data );
-				}
-
-				fclose( $fh );
-
-				$str = sprintf( 'Finished product import from "%1$s" (%2$d/%3$d)', $path, $errors, $total );
-				$logger->info( $str, 'import/csv/product' );
-
-
-				if( !empty( $backup = $this->backup() ) ) {
-					$fs->move( $path, $backup );
-				} else {
-					$fs->rm( $path );
-				}
-
-				if( $errors > 0 ) {
-					$this->mail( 'Product CSV import', sprintf( 'Invalid product lines in "%1$s": %2$d/%3$d', $path, $errors, $total ) );
-				}
+				$errors = $this->import( $path );
 			}
 
-			$processor->finish();
+			if( $errors > 0 ) {
+				$this->mail( 'Product CSV import', sprintf( 'Invalid product lines in "%1$s": %2$d/%3$d', $path, $errors, $total ) );
+			}
 		}
 		catch( \Exception $e )
 		{
@@ -361,6 +324,60 @@ class Standard
 
 
 	/**
+	 * Imports the CSV file from the given path
+	 *
+	 * @param string $path Relative path to the CSV file
+	 * @return int Number of lines which couldn't be imported
+	 */
+	protected function import( string $path ) : int
+	{
+		$context = $this->context();
+		$logger = $context->logger();
+
+		$logger->info( sprintf( 'Started product import from "%1$s"', $path ), 'import/csv/product' );
+
+		$maxcnt = $this->max();
+		$skiplines = $this->skip();
+		$domains = $this->domains();
+
+		$mappings = $this->mapping();
+		$processor = $this->getProcessors( $mappings );
+		$codePos = $this->getCodePosition( $mappings['item'] );
+
+		$fs = $context->fs( 'fs-import' );
+		$fh = $fs->reads( $path );
+		$total = $errors = 0;
+
+		for( $i = 0; $i < $skiplines; $i++ ) {
+			fgetcsv( $fh );
+		}
+
+		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
+		{
+			$products = $this->getProducts( array_keys( $data ), $domains );
+			$errors += $this->importProducts( $products, $data, $mappings['item'], [], $processor );
+
+			$total += count( $data );
+			unset( $products, $data );
+		}
+
+		$processor->finish();
+		fclose( $fh );
+
+		if( !empty( $backup = $this->backup() ) ) {
+			$fs->move( $path, $backup );
+		} else {
+			$fs->rm( $path );
+		}
+
+		$str = sprintf( 'Finished product import from "%1$s" (%2$d/%3$d)', $path, $errors, $total );
+		$logger->info( $str, 'import/csv/product' );
+
+		return $errors;
+	}
+
+
+	/**
 	 * Imports the CSV data and creates new products or updates existing ones
 	 *
 	 * @param \Aimeos\Map $products List of products items implementing \Aimeos\MShop\Product\Item\Iface
@@ -371,7 +388,7 @@ class Standard
 	 * @return int Number of products that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
-	protected function import( \Aimeos\Map $products, array $data, array $mapping, array $types,
+	protected function importProducts( \Aimeos\Map $products, array $data, array $mapping, array $types,
 		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$items = [];

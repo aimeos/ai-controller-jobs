@@ -145,6 +145,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunProcessorInvalidMapping()
 	{
+		$config = $this->context->config();
+		$config->set( 'controller/jobs/product/import/csv/location', 'product' );
+
 		$mapping = array(
 			'media' => array(
 					8 => 'media.url',
