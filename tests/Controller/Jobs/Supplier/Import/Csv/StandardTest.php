@@ -100,11 +100,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs = $this->context->fs( 'fs-import' );
 		$fs->writef( 'supplier/valid/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
 
+		$this->object->run();
+
+		$fs = $this->context->fs( 'fs-import' );
+		$fs->writef( 'supplier/valid/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
+
+		$this->object->run();
+
 		$codes = ['job_csv_test', 'job_csv_test2'];
-
-		$this->object->run();
-		$this->object->run();
-
 		$result = $this->get( $codes, ['address', 'media', 'text'] );
 		$addresses = $this->getAddresses( array_keys( $result ) );
 

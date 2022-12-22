@@ -364,7 +364,6 @@ class Standard
 	protected function importSuppliers( \Aimeos\Map $suppliers, array $data, array $mapping,
 		\Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $processor ) : int
 	{
-		$items = [];
 		$errors = 0;
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
