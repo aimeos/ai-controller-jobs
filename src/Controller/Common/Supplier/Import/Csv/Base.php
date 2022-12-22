@@ -67,21 +67,18 @@ class Base
 	/**
 	 * Returns the rows from the CSV file up to the maximum count
 	 *
-	 * @param \Aimeos\MW\Container\Content\Iface $content CSV content object
+	 * @param resource $fh File handle to CSV file
 	 * @param int $maxcnt Maximum number of rows that should be retrieved at once
-	 * @param int $codePos Column position which contains the unique supplier code (starting from 0)
-	 * @return array List of arrays with supplier codes as keys and list of values from the CSV file
+	 * @param int $codePos Column position which contains the unique product code (starting from 0)
+	 * @return array List of arrays with product codes as keys and list of values from the CSV file
 	 */
-	protected function getData( \Aimeos\MW\Container\Content\Iface $content, int $maxcnt, int $codePos ) : array
+	protected function getData( $fh, int $maxcnt, int $codePos ) : array
 	{
 		$count = 0;
 		$data = [];
 
-		while( $content->valid() && $count++ < $maxcnt )
-		{
-			$row = $content->current();
+		while( ( $row = fgetcsv( $fh ) ) !== false && $count++ < $maxcnt ) {
 			$data[$row[$codePos]] = $row;
-			$content->next();
 		}
 
 		return $data;
@@ -153,8 +150,7 @@ class Base
 
 		foreach( $mapping as $pos => $key )
 		{
-			if( isset( $map[$idx][$key] ) )
-			{
+			if( isset( $map[$idx][$key] ) ) {
 				$idx++;
 			}
 

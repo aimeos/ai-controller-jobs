@@ -16,16 +16,40 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $aimeos;
 
 
+	public static function setUpBeforeClass() : void
+	{
+		$context = \TestHelper::context();
+
+		$fs = $context->fs( 'fs-import' );
+		$fs->has( 'supplier' ) ?: $fs->mkdir( 'supplier' );
+		$fs->writef( 'supplier/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
+
+		$fs->has( 'supplier/valid' ) ?: $fs->mkdir( 'supplier/valid' );
+		$fs->writef( 'supplier/valid/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
+
+		$fs->has( 'supplier/position' ) ?: $fs->mkdir( 'supplier/position' );
+		$fs->writef( 'supplier/position/suppliers.csv', __DIR__ . '/_testfiles/position/suppliers.csv' );
+
+		$fs = $context->fs( 'fs-media' );
+		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
+		$fs->write( 'path/to/file2.jpg', 'test' );
+		$fs->write( 'path/to/file.jpg', 'test' );
+
+		$fs = $context->fs( 'fs-mimeicon' );
+		$fs->write( 'unknown.png', 'icon' );
+	}
+
+
 	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 
-		$this->context = \TestHelper::context();
 		$this->aimeos = \TestHelper::getAimeos();
-		$config = $this->context->config();
+		$this->context = \TestHelper::context();
 
+		$config = $this->context->config();
 		$config->set( 'controller/jobs/supplier/import/csv/skip-lines', 1 );
-		$config->set( 'controller/jobs/supplier/import/csv/location', __DIR__ . '/_testfiles/valid' );
+		$config->set( 'controller/jobs/supplier/import/csv/location', 'supplier/valid' );
 
 		$this->object = new \Aimeos\Controller\Jobs\Supplier\Import\Csv\Standard( $this->context, $this->aimeos );
 	}
@@ -34,12 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
-		$this->object = null;
-
-		if( file_exists( 'tmp/import.zip' ) )
-		{
-			unlink( 'tmp/import.zip' );
-		}
+		unset( $this->object, $this->context, $this->aimeos );
 	}
 
 
@@ -78,6 +97,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunUpdate()
 	{
+		$fs = $this->context->fs( 'fs-import' );
+		$fs->writef( 'supplier/valid/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
+
 		$codes = ['job_csv_test', 'job_csv_test2'];
 
 		$this->object->run();
@@ -106,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mapping['item'] = array( 0 => 'supplier.label', 1 => 'supplier.code' );
 
 		$config->set( 'controller/jobs/supplier/import/csv/mapping', $mapping );
-		$config->set( 'controller/jobs/supplier/import/csv/location', __DIR__ . '/_testfiles/position' );
+		$config->set( 'controller/jobs/supplier/import/csv/location', 'supplier/position' );
 
 		$this->object->run();
 
@@ -119,6 +141,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunProcessorInvalidMapping()
 	{
+		$config = $this->context->config();
+		$config->set( 'controller/jobs/supplier/import/csv/location', 'supplier' );
+
 		$mapping = array(
 			'media' => array(
 				8 => 'media.url',
@@ -135,38 +160,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunBackup()
 	{
 		$config = $this->context->config();
-		$config->set( 'controller/jobs/supplier/import/csv/container/type', 'Zip' );
-		$config->set( 'controller/jobs/supplier/import/csv/location', 'tmp/import.zip' );
-		$config->set( 'controller/jobs/supplier/import/csv/backup', 'tmp/test-%Y-%m-%d.zip' );
-
-		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false )
-		{
-			throw new \RuntimeException( 'Unable to copy test file' );
-		}
+		$config->set( 'controller/jobs/supplier/import/csv/backup', 'backup-%Y-%m-%d.csv' );
+		$config->set( 'controller/jobs/supplier/import/csv/location', 'supplier' );
 
 		$this->object->run();
 
-		$filename = \Aimeos\Base\Str::strtime( 'tmp/test-%Y-%m-%d.zip' );
-		$this->assertTrue( file_exists( $filename ) );
+		$filename = \Aimeos\Base\Str::strtime( 'backup-%Y-%m-%d.csv' );
+		$this->assertTrue( $this->context->fs( 'fs-import' )->has( $filename ) );
 
-		unlink( $filename );
-	}
-
-
-	public function testRunBackupInvalid()
-	{
-		$config = $this->context->config();
-		$config->set( 'controller/jobs/supplier/import/csv/container/type', 'Zip' );
-		$config->set( 'controller/jobs/supplier/import/csv/location', 'tmp/import.zip' );
-		$config->set( 'controller/jobs/supplier/import/csv/backup', 'tmp/notexist/import.zip' );
-
-		if( copy( __DIR__ . '/_testfiles/import.zip', 'tmp/import.zip' ) === false )
-		{
-			throw new \RuntimeException( 'Unable to copy test file' );
-		}
-
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$this->object->run();
+		$this->context->fs( 'fs-import' )->rm( $filename );
 	}
 
 

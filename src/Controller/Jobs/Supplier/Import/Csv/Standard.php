@@ -157,67 +157,38 @@ class Standard
 	 */
 	public function run()
 	{
-		$total = $errors = 0;
 		$context = $this->context();
-		$logger = $context->logger();
-		$mappings = $this->mapping();
-		$maxcnt = $this->max();
-		$skiplines = $this->skip();
-
 
 		try
 		{
-			$codePos = $this->getCodePosition( $mappings['item'] );
-			$processor = $this->getProcessors( $mappings );
-			$supplierMap = $this->getSupplierMap( $this->domains() );
-			$container = $this->getContainer();
-			$path = $container->getName();
+			$errors = 0;
+			$location = $this->location();
+			$fs = $context->fs( 'fs-import' );
 
-
-			$msg = sprintf( 'Started supplier import from "%1$s" (%2$s)', $path, __CLASS__ );
-			$logger->notice( $msg, 'import/csv/supplier' );
-
-			foreach( $container as $content )
-			{
-				$name = $content->getName();
-
-				for( $i = 0; $i < $skiplines; $i++ )
-				{
-					$content->next();
-				}
-
-				while( ( $data = $this->getData( $content, $maxcnt, $codePos ) ) !== [] )
-				{
-					$errors += $this->import( $supplierMap, $data, $mappings['item'], $processor );
-					$total += count( $data );
-					unset( $data );
-				}
+			if( $fs->isDir( $location ) === false ) {
+				return;
 			}
 
-			$container->close();
+			foreach( map( $fs->scan( $location ) )->sort() as $filename )
+			{
+				$path = $location . '/' . $filename;
+
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+					continue;
+				}
+
+				$errors += $this->import( $path );
+			}
+
+			if( $errors > 0 ) {
+				$this->mail( 'Supplier CSV import', sprintf( 'Invalid supplier lines during import: %1$d', $errors ) );
+			}
 		}
 		catch( \Exception $e )
 		{
-			$logger->error( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/supplier' );
+			$context->logger()->error( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/supplier' );
 			$this->mail( 'Supplier CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
-		}
-
-		$str = 'Finished supplier import from "%1$s": %2$d successful, %3$s errors, %4$s total (%5$s)';
-		$msg = sprintf( $str, $path, $total - $errors, $errors, $total, __CLASS__ );
-		$logger->notice( $msg, 'import/csv/supplier' );
-
-		if( $errors > 0 )
-		{
-			$msg = sprintf( 'Invalid supplier lines in "%1$s": %2$d/%3$d', $path, $errors, $total );
-			$this->mail( 'Supplier CSV import error', $msg );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		if( !empty( $backup = $this->backup() ) && @rename( $path, $backup ) === false )
-		{
-			$msg = sprintf( 'Unable to move imported file "%1$s" to "%2$s"', $path, $backup );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 	}
 
@@ -271,7 +242,7 @@ class Standard
 		/** controller/jobs/supplier/import/csv/domains
 		 * List of item domain names that should be retrieved along with the supplier items
 		 *
-		 * For efficient processing, the items associated to the products can be
+		 * For efficient processing, the items associated to the suppliers can be
 		 * fetched to, minimizing the number of database queries required. To be
 		 * most effective, the list of item domain names should be used in the
 		 * mapping configuration too, so the retrieved items will be used during
@@ -312,111 +283,88 @@ class Standard
 
 
 	/**
-	 * Opens and returns the container which includes the supplier data
+	 * Returns the supplier items for the given codes
 	 *
-	 * @return \Aimeos\MW\Container\Iface Container object
+	 * @param array $codes List of supplier codes
+	 * @param array $domains List of domains whose items should be fetched too
+	 * @return \Aimeos\Map Associative list of supplier codes as key and supplier items as value
 	 */
-	protected function getContainer() : \Aimeos\MW\Container\Iface
+	protected function getSuppliers( array $codes, array $domains ) : \Aimeos\Map
 	{
-		$config = $this->context()->config();
+		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
+		$search = $manager->filter()->add( ['supplier.code' => $codes] )->slice( 0, count( $codes ) );
 
-		/** controller/jobs/supplier/import/csv/container/type
-		 * Nave of the container type to read the data from
-		 *
-		 * The container type tells the importer how it should retrieve the data.
-		 * There are currently three container types that support the necessary
-		 * CSV content:
-		 *
-		 * * Directory
-		 * * Zip
-		 *
-		 * @param string Container type name
-		 * @since 2020.07
-		 * @category User
-		 * @see controller/jobs/supplier/import/csv/location
-		 * @see controller/jobs/supplier/import/csv/container/content
-		 * @see controller/jobs/supplier/import/csv/container/options
-		 */
-		$container = $config->get( 'controller/jobs/supplier/import/csv/container/type', 'Directory' );
-
-		/** controller/jobs/supplier/import/csv/container/content
-		 * Name of the content type inside the container to read the data from
-		 *
-		 * The content type must always be a CSV-like format and there are
-		 * currently two format types that are supported:
-		 *
-		 * * CSV
-		 *
-		 * @param array Content type name
-		 * @since 2020.07
-		 * @category User
-		 * @see controller/jobs/supplier/import/csv/location
-		 * @see controller/jobs/supplier/import/csv/container/type
-		 * @see controller/jobs/supplier/import/csv/container/options
-		 */
-		$content = $config->get( 'controller/jobs/supplier/import/csv/container/content', 'CSV' );
-
-		/** controller/jobs/supplier/import/csv/container/options
-		 * List of file container options for the supplier import files
-		 *
-		 * Some container/content type allow you to hand over additional settings
-		 * for configuration. Please have a look at the article about
-		 * {@link http://aimeos.org/docs/Developers/Utility/Create_and_read_files container/content files}
-		 * for more information.
-		 *
-		 * @param array Associative list of option name/value pairs
-		 * @since 2020.07
-		 * @category User
-		 * @see controller/jobs/supplier/import/csv/location
-		 * @see controller/jobs/supplier/import/csv/container/content
-		 * @see controller/jobs/supplier/import/csv/container/type
-		 */
-		$options = $config->get( 'controller/jobs/supplier/import/csv/container/options', [] );
-
-		if( empty( $location = $this->location() ) )
-		{
-			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'controller/jobs/supplier/import/csv/location' );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
+		return $manager->search( $search, $domains )->col( null, 'supplier.code' );
 	}
 
 
 	/**
-	 * Returns the supplier items building the tree as list
+	 * Imports the CSV file from the given path
 	 *
-	 * @param array $domains List of domain names whose items should be fetched too
-	 * @return array Associative list of supplier codes as keys and items implementing \Aimeos\MShop\Supplier\Item\Iface as values
+	 * @param string $path Relative path to the CSV file
+	 * @return int Number of lines which couldn't be imported
 	 */
-	protected function getSupplierMap( array $domains ) : array
+	protected function import( string $path ) : int
 	{
-		$map = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
-		$search = $manager->filter()->slice( 0, 0x7fffffff );
+		$context = $this->context();
+		$logger = $context->logger();
+		$fs = $context->fs( 'fs-import' );
 
-		foreach( $manager->search( $search, $domains ) as $item )
-		{
-			$map[$item->getCode()] = $item;
+		$logger->info( sprintf( 'Started supplier import from "%1$s"', $path ), 'import/csv/supplier' );
+
+		$maxcnt = $this->max();
+		$skiplines = $this->skip();
+		$domains = $this->domains();
+
+		$mappings = $this->mapping();
+		$processor = $this->getProcessors( $mappings );
+		$codePos = $this->getCodePosition( $mappings['item'] );
+
+		$total = $errors = 0;
+		$fh = $fs->reads( $path );
+
+		for( $i = 0; $i < $skiplines; $i++ ) {
+			fgetcsv( $fh );
 		}
 
-		return $map;
+		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
+		{
+			$suppliers = $this->getSuppliers( array_keys( $data ), $domains );
+			$errors += $this->importSuppliers( $suppliers, $data, $mappings['item'], $processor );
+
+			$total += count( $data );
+			unset( $suppliers, $data );
+		}
+
+		fclose( $fh );
+
+		if( !empty( $backup = $this->backup() ) ) {
+			$fs->move( $path, $backup );
+		} else {
+			$fs->rm( $path );
+		}
+
+		$str = sprintf( 'Finished supplier import from "%1$s" (%2$d/%3$d)', $path, $errors, $total );
+		$logger->info( $str, 'import/csv/supplier' );
+
+		return $errors;
 	}
 
 
 	/**
 	 * Imports the CSV data and creates new suppliers or updates existing ones
 	 *
-	 * @param array &$supplierMap Associative list of supplier items with codes as keys and items implementing \Aimeos\MShop\Supplier\Item\Iface as values
+	 * @param \Aimeos\Map $suppliers Associative list of supplier items with codes as keys and items implementing \Aimeos\MShop\Supplier\Item\Iface as values
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param \Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $processor Processor object
 	 * @return int Number of suppliers that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
-	protected function import( array &$supplierMap, array $data, array $mapping,
+	protected function importSuppliers( \Aimeos\Map $suppliers, array $data, array $mapping,
 		\Aimeos\Controller\Common\Supplier\Import\Csv\Processor\Iface $processor ) : int
 	{
+		$items = [];
 		$errors = 0;
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
@@ -428,24 +376,15 @@ class Standard
 			try
 			{
 				$code = trim( $code );
+				$item = $suppliers[$code] ?? $manager->create();
+				$map = current( $this->getMappedChunk( $list, $mapping ) ); // there can only be one chunk for the base supplier data
 
-				if( isset( $supplierMap[$code] ) )
+				if( $map )
 				{
-					$item = $supplierMap[$code];
-				} else
-				{
-					$item = $manager->create();
-				}
-
-				$map = $this->getMappedChunk( $list, $mapping );
-
-				if( isset( $map[0] ) )
-				{
-					$map = $map[0]; // there can only be one chunk for the base supplier data
 					$item->fromArray( $map, true );
 
 					$list = $processor->process( $item, $list );
-					$supplierMap[$code] = $item;
+					$suppliers[$code] = $item;
 
 					$manager->save( $item );
 				}
