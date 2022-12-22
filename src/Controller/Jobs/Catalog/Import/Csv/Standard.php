@@ -441,8 +441,7 @@ class Standard
 			{
 				$manager->rollback();
 
-				$str = 'Unable to import catalog with code "%1$s": %2$s';
-				$msg = sprintf( $str, $code, $e->getMessage() . "\n" . $e->getTraceAsString() );
+				$msg = sprintf( 'Unable to import catalog with code "%1$s": %2$s', $code, $e->getMessage() );
 				$context->logger()->error( $msg, 'import/csv/catalog' );
 
 				$errors++;

@@ -182,7 +182,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object = new \Aimeos\Controller\Jobs\Catalog\Import\Csv\Standard( $this->context, $this->aimeos );
 
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
 	}
 
