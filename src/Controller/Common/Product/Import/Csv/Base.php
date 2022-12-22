@@ -72,8 +72,8 @@ class Base
 	 */
 	protected function getData( $fh, int $maxcnt, int $codePos ) : array
 	{
-		$count = 0;
 		$data = [];
+		$count = 0;
 
 		while( ( $row = fgetcsv( $fh ) ) !== false && $count++ < $maxcnt ) {
 			$data[$row[$codePos]] = $row;

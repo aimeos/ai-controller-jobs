@@ -185,7 +185,7 @@ class Standard
 			}
 
 			if( $errors > 0 ) {
-				$this->mail( 'Product CSV import', sprintf( 'Invalid product lines in "%1$s": %2$d/%3$d', $path, $errors, $total ) );
+				$this->mail( 'Product CSV import', sprintf( 'Invalid product lines during import: %1$d', $errors ) );
 			}
 		}
 		catch( \Exception $e )
