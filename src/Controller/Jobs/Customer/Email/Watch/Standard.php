@@ -176,7 +176,7 @@ class Standard
 
 		do
 		{
-			$customers = $manager->search( $search->slice( $start ), ['product' => ['watch']] );
+			$customers = $manager->search( $search->slice( $start ), ['product' => ['watch'], 'price'] );
 			$customers = $this->notify( $customers );
 			$customers = $manager->save( $customers );
 
@@ -259,8 +259,8 @@ class Standard
 					$prices = $product->getRefItems( 'price', 'default', 'default' );
 					$price = $priceManager->getLowestPrice( $prices, 1, $config['currency'] ?? null );
 
-					if( $config['stock'] ?? null || $config['price'] ?? null
-						&& $product->inStock() && ( $config['pricevalue'] ?? 0 ) > $price->getValue()
+					if( ( $config['stock'] ?? null ) && $product->inStock()
+						|| ( $config['price'] ?? null ) && ( $config['pricevalue'] ?? 0 ) > $price->getValue()
 					) {
 						$result[$id] = $product->set( 'price', $price );
 					}
@@ -333,8 +333,12 @@ class Standard
 	 */
 	protected function sites( string $siteId = null ) : \Aimeos\Map
 	{
-		if( !$siteId && !isset( $this->sites[''] ) ) {
-			$this->sites[''] = map( \Aimeos\MShop::create( $this->context(), 'locale/site' )->find( 'default' ) );
+		$manager = \Aimeos\MShop::create( $this->context(), 'locale/site' );
+
+		if( !$siteId && !isset( $this->sites[''] ) )
+		{
+			$default = $this->context()->config()->get( 'mshop/locale/site', 'default' );
+			$this->sites[''] = map( $manager->find( $default ) );
 		}
 
 		if( !isset( $this->sites[(string) $siteId] ) )
