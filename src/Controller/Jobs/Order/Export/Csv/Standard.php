@@ -18,7 +18,7 @@ namespace Aimeos\Controller\Jobs\Order\Export\Csv;
  * @subpackage Jobs
  */
 class Standard
-	extends \Aimeos\Controller\Jobs\Order\Export\Csv\Base
+	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
 	/** controller/jobs/order/export/csv/name
@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2015.01
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/export/csv/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/global
 	 * @see controller/jobs/order/export/csv/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/excludes
 	 * @see controller/jobs/order/export/csv/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/excludes
 	 * @see controller/jobs/order/export/csv/decorators/global
@@ -162,47 +158,42 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
-		$logger = $context->logger();
-		$mappings = $this->getDefaultMapping();
+		$mq = $context->queue( 'mq-admin', 'order-export' );
+
+		while( $msg = $mq->get() )
+		{
+			try
+			{
+				$body = $msg->getBody();
+
+				if( ( $data = json_decode( $body, true ) ) === null ) {
+					throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid message: %1$s', $body ) );
+				}
+
+				$this->export( $data );
+			}
+			catch( \Exception $e )
+			{
+echo $e->getMessage() . "\n" . $e->getTraceAsString() . PHP_EOL;
+				$str = 'Order export error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+				$context->logger()->error( $str, 'order/export/csv' );
+			}
+
+			$mq->del( $msg );
+		}
+	}
 
 
-		/** controller/common/order/export/csv/mapping
-		 * List of mappings between the position in the CSV file and item keys
-		 *
-		 * The exporter has to know which data is at which position in the CSV
-		 * file. Therefore, you need to specify a mapping between each position
-		 * and the MShop domain item key (e.g. "order.type") it represents.
-		 *
-		 * These mappings are grouped together by their processor names, which
-		 * are responsible for exporting the data, e.g. all mappings in "invoice"
-		 * will be managed by the invoice processor while the mappings in
-		 * "product" will be exported by the product processor.
-		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
-		 * @since 2017.08
-		 * @category Developer
-		 * @see controller/common/order/export/csv/max-size
-		 */
-		$mappings = $config->get( 'controller/common/order/export/csv/mapping', $mappings );
-
-		/** controller/jobs/order/export/csv/mapping
-		 * List of mappings between the position in the CSV file and item keys
-		 *
-		 * This configuration setting overwrites the shared option
-		 * "controller/common/order/export/csv/mapping" if you need a
-		 * specific setting for the job controller. Otherwise, you should
-		 * use the shared option for consistency.
-		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
-		 * @since 2017.08
-		 * @category Developer
-		 * @see controller/common/order/export/csv/max-size
-		 */
-		$mappings = $config->get( 'controller/jobs/order/export/csv/mapping', $mappings );
-
-
-		/** controller/common/order/export/csv/max-size
+	/**
+	 * Initializes the search criteria
+	 *
+	 * @param \Aimeos\Base\Criteria\Iface $criteria New criteria object
+	 * @param array $msg Message data
+	 * @return \Aimeos\Base\Criteria\Iface Initialized criteria object
+	 */
+	protected function criteria( \Aimeos\Base\Criteria\Iface $criteria, array $msg ) : \Aimeos\Base\Criteria\Iface
+	{
+		/** controller/jobs/order/export/csv/max-size
 		 * Maximum number of CSV rows to export at once
 		 *
 		 * It's more efficient to read and export more than one row at a time
@@ -213,196 +204,45 @@ class Standard
 		 * export speed.
 		 *
 		 * @param integer Number of rows
-		 * @since 2017.08
-		 * @category Developer
-		 * @see controller/common/order/export/csv/mapping
+		 * @since 2023.04
 		 */
-		$maxcnt = (int) $config->get( 'controller/common/order/export/csv/max-size', 1000 );
+		$size = (int) $this->context()->config()->get( 'controller/jobs/order/export/csv/max-size', 1000 );
 
-
-		$processed = [];
-		$processors = $this->getProcessors( $mappings );
-		$mq = $context->queue( 'mq-admin', 'order-export' );
-
-		while( $msg = $mq->get() )
-		{
-			try
-			{
-				$body = $msg->getBody();
-				$hash = md5( $body );
-
-				if( !isset( $processed[$hash] ) )
-				{
-					$processed[$hash] = true;
-
-					if( ( $data = json_decode( $body, true ) ) === null ) {
-						throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid message: %1$s', $body ) );
-					}
-
-					$this->export( $processors, $data, $maxcnt );
-				}
-			}
-			catch( \Exception $e )
-			{
-				$msg = 'Order export error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-				$logger->error( $msg, 'order/export/csv' );
-			}
-
-			$mq->del( $msg );
-		}
+		return $criteria->add( $criteria->parse( $msg['filter'] ?? [] ) )->order( $msg['sort'] ?? [] )->slice( 0, $size );
 	}
 
 
 	/**
-	 * Creates a new job entry for the exported file
+	 * Exports the orders
 	 *
-	 * @param \Aimeos\MShop\ContextIface $context Context item
-	 * @param string $path Absolute path to the exported file
-	 */
-	protected function addJob( \Aimeos\MShop\ContextIface $context, string $path )
-	{
-		$manager = \Aimeos\MAdmin::create( $context, 'job' );
-		$item = $manager->create()->setPath( $path )->setLabel( $path );
-		$manager->save( $item, false );
-	}
-
-
-	/**
-	 * Opens and returns the container which includes the order data
-	 *
-	 * @return \Aimeos\MW\Container\Iface Container object
-	 */
-	protected function getContainer() : \Aimeos\MW\Container\Iface
-	{
-		$config = $this->context()->config();
-
-		/** controller/jobs/order/export/csv/location
-		 * Temporary file or directory where the content is stored which should be exported
-		 *
-		 * The path can point to any supported container format as long as the
-		 * content is in CSV format, e.g.
-		 *
-		 * * Directory container / CSV file
-		 * * Zip container / compressed CSV file
-		 *
-		 * @param string Absolute file or directory path
-		 * @since 2017.08
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/order/export/csv/container/type
-		 * @see controller/jobs/order/export/csv/container/content
-		 * @see controller/jobs/order/export/csv/container/options
-		 */
-		$location = $config->get( 'controller/jobs/order/export/csv/location', sys_get_temp_dir() );
-
-		/** controller/jobs/order/export/csv/container/type
-		 * Nave of the container type to read the data from
-		 *
-		 * The container type tells the exporter how it should retrieve the data.
-		 * There are currently three container types that support the necessary
-		 * CSV content:
-		 *
-		 * * Directory
-		 * * Zip
-		 *
-		 * @param string Container type name
-		 * @since 2015.05
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/order/export/csv/location
-		 * @see controller/jobs/order/export/csv/container/content
-		 * @see controller/jobs/order/export/csv/container/options
-		 */
-		$container = $config->get( 'controller/jobs/order/export/csv/container/type', 'Directory' );
-
-		/** controller/jobs/order/export/csv/container/content
-		 * Name of the content type inside the container to read the data from
-		 *
-		 * The content type must always be a CSV-like format and there are
-		 * currently two format types that are supported:
-		 *
-		 * * CSV
-		 *
-		 * @param array Content type name
-		 * @since 2015.05
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/order/export/csv/location
-		 * @see controller/jobs/order/export/csv/container/type
-		 * @see controller/jobs/order/export/csv/container/options
-		 */
-		$content = $config->get( 'controller/jobs/order/export/csv/container/content', 'CSV' );
-
-		/** controller/jobs/order/export/csv/container/options
-		 * List of file container options for the order export files
-		 *
-		 * Some container/content type allow you to hand over additional settings
-		 * for configuration. Please have a look at the article about
-		 * {@link http://aimeos.org/docs/Developers/Utility/Create_and_read_files container/content files}
-		 * for more information.
-		 *
-		 * @param array Associative list of option name/value pairs
-		 * @since 2015.05
-		 * @category Developer
-		 * @category User
-		 * @see controller/jobs/order/export/csv/location
-		 * @see controller/jobs/order/export/csv/container/content
-		 * @see controller/jobs/order/export/csv/container/type
-		 */
-		$options = $config->get( 'controller/jobs/order/export/csv/container/options', [] );
-
-		return \Aimeos\MW\Container\Factory::getContainer( $location, $container, $content, $options );
-	}
-
-
-	/**
-	 * Exports the orders and returns the exported file name
-	 *
-	 * @param Aimeos\Controller\Common\Order\Export\Csv\Processor\Iface[] List of processor objects
 	 * @param array $msg Message data passed from the frontend
-	 * @param int $maxcnt Maximum number of retrieved orders at once
 	 */
-	protected function export( array $processors, array $msg, int $maxcnt )
+	protected function export( array $msg )
 	{
+		if( ( $fh = tmpfile() ) === false ) {
+			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to create temporary file' );
+		}
+
+		$path = $this->path();
 		$lcontext = $this->getLocaleContext( $msg );
-		$siteId = $lcontext->locale()->getSiteId();
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
+
+		$cursor = $manager->cursor( $this->criteria( $manager->filter( false, true ), $msg ) );
 		$ref = $lcontext->config()->get( 'mshop/order/manager/subdomains', [] );
 
-		$container = $this->getContainer();
-		$content = $container->create( 'order-export_' . date( 'Y-m-d_H-i-s' ) );
-
-		$search = $this->initCriteria( $manager->filter( false, true ), $msg );
-		$search->setSortations( array_merge( $search->getSortations(), [$search->sort( '+', 'order.id' )] ) );
-
-		$start = 0;
-
-		do
+		while( $items = $manager->iterate( $cursor, $ref ) )
 		{
-			$search->slice( $start, $maxcnt );
-			$items = $manager->search( $search, $ref );
-
-			foreach( $items as $id => $item )
-			{
-				foreach( $processors as $type => $processor )
-				{
-					foreach( $processor->process( $item, $siteId ) as $line ) {
-						$content->add( [0 => $type, 1 => $id] + $line );
-					}
-				}
+			if( fwrite( $fh, $this->render( $items ) ) === false ) {
+				throw new \Aimeos\Controller\Jobs\Exception( 'Unable to add data to temporary file' );
 			}
-
-			$count = count( $items );
-			$start += $count;
 		}
-		while( $count === $search->getLimit() );
 
-		$path = $content->getResource();
-		$container->add( $content );
-		$container->close();
+		rewind( $fh );
+		$lcontext->fs( 'fs-export' )->writes( $path, $fh );
+		fclose( $fh );
 
-		$path = $this->moveFile( $lcontext, $path );
-		$this->addJob( $lcontext, $path );
+		$manager = \Aimeos\MAdmin::create( $lcontext, 'job' );
+		$manager->save( $manager->create()->setPath( $path )->setLabel( $path ), false );
 	}
 
 
@@ -425,31 +265,41 @@ class Standard
 
 
 	/**
-	 * Initializes the search criteria
+	 * Returns the relative path the orders should be exported to
 	 *
-	 * @param \Aimeos\Base\Criteria\Iface $criteria New criteria object
-	 * @param array $msg Message data
-	 * @return \Aimeos\Base\Criteria\Iface Initialized criteria object
+	 * @return string Relativ path to the export file
 	 */
-	protected function initCriteria( \Aimeos\Base\Criteria\Iface $criteria, array $msg ) : \Aimeos\Base\Criteria\Iface
+	protected function path() : string
 	{
-		return $criteria->add( $criteria->parse( $msg['filter'] ?? [] ) )->order( $msg['sort'] ?? [] );
+		/** controller/jobs/order/export/csv/path
+		 * Relativ path to the export file
+		 *
+		 * It's more efficient to read and export more than one row at a time
+		 * to speed up the export. Usually, the bigger the chunk that is exported
+		 * at once, the less time the exporter will need. The downside is that
+		 * the amount of memory required by the export process will increase as
+		 * well. Therefore, it's a trade-off between memory consumption and
+		 * export speed.
+		 *
+		 * @param string Relativ path with placeholders
+		 * @since 2023.04
+		 */
+		$path = $this->context()->config()->get( 'controller/jobs/order/export/csv/path', 'order-export_%Y-%m-%d_%H-%i-%s' );
+		return \Aimeos\Base\Str::strtime( $path );
 	}
 
 
 	/**
-	 * Moves the exported file to the final storage
+	 * Creates the CSV file for the given orders
 	 *
-	 * @param \Aimeos\MShop\ContextIface $context Context item
-	 * @param string $path Absolute path to the exported file
-	 * @return string Relative path of the file in the storage
+	 * @param \Aimeos\MShop\Order\Item\Iface[] $orderItems List of order items to export
+	 * @return string Generated CSV
 	 */
-	protected function moveFile( \Aimeos\MShop\ContextIface $context, string $path ) : string
+	protected function render( iterable $orderItems ) : string
 	{
-		$filename = basename( $path );
-		$context->fs( 'fs-admin' )->writef( $filename, $path );
+		$context = $this->context();
+		$template = $context->config()->get( 'controller/jobs/order/export/csv/template', 'order/export/csv/body' );
 
-		unlink( $path );
-		return $filename;
+		return $context->view()->assign( ['orderItems' => $orderItems] )->render( $template );
 	}
 }
