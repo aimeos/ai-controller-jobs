@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2018.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/subscription/process/begin/decorators/excludes

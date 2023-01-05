@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.07
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/service/payment/decorators/excludes
@@ -204,8 +203,6 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2014.07
-		 * @category User
-		 * @category Developer
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/capture-days', null );
 		return $days ? date( 'Y-m-d 00:00:00', time() - 86400 * $days ) : null;
@@ -260,8 +257,6 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2014.07
-		 * @category User
-		 * @category Developer
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/limit-days', 90 );
 		return date( 'Y-m-d 00:00:00', time() - 86400 * $days );

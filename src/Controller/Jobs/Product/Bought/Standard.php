@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** controller/jobs/product/bought/decorators/excludes
@@ -76,7 +75,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2014.03
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/global
 	 * @see controller/jobs/product/bought/decorators/local
@@ -100,7 +98,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2014.03
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/excludes
 	 * @see controller/jobs/product/bought/decorators/local
@@ -126,7 +123,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2014.03
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/excludes
 	 * @see controller/jobs/product/bought/decorators/global
@@ -203,8 +199,6 @@ class Standard
 		 *
 		 * @param float Minimum confidence value from 0 to 1
 		 * @since 2014.09
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/limit-days
@@ -251,8 +245,6 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2014.09
-		 * @category User
-		 * @category Developer
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
@@ -292,8 +284,6 @@ class Standard
 		 *
 		 * @param integer Number of suggested products
 		 * @since 2014.09
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days
@@ -408,8 +398,6 @@ class Standard
 		 *
 		 * @param float Minimum support value from 0 to 1
 		 * @since 2014.09
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days

@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2017.01
-	 * @category Developer
 	 */
 
 	/** controller/jobs/media/scale/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/media/scale/decorators/global
 	 * @see controller/jobs/media/scale/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/media/scale/decorators/excludes
 	 * @see controller/jobs/media/scale/decorators/local
@@ -124,7 +121,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/media/scale/decorators/excludes
 	 * @see controller/jobs/media/scale/decorators/global
@@ -207,8 +203,6 @@ class Standard
 		 * to false or 0
 		 *
 		 * @param bool True to rescale all images, false for new ones only
-		 * @category Developer
-		 * @category User
 		 * @since 2019.10
 		 */
 		$force = $context->config()->get( 'controller/jobs/media/scale/force', true );

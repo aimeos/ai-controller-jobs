@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2018.04
-	 * @category Developer
 	 */
 
 	/** controller/jobs/subscription/export/csv/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/export/csv/decorators/global
 	 * @see controller/jobs/subscription/export/csv/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/export/csv/decorators/excludes
 	 * @see controller/jobs/subscription/export/csv/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2018.04
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/export/csv/decorators/excludes
 	 * @see controller/jobs/subscription/export/csv/decorators/global
@@ -181,7 +177,6 @@ class Standard
 		 *
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
-		 * @category Developer
 		 * @see controller/common/subscription/export/csv/max-size
 		 */
 		$mappings = $config->get( 'controller/common/subscription/export/csv/mapping', $mappings );
@@ -196,7 +191,6 @@ class Standard
 		 *
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
-		 * @category Developer
 		 * @see controller/common/subscription/export/csv/max-size
 		 */
 		$mappings = $config->get( 'controller/jobs/subscription/export/csv/mapping', $mappings );
@@ -214,7 +208,6 @@ class Standard
 		 *
 		 * @param integer Number of rows
 		 * @since 2018.04
-		 * @category Developer
 		 * @see controller/common/subscription/export/csv/mapping
 		 */
 		$maxcnt = (int) $config->get( 'controller/common/subscription/export/csv/max-size', 1000 );
@@ -278,8 +271,6 @@ class Standard
 		 *
 		 * @param string Absolute file or directory path
 		 * @since 2018.04
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/subscription/export/csv/container/type
 		 * @see controller/jobs/subscription/export/csv/container/content
 		 * @see controller/jobs/subscription/export/csv/container/options
@@ -298,8 +289,6 @@ class Standard
 		 *
 		 * @param string Container type name
 		 * @since 2015.05
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/subscription/export/csv/location
 		 * @see controller/jobs/subscription/export/csv/container/content
 		 * @see controller/jobs/subscription/export/csv/container/options
@@ -316,8 +305,6 @@ class Standard
 		 *
 		 * @param array Content type name
 		 * @since 2015.05
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/subscription/export/csv/location
 		 * @see controller/jobs/subscription/export/csv/container/type
 		 * @see controller/jobs/subscription/export/csv/container/options
@@ -334,8 +321,6 @@ class Standard
 		 *
 		 * @param array Associative list of option name/value pairs
 		 * @since 2015.05
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/subscription/export/csv/location
 		 * @see controller/jobs/subscription/export/csv/container/content
 		 * @see controller/jobs/subscription/export/csv/container/type

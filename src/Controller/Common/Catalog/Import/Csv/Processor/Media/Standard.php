@@ -29,7 +29,6 @@ class Standard
 	 *
 	 * @param string Last part of the processor class name
 	 * @since 2018.04
-	 * @category Developer
 	 */
 
 	private $listTypes;
@@ -58,8 +57,6 @@ class Standard
 		 *
 		 * @param array|null List of catalog list type names or null for all
 		 * @since 2018.04
-		 * @category Developer
-		 * @category User
 		 * @see controller/common/catalog/import/csv/domains
 		 * @see controller/common/catalog/import/csv/processor/attribute/listtypes
 		 * @see controller/common/catalog/import/csv/processor/catalog/listtypes

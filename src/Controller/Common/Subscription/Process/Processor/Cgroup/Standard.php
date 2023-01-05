@@ -29,7 +29,6 @@ class Standard
 	 *
 	 * @param string Last part of the processor class name
 	 * @since 2018.04
-	 * @category Developer
 	 */
 
 	private $groupIds;
@@ -55,7 +54,6 @@ class Standard
 		 *
 		 * @param array List of customer group IDs
 		 * @since 2018.04
-		 * @category Developer
 		 */
 		$this->groupIds = (array) $config->get( 'controller/common/subscription/process/processor/cgroup/groupids', [] );
 	}

@@ -130,7 +130,6 @@ abstract class Base
 		 *
 		 * @param string E-mail address
 		 * @since 2020.04
-		 * @category User
 		 * @see controller/jobs/from-email
 		 */
 		if( ( $to = $config->get( 'controller/jobs/to-email', $email ) ) == null ) {
@@ -152,7 +151,6 @@ abstract class Base
 		 *
 		 * @param string E-mail address
 		 * @since 2020.04
-		 * @category User
 		 * @see controller/jobs/to-email
 		 */
 		if( $from = $config->get( 'controller/jobs/from-email', $email ) ) {

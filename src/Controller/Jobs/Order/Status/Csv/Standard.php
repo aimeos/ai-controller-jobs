@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2021.10
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/status/csv/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2021.10
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/global
 	 * @see controller/jobs/order/status/csv/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2021.10
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/excludes
 	 * @see controller/jobs/order/status/csv/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2021.10
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/excludes
 	 * @see controller/jobs/order/status/csv/decorators/global

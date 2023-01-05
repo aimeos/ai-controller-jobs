@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/email/voucher/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/global
 	 * @see controller/jobs/order/email/voucher/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/excludes
 	 * @see controller/jobs/order/email/voucher/decorators/local
@@ -124,7 +121,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/excludes
 	 * @see controller/jobs/order/email/voucher/decorators/global
@@ -179,8 +175,6 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2018.07
-		 * @category User
-		 * @category Developer
 		 * @see controller/jobs/order/email/voucher/status
 		 */
 		$limit = $config->get( 'controller/jobs/order/email/voucher/limit-days', 30 );
@@ -201,8 +195,6 @@ class Standard
 		 *
 		 * @param integer Payment status constant
 		 * @since 2018.07
-		 * @category User
-		 * @category Developer
 		 * @see controller/jobs/order/email/voucher/limit-days
 		 */
 		$status = $config->get( 'controller/jobs/order/email/voucher/status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );

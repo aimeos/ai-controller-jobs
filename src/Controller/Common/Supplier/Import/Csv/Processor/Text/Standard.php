@@ -29,7 +29,6 @@ class Standard
 	 *
 	 * @param string Last part of the processor class name
 	 * @since 2020.07
-	 * @category Developer
 	 */
 
 	private $listTypes;
@@ -58,8 +57,6 @@ class Standard
 		 *
 		 * @param array|null List of supplier list type names or null for all
 		 * @since 2020.07
-		 * @category Developer
-		 * @category User
 		 * @see controller/common/supplier/import/csv/domains
 		 * @see controller/common/supplier/import/csv/processor/attribute/listtypes
 		 * @see controller/common/supplier/import/csv/processor/supplier/listtypes

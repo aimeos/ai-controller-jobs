@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** controller/jobs/customer/email/watch/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/watch/decorators/global
 	 * @see controller/jobs/customer/email/watch/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/watch/decorators/excludes
 	 * @see controller/jobs/customer/email/watch/decorators/local
@@ -124,7 +121,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/watch/decorators/excludes
 	 * @see controller/jobs/customer/email/watch/decorators/global

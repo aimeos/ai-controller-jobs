@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2019.02
-	 * @category Developer
 	 */
 
 	/** controller/jobs/catalog/export/sitemap/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.02
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/export/sitemap/decorators/global
 	 * @see controller/jobs/catalog/export/sitemap/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.02
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/export/sitemap/decorators/excludes
 	 * @see controller/jobs/catalog/export/sitemap/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.02
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/export/sitemap/export/sitemap/decorators/excludes
 	 * @see controller/jobs/catalog/export/sitemap/export/sitemap/decorators/global
@@ -277,7 +273,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating XML code for the site map index
 		 * @since 2019.02
-		 * @category Developer
 		 * @see controller/jobs/catalog/export/sitemap/template-header
 		 * @see controller/jobs/catalog/export/sitemap/template-items
 		 * @see controller/jobs/catalog/export/sitemap/template-footer
@@ -302,8 +297,6 @@ class Standard
 		 *
 		 * @param string Absolute URL
 		 * @since 2019.06
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/catalog/export/sitemap/container/options
 		 * @see controller/jobs/catalog/export/sitemap/max-items
 		 * @see controller/jobs/catalog/export/sitemap/max-query

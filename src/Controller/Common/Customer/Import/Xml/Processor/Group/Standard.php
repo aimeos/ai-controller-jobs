@@ -29,7 +29,6 @@ class Standard
 	 *
 	 * @param string Last part of the processor class name
 	 * @since 2019.04
-	 * @category Developer
 	 */
 
 	 private $groupManager;

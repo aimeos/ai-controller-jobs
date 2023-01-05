@@ -257,8 +257,6 @@ class Standard
 		 * decorators added to the coupon providers in the admin interface.
 		 *
 		 * @param boolean True to reuse coupon codes, false to remove coupons
-		 * @category Developer
-		 * @category User
 		 * @since 2018.10
 		 */
 		if( $context->config()->get( 'controller/jobs/subscription/process/renew/use-coupons', false ) )

@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2015.01
-	 * @category Developer
 	 */
 
 	/** controller/jobs/product/export/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/export/decorators/global
 	 * @see controller/jobs/product/export/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/export/decorators/excludes
 	 * @see controller/jobs/product/export/decorators/local
@@ -125,7 +122,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.01
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/export/decorators/excludes
 	 * @see controller/jobs/product/export/decorators/global
@@ -192,7 +188,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating XML code for the site map items
 		 * @since 2015.01
-		 * @category Developer
 		 * @see controller/jobs/product/export/template-footer
 		 * @see controller/jobs/product/export/template-index
 		 */
@@ -227,8 +222,6 @@ class Standard
 		 *
 		 * @param string Absolute directory to store the exported files into
 		 * @since 2015.01
-		 * @category Developer
-		 * @category User
 		 * @see controller/jobs/product/export/container/options
 		 * @see controller/jobs/product/export/max-items
 		 * @see controller/jobs/product/export/max-query
@@ -243,7 +236,6 @@ class Standard
 		 *
 		 * @param string Container name
 		 * @since 2015.01
-		 * @category Developer
 		 * @see controller/jobs/product/export/container/content
 		 * @see controller/jobs/product/export/container/options
 		 * @see controller/jobs/product/export/location
@@ -260,7 +252,6 @@ class Standard
 		 *
 		 * @param array Associative list of option name/value pairs
 		 * @since 2015.01
-		 * @category Developer
 		 * @see controller/jobs/product/export/container/type
 		 * @see controller/jobs/product/export/container/options
 		 * @see controller/jobs/product/export/location
@@ -277,7 +268,6 @@ class Standard
 		 *
 		 * @param array Associative list of option name/value pairs
 		 * @since 2015.01
-		 * @category Developer
 		 * @see controller/jobs/product/export/container/type
 		 * @see controller/jobs/product/export/container/content
 		 * @see controller/jobs/product/export/location
@@ -322,7 +312,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating XML code for the site map header
 		 * @since 2015.01
-		 * @category Developer
 		 * @see controller/jobs/product/export/template-items
 		 * @see controller/jobs/product/export/template-footer
 		 * @see controller/jobs/product/export/template-index
@@ -365,7 +354,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating XML code for the site map footer
 		 * @since 2015.01
-		 * @category Developer
 		 * @see controller/jobs/product/export/template-header
 		 * @see controller/jobs/product/export/template-items
 		 * @see controller/jobs/product/export/template-index
@@ -458,8 +446,6 @@ class Standard
 				 *
 				 * @param array List of domain names
 				 * @since 2015.01
-				 * @category Developer
-				 * @category User
 				 * @see controller/jobs/product/export/container/type
 				 * @see controller/jobs/product/export/container/content
 				 * @see controller/jobs/product/export/container/options
@@ -481,8 +467,6 @@ class Standard
 				 *
 				 * @param integer Number of products entries per file
 				 * @since 2015.01
-				 * @category Developer
-				 * @category User
 				 * @see controller/jobs/product/export/container/type
 				 * @see controller/jobs/product/export/container/content
 				 * @see controller/jobs/product/export/container/options
@@ -505,7 +489,6 @@ class Standard
 				 *
 				 * @param integer Number of products per query
 				 * @since 2015.01
-				 * @category Developer
 				 * @see controller/jobs/product/export/container/type
 				 * @see controller/jobs/product/export/container/content
 				 * @see controller/jobs/product/export/container/options
@@ -526,7 +509,6 @@ class Standard
 				 *
 				 * @param string File name template
 				 * @since 2018.04
-				 * @category Developer
 				 * @see controller/jobs/product/export/container/type
 				 * @see controller/jobs/product/export/container/content
 				 * @see controller/jobs/product/export/container/options

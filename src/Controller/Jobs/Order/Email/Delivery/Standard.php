@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param string Last part of the class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** controller/jobs/order/email/delivery/decorators/excludes
@@ -75,7 +74,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/delivery/decorators/global
 	 * @see controller/jobs/order/email/delivery/decorators/local
@@ -99,7 +97,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/delivery/decorators/excludes
 	 * @see controller/jobs/order/email/delivery/decorators/local
@@ -124,7 +121,6 @@ class Standard
 	 *
 	 * @param array List of decorator names
 	 * @since 2015.09
-	 * @category Developer
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/delivery/decorators/excludes
 	 * @see controller/jobs/order/email/delivery/decorators/global
@@ -178,8 +174,6 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see controller/jobs/order/email/delivery/status
 		 * @see controller/jobs/order/email/payment/limit-days
 		 * @see controller/jobs/service/delivery/process/limit-days
@@ -214,8 +208,6 @@ class Standard
 		 *
 		 * @param integer Delivery status constant
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see controller/jobs/order/email/payment/status
 		 * @see controller/jobs/order/email/delivery/limit-days
 		 */

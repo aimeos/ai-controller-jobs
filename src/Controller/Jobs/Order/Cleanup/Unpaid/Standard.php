@@ -197,7 +197,6 @@ class Standard
 		 *
 		 * @param integer Number of days
 		 * @since 2014.07
-		 * @category User
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/cleanup/unpaid/keep-days', 3 );
 		return date( 'Y-m-d H:i:s', time() - 86400 * $days );

@@ -29,7 +29,6 @@ class Standard
 	 *
 	 * @param string Last part of the processor class name
 	 * @since 2015.10
-	 * @category Developer
 	 */
 
 	private $cache;
@@ -59,8 +58,6 @@ class Standard
 		 *
 		 * @param array|null List of product list type names or null for all
 		 * @since 2015.05
-		 * @category Developer
-		 * @category User
 		 * @see controller/common/product/import/csv/domains
 		 * @see controller/common/product/import/csv/processor/catalog/listtypes
 		 * @see controller/common/product/import/csv/processor/media/listtypes

@@ -29,7 +29,6 @@ class Standard
 	 *
 	 * @param string Last part of the processor class name
 	 * @since 2015.10
-	 * @category Developer
 	 */
 
 
