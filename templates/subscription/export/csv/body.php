@@ -84,23 +84,23 @@ foreach( $this->get( 'items', [] ) as $item )
 {
 	echo '"' . join( '","', $subscriptionFcn( $item ) ) . '"' . "\n";
 
-    if( $orderItem = $item->getOrderItem() )
-    {
-        foreach( $orderItem->getAddress( 'payment' ) as $address ) {
-            echo '"' . join( '","', $addressFcn( $address ) ) . '"' . "\n";
-        }
+	if( $orderItem = $item->getOrderItem() )
+	{
+		foreach( $orderItem->getAddress( 'payment' ) as $address ) {
+			echo '"' . join( '","', $addressFcn( $address ) ) . '"' . "\n";
+		}
 
-        foreach( $orderItem->getAddress( 'delivery' ) as $address ) {
-            echo '"' . join( '","', $addressFcn( $address ) ) . '"' . "\n";
-        }
+		foreach( $orderItem->getAddress( 'delivery' ) as $address ) {
+			echo '"' . join( '","', $addressFcn( $address ) ) . '"' . "\n";
+		}
 
-        foreach( $orderItem->getProducts() as $product )
-        {
-            echo '"' . join( '","', $productFcn( $product ) ) . '"' . "\n";
+		foreach( $orderItem->getProducts() as $product )
+		{
+			echo '"' . join( '","', $productFcn( $product ) ) . '"' . "\n";
 
-            foreach( $product->getProducts() as $subProduct ) {
-                echo '"' . join( '","', $productFcn( $subProduct ) ) . '"' . "\n";
-            }
-        }
-    }
+			foreach( $product->getProducts() as $subProduct ) {
+				echo '"' . join( '","', $productFcn( $subProduct ) ) . '"' . "\n";
+			}
+		}
+	}
 }
