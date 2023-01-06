@@ -174,7 +174,6 @@ class Standard
 			}
 			catch( \Exception $e )
 			{
-echo $e->getMessage() . "\n" . $e->getTraceAsString() . PHP_EOL;
 				$str = 'Order export error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
 				$context->logger()->error( $str, 'order/export/csv' );
 			}
@@ -292,14 +291,14 @@ echo $e->getMessage() . "\n" . $e->getTraceAsString() . PHP_EOL;
 	/**
 	 * Creates the CSV file for the given orders
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Iface[] $orderItems List of order items to export
+	 * @param \Aimeos\MShop\Order\Item\Iface[] $items List of order items to export
 	 * @return string Generated CSV
 	 */
-	protected function render( iterable $orderItems ) : string
+	protected function render( iterable $items ) : string
 	{
 		$context = $this->context();
 		$template = $context->config()->get( 'controller/jobs/order/export/csv/template', 'order/export/csv/body' );
 
-		return $context->view()->assign( ['orderItems' => $orderItems] )->render( $template );
+		return $context->view()->assign( ['items' => $items] )->render( $template );
 	}
 }

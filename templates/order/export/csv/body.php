@@ -115,7 +115,7 @@ $productFcn = function( \Aimeos\MShop\Order\Item\Product\Iface $item ) {
 };
 
 
-foreach( $this->get( 'orderItems', [] ) as $item )
+foreach( $this->get( 'items', [] ) as $item )
 {
 	echo '"' . join( '","', $orderFcn( $item ) ) . '"' . "\n";
 
