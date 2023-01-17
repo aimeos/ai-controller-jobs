@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
 			->will( $this->onConsecutiveCalls( map( [$orderItem] ), null ) );
 
-		$serviceProviderStub->expects( $this->once() )->method( 'processBatch' );
+		$serviceProviderStub->expects( $this->once() )->method( 'push' );
 
 		$orderManagerStub->expects( $this->once() )->method( 'save' );
 
@@ -130,7 +130,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
 			->will( $this->onConsecutiveCalls( map( [$orderItem] ), null ) );
 
-		$serviceProviderStub->expects( $this->once() )->method( 'processBatch' )
+		$serviceProviderStub->expects( $this->once() )->method( 'push' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test order service delivery: process' ) ) );
 
 		$orderManagerStub->expects( $this->never() )->method( 'save' );

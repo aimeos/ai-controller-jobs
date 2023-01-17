@@ -289,7 +289,7 @@ class Standard
 		{
 			try
 			{
-				$provider->processBatch( $items );
+				$provider->push( $items );
 
 				$manager->begin();
 				$manager->save( $items );
