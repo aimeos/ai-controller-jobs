@@ -308,7 +308,7 @@ class Standard
 		$search->add( $search->and( [
 			$search->is( 'order.product.productid', '==', $prodIds ),
 			$search->is( 'order.product.ctime', '>', $this->ctime() ),
-			$search->is( $search->make( 'order.product.count', [$id] ), '==', 1 ),
+			$search->is( $search->make( 'order.product:count', [$id] ), '==', 1 ),
 		] ) );
 
 		return $manager->aggregate( $search, 'order.product.productid' )->remove( $id );
