@@ -63,8 +63,9 @@ class Standard
 	 * Processes the initial subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
-	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription )
+	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
 	{
 		$context = $this->context();
 
@@ -87,8 +88,9 @@ class Standard
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
-	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription )
+	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
 	{
 		$context = $this->context();
 

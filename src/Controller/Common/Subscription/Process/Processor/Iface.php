@@ -31,25 +31,25 @@ interface Iface
 	 * Processes the initial subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @todo 2021.01 Add \Aimeos\MShop\Order\Item\Iface $order as second parameter
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
-	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription );
+	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
 
 
 	/**
 	 * Executed before the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @todo 2021.01 Add \Aimeos\MShop\Order\Item\Iface $order as second parameter
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
-	public function renewBefore( \Aimeos\MShop\Subscription\Item\Iface $subscription );
+	public function renewBefore( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
 
 
 	/**
 	 * Executed after the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $order Order invoice item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
 	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
 
@@ -58,7 +58,7 @@ interface Iface
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @todo 2021.01 Add \Aimeos\MShop\Order\Item\Iface $order as second parameter
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
-	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription );
+	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
 }

@@ -28,12 +28,12 @@ class Standard
 	 * Executed after the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $order Order invoice item
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
 	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
 	{
 		if( $subscription->getReason() === \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT ) {
-			$this->notify( $subscription );
+			$this->notify( $subscription, $order );
 		}
 	}
 
@@ -42,10 +42,11 @@ class Standard
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
-	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription )
+	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
 	{
-		$this->notify( $subscription );
+		$this->notify( $subscription, $order );
 	}
 
 
@@ -53,10 +54,10 @@ class Standard
 	 * Sends e-mails for the given subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item object
+	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
 	 */
-	protected function notify( \Aimeos\MShop\Subscription\Item\Iface $subscription )
+	protected function notify( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
 	{
-		$order = $subscription->getOrderItem();
 		$address = current( $order->getAddress( 'payment' ) );
 
 		$siteIds = explode( '.', trim( $order->getSiteId(), '.' ) );

@@ -45,6 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
 
+		$subscription = $this->getSubscription();
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
 		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
 
@@ -66,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
-		$object->begin( $this->getSubscription() );
+		$object->begin( $subscription, $subscription->getOrderItem() );
 	}
 
 
@@ -80,9 +81,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				return $subject->getGroups() === ['1', '2'];
 			} ) );
 
+		$subscription = $this->getSubscription();
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
-		$object->begin( $this->getSubscription() );
+		$object->begin( $subscription, $subscription->getOrderItem() );
 	}
 
 
@@ -95,6 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
 
+		$subscription = $this->getSubscription();
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
 		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
 
@@ -115,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			} ) );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
-		$object->end( $this->getSubscription() );
+		$object->end( $subscription, $subscription->getOrderItem() );
 	}
 
 
@@ -129,8 +132,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				return $subject->getGroups() === [];
 			} ) );
 
+		$subscription = $this->getSubscription();
+
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
-		$object->end( $this->getSubscription() );
+		$object->end( $subscription, $subscription->getOrderItem() );
 	}
 
 

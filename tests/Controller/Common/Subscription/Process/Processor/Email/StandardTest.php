@@ -38,11 +38,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
 
 		$context->setMail( $mailStub );
-		$order = \Aimeos\MShop::create( $context, 'order' )->create();
 		$subscription = $this->getSubscription()->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Email\Standard( $context );
-		$object->renewAfter( $subscription, $order );
+		$object->renewAfter( $subscription, $subscription->getOrderItem() );
 	}
 
 
@@ -61,10 +60,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
 
+		$subscription = $this->getSubscription();
 		$context->setMail( $mailStub );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Email\Standard( $context );
-		$object->end( $this->getSubscription() );
+		$object->end( $subscription, $subscription->getOrderItem() );
 	}
 
 
