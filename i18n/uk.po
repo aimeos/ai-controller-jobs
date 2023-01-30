@@ -59,7 +59,7 @@ msgstr "+ %1$s %2$s/штука"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ Вартість оплати"
@@ -566,4 +566,4 @@ msgstr "оплата"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr ""
+msgstr "ціна:початкова"
