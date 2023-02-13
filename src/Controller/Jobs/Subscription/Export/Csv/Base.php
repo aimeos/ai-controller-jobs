@@ -107,6 +107,7 @@ class Base
 	 *
 	 * @param array $mappings Associative list of processor types as keys and index/data mappings as values
 	 * @return array Associative list of processor types as keys and processor objects as values
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function getProcessors( array $mappings ) : array
 	{
@@ -116,29 +117,20 @@ class Base
 
 		foreach( $mappings as $type => $mapping )
 		{
-			if( ctype_alnum( $type ) === false )
-			{
-				$classname = is_string( $type ) ? '\\Aimeos\\Controller\\Common\\Subscription\\Export\\Csv\\Processor\\' . $type : '<not a string>';
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			if( ctype_alnum( $type ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $type ), 400 );
 			}
 
 			$name = $config->get( 'controller/common/subscription/export/csv/processor/' . $type . '/name', 'Standard' );
 
-			if( ctype_alnum( $name ) === false )
-			{
-				$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Subscription\\Export\\Csv\\Processor\\' . $type . '\\' . $name : '<not a string>';
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			if( ctype_alnum( $name ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 			}
 
 			$classname = '\\Aimeos\\Controller\\Common\\Subscription\\Export\\Csv\\Processor\\' . ucfirst( $type ) . '\\' . $name;
+			$interface = \Aimeos\Controller\Common\Subscription\Export\Csv\Processor\Iface::class;
 
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
-			}
-
-			$object = new $classname( $context, $mapping );
-
-			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Subscription\\Export\\Csv\\Processor\\Iface', $object );
+			$object = \Aimeos\Utils::create( $classname, [$context, $mapping], $interface );
 
 			$list[$type] = $object;
 		}

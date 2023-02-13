@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node ) : \Aimeos\MShop\Common\Item\Iface
 	{
-		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Common\Item\PropertyRef\Iface::class, $item );
+		\Aimeos\Utils::implements( $item, \Aimeos\MShop\Common\Item\PropertyRef\Iface::class );
 
 		$resource = $item->getResourceType();
 		$manager = \Aimeos\MShop::create( $this->context(), $resource . '/property' );

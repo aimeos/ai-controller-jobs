@@ -73,7 +73,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Common\Item\Iface $item, \DOMNode $node ) : \Aimeos\MShop\Common\Item\Iface
 	{
-		\Aimeos\MW\Common\Base::checkClass( \Aimeos\MShop\Customer\Item\Iface::class, $item );
+		\Aimeos\Utils::implements( $item, \Aimeos\MShop\Customer\Item\Iface::class );
 
 		$ids = [];
 

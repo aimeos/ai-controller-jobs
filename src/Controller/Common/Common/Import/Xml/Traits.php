@@ -63,6 +63,7 @@ trait Traits
 	 * @param string $type Type of the processor
 	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface Processor object
 	 * @throws \Aimeos\Controller\Common\Exception If type is invalid or processor isn't found
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function createProcessor( string $type ) : \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
 	{
@@ -72,34 +73,21 @@ trait Traits
 
 		foreach( $parts as $part )
 		{
-			if( ctype_alnum( $part ) === false )
-			{
-				$msg = sprintf( 'Invalid characters in processor type "%1$s"', $type );
-				throw new \Aimeos\Controller\Common\Exception( $msg );
+			if( ctype_alnum( $part ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid characters in processor type "%1$s"', $type ), 400 );
 			}
 		}
 
 		$name = $config->get( 'controller/common/common/import/xml/processor/' . $type . '/name', 'Standard' );
 
-		if( ctype_alnum( $name ) === false )
-		{
-			$msg = sprintf( 'Invalid characters in processor name "%1$s"', $name );
-			throw new \Aimeos\Controller\Common\Exception( $msg );
+		if( ctype_alnum( $name ) === false ) {
+			throw new \LogicException( sprintf( 'Invalid characters in processor name "%1$s"', $name ), 400 );
 		}
 
 		$segment = str_replace( '/', '\\', ucwords( $type, '/' ) ) . '\\' . $name;
 		$classname = '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . $segment;
+		$interface = \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface::class;
 
-		if( class_exists( $classname ) === false )
-		{
-			$classname = '\\Aimeos\\Controller\\Common\\Common\\Import\\Xml\\Processor\\' . $segment;
-
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Controller\Common\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
-			}
-		}
-
-		$iface = \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface::class;
-		return \Aimeos\MW\Common\Base::checkClass( $iface, new $classname( $context ) );
+		return \Aimeos\Utils::create( $classname, [$context], $interface );
 	}
 }

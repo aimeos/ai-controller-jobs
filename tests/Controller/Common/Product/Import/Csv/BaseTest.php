@@ -41,21 +41,21 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetCacheInvalidType()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Common\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getCachePublic( '$' );
 	}
 
 
 	public function testGetCacheInvalidClass()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Common\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getCachePublic( 'unknown' );
 	}
 
 
 	public function testGetCacheInvalidInterface()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Common\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getCachePublic( 'attribute', 'unknown' );
 	}
 
@@ -70,21 +70,21 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetProcessorsInvalidType()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Common\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getProcessorsPublic( array( '$' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidClass()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Common\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 
 
 	public function testGetProcessorsInvalidInterface()
 	{
-		$this->expectException( '\\Aimeos\\Controller\\Common\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getProcessorsPublic( array( 'unknown' => [] ) );
 	}
 }

@@ -26,40 +26,29 @@ abstract class Base
 	 *
 	 * @param array $pnames List of processor names
 	 * @return array Associative list of processor names as keys and processor objects as values
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function getProcessors( array $pnames ) : array
 	{
 		$list = [];
 		$context = $this->context();
-		$config = $context->config();
+		$interface = \Aimeos\Controller\Common\Subscription\Process\Processor\Iface::class;
 
 		foreach( $pnames as $pname )
 		{
-			if( ctype_alnum( $pname ) === false )
-			{
-				$classname = is_string( $pname ) ? '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . $pname : '<not a string>';
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			if( ctype_alnum( $pname ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $pname ), 400 );
 			}
 
-			$name = $config->get( 'controller/common/subscription/process/processor/' . $pname . '/name', 'Standard' );
+			$name = $context->config()->get( 'controller/common/subscription/process/processor/' . $pname . '/name', 'Standard' );
 
-			if( ctype_alnum( $name ) === false )
-			{
-				$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . $pname . '\\' . $name : '<not a string>';
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			if( ctype_alnum( $name ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 			}
 
 			$classname = '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . ucfirst( $pname ) . '\\' . $name;
 
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
-			}
-
-			$object = new $classname( $context );
-
-			map( $object )->implements( '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\Iface' );
-
-			$list[$pname] = $object;
+			$list[$pname] = \Aimeos\Utils::create( $classname, [$context], $interface );
 		}
 
 		return $list;

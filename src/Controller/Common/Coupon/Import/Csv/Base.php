@@ -122,6 +122,7 @@ class Base
 	 *
 	 * @param array $mappings Associative list of processor types as keys and index/data mappings as values
 	 * @return \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface Processor object
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function getProcessors( array $mappings )
 	{
@@ -131,29 +132,20 @@ class Base
 
 		foreach( $mappings as $type => $mapping )
 		{
-			if( ctype_alnum( $type ) === false )
-			{
-				$classname = is_string( $type ) ? '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\' . $type : '<not a string>';
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			if( ctype_alnum( $type ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $type ), 400 );
 			}
 
 			$name = $config->get( 'controller/common/coupon/import/csv/processor/' . $type . '/name', 'Standard' );
 
-			if( ctype_alnum( $name ) === false )
-			{
-				$classname = is_string( $name ) ? '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\' . $type . '\\' . $name : '<not a string>';
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			if( ctype_alnum( $name ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 			}
 
 			$classname = '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\' . ucfirst( $type ) . '\\' . $name;
+			$interface = \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface::class;
 
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
-			}
-
-			$object = new $classname( $context, $mapping, $object );
-
-			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Controller\\Common\\Coupon\\Import\\Csv\\Processor\\Iface', $object );
+			$object = \Aimeos\Utils::create( $classname, [$context, $mapping, $object], $interface );
 		}
 
 		return $object;

@@ -173,32 +173,20 @@ class Jobs
 	 * @param array $decorators List of decorator names that should be wrapped around the controller object
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Controller\Jobs\Attribute\Decorator\"
 	 * @return \Aimeos\Controller\Jobs\Iface Controller object
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected static function addDecorators( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos,
 		\Aimeos\Controller\Jobs\Iface $controller, array $decorators, string $classprefix ) : \Aimeos\Controller\Jobs\Iface
 	{
+		$interface = \Aimeos\Controller\Jobs\Common\Decorator\Iface::class;
+
 		foreach( $decorators as $name )
 		{
-			if( ctype_alnum( $name ) === false )
-			{
-				$classname = is_string( $name ) ? $classprefix . $name : '<not a string>';
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid class name "%1$s"', $classname ), 400 );
+			if( ctype_alnum( $name ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid class name "%1$s"', $name ), 400 );
 			}
 
-			$classname = $classprefix . $name;
-
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ), 404 );
-			}
-
-			$interface = \Aimeos\Controller\Jobs\Common\Decorator\Iface::class;
-			$controller = new $classname( $controller, $context, $aimeos );
-
-			if( !( $controller instanceof $interface ) )
-			{
-				$msg = sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $interface );
-				throw new \Aimeos\Controller\Jobs\Exception( $msg, 400 );
-			}
+			$controller = \Aimeos\Utils::create( $classprefix . $name, [$controller, $context, $aimeos], $interface );
 		}
 
 		return $controller;
@@ -222,17 +210,7 @@ class Jobs
 			return self::$objects[$classname];
 		}
 
-		if( class_exists( $classname ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Class "%1$s" not found', $classname ), 404 );
-		}
-
-		$cntl = new $classname( $context, $aimeos );
-
-		if( !( $cntl instanceof $interface ) )
-		{
-			$msg = sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $interface );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg, 400 );
-		}
+		$cntl = \Aimeos\Utils::create( $classname, [$context, $aimeos], $interface );
 
 		return self::addControllerDecorators( $context, $aimeos, $cntl, $path );
 	}
