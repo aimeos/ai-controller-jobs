@@ -119,13 +119,10 @@ class Standard
 				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
-			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url
-				|| $fs->has( $url ) && (
-					!( $fs instanceof \Aimeos\Base\Filesystem\MetaIface )
-					|| date( 'Y-m-d H:i:s', $fs->time( $url ) ) > $refItem->getTimeModified()
-				)
-			) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ) );
+			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) {
+				$refItem = \Aimeos\MShop::create( $context, 'media' )->scale( $refItem->setUrl( $url ), true );
+			} elseif( $fs->has( $url ) ) {
+				$refItem = \Aimeos\MShop::create( $context, 'media' )->scale( $refItem->setUrl( $url ) );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );
