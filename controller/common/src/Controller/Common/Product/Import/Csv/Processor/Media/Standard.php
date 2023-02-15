@@ -230,10 +230,10 @@ class Standard
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
 			} elseif( \Aimeos\MW\Str::starts( $url, 'data:' ) ) {
 				$refItem->setPreview( $url )->setUrl( $url );
-			} elseif( \Aimeos\MW\Str::starts( $url, ['http:', 'https:'] ) ) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), 'fs-media', true );
-			} elseif( $fs->has( $url ) && ( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) ) {
+			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) {
 				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), $fsname, true );
+			} elseif( $fs->has( $url ) ) {
+				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), $fsname );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );
