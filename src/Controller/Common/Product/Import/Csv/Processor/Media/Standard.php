@@ -213,21 +213,16 @@ class Standard
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list, string $url ) : \Aimeos\MShop\Media\Item\Iface
 	{
-		$context = $this->context();
-		$fs = $context->fs( $refItem->getFileSystem() );
-
 		try
 		{
 			if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
 				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
-			} elseif( \Aimeos\Base\Str::starts( $url, 'data:' ) ) {
-				$refItem->setPreview( $url )->setUrl( $url );
-			} elseif( \Aimeos\Base\Str::starts( $url, ['http:', 'https:'] ) ) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), true );
-			} elseif( $fs->has( $url ) && ( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) ) {
-				$refItem = \Aimeos\Controller\Common\Media\Factory::create( $context )->scale( $refItem->setUrl( $url ), true );
+			} elseif( $refItem->getUrl() !== $url ) {
+				$refItem = \Aimeos\MShop::create( $this->context(), 'media' )->scale( $refItem->setUrl( $url ), true );
+			} else {
+				$refItem = \Aimeos\MShop::create( $this->context(), 'media' )->scale( $refItem->setUrl( $url ) );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );
@@ -235,7 +230,7 @@ class Standard
 		catch( \Aimeos\Controller\Common\Exception $e )
 		{
 			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
-			$context->logger()->error( $msg, 'import/csv/product' );
+			$this->context()->logger()->error( $msg, 'import/csv/product' );
 		}
 
 		return $refItem->fromArray( $list );

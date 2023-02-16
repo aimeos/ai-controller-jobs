@@ -108,8 +108,6 @@ class Standard
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list )
 	{
-		$context = $this->context();
-		$fs = $context->fs( $refItem->getFileSystem() );
 		$url = $list['media.url'] ?? '';
 
 		try
@@ -118,10 +116,10 @@ class Standard
 				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
-			} elseif( $refItem->getPreviews() === [] || $refItem->getUrl() !== $url ) {
-				$refItem = \Aimeos\MShop::create( $context, 'media' )->scale( $refItem->setUrl( $url ), true );
-			} elseif( $fs->has( $url ) ) {
-				$refItem = \Aimeos\MShop::create( $context, 'media' )->scale( $refItem->setUrl( $url ) );
+			} elseif( $refItem->getUrl() !== $url ) {
+				$refItem = \Aimeos\MShop::create( $this->context(), 'media' )->scale( $refItem->setUrl( $url ), true );
+			} else {
+				$refItem = \Aimeos\MShop::create( $this->context(), 'media' )->scale( $refItem->setUrl( $url ) );
 			}
 
 			unset( $list['media.previews'], $list['media.preview'] );
@@ -129,7 +127,7 @@ class Standard
 		catch( \Aimeos\Controller\Common\Exception $e )
 		{
 			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
-			$context->logger()->error( $msg, 'import/xml/product' );
+			$this->context()->logger()->error( $msg, 'import/xml/product' );
 		}
 
 		return $refItem->fromArray( $list );
