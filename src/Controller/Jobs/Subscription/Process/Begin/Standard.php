@@ -214,7 +214,7 @@ class Standard
 		 *
 		 * @param array Referenced domain names
 		 * @since 2022.04
-		 * @see controller/common/subscription/process/processors
+		 * @see controller/jobs/subscription/process/processors
 		 * @see controller/common/subscription/process/payment-days
 		 * @see controller/common/subscription/process/payment-status
 		 */

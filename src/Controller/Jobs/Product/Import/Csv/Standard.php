@@ -283,7 +283,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
 		 */
-		return $this->context()->config()->get( 'controller/jobs/product/import/csv/domains', ['media', 'text'] );
+		return $this->context()->config()->get( 'controller/jobs/product/import/csv/domains', [] );
 	}
 
 

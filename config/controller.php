@@ -1,31 +1,6 @@
 <?php
 
 return [
-	'common' => [
-		'product' => [
-			'import' => [
-				'csv' => [
-					'domains' => [
-						'attribute' => 'attribute',
-						'catalog' => 'catalog',
-						'media' => 'media',
-						'price' => 'price',
-						'product' => 'product',
-						'product/property' => 'product/property',
-						'supplier' => 'supplier',
-						'text' => 'text',
-					],
-				],
-			],
-		],
-		'subscription' => [
-			'process' => [
-				'processors' => [
-					'Email' => 'Email',
-				],
-			],
-		],
-	],
 	'jobs' => [
 		'attribute' => [
 			'import' => [
@@ -52,6 +27,18 @@ return [
 		],
 		'product' => [
 			'import' => [
+				'csv' => [
+					'domains' => [
+						'attribute' => 'attribute',
+						'catalog' => 'catalog',
+						'media' => 'media',
+						'price' => 'price',
+						'product' => 'product',
+						'product/property' => 'product/property',
+						'supplier' => 'supplier',
+						'text' => 'text',
+					],
+				],
 				'xml' => [
 					'domains' => [
 						'attribute' => 'attribute',
@@ -65,6 +52,13 @@ return [
 					]
 				]
 			]
+		],
+		'subscription' => [
+			'process' => [
+				'processors' => [
+					'Email' => 'Email',
+				],
+			],
 		],
 		'supplier' => [
 			'import' => [
