@@ -53,12 +53,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'iterate' ) )
+			->onlyMethods( array( 'getProvider', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'save', 'iterate' ) )
+			->onlyMethods( array( 'save', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -100,12 +100,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'save', 'iterate' ) )
+			->onlyMethods( array( 'save', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'iterate' ) )
+			->onlyMethods( array( 'getProvider', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -148,12 +148,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( array( 'save', 'iterate' ) )
+			->onlyMethods( array( 'save', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'iterate' ) )
+			->onlyMethods( array( 'getProvider', 'iterate' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 

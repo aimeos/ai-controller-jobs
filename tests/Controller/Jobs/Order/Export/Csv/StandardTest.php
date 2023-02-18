@@ -46,22 +46,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mqmStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
 			->setConstructorArgs( [[]] )
-			->setMethods( ['get'] )
+			->onlyMethods( ['get'] )
 			->getMock();
 
 		$mqStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Standard' )
 			->disableOriginalConstructor()
-			->setMethods( ['getQueue'] )
+			->onlyMethods( ['getQueue'] )
 			->getMock();
 
 		$queueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' )
 			->disableOriginalConstructor()
-			->setMethods( ['del', 'get'] )
+			->onlyMethods( ['del', 'get'] )
 			->getMock();
 
 		$msgStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Message\\Standard' )
 			->disableOriginalConstructor()
-			->setMethods( ['getBody'] )
+			->onlyMethods( ['getBody'] )
 			->getMock();
 
 

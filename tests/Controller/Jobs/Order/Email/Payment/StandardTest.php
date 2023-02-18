@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['search'] )
+			->onlyMethods( ['search'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['notify'] )
+			->onlyMethods( ['notify'] )
 			->getMock();
 
 		$object->expects( $this->exactly( 4 ) )->method( 'notify' );
@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['status', 'send'] )
+			->onlyMethods( ['status', 'send'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'status' );
@@ -116,7 +116,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['send'] )
+			->onlyMethods( ['send'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'send' )->will( $this->throwException( new \RuntimeException() ) );
@@ -136,7 +136,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
-			->setMethods( ['send'] )
+			->onlyMethods( ['send'] )
 			->getMock();
 
 		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
@@ -147,7 +147,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['status'] )
+			->onlyMethods( ['status'] )
 			->getMock();
 
 		$addrItem = \Aimeos\MShop::create( $this->context, 'order/address' )->create()->setEmail( 'a@b.com' );

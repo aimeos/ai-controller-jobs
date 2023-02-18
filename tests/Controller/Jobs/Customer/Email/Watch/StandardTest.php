@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
-			->setMethods( ['send'] )
+			->onlyMethods( ['send'] )
 			->getMock();
 
 		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Customer\\Email\\Watch\\Standard' )
 			->setConstructorArgs( array( $this->context, $this->aimeos ) )
-			->setMethods( ['products'] )
+			->onlyMethods( ['products'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'products' )
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Customer\\Email\\Watch\\Standard' )
 			->setConstructorArgs( [$this->context, $this->aimeos] )
-			->setMethods( ['products', 'send'] )
+			->onlyMethods( ['products', 'send'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'products' )->will( $this->returnValue( [new \stdClass()] ) );

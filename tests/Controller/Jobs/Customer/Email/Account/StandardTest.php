@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
-			->setMethods( ['send'] )
+			->onlyMethods( ['send'] )
 			->getMock();
 
 		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );

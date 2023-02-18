@@ -53,17 +53,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Subscription\\Process\\Renew\\Standard' )
 			->setConstructorArgs( [$this->context, $this->aimeos] )
-			->setMethods( ['createPayment'] )
+			->onlyMethods( ['createPayment'] )
 			->getMock();
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['iterate', 'save'] )
+			->onlyMethods( ['iterate', 'save'] )
 			->getMock();
 
 		$orderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
@@ -87,14 +87,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['iterate', 'save'] )
+			->onlyMethods( ['iterate', 'save'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Subscription\\Process\\Renew\\Standard' )
 			->setConstructorArgs( [$this->context, $this->aimeos] )
-			->setMethods( ['process'] )
+			->onlyMethods( ['process'] )
 			->getMock();
 
 		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )

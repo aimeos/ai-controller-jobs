@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="bootstrap.php">
-	<filter>
-		<whitelist>
-			<directory suffix=".php">../src/Controller</directory>
-		</whitelist>
-	</filter>
-	<logging>
-		<log type="coverage-clover" target="coverage.xml"/>
-	</logging>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" cacheDirectory=".phpunit.cache">
+  <coverage>
+    <include>
+      <directory suffix=".php">../src/Controller</directory>
+    </include>
+    <report>
+      <clover outputFile="coverage.xml"/>
+    </report>
+  </coverage>
+  <logging/>
 </phpunit>

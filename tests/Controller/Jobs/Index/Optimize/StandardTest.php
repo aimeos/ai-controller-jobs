@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 		$indexManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Index\\Manager\\Standard' )
-			->setMethods( array( 'optimize' ) )
+			->onlyMethods( array( 'optimize' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 

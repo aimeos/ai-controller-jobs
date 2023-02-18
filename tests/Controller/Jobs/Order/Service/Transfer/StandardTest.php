@@ -52,12 +52,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( ['getProvider', 'iterate'] )
+			->onlyMethods( ['getProvider', 'iterate'] )
 			->setConstructorArgs( [$context] )
 			->getMock();
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( ['save', 'iterate'] )
+			->onlyMethods( ['save', 'iterate'] )
 			->setConstructorArgs( [$context] )
 			->getMock();
 
@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem = $orderManagerStub->create();
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Payment\\PrePay' )
-			->setMethods( ['isImplemented', 'transfer'] )
+			->onlyMethods( ['isImplemented', 'transfer'] )
 			->setConstructorArgs( [$context, $serviceItem] )
 			->getMock();
 
@@ -101,12 +101,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( ['save', 'iterate'] )
+			->onlyMethods( ['save', 'iterate'] )
 			->setConstructorArgs( [$context] )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( ['getProvider', 'iterate'] )
+			->onlyMethods( ['getProvider', 'iterate'] )
 			->setConstructorArgs( [$context] )
 			->getMock();
 
@@ -118,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem = $orderManagerStub->create();
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Payment\\PrePay' )
-			->setMethods( ['isImplemented', 'transfer'] )
+			->onlyMethods( ['isImplemented', 'transfer'] )
 			->setConstructorArgs( [$context, $serviceItem] )
 			->getMock();
 
@@ -153,12 +153,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( ['save', 'iterate'] )
+			->onlyMethods( ['save', 'iterate'] )
 			->setConstructorArgs( [$context] )
 			->getMock();
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( ['getProvider', 'iterate'] )
+			->onlyMethods( ['getProvider', 'iterate'] )
 			->setConstructorArgs( [$context] )
 			->getMock();
 

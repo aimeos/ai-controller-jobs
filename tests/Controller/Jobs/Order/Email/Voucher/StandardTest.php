@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$codeManager = $this->getMockBuilder( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'save' ) )
+			->onlyMethods( array( 'save' ) )
 			->getMock();
 
 		$codeManager->expects( $this->any() )->method( 'save' );
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$orderManagerStub = $this->getMockBuilder( \Aimeos\MShop\Order\Manager\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( ['search'] )
+			->onlyMethods( ['search'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( \Aimeos\MShop\Order\Manager\Standard::class, $orderManagerStub );
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelper::getAimeos() ) )
-			->setMethods( ['notify'] )
+			->onlyMethods( ['notify'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'notify' );
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['saveCoupons'] )
+			->onlyMethods( ['saveCoupons'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'saveCoupons' );
@@ -137,7 +137,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['createCoupons', 'send', 'status'] )
+			->onlyMethods( ['createCoupons', 'send', 'status'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'createCoupons' )->will( $this->returnValue( map() ) );
@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['products'] )
+			->onlyMethods( ['products'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'products' )->will( $this->throwException( new \RuntimeException() ) );
@@ -168,7 +168,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$managerStub->expects( $this->once() )->method( 'save' );
@@ -192,7 +192,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
-			->setMethods( ['send'] )
+			->onlyMethods( ['send'] )
 			->getMock();
 
 		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
@@ -203,7 +203,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->setMethods( ['test'] )
+			->onlyMethods( [] )
 			->getMock();
 
 		$this->access( 'createCoupons' )->invokeArgs( $object, [map( $product )] );
@@ -215,7 +215,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$statusManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Status\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$statusManagerStub->expects( $this->once() )->method( 'save' );

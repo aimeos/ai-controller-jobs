@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Media\\Manager\\Standard' )
-			->setMethods( array( 'save', 'scale' ) )
+			->onlyMethods( array( 'save', 'scale' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 

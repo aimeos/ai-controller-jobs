@@ -54,12 +54,12 @@ class StandardTest
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->setMethods( ['iterate', 'delete'] )
+			->onlyMethods( ['iterate', 'delete'] )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		$orderCntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Common\\Order\\Standard' )
-			->setMethods( array( 'unblock' ) )
+			->onlyMethods( array( 'unblock' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 

@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\MAdmin\\Log\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['delete'] )
+			->onlyMethods( ['delete'] )
 			->getMock();
 
 		$mock->expects( $this->atLeastOnce() )->method( 'delete' );

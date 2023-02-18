@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'search' ) )
+			->onlyMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
-			->setMethods( array( 'getProvider', 'search' ) )
+			->onlyMethods( array( 'getProvider', 'search' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 

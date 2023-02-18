@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$mock = $this->getMockBuilder( '\Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard' )
 			->setConstructorArgs( [$this->context, $mapping, $this->endpoint] )
-			->setMethods( ['getAttributeItem'] )
+			->onlyMethods( ['getAttributeItem'] )
 			->getMock();
 
 		$item = \Aimeos\MShop::create( $this->context, 'attribute' )->create()->setType( 'color' );

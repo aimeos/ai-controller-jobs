@@ -59,12 +59,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save', 'search'] )
+			->onlyMethods( ['save', 'search'] )
 			->getMock();
 
 		$oProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save', 'search'] )
+			->onlyMethods( ['save', 'search'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderStub );
