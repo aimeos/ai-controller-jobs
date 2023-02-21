@@ -2,11 +2,15 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" cacheDirectory=".phpunit.cache">
   <coverage>
     <include>
-      <directory suffix=".php">../src/Controller</directory>
+      <directory suffix=".php">../src</directory>
     </include>
     <report>
       <clover outputFile="coverage.xml"/>
     </report>
   </coverage>
-  <logging/>
+  <testsuites>
+    <testsuite name="Controller suite">
+      <directory suffix=".php">Controller/</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>
