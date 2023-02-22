@@ -16,7 +16,7 @@ class JobsTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
-		$this->expectException( \Aimeos\Controller\Jobs\Exception::class );
+		$this->expectException( \LogicException::class );
 		\Aimeos\Controller\Jobs::create( $context, $aimeos, "\t\n" );
 	}
 
@@ -26,7 +26,7 @@ class JobsTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
-		$this->expectException( \Aimeos\Controller\Jobs\Exception::class );
+		$this->expectException( \LogicException::class );
 		\Aimeos\Controller\Jobs::create( $context, $aimeos, '%^' );
 	}
 
@@ -36,7 +36,7 @@ class JobsTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
-		$this->expectException( \Aimeos\Controller\Jobs\Exception::class );
+		$this->expectException( \LogicException::class );
 		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'notexist' );
 	}
 
