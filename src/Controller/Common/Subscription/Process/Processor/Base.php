@@ -22,7 +22,7 @@ class Base
 	use \Aimeos\Macro\Macroable;
 
 
-	private $context;
+	private \Aimeos\MShop\ContextIface $context;
 
 
 	/**

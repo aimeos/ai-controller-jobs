@@ -31,8 +31,8 @@ class Standard
 	 * @since 2020.07
 	 */
 
-	private $listTypes;
-	private $types;
+	private ?array $listTypes = null;
+	private array $types = [];
 
 
 	/**

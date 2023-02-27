@@ -31,8 +31,8 @@ class Standard
 	 * @since 2019.04
 	 */
 
-	 private $groupManager;
-	 private $map = [];
+	 private \Aimeos\MShop\Common\Manager\Iface $groupManager;
+	 private array $map = [];
 
 
 	/**

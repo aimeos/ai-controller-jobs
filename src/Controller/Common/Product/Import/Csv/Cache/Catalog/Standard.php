@@ -31,7 +31,7 @@ class Standard
 	 * @since 2015.10
 	 */
 
-	private $categories = [];
+	private array $categories = [];
 
 
 	/**

@@ -128,7 +128,7 @@ class Standard
 	 */
 
 
-	private $types;
+	private ?array $types = null;
 
 
 	/**

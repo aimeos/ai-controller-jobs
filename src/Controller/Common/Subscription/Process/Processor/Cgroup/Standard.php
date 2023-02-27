@@ -31,7 +31,7 @@ class Standard
 	 * @since 2018.04
 	 */
 
-	private $groupIds;
+	private array $groupIds;
 
 
 	/**

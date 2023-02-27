@@ -24,8 +24,8 @@ abstract class Base
 	use \Aimeos\Macro\Macroable;
 
 
-	private $aimeos;
-	private $context;
+	private \Aimeos\Bootstrap $aimeos;
+	private \Aimeos\MShop\ContextIface $context;
 
 
 	/**

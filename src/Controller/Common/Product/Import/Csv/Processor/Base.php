@@ -20,10 +20,10 @@ namespace Aimeos\Controller\Common\Product\Import\Csv\Processor;
 abstract class Base
 	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
 {
-	private $context;
-	private $mapping;
-	private $object;
-	private $types = [];
+	private \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $object;
+	private \Aimeos\MShop\ContextIface $context;
+	private array $types = [];
+	private array $mapping;
 
 
 	/**

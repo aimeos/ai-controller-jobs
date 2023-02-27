@@ -19,7 +19,7 @@ namespace Aimeos\Controller\Common\Common\Import\Xml;
  */
 trait Traits
 {
-	private $processors = [];
+	private array $processors = [];
 
 
 	/**

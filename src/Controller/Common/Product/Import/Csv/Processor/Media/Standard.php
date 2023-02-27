@@ -31,9 +31,9 @@ class Standard
 	 * @since 2015.10
 	 */
 
-	private $listTypes;
-	private $types = [];
-	private $mimes = [];
+	private ?array $listTypes = null;
+	private array $types = [];
+	private array $mimes = [];
 
 
 	/**

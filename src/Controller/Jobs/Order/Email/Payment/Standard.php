@@ -359,8 +359,8 @@ class Standard
 		}
 
 		$pdf = new class( PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false ) extends \TCPDF {
-			private $headerFcn;
-			private $footerFcn;
+			private ?\Closure $headerFcn = null;
+			private ?\Closure $footerFcn = null;
 
 			public function Footer() { return ( $fcn = $this->footerFcn ) ? $fcn( $this ) : null; }
 			public function Header() { return ( $fcn = $this->headerFcn ) ? $fcn( $this ) : null; }

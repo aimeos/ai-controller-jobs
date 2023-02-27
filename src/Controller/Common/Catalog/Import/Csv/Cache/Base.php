@@ -19,7 +19,7 @@ namespace Aimeos\Controller\Common\Catalog\Import\Csv\Cache;
  */
 class Base
 {
-	private $context;
+	private \Aimeos\MShop\ContextIface $context;
 
 
 	/**

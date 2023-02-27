@@ -19,7 +19,7 @@ namespace Aimeos\Controller\Common\Common\Import;
  */
 trait Traits
 {
-	private $typeMap = [];
+	private array $typeMap = [];
 
 
 	abstract protected function context() : \Aimeos\MShop\ContextIface;

@@ -21,7 +21,7 @@ abstract class Base
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Common\Decorator\Iface
 {
-	private $controller;
+	private \Aimeos\Controller\Jobs\Iface $controller;
 
 
 	/**

@@ -20,9 +20,9 @@ namespace Aimeos\Controller\Common\Coupon\Import\Csv\Processor;
 class Base
 	extends \Aimeos\Controller\Common\Coupon\Import\Csv\Base
 {
-	private $context;
-	private $mapping;
-	private $object;
+	private \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $object;
+	private \Aimeos\MShop\ContextIface $context;
+	private array $mapping;
 
 
 	/**

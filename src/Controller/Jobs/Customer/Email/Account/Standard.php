@@ -130,7 +130,7 @@ class Standard
 	use \Aimeos\Controller\Jobs\Mail;
 
 
-	private $sites = [];
+	private array $sites = [];
 
 
 	/**

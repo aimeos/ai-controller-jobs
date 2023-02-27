@@ -31,8 +31,8 @@ class Standard
 	 * @since 2015.10
 	 */
 
-	private $cache;
-	private $listTypes;
+	private \Aimeos\Controller\Common\Product\Import\Csv\Cache\Catalog\Standard $cache;
+	private ?array $listTypes = null;
 
 
 	/**

@@ -22,7 +22,7 @@ abstract class Base
 	use \Aimeos\Controller\Common\Common\Import\Traits;
 
 
-	private $context;
+	private \Aimeos\MShop\ContextIface $context;
 
 
 	/**

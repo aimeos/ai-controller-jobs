@@ -128,7 +128,7 @@ class Standard
 	 */
 
 
-	private $locales;
+	private ?\Aimeos\Map $locales = null;
 
 
 	/**
