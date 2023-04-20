@@ -489,7 +489,7 @@ class Standard
 	 */
 	protected function max() : int
 	{
-		/** controller/common/supplier/import/csv/max-size
+		/** controller/jobs/supplier/import/csv/max-size
 		 * Maximum number of CSV rows to import at once
 		 *
 		 * It's more efficient to read and import more than one row at a time

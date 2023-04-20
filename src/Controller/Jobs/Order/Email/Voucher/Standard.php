@@ -405,8 +405,24 @@ class Standard
 		$pdf->setCreator( PDF_CREATOR );
 		$pdf->setAuthor( 'Aimeos' );
 
-		// Generate HTML before creating first PDF page to include header added in template
+		/** controller/jobs/order/email/voucher/template-pdf
+		 * Relative path to the template for the PDF part of the voucher emails.
+		 *
+		 * The template file contains the text and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in templates/controller/jobs).
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates.
+		 *
+		 * @param string Relative path to the template
+		 * @since 2022.10
+		 * @see controller/jobs/order/email/voucher/template-html
+		 * @see controller/jobs/order/email/voucher/template-text
+		 */
 		$template = $config->get( 'controller/jobs/order/email/voucher/template-pdf', 'order/email/voucher/pdf' );
+
+		// Generate HTML before creating first PDF page to include header added in template
 		$content = $view->set( 'pdf', $pdf )->render( $template );
 
 		$pdf->addPage();

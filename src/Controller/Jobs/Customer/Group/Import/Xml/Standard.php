@@ -21,7 +21,7 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
-	/** controller/jobs/customer/import/xml/name
+	/** controller/jobs/customer/group/import/xml/name
 	 * Class name of the used customer suggestions scheduler controller implementation
 	 *
 	 * Each default job controller can be replace by an alternative imlementation.
@@ -54,7 +54,7 @@ class Standard
 	 * @since 2019.04
 	 */
 
-	/** controller/jobs/customer/import/xml/decorators/excludes
+	/** controller/jobs/customer/group/import/xml/decorators/excludes
 	 * Excludes decorators added by the "common" option from the customer import CSV job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
@@ -79,7 +79,7 @@ class Standard
 	 * @see controller/jobs/customer/import/xml/decorators/local
 	 */
 
-	/** controller/jobs/customer/import/xml/decorators/global
+	/** controller/jobs/customer/group/import/xml/decorators/global
 	 * Adds a list of globally available decorators only to the customer import CSV job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
@@ -102,7 +102,7 @@ class Standard
 	 * @see controller/jobs/customer/import/xml/decorators/local
 	 */
 
-	/** controller/jobs/customer/import/xml/decorators/local
+	/** controller/jobs/customer/group/import/xml/decorators/local
 	 * Adds a list of local decorators only to the customer import CSV job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
