@@ -127,8 +127,10 @@ class Standard
 			}
 
 			$type = $this->val( $list, 'text.type', 'name' );
-			$listtype = $this->val( $list, 'catalog.lists.type', 'default' );
 			$content = $this->val( $list, 'text.content', '' );
+
+			$listtype = $this->val( $list, 'catalog.lists.type', 'default' );
+			$listConfig = $this->getListConfig( $this->val( $list, 'catalog.lists.config', '' ) );
 
 			if( isset( $listMap[$content][$type][$listtype] ) )
 			{
@@ -142,7 +144,7 @@ class Standard
 				$refItem = $refManager->create()->setType( $type );
 			}
 
-			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
+			$listItem = $listItem->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
 			$label = mb_strcut( $this->val( $list, 'text.content', '' ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );

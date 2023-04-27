@@ -147,6 +147,7 @@ class Standard
 
 			$type = $this->val( $list, 'media.type', 'default' );
 			$listtype = $this->val( $list, 'catalog.lists.type', 'default' );
+			$listConfig = $this->getListConfig( $this->val( $list, 'catalog.lists.config', '' ) );
 			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
 
 			foreach( $urls as $url )
@@ -163,7 +164,7 @@ class Standard
 					$refItem = $refManager->create()->setType( $type );
 				}
 
-				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
+				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setConfig( $listConfig );
 				$refItem = $refItem->setLabel( $url )->setPreview( $url )->fromArray( $list )->setUrl( $url );
 
 				$catalog->addListItem( 'media', $listItem, $refItem );

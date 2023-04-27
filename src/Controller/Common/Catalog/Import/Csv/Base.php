@@ -115,6 +115,26 @@ class Base
 
 
 	/**
+	 * Returns the configuration for the given string
+	 *
+	 * @param string $value Configuration string
+	 * @return array Configuration settings
+	 */
+	protected function getListConfig( string $value ) : array
+	{
+		$config = [];
+
+		foreach( array_filter( explode( "\n", $value ) ) as $line )
+		{
+			list( $key, $val ) = explode( ':', $line );
+			$config[$key] = $val;
+		}
+
+		return $config;
+	}
+
+
+	/**
 	 * Returns the mapped data from the CSV line
 	 *
 	 * @param array $data List of CSV fields with position as key and domain item key as value (mapped data is removed)
