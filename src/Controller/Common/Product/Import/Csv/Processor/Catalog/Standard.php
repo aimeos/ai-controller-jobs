@@ -116,6 +116,7 @@ class Standard
 				continue;
 			}
 
+			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
 			$listtype = $this->val( $list, 'product.lists.type', 'default' );
 			$this->addType( 'product/lists/type', 'catalog', $listtype );
 
@@ -136,7 +137,7 @@ class Standard
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem = $listItem->fromArray( $list )->setRefId( $catid );
+				$listItem = $listItem->fromArray( $list )->setRefId( $catid )->setConfig( $listConfig );
 				$product->addListItem( 'catalog', $listItem );
 			}
 		}

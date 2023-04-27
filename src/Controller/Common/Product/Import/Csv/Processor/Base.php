@@ -142,6 +142,26 @@ abstract class Base
 
 
 	/**
+	 * Returns the configuration for the given string
+	 *
+	 * @param string $value Configuration string
+	 * @return array Configuration settings
+	 */
+	protected function getListConfig( string $value ) : array
+	{
+		$config = [];
+
+		foreach( array_filter( explode( "\n", $value ) ) as $line )
+		{
+			list( $key, $val ) = explode( ':', $line );
+			$config[$key] = $val;
+		}
+
+		return $config;
+	}
+
+
+	/**
 	 * Returns the mapping list
 	 *
 	 * @return array Associative list of field positions in CSV as keys and domain item keys as values

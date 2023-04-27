@@ -134,8 +134,9 @@ class Standard
 			$listtype = $this->val( $list, 'product.lists.type', 'default' );
 			$this->addType( 'product/lists/type', 'attribute', $listtype );
 
+			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
 			$codes = explode( $separator, $this->val( $list, 'attribute.code', '' ) );
-			unset( $list['attribute.code'] );
+			unset( $list['attribute.code'], $list['product.lists.config'] );
 
 			foreach( $codes as $code )
 			{
@@ -153,7 +154,7 @@ class Standard
 
 				$attrItem = $this->getAttributeItem( $code, $attrType );
 				$attrItem = $attrItem->fromArray( $list )->setCode( $code );
-				$listItem = $listItem->setPosition( $pos )->fromArray( $list );
+				$listItem = $listItem->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
 				$product->addListItem( 'attribute', $listItem, $attrItem );
 			}

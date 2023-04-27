@@ -126,10 +126,12 @@ class Standard
 				continue;
 			}
 
-			$type = $this->val( $list, 'text.type', 'name' );
 			$listtype = $this->val( $list, 'product.lists.type', 'default' );
+			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
+
 			$language = $this->val( $list, 'text.languageid', '' );
 			$content = $this->val( $list, 'text.content', '' );
+			$type = $this->val( $list, 'text.type', 'name' );
 
 			$this->addType( 'product/lists/type', 'text', $listtype );
 			$this->addType( 'text/type', 'product', $type );

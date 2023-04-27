@@ -102,6 +102,48 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$nondelete = array( 'attribute', 'product', 'catalog' );
 		$delete = array( 'media', 'price', 'text' );
 
+		$mapping = array(
+			'item' => array(
+				0 => 'product.code',
+				1 => 'product.label',
+				2 => 'product.type',
+				3 => 'product.status',
+			),
+			'text' => array(
+				4 => 'text.type',
+				5 => 'text.content',
+				6 => 'text.type',
+				7 => 'text.content',
+			),
+			'media' => array(
+				8 => 'media.url',
+			),
+			'price' => array(
+				9 => 'price.currencyid',
+				10 => 'price.quantity',
+				11 => 'price.value',
+				12 => 'price.taxrate',
+			),
+			'attribute' => array(
+				13 => 'attribute.code',
+				14 => 'attribute.type',
+			),
+			'product' => array(
+				15 => 'product.code',
+				16 => 'product.lists.type',
+			),
+			'property' => array(
+				17 => 'product.property.value',
+				18 => 'product.property.type',
+			),
+			'catalog' => array(
+				19 => 'catalog.code',
+				20 => 'catalog.lists.type',
+				21 => 'product.lists.config',
+			),
+		);
+		$this->context->config()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
+
 		$fs = $this->context->fs( 'fs-import' );
 		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
 
@@ -122,6 +164,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		foreach( $result as $product ) {
 			$this->assertEquals( 6, count( $product->getListItems() ) );
 		}
+
+		$this->assertNotEquals( ['num' => 1, 'test', 'val'], $product->getListItems( 'catalog' )->getConfig()->first() );
 	}
 
 
