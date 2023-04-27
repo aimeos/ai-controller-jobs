@@ -165,7 +165,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$this->assertEquals( 6, count( $product->getListItems() ) );
 		}
 
-		$this->assertNotEquals( ['num' => 1, 'test', 'val'], $product->getListItems( 'catalog' )->getConfig()->first() );
+		$config = map( $result )->getListItems( 'catalog' )->flat( 1 )->getConfig()->first();
+		$this->assertEquals( ['num' => 2, 'key' => 'value'], $config );
 	}
 
 

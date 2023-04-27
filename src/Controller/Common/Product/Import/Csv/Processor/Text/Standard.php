@@ -148,7 +148,7 @@ class Standard
 				$refItem = $refManager->create()->setType( $type );
 			}
 
-			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
+			$listItem = $listItem->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
 			$label = mb_strcut( $this->val( $list, 'text.content', '' ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );
