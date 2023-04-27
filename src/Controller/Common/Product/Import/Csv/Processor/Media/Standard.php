@@ -134,8 +134,9 @@ class Standard
 			$type = $this->val( $list, 'media.type', 'default' );
 			$langId = $this->val( $list, 'media.languageid', '' );
 			$listtype = $this->val( $list, 'product.lists.type', 'default' );
-			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
+			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
 
+			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
 			unset( $list['media.url'] );
 
 			$this->addType( 'product/lists/type', 'media', $listtype );
@@ -164,7 +165,7 @@ class Standard
 
 				$refItem->setDomain( 'product' );
 				$refItem = $this->update( $refItem, $list, $url );
-				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list );
+				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setConfig( $listConfig );
 
 				$product->addListItem( 'media', $listItem, $refItem );
 			}

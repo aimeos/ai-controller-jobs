@@ -127,6 +127,7 @@ class Standard
 
 			$type = $this->val( $list, 'price.type', 'default' );
 			$listtype = $this->val( $list, 'product.lists.type', 'default' );
+			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
 
 			$this->addType( 'product/lists/type', 'price', $listtype );
 			$this->addType( 'price/type', 'product', $type );
@@ -141,7 +142,7 @@ class Standard
 				$refItem = $refManager->create();
 			}
 
-			$listItem = $listItem->setType( $listtype )->setPosition( $pos )->fromArray( $list );
+			$listItem = $listItem->setType( $listtype )->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
 			$label = $this->val( $list, 'price.currencyid', '' ) . ' ' . $this->val( $list, 'price.value', '' );
 			$refItem = $refItem->setType( $type )->setLabel( $label )->fromArray( $list );
