@@ -7,7 +7,7 @@
 
 /** Available data
  * - orderItem: Order Item
- * - summaryBasket : Order base item (basket) with addresses, services, products, etc.
+ * - summaryBasket : Order item (basket) with addresses, services, products, etc.
  */
 
 $enc = $this->encoder();

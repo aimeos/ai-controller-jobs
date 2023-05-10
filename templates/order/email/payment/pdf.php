@@ -8,7 +8,7 @@
 /** Available data
  * - orderItem: Order item
  * - addressItem: Billing address item
- * - summaryBasket : Order base item (basket) with addresses, services, products, etc.
+ * - summaryBasket : Order item (basket) with addresses, services, products, etc.
  */
 
 
