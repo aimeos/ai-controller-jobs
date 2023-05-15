@@ -469,7 +469,7 @@ class Standard
 		 */
 		$msg->bcc( $config->get( 'controller/jobs/order/email/payment/bcc-email', [] ) );
 
-		$msg->subject( sprintf( $context->translate( 'controller/jobs', 'Your order %1$s' ), $order->getOrderNumber() ) )
+		$msg->subject( sprintf( $context->translate( 'controller/jobs', 'Your order %1$s' ), $order->getInvoiceNumber() ) )
 			->html( $view->render( $config->get( 'controller/jobs/order/email/payment/template-html', 'order/email/payment/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/order/email/payment/template-text', 'order/email/payment/text' ) ) )
 			->attach( $this->pdf( $view ), $this->call( 'filename', $order ), 'application/pdf' )

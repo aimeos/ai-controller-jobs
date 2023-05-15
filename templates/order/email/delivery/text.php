@@ -28,13 +28,13 @@ $orderDate = date_create( $this->orderItem->getTimeCreated() )->format( $this->t
 
 
 <?php switch( $this->orderItem->getStatusDelivery() ) : case 3: /// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s) ?>
-<?= 	sprintf( $this->translate( 'controller/jobs', 'Your order %1$s from %2$s has been dispatched.' ), $this->orderItem->getOrderNumber(), $orderDate, $orderStatus ) ?>
+<?= 	sprintf( $this->translate( 'controller/jobs', 'Your order %1$s from %2$s has been dispatched.' ), $this->orderItem->getInvoiceNumber(), $orderDate, $orderStatus ) ?>
 <?php break; case 6: /// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s) ?>
-<?= 	sprintf( $this->translate( 'controller/jobs', 'The parcel for your order %1$s from %2$s could not be delivered.' ), $this->orderItem->getOrderNumber(), $orderDate, $orderStatus ) ?>
+<?= 	sprintf( $this->translate( 'controller/jobs', 'The parcel for your order %1$s from %2$s could not be delivered.' ), $this->orderItem->getInvoiceNumber(), $orderDate, $orderStatus ) ?>
 <?php break; case 7: /// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s) ?>
-<?= 	sprintf( $this->translate( 'controller/jobs', 'We received the returned parcel for your order %1$s from %2$s.' ), $this->orderItem->getOrderNumber(), $orderDate, $orderStatus ) ?>
+<?= 	sprintf( $this->translate( 'controller/jobs', 'We received the returned parcel for your order %1$s from %2$s.' ), $this->orderItem->getInvoiceNumber(), $orderDate, $orderStatus ) ?>
 <?php break; default: /// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s) ?>
-<?= 	sprintf( $this->translate( 'controller/jobs', 'The delivery status of your order %1$s from %2$s has been changed to "%3$s".' ), $this->orderItem->getOrderNumber(), $orderDate, $orderStatus ) ?>
+<?= 	sprintf( $this->translate( 'controller/jobs', 'The delivery status of your order %1$s from %2$s has been changed to "%3$s".' ), $this->orderItem->getInvoiceNumber(), $orderDate, $orderStatus ) ?>
 <?php endswitch ?>
 
 
