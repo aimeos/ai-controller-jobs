@@ -90,7 +90,7 @@ class Standard
 		}
 		else
 		{
-			$this->listTypes = array_flip( $this->listTypes );
+			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
 		$this->cache = $this->getCache( 'product' );
