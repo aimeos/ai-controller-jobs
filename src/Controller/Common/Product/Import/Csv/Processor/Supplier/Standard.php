@@ -104,45 +104,50 @@ class Standard
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
 		$context = $this->context();
-		$logger = $context->logger();
 		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
 
-		$listItems = $product->getListItems( 'supplier', null, null, false );
+		$listMap = [];
+		$map = $this->getMappedChunk( $data, $this->getMapping() );
+		$listItems = $product->getListItems( 'supplier', $this->listTypes, null, false );
 
-		foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
+		foreach( $listItems as $listItem )
+		{
+			if( $refItem = $listItem->getRefItem() ) {
+				$listMap[$refItem->getCode()][$listItem->getType()] = $listItem;
+			}
+		}
+
+		foreach( $map as $list )
 		{
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
-			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
 			$listtype = $this->val( $list, 'product.lists.type', 'default' );
 			$this->addType( 'product/lists/type', 'supplier', $listtype );
 
-			foreach( explode( $separator, $this->val( $list, 'supplier.code', '' ) ) as $code )
+			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
+			$codes = explode( $separator, $this->val( $list, 'supplier.code', '' ) );
+			unset( $list['supplier.code'], $list['product.lists.config'] );
+
+			foreach( $codes as $code )
 			{
 				$code = trim( $code );
 
-				if( ( $supid = $this->cache->get( $code ) ) === null )
-				{
-					$msg = 'No supplier for code "%1$s" available when importing product with code "%2$s"';
-					$logger->warning( sprintf( $msg, $code, $product->getCode() ), 'import/csv/product' );
-					continue;
-				}
+				$supItem = $this->getSupplierItem( $code );
+				$supItem = $supItem->fromArray( $list )->setCode( $code );
 
-				if( ( $listItem = $product->getListItem( 'supplier', $listtype, $supid ) ) === null ) {
-					$listItem = $manager->createListItem()->setType( $listtype );
-				} else {
-					unset( $listItems[$listItem->getId()] );
-				}
+				$listItem = $listMap[$code][$listtype] ?? $manager->createListItem();
+				$listItem = $listItem->fromArray( $list )->setConfig( $listConfig );
 
-				$listItem = $listItem->fromArray( $list )->setRefId( $supid )->setConfig( $listConfig );
-				$product->addListItem( 'supplier', $listItem );
+				$product->addListItem( 'supplier', $listItem->setType( $listtype ), $supItem );
+
+				unset( $listItems[$listItem->getId()] );
 			}
 		}
 
-		$product->deleteListItems( $listItems->toArray() );
+		$product->deleteListItems( $listItems );
 
 		return $this->object()->process( $product, $data );
 	}
@@ -167,5 +172,31 @@ class Standard
 		}
 
 		return true;
+	}
+
+
+	/**
+	 * Returns the supplier item for the given code and type
+	 *
+	 * @param string $code Supplier code
+	 * @return \Aimeos\MShop\Supplier\Item\Iface Supplier item object
+	 */
+	protected function getSupplierItem( string $code ) : \Aimeos\MShop\Supplier\Item\Iface
+	{
+		if( ( $item = $this->cache->get( $code ) ) === null )
+		{
+			$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
+
+			$item = $manager->create()
+				->setLabel( $code )
+				->setCode( $code )
+				->setStatus( 1 );
+
+			$item = $manager->save( $item );
+
+			$this->cache->set( $item );
+		}
+
+		return $item;
 	}
 }
