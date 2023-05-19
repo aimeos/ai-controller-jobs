@@ -375,12 +375,13 @@ class Standard
 	protected function location() : string
 	{
 		/** controller/jobs/supplier/import/xml/location
-		 * File or directory where the content is stored which should be imported
+		 * Directory where the CSV files are stored which should be imported
 		 *
-		 * You need to configure the XML file or directory with the XML files that
-		 * should be imported. It should be an absolute path to be sure but can be
-		 * relative path if you absolutely know from where the job will be executed
-		 * from.
+		 * It's the relative path inside the "fs-import" virtual file system
+		 * configuration. The default location of the "fs-import" file system is:
+		 *
+		 * * Laravel: ./storage/import/
+		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
 		 * @param string Relative path to the XML files
 		 * @since 2019.04

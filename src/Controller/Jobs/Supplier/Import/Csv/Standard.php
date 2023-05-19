@@ -413,18 +413,13 @@ class Standard
 	protected function location() : string
 	{
 		/** controller/jobs/supplier/import/csv/location
-		 * File or directory where the content is stored which should be imported
+		 * Directory where the CSV files are stored which should be imported
 		 *
-		 * You need to configure the file or directory that acts as container
-		 * for the CSV files that should be imported. It should be an absolute
-		 * path to be sure but can be relative path if you absolutely know from
-		 * where the job will be executed from.
+		 * It's the relative path inside the "fs-import" virtual file system
+		 * configuration. The default location of the "fs-import" file system is:
 		 *
-		 * The path can point to any supported container format as long as the
-		 * content is in CSV format, e.g.
-		 *
-		 * * Directory container / CSV file
-		 * * Zip container / compressed CSV file
+		 * * Laravel: ./storage/import/
+		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
 		 * @param string Relative path to the CSV files
 		 * @since 2020.07
