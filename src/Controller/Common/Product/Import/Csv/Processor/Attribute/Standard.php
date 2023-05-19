@@ -115,11 +115,11 @@ class Standard
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
-		$listItems = $product->getListItems( 'attribute', $this->listTypes );
+		$listItems = $product->getListItems( 'attribute', $this->listTypes, null, false );
 
 		foreach( $listItems as $listItem )
 		{
-			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+			if( $refItem = $listItem->getRefItem() ) {
 				$listMap[$refItem->getCode()][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
 		}
@@ -142,25 +142,18 @@ class Standard
 			{
 				$code = trim( $code );
 
-				if( isset( $listMap[$code][$attrType][$listtype] ) )
-				{
-					$listItem = $listMap[$code][$attrType][$listtype];
-					unset( $listItems[$listItem->getId()] );
-				}
-				else
-				{
-					$listItem = $manager->createListItem()->setType( $listtype );
-				}
-
 				$attrItem = $this->getAttributeItem( $code, $attrType );
 				$attrItem = $attrItem->fromArray( $list )->setCode( $code );
+
+				$listItem = $listMap[$code][$attrType][$listtype] ?? $manager->createListItem();
 				$listItem = $listItem->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
-				$product->addListItem( 'attribute', $listItem, $attrItem );
+				$product->addListItem( 'attribute', $listItem->setType( $listtype ), $attrItem );
+				unset( $listItems[$listItem->getId()] );
 			}
 		}
 
-		$product->deleteListItems( $listItems->toArray() );
+		$product->deleteListItems( $listItems );
 
 		return $this->object()->process( $product, $data );
 	}
