@@ -44,21 +44,16 @@ class Standard
 		parent::__construct( $context );
 
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
-		$result = $manager->search( $manager->filter() );
-
-		foreach( $result as $id => $item )
-		{
-			$this->suppliers[$item->getCode()] = $id;
-		}
+		$result = $manager->search( $manager->filter() )->col( null, 'supplier.code' );
 	}
 
 
 	/**
 	 * Returns the supplier ID for the given code and type
 	 *
-	 * @param string $code Category code
+	 * @param string $code Supplier code
 	 * @param string|null $type Not used
-	 * @return string|null Supplier ID or null if not found
+	 * @return \Aimeos\MShop\Supplier\Item\Iface|null Supplier item or null if not found
 	 */
 	public function get( string $code, string $type = null )
 	{
@@ -67,16 +62,14 @@ class Standard
 		}
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'supplier.code', $code ) );
+		$search = $manager->filter()->add( 'supplier.code', '==', $code );
 
 
-		if( ( $item = $manager->search( $search )->first() ) !== null )
-		{
-			$this->suppliers[$code] = $item->getId();
-			return $item->getId();
+		if( $item = $manager->search( $search )->first() ) {
+			$this->suppliers[$code] = $item;
 		}
+
+		return $item;
 	}
 
 
@@ -87,6 +80,6 @@ class Standard
 	 */
 	public function set( \Aimeos\MShop\Common\Item\Iface $item )
 	{
-		$this->suppliers[$item->getCode()] = $item->getId();
+		$this->suppliers[$item->getCode()] = $item;
 	}
 }

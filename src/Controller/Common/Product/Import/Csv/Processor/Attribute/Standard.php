@@ -82,7 +82,7 @@ class Standard
 		}
 		else
 		{
-			$this->listTypes = array_flip( $this->listTypes );
+			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
 
