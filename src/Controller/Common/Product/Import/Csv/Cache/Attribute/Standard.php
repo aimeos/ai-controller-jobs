@@ -61,24 +61,18 @@ class Standard
 	 */
 	public function get( string $code, string $type = null )
 	{
-		if( isset( $this->attributes[$code] ) && isset( $this->attributes[$code][$type] ) ) {
+		if( isset( $this->attributes[$code][$type] ) ) {
 			return $this->attributes[$code][$type];
 		}
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute' );
+		$search = $manager->filter()->add( ['attribute.code' => $code, 'attribute.type' => $type] );
 
-		$search = $manager->filter();
-		$expr = array(
-			$search->compare( '==', 'attribute.code', $code ),
-			$search->compare( '==', 'attribute.type', $type ),
-		);
-		$search->setConditions( $search->and( $expr ) );
-
-		if( ( $item = $manager->search( $search )->first() ) !== null )
-		{
+		if( $item = $manager->search( $search )->first() ) {
 			$this->attributes[$code][$type] = $item;
-			return $item;
 		}
+
+		return $item;
 	}
 
 
@@ -89,12 +83,6 @@ class Standard
 	 */
 	public function set( \Aimeos\MShop\Common\Item\Iface $item )
 	{
-		$code = $item->getCode();
-
-		if( !isset( $this->attributes[$code] ) || !is_array( $this->attributes[$code] ) ) {
-			$this->attributes[$code] = [];
-		}
-
-		$this->attributes[$code][$item->getType()] = $item;
+		$this->attributes[$item->getCode()][$item->getType()] = $item;
 	}
 }
