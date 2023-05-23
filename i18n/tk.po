@@ -3,21 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# b5fdd37cec45d8078af7e530465bb050, 2016
-# b5fdd37cec45d8078af7e530465bb050, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 11:12+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
-"Language-Team: Portuguese (http://app.transifex.com/aimeos/aimeos-core/language/pt/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Turkmen (http://app.transifex.com/aimeos/aimeos-core/language/tk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Language: tk\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -42,40 +40,40 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr "%1$s %2$s"
+msgstr "%1$s%2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s %2$s off"
+msgstr "%1$s %2$s arzanlady\\"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/item"
+msgstr "+ %1$s %2$s/haryt"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "+ %1$s%% %2$s"
+msgstr ""
 
 msgid "+ Payment costs"
-msgstr "+ Custo de pagamento"
+msgstr "+ Töleg çykdaýjylary"
 
 msgid "+ Shipping"
-msgstr "+ Frete"
+msgstr "+ Eltip bermek"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr "-%1$s%%"
+msgstr ""
 
 msgid "Account"
-msgstr "Conta"
+msgstr "Hasap"
 
 msgid "All XML import"
 msgstr ""
@@ -86,10 +84,10 @@ msgstr ""
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2023
 msgid "An account has been created for you."
-msgstr "Uma conta foi criada para você"
+msgstr ""
 
 msgid "Article no."
-msgstr " Item nº"
+msgstr ""
 
 msgid "Attribute import XML"
 msgstr ""
@@ -97,19 +95,19 @@ msgstr ""
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr "Pagamentos autorizados de pedidos serão capturados após o envio ou depois de um período de tempo configurável"
+msgstr ""
 
 msgid "Batch update of payment/delivery status"
-msgstr "Atualização em lote de status de pagamento/entrega"
+msgstr ""
 
 msgid "Billing address"
-msgstr "Endereço de cobrança"
+msgstr "Hasaplaşyk salgysy"
 
 msgid "Cache cleanup"
-msgstr "Limpeza de cache"
+msgstr ""
 
 msgid "Capture authorized payments"
-msgstr "Captura pagamentos autorizados"
+msgstr ""
 
 msgid "Catalog import CSV"
 msgstr ""
@@ -124,19 +122,19 @@ msgid "Coupon code import CSV"
 msgstr ""
 
 msgid "Coupon codes"
-msgstr "Códigos de cupons"
+msgstr ""
 
 msgid "Coupons"
-msgstr "Cupons"
+msgstr ""
 
 msgid "Creates a catalog site map for search engines"
 msgstr ""
 
 msgid "Creates a product site map for search engines"
-msgstr "Cria um mapa do site dos produtos para motores de busca"
+msgstr ""
 
 msgid "Creates bought together product suggestions"
-msgstr "Cria sugestoões para compra de produtos em conjunto"
+msgstr ""
 
 msgid "Customer account e-mails"
 msgstr ""
@@ -150,46 +148,46 @@ msgstr ""
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr "Caro %1$s %2$s"
+msgstr ""
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr "Caro %1$s %2$s"
+msgstr ""
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr "Cara %1$s %2$s"
+msgstr ""
 
 msgid "Dear customer"
-msgstr "Caro cliente"
+msgstr ""
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr "Remove pedidos não-concluídos tornando seus produtos e cupons disponíveis novamente"
+msgstr ""
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr "Deleta os pedidos sem pagamento para manter a base de dados limpa"
+msgstr ""
 
 msgid "Delivery address"
-msgstr "Endereço de entrega"
+msgstr "Eltip beriş salgysy"
 
 msgid "Delivery within"
-msgstr "Entrega em"
+msgstr ""
 
 msgid "Details"
-msgstr "Detalhes"
+msgstr ""
 
 msgid "Executes all XML importers and rebuild the index"
 msgstr ""
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr "Executa provedores de serviço de pagamento ou entrega que usam atualização em lotes"
+msgstr ""
 
 msgid "Exports all available products"
-msgstr "Exportar todos os produtos disponíveis"
+msgstr ""
 
 msgid "Exports orders to CSV file"
 msgstr ""
@@ -198,7 +196,7 @@ msgid "Exports subscriptions to CSV file"
 msgstr ""
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr "Se tiver alguma dúvida, por favor responda este e-mail"
+msgstr ""
 
 msgid "Imports new and updates existing attributes from XML files"
 msgstr ""
@@ -219,7 +217,7 @@ msgid "Imports new and updates existing customers from XML files"
 msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr "Importa novos e atualiza produtos existentes a partir de arquivos CSV"
+msgstr ""
 
 msgid "Imports new and updates existing products from XML files"
 msgstr ""
@@ -235,15 +233,15 @@ msgstr ""
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr " incl. %1$s %% %2$s"
+msgstr ""
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr "Incl. %1$s%% Taxas"
+msgstr ""
 
 msgid "Included rebates"
-msgstr "Descontos incluídos"
+msgstr ""
 
 msgid "Index optimization"
 msgstr ""
@@ -254,38 +252,38 @@ msgstr ""
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr "Fatura"
+msgstr ""
 
 #, php-format
 msgid "Invoice %1$s"
 msgstr ""
 
 msgid "Like entered by you"
-msgstr "Como introduzido por sí"
+msgstr ""
 
 msgid "Log cleanup"
-msgstr "Limpeza de registros"
+msgstr ""
 
 msgid "Login"
-msgstr "Entrar"
+msgstr ""
 
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 msgid "One or more products you are watching have been updated."
-msgstr "Um ou mais produtos que você está observando foram atualizados"
+msgstr ""
 
 msgid "Optimizes the index for searching products faster"
 msgstr ""
 
 msgid "Order date"
-msgstr "Data da encomenda"
+msgstr ""
 
 msgid "Order delivery related e-mails"
 msgstr ""
 
 msgid "Order details"
-msgstr "Detalhes do pedido"
+msgstr ""
 
 msgid "Order export CSV"
 msgstr ""
@@ -297,22 +295,22 @@ msgid "Order status import CSV"
 msgstr ""
 
 msgid "Password"
-msgstr "Senha"
+msgstr ""
 
 msgid "Price"
-msgstr "Preço"
+msgstr ""
 
 msgid "Process order delivery services"
-msgstr "Processa serviços de entrega de pedidos"
+msgstr ""
 
 msgid "Process subscriptions initially"
 msgstr ""
 
 msgid "Product export"
-msgstr "Exportação de produto"
+msgstr ""
 
 msgid "Product import CSV"
-msgstr "Importação de produto CSV"
+msgstr ""
 
 msgid "Product import XML"
 msgstr ""
@@ -321,35 +319,35 @@ msgid "Product notification e-mails"
 msgstr ""
 
 msgid "Product site map"
-msgstr "Mapa do site de produtos"
+msgstr ""
 
 msgid "Products bought together"
-msgstr "Produtos comprados juntos"
+msgstr ""
 
 msgid "Qty"
-msgstr "Qtd"
+msgstr ""
 
 msgid "Quantity"
-msgstr "Quantidade"
+msgstr ""
 
 msgid "Rebuilds the index for searching products"
 msgstr ""
 
 msgid "Reference"
-msgstr "Referência"
+msgstr ""
 
 msgid "Removes the expired entries from the cache"
-msgstr "Remove entradas expiradas do cache"
+msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr "Remove registros antigos da base de dados e arquiva-os (opcional)"
+msgstr ""
 
 msgid "Removes unfinished orders"
-msgstr "Remover pedidos não concluídos"
+msgstr ""
 
 msgid "Removes unpaid orders"
-msgstr "Remover pedidos sem pagamento"
+msgstr ""
 
 msgid "Renews subscriptions at next date"
 msgstr ""
@@ -373,13 +371,13 @@ msgid "Sends order delivery status update e-mails"
 msgstr ""
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr "Envia os pedidos pagos para o ERP ou empresa de logística"
+msgstr ""
 
 msgid "Sends the e-mail with the voucher to the customer"
 msgstr ""
 
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 msgid "Status import for orders from CSV file"
 msgstr ""
@@ -388,7 +386,7 @@ msgid "Stock import CSV"
 msgstr ""
 
 msgid "Sub-total"
-msgstr "Sub-total"
+msgstr ""
 
 msgid "Subscription export CSV"
 msgstr ""
@@ -403,10 +401,10 @@ msgid "Subscription process start"
 msgstr ""
 
 msgid "Subscription product"
-msgstr "Produto da subscrição"
+msgstr ""
 
 msgid "Sum"
-msgstr "Soma"
+msgstr ""
 
 msgid "Supplier import CSV"
 msgstr ""
@@ -421,7 +419,7 @@ msgstr ""
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Obrigado pelo seu pedido %1$s de %2$s."
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -429,7 +427,7 @@ msgstr "Obrigado pelo seu pedido %1$s de %2$s."
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "O status do pedido %1$s foi alterado de %2$s para \"%3$s\"."
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -438,21 +436,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "A encomenda está pendente até recebermos a confirmação de pagamento. Se escolheu pagar por transferência bancária transfira a quantia para a nossa conta bancária com a referência ao ID da encomenda %1$s."
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "O seu pedido %1$s de %2$s não pôde ser entregue."
+msgstr ""
 
 msgid "The payment couldn't be renewed"
-msgstr "O pagamento não pôde ser renovado"
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "O pagamento do pedido %1$s de %2$s foi ressarcido"
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -463,17 +461,16 @@ msgid ""
 msgstr ""
 
 msgid "The subscription for the product has ended"
-msgstr "A subscrição do produto terminou"
+msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] "O valor do seu vale é %1$s"
-msgstr[1] "O valor dos seus vales é %1$s"
-msgstr[2] "O valor dos seus vales é %1$s"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 msgid "Transfers money to vendors"
 msgstr ""
@@ -494,77 +491,77 @@ msgid "Voucher related e-mails"
 msgstr ""
 
 msgid "Watched products"
-msgstr "Produtos acompanhados"
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr "Recebemos o seu pagamento, vamos tratar da sua encomenda imediatamente."
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "Nós recebemos a devolução de seu pedido %1$s de %2$s."
+msgstr ""
 
 msgid "Y-m-d"
-msgstr "Y-m-d"
+msgstr ""
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr "Pode usar os seus Vales de Desconto em qualquer altura na nossa loja online"
+msgstr ""
 
 msgid "You've cancelled the subscription"
-msgstr "Cancelou a subscrição"
+msgstr ""
 
 msgid "Your account"
-msgstr "Sua conta"
+msgstr ""
 
 msgid "Your comment"
-msgstr "O seu comentário"
+msgstr ""
 
 msgid "Your new account"
-msgstr "Sua nova conta"
+msgstr ""
 
 #, php-format
 msgid "Your order %1$s"
-msgstr "Seu pedido %1$s"
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Seu pedido %1$s de %2$s foi despachado."
+msgstr ""
 
 msgid "Your reference"
-msgstr "A sua referência"
+msgstr ""
 
 msgid "Your reference number"
-msgstr "A sua referência"
+msgstr ""
 
 msgid "Your subscription"
-msgstr "A sua subscrição"
+msgstr ""
 
 msgid "Your voucher"
-msgstr "O seu vale"
+msgstr ""
 
 msgid "Your watched products"
-msgstr "Seus produtos observados"
+msgstr ""
 
 msgid "delivery"
-msgstr "entrega"
+msgstr ""
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr "de %1$s"
+msgstr ""
 
 msgid "like billing address"
-msgstr "igual ao endereço de cobrança"
+msgstr ""
 
 msgid "payment"
-msgstr "pagamento"
+msgstr ""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr "preço:omissão"
+msgstr ""

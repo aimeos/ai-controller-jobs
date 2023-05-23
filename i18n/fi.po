@@ -466,8 +466,8 @@ msgstr "Tuotteen tilausaika on päättynyt"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Etusetelisi arvo on %1$s"
+msgstr[1] "Etuseteleidesi arvo on %1$s"
 
 msgid "Total"
 msgstr "Kokonaisuudessaan"

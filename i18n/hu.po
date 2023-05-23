@@ -469,8 +469,8 @@ msgstr "A termék előfizetése véget ért"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "A kuponjának értéke  %1$s"
+msgstr[1] "A kuponjainak értéke %1$s"
 
 msgid "Total"
 msgstr "Végösszeg"

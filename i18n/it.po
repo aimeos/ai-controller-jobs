@@ -466,9 +466,9 @@ msgstr "L'iscrizione all'abbonamento è scaduta"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Il valore del tuo buono è %1$s"
+msgstr[1] "Il valore dei tuoi buoni è %1$s"
+msgstr[2] "Il valore dei tuoi buoni è %1$s"
 
 msgid "Total"
 msgstr "Totale"

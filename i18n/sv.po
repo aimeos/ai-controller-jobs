@@ -466,8 +466,8 @@ msgstr "Prenumerationen på produktern har upphört"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Värdet på din rabattkupong är %1$s"
+msgstr[1] "Värdet på dina rabattkuponger är %1$s"
 
 msgid "Total"
 msgstr "Total"
