@@ -32,8 +32,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$fs = $context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
-		$fs->write( 'path/to/file2.jpg', 'test' );
-		$fs->write( 'path/to/file.jpg', 'test' );
+		$fs->write( 'path/to/image2.jpg', 'test' );
+		$fs->write( 'path/to/image.jpg', 'test' );
 
 		$fs = $context->fs( 'fs-mimeicon' );
 		$fs->write( 'unknown.png', 'icon' );
