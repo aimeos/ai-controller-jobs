@@ -153,7 +153,13 @@ abstract class Base
 
 		foreach( array_filter( explode( "\n", $value ) ) as $line )
 		{
-			list( $key, $val ) = explode( ':', $line );
+			$parts = explode( ':', $line );
+
+			if( count( $parts ) !== 2 ) {
+				throw new \Aimeos\Controller\Jobs\Exception( 'Invalid list configuration: ' . $value );
+			}
+
+			list( $key, $val ) = $parts;
 			$config[$key] = $val;
 		}
 
