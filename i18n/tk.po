@@ -59,7 +59,7 @@ msgstr "+ %1$s %2$s/haryt"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ Töleg çykdaýjylary"
@@ -70,7 +70,7 @@ msgstr "+ Eltip bermek"
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "Hasap"
@@ -84,10 +84,10 @@ msgstr ""
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2023
 msgid "An account has been created for you."
-msgstr ""
+msgstr "Siziň üçin hasap döredildi."
 
 msgid "Article no."
-msgstr ""
+msgstr "Haryt no."
 
 msgid "Attribute import XML"
 msgstr ""
@@ -122,10 +122,10 @@ msgid "Coupon code import CSV"
 msgstr ""
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Talon kodlary"
 
 msgid "Coupons"
-msgstr ""
+msgstr "Talonlar"
 
 msgid "Creates a catalog site map for search engines"
 msgstr ""
@@ -148,20 +148,20 @@ msgstr ""
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Hormatly %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Hormatly %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Hormatly %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Hormatly müşderi"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
@@ -175,10 +175,10 @@ msgid "Delivery address"
 msgstr "Eltip beriş salgysy"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Içinde eltip bermek"
 
 msgid "Details"
-msgstr ""
+msgstr "Jikme-jiklikler"
 
 msgid "Executes all XML importers and rebuild the index"
 msgstr ""
@@ -196,7 +196,7 @@ msgid "Exports subscriptions to CSV file"
 msgstr ""
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "Soraglaryňyz bar bolsa, şu e-poçta jogap bermegiňizi haýyş edýäris"
 
 msgid "Imports new and updates existing attributes from XML files"
 msgstr ""
@@ -233,15 +233,15 @@ msgstr ""
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Incl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Incl. %1$s%% VAT"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "Arzanladyşy goşulan"
 
 msgid "Index optimization"
 msgstr ""
@@ -259,31 +259,31 @@ msgid "Invoice %1$s"
 msgstr ""
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Girişiňiz ýaly"
 
 msgid "Log cleanup"
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "Giriş"
 
 msgid "Name"
-msgstr ""
+msgstr "Ady"
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "Yzarlaýan bir ýa-da birnäçe önümiňiz täzelendi."
 
 msgid "Optimizes the index for searching products faster"
 msgstr ""
 
 msgid "Order date"
-msgstr ""
+msgstr "Sargyt senesi"
 
 msgid "Order delivery related e-mails"
 msgstr ""
 
 msgid "Order details"
-msgstr ""
+msgstr "Sargyt maglumatlary"
 
 msgid "Order export CSV"
 msgstr ""
@@ -295,10 +295,10 @@ msgid "Order status import CSV"
 msgstr ""
 
 msgid "Password"
-msgstr ""
+msgstr "Açar sözi"
 
 msgid "Price"
-msgstr ""
+msgstr "Bahasy"
 
 msgid "Process order delivery services"
 msgstr ""
@@ -325,16 +325,16 @@ msgid "Products bought together"
 msgstr ""
 
 msgid "Qty"
-msgstr ""
+msgstr "Mukdar"
 
 msgid "Quantity"
-msgstr ""
+msgstr "Mukdar"
 
 msgid "Rebuilds the index for searching products"
 msgstr ""
 
 msgid "Reference"
-msgstr ""
+msgstr "Salgylanma"
 
 msgid "Removes the expired entries from the cache"
 msgstr ""
@@ -377,7 +377,7 @@ msgid "Sends the e-mail with the voucher to the customer"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Ýagdaý"
 
 msgid "Status import for orders from CSV file"
 msgstr ""
@@ -386,7 +386,7 @@ msgid "Stock import CSV"
 msgstr ""
 
 msgid "Sub-total"
-msgstr ""
+msgstr "Jemi"
 
 msgid "Subscription export CSV"
 msgstr ""
@@ -401,10 +401,10 @@ msgid "Subscription process start"
 msgstr ""
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Abunalyk harydy"
 
 msgid "Sum"
-msgstr ""
+msgstr "Jemi"
 
 msgid "Supplier import CSV"
 msgstr ""
@@ -419,7 +419,7 @@ msgstr ""
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "%2$s-dan %1$s zakaz edeniňiz üçin sag boluň."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -427,7 +427,7 @@ msgstr ""
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "%2$s-dan %1$s zakazyňyzyň gowşuryş ýagdaýy \"%3$s\" görnüşine üýtgedildi."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -436,21 +436,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "Sargyt gutarnykly töleg edilýänçä garaşdyrylýar. Öňünden tölemegi saýlan bolsaňyz, pul salgysyny %1$s sargyt belgisi bilen bank hasabymyza geçirmegiňizi haýyş edýäris."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "%2$s-den %1$s zakazyňyz üçin bukjany iberip bolmady."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Töleg täzelenip bilmedi"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "%2$s-den %1$s zakazyňyz üçin töleg yzyna gaýtaryldy."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -461,16 +461,16 @@ msgid ""
 msgstr ""
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Önüme ýazylmak tamamlandy"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Talonlaryňyzyň bahasy %1$s"
+msgstr[1] "Talonlaryňyzyň bahasy %1$s"
 
 msgid "Total"
-msgstr ""
+msgstr "Jemi"
 
 msgid "Transfers money to vendors"
 msgstr ""
@@ -491,77 +491,77 @@ msgid "Voucher related e-mails"
 msgstr ""
 
 msgid "Watched products"
-msgstr ""
+msgstr "Gözegçilik edilýän önümler"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Tölegiňizi aldyk we sargydyňyzy derrew alada ederis."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "%2$s-den %1$s zakazyňyz üçin yzyna iberilen bukjany aldyk."
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Talonlaryňyzy islän wagtyňyz onlaýn dükanymyzda ulanyp bilersiňiz"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Abunalygy ýatyrdyňyz"
 
 msgid "Your account"
-msgstr ""
+msgstr "Siziň hasabyňyz"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Siziň teswiriňiz"
 
 msgid "Your new account"
-msgstr ""
+msgstr "Siziň täze hasabyňyz"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "Siziň sargydyňyz %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "%2$s-den %1$s zakazyňyz iberildi."
 
 msgid "Your reference"
-msgstr ""
+msgstr "Siziň salgylanmaňyz"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Maglumat belgiňiz"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Abunalygyňyz"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Talonyňyz"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "Gözegçilik eden önümleriňiz"
 
 msgid "delivery"
-msgstr ""
+msgstr "eltip bermek"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "%1$s-dan"
 
 msgid "like billing address"
-msgstr ""
+msgstr "töleg salgysy ýaly"
 
 msgid "payment"
-msgstr ""
+msgstr "töleg"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr ""
+msgstr "bahasy:default"
