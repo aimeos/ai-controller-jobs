@@ -130,8 +130,8 @@ class Standard
 				continue;
 			}
 
-			$attrType = $this->val( $list, 'attribute.type' );
-			$listtype = $this->val( $list, 'product.lists.type', 'default' );
+			$attrType = trim( $this->val( $list, 'attribute.type' ) );
+			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
 			$this->addType( 'product/lists/type', 'attribute', $listtype );
 
 			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
