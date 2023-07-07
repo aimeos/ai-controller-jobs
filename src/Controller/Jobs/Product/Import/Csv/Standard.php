@@ -425,11 +425,11 @@ class Standard
 
 				$manager->commit();
 			}
-			catch( \Exception $e )
+			catch( \Throwable $t )
 			{
 				$manager->rollback();
 
-				$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $code, $e->getMessage() );
+				$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $code, $t->getMessage() );
 				$context->logger()->error( $msg, 'import/csv/product' );
 
 				$errors++;
