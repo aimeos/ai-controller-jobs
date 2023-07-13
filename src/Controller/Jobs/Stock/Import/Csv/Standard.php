@@ -452,7 +452,8 @@ class Standard
 
 			$items[] = $item->setProductId( $product->getId() )->setType( $type )
 				->setStocklevel( $this->val( $entry, 1 ) )
-				->setDateBack( $this->val( $entry, 3 ) );
+				->setDateBack( $this->val( $entry, 3 ) )
+				->setTimeframe( $this->val( $entry, 4, '' ) );
 
 			if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
 				$product->setInStock( 1 );
