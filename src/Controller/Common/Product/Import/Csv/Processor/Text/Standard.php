@@ -126,12 +126,12 @@ class Standard
 				continue;
 			}
 
-			$listtype = $this->val( $list, 'product.lists.type', 'default' );
-			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
+			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
+			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
 
-			$language = $this->val( $list, 'text.languageid', '' );
-			$content = $this->val( $list, 'text.content', '' );
-			$type = $this->val( $list, 'text.type', 'name' );
+			$language = trim( $this->val( $list, 'text.languageid', '' ) );
+			$content = trim( $this->val( $list, 'text.content', '' ) );
+			$type = trim( $this->val( $list, 'text.type', 'name' ) );
 
 			$this->addType( 'product/lists/type', 'text', $listtype );
 			$this->addType( 'text/type', 'product', $type );
@@ -150,7 +150,7 @@ class Standard
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
-			$label = mb_strcut( $this->val( $list, 'text.content', '' ), 0, 255 );
+			$label = mb_strcut( trim( $this->val( $list, 'text.content', '' ) ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );
 
 			$product->addListItem( 'text', $listItem, $refItem );
@@ -174,13 +174,13 @@ class Standard
 			return false;
 		}
 
-		if( ( $type = $this->val( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'product.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->val( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'text.type', '' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

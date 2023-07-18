@@ -127,9 +127,9 @@ class Standard
 				continue;
 			}
 
-			$type = $this->val( $list, 'text.type', 'name' );
-			$listtype = $this->val( $list, 'supplier.lists.type', 'default' );
-			$content = $this->val( $list, 'text.content', '' );
+			$type = trim( $this->val( $list, 'text.type', 'name' ) );
+			$listtype = trim( $this->val( $list, 'supplier.lists.type', 'default' ) );
+			$content = trim( $this->val( $list, 'text.content', '' ) );
 
 			if( isset( $listMap[$content][$type][$listtype] ) )
 			{
@@ -169,13 +169,13 @@ class Standard
 			return false;
 		}
 
-		if( ( $type = $this->val( $list, 'supplier.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'supplier.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->val( $list, 'text.type' ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'text.type', '' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
