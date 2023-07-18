@@ -146,9 +146,9 @@ class Standard
 				continue;
 			}
 
-			$type = $this->val( $list, 'media.type', 'default' );
-			$listtype = $this->val( $list, 'supplier.lists.type', 'default' );
-			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
+			$type = trim( $this->val( $list, 'media.type', 'default' ) );
+			$listtype = trim( $this->val( $list, 'supplier.lists.type', 'default' ) );
+			$urls = explode( $separator, trim( $this->val( $list, 'media.url', '' ) ) );
 
 			foreach( $urls as $url )
 			{
@@ -189,13 +189,13 @@ class Standard
 			return false;
 		}
 
-		if( ( $type = $this->val( $list, 'supplier.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'supplier.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
 		}
 
-		if( ( $type = $this->val( $list, 'media.type' ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'media.type', '' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );

@@ -116,11 +116,11 @@ class Standard
 				continue;
 			}
 
-			$listConfig = $this->getListConfig( $this->val( $list, 'product.lists.config', '' ) );
-			$listtype = $this->val( $list, 'product.lists.type', 'default' );
+			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
+			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
 			$this->addType( 'product/lists/type', 'catalog', $listtype );
 
-			foreach( explode( $separator, $this->val( $list, 'catalog.code', '' ) ) as $code )
+			foreach( explode( $separator, trim( $this->val( $list, 'catalog.code', '' ) ) ) as $code )
 			{
 				$code = trim( $code );
 
@@ -160,7 +160,7 @@ class Standard
 			return false;
 		}
 
-		if( ( $type = $this->val( $list, 'product.lists.type' ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'product.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Common\Exception( $msg );
