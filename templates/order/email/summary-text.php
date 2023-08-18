@@ -151,19 +151,22 @@ $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'controller/jobs
 
 <?php		foreach( $service->getAttributeItems() as $attribute )
 			{
-				$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'controller/jobs', $attribute->getCode() ) );
-
-				switch( $attribute->getValue() )
+				if( in_array( $attribute->getType(), ['', 'hidden', 'tx'] ) )
 				{
-					case 'array':
-					case 'object':
-						$value = join( ', ', (array) $attribute->getValue() );
-						break;
-					default:
-						$value = $attribute->getValue();
-				}
+					$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'controller/jobs', $attribute->getCode() ) );
 
-				echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
+					switch( $attribute->getValue() )
+					{
+						case 'array':
+						case 'object':
+							$value = join( ', ', (array) $attribute->getValue() );
+							break;
+						default:
+							$value = $attribute->getValue();
+					}
+
+					echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
+				}
 			}
 ?>
 <?php	endforeach ?>
