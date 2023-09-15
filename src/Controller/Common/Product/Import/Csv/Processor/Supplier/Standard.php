@@ -47,7 +47,9 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		/** controller/common/product/import/csv/processor/supplier/listtypes
+		$config = $context->config();
+
+		/** controller/jobs/product/import/csv/supplier/listtypes
 		 * Names of the supplier list types that are updated or removed
 		 *
 		 * Aimeos offers associated items like "bought together" suppliers that
@@ -63,15 +65,17 @@ class Standard
 		 *
 		 * @param array|null List of supplier list type names or null for all
 		 * @since 2020.07
-		 * @see controller/common/product/import/csv/domains
-		 * @see controller/common/product/import/csv/processor/attribute/listtypes
-		 * @see controller/common/product/import/csv/processor/supplier/listtypes
-		 * @see controller/common/product/import/csv/processor/media/listtypes
-		 * @see controller/common/product/import/csv/processor/price/listtypes
-		 * @see controller/common/product/import/csv/processor/text/listtypes
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/separator
+		 * @see controller/jobs/product/import/csv/attribute/listtypes
+		 * @see controller/jobs/product/import/csv/catalog/listtypes
+		 * @see controller/jobs/product/import/csv/media/listtypes
+		 * @see controller/jobs/product/import/csv/price/listtypes
+		 * @see controller/jobs/product/import/csv/product/listtypes
+		 * @see controller/jobs/product/import/csv/text/listtypes
 		 */
-		$key = 'controller/common/product/import/csv/processor/supplier/listtypes';
-		$this->listTypes = $context->config()->get( $key, ['default', 'promotion'] );
+		$default = $config->get( 'controller/common/product/import/csv/processor/supplier/listtypes', ['default', 'promotion'] );
+		$this->listTypes = $config->get( 'controller/jobs/product/import/csv/supplier/listtypes', $default );
 
 		if( $this->listTypes === null )
 		{

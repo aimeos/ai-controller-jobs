@@ -49,8 +49,9 @@ class Standard
 		parent::__construct( $context, $mapping, $object );
 
 		$this->mimes = array_flip( $context->config()->get( 'controller/common/media/extensions', [] ) );
+		$config = $context->config();
 
-		/** controller/common/product/import/csv/processor/media/listtypes
+		/** controller/jobs/product/import/csv/media/listtypes
 		 * Names of the product list types for media that are updated or removed
 		 *
 		 * If you want to associate media items manually via the administration
@@ -60,15 +61,17 @@ class Standard
 		 *
 		 * @param array|null List of product list type names or null for all
 		 * @since 2015.05
-		 * @see controller/common/product/import/csv/domains
-		 * @see controller/common/product/import/csv/processor/attribute/listtypes
-		 * @see controller/common/product/import/csv/processor/catalog/listtypes
-		 * @see controller/common/product/import/csv/processor/product/listtypes
-		 * @see controller/common/product/import/csv/processor/price/listtypes
-		 * @see controller/common/product/import/csv/processor/text/listtypes
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/separator
+		 * @see controller/jobs/product/import/csv/attribute/listtypes
+		 * @see controller/jobs/product/import/csv/catalog/listtypes
+		 * @see controller/jobs/product/import/csv/product/listtypes
+		 * @see controller/jobs/product/import/csv/price/listtypes
+		 * @see controller/jobs/product/import/csv/supplier/listtypes
+		 * @see controller/jobs/product/import/csv/text/listtypes
 		 */
-		$key = 'controller/common/product/import/csv/processor/media/listtypes';
-		$this->listTypes = $context->config()->get( $key );
+		$default = $config->get( 'controller/common/product/import/csv/processor/media/listtypes' );
+		$this->listTypes = $config->get( 'controller/jobs/product/import/csv/media/listtypes', $default );
 
 		if( $this->listTypes === null )
 		{
@@ -111,7 +114,7 @@ class Standard
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$refManager = \Aimeos\MShop::create( $context, 'media' );
-		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
+		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );

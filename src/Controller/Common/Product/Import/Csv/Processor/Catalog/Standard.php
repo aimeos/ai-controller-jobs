@@ -47,7 +47,9 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		/** controller/common/product/import/csv/processor/catalog/listtypes
+		$config = $context->config();
+
+		/** controller/jobs/product/import/csv/catalog/listtypes
 		 * Names of the catalog list types that are updated or removed
 		 *
 		 * Aimeos offers associated items like "bought together" catalogs that
@@ -63,15 +65,17 @@ class Standard
 		 *
 		 * @param array|null List of catalog list type names or null for all
 		 * @since 2015.05
-		 * @see controller/common/product/import/csv/domains
-		 * @see controller/common/product/import/csv/processor/attribute/listtypes
-		 * @see controller/common/product/import/csv/processor/catalog/listtypes
-		 * @see controller/common/product/import/csv/processor/media/listtypes
-		 * @see controller/common/product/import/csv/processor/price/listtypes
-		 * @see controller/common/product/import/csv/processor/text/listtypes
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/separator
+		 * @see controller/jobs/product/import/csv/attribute/listtypes
+		 * @see controller/jobs/product/import/csv/media/listtypes
+		 * @see controller/jobs/product/import/csv/price/listtypes
+		 * @see controller/jobs/product/import/csv/product/listtypes
+		 * @see controller/jobs/product/import/csv/supplier/listtypes
+		 * @see controller/jobs/product/import/csv/text/listtypes
 		 */
-		$key = 'controller/common/product/import/csv/processor/catalog/listtypes';
-		$this->listTypes = $context->config()->get( $key, ['default', 'promotion'] );
+		$default = $config->get( 'controller/common/product/import/csv/processor/catalog/listtypes', ['default', 'promotion'] );
+		$this->listTypes = $config->get( 'controller/jobs/product/import/csv/catalog/listtypes', $default );
 
 		if( $this->listTypes === null )
 		{
@@ -106,7 +110,7 @@ class Standard
 		$context = $this->context();
 		$logger = $context->logger();
 		$manager = \Aimeos\MShop::create( $context, 'product' );
-		$separator = $context->config()->get( 'controller/common/product/import/csv/separator', "\n" );
+		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
 		$listItems = $product->getListItems( 'catalog', null, null, false );
 

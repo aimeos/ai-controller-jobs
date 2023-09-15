@@ -47,7 +47,9 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		/** controller/common/product/import/csv/processor/text/listtypes
+		$config = $context->config();
+
+		/** controller/jobs/product/import/csv/text/listtypes
 		 * Names of the product list types for texts that are updated or removed
 		 *
 		 * If you want to associate text items manually via the administration
@@ -57,15 +59,17 @@ class Standard
 		 *
 		 * @param array|null List of product list type names or null for all
 		 * @since 2015.05
-		 * @see controller/common/product/import/csv/domains
-		 * @see controller/common/product/import/csv/processor/attribute/listtypes
-		 * @see controller/common/product/import/csv/processor/catalog/listtypes
-		 * @see controller/common/product/import/csv/processor/media/listtypes
-		 * @see controller/common/product/import/csv/processor/price/listtypes
-		 * @see controller/common/product/import/csv/processor/product/listtypes
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/separator
+		 * @see controller/jobs/product/import/csv/attribute/listtypes
+		 * @see controller/jobs/product/import/csv/catalog/listtypes
+		 * @see controller/jobs/product/import/csv/media/listtypes
+		 * @see controller/jobs/product/import/csv/price/listtypes
+		 * @see controller/jobs/product/import/csv/product/listtypes
+		 * @see controller/jobs/product/import/csv/supplier/listtypes
 		 */
-		$key = 'controller/common/product/import/csv/processor/text/listtypes';
-		$this->listTypes = $context->config()->get( $key );
+		$default = $config->get( 'controller/common/product/import/csv/processor/text/listtypes' );
+		$this->listTypes = $config->get( 'controller/jobs/product/import/csv/text/listtypes', $default );
 
 		if( $this->listTypes === null )
 		{
