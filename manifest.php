@@ -16,7 +16,7 @@ return [
 	],
 	'template' => [
 		'controller/jobs/templates' => [
-			'templates',
+			'templates/controller/jobs',
 		],
 	],
 	'custom' => [
