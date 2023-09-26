@@ -21,7 +21,7 @@ class Standard
 	extends \Aimeos\Controller\Common\Subscription\Process\Processor\Base
 	implements \Aimeos\Controller\Common\Subscription\Process\Processor\Iface
 {
-	/** controller/common/subscription/export/csv/processor/cgroup/name
+	/** controller/common/subscription/process/processor/cgroup/name
 	 * Name of the customer group processor implementation
 	 *
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Subscription\Process\Processor\Cgroup\Myname".
