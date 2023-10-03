@@ -157,8 +157,9 @@ class Standard
 	public function run()
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'order/basket' );
-		$filter = $manager->filter()->add( 'order.basket.mtime', '<=', $this->timestamp() );
-		$cursor = $manager->cursor( $filter->slice( 0, 1000 ) );
+		$filter = $manager->filter()->add( 'order.basket.mtime', '<=', $this->timestamp() )
+			->add( 'order.basket.name', '==', '' )->slice( 0, 1000 );
+		$cursor = $manager->cursor( $filter );
 
 		while( $items = $manager->iterate( $cursor ) ) {
 			$manager->delete( $items );
