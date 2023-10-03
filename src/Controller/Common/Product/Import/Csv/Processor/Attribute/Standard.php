@@ -115,6 +115,25 @@ class Standard
 	{
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'product' );
+
+		/** controller/jobs/product/import/csv/separator
+		 * Separator between multiple values in one CSV field
+		 *
+		 * In Aimeos, fields of some CSV columns can contain multiple values which
+		 * are split and imported as separate values. This setting configures the
+		 * character that is used for splitting the values and by default, a new
+		 * line character (\n) is used.
+		 *
+		 * @param string Unique character or characters in field values
+		 * @since 2015.05
+		 * @see controller/jobs/product/import/csv/domains
+		 * @see controller/jobs/product/import/csv/attribute/listtypes
+		 * @see controller/jobs/product/import/csv/media/listtypes
+		 * @see controller/jobs/product/import/csv/price/listtypes
+		 * @see controller/jobs/product/import/csv/product/listtypes
+		 * @see controller/jobs/product/import/csv/supplier/listtypes
+		 * @see controller/jobs/product/import/csv/text/listtypes
+		 */
 		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
 		$listMap = [];
