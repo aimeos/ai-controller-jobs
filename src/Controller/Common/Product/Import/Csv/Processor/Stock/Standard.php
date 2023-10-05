@@ -49,6 +49,7 @@ class Standard
 			$stock = 0;
 			$map = $this->getMappedChunk( $data, $this->getMapping() );
 			$items = $manager->search( $manager->filter()->add( ['stock.productid' => $product->getId()] ) );
+			$items = $items->col( null, 'stock.type' );
 
 			foreach( $map as $pos => $list )
 			{
@@ -61,10 +62,7 @@ class Standard
 
 				$this->addType( 'stock/type', 'product', $list['stock.type'] );
 
-				if( ( $item = $items->pop() ) === null ) {
-					$item = $manager->create();
-				}
-
+				$item = $items->pull( $list['stock.type'] ) ?: $manager->create();
 				$manager->save( $item->fromArray( $list ), false );
 
 				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
@@ -72,7 +70,7 @@ class Standard
 				}
 			}
 
-			$manager->delete( $items->toArray() );
+			$manager->delete( $items );
 			$product->setInStock( $stock );
 
 			$data = $this->object()->process( $product, $data );
