@@ -453,8 +453,24 @@ class Standard
 
 		$config = $context->config();
 
-		/** controller/jobs/order/email/payment/bcc-email
+		/** controller/jobs/order/email/payment/cc-email
 		 * E-Mail address all payment e-mails should be also sent to
+		 *
+		 * Using this option you can send a copy of all payment related e-mails
+		 * to a second e-mail account. This can be handy for testing and checking
+		 * the e-mails sent to customers.
+		 *
+		 * It also allows shop owners with a very small volume of orders to be
+		 * notified about payment changes. Be aware that this isn't useful if the
+		 * order volumne is high or has peeks!
+		 *
+		 * @param string E-mail address or list of e-mail addresses
+		 * @since 2023.10
+		 */
+		$msg->cc( $config->get( 'controller/jobs/order/email/payment/cc-email', '' ) );
+
+		/** controller/jobs/order/email/payment/bcc-email
+		 * Hidden e-mail address all payment e-mails should be also sent to
 		 *
 		 * Using this option you can send a copy of all payment related e-mails
 		 * to a second e-mail account. This can be handy for testing and checking
