@@ -125,21 +125,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				12 => 'price.taxrate',
 			),
 			'attribute' => array(
-				13 => 'attribute.code',
-				14 => 'attribute.type',
+				13 => 'product.lists.type',
+				14 => 'attribute.code',
+				15 => 'attribute.type',
 			),
 			'product' => array(
-				15 => 'product.code',
-				16 => 'product.lists.type',
+				16 => 'product.code',
+				17 => 'product.lists.type',
 			),
 			'property' => array(
-				17 => 'product.property.value',
-				18 => 'product.property.type',
+				18 => 'product.property.value',
+				19 => 'product.property.type',
 			),
 			'catalog' => array(
-				19 => 'catalog.code',
-				20 => 'catalog.lists.type',
-				21 => 'product.lists.config',
+				20 => 'catalog.code',
+				21 => 'catalog.lists.type',
+				22 => 'product.lists.config',
 			),
 		);
 		$this->context->config()->set( 'controller/jobs/product/import/csv/mapping', $mapping );

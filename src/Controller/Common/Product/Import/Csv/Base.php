@@ -76,36 +76,42 @@ class Base
 	 *
 	 * Example:
 	 *  'item' => array(
-	 *  	0 => 'product.code', // e.g. unique EAN code
-	 *  	1 => 'product.label', // UTF-8 encoded text, also used as product name
+	 *      0 => 'product.code', // e.g. unique EAN code
+	 *      1 => 'product.label', // UTF-8 encoded text, also used as product name
+	 *      2 => 'product.type', // Product type code
+	 *      3 => 'product.status', // Status value (-2, -1, 0, 1, 2)
 	 *  ),
 	 *  'text' => array(
-	 *  	3 => 'text.type', // e.g. "short" for short description
-	 *  	4 => 'text.content', // UTF-8 encoded text
+	 *      4 => 'text.type', // e.g. "short" for short description
+	 *      5 => 'text.content', // UTF-8 encoded text
+	 *      6 => 'text.type', // e.g. "short" for short description
+	 *      7 => 'text.content', // UTF-8 encoded text
 	 *  ),
 	 *  'media' => array(
-	 *  	5 => 'media.url', // relative URL of the product image on the server
+	 *      8 => 'media.url', // relative URL of the product image on the server
 	 *  ),
 	 *  'price' => array(
-	 *		6 => 'price.currencyid',
-	 *  	7 => 'price.value', // price with decimals separated by a dot, no thousand separator
-	 *  	8 => 'price.taxrate', // tax rate with decimals separated by a dot
+	 *      9 => 'price.currencyid', // Two letter ISO currency code
+	 *      10 => 'price.quantity', // Minium product quantity to get this price
+	 *      11 => 'price.value', // price with decimals separated by a dot, no thousand separator
+	 *      12 => 'price.taxrate', // tax rate with decimals separated by a dot
 	 *  ),
 	 *  'attribute' => array(
-	 *  	9 => 'attribute.type', // e.g. "size", "length", "width", "color", etc.
-	 *  	10 => 'attribute.code', // code of an existing attribute, new ones will be created automatically
+	 *      13 => 'product.lists.type', // e.g. "variant", "default", etc.
+	 *      14 => 'attribute.type', // e.g. "size", "length", "width", "color", etc.
+	 *      15 => 'attribute.code', // code of an existing attribute, new ones will be created automatically
 	 *  ),
 	 *  'product' => array(
-	 *  	11 => 'product.code', // e.g. EAN code of another product
-	 *  	12 => 'product.lists.type', // e.g. "suggestion" for suggested product
+	 *      16 => 'product.code', // e.g. EAN code of another product
+	 *      17 => 'product.lists.type', // e.g. "suggestion" for suggested product
 	 *  ),
 	 *  'property' => array(
-	 *  	13 => 'product.property.type', // e.g. "package-weight"
-	 *  	14 => 'product.property.value', // arbitrary value for the corresponding type
+	 *      18 => 'product.property.type', // e.g. "package-weight"
+	 *      19 => 'product.property.value', // arbitrary value for the corresponding type
 	 *  ),
 	 *  'catalog' => array(
-	 *  	15 => 'catalog.code', // e.g. Unique category code
-	 *  	16 => 'catalog.lists.type', // e.g. "promotion" for top seller products
+	 *      20 => 'catalog.code', // e.g. Unique category code
+	 *      21 => 'catalog.lists.type', // e.g. "promotion" for top seller products
 	 *  ),
 	 *
 	 * @return array Associative list of domains as keys ("item" is special for the product itself) and a list of
@@ -136,20 +142,21 @@ class Base
 				12 => 'price.taxrate',
 			),
 			'attribute' => array(
-				13 => 'attribute.code',
-				14 => 'attribute.type',
+				13 => 'product.lists.type',
+				14 => 'attribute.code',
+				15 => 'attribute.type',
 			),
 			'product' => array(
-				15 => 'product.code',
-				16 => 'product.lists.type',
+				16 => 'product.code',
+				17 => 'product.lists.type',
 			),
 			'property' => array(
-				17 => 'product.property.value',
-				18 => 'product.property.type',
+				18 => 'product.property.value',
+				19 => 'product.property.type',
 			),
 			'catalog' => array(
-				19 => 'catalog.code',
-				20 => 'catalog.lists.type',
+				20 => 'catalog.code',
+				21 => 'catalog.lists.type',
 			),
 		);
 	}
