@@ -376,7 +376,7 @@ class Standard
 		try
 		{
 			$manager = \Aimeos\MShop::create( $context, 'customer' );
-			$customerItem = $manager->get( $order->getCustomerId(), ['customer/group'] );
+			$customerItem = $manager->get( $order->getCustomerId(), ['group'] );
 
 			$context->setUserId( $order->getCustomerId() );
 			$context->setGroupIds( $customerItem->getGroups() );

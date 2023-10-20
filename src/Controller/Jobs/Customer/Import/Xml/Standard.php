@@ -262,7 +262,7 @@ class Standard
 		 * @see controller/jobs/customer/import/xml/location
 		 * @see controller/jobs/customer/import/xml/max-query
 		 */
-		$domains = ['customer/address', 'customer/group', 'customer/property', 'media', 'product', 'text'];
+		$domains = ['customer/address', 'group', 'customer/property', 'media', 'product', 'text'];
 		return $this->context()->config()->get( 'controller/jobs/customer/import/xml/domains', $domains );
 	}
 

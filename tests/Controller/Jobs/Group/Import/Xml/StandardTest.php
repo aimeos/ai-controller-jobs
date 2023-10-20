@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\Controller\Jobs\Customer\Group\Import\Xml;
+namespace Aimeos\Controller\Jobs\Group\Import\Xml;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -21,17 +21,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 
 		$fs = $context->fs( 'fs-import' );
-		$fs->has( 'customergroup' ) ?: $fs->mkdir( 'customergroup' );
-		$fs->writef( 'customergroup/customergroup_1.xml', __DIR__ . '/_testfiles/customergroup_1.xml' );
-		$fs->writef( 'customergroup/customergroup_2.xml', __DIR__ . '/_testfiles/customergroup_2.xml' );
-
-		$fs = $context->fs( 'fs-media' );
-		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
-		$fs->write( 'path/to/file2.jpg', 'test' );
-		$fs->write( 'path/to/file.jpg', 'test' );
-
-		$fs = $context->fs( 'fs-mimeicon' );
-		$fs->write( 'unknown.png', 'icon' );
+		$fs->has( 'group' ) ?: $fs->mkdir( 'group' );
+		$fs->writef( 'group/group_1.xml', __DIR__ . '/_testfiles/group_1.xml' );
+		$fs->writef( 'group/group_2.xml', __DIR__ . '/_testfiles/group_2.xml' );
 	}
 
 
@@ -42,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelper::context();
 		$this->aimeos = \TestHelper::getAimeos();
 
-		$this->object = new \Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Standard( $this->context, $this->aimeos );
+		$this->object = new \Aimeos\Controller\Jobs\Group\Import\Xml\Standard( $this->context, $this->aimeos );
 	}
 
 
@@ -55,13 +47,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetName()
 	{
-		$this->assertEquals( 'Customer group import XML', $this->object->getName() );
+		$this->assertEquals( 'Groups import XML', $this->object->getName() );
 	}
 
 
 	public function testGetDescription()
 	{
-		$text = 'Imports new and updates existing customer groups from XML files';
+		$text = 'Imports new and updates existing groups from XML files';
 		$this->assertEquals( $text, $this->object->getDescription() );
 	}
 
@@ -70,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->run();
 
-		$manager = \Aimeos\MShop::create( $this->context, 'customer/group' );
+		$manager = \Aimeos\MShop::create( $this->context, 'group' );
 		$item = $manager->find( 'test' );
 		$manager->delete( $item );
 

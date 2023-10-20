@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$dom = new \DOMDocument();
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create();
-		$grpId = \Aimeos\MShop::create( $this->context, 'customer/group' )->find( 'unitgroup' )->getId();
+		$grpId = \Aimeos\MShop::create( $this->context, 'group' )->find( 'unitgroup' )->getId();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <group>
@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$dom = new \DOMDocument();
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create();
-		$grpId = \Aimeos\MShop::create( $this->context, 'customer/group' )->find( 'unitgroup2' )->getId();
+		$grpId = \Aimeos\MShop::create( $this->context, 'group' )->find( 'unitgroup2' )->getId();
 
 		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <group>

@@ -73,9 +73,9 @@ class Standard
 		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
 
 		$productItem = $productManager->get( $subscription->getOrderProductId() );
-		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['customer/group'] );
+		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
 
-		if( ( $groupIds = (array) $productItem->getAttribute( 'customer/group', 'hidden' ) ) === [] ) {
+		if( ( $groupIds = (array) $productItem->getAttribute( 'group', 'hidden' ) ) === [] ) {
 			$groupIds = $this->groupIds;
 		}
 
@@ -98,9 +98,9 @@ class Standard
 		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
 
 		$productItem = $productManager->get( $subscription->getOrderProductId() );
-		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['customer/group'] );
+		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
 
-		if( ( $groupIds = (array) $productItem->getAttribute( 'customer/group', 'hidden' ) ) === [] ) {
+		if( ( $groupIds = (array) $productItem->getAttribute( 'group', 'hidden' ) ) === [] ) {
 			$groupIds = $this->groupIds;
 		}
 

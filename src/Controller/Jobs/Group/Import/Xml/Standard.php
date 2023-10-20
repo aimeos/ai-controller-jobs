@@ -8,11 +8,11 @@
  */
 
 
-namespace Aimeos\Controller\Jobs\Customer\Group\Import\Xml;
+namespace Aimeos\Controller\Jobs\Group\Import\Xml;
 
 
 /**
- * Job controller for XML customer imports
+ * Job controller for XML group imports
  *
  * @package Controller
  * @subpackage Jobs
@@ -21,8 +21,8 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
-	/** controller/jobs/customer/group/import/xml/name
-	 * Class name of the used customer suggestions scheduler controller implementation
+	/** controller/jobs/group/import/xml/name
+	 * Class name of the used group suggestions scheduler controller implementation
 	 *
 	 * Each default job controller can be replace by an alternative imlementation.
 	 * To use this implementation, you have to set the last part of the class
@@ -31,15 +31,15 @@ class Standard
 	 *
 	 * For example, if the name of the default class is
 	 *
-	 *  \Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Standard
+	 *  \Aimeos\Controller\Jobs\Group\Import\Xml\Standard
 	 *
 	 * and you want to replace it with your own version named
 	 *
-	 *  \Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Myxml
+	 *  \Aimeos\Controller\Jobs\Group\Import\Xml\Myxml
 	 *
 	 * then you have to set the this configuration option:
 	 *
-	 *  controller/jobs/customer/import/xml/name = Myxml
+	 *  controller/jobs/group/import/xml/name = Myxml
 	 *
 	 * The value is the last part of your own class name and it's case sensitive,
 	 * so take care that the configuration value is exactly named like the last
@@ -54,8 +54,8 @@ class Standard
 	 * @since 2019.04
 	 */
 
-	/** controller/jobs/customer/group/import/xml/decorators/excludes
-	 * Excludes decorators added by the "common" option from the customer import CSV job controller
+	/** controller/jobs/group/import/xml/decorators/excludes
+	 * Excludes decorators added by the "common" option from the group import CSV job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
 	 * (e.g. log what is currently done), executing the methods of the underlying
@@ -66,7 +66,7 @@ class Standard
 	 * "controller/jobs/common/decorators/default" before they are wrapped
 	 * around the job controller.
 	 *
-	 *  controller/jobs/customer/import/xml/decorators/excludes = array( 'decorator1' )
+	 *  controller/jobs/group/import/xml/decorators/excludes = array( 'decorator1' )
 	 *
 	 * This would remove the decorator named "decorator1" from the list of
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
@@ -75,12 +75,12 @@ class Standard
 	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
-	 * @see controller/jobs/customer/import/xml/decorators/global
-	 * @see controller/jobs/customer/import/xml/decorators/local
+	 * @see controller/jobs/group/import/xml/decorators/global
+	 * @see controller/jobs/group/import/xml/decorators/local
 	 */
 
-	/** controller/jobs/customer/group/import/xml/decorators/global
-	 * Adds a list of globally available decorators only to the customer import CSV job controller
+	/** controller/jobs/group/import/xml/decorators/global
+	 * Adds a list of globally available decorators only to the group import CSV job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
 	 * (e.g. log what is currently done), executing the methods of the underlying
@@ -90,7 +90,7 @@ class Standard
 	 * This option allows you to wrap global decorators
 	 * ("\Aimeos\Controller\Jobs\Common\Decorator\*") around the job controller.
 	 *
-	 *  controller/jobs/customer/import/xml/decorators/global = array( 'decorator1' )
+	 *  controller/jobs/group/import/xml/decorators/global = array( 'decorator1' )
 	 *
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
@@ -98,12 +98,12 @@ class Standard
 	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
-	 * @see controller/jobs/customer/import/xml/decorators/excludes
-	 * @see controller/jobs/customer/import/xml/decorators/local
+	 * @see controller/jobs/group/import/xml/decorators/excludes
+	 * @see controller/jobs/group/import/xml/decorators/local
 	 */
 
-	/** controller/jobs/customer/group/import/xml/decorators/local
-	 * Adds a list of local decorators only to the customer import CSV job controller
+	/** controller/jobs/group/import/xml/decorators/local
+	 * Adds a list of local decorators only to the group import CSV job controller
 	 *
 	 * Decorators extend the functionality of a class by adding new aspects
 	 * (e.g. log what is currently done), executing the methods of the underlying
@@ -111,20 +111,20 @@ class Standard
 	 * modify what is returned to the caller.
 	 *
 	 * This option allows you to wrap local decorators
-	 * ("\Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Decorator\*") around the job
+	 * ("\Aimeos\Controller\Jobs\Group\Import\Xml\Decorator\*") around the job
 	 * controller.
 	 *
-	 *  controller/jobs/customer/import/xml/decorators/local = array( 'decorator2' )
+	 *  controller/jobs/group/import/xml/decorators/local = array( 'decorator2' )
 	 *
 	 * This would add the decorator named "decorator2" defined by
-	 * "\Aimeos\Controller\Jobs\Customer\Group\Import\Xml\Decorator\Decorator2"
+	 * "\Aimeos\Controller\Jobs\Group\Import\Xml\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
 	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
-	 * @see controller/jobs/customer/import/xml/decorators/excludes
-	 * @see controller/jobs/customer/import/xml/decorators/global
+	 * @see controller/jobs/group/import/xml/decorators/excludes
+	 * @see controller/jobs/group/import/xml/decorators/global
 	 */
 
 
@@ -138,7 +138,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->context()->translate( 'controller/jobs', 'Customer group import XML' );
+		return $this->context()->translate( 'controller/jobs', 'Groups import XML' );
 	}
 
 
@@ -149,7 +149,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing customer groups from XML files' );
+		return $this->context()->translate( 'controller/jobs', 'Imports new and updates existing groups from XML files' );
 	}
 
 
@@ -173,7 +173,7 @@ class Standard
 
 		try
 		{
-			$logger->info( sprintf( 'Started customer group import from "%1$s"', $location ), 'import/xml/customer/group' );
+			$logger->info( sprintf( 'Started group import from "%1$s"', $location ), 'import/xml/group' );
 
 			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
 				$this->import( $context, $path );
@@ -192,11 +192,11 @@ class Standard
 
 			$process->wait();
 
-			$logger->info( sprintf( 'Finished customer group import from "%1$s"', $location ), 'import/xml/customer/group' );
+			$logger->info( sprintf( 'Finished group import from "%1$s"', $location ), 'import/xml/group' );
 		}
 		catch( \Exception $e )
 		{
-			$logger->error( 'Customer group import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/xml/customer/group' );
+			$logger->error( 'Customer group import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/xml/group' );
 			$this->mail( 'Customer group XML import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -210,7 +210,7 @@ class Standard
 	 */
 	protected function backup() : string
 	{
-		/** controller/jobs/customer/group/import/xml/backup
+		/** controller/jobs/group/import/xml/backup
 		 * Name of the backup for sucessfully imported files
 		 *
 		 * After a XML file was imported successfully, you can move it to another
@@ -230,11 +230,11 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
-		 * @see controller/jobs/customer/group/import/xml/domains
-		 * @see controller/jobs/customer/group/import/xml/location
-		 * @see controller/jobs/customer/group/import/xml/max-query
+		 * @see controller/jobs/group/import/xml/domains
+		 * @see controller/jobs/group/import/xml/location
+		 * @see controller/jobs/group/import/xml/max-query
 		 */
-		$backup = $this->context()->config()->get( 'controller/jobs/customer/group/import/xml/backup' );
+		$backup = $this->context()->config()->get( 'controller/jobs/group/import/xml/backup' );
 		return \Aimeos\Base\Str::strtime( (string) $backup );
 	}
 
@@ -261,15 +261,15 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $tmpfile ) );
 		}
 
-		$logger->info( sprintf( 'Started customer group import from file "%1$s"', $path ), 'import/xml/customer/group' );
+		$logger->info( sprintf( 'Started group import from file "%1$s"', $path ), 'import/xml/group' );
 
 		while( $xml->read() === true )
 		{
-			if( $xml->depth === 1 && $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'customergroupitem' )
+			if( $xml->depth === 1 && $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'groupitem' )
 			{
 				if( ( $dom = $xml->expand() ) === false )
 				{
-					$msg = sprintf( 'Expanding "%1$s" node failed', 'customergroupitem' );
+					$msg = sprintf( 'Expanding "%1$s" node failed', 'groupitem' );
 					throw new \Aimeos\Controller\Jobs\Exception( $msg );
 				}
 
@@ -300,14 +300,14 @@ class Standard
 			$fs->rm( $path );
 		}
 
-		$logger->info( sprintf( 'Finished customer group import from file "%1$s"', $path ), 'import/xml/customer/group' );
+		$logger->info( sprintf( 'Finished group import from file "%1$s"', $path ), 'import/xml/group' );
 	}
 
 
 	/**
 	 * Imports the given DOM nodes
 	 *
-	 * @param string[] $ref List of domain names whose referenced items will be updated in the customer group items
+	 * @param string[] $ref List of domain names whose referenced items will be updated in the group items
 	 */
 	protected function importNodes( array $nodes )
 	{
@@ -320,9 +320,9 @@ class Standard
 			}
 		}
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'customer/group' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'group' );
 		$search = $manager->filter()->slice( 0, count( $codes ) );
-		$search->setConditions( $search->compare( '==', 'customer.group.code', array_keys( $codes ) ) );
+		$search->setConditions( $search->compare( '==', 'group.code', array_keys( $codes ) ) );
 
 		foreach( $manager->search( $search ) as $item ) {
 			$map[$item->getCode()] = $item;
@@ -348,7 +348,7 @@ class Standard
 	 */
 	protected function location() : string
 	{
-		/** controller/jobs/customer/group/import/xml/location
+		/** controller/jobs/group/import/xml/location
 		 * Directory where the CSV files are stored which should be imported
 		 *
 		 * It's the relative path inside the "fs-import" virtual file system
@@ -359,11 +359,11 @@ class Standard
 		 *
 		 * @param string Relative path to the XML files
 		 * @since 2019.04
-		 * @see controller/jobs/customer/group/import/xml/backup
-		 * @see controller/jobs/customer/group/import/xml/domains
-		 * @see controller/jobs/customer/group/import/xml/max-query
+		 * @see controller/jobs/group/import/xml/backup
+		 * @see controller/jobs/group/import/xml/domains
+		 * @see controller/jobs/group/import/xml/max-query
 		 */
-		return (string) $this->context()->config()->get( 'controller/jobs/customer/group/import/xml/location', 'customergroup' );
+		return (string) $this->context()->config()->get( 'controller/jobs/group/import/xml/location', 'group' );
 	}
 
 
@@ -374,7 +374,7 @@ class Standard
 	 */
 	protected function max() : int
 	{
-		/** controller/jobs/customer/group/import/xml/max-query
+		/** controller/jobs/group/import/xml/max-query
 		 * Maximum number of XML nodes processed at once
 		 *
 		 * Processing and fetching several attribute items at once speeds up importing
@@ -385,22 +385,22 @@ class Standard
 		 *
 		 * @param integer Number of XML nodes
 		 * @since 2019.04
-		 * @see controller/jobs/customer/group/import/xml/domains
-		 * @see controller/jobs/customer/group/import/xml/location
-		 * @see controller/jobs/customer/group/import/xml/backup
+		 * @see controller/jobs/group/import/xml/domains
+		 * @see controller/jobs/group/import/xml/location
+		 * @see controller/jobs/group/import/xml/backup
 		 */
-		return $this->context()->config()->get( 'controller/jobs/customer/group/import/xml/max-query', 100 );
+		return $this->context()->config()->get( 'controller/jobs/group/import/xml/max-query', 100 );
 	}
 
 
 	/**
-	 * Updates the customer group item and its referenced items using the given DOM node
+	 * Updates the group item and its referenced items using the given DOM node
 	 *
-	 * @param \Aimeos\MShop\Customer\Item\Group\Iface $item Customer group item object to update
-	 * @param \DomElement $node DOM node used for updating the customer group item
-	 * @return \Aimeos\MShop\Customer\Item\Group\Iface $item Updated customer group item object
+	 * @param \Aimeos\MShop\Group\Item\Iface $item Customer group item object to update
+	 * @param \DomElement $node DOM node used for updating the group item
+	 * @return \Aimeos\MShop\Group\Item\Iface $item Updated group item object
 	 */
-	protected function process( \Aimeos\MShop\Customer\Item\Group\Iface $item, \DomElement $node ) : \Aimeos\MShop\Customer\Item\Group\Iface
+	protected function process( \Aimeos\MShop\Group\Item\Iface $item, \DomElement $node ) : \Aimeos\MShop\Group\Item\Iface
 	{
 		$list = [];
 

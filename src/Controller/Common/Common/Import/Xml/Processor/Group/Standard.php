@@ -75,7 +75,7 @@ class Standard
 	protected function getItems( \DomNodeList $nodes ) : array
 	{
 		$keys = $map = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'customer/group' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'group' );
 
 		foreach( $nodes as $node )
 		{
@@ -85,7 +85,7 @@ class Standard
 		}
 
 		$search = $manager->filter()->slice( 0, count( $keys ) );
-		$search->setConditions( $search->compare( '==', 'customer.group.code', array_keys( $keys ) ) );
+		$search->setConditions( $search->compare( '==', 'group.code', array_keys( $keys ) ) );
 
 		foreach( $manager->search( $search, [] ) as $item ) {
 			$map[$item->getCode()] = $item;

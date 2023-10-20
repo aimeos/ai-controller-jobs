@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$subscription = $this->getSubscription();
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
+		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'group' );
 
 		$ordProdItem = $ordProdStub->create()->setAttributeItems( [
 			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),
@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$subscription = $this->getSubscription();
 		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'customer/group' );
+		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'group' );
 
 		$ordProdItem = $ordProdStub->create()->setAttributeItems( [
 			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),

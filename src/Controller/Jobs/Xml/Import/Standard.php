@@ -163,7 +163,7 @@ class Standard
 
 		$logger->info( 'Started XML import', 'import/xml' );
 
-		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'customer/group/import/xml' )->run();
+		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'group/import/xml' )->run();
 		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'customer/import/xml' )->run();
 		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'attribute/import/xml' )->run();
 		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'product/import/xml' )->run();
