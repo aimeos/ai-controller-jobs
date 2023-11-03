@@ -378,8 +378,8 @@ class Standard
 			$manager = \Aimeos\MShop::create( $context, 'customer' );
 			$customerItem = $manager->get( $order->getCustomerId(), ['group'] );
 
-			$context->setUserId( $order->getCustomerId() );
-			$context->setGroupIds( $customerItem->getGroups() );
+			$context->setUser( $customerItem );
+			$context->setGroups( $customerItem->getGroups() );
 		}
 		catch( \Exception $e ) {} // Subscription without account
 
