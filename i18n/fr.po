@@ -4,8 +4,10 @@
 # 
 # Translators:
 # a270031086f2a0d3514bc0cb507b48f6, 2019
+# Aimeos, 2023
 # a270031086f2a0d3514bc0cb507b48f6, 2019
 # Guillaume STEIN <guillaume.stein@gmail.com>, 2016
+# Jean-Marc Kutyla, 2023
 # Laurent Georget <laurent@lgeorget.eu>, 2021
 # Medzo Zeng <medzozeng@hotmail.fr>, 2019
 # Six byNine <wwinx@hotmail.com>, 2018
@@ -15,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-26 15:47+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Six byNine <wwinx@hotmail.com>, 2018\n"
+"Last-Translator: Jean-Marc Kutyla, 2023\n"
 "Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +87,7 @@ msgid "All XML import"
 msgstr "Tous les imports XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Toutes les commandes sont soumises à nos termes et conditions."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2023
@@ -143,7 +145,7 @@ msgid "Creates bought together product suggestions"
 msgstr "Crée des suggestions de produits achetés ensemble"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "E-mails du compte client"
 
 msgid "Customer group import XML"
 msgstr "Import XML groupes de clients"
@@ -164,10 +166,10 @@ msgstr "Cher M. %1$s %2$s"
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Chère Mme %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Cher client"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
@@ -262,10 +264,10 @@ msgstr "Facture"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Facture %1$s"
 
 msgid "Like entered by you"
-msgstr "Comme vous l'avez encodé"
+msgstr "Tel que vous l'avez saisi"
 
 msgid "Log cleanup"
 msgstr "Nettoyage du journal"
@@ -286,7 +288,7 @@ msgid "Order date"
 msgstr "Date de commande"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "E-mails relatifs à la livraison des commandes"
 
 msgid "Order details"
 msgstr "Détails de la commande"
@@ -295,7 +297,7 @@ msgid "Order export CSV"
 msgstr "Commande d'exportation CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "E-mails relatifs aux paiements des commandes"
 
 msgid "Order status import CSV"
 msgstr "Import CSV des statuts de commande"
@@ -322,7 +324,7 @@ msgid "Product import XML"
 msgstr "Import XML produits"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "E-mails de notification produit"
 
 msgid "Product site map"
 msgstr "Plan du site du produit"
@@ -365,28 +367,28 @@ msgid "Rescales product images to the new sizes"
 msgstr "Remet à l'échelle les images de produits aux nouvelles tailles"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Envoie des e-mails pour les nouveaux comptes clients"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Envoie des e-mails pour les produits surveillés"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Envoie des e-mails de confirmation de commande ou de mise à jour du statut de paiement"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Envoie des e-mails de mise à jour de l'état de livraison des commandes"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
 msgstr "Envoie les commandes payées au système ERP ou au partenaire logistique"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Envoie l'e-mail avec le chèque cadeau au client"
 
 msgid "Status"
 msgstr "État"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Importation du statut des commandes à partir d'un fichier CSV"
 
 msgid "Stock import CSV"
 msgstr "Import CSV stocks"
@@ -425,7 +427,7 @@ msgstr "Termine les abonnements expirés"
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Nous vous remercions pour votre commande %1$s à %2$s."
+msgstr "Nous vous remercions pour votre commande %1$s en date du %2$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -433,7 +435,7 @@ msgstr "Nous vous remercions pour votre commande %1$s à %2$s."
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "Le statut de livraison de votre commande %1$s à %2$s a été modifié en \"%3$s\"."
+msgstr "Le statut de livraison de votre commande %1$s en date du %2$s a été modifié en \"%3$s\"."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -448,7 +450,7 @@ msgstr "La commande est en attente jusqu'à ce que nous recevions le paiement fi
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "Le colis de votre commande %1$s à %2$s n'a pas pu être livré."
+msgstr "Le colis de votre commande %1$s en date du %2$s n'a pas pu être livré."
 
 msgid "The payment couldn't be renewed"
 msgstr "Le paiement n'a pas pu être renouvelé"
@@ -456,7 +458,7 @@ msgstr "Le paiement n'a pas pu être renouvelé"
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "Le paiement pour votre commande %1$s à %2$s a été remboursé."
+msgstr "Le paiement pour votre commande %1$s en date du %2$s a été remboursé."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -464,7 +466,7 @@ msgstr "Le paiement pour votre commande %1$s à %2$s a été remboursé."
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Le status de paiement de votre commande %1$s en date du %2$s à été changé en \"%3$s\"."
 
 msgid "The subscription for the product has ended"
 msgstr "L'abonnement au produit est terminé"
@@ -472,30 +474,30 @@ msgstr "L'abonnement au produit est terminé"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Le montant de vos chèque-cadeaux est %1$s"
+msgstr[1] "Le montant de vos chèque-cadeaux est %1$s"
+msgstr[2] "Le montant de vos chèque-cadeaux est %1$s"
 
 msgid "Total"
 msgstr "Total"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Transfère de l’argent aux fournisseurs"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Transfère le prix des produits commandés aux vendeurs, incluant les commissions"
 
 msgid "Voucher"
 msgstr "Chèque-cadeau"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Chèque-cadeau %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "E-mails relatifs aux bons d'achat"
 
 msgid "Watched products"
 msgstr "Produits consultés"
@@ -510,13 +512,13 @@ msgstr "Nous avons bien reçu votre paiement et allons traiter votre commande im
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "Nous avons reçu le colis retourné de votre commande %1$s à %2$s."
+msgstr "Nous avons reçu le colis retourné de votre commande %1$s en date du %2$s."
 
 msgid "Y-m-d"
 msgstr "d/m/Y"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Vous pouvez utiliser vos bons à tout moment dans notre boutique en ligne"
 
 msgid "You've cancelled the subscription"
 msgstr "Vous avez annulé l'abonnement"
@@ -538,7 +540,7 @@ msgstr "Votre commande %1$s"
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Votre commande %1$s à %2$s a été expédiée."
+msgstr "Votre commande %1$s en date du %2$s a été expédiée."
 
 msgid "Your reference"
 msgstr "Votre référence"
@@ -550,7 +552,7 @@ msgid "Your subscription"
 msgstr "Votre souscription"
 
 msgid "Your voucher"
-msgstr "Votre bon"
+msgstr "Votre chèque-cadeau"
 
 msgid "Your watched products"
 msgstr "Vos produits consultés"
