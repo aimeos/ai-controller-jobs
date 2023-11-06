@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Aimeos, 2022
-# Metal <meteoramic@yahoo.com>, 2015-2020,2022
+# Metal <meteoramic@yahoo.com>, 2015-2020,2022-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-09-26 15:47+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2020,2022\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2020,2022-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,7 +168,7 @@ msgstr "Değerli müşterimiz"
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr "Bitmemiş siparişleri siler ve onların ürünlerini ve kupon kodlarını tekrar kullanılabilir hale getirir"
+msgstr "Bitmemiş siparişleri siler ve bu siparişlere ait ürünleri ve kupon kodlarını tekrar kullanılabilir hale getirir"
 
 msgid "Deletes unpaid orders to keep the database clean"
 msgstr "Veritabanını temiz tutmak için ödenmemiş siparişleri siler"
@@ -235,7 +235,7 @@ msgstr "XML dosyalarından yeni tedarikçiler içe aktarır veya mevcut tedarik�
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "%1$s%%%2$s dahil"
+msgstr "%%%1$s %2$s dahil"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
