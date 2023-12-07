@@ -172,13 +172,13 @@ class Standard
 		if( ( $type = trim( $this->val( $list, 'supplier.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
-			throw new \Aimeos\Controller\Common\Exception( $msg );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
 		if( ( $type = trim( $this->val( $list, 'text.type', '' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );
-			throw new \Aimeos\Controller\Common\Exception( $msg );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
 		return true;

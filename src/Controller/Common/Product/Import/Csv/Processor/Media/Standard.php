@@ -194,13 +194,13 @@ class Standard
 		if( ( $type = trim( $this->val( $list, 'product.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
-			throw new \Aimeos\Controller\Common\Exception( $msg );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
 		if( ( $type = trim( $this->val( $list, 'media.type', '' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
-			throw new \Aimeos\Controller\Common\Exception( $msg );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
 		return true;
@@ -230,7 +230,7 @@ class Standard
 
 			unset( $list['media.previews'], $list['media.preview'] );
 		}
-		catch( \Aimeos\Controller\Common\Exception $e )
+		catch( \Aimeos\Controller\Jobs\Exception $e )
 		{
 			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
 			$this->context()->logger()->error( $msg, 'import/csv/product' );

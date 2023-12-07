@@ -250,7 +250,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Media\Standard( $this->context, $mapping, $this->endpoint );
 
-		$this->expectException( '\Aimeos\Controller\Common\Exception' );
+		$this->expectException( '\Aimeos\Controller\Jobs\Exception' );
 		$object->process( $catalog, $data );
 	}
 

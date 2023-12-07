@@ -246,7 +246,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Common\Product\Import\Csv\Processor\Attribute\Standard( $this->context, $mapping, $this->endpoint );
 
-		$this->expectException( '\Aimeos\Controller\Common\Exception' );
+		$this->expectException( '\Aimeos\Controller\Jobs\Exception' );
 		$object->process( $product, $data );
 	}
 

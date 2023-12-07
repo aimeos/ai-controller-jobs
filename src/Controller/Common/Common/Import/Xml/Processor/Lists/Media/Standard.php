@@ -124,7 +124,7 @@ class Standard
 
 			unset( $list['media.previews'], $list['media.preview'] );
 		}
-		catch( \Aimeos\Controller\Common\Exception $e )
+		catch( \Aimeos\Controller\Jobs\Exception $e )
 		{
 			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
 			$this->context()->logger()->error( $msg, 'import/xml/product' );

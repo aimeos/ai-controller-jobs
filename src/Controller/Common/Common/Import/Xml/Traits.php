@@ -62,7 +62,6 @@ trait Traits
 	 *
 	 * @param string $type Type of the processor
 	 * @return \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface Processor object
-	 * @throws \Aimeos\Controller\Common\Exception If type is invalid or processor isn't found
 	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function createProcessor( string $type ) : \Aimeos\Controller\Common\Common\Import\Xml\Processor\Iface
