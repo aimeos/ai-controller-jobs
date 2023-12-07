@@ -118,7 +118,6 @@ class Standard
 
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
-		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
 		$listItems = $product->getListItems( 'media', $this->listTypes, null, false );
 
 		foreach( $listItems as $listItem )
