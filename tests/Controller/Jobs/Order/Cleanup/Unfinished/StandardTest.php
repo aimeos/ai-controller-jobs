@@ -54,18 +54,12 @@ class StandardTest
 
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
-			->onlyMethods( ['iterate', 'delete'] )
-			->setConstructorArgs( array( $context ) )
-			->getMock();
-
-		$orderCntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Common\\Order\\Standard' )
-			->onlyMethods( array( 'unblock' ) )
+			->onlyMethods( ['iterate', 'delete', 'unblock'] )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
-		\Aimeos\Controller\Common\Order\Factory::inject( '\\Aimeos\\Controller\\Common\\Order\\Standard', $orderCntlStub );
 
 
 		$orderItem = $orderManagerStub->create()->setId( 2 );
@@ -75,7 +69,7 @@ class StandardTest
 
 		$orderManagerStub->expects( $this->once() )->method( 'delete' );
 
-		$orderCntlStub->expects( $this->once() )->method( 'unblock' );
+		$orderManagerStub->expects( $this->once() )->method( 'unblock' );
 
 
 		$object = new \Aimeos\Controller\Jobs\Order\Cleanup\Unfinished\Standard( $context, $aimeos );

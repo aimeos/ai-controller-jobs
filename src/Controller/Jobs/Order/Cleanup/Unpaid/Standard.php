@@ -159,7 +159,6 @@ class Standard
 	{
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'order' );
-		$controller = \Aimeos\Controller\Common\Order\Factory::create( $context );
 
 		$filter = $manager->filter()
 			->add( 'order.mtime', '<', $this->mtime() )
@@ -169,7 +168,7 @@ class Standard
 		while( $items = $manager->iterate( $cursor ) )
 		{
 			foreach( $items as $item ) {
-				$controller->unblock( $item );
+				$manager->unblock( $item );
 			}
 
 			$manager->delete( $items );
