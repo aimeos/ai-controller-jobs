@@ -18,7 +18,7 @@ namespace Aimeos\Controller\Jobs\Product\Import\Csv;
  * @subpackage Jobs
  */
 class Standard
-	extends \Aimeos\Controller\Common\Product\Import\Csv\Base
+	extends \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
 	/** controller/jobs/product/import/csv/name
@@ -384,12 +384,12 @@ class Standard
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param array $mapping Associative list of positions and domain item keys
 	 * @param array $types List of allowed product type codes
-	 * @param \Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor Processor object
+	 * @param \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Iface $processor Processor object
 	 * @return int Number of products that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
 	protected function importProducts( \Aimeos\Map $products, array $data, array $mapping, array $types,
-		\Aimeos\Controller\Common\Product\Import\Csv\Processor\Iface $processor ) : int
+		\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$items = [];
 		$errors = 0;

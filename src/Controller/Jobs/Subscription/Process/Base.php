@@ -32,7 +32,7 @@ abstract class Base
 	{
 		$list = [];
 		$context = $this->context();
-		$interface = \Aimeos\Controller\Common\Subscription\Process\Processor\Iface::class;
+		$interface = \Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Iface::class;
 
 		foreach( $pnames as $pname )
 		{
@@ -40,13 +40,13 @@ abstract class Base
 				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $pname ), 400 );
 			}
 
-			$name = $context->config()->get( 'controller/common/subscription/process/processor/' . $pname . '/name', 'Standard' );
+			$name = $context->config()->get( 'controller/jobs/subscription/process/processor/' . $pname . '/name', 'Standard' );
 
 			if( ctype_alnum( $name ) === false ) {
 				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 			}
 
-			$classname = '\\Aimeos\\Controller\\Common\\Subscription\\Process\\Processor\\' . ucfirst( $pname ) . '\\' . $name;
+			$classname = '\\Aimeos\\Controller\\Jobs\\Common\\Subscription\\Process\\Processor\\' . ucfirst( $pname ) . '\\' . $name;
 
 			$list[$pname] = \Aimeos\Utils::create( $classname, [$context], $interface );
 		}

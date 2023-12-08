@@ -20,7 +20,7 @@ use \Aimeos\Base\Logger\Base as Log;
  * @subpackage Jobs
  */
 class Standard
-	extends \Aimeos\Controller\Common\Catalog\Import\Csv\Base
+	extends \Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
 	/** controller/jobs/catalog/import/csv/name
@@ -392,12 +392,12 @@ class Standard
 	 * @param array $catalogItems Associative list of catalog items with codes as keys and items implementing \Aimeos\MShop\Catalog\Item\Iface as values
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param array $mapping Associative list of positions and domain item keys
-	 * @param \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor Processor object
+	 * @param \Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $processor Processor object
 	 * @return int Number of catalogs that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
 	protected function importCategories( array $catalogItems, array $data, array $mapping,
-		\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor ) : int
+		\Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$errors = 0;
 		$context = $this->context();

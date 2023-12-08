@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$this->context->config()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
+		$this->context->config()->set( 'controller/jobs/subscription/process/processors', ['cgroup'] );
 		$item = $this->getSubscription();
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Subscription\\Process\\Renew\\Standard' )
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
-		$this->context->config()->set( 'controller/common/subscription/process/processors', ['cgroup'] );
+		$this->context->config()->set( 'controller/jobs/subscription/process/processors', ['cgroup'] );
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )

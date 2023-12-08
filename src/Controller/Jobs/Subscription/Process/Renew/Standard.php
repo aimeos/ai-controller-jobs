@@ -451,8 +451,8 @@ class Standard
 		 * @param array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/subscription/process/processors
-		 * @see controller/common/subscription/process/payment-days
-		 * @see controller/common/subscription/process/payment-status
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
 		 */
 		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 		return $this->context()->config()->get( 'controller/jobs/subscription/process/domains', $domains );
@@ -466,7 +466,7 @@ class Standard
 	 */
 	protected function ends() : bool
 	{
-		/** controller/common/subscription/process/payment-ends
+		/** controller/jobs/subscription/process/payment-ends
 		 * Subscriptions ends if payment couldn't be captured
 		 *
 		 * By default, a subscription ends automatically if the next payment couldn't
@@ -477,10 +477,10 @@ class Standard
 		 * @param bool TRUE if payment failures ends the subscriptions, FALSE if not
 		 * @since 2019.10
 		 * @see controller/jobs/subscription/process/processors
-		 * @see controller/common/subscription/process/payment-days
-		 * @see controller/common/subscription/process/payment-status
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
 		 */
-		return (bool) $this->context()->config()->get( 'controller/common/subscription/process/payment-ends', true );
+		return (bool) $this->context()->config()->get( 'controller/jobs/subscription/process/payment-ends', true );
 	}
 
 

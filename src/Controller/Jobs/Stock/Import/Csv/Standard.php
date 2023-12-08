@@ -128,7 +128,7 @@ class Standard
 	 */
 
 
-	use \Aimeos\Controller\Common\Common\Import\Traits;
+	use \Aimeos\Controller\Jobs\Common\Import\Traits;
 
 
 	/**

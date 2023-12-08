@@ -215,8 +215,8 @@ class Standard
 		 * @param array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/subscription/process/processors
-		 * @see controller/common/subscription/process/payment-days
-		 * @see controller/common/subscription/process/payment-status
+		 * @see controller/jobs/subscription/process/payment-days
+		 * @see controller/jobs/subscription/process/payment-status
 		 */
 		$ref = ['order'] + $config->get( 'mshop/order/manager/subdomains', [] );
 		return $config->get( 'controller/jobs/subscription/process/domains', $ref );

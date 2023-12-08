@@ -18,7 +18,7 @@ namespace Aimeos\Controller\Jobs\Coupon\Import\Csv\Code;
  * @subpackage Jobs
  */
 class Standard
-	extends \Aimeos\Controller\Common\Coupon\Import\Csv\Base
+	extends \Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
 	/** controller/jobs/coupon/import/csv/code/name
@@ -223,12 +223,12 @@ class Standard
 	 * @param \Aimeos\MShop\Coupon\Item\Code\Iface[] $items List of coupons code items
 	 * @param array $data Associative list of import data as index/value pairs
 	 * @param string $couponId ID of the coupon item the coupon code should be added to
-	 * @param \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $processor Processor object
+	 * @param \Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Iface $processor Processor object
 	 * @return int Number of coupons that couldn't be imported
 	 * @throws \Aimeos\Controller\Jobs\Exception
 	 */
 	protected function import( array $items, array $data, string $couponId,
-		\Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $processor ) : int
+		\Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Iface $processor ) : int
 	{
 		$errors = 0;
 		$context = $this->context();
@@ -322,7 +322,7 @@ class Standard
 		 * List of mappings between the position in the CSV file and item keys
 		 *
 		 * This configuration setting overwrites the shared option
-		 * "controller/common/coupon/import/csv/mapping" if you need a
+		 * "controller/jobs/coupon/import/csv/mapping" if you need a
 		 * specific setting for the job controller. Otherwise, you should
 		 * use the shared option for consistency.
 		 *
