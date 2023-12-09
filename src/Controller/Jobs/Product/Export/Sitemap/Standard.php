@@ -18,7 +18,7 @@ namespace Aimeos\Controller\Jobs\Product\Export\Sitemap;
  * @subpackage Jobs
  */
 class Standard
-	extends \Aimeos\Controller\Jobs\Product\Export\Standard
+	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
 	/** controller/jobs/product/export/sitemap/name
@@ -160,8 +160,6 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->context();
-
 		/** controller/jobs/product/export/sitemap/hidden
 		 * Export hidden products in site map
 		 *
@@ -176,30 +174,200 @@ class Standard
 		 * @see controller/jobs/product/export/sitemap/max-query
 		 * @see controller/jobs/product/export/sitemap/changefreq
 		 */
-		$hidden = $context->config()->get( 'controller/jobs/product/export/sitemap/hidden', false );
+		$hidden = $this->context()->config()->get( 'controller/jobs/product/export/sitemap/hidden', false );
 
-		$names = [];
-		$fs = $context->fs();
-
-		foreach( $this->createSitemaps( $hidden ? null : true ) as $idx => $file )
-		{
-			$name = $this->call( 'sitemapFilename', $idx + 1 );
-			$fs->writes( $name, $file );
-			$names[] = $name;
-			fclose( $file );
-		}
-
-		$this->createSitemapIndex( $names );
+		$this->createIndex( $this->export( $hidden ? null : true ) );
 	}
 
 
 	/**
-	 * Creates a temporary sitemap file with the given products
+	 * Adds the content for the site map index file
+	 *
+	 * @param array $files List of generated site map file names
+	 */
+	protected function createIndex( array $files )
+	{
+		$context = $this->context();
+		$config = $context->config();
+		$view = $context->view();
+
+		/** controller/jobs/product/export/sitemap/template-index
+		 * Relative path to the XML site map index template of the product site map job controller.
+		 *
+		 * The template file contains the XML code and processing instructions
+		 * to generate the site map index files. The configuration string is the path
+		 * to the template file relative to the templates directory (usually in
+		 * templates/controller/jobs).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but with the string "standard" replaced by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, "standard"
+		 * should be replaced by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating XML code for the site map index
+		 * @since 2015.01
+		 * @see controller/jobs/product/export/sitemap/template-items
+		 */
+		$tplconf = 'controller/jobs/product/export/sitemap/template-index';
+
+		if( empty( $baseUrl = rtrim( $config->get( 'resource/fs/baseurl', '' ), '/' ) ) )
+		{
+			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'resource/fs/baseurl' );
+			throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		}
+
+		$view->siteFiles = $files;
+		$view->baseUrl = $baseUrl . '/';
+
+		$content = $view->render( $config->get( $tplconf, 'product/export/sitemap-index' ) );
+		$context->fs()->write( $this->call( 'indexFilename' ), $content );
+	}
+
+
+	/**
+	 * Exports the sitemap files
+	 *
+	 * @param bool|null $default TRUE to use default criteria, NULL for relaxed criteria
+	 * @return array List of temporary files
+	 */
+	protected function export( ?bool $default = true ) : array
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
+
+		$search = $manager->filter( $default )->order( 'product.id' );
+		$search->add( $search->make( 'product:has', ['catalog'] ), '!=', null );
+		$cursor = $manager->cursor( $search->slice( 0, $this->max() ) );
+
+		$domains = $this->domains();
+		$max = $this->max();
+		$fs = $this->fs();
+
+		$filenum = 1;
+		$files = [];
+
+		while( $items = $manager->iterate( $cursor, $domains ) )
+		{
+			$filename = $this->call( 'filename', $filenum++ );
+			$fs->write( $filename, $this->render( $items ) );
+			$files[] = $filename;
+		}
+
+		return $files;
+	}
+
+
+	/**
+	 * Returns the domain names whose items should be exported too
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		/** controller/jobs/product/export/sitemap/domains
+		 * List of associated items from other domains that should be fetched for the sitemap
+		 *
+		 * Catalogs consist not only of the base data but also of texts, media and
+		 * other details. Those information is associated to the product via their lists.
+		 * Using the "domains" option you can make more or less associated items available
+		 * in the template.
+		 *
+		 * @param array List of domain names
+		 * @since 2019.02
+		 * @see controller/jobs/product/export/sitemap/max-items
+		 */
+		return $this->context()->config()->get( 'controller/jobs/product/export/sitemap/domains', ['text'] );
+	}
+
+
+	/**
+	 * Returns the sitemap file name
+	 *
+	 * @param int $number Current file number
+	 * @return string File name
+	 */
+	protected function filename( int $number ) : string
+	{
+		return sprintf( 'aimeos-sitemap-%d.xml', $number );
+	}
+
+
+	/**
+	 * Returns the file system for storing the exported files
+	 *
+	 * @return \Aimeos\Base\Filesystem\Iface File system to store files to
+	 */
+	protected function fs() : \Aimeos\Base\Filesystem\Iface
+	{
+		return $this->context()->fs( 'fs' );
+	}
+
+
+	/**
+	 * Returns the file name of the sitemap index file
+	 *
+	 * @return string File name
+	 */
+	protected function indexFilename() : string
+	{
+		return 'aimeos-sitemap-index.xml';
+	}
+
+
+	/**
+	 * Returns the available locale items for the current site
+	 *
+	 * @return \Aimeos\Map List of locale items
+	 */
+	protected function locales() : \Aimeos\Map
+	{
+		if( !isset( $this->locales ) )
+		{
+			$manager = \Aimeos\MShop::create( $this->context(), 'locale' );
+			$filter = $manager->filter( true )->add( ['locale.siteid' => $this->context()->locale()->getSiteId()] );
+
+			$this->locales = $manager->search( $filter->order( 'locale.position' )->slice( 0, 10000 ) );
+		}
+
+		return $this->locales;
+	}
+
+
+	/**
+	 * Returns the maximum number of exported products per file
+	 *
+	 * @return int Maximum number of exported products per file
+	 */
+	protected function max() : int
+	{
+		/** controller/jobs/product/export/sitemap/max-items
+		 * Maximum number of categories per site map
+		 *
+		 * Each site map file must not contain more than 50,000 links and it's
+		 * size must be less than 10MB. If your product URLs are rather long
+		 * and one of your site map files is bigger than 10MB, you should set
+		 * the number of categories per file to a smaller value until each file
+		 * is less than 10MB.
+		 *
+		 * More details about site maps can be found at
+		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
+		 *
+		 * @param integer Number of categories per file
+		 * @since 2019.02
+		 * @see controller/jobs/product/export/sitemap/domains
+		 */
+		return $this->context()->config()->get( 'controller/jobs/product/export/sitemap/max-items', 10000 );
+	}
+
+
+	/**
+	 * Creates sitemap with the given products
 	 *
 	 * @param \Aimeos\Map $items List of product items implementing \Aimeos\MShop\Product\Item\Iface
-	 * @return resource File handle
+	 * @return string Rendered content
 	 */
-	protected function create( \Aimeos\Map $items )
+	protected function render( \Aimeos\Map $items ) : string
 	{
 		/** controller/jobs/product/export/sitemap/template
 		 * Relative path to the XML template of the product site map job controller.
@@ -227,193 +395,6 @@ class Standard
 		$view->siteItems = $items;
 		$view->siteLocales = $this->locales();
 
-		$content = $view->render( $context->config()->get( $tplconf, 'product/export/sitemap-items' ) );
-
-		if( ( $file = tmpfile() ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to create temporary sitemap file' );
-		}
-
-		if( fwrite( $file, $content ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to write to temporary sitemap file' );
-		}
-
-		if( rewind( $file ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to rewind temporary sitemap file' );
-		}
-
-		return $file;
-	}
-
-
-	/**
-	 * Adds the content for the site map index file
-	 *
-	 * @param array $files List of generated site map file names
-	 */
-	protected function createSitemapIndex( array $files )
-	{
-		$context = $this->context();
-		$config = $context->config();
-		$view = $context->view();
-
-		/** controller/jobs/product/export/sitemap/template-index
-		 * Relative path to the XML site map index template of the product site map job controller.
-		 *
-		 * The template file contains the XML code and processing instructions
-		 * to generate the site map index files. The configuration string is the path
-		 * to the template file relative to the templates directory (usually in
-		 * templates/controller/jobs).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
-		 *
-		 * @param string Relative path to the template creating XML code for the site map index
-		 * @since 2015.01
-		 * @see controller/jobs/product/export/sitemap/template-header
-		 * @see controller/jobs/product/export/sitemap/template-items
-		 * @see controller/jobs/product/export/sitemap/template-footer
-		 */
-		$tplconf = 'controller/jobs/product/export/sitemap/template-index';
-
-		/** controller/jobs/product/export/sitemap/baseurl
-		 * URL to the folder where the site maps can be accessed, without the filenames.
-		 *
-		 * The site maps must be publically available for download by the search
-		 * engines. Individual site map files need a fully qualified URL in the index file.
-		 *
-		 * https://www.yourshop.com/your/sitemap/path/
-		 *
-		 * The location of the site map index file should then be
-		 * added to the robots.txt in the document root of your domain:
-		 *
-		 * Sitemap: https://www.yourshop.com/your/sitemap/path/aimeos-sitemap-index.xml
-		 *
-		 * More details about site maps can be found at
-		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
-		 *
-		 * @param string Absolute URL
-		 * @since 2019.06
-		 * @see controller/jobs/product/export/sitemap/container/options
-		 * @see controller/jobs/product/export/sitemap/max-items
-		 * @see controller/jobs/product/export/sitemap/max-query
-		 * @see controller/jobs/product/export/sitemap/changefreq
-		 * @see controller/jobs/product/export/sitemap/location
-		 */
-		$baseUrl = $config->get( 'resource/fs/baseurl' );
-
-		if( empty( $baseUrl ) )
-		{
-			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'resource/fs/baseurl' );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		$view->siteFiles = $files;
-		$view->baseUrl = rtrim( $baseUrl, '/' ) . '/';
-
-		$content = $view->render( $config->get( $tplconf, 'product/export/sitemap-index' ) );
-		$context->fs()->write( $this->call( 'sitemapIndexFilename' ), $content );
-	}
-
-
-	/**
-	 * Creates the sitemap files
-	 *
-	 * @param bool|null $default TRUE to use default criteria, NULL for relaxed criteria
-	 * @return array List of temporary files
-	 */
-	protected function createSitemaps( ?bool $default = true ) : array
-	{
-		$files = [];
-		$config = $this->context()->config();
-
-		/** controller/jobs/product/export/sitemap/domains
-		 * List of associated items from other domains that should be fetched for the sitemap
-		 *
-		 * Catalogs consist not only of the base data but also of texts, media and
-		 * other details. Those information is associated to the product via their lists.
-		 * Using the "domains" option you can make more or less associated items available
-		 * in the template.
-		 *
-		 * @param array List of domain names
-		 * @since 2019.02
-		 * @see controller/jobs/product/export/sitemap/max-items
-		 */
-		$domains = $config->get( 'controller/jobs/product/export/sitemap/domains', ['text'] );
-
-		/** controller/jobs/product/export/sitemap/max-items
-		 * Maximum number of categories per site map
-		 *
-		 * Each site map file must not contain more than 50,000 links and it's
-		 * size must be less than 10MB. If your product URLs are rather long
-		 * and one of your site map files is bigger than 10MB, you should set
-		 * the number of categories per file to a smaller value until each file
-		 * is less than 10MB.
-		 *
-		 * More details about site maps can be found at
-		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
-		 *
-		 * @param integer Number of categories per file
-		 * @since 2019.02
-		 * @see controller/jobs/product/export/sitemap/domains
-		 */
-		$maxItems = $config->get( 'controller/jobs/product/export/sitemap/max-items', 10000 );
-
-		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
-
-		$search = $manager->filter( $default )->slice( 0, $maxItems );
-		$search->add( $search->make( 'product:has', ['catalog'] ), '!=', null );
-		$cursor = $manager->cursor( $search );
-
-		while( $items = $manager->iterate( $cursor, $domains ) ) {
-			$files[] = $this->create( $items );
-		}
-
-		return $files;
-	}
-
-
-	/**
-	 * Returns the available locale items for the current site
-	 *
-	 * @return \Aimeos\Map List of locale items
-	 */
-	protected function locales() : \Aimeos\Map
-	{
-		if( !isset( $this->locales ) )
-		{
-			$manager = \Aimeos\MShop::create( $this->context(), 'locale' );
-			$filter = $manager->filter( true )->add( ['locale.siteid' => $this->context()->locale()->getSiteId()] );
-
-			$this->locales = $manager->search( $filter->order( 'locale.position' )->slice( 0, 10000 ) );
-		}
-
-		return $this->locales;
-	}
-
-
-	/**
-	 * Returns the sitemap file name
-	 *
-	 * @param int $number Current file number
-	 * @return string File name
-	 */
-	protected function sitemapFilename( int $number ) : string
-	{
-		return sprintf( 'aimeos-sitemap-%d.xml', $number );
-	}
-
-
-	/**
-	 * Returns the file name of the sitemap index file
-	 *
-	 * @return string File name
-	 */
-	protected function sitemapIndexFilename() : string
-	{
-		return 'aimeos-sitemap-index.xml';
+		return $view->render( $context->config()->get( $tplconf, 'product/export/sitemap-items' ) );
 	}
 }

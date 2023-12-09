@@ -73,4 +73,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'https://www.yourshop.com/aimeos-sitemap-1.xml', $index );
 		$this->assertStringContainsString( 'https://www.yourshop.com/aimeos-sitemap-2.xml', $index );
 	}
+
+
+	public function testRunEmptyBaseurl()
+	{
+		$this->context->config()->set( 'resource/fs/baseurl', '' );
+
+		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
+		$this->object->run();
+	}
 }
