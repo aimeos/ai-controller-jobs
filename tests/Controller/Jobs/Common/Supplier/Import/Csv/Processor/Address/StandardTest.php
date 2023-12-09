@@ -72,35 +72,30 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	/*
-	 * There are no ability to add several addresses to one Supplier from CSV Import.
-	 * Because of if Supplier has one address, it will be rewrite instead of add one.
-	 * Because we cannot identify if it's a new one address or modification of existing one
-	 */
 	public function testProcessMultiple()
 	{
-		$this->markTestSkipped( 'There are no ability to add several addresses to one Supplier from CSV Import.' );
-
 		$mapping = array(
-			0 => 'address.type',
-			1 => 'address.content',
-			2 => 'address.type',
-			3 => 'address.content',
-			4 => 'address.type',
-			5 => 'address.content',
-			6 => 'address.type',
-			7 => 'address.content',
+			0 => 'supplier.address.languageid',
+			1 => 'supplier.address.countryid',
+			2 => 'supplier.address.city',
+			3 => 'supplier.address.languageid',
+			4 => 'supplier.address.countryid',
+			5 => 'supplier.address.city',
+			6 => 'supplier.address.languageid',
+			7 => 'supplier.address.countryid',
+			8 => 'supplier.address.city',
 		);
 
 		$data = array(
-			0 => 'name',
-			1 => 'Job CSV test',
-			2 => 'short',
-			3 => 'Short: Job CSV test',
-			4 => 'long',
-			5 => 'Long: Job CSV test',
-			6 => 'long',
-			7 => 'Long: Job CSV test 2',
+			0 => 'de',
+			1 => 'DE',
+			2 => 'Berlin',
+			3 => 'en',
+			4 => 'US',
+			5 => 'Washington',
+			6 => 'fr',
+			7 => 'FR',
+			8 => 'Paris',
 		);
 
 		$supplier = $this->create( 'job_csv_test' );
@@ -110,20 +105,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$pos = 0;
-		$listItems = $supplier->getAddressItems();
+		$addrItems = $supplier->getAddressItems();
 		$expected = array(
-			0 => array( 'name', 'Job CSV test' ),
-			1 => array( 'short', 'Short: Job CSV test' ),
-			2 => array( 'long', 'Long: Job CSV test' ),
-			3 => array( 'long', 'Long: Job CSV test 2' ),
+			0 => array( 'de', 'DE', 'Berlin' ),
+			1 => array( 'en', 'US', 'Washington' ),
+			2 => array( 'fr', 'FR', 'Paris' ),
 		);
 
-		$this->assertEquals( 4, count( $listItems ) );
+		$this->assertEquals( 3, count( $addrItems ) );
 
-		foreach( $listItems as $listItem )
+		foreach( $addrItems as $addrItem )
 		{
-			$this->assertEquals( $expected[$pos][0], $listItem->getRefItem()->getType() );
-			$this->assertEquals( $expected[$pos][1], $listItem->getRefItem()->getContent() );
+			$this->assertEquals( $expected[$pos][0], $addrItem->getLanguageId() );
+			$this->assertEquals( $expected[$pos][1], $addrItem->getCountryId() );
+			$this->assertEquals( $expected[$pos][2], $addrItem->getCity() );
 			$pos++;
 		}
 	}

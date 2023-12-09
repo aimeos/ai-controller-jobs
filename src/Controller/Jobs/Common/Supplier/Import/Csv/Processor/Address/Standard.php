@@ -65,9 +65,7 @@ class Standard
 			}
 
 			$key = $items->lastKey();
-			if( ( $item = $items->pop() ) === null ) {
-				$item = \Aimeos\MShop::create( $this->context(), 'supplier/address' )->create();
-			}
+			$item = $items->pop() ?? \Aimeos\MShop::create( $this->context(), 'supplier/address' )->create();
 
 			$item->fromArray( $list );
 			$supplier->addAddressItem( $item, $key );

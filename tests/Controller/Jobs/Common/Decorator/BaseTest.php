@@ -42,13 +42,6 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->assertInstanceOf( \Aimeos\Bootstrap::class, $this->object->getAimeosPublic() );
 	}
-
-
-	public function testCall()
-	{
-		$this->markTestInComplete( 'PHP warning is triggered instead of exception' );
-	}
-
 }
 
 
