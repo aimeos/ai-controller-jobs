@@ -76,18 +76,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testRunEmptyLocation()
+	public function testRunEmptyBaseurl()
 	{
-		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/location', '' );
-
-		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
-		$this->object->run();
-	}
-
-
-	public function testRunNoLocation()
-	{
-		$this->context->config()->set( 'controller/jobs/catalog/export/sitemap/location', null );
+		$this->context->config()->set( 'resource/fs/baseurl', '' );
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
 		$this->object->run();
