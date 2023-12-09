@@ -240,7 +240,6 @@ class Standard
 		$cursor = $manager->cursor( $search->slice( 0, $this->max() ) );
 
 		$domains = $this->domains();
-		$max = $this->max();
 		$fs = $this->fs();
 
 		$filenum = 1;

@@ -157,18 +157,6 @@ class Standard
 	 */
 	public function run()
 	{
-		$this->export( $container, false );
-	}
-
-
-	/**
-	 * Exports the products
-	 *
-	 * @param bool|null $default True to filter exported products by default criteria
-	 * @return array List of file names
-	 */
-	protected function export( ?bool $default = true ) : array
-	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 		$filter = $manager->filter( $default )->order( 'product.id' )->slice( 0, $this->max() );
 		$cursor = $manager->cursor( $filter );
@@ -179,14 +167,9 @@ class Standard
 		$filenum = 1;
 		$files = [];
 
-		while( $items = $manager->iterate( $cursor, $domains ) )
-		{
-			$filename = $this->call( 'filename', $filenum++ );
-			$fs->write( $filename, $this->render( $items ) );
-			$files[] = $filename;
+		while( $items = $manager->iterate( $cursor, $domains ) ) {
+			$fs->write( $this->call( 'filename', $filenum++ ), $this->render( $items ) );
 		}
-
-		return $files;
 	}
 
 
