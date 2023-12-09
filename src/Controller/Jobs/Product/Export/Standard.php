@@ -158,14 +158,12 @@ class Standard
 	public function run()
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
-		$filter = $manager->filter( $default )->order( 'product.id' )->slice( 0, $this->max() );
+		$filter = $manager->filter()->order( 'product.id' )->slice( 0, $this->max() );
 		$cursor = $manager->cursor( $filter );
 
 		$domains = $this->domains();
 		$fs = $this->fs();
-
 		$filenum = 1;
-		$files = [];
 
 		while( $items = $manager->iterate( $cursor, $domains ) ) {
 			$fs->write( $this->call( 'filename', $filenum++ ), $this->render( $items ) );
