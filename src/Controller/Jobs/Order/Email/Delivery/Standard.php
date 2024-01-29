@@ -321,7 +321,7 @@ class Standard
 				$list = $sites->get( $item->getSiteId(), map() );
 
 				$this->send( $item, $list->getTheme()->filter()->last(), $list->getLogo()->filter()->last() );
-				$this->status( $id, $status );
+				$this->update( $id, $status );
 
 				$str = sprintf( 'Sent order delivery e-mail for order "%1$s" and status "%2$s"', $item->getId(), $status );
 				$context->logger()->info( $str, 'email/order/delivery' );
@@ -436,7 +436,7 @@ class Standard
 	 * @param string $orderId Unique order ID
 	 * @param int $value Status value
 	 */
-	protected function status( string $orderId, int $value )
+	protected function update( string $orderId, int $value )
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 

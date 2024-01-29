@@ -361,7 +361,7 @@ class Standard
 				$view = $this->view( $item, $list->getTheme()->filter()->last() );
 
 				$this->send( $view, $products, $addr, $list->getLogo()->filter()->last() );
-				$this->status( $id );
+				$this->update( $id );
 
 				$orderProdManager->commit();
 				$couponManager->commit();
@@ -587,7 +587,7 @@ class Standard
 	 *
 	 * @param string $orderId Unique order ID
 	 */
-	protected function status( string $orderId )
+	protected function update( string $orderId )
 	{
 		$orderStatusManager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 

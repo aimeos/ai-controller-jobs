@@ -137,11 +137,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->onlyMethods( ['createCoupons', 'send', 'status'] )
+			->onlyMethods( ['createCoupons', 'send', 'update'] )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'createCoupons' )->will( $this->returnValue( map() ) );
-		$object->expects( $this->once() )->method( 'status' );
+		$object->expects( $this->once() )->method( 'update' );
 		$object->expects( $this->once() )->method( 'send' );
 
 		$this->access( 'notify' )->invokeArgs( $object, [map( [$order] )] );
@@ -222,7 +222,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Status\\Standard', $statusManagerStub );
 
-		$this->access( 'status' )->invokeArgs( $this->object, array( -1, +1 ) );
+		$this->access( 'update' )->invokeArgs( $this->object, array( -1, +1 ) );
 	}
 
 
