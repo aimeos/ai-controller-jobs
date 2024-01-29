@@ -163,22 +163,7 @@ class Standard
 		$config = $context->config();
 
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
-
-		/** controller/jobs/order/email/payment/limit-days
-		 * Only send payment e-mails of orders that were created in the past within the configured number of days
-		 *
-		 * The payment e-mails are normally send immediately after the payment
-		 * status has changed. This option prevents e-mails for old order from
-		 * being send in case anything went wrong or an update failed to avoid
-		 * confusion of customers.
-		 *
-		 * @param integer Number of days
-		 * @since 2014.03
-		 * @see controller/jobs/order/email/delivery/limit-days
-		 * @see controller/jobs/service/delivery/process/limit-days
-		 */
-		$limit = $config->get( 'controller/jobs/order/email/payment/limit-days', 30 );
-		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
+		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
 
 		$default = [
 			\Aimeos\MShop\Order\Item\Base::PAY_REFUND,
@@ -299,6 +284,30 @@ class Standard
 	protected function filename( \Aimeos\MShop\Order\Item\Iface $order ) : string
 	{
 		return $this->context()->translate( 'controller/jobs', 'Invoice' ) . '-' . $order->getInvoiceNumber() . '.pdf';
+	}
+
+
+	/**
+	 * Returns the number of days after no e-mail will be sent anymore
+	 *
+	 * @return int Number of days
+	 */
+	protected function limit() : int
+	{
+		/** controller/jobs/order/email/payment/limit-days
+		 * Only send payment e-mails of orders that were created in the past within the configured number of days
+		 *
+		 * The payment e-mails are normally send immediately after the payment
+		 * status has changed. This option prevents e-mails for old order from
+		 * being send in case anything went wrong or an update failed to avoid
+		 * confusion of customers.
+		 *
+		 * @param integer Number of days
+		 * @since 2014.03
+		 * @see controller/jobs/order/email/delivery/limit-days
+		 * @see controller/jobs/service/delivery/process/limit-days
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/order/email/payment/limit-days', 30 );
 	}
 
 

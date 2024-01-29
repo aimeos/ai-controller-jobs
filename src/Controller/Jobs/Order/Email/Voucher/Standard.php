@@ -165,20 +165,7 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 
-		/** controller/jobs/order/email/voucher/limit-days
-		 * Only send voucher e-mails of orders that were created in the past within the configured number of days
-		 *
-		 * The voucher e-mails are normally send immediately after the voucher
-		 * has been ordered. This option prevents e-mails for old orders from
-		 * being send in case anything went wrong or an update failed to avoid
-		 * confusion of customers.
-		 *
-		 * @param integer Number of days
-		 * @since 2018.07
-		 * @see controller/jobs/order/email/voucher/status
-		 */
-		$limit = $config->get( 'controller/jobs/order/email/voucher/limit-days', 30 );
-		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
+		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
 
 		/** controller/jobs/order/email/voucher/status
 		 * Only send e-mails containing voucher for these payment status values
@@ -317,6 +304,30 @@ class Standard
 	protected function filename( string $code ) : string
 	{
 		return $this->context()->translate( 'controller/jobs', 'Voucher' ) . '-' . $code . '.pdf';
+	}
+
+
+	/**
+	 * Returns the number of days after no e-mail will be sent anymore
+	 *
+	 * @return int Number of days
+	 */
+	protected function limit() : int
+	{
+		/** controller/jobs/order/email/voucher/limit-days
+		 * Only send voucher e-mails of orders that were created in the past within the configured number of days
+		 *
+		 * The voucher e-mails are normally send immediately after the voucher
+		 * status has changed. This option prevents e-mails for old order from
+		 * being send in case anything went wrong or an update failed to avoid
+		 * confusion of customers.
+		 *
+		 * @param integer Number of days
+		 * @since 2014.03
+		 * @see controller/jobs/order/email/delivery/limit-days
+		 * @see controller/jobs/service/delivery/process/limit-days
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/order/email/voucher/limit-days', 30 );
 	}
 
 
