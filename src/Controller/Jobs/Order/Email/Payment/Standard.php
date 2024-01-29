@@ -161,41 +161,11 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
 
-		$default = [
-			\Aimeos\MShop\Order\Item\Base::PAY_REFUND,
-			\Aimeos\MShop\Order\Item\Base::PAY_PENDING,
-			\Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED,
-			\Aimeos\MShop\Order\Item\Base::PAY_RECEIVED,
-		];
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
-		/** controller/jobs/order/email/payment/status
-		 * Only send order payment notification e-mails for these payment status values
-		 *
-		 * Notification e-mail about payment status changes can be sent for these
-		 * status values:
-		 *
-		 * * 0: deleted
-		 * * 1: canceled
-		 * * 2: refused
-		 * * 3: refund
-		 * * 4: pending
-		 * * 5: authorized
-		 * * 6: received
-		 * * 7: transferred
-		 *
-		 * User-defined status values are possible but should be in the private
-		 * block of values between 30000 and 32767.
-		 *
-		 * @param integer Payment status constant
-		 * @since 2014.03
-		 * @see controller/jobs/order/email/delivery/status
-		 * @see controller/jobs/order/email/payment/limit-days
-		 */
-		foreach( (array) $config->get( 'controller/jobs/order/email/payment/status', $default ) as $status )
+		foreach( $this->status() as $status )
 		{
 			$param = [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT, (string) $status];
 			$filter = $orderManager->filter();
@@ -503,25 +473,6 @@ class Standard
 
 
 	/**
-	 * Adds the status of the delivered e-mail for the given order ID
-	 *
-	 * @param string $orderId Unique order ID
-	 * @param int $value Status value
-	 */
-	protected function update( string $orderId, int $value )
-	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
-
-		$item = $manager->create()
-			->setParentId( $orderId )
-			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT )
-			->setValue( $value );
-
-		$manager->save( $item );
-	}
-
-
-	/**
 	 * Returns the site items for the given site codes
 	 *
 	 * @param iterable $siteIds List of site IDs
@@ -539,6 +490,66 @@ class Standard
 		}
 
 		return map( $map );
+	}
+
+
+	/**
+	 * Returns the payment status values for which an e-mail should be sent
+	 *
+	 * @return array List of payment status values
+	 */
+	protected function status() : array
+	{
+		$default = [
+			\Aimeos\MShop\Order\Item\Base::PAY_REFUND,
+			\Aimeos\MShop\Order\Item\Base::PAY_PENDING,
+			\Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED,
+			\Aimeos\MShop\Order\Item\Base::PAY_RECEIVED,
+		];
+
+		/** controller/jobs/order/email/payment/status
+		 * Only send order payment notification e-mails for these payment status values
+		 *
+		 * Notification e-mail about payment status changes can be sent for these
+		 * status values:
+		 *
+		 * * 0: deleted
+		 * * 1: canceled
+		 * * 2: refused
+		 * * 3: refund
+		 * * 4: pending
+		 * * 5: authorized
+		 * * 6: received
+		 * * 7: transferred
+		 *
+		 * User-defined status values are possible but should be in the private
+		 * block of values between 30000 and 32767.
+		 *
+		 * @param integer Payment status constant
+		 * @since 2014.03
+		 * @see controller/jobs/order/email/delivery/status
+		 * @see controller/jobs/order/email/payment/limit-days
+		 */
+		return (array) $this->context()->config()->get( 'controller/jobs/order/email/payment/status', $default );
+	}
+
+
+	/**
+	 * Adds the status of the delivered e-mail for the given order ID
+	 *
+	 * @param string $orderId Unique order ID
+	 * @param int $value Status value
+	 */
+	protected function update( string $orderId, int $value )
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
+
+		$item = $manager->create()
+			->setParentId( $orderId )
+			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT )
+			->setValue( $value );
+
+		$manager->save( $item );
 	}
 
 

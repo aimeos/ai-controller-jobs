@@ -161,41 +161,11 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
 
-		$default = [
-			\Aimeos\MShop\Order\Item\Base::STAT_PROGRESS,
-			\Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED,
-			\Aimeos\MShop\Order\Item\Base::STAT_REFUSED,
-			\Aimeos\MShop\Order\Item\Base::STAT_RETURNED,
-		];
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
-		/** controller/jobs/order/email/delivery/status
-		 * Only send order delivery notification e-mails for these delivery status values
-		 *
-		 * Notification e-mail about delivery status changes can be sent for these
-		 * status values:
-		 *
-		 * * 0: deleted
-		 * * 1: pending
-		 * * 2: progress
-		 * * 3: dispatched
-		 * * 4: delivered
-		 * * 5: lost
-		 * * 6: refused
-		 * * 7: returned
-		 *
-		 * User-defined status values are possible but should be in the private
-		 * block of values between 30000 and 32767.
-		 *
-		 * @param integer Delivery status constant
-		 * @since 2014.03
-		 * @see controller/jobs/order/email/payment/status
-		 * @see controller/jobs/order/email/delivery/limit-days
-		 */
-		foreach( (array) $config->get( 'controller/jobs/order/email/delivery/status', $default ) as $status )
+		foreach( $this->status() as $status )
 		{
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
 			$filter = $orderManager->filter();
@@ -431,25 +401,6 @@ class Standard
 
 
 	/**
-	 * Adds the status of the delivered e-mail for the given order ID
-	 *
-	 * @param string $orderId Unique order ID
-	 * @param int $value Status value
-	 */
-	protected function update( string $orderId, int $value )
-	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
-
-		$item = $manager->create()
-			->setParentId( $orderId )
-			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY )
-			->setValue( $value );
-
-		$manager->save( $item );
-	}
-
-
-	/**
 	 * Returns the site items for the given site codes
 	 *
 	 * @param iterable $siteIds List of site IDs
@@ -467,6 +418,66 @@ class Standard
 		}
 
 		return map( $map );
+	}
+
+
+	/**
+	 * Returns the list of delivery status values for which e-mails should be sent
+	 *
+	 * @return array List of delivery status values
+	 */
+	protected function status() : array
+	{
+		$default = [
+			\Aimeos\MShop\Order\Item\Base::STAT_PROGRESS,
+			\Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED,
+			\Aimeos\MShop\Order\Item\Base::STAT_REFUSED,
+			\Aimeos\MShop\Order\Item\Base::STAT_RETURNED,
+		];
+
+		/** controller/jobs/order/email/delivery/status
+		 * Only send order delivery notification e-mails for these delivery status values
+		 *
+		 * Notification e-mail about delivery status changes can be sent for these
+		 * status values:
+		 *
+		 * * 0: deleted
+		 * * 1: pending
+		 * * 2: progress
+		 * * 3: dispatched
+		 * * 4: delivered
+		 * * 5: lost
+		 * * 6: refused
+		 * * 7: returned
+		 *
+		 * User-defined status values are possible but should be in the private
+		 * block of values between 30000 and 32767.
+		 *
+		 * @param integer Delivery status constant
+		 * @since 2014.03
+		 * @see controller/jobs/order/email/payment/status
+		 * @see controller/jobs/order/email/delivery/limit-days
+		 */
+		return (array) $this->context()->config()->get( 'controller/jobs/order/email/delivery/status', $default );
+	}
+
+
+	/**
+	 * Adds the status of the delivered e-mail for the given order ID
+	 *
+	 * @param string $orderId Unique order ID
+	 * @param int $value Status value
+	 */
+	protected function update( string $orderId, int $value )
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
+
+		$item = $manager->create()
+			->setParentId( $orderId )
+			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY )
+			->setValue( $value );
+
+		$manager->save( $item );
 	}
 
 

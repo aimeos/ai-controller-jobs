@@ -164,28 +164,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-
 		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
-
-		/** controller/jobs/order/email/voucher/status
-		 * Only send e-mails containing voucher for these payment status values
-		 *
-		 * E-mail containing vouchers can be sent for these payment status values:
-		 *
-		 * * 0: deleted
-		 * * 1: canceled
-		 * * 2: refused
-		 * * 3: refund
-		 * * 4: pending
-		 * * 5: authorized
-		 * * 6: received
-		 *
-		 * @param integer Payment status constant
-		 * @since 2018.07
-		 * @see controller/jobs/order/email/voucher/limit-days
-		 */
-		$status = $config->get( 'controller/jobs/order/email/voucher/status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
-
 
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 
@@ -193,7 +172,7 @@ class Standard
 		$func = $filter->make( 'order:status', [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1'] );
 		$filter->add( $filter->and( [
 			$filter->compare( '>=', 'order.mtime', $limitDate ),
-			$filter->compare( '==', 'order.statuspayment', $status ),
+			$filter->compare( '==', 'order.statuspayment', $this->status() ),
 			$filter->compare( '==', 'order.product.type', 'voucher' ),
 			$filter->compare( '==', $func, 0 ),
 		] ) );
@@ -579,6 +558,34 @@ class Standard
 		}
 
 		return map( $map );
+	}
+
+
+	/**
+	 * Returns the payment status for which the e-mails should be sent
+	 *
+	 * @return int Payment status
+	 */
+	protected function status() : int
+	{
+		/** controller/jobs/order/email/voucher/status
+		 * Only send e-mails containing voucher for these payment status values
+		 *
+		 * E-mail containing vouchers can be sent for these payment status values:
+		 *
+		 * * 0: deleted
+		 * * 1: canceled
+		 * * 2: refused
+		 * * 3: refund
+		 * * 4: pending
+		 * * 5: authorized
+		 * * 6: received
+		 *
+		 * @param integer Payment status constant
+		 * @since 2018.07
+		 * @see controller/jobs/order/email/voucher/limit-days
+		 */
+		return (int) $this->context()->config()->get( 'controller/jobs/order/email/voucher/status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
 	}
 
 
