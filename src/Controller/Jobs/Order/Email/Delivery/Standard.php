@@ -160,7 +160,6 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
 		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
 
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
