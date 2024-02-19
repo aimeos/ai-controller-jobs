@@ -168,20 +168,24 @@ class Standard
 			$errors = 0;
 			$location = $this->location();
 			$fs = $context->fs( 'fs-import' );
+			$site = $context->locale()->getSiteCode();
 
-			if( $fs->isDir( $location ) === false ) {
-				return;
-			}
-
-			foreach( map( $fs->scan( $location ) )->sort() as $filename )
+			foreach( [$location, $location . '/' . $site] as $location )
 			{
-				$path = $location . '/' . $filename;
-
-				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $location ) === false ) {
 					continue;
 				}
 
-				$errors = $this->import( $path );
+				foreach( map( $fs->scan( $location ) )->sort() as $filename )
+				{
+					$path = $location . '/' . $filename;
+
+					if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+						continue;
+					}
+
+					$errors = $this->import( $path );
+				}
 			}
 
 			if( $errors > 0 ) {
