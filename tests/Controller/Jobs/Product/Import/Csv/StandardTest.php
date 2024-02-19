@@ -235,7 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Product\\Manager\\Standard', $stub );
 
-		$result = $this->access( 'cleanup' )->invokeArgs( $this->object, [date( 'Y-m-d H:i:s')] );
+		$result = $this->access( 'cleanup' )->invokeArgs( $this->object, [date( 'Y-m-d H:i:s' )] );
 
 		$this->assertEquals( 15, $result );
 	}

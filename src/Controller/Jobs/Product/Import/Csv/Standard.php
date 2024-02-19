@@ -291,6 +291,18 @@ class Standard
 
 
 	/**
+	 * Adds conditions to the filter for fetching products that should be removed
+	 *
+	 * @param \Aimeos\Base\Criteria\Iface $filter Criteria object
+	 * @return \Aimeos\Base\Criteria\Iface Modified criteria object
+	 */
+	protected function cleaner( \Aimeos\Base\Criteria\Iface $filter ) : \Aimeos\Base\Criteria\Iface
+	{
+		return $filter;
+	}
+
+
+	/**
 	 * Removes all products which have been updated before the given date/time
 	 *
 	 * @param string $datetime Date and time in ISO format
@@ -303,7 +315,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 		$filter = $manager->filter();
 		$filter->add( 'product.mtime', '<', $datetime )->add( $filter->make( 'product:has', ['catalog', null] ), '!=', null );
-		$cursor = $manager->cursor( $filter );
+		$cursor = $manager->cursor( $this->call( 'cleaner', $filter ) );
 
 		while( $items = $manager->iterate( $cursor, ['product' => ['default']] ) )
 		{
