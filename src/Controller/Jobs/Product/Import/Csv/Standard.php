@@ -162,6 +162,7 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
+		$date = date( 'Y-m-d H:i:s' );
 
 		try
 		{
@@ -186,6 +187,31 @@ class Standard
 
 					$errors = $this->import( $path );
 				}
+			}
+
+			/** controller/jobs/product/import/csv/destructive
+			 * Deletes all products with categories which havn't been updated
+			 *
+			 * By default, the product importer only adds new and updates existing
+			 * products but doesn't delete any products. If you want to remove all
+			 * products which haven't been updated during the import, then set this
+			 * configuration option to "true". This will remove all products which
+			 * are not assigned to any category but keep the ones without categories,
+			 * e.g. rebate products.
+			 *
+			 * @param bool TRUE to delete all untouched products, FALSE to keep them
+			 * @since 2023.10
+			 * @see controller/jobs/product/import/csv/backup
+			 * @see controller/jobs/product/import/csv/domains
+			 * @see controller/jobs/product/import/csv/location
+			 * @see controller/jobs/product/import/csv/mapping
+			 * @see controller/jobs/product/import/csv/max-size
+			 * @see controller/jobs/product/import/csv/skip-lines
+			 */
+			if( $context->config()->get( 'controller/jobs/product/import/csv/destructive', false ) )
+			{
+				$count = $this->cleanup( $date );
+				$logger->info( sprintf( 'Removed %1$s old products', $count ), 'import/csv/product' );
 			}
 
 			if( $errors > 0 ) {
@@ -228,6 +254,7 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
+		 * @see controller/jobs/product/import/csv/destructive
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -264,6 +291,35 @@ class Standard
 
 
 	/**
+	 * Removes all products which have been updated before the given date/time
+	 *
+	 * @param string $datetime Date and time in ISO format
+	 * @return int Number of removed products
+	 */
+	protected function cleanup( string $datetime ) : int
+	{
+		$count = 0;
+
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$filter = $manager->filter();
+		$filter->add( 'product.mtime', '<', $datetime )->add( $filter->make( 'product:has', ['catalog', null] ), '!=', null );
+		$cursor = $manager->cursor( $filter );
+
+		while( $items = $manager->iterate( $cursor, ['product' => ['default']] ) )
+		{
+			$articles = $items->filter( fn( $item ) => $item->getType() === 'select' )
+				->getRefItems( 'product', null, 'default' )->flat( 1 );
+			$count = count( $articles ) + count( $items );
+
+			$manager->delete( $articles );
+			$manager->delete( $items );
+		}
+
+		return $count;
+	}
+
+
+	/**
 	 * Returns the list of domain names that should be retrieved along with the attribute items
 	 *
 	 * @return array List of domain names
@@ -282,6 +338,7 @@ class Standard
 		 * @param array Associative list of MShop item domain names
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/destructive
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/max-size
@@ -423,7 +480,7 @@ class Standard
 
 					$processor->process( $product, $list );
 
-					$product = $manager->save( $product );
+					$product = $manager->save( $product->setModified() );
 					$items[$product->getId()] = $product;
 				}
 
@@ -463,6 +520,7 @@ class Standard
 		 * @param string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/destructive
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -498,6 +556,7 @@ class Standard
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/destructive
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/max-size
@@ -535,6 +594,7 @@ class Standard
 		 * @param integer Number of rows
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/destructive
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -563,6 +623,7 @@ class Standard
 		 * @param integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
+		 * @see controller/jobs/product/import/csv/destructive
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping

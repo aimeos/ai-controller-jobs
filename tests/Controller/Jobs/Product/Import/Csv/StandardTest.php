@@ -225,6 +225,31 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testRunCleanup()
+	{
+		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Product\\Manager\\Standard' )
+			->setConstructorArgs( [\TestHelper::context()] )
+			->onlyMethods( ['delete'] )
+			->getMock();
+
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Product\\Manager\\Standard', $stub );
+
+		$result = $this->access( 'cleanup' )->invokeArgs( $this->object, [date( 'Y-m-d H:i:s')] );
+
+		$this->assertEquals( 15, $result );
+	}
+
+
+	protected function access( $name )
+	{
+		$class = new \ReflectionClass( \Aimeos\Controller\Jobs\Product\Import\Csv\Standard::class );
+		$method = $class->getMethod( $name );
+		$method->setAccessible( true );
+
+		return $method;
+	}
+
+
 	protected function delete( array $prodcodes, array $delete )
 	{
 		$productManager = \Aimeos\MShop::create( $this->context, 'product' );
