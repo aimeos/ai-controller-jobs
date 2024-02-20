@@ -211,7 +211,7 @@ class Standard
 			if( $context->config()->get( 'controller/jobs/product/import/csv/destructive', false ) )
 			{
 				$count = $this->cleanup( $date );
-				$logger->info( sprintf( 'Removed %1$s old products', $count ), 'import/csv/product' );
+				$logger->info( sprintf( 'Cleaned %1$s old products', $count ), 'import/csv/product' );
 			}
 
 			if( $errors > 0 ) {
@@ -291,6 +291,20 @@ class Standard
 
 
 	/**
+	 * Cleans up the given list of product items
+	 *
+	 * @param \Aimeos\Map $products List of product items implementing \Aimeos\MShop\Product\Item\Iface
+	 */
+	protected function clean( \Aimeos\Map $products )
+	{
+		$articles = $products->filter( fn( $item ) => $item->getType() === 'select' )
+			->getRefItems( 'product', null, 'default' )->flat( 1 );
+
+		\Aimeos\MShop::create( $this->context(), 'product' )->delete( $products->merge( $articles ) );
+	}
+
+
+	/**
 	 * Adds conditions to the filter for fetching products that should be removed
 	 *
 	 * @param \Aimeos\Base\Criteria\Iface $filter Criteria object
@@ -298,7 +312,7 @@ class Standard
 	 */
 	protected function cleaner( \Aimeos\Base\Criteria\Iface $filter ) : \Aimeos\Base\Criteria\Iface
 	{
-		return $filter;
+		return $filter->add( $filter->make( 'product:has', ['catalog', null] ), '!=', null );
 	}
 
 
@@ -311,20 +325,16 @@ class Standard
 	protected function cleanup( string $datetime ) : int
 	{
 		$count = 0;
-
 		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+
 		$filter = $manager->filter();
-		$filter->add( 'product.mtime', '<', $datetime )->add( $filter->make( 'product:has', ['catalog', null] ), '!=', null );
+		$filter->add( 'product.mtime', '<', $datetime );
 		$cursor = $manager->cursor( $this->call( 'cleaner', $filter ) );
 
 		while( $items = $manager->iterate( $cursor, ['product' => ['default']] ) )
 		{
-			$articles = $items->filter( fn( $item ) => $item->getType() === 'select' )
-				->getRefItems( 'product', null, 'default' )->flat( 1 );
-			$count = count( $articles ) + count( $items );
-
-			$manager->delete( $articles );
-			$manager->delete( $items );
+			$this->call( 'clean', $items );
+			$count += count( $items );
 		}
 
 		return $count;
