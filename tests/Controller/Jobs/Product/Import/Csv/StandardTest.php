@@ -229,7 +229,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunCleanup()
 	{
 		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Product\\Manager\\Standard' )
-			->setConstructorArgs( [\TestHelper::context()] )
+			->setConstructorArgs( [$this->context] )
 			->onlyMethods( ['delete'] )
 			->getMock();
 
