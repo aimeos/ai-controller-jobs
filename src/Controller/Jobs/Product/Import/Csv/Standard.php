@@ -312,7 +312,7 @@ class Standard
 	 */
 	protected function cleaner( \Aimeos\Base\Criteria\Iface $filter ) : \Aimeos\Base\Criteria\Iface
 	{
-		return $filter->add( $filter->make( 'product:has', ['catalog', null] ), '!=', null );
+		return $filter->add( $filter->make( 'product:has', ['catalog'] ), '!=', null );
 	}
 
 
