@@ -161,8 +161,8 @@ class Standard
 		$filter = $manager->filter()->order( 'product.id' )->slice( 0, $this->max() );
 		$cursor = $manager->cursor( $filter );
 
-		$fs = $this->fs( 'fs-export' );
 		$domains = $this->domains();
+		$fs = $this->fs();
 		$filenum = 1;
 
 		while( $items = $manager->iterate( $cursor, $domains ) ) {
