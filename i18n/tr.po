@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Aimeos, 2022
-# Metal <meteoramic@yahoo.com>, 2015-2020,2022-2023
+# Metal <meteoramic@yahoo.com>, 2015-2020,2022-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-26 15:47+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2020,2022-2023\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2020,2022-2024\n"
 "Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -444,7 +444,7 @@ msgstr "Nihai ödeme tarafımızca tahsil edilene kadar sipariş beklemede. Eğe
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "%2$s 'den %1$s siparişiniz için parsel teslim edilemedi."
+msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz teslim edilemedi."
 
 msgid "The payment couldn't be renewed"
 msgstr "Ödeme yenilenemedi"
@@ -566,4 +566,4 @@ msgstr "Ödeme"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr "fiyat:varsayılan"
+msgstr "price:default"
