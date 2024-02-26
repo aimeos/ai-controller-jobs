@@ -194,7 +194,7 @@ class Standard
 				}
 			}
 
-			/** controller/jobs/product/import/csv/destructive
+			/** controller/jobs/product/import/csv/cleanup
 			 * Deletes all products with categories which havn't been updated
 			 *
 			 * By default, the product importer only adds new and updates existing
@@ -213,7 +213,7 @@ class Standard
 			 * @see controller/jobs/product/import/csv/max-size
 			 * @see controller/jobs/product/import/csv/skip-lines
 			 */
-			if( $files && $context->config()->get( 'controller/jobs/product/import/csv/destructive', false ) )
+			if( $files && $context->config()->get( 'controller/jobs/product/import/csv/cleanup', false ) )
 			{
 				$count = $this->cleanup( $date );
 				$logger->info( sprintf( 'Cleaned %1$s old products', $count ), 'import/csv/product' );
@@ -259,7 +259,7 @@ class Standard
 		 *
 		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
-		 * @see controller/jobs/product/import/csv/destructive
+		 * @see controller/jobs/product/import/csv/cleanup
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -305,7 +305,7 @@ class Standard
 		$articles = $products->filter( fn( $item ) => $item->getType() === 'select' )
 			->getRefItems( 'product', null, 'default' )->flat( 1 );
 
-		\Aimeos\MShop::create( $this->context(), 'product' )->delete( $products->merge( $articles ) );
+		\Aimeos\MShop::create( $this->context(), 'product' )->save( $products->merge( $articles )->setStatus( -2 ) );
 	}
 
 
@@ -365,7 +365,7 @@ class Standard
 		 * @param array Associative list of MShop item domain names
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/destructive
+		 * @see controller/jobs/product/import/csv/cleanup
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
 		 * @see controller/jobs/product/import/csv/max-size
@@ -547,7 +547,7 @@ class Standard
 		 * @param string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/destructive
+		 * @see controller/jobs/product/import/csv/cleanup
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -583,7 +583,7 @@ class Standard
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/destructive
+		 * @see controller/jobs/product/import/csv/cleanup
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/max-size
@@ -621,7 +621,7 @@ class Standard
 		 * @param integer Number of rows
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/destructive
+		 * @see controller/jobs/product/import/csv/cleanup
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
@@ -650,7 +650,7 @@ class Standard
 		 * @param integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
-		 * @see controller/jobs/product/import/csv/destructive
+		 * @see controller/jobs/product/import/csv/cleanup
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/location
 		 * @see controller/jobs/product/import/csv/mapping
