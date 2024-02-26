@@ -21,9 +21,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 
 		$fs = $context->fs( 'fs-import' );
-		$fs->has( 'catalog' ) ?: $fs->mkdir( 'catalog' );
-		$fs->writef( 'catalog/catalog_1.xml', __DIR__ . '/_testfiles/catalog_1.xml' );
-		$fs->writef( 'catalog/catalog_2.xml', __DIR__ . '/_testfiles/catalog_2.xml' );
+		$fs->has( 'catalog/unittest' ) ?: $fs->mkdir( 'catalog/unittest' );
+		$fs->writef( 'catalog/unittest/catalog_1.xml', __DIR__ . '/_testfiles/catalog_1.xml' );
+		$fs->writef( 'catalog/unittest/catalog_2.xml', __DIR__ . '/_testfiles/catalog_2.xml' );
 
 		$fs = $context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
