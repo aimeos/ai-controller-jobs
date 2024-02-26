@@ -22,13 +22,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$fs = $context->fs( 'fs-import' );
 		$fs->has( 'product' ) ?: $fs->mkdir( 'product' );
-		$fs->writef( 'product/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
+		$fs->writef( 'product/unittest/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
 
 		$fs->has( 'product/valid' ) ?: $fs->mkdir( 'product/valid' );
-		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
+		$fs->writef( 'product/valid/unittest/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
 
 		$fs->has( 'product/position' ) ?: $fs->mkdir( 'product/position' );
-		$fs->writef( 'product/position/products.csv', __DIR__ . '/_testfiles/position/products.csv' );
+		$fs->writef( 'product/position/unittest/products.csv', __DIR__ . '/_testfiles/position/products.csv' );
 
 		$fs = $context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
@@ -146,12 +146,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->config()->set( 'controller/jobs/product/import/csv/mapping', $mapping );
 
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
+		$fs->writef( 'product/valid/unittest/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
 
 		$this->object->run();
 
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->writef( 'product/valid/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
+		$fs->writef( 'product/valid/unittest/products.csv', __DIR__ . '/_testfiles/valid/products.csv' );
 
 		$this->object->run();
 

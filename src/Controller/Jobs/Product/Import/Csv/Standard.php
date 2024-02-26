@@ -167,31 +167,24 @@ class Standard
 		try
 		{
 			$files = $errors = 0;
-			$location = $this->location();
 			$fs = $context->fs( 'fs-import' );
 			$site = $context->locale()->getSiteCode();
+			$location = $this->location() . '/' . $site;
 
-			foreach( [$location, $location . '/' . $site] as $location )
+			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
-				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $location ) === false ) {
+				if( $filename[0] === '.' ) {
 					continue;
 				}
 
-				foreach( map( $fs->scan( $location ) )->sort() as $filename )
-				{
-					if( $filename[0] === '.' ) {
-						continue;
-					}
+				$path = $location . '/' . $filename;
 
-					$path = $location . '/' . $filename;
-
-					if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
-						continue;
-					}
-
-					$errors = $this->import( $path );
-					$files++;
+				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+					continue;
 				}
+
+				$errors = $this->import( $path );
+				$files++;
 			}
 
 			/** controller/jobs/product/import/csv/cleanup
