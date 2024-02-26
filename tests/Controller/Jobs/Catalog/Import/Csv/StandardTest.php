@@ -22,16 +22,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$fs = $context->fs( 'fs-import' );
 		$fs->has( 'catalog' ) ?: $fs->mkdir( 'catalog' );
-		$fs->writef( 'catalog/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
+		$fs->writef( 'catalog/unittest/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
 
 		$fs->has( 'catalog/valid' ) ?: $fs->mkdir( 'catalog/valid' );
-		$fs->writef( 'catalog/valid/catalog.csv', __DIR__ . '/_testfiles/valid/catalog.csv' );
+		$fs->writef( 'catalog/valid/unittest/catalog.csv', __DIR__ . '/_testfiles/valid/catalog.csv' );
 
 		$fs->has( 'catalog/invalid' ) ?: $fs->mkdir( 'catalog/invalid' );
-		$fs->writef( 'catalog/invalid/catalog.csv', __DIR__ . '/_testfiles/invalid/catalog.csv' );
+		$fs->writef( 'catalog/invalid/unittest/catalog.csv', __DIR__ . '/_testfiles/invalid/catalog.csv' );
 
 		$fs->has( 'catalog/position' ) ?: $fs->mkdir( 'catalog/position' );
-		$fs->writef( 'catalog/position/catalog.csv', __DIR__ . '/_testfiles/position/catalog.csv' );
+		$fs->writef( 'catalog/position/unittest/catalog.csv', __DIR__ . '/_testfiles/position/catalog.csv' );
 
 		$fs = $context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
@@ -99,12 +99,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunUpdate()
 	{
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->writef( 'catalog/valid/catalog.csv', __DIR__ . '/_testfiles/valid/catalog.csv' );
+		$fs->writef( 'catalog/valid/unittest/catalog.csv', __DIR__ . '/_testfiles/valid/catalog.csv' );
 
 		$this->object->run();
 
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->writef( 'catalog/valid/catalog.csv', __DIR__ . '/_testfiles/valid/catalog.csv' );
+		$fs->writef( 'catalog/valid/unittest/catalog.csv', __DIR__ . '/_testfiles/valid/catalog.csv' );
 
 		$this->object->run();
 
