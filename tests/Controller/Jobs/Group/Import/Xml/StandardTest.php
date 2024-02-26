@@ -21,9 +21,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 
 		$fs = $context->fs( 'fs-import' );
-		$fs->has( 'group' ) ?: $fs->mkdir( 'group' );
-		$fs->writef( 'group/group_1.xml', __DIR__ . '/_testfiles/group_1.xml' );
-		$fs->writef( 'group/group_2.xml', __DIR__ . '/_testfiles/group_2.xml' );
+		$fs->has( 'group/unittest' ) ?: $fs->mkdir( 'group/unittest' );
+		$fs->writef( 'group/unittest/group_1.xml', __DIR__ . '/_testfiles/group_1.xml' );
+		$fs->writef( 'group/unittest/group_2.xml', __DIR__ . '/_testfiles/group_2.xml' );
 	}
 
 
