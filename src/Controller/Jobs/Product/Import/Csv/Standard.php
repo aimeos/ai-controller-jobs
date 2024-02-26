@@ -166,7 +166,7 @@ class Standard
 
 		try
 		{
-			$errors = 0;
+			$files = $errors = 0;
 			$location = $this->location();
 			$fs = $context->fs( 'fs-import' );
 			$site = $context->locale()->getSiteCode();
@@ -190,6 +190,7 @@ class Standard
 					}
 
 					$errors = $this->import( $path );
+					$files++;
 				}
 			}
 
@@ -212,7 +213,7 @@ class Standard
 			 * @see controller/jobs/product/import/csv/max-size
 			 * @see controller/jobs/product/import/csv/skip-lines
 			 */
-			if( $context->config()->get( 'controller/jobs/product/import/csv/destructive', false ) )
+			if( $files && $context->config()->get( 'controller/jobs/product/import/csv/destructive', false ) )
 			{
 				$count = $this->cleanup( $date );
 				$logger->info( sprintf( 'Cleaned %1$s old products', $count ), 'import/csv/product' );
