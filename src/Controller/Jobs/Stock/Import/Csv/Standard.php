@@ -181,6 +181,10 @@ class Standard
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
+				if( $filename[0] === '.' ) {
+					continue;
+				}
+
 				$path = $location . '/' . $filename;
 
 				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {

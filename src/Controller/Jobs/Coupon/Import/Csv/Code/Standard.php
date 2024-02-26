@@ -175,6 +175,10 @@ class Standard
 
 			foreach( $fs->scan( $dir ) as $filename )
 			{
+				if( $filename[0] === '.' ) {
+					continue;
+				}
+
 				$path = $dir . '/' . $filename;
 
 				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
