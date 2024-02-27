@@ -165,15 +165,16 @@ class Standard
 		$logger = $context->logger();
 		$process = $context->process();
 
-		$location = $this->location();
-		$fs = $context->fs( 'fs-import' );
-
-		if( $fs->isDir( $location ) === false ) {
-			return;
-		}
-
 		try
 		{
+			$fs = $context->fs( 'fs-import' );
+			$site = $context->locale()->getSiteCode();
+			$location = $this->location() . '/' . $site;
+
+			if( $fs->isDir( $location ) === false ) {
+				return;
+			}
+
 			$logger->info( sprintf( 'Started supplier import from "%1$s"', $location ), 'import/xml/supplier' );
 
 			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
@@ -182,13 +183,9 @@ class Standard
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
-				if( $filename[0] === '.' ) {
-					continue;
-				}
-
 				$path = $location . '/' . $filename;
 
-				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+				if( $filename[0] === '.' || $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
 					continue;
 				}
 
