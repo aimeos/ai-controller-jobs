@@ -50,9 +50,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRun()
 	{
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->has( 'stock' ) ?: $fs->mkdir( 'stock' );
-		$fs->writef( 'stock/stock_1.csv', __DIR__ . '/_testfiles/stock_1.csv' );
-		$fs->writef( 'stock/stock_2.csv', __DIR__ . '/_testfiles/stock_2.csv' );
+		$fs->has( 'stock/unittest' ) ?: $fs->mkdir( 'stock/unittest' );
+		$fs->writef( 'stock/unittest/stock_1.csv', __DIR__ . '/_testfiles/stock_1.csv' );
+		$fs->writef( 'stock/unittest/stock_2.csv', __DIR__ . '/_testfiles/stock_2.csv' );
 
 		$this->object->run();
 
