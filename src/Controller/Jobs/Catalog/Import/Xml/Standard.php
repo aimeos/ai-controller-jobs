@@ -163,7 +163,6 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
-		$process = $context->process();
 
 		try
 		{
@@ -177,10 +176,6 @@ class Standard
 
 			$logger->info( sprintf( 'Started catalog import from "%1$s"', $location ), 'import/xml/catalog' );
 
-			$fcn = function( \Aimeos\MShop\ContextIface $context, string $path ) {
-				$this->import( $context, $path );
-			};
-
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
 				$path = $location . '/' . $filename;
@@ -189,10 +184,8 @@ class Standard
 					continue;
 				}
 
-				$process->start( $fcn, [$context, $path] );
+				$this->import( $path );
 			}
-
-			$process->wait();
 
 			$logger->info( sprintf( 'Finished catalog import from "%1$s"', $location ), 'import/xml/catalog' );
 		}
@@ -270,12 +263,12 @@ class Standard
 	/**
 	 * Imports the XML file given by its path
 	 *
-	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param string $path Relative path to the XML file in the file system
 	 */
-	protected function import( \Aimeos\MShop\ContextIface $context, string $path )
+	protected function import( string $path )
 	{
 		$xml = new \XMLReader();
+		$context = $this->context();
 		$logger = $context->logger();
 
 		$fs = $context->fs( 'fs-import' );
