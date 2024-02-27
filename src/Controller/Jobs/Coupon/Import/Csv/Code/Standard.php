@@ -157,31 +157,31 @@ class Standard
 	 */
 	public function run()
 	{
+		$context = $this->context();
+		$logger = $context->logger();
+		$process = $context->process();
+
 		try
 		{
-			$context = $this->context();
-			$process = $context->process();
-
 			$fs = $context->fs( 'fs-import' );
-			$dir = 'couponcode/' . $context->locale()->getSiteItem()->getCode();
+			$site = $context->locale()->getSiteCode();
+			$location = $this->location() . '/' . $site;
 
-			if( $fs->isDir( $dir ) === false ) {
+			if( $fs->isDir( $location ) === false ) {
 				return;
 			}
+
+			$logger->info( sprintf( 'Started coupon/code import from "%1$s"', $location ), 'import/csv/coupon/code' );
 
 			$fcn = function( \Aimeos\MShop\ContextIface $context, $couponId, $fhandle, $path ) {
 				$this->process( $context, $couponId, $fhandle, $path );
 			};
 
-			foreach( $fs->scan( $dir ) as $filename )
+			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
-				if( $filename[0] === '.' ) {
-					continue;
-				}
+				$path = $location . '/' . $filename;
 
-				$path = $dir . '/' . $filename;
-
-				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+				if( $filename[0] === '.' || $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
 					continue;
 				}
 
@@ -191,10 +191,12 @@ class Standard
 			}
 
 			$process->wait();
+
+			$logger->info( sprintf( 'Finished coupon/code import from "%1$s"', $location ), 'import/csv/coupon/code' );
 		}
 		catch( \Exception $e )
 		{
-			$context->logger()->error( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/couponcode' );
+			$logger->error( 'Coupon import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/couponcode' );
 			$this->mail( 'Coupon CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw $e;
 		}
@@ -316,6 +318,32 @@ class Standard
 
 
 	/**
+	 * Returns the path to the directory with the CSV file
+	 *
+	 * @return string Path to the directory with the CSV file
+	 */
+	protected function location() : string
+	{
+		/** controller/jobs/coupon/import/csv/code/location
+		 * Directory where the CSV files are stored which should be imported
+		 *
+		 * It's the relative path inside the "fs-import" virtual file system
+		 * configuration. The default location of the "fs-import" file system is:
+		 *
+		 * * Laravel: ./storage/import/
+		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
+		 *
+		 * @param string Relative path to the CSV files
+		 * @since 2024.04
+		 * @see controller/jobs/coupon/import/csv/code/mapping
+		 * @see controller/jobs/coupon/import/csv/code/max-size
+		 * @see controller/jobs/coupon/import/csv/code/skip-lines
+		 */
+		return (string) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/location', 'couponcode' );
+	}
+
+
+	/**
 	 * Returns the column mapping
 	 *
 	 * @return array Mapping of the columns
@@ -332,8 +360,9 @@ class Standard
 		 *
 		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2017.10
-		 * @see controller/jobs/coupon/import/csv/code/skip-lines
+		 * @see controller/jobs/coupon/import/csv/code/location
 		 * @see controller/jobs/coupon/import/csv/code/max-size
+		 * @see controller/jobs/coupon/import/csv/code/skip-lines
 		 */
 		return $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/mapping', $this->getDefaultMapping() );
 	}
@@ -358,8 +387,9 @@ class Standard
 		 *
 		 * @param integer Number of rows
 		 * @since 2017.10
-		 * @see controller/jobs/coupon/import/csv/code/skip-lines
+		 * @see controller/jobs/coupon/import/csv/code/location
 		 * @see controller/jobs/coupon/import/csv/code/mapping
+		 * @see controller/jobs/coupon/import/csv/code/skip-lines
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/max-size', 1000 );
 	}
@@ -383,6 +413,7 @@ class Standard
 		 *
 		 * @param integer Number of rows
 		 * @since 2015.08
+		 * @see controller/jobs/coupon/import/csv/code/location
 		 * @see controller/jobs/coupon/import/csv/code/mapping
 		 * @see controller/jobs/coupon/import/csv/code/max-size
 		 */
