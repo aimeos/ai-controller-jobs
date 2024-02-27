@@ -173,6 +173,8 @@ class Standard
 				return;
 			}
 
+			$logger->info( sprintf( 'Started catalog import from "%1$s"', $location ), 'import/csv/catalog' );
+
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
 				$path = $location . '/' . $filename;
@@ -187,6 +189,8 @@ class Standard
 			if( $errors > 0 ) {
 				$this->mail( 'Catalog CSV import', sprintf( 'Invalid catalog lines during import: %1$d', $errors ) );
 			}
+
+			$logger->info( sprintf( 'Finished catalog import from "%1$s"', $location ), 'import/csv/catalog' );
 		}
 		catch( \Exception $e )
 		{

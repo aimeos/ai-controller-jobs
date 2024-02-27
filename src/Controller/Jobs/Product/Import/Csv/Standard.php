@@ -175,6 +175,8 @@ class Standard
 				return;
 			}
 
+			$logger->info( sprintf( 'Started product import from "%1$s"', $location ), 'import/xml/product' );
+
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
 				$path = $location . '/' . $filename;
@@ -215,6 +217,8 @@ class Standard
 			if( $errors > 0 ) {
 				$this->mail( 'Product CSV import', sprintf( 'Invalid product lines during import: %1$d', $errors ) );
 			}
+
+			$logger->info( sprintf( 'Finished product import from "%1$s"', $location ), 'import/csv/product' );
 		}
 		catch( \Exception $e )
 		{

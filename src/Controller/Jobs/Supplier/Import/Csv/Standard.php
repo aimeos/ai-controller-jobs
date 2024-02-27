@@ -158,6 +158,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
+		$logger = $context->logger();
 
 		try
 		{
@@ -169,6 +170,8 @@ class Standard
 			if( $fs->isDir( $location ) === false ) {
 				return;
 			}
+
+			$logger->info( sprintf( 'Started supplier import from "%1$s"', $location ), 'import/csv/supplier' );
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
@@ -184,10 +187,12 @@ class Standard
 			if( $errors > 0 ) {
 				$this->mail( 'Supplier CSV import', sprintf( 'Invalid supplier lines during import: %1$d', $errors ) );
 			}
+
+			$logger->info( sprintf( 'Finished supplier import from "%1$s"', $location ), 'import/csv/supplier' );
 		}
 		catch( \Exception $e )
 		{
-			$context->logger()->error( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/supplier' );
+			$logger->error( 'Supplier import error: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 'import/csv/supplier' );
 			$this->mail( 'Supplier CSV import error', $e->getMessage() . "\n" . $e->getTraceAsString() );
 			throw new \Aimeos\Controller\Jobs\Exception( $e->getMessage() );
 		}
