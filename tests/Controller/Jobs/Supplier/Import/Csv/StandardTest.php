@@ -21,14 +21,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 
 		$fs = $context->fs( 'fs-import' );
-		$fs->has( 'supplier' ) ?: $fs->mkdir( 'supplier' );
-		$fs->writef( 'supplier/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
+		$fs->has( 'supplier/unittest' ) ?: $fs->mkdir( 'supplier/unittest' );
+		$fs->writef( 'supplier/unittest/empty.csv', __DIR__ . '/_testfiles/empty.csv' );
 
 		$fs->has( 'supplier/valid' ) ?: $fs->mkdir( 'supplier/valid' );
-		$fs->writef( 'supplier/valid/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
+		$fs->writef( 'supplier/valid/unittest/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
 
 		$fs->has( 'supplier/position' ) ?: $fs->mkdir( 'supplier/position' );
-		$fs->writef( 'supplier/position/suppliers.csv', __DIR__ . '/_testfiles/position/suppliers.csv' );
+		$fs->writef( 'supplier/position/unittest/suppliers.csv', __DIR__ . '/_testfiles/position/suppliers.csv' );
 
 		$fs = $context->fs( 'fs-media' );
 		$fs->has( 'path/to' ) ?: $fs->mkdir( 'path/to' );
@@ -98,12 +98,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testRunUpdate()
 	{
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->writef( 'supplier/valid/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
+		$fs->writef( 'supplier/valid/unittest/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
 
 		$this->object->run();
 
 		$fs = $this->context->fs( 'fs-import' );
-		$fs->writef( 'supplier/valid/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
+		$fs->writef( 'supplier/valid/unittest/suppliers.csv', __DIR__ . '/_testfiles/valid/suppliers.csv' );
 
 		$this->object->run();
 

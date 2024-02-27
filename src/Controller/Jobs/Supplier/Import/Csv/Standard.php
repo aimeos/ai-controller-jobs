@@ -162,8 +162,9 @@ class Standard
 		try
 		{
 			$errors = 0;
-			$location = $this->location();
 			$fs = $context->fs( 'fs-import' );
+			$site = $context->locale()->getSiteCode();
+			$location = $this->location() . '/' . $site;
 
 			if( $fs->isDir( $location ) === false ) {
 				return;
@@ -171,13 +172,9 @@ class Standard
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
-				if( $filename[0] === '.' ) {
-					continue;
-				}
-
 				$path = $location . '/' . $filename;
 
-				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+				if( $filename[0] === '.' || $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
 					continue;
 				}
 
