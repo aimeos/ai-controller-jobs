@@ -202,7 +202,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$data = array(
 			0 => 'EUR',
 			1 => '1.00',
-			2 => 'EUR',
+			2 => '',
 			3 => '',
 		);
 

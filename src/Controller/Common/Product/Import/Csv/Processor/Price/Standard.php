@@ -170,6 +170,10 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
+		if( $this->val( $list, 'price.value' ) === null && $this->val( $list, 'price.currencyid' ) === null ) {
+			return false;
+		}
+
 		if( ( $type = trim( $this->val( $list, 'product.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
