@@ -302,7 +302,11 @@ class Standard
 		$articles = $products->filter( fn( $item ) => $item->getType() === 'select' )
 			->getRefItems( 'product', null, 'default' )->flat( 1 );
 
-		\Aimeos\MShop::create( $this->context(), 'product' )->save( $products->merge( $articles )->setStatus( -2 ) );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+
+		$manager->begin();
+		$manager->save( $products->merge( $articles )->setStatus( -2 ) );
+		$manager->commit();
 	}
 
 
