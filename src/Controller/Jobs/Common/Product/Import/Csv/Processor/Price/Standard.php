@@ -170,7 +170,7 @@ class Standard
 	 */
 	protected function checkEntry( array $list ) : bool
 	{
-		if( $this->val( $list, 'price.value' ) === null ) {
+		if( $this->val( $list, 'price.value' ) === null && $this->val( $list, 'price.currencyid' ) === null ) {
 			return false;
 		}
 
