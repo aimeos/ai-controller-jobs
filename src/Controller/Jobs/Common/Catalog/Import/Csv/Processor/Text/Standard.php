@@ -146,7 +146,7 @@ class Standard
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
-			$label = mb_strcut( $this->val( $list, 'text.content', '' ), 0, 255 );
+			$label = mb_strcut( strip_tags( $this->val( $list, 'text.content', '' ) ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );
 
 			$catalog->addListItem( 'text', $listItem, $refItem );
