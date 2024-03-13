@@ -174,13 +174,13 @@ class Standard
 			return false;
 		}
 
-		if( ( $type = trim( $this->val( $list, 'product.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'product.lists.type', 'default' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
-		if( ( $type = trim( $this->val( $list, 'price.type', '' ) ) ) && !isset( $this->types[$type] ) )
+		if( ( $type = trim( $this->val( $list, 'price.type', 'default' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'price' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
