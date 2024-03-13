@@ -19,7 +19,7 @@ namespace Aimeos\Controller\Jobs\Common\Import\Xml\Processor;
  */
 abstract class Base
 {
-	use \Aimeos\Controller\Jobs\Common\Import\Traits;
+	use \Aimeos\Controller\Jobs\Common\Types;
 
 
 	private \Aimeos\MShop\ContextIface $context;

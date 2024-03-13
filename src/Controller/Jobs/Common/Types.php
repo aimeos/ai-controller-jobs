@@ -2,26 +2,32 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2019-2024
+ * @copyright Aimeos (aimeos.org), 2024
  * @package Controller
- * @subpackage Common
+ * @subpackage Jobs
  */
 
 
-namespace Aimeos\Controller\Jobs\Common\Import;
+namespace Aimeos\Controller\Jobs\Common;
 
 
 /**
- * Shared class for XML importers
+ * Trait with methods to add new types
  *
  * @package Controller
- * @subpackage Common
+ * @subpackage Jobs
  */
-trait Traits
+
+trait Types
 {
 	private array $typeMap = [];
 
 
+	/**
+	 * Returns the context item
+	 *
+	 * @return \Aimeos\MShop\ContextIface Context object
+	 */
 	abstract protected function context() : \Aimeos\MShop\ContextIface;
 
 
@@ -58,14 +64,10 @@ trait Traits
 
 				try
 				{
-					$search = $manager->filter()->slice( 0, 10000 );
-					$expr = [
-						$search->compare( '==', $prefix . '.domain', $domain ),
-						$search->compare( '==', $prefix . '.code', $codes )
-					];
-					$search->setConditions( $search->and( $expr ) );
-
 					$types = $items = [];
+					$search = $manager->filter()
+						->add( [$prefix . '.domain' => $domain, $prefix . '.code' => $codes] )
+						->slice( 0, 10000 );
 
 					foreach( $manager->search( $search ) as $item ) {
 						$types[] = $item->getCode();

@@ -20,9 +20,11 @@ namespace Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor;
 abstract class Base
 	extends \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Base
 {
+	use \Aimeos\Controller\Jobs\Common\Types;
+
+
 	private \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Iface $object;
 	private \Aimeos\MShop\ContextIface $context;
-	private array $types = [];
 	private array $mapping;
 
 
@@ -51,61 +53,7 @@ abstract class Base
 			$this->object->finish();
 		}
 
-		foreach( $this->types as $path => $list )
-		{
-			$manager = \Aimeos\MShop::create( $this->context, $path );
-			$prefix = str_replace( '/', '.', $path );
-
-			foreach( $list as $domain => $codes )
-			{
-				$manager->begin();
-
-				try
-				{
-					$search = $manager->filter()->slice( 0, 10000 );
-					$expr = [
-						$search->compare( '==', $prefix . '.domain', $domain ),
-						$search->compare( '==', $prefix . '.code', $codes )
-					];
-					$search->setConditions( $search->and( $expr ) );
-
-					$types = $items = [];
-
-					foreach( $manager->search( $search ) as $item ) {
-						$types[] = $item->getCode();
-					}
-
-					foreach( array_diff( $codes, $types ) as $code ) {
-						$items[] = $manager->create()->setDomain( $domain )->setCode( $code )->setLabel( $code );
-					}
-
-					$manager->save( $items, false );
-					$manager->commit();
-				}
-				catch( \Exception $e )
-				{
-					$manager->rollback();
-
-					$msg = 'Error saving types: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-					$this->context->logger()->error( $msg, 'import/csv/product' );
-				}
-			}
-		}
-	}
-
-
-	/**
-	 * Registers a used type which is going to be saved if it doesn't exist yet
-	 *
-	 * @param string $path Manager path, e.g. "product/lists/type"
-	 * @param string $domain Domain name the type belongs to, e.g. "attribute"
-	 * @param string $code Type code
-	 * @return \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Iface Same object for fluent interface
-	 */
-	protected function addType( string $path, string $domain, string $code ) : Iface
-	{
-		$this->types[$path][$domain][$code] = $code;
-		return $this;
+		$this->saveTypes();
 	}
 
 

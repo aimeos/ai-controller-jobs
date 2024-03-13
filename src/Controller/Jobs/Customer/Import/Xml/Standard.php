@@ -128,7 +128,7 @@ class Standard
 	 */
 
 
-	use \Aimeos\Controller\Jobs\Common\Import\Traits;
+	use \Aimeos\Controller\Jobs\Common\Types;
 	use \Aimeos\Controller\Jobs\Common\Import\Xml\Traits;
 
 
