@@ -132,6 +132,9 @@ class Standard
 			$listtype = trim( $this->val( $list, 'catalog.lists.type', 'default' ) );
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'catalog.lists.config', '' ) ) );
 
+			$this->addType( 'catalog/lists/type', 'text', $listtype );
+			$this->addType( 'text/type', 'product', $type );
+
 			if( isset( $listMap[$content][$type][$listtype] ) )
 			{
 				$listItem = $listMap[$content][$type][$listtype];

@@ -376,6 +376,7 @@ class Standard
 			unset( $catalogItems, $data );
 		}
 
+		$processor->finish();
 		fclose( $fh );
 
 		if( !empty( $backup = $this->backup() ) ) {

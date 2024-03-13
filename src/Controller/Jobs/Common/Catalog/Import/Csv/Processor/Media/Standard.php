@@ -150,6 +150,9 @@ class Standard
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'catalog.lists.config', '' ) ) );
 			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
 
+			$this->addType( 'catalog/lists/type', 'text', $listtype );
+			$this->addType( 'media/type', 'product', $type );
+
 			foreach( $urls as $url )
 			{
 				if( isset( $listMap[$url][$type][$listtype] ) )

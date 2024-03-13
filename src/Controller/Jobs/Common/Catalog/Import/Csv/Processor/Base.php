@@ -20,6 +20,9 @@ namespace Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor;
 class Base
 	extends \Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Base
 {
+	use \Aimeos\Controller\Jobs\Common\Types;
+
+
 	private \Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $object;
 	private \Aimeos\MShop\ContextIface $context;
 	private array $mapping;
@@ -38,6 +41,19 @@ class Base
 		$this->context = $context;
 		$this->mapping = $mapping;
 		$this->object = $object;
+	}
+
+
+	/**
+	 * Stores all types for which no type items exist yet
+	 */
+	public function finish()
+	{
+		if( $this->object ) {
+			$this->object->finish();
+		}
+
+		$this->saveTypes();
 	}
 
 

@@ -34,6 +34,14 @@ class Done
 
 
 	/**
+	 * Stores all types for which no type items exist yet
+	 */
+	public function finish()
+	{
+	}
+
+
+	/**
 	 * Saves the catalog related data to the storage
 	 *
 	 * @param \Aimeos\MShop\Catalog\Item\Iface $catalog Catalog item with associated items
