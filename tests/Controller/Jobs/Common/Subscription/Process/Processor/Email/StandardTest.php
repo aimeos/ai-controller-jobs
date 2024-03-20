@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalClone()
 			->getMock();
 
-		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
 
 		$context->setMail( $mailStub );
 		$subscription = $this->getSubscription()->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalClone()
 			->getMock();
 
-		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
 
 		$subscription = $this->getSubscription();
 		$context->setMail( $mailStub );

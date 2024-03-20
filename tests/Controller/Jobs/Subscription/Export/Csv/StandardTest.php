@@ -70,18 +70,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$mqmStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $mqStub ) );
+			->willReturn( $mqStub );
 
 		$mqStub->expects( $this->once() )->method( 'getQueue' )
-			->will( $this->returnValue( $queueStub ) );
+			->willReturn( $queueStub );
 
 		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
-			->will( $this->onConsecutiveCalls( $msgStub, null ) );
+			->willReturn( $msgStub, null );
 
 		$queueStub->expects( $this->once() )->method( 'del' );
 
 		$msgStub->expects( $this->once() )->method( 'getBody' )
-			->will( $this->returnValue( '{"sitecode":"unittest"}' ) );
+			->willReturn( '{"sitecode":"unittest"}' );
 
 
 		$this->object->run();

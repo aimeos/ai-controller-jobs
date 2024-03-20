@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$item = \Aimeos\MShop::create( $this->context, 'attribute' )->create()->setType( 'color' );
 		$mock->expects( $this->exactly( 3 ) )->method( 'getAttributeItem' )
-			->will( $this->onConsecutiveCalls( clone $item, clone $item, clone $item ) );
+			->willReturn( clone $item, clone $item, clone $item );
 
 		$mock->process( $product, $data );
 

@@ -65,7 +65,7 @@ class StandardTest
 		$orderItem = $orderManagerStub->create()->setId( 2 );
 
 		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$orderItem->getId() => $orderItem] ), null ) );
+			->willReturn( map( [$orderItem->getId() => $orderItem] ), null );
 
 		$orderManagerStub->expects( $this->once() )->method( 'delete' );
 

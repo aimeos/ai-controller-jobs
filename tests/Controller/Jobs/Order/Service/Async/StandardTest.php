@@ -68,10 +68,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
+			->willReturn( map( [$serviceItem] ), map() );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
-			->will( $this->returnValue( $serviceProviderStub ) );
+			->willReturn( $serviceProviderStub );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'updateAsync' );
 
@@ -98,7 +98,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), map() ) );
+			->willReturn( map( [$serviceItem] ), map() );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception() ) );

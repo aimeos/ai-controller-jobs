@@ -9,6 +9,11 @@
 namespace Aimeos\Controller\Jobs;
 
 
+class Example extends Base
+{
+}
+
+
 class BaseTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
@@ -21,7 +26,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 		$context->config()->set( 'controller/jobs/to-email', 'me@localhost' );
 
-		$this->object = $this->getMockForAbstractClass( '\Aimeos\Controller\Jobs\Base', [$context, $aimeos] );
+		$this->object = new \Aimeos\Controller\Jobs\Example( $context, $aimeos );
 	}
 
 

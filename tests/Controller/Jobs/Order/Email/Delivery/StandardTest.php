@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem = $orderManagerStub->create();
 
 		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'search' )
-			->will( $this->onConsecutiveCalls( map( [$orderItem] ), map(), map(), map() ) );
+			->willReturn( map( [$orderItem] ), map(), map(), map() );
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
@@ -139,7 +139,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['send'] )
 			->getMock();
 
-		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
 		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
 		$this->context->setMail( $mailStub );

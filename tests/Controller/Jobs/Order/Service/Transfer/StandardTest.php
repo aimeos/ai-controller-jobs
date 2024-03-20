@@ -75,16 +75,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), null ) );
+			->willReturn( map( [$serviceItem] ), null );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
-			->will( $this->returnValue( $serviceProviderStub ) );
+			->willReturn( $serviceProviderStub );
 
 		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$orderItem] ), null ) );
+			->willReturn( map( [$orderItem] ), null );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'isImplemented' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'transfer' );
 
@@ -124,16 +124,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$serviceManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), null ) );
+			->willReturn( map( [$serviceItem] ), null );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
-			->will( $this->returnValue( $serviceProviderStub ) );
+			->willReturn( $serviceProviderStub );
 
 		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$orderItem] ), null ) );
+			->willReturn( map( [$orderItem] ), null );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'isImplemented' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 
 		$serviceProviderStub->expects( $this->once() )->method( 'transfer' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test oder service payment: transfer' ) ) );
@@ -169,7 +169,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$serviceItem = $serviceManagerStub->create()->setType( '' );
 
 		$serviceManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$serviceItem] ), null ) );
+			->willReturn( map( [$serviceItem] ), null );
 
 		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
 			->will( $this->throwException( new \Aimeos\MShop\Service\Exception( 'test service delivery process: getProvider' ) ) );

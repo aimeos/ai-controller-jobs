@@ -72,10 +72,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'createPayment' );
 
 		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$item] ), null ) );
+			->willReturn( map( [$item] ), null );
 
 		$managerStub->expects( $this->once() )->method( 'save' );
-		$orderStub->expects( $this->once() )->method( 'save' )->will( $this->returnArgument( 0 ) );
+		$orderStub->expects( $this->once() )->method( 'save' )->willReturnArgument( 0 );
 
 		$object->run();
 	}
@@ -98,7 +98,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$managerStub->create()] ), null ) );
+			->willReturn( map( [$managerStub->create()] ), null );
 
 		$managerStub->expects( $this->never() )->method( 'save' );
 

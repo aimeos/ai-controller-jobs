@@ -55,10 +55,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		] );
 
 		$ordProdStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $ordProdItem ) );
+			->willReturn( $ordProdItem );
 
 		$this->custStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $this->custStub->create() ) );
+			->willReturn( $this->custStub->create() );
 
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBeginCustomGroups()
 	{
 		$this->custStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $this->custStub->create()->setGroups( ['1', '2'] ) ) );
+			->willReturn( $this->custStub->create()->setGroups( ['1', '2'] ) );
 
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
@@ -107,10 +107,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		] );
 
 		$ordProdStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $ordProdItem ) );
+			->willReturn( $ordProdItem );
 
 		$this->custStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $this->custStub->create() ) );
+			->willReturn( $this->custStub->create() );
 
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
@@ -125,7 +125,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testEndCustomGroups()
 	{
 		$this->custStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $this->custStub->create() ) );
+			->willReturn( $this->custStub->create() );
 
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {

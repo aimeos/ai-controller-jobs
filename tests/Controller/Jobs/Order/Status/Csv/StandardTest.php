@@ -72,10 +72,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$orderStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$orderStub->create()->setId( 1 )] ) ) );
+			->willReturn( map( [$orderStub->create()->setId( 1 )] ) );
 
 		$oProdStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$oProdStub->create()->setId( 2 )] ) ) );
+			->willReturn( map( [$oProdStub->create()->setId( 2 )] ) );
 
 		$orderStub->expects( $this->once() )->method( 'save' );
 		$oProdStub->expects( $this->once() )->method( 'save' );

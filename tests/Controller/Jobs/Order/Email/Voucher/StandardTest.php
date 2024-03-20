@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem = $orderManagerStub->create();
 
 		$orderManagerStub->expects( $this->once() )->method( 'search' )
-			->will( $this->returnValue( map( [$orderItem] ) ) );
+			->willReturn( map( [$orderItem] ) );
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelper::getAimeos() ) )
@@ -140,7 +140,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['createCoupons', 'send', 'update'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'createCoupons' )->will( $this->returnValue( map() ) );
+		$object->expects( $this->once() )->method( 'createCoupons' )->willReturn( map() );
 		$object->expects( $this->once() )->method( 'update' );
 		$object->expects( $this->once() )->method( 'send' );
 
@@ -195,7 +195,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['send'] )
 			->getMock();
 
-		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
 		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
 		$this->context->setMail( $mailStub );

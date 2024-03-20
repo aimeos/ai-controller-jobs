@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
 		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$this->getSubscription()] ), null ) );
+			->willReturn( map( [$this->getSubscription()] ), null );
 
 		$managerStub->expects( $this->once() )->method( 'save' );
 
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$managerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
-			->will( $this->onConsecutiveCalls( map( [$managerStub->create()] ), null ) );
+			->willReturn( map( [$managerStub->create()] ), null );
 
 		$managerStub->expects( $this->never() )->method( 'save' );
 

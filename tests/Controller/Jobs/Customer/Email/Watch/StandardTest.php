@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['send'] )
 			->getMock();
 
-		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
 		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
 		$this->context->setMail( $mailStub );
@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'products' )
-			->will( $this->returnValue( [$product->set( 'price', $price )] ) );
+			->willReturn( [$product->set( 'price', $price )] );
 
 
 		$object->run();
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['products', 'send'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'products' )->will( $this->returnValue( [new \stdClass()] ) );
+		$object->expects( $this->once() )->method( 'products' )->willReturn( [new \stdClass()] );
 		$object->expects( $this->once() )->method( 'send' )->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->run();

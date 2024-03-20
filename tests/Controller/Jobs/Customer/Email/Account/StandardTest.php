@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['send'] )
 			->getMock();
 
-		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
 		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
 		$this->context->setMail( $mailStub );
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
-			->will( $this->onConsecutiveCalls( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => '{"customer.languageid": "de"}' ) ), null ) );
+			->willReturn( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => '{"customer.languageid": "de"}' ) ), null );
 
 		$queueStub->expects( $this->once() )->method( 'del' );
 
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$mqueueStub->expects( $this->once() )->method( 'getQueue' )
-			->will( $this->returnValue( $queueStub ) );
+			->willReturn( $queueStub );
 
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
@@ -86,7 +86,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$managerStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $mqueueStub ) );
+			->willReturn( $mqueueStub );
 
 		$this->context->setMessageQueueManager( $managerStub );
 
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
-			->will( $this->onConsecutiveCalls( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => 'error' ) ), null ) );
+			->willReturn( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => 'error' ) ), null );
 
 		$queueStub->expects( $this->once() )->method( 'del' );
 
@@ -113,7 +113,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$mqueueStub->expects( $this->once() )->method( 'getQueue' )
-			->will( $this->returnValue( $queueStub ) );
+			->willReturn( $queueStub );
 
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$managerStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $mqueueStub ) );
+			->willReturn( $mqueueStub );
 
 		$this->context->setMessageQueueManager( $managerStub );
 

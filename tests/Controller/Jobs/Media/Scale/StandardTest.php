@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Media\\Manager\\Standard', $managerStub );
 
 		$managerStub->expects( $this->atLeast( 1 ) )->method( 'save' );
-		$managerStub->expects( $this->atLeast( 1 ) )->method( 'scale' )->will( $this->returnArgument( 0 ) );
+		$managerStub->expects( $this->atLeast( 1 ) )->method( 'scale' )->willReturnArgument( 0 );
 
 
 		$object = new \Aimeos\Controller\Jobs\Media\Scale\Standard( $context, $aimeos );
