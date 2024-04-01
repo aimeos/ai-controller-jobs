@@ -52,13 +52,13 @@ trait Mail
 	{
 		switch( $addr->getSalutation() )
 		{
-			case \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_UNKNOWN:
+			case '':
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
 				$msg = $this->context()->translate( 'client', 'Dear %1$s %2$s' ); break;
-			case \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR:
+			case 'mr':
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
 				$msg = $this->context()->translate( 'client', 'Dear Mr %1$s %2$s' ); break;
-			case \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MS:
+			case 'ms':
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
 				$msg = $this->context()->translate( 'client', 'Dear Ms %1$s %2$s' ); break;
 			default:
