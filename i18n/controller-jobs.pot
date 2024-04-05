@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-09 17:16+0200\n"
+"POT-Creation-Date: 2024-04-04 16:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,9 +139,6 @@ msgstr ""
 msgid "Customer account e-mails"
 msgstr ""
 
-msgid "Customer group import XML"
-msgstr ""
-
 msgid "Customer import XML"
 msgstr ""
 
@@ -195,6 +192,9 @@ msgstr ""
 msgid "Exports subscriptions to CSV file"
 msgstr ""
 
+msgid "Groups import XML"
+msgstr ""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr ""
 
@@ -210,10 +210,10 @@ msgstr ""
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr ""
 
-msgid "Imports new and updates existing customer groups from XML files"
+msgid "Imports new and updates existing customers from XML files"
 msgstr ""
 
-msgid "Imports new and updates existing customers from XML files"
+msgid "Imports new and updates existing groups from XML files"
 msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
