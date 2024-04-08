@@ -168,7 +168,7 @@ class Standard
 		{
 			$files = $errors = 0;
 			$fs = $context->fs( 'fs-import' );
-			$site = $context->locale()->getSiteCode();
+			$site = $context->locale()->getSiteItem()->getCode();
 			$location = $this->location() . '/' . $site;
 
 			if( $fs->isDir( $location ) === false ) {
