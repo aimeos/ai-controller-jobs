@@ -48,8 +48,24 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		$this->mimes = array_flip( $context->config()->get( 'controller/jobs/media/extensions', [] ) );
 		$config = $context->config();
+
+		/** controller/jobs/media/extensions
+		 * Available files extensions for mime types of uploaded files
+		 *
+		 * Uploaded files should have the right file extension (e.g. ".jpg" for
+		 * JPEG images) so files are recognized correctly if downloaded by users.
+		 * The extension of the uploaded file can't be trusted and only its mime
+		 * type can be determined automatically. This configuration setting
+		 * provides the file extensions for the configured mime types. You can
+		 * add more mime type / file extension combinations if required.
+		 *
+		 * This setting was available as "common/controller/media/extensions" before 2024.04
+		 *
+		 * @param array Associative list of mime types as keys and file extensions as values
+		 * @since 2024.04
+		 */
+		$this->mimes = array_flip( $config->get( 'controller/jobs/media/extensions', [] ) );
 
 		/** controller/jobs/product/import/csv/media/listtypes
 		 * Names of the product list types for media that are updated or removed
