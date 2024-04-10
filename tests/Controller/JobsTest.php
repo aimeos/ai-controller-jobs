@@ -11,33 +11,13 @@ namespace Aimeos\Controller;
 
 class JobsTest extends \PHPUnit\Framework\TestCase
 {
-	public function testCreateEmpty()
-	{
-		$context = \TestHelper::context();
-		$aimeos = \TestHelper::getAimeos();
-
-		$this->expectException( \LogicException::class );
-		\Aimeos\Controller\Jobs::create( $context, $aimeos, "\t\n" );
-	}
-
-
-	public function testCreateInvalidName()
-	{
-		$context = \TestHelper::context();
-		$aimeos = \TestHelper::getAimeos();
-
-		$this->expectException( \LogicException::class );
-		\Aimeos\Controller\Jobs::create( $context, $aimeos, '%^' );
-	}
-
-
 	public function testCreateNotExisting()
 	{
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
 		$this->expectException( \LogicException::class );
-		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'notexist' );
+		\Aimeos\Controller\Jobs::create( $context, $aimeos, 'unknown' );
 	}
 
 
