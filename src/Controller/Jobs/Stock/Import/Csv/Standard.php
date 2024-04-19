@@ -443,6 +443,8 @@ class Standard
 		$map = $this->getStockItems( $products->keys()->all(), $types );
 		$items = [];
 
+		$prodManager->begin();
+
 		foreach( $data as $entry )
 		{
 			$code = $entry[0];
@@ -460,15 +462,19 @@ class Standard
 				->setTimeframe( $this->val( $entry, 4, '' ) );
 
 			if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
-				$product->setInStock( 1 );
+				$prodManager->stock( $product->getId(), 1 );
 			}
 
 			$this->addType( 'stock/type', 'product', $type );
 			unset( $map[$code][$type] );
 		}
 
-		$prodManager->save( $products );
+		$manager->begin();
 		$manager->save( $items );
+		$manager->commit();
+
+		$prodManager->commit();
+
 		unset( $items );
 	}
 }
