@@ -163,32 +163,14 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
-		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
-
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 
-		$filter = $manager->filter();
-		$func = $filter->make( 'order:status', [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1'] );
-		$filter->add( $filter->and( [
-			$filter->compare( '>=', 'order.mtime', $limitDate ),
-			$filter->compare( '==', 'order.statuspayment', $this->status() ),
-			$filter->compare( '==', 'order.product.type', 'voucher' ),
-			$filter->compare( '==', $func, 0 ),
-		] ) );
+		$filter = $this->filter( $manager->filter() );
+		$cursor = $manager->cursor( $filter );
 
-		$start = 0;
-
-		do
-		{
-			$items = $manager->search( $filter->slice( $start ), ['order/address', 'order/product'] );
-
+		while( $items = $manager->iterate( $cursor, ['order/address', 'order/product'] ) ) {
 			$this->notify( $items );
-
-			$count = count( $items );
-			$start += $count;
 		}
-		while( $count >= $filter->getLimit() );
 	}
 
 
@@ -283,6 +265,28 @@ class Standard
 	protected function filename( string $code ) : string
 	{
 		return $this->context()->translate( 'controller/jobs', 'Voucher' ) . '-' . $code . '.pdf';
+	}
+
+
+	/**
+	 * Returns the filter for searching the appropriate orders
+	 *
+	 * @param \Aimeos\Base\Criteria\Iface $filter Order filter object
+	 * @return \Aimeos\Base\Criteria\Iface Filter object with conditions set
+	 */
+	protected function filter( \Aimeos\Base\Criteria\Iface $filter ) : \Aimeos\Base\Criteria\Iface
+	{
+		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
+
+		$filter->add( $filter->and( [
+			$filter->compare( '>=', 'order.mtime', $limitDate ),
+			$filter->compare( '==', 'order.statuspayment', $this->status() ),
+			$filter->compare( '==', 'order.product.type', 'voucher' ),
+			$filter->compare( '==', $filter->make( 'order:status', [$this->type(), '1'] ), 0 ),
+		] ) );
+
+
+		return $filter;
 	}
 
 
@@ -586,6 +590,17 @@ class Standard
 		 * @see controller/jobs/order/email/voucher/limit-days
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/order/email/voucher/status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
+	}
+
+
+	/**
+	 * Returns the status type for filtering the orders
+	 *
+	 * @return string Status type
+	 */
+	protected function type() : string
+	{
+		return \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER;
 	}
 
 
