@@ -160,34 +160,17 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->config();
-		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
-
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 
 		foreach( $this->status() as $status )
 		{
-			$param = [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT, (string) $status];
-			$filter = $orderManager->filter();
-			$filter->add( $filter->and( [
-				$filter->compare( '>=', 'order.mtime', $limitDate ),
-				$filter->compare( '==', 'order.statuspayment', $status ),
-				$filter->compare( '==', $filter->make( 'order:status', $param ), 0 ),
-			] ) );
-
-			$start = 0;
 			$ref = ['order'] + $context->config()->get( 'mshop/order/manager/subdomains', [] );
+			$filter = $this->filter( $manager->filter(), $status );
+			$cursor = $manager->cursor( $filter );
 
-			do
-			{
-				$items = $orderManager->search( $filter->slice( $start ), $ref );
-
+			while( $items = $manager->iterate( $cursor, $ref ) ) {
 				$this->notify( $items, $status );
-
-				$count = count( $items );
-				$start += $count;
 			}
-			while( $count >= $filter->getLimit() );
 		}
 	}
 
@@ -254,6 +237,28 @@ class Standard
 	protected function filename( \Aimeos\MShop\Order\Item\Iface $order ) : string
 	{
 		return $this->context()->translate( 'controller/jobs', 'Invoice' ) . '-' . $order->getInvoiceNumber() . '.pdf';
+	}
+
+
+	/**
+	 * Returns the filter for searching the appropriate orders
+	 *
+	 * @param \Aimeos\Base\Criteria\Iface $filter Order filter object
+	 * @param int $status Delivery status value	to search for
+	 * @return \Aimeos\Base\Criteria\Iface Filter object with conditions set
+	 */
+	protected function filter( \Aimeos\Base\Criteria\Iface $filter, int $status ) : \Aimeos\Base\Criteria\Iface
+	{
+		$limitDate = date( 'Y-m-d H:i:s', time() - $this->limit() * 86400 );
+		$param = [$this->type(), (string) $status];
+
+		$filter->add( $filter->and( [
+			$filter->compare( '>=', 'order.mtime', $limitDate ),
+			$filter->compare( '==', 'order.statuspayment', $status ),
+			$filter->compare( '==', $filter->make( 'order:status', $param ), 0 ),
+		] ) );
+
+		return $filter;
 	}
 
 
@@ -535,6 +540,17 @@ class Standard
 
 
 	/**
+	 * Returns the status type for filtering the orders
+	 *
+	 * @return string Status type
+	 */
+	protected function type() : string
+	{
+		return \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT;
+	}
+
+
+	/**
 	 * Adds the status of the delivered e-mail for the given order ID
 	 *
 	 * @param string $orderId Unique order ID
@@ -546,7 +562,7 @@ class Standard
 
 		$item = $manager->create()
 			->setParentId( $orderId )
-			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT )
+			->setType( $this->type() )
 			->setValue( $value );
 
 		$manager->save( $item );
