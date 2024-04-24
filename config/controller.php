@@ -8,7 +8,9 @@ return [
 					'domains' => [
 						'attribute/property' => 'attribute/property',
 						'media' => 'media',
+						'media/property' => 'media/property',
 						'price' => 'price',
+						'price/property' => 'price/property',
 						'text' => 'text'
 					]
 				]
@@ -19,6 +21,7 @@ return [
 				'xml' => [
 					'domains' => [
 						'media' => 'media',
+						'media/property' => 'media/property',
 						'product' => 'product',
 						'text' => 'text'
 					]
@@ -42,9 +45,12 @@ return [
 				'xml' => [
 					'domains' => [
 						'attribute' => 'attribute',
+						'attribute/property' => 'attribute/property',
 						'catalog' => 'catalog',
 						'media' => 'media',
+						'media/property' => 'media/property',
 						'price' => 'price',
+						'price/property' => 'price/property',
 						'product' => 'product',
 						'product/property' => 'product/property',
 						'supplier' => 'supplier',
@@ -95,6 +101,7 @@ return [
 					'domains' => [
 						'supplier/address' => 'supplier/address',
 						'media' => 'media',
+						'media/property' => 'media/property',
 						'product' => 'product',
 						'text' => 'text'
 					]

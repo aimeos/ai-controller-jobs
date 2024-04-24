@@ -263,8 +263,7 @@ class Standard
 		 * @see controller/jobs/product/import/xml/location
 		 * @see controller/jobs/product/import/xml/max-query
 		 */
-		$domains = ['attribute', 'catalog', 'media', 'price', 'product', 'product/property', 'supplier', 'text'];
-		return $this->context()->config()->get( 'controller/jobs/product/import/xml/domains', $domains );
+		return $this->context()->config()->get( 'controller/jobs/product/import/xml/domains', [] );
 	}
 
 
@@ -351,7 +350,7 @@ class Standard
 			$ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
 			$item = $map->get( $ref ) ?: $manager->create();
 
-			if( $replace ) {
+			if( $ref && $replace ) {
 				$item->setId( $ref );
 			}
 
