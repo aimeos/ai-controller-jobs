@@ -342,28 +342,20 @@ class Standard
 	 */
 	protected function importNodes( array $nodes )
 	{
-		$codes = [];
-
-		foreach( $nodes as $node )
-		{
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$codes[$attr->nodeValue] = null;
-			}
-		}
-
+		$replace = $this->replace();
+		$map = $replace ? map() : $this->products( $nodes );
 		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
-		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['product.code' => array_keys( $codes )] );
-		$map = $manager->search( $search, $this->domains() )->col( null, 'product.code' );
 
 		foreach( $nodes as $node )
 		{
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[$attr->nodeValue] ) ) {
-				$item = $this->process( $map[$attr->nodeValue], $node );
-			} else {
-				$item = $this->process( $manager->create(), $node );
+			$ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
+			$item = $map->get( $ref ) ?: $manager->create();
+
+			if( $replace ) {
+				$item->setId( $ref );
 			}
 
-			$manager->save( $item );
+			$manager->save( $this->process( $item, $node ) );
 			$this->addType( 'product/type', 'product', $item->getType() );
 		}
 	}
@@ -457,5 +449,53 @@ class Standard
 		}
 
 		return $item;
+	}
+
+
+	/**
+	 * Returns the products referenced in the given DOM nodes
+	 *
+	 * @param \DomElement[] $nodes List of nodes to import
+	 */
+	protected function products( array $nodes ) : \Aimeos\Map
+	{
+		$codes = [];
+
+		foreach( $nodes as $node )
+		{
+			if( $attr = $node->attributes->getNamedItem( 'ref' ) ) {
+				$codes[$attr->nodeValue] = null;
+			}
+		}
+
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
+		$filter = $manager->filter()->slice( 0, count( $codes ) )->add( ['product.code' => array_keys( $codes )] );
+
+		return $manager->search( $filter, $this->domains() )->col( null, 'product.code' );
+	}
+
+
+	/**
+	 * Returns the value for replacing existing products
+	 *
+	 * @return bool TRUE to replace products, FALSE to update products
+	 */
+	protected function replace() : bool
+	{
+		/** controller/jobs/product/import/xml/replace
+		 * Replace products with the same reference code
+		 *
+		 * If set to TRUE, products with the same code in the "ref" attribute will
+		 * be replaced completely without fetching the existing product items first.
+		 * This only works with document oriented storages like ElasticSearch!
+		 *
+		 * @param boolean TRUE to replace products, FALSE to update products
+		 * @since 2024.07
+		 * @see controller/jobs/product/import/xml/backup
+		 * @see controller/jobs/product/import/xml/domains
+		 * @see controller/jobs/product/import/xml/location
+		 * @see controller/jobs/product/import/xml/max-query
+		 */
+		return (bool) $this->context()->config()->get( 'controller/jobs/product/import/xml/replace', false );
 	}
 }
