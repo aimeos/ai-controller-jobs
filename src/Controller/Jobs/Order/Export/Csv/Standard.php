@@ -237,7 +237,7 @@ class Standard
 		}
 
 		rewind( $fh );
-		$lcontext->fs( 'fs-export' )->writes( $path, $fh );
+		$lcontext->fs( 'fs-admin' )->writes( $path, $fh );
 		fclose( $fh );
 
 		$manager = \Aimeos\MAdmin::create( $lcontext, 'job' );
@@ -283,7 +283,7 @@ class Standard
 		 * @param string Relativ path with placeholders
 		 * @since 2023.04
 		 */
-		$path = $this->context()->config()->get( 'controller/jobs/order/export/csv/path', 'order-export_%Y-%m-%d_%H-%i-%s' );
+		$path = $this->context()->config()->get( 'controller/jobs/order/export/csv/path', 'order-export_%Y-%m-%d_%H-%i-%s.csv' );
 		return \Aimeos\Base\Str::strtime( $path );
 	}
 
