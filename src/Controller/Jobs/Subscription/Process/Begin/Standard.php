@@ -315,7 +315,7 @@ class Standard
 			}
 
 			$interval = new \DateInterval( $item->getInterval() );
-			$dateNext = date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d' );
+			$dateNext = date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d H:i:s' );
 
 			return $item->setDateNext( $dateNext )->setPeriod( 1 );
 		}

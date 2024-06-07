@@ -157,7 +157,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$date = date( 'Y-m-d' );
+		$date = date( 'Y-m-d H:i:s' );
 		$context = $this->context();
 		$domains = $this->domains();
 

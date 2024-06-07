@@ -163,7 +163,7 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
-		$filter = $manager->filter( true )->add( 'subscription.dateend', '<', date( 'Y-m-d' ) )->slice( 0, $this->max() );
+		$filter = $manager->filter( true )->add( 'subscription.dateend', '<', date( 'Y-m-d H:i:s' ) )->slice( 0, $this->max() );
 		$cursor = $manager->cursor( $filter );
 
 		while( $items = $manager->iterate( $cursor, $domains ) )
