@@ -211,7 +211,7 @@ class Standard
 			$idx = 0;
 
 			foreach( $orderAddresses as $orderAddress ) {
-				$newOrder->addAddress( $orderAddress->setId( null ), $type, $idx );
+				$newOrder->addAddress( ( clone $orderAddress )->setId( null ), $type, $idx );
 			}
 		}
 
@@ -291,9 +291,9 @@ class Standard
 		{
 			if( $orderProduct->getId() == $orderProductId )
 			{
-				foreach( $orderProduct->getAttributeItems() as $attrItem ) {
-					$attrItem->setId( null );
-				}
+				$orderProduct = clone $orderProduct;
+				$orderProduct->getAttributeItems()->setId( null );
+
 				$newOrder->addProduct( $orderProduct->setId( null ) );
 			}
 		}
@@ -321,9 +321,9 @@ class Standard
 
 			foreach( $services[$type] as $orderService )
 			{
-				foreach( $orderService->getAttributeItems() as $attrItem ) {
-					$attrItem->setId( null );
-				}
+				$orderService = clone $orderService;
+				$orderService->getAttributeItems()->setId( null );
+
 				$newOrder->addService( $orderService->setId( null ), $type, $idx++ );
 			}
 		}
