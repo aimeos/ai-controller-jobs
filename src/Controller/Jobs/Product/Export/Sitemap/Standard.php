@@ -288,7 +288,7 @@ class Standard
 	 */
 	protected function filename( int $number ) : string
 	{
-		return sprintf( 'aimeos-sitemap-%d.xml', $number );
+		return sprintf( '%s-sitemap-%d.xml', $this->context()->locale()->getSiteItem()->getCode(), $number );
 	}
 
 
@@ -310,7 +310,7 @@ class Standard
 	 */
 	protected function indexFilename() : string
 	{
-		return 'aimeos-sitemap-index.xml';
+		return sprintf( '%s-sitemap-index.xml', $this->context()->locale()->getSiteItem()->getCode() );
 	}
 
 

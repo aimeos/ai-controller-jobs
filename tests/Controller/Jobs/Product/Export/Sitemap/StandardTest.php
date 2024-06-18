@@ -55,23 +55,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->run();
 
 		$ds = DIRECTORY_SEPARATOR;
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-1.xml' );
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-2.xml' );
-		$this->assertFileExists( 'tmp' . $ds . 'aimeos-sitemap-index.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'unittest-sitemap-1.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'unittest-sitemap-2.xml' );
+		$this->assertFileExists( 'tmp' . $ds . 'unittest-sitemap-index.xml' );
 
-		$file1 = file_get_contents( 'tmp' . $ds . 'aimeos-sitemap-1.xml' );
-		$file2 = file_get_contents( 'tmp' . $ds . 'aimeos-sitemap-2.xml' );
-		$index = file_get_contents( 'tmp' . $ds . 'aimeos-sitemap-index.xml' );
+		$file1 = file_get_contents( 'tmp' . $ds . 'unittest-sitemap-1.xml' );
+		$file2 = file_get_contents( 'tmp' . $ds . 'unittest-sitemap-2.xml' );
+		$index = file_get_contents( 'tmp' . $ds . 'unittest-sitemap-index.xml' );
 
-		unlink( 'tmp' . $ds . 'aimeos-sitemap-1.xml' );
-		unlink( 'tmp' . $ds . 'aimeos-sitemap-2.xml' );
-		unlink( 'tmp' . $ds . 'aimeos-sitemap-index.xml' );
+		unlink( 'tmp' . $ds . 'unittest-sitemap-1.xml' );
+		unlink( 'tmp' . $ds . 'unittest-sitemap-2.xml' );
+		unlink( 'tmp' . $ds . 'unittest-sitemap-index.xml' );
 
 		$this->assertStringContainsString( 'cafe_noire_expresso', $file2 );
 		$this->assertStringContainsString( 'unittest-bundle', $file2 );
 
-		$this->assertStringContainsString( 'https://www.yourshop.com/aimeos-sitemap-1.xml', $index );
-		$this->assertStringContainsString( 'https://www.yourshop.com/aimeos-sitemap-2.xml', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/unittest-sitemap-1.xml', $index );
+		$this->assertStringContainsString( 'https://www.yourshop.com/unittest-sitemap-2.xml', $index );
 	}
 
 
