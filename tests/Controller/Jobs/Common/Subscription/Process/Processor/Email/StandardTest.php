@@ -26,6 +26,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelper::context();
 
+		$mailerStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Manager\\None' )
+			->disableOriginalConstructor()
+			->getMock();
+
 		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -33,11 +37,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
+			->onlyMethods( ['send'] )
 			->getMock();
 
+		$mailerStub->expects( $this->once() )->method( 'get' )->willReturn( $mailStub );
 		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
+		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
-		$context->setMail( $mailStub );
+		$context->setMail( $mailerStub );
 		$subscription = $this->getSubscription()->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
 
 		$object = new \Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Email\Standard( $context );
@@ -49,6 +56,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelper::context();
 
+		$mailerStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Manager\\None' )
+			->disableOriginalConstructor()
+			->getMock();
+
 		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -56,12 +67,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
+			->onlyMethods( ['send'] )
 			->getMock();
 
+		$mailerStub->expects( $this->once() )->method( 'get' )->willReturn( $mailStub );
 		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
+		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
+		$context->setMail( $mailerStub );
 		$subscription = $this->getSubscription();
-		$context->setMail( $mailStub );
 
 		$object = new \Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Email\Standard( $context );
 		$object->end( $subscription, $subscription->getOrderItem() );

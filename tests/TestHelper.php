@@ -82,7 +82,7 @@ class TestHelper
 		$ctx->setI18n( array( 'de' => $i18n ) );
 
 
-		$mail = new \Aimeos\Base\Mail\None();
+		$mail = new \Aimeos\Base\Mail\Manager\None();
 		$ctx->setMail( $mail );
 
 

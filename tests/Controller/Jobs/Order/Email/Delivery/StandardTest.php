@@ -129,6 +129,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testSend()
 	{
+		$mailerStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Manager\\None' )
+			->disableOriginalConstructor()
+			->getMock();
+
 		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -139,10 +143,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['send'] )
 			->getMock();
 
+		$mailerStub->expects( $this->once() )->method( 'get' )->willReturn( $mailStub );
 		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
 		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
-		$this->context->setMail( $mailStub );
+		$this->context->setMail( $mailerStub );
 
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
