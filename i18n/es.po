@@ -570,4 +570,4 @@ msgstr "Pago"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr "precio:predeterminado"
+msgstr ""
