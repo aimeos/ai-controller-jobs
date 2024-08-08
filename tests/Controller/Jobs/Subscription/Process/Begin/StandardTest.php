@@ -52,8 +52,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->onlyMethods( ['iterate', 'save'] )
+			->onlyMethods( ['iterate', 'save', 'getDomain'] )
 			->getMock();
+
+		$managerStub->method( 'getDomain' )->willReturn( 'subscription' );
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard', $managerStub );
 
