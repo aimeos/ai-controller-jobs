@@ -40,8 +40,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->onlyMethods( ['get'] )
+			->onlyMethods( ['get', 'getDomain', 'getSubPath'] )
 			->getMock();
+
+		$ordProdStub->method( 'getDomain' )->willReturn( 'order' );
+		$ordProdStub->method( 'getSubPath' )->willReturn( 'product' );
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
 
@@ -92,8 +95,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->onlyMethods( ['get'] )
+			->onlyMethods( ['get', 'getDomain', 'getSubPath'] )
 			->getMock();
+
+		$ordProdStub->method( 'getDomain' )->willReturn( 'order' );
+		$ordProdStub->method( 'getSubPath' )->willReturn( 'product' );
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
 
