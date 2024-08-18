@@ -78,8 +78,9 @@ class TestHelper
 		$ctx->setCache( $cache );
 
 
-		$i18n = new \Aimeos\Base\Translation\None( 'de' );
-		$ctx->setI18n( array( 'de' => $i18n ) );
+		$i18nDE = new \Aimeos\Base\Translation\None( 'de' );
+		$i18nEN = new \Aimeos\Base\Translation\None( 'en' );
+		$ctx->setI18n( ['de' => $i18nDE, 'en' => $i18nEN] );
 
 
 		$mail = new \Aimeos\Base\Mail\Manager\None();
