@@ -116,6 +116,7 @@ class Standard
 		$refManager = \Aimeos\MShop::create( $context, 'media' );
 		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
+		$pos = 0;
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$cntl = \Aimeos\Controller\Common\Media\Factory::create( $context );
@@ -128,7 +129,7 @@ class Standard
 			}
 		}
 
-		foreach( $map as $pos => $list )
+		foreach( $map as $list )
 		{
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
@@ -145,7 +146,7 @@ class Standard
 			$this->addType( 'product/lists/type', 'media', $listtype );
 			$this->addType( 'media/type', 'product', $type );
 
-			foreach( $urls as $idx => $url )
+			foreach( $urls as $url )
 			{
 				$url = trim( $url );
 
