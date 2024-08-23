@@ -136,6 +136,7 @@ class Standard
 		 */
 		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
+		$pos = 0;
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$listItems = $product->getListItems( 'attribute', $this->listTypes, null, false );
@@ -147,7 +148,7 @@ class Standard
 			}
 		}
 
-		foreach( $map as $pos => $list )
+		foreach( $map as $list )
 		{
 			if( $this->checkEntry( $list ) === false ) {
 				continue;

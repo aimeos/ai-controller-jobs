@@ -114,6 +114,7 @@ class Standard
 
 		$listItems = $product->getListItems( 'product', null, null, false );
 		$this->cache->set( $product );
+		$pos = 0;
 
 		foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
 		{
@@ -142,7 +143,7 @@ class Standard
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem = $listItem->fromArray( $list )->setRefId( $prodid )->setConfig( $listConfig );
+				$listItem = $listItem->fromArray( $list )->setRefId( $prodid )->setConfig( $listConfig )->setPosition( $pos++ );
 				$product->addListItem( 'product', $listItem );
 			}
 		}

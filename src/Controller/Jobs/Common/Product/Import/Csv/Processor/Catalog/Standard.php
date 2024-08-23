@@ -113,6 +113,7 @@ class Standard
 		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
 		$listItems = $product->getListItems( 'catalog', null, null, false );
+		$pos = 0;
 
 		foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
 		{
@@ -141,7 +142,7 @@ class Standard
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem = $listItem->fromArray( $list )->setRefId( $catid )->setConfig( $listConfig );
+				$listItem = $listItem->fromArray( $list )->setRefId( $catid )->setConfig( $listConfig )->setPosition( $pos++ );
 				$product->addListItem( 'catalog', $listItem );
 			}
 		}
