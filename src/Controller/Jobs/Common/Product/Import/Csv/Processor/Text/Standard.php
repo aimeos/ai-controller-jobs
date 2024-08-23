@@ -113,6 +113,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$refManager = \Aimeos\MShop::create( $context, 'text' );
 
+		$pos = 0;
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$listItems = $product->getListItems( 'text', $this->listTypes, null, false );
@@ -124,7 +125,7 @@ class Standard
 			}
 		}
 
-		foreach( $map as $pos => $list )
+		foreach( $map as $list )
 		{
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
@@ -152,7 +153,7 @@ class Standard
 				$refItem = $refManager->create()->setType( $type );
 			}
 
-			$listItem = $listItem->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
+			$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setConfig( $listConfig );
 
 			$label = mb_strcut( strip_tags( trim( $this->val( $list, 'text.content', '' ) ) ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );

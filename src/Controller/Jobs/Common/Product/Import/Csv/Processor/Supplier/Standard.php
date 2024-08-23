@@ -111,6 +111,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
+		$pos = 0;
 		$listMap = [];
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$listItems = $product->getListItems( 'supplier', $this->listTypes, null, false );
@@ -143,7 +144,7 @@ class Standard
 				$supItem = $supItem->fromArray( $list )->setCode( $code );
 
 				$listItem = $listMap[$code][$listtype] ?? $manager->createListItem();
-				$listItem = $listItem->fromArray( $list )->setConfig( $listConfig );
+				$listItem = $listItem->fromArray( $list )->setConfig( $listConfig )->setPosition( $pos++ );
 
 				$product->addListItem( 'supplier', $listItem->setType( $listtype ), $supItem );
 
