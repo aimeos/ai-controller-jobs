@@ -78,6 +78,10 @@ class TestHelper
 		$ctx->setCache( $cache );
 
 
+		$passwd = new \Aimeos\Base\Password\Standard();
+		$ctx->setPassword( $passwd );
+
+
 		$i18nDE = new \Aimeos\Base\Translation\None( 'de' );
 		$i18nEN = new \Aimeos\Base\Translation\None( 'en' );
 		$ctx->setI18n( ['de' => $i18nDE, 'en' => $i18nEN] );
