@@ -52,12 +52,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Product\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->onlyMethods( ['save', 'getDomain'] )
+			->onlyMethods( ['save', 'domain'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Product\\Manager\\Standard', $stub );
 
-		$stub->method( 'getDomain' )->willReturn( 'product' );
+		$stub->method( 'domain' )->willReturn( 'product' );
 		$stub->expects( $this->atLeastOnce() )->method( 'save' );
 
 		$this->object->run();

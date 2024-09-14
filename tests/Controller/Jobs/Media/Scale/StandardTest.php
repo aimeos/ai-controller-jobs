@@ -50,13 +50,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Media\\Manager\\Standard' )
-			->onlyMethods( array( 'save', 'scale', 'getDomain' ) )
+			->onlyMethods( array( 'save', 'scale', 'domain' ) )
 			->setConstructorArgs( array( $context ) )
 			->getMock();
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Media\\Manager\\Standard', $managerStub );
 
-		$managerStub->method( 'getDomain' )->willReturn( 'media' );
+		$managerStub->method( 'domain' )->willReturn( 'media' );
 		$managerStub->expects( $this->atLeast( 1 ) )->method( 'save' );
 		$managerStub->expects( $this->atLeast( 1 ) )->method( 'scale' )->willReturnArgument( 0 );
 
