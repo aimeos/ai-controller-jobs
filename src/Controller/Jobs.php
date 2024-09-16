@@ -115,8 +115,16 @@ class Jobs
 	protected static function addControllerDecorators( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos,
 		\Aimeos\Controller\Jobs\Iface $controller, string $domain ) : \Aimeos\Controller\Jobs\Iface
 	{
-		$localClass = str_replace( '/', '\\', ucwords( $domain, '/' ) );
 		$config = $context->config();
+		$localClass = str_replace( '/', '\\', ucwords( $domain, '/' ) );
+
+		$classprefix = '\Aimeos\Controller\Jobs\\' . ucfirst( $localClass ) . '\Decorator\\';
+		$decorators = array_reverse( $config->get( 'controller/jobs/' . $domain . '/decorators/local', [] ) );
+		$controller = self::addDecorators( $context, $aimeos, $controller, $decorators, $classprefix );
+
+		$classprefix = '\Aimeos\Controller\Jobs\Common\Decorator\\';
+		$decorators = array_reverse( $config->get( 'controller/jobs/' . $domain . '/decorators/global', [] ) );
+		$controller = self::addDecorators( $context, $aimeos, $controller, $decorators, $classprefix );
 
 		/** controller/jobs/common/decorators/default
 		 * Configures the list of decorators applied to all job controllers
@@ -139,7 +147,7 @@ class Jobs
 		 * @param array List of decorator names
 		 * @since 2014.03
 		 */
-		$decorators = $config->get( 'controller/jobs/common/decorators/default', [] );
+		$decorators = array_reverse( $config->get( 'controller/jobs/common/decorators/default', [] ) );
 		$excludes = $config->get( 'controller/jobs/' . $domain . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
@@ -150,14 +158,6 @@ class Jobs
 		}
 
 		$classprefix = '\Aimeos\Controller\Jobs\Common\Decorator\\';
-		$controller = self::addDecorators( $context, $aimeos, $controller, $decorators, $classprefix );
-
-		$classprefix = '\Aimeos\Controller\Jobs\Common\Decorator\\';
-		$decorators = $config->get( 'controller/jobs/' . $domain . '/decorators/global', [] );
-		$controller = self::addDecorators( $context, $aimeos, $controller, $decorators, $classprefix );
-
-		$classprefix = '\Aimeos\Controller\Jobs\\' . ucfirst( $localClass ) . '\Decorator\\';
-		$decorators = $config->get( 'controller/jobs/' . $domain . '/decorators/local', [] );
 		$controller = self::addDecorators( $context, $aimeos, $controller, $decorators, $classprefix );
 
 		return $controller;
