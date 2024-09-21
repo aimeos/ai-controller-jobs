@@ -235,6 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$stub->expects( $this->exactly( 1 ) )->method( 'save' );
 		$stub->method( 'type' )->willReturn( ['product'] );
+		$stub = new \Aimeos\MShop\Common\Manager\Decorator\Lists( $stub, $this->context );
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Product\\Manager\\Standard', $stub );
 

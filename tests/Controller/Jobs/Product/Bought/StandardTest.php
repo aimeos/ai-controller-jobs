@@ -55,10 +55,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['save', 'type'] )
 			->getMock();
 
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Product\\Manager\\Standard', $stub );
-
 		$stub->method( 'type' )->willReturn( ['product'] );
 		$stub->expects( $this->atLeastOnce() )->method( 'save' );
+
+		$stub = new \Aimeos\MShop\Common\Manager\Decorator\Lists( $stub, $this->context );
+
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Product\\Manager\\Standard', $stub );
 
 		$this->object->run();
 	}
