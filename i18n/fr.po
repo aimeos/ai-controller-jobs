@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 15:47+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Jean-Marc Kutyla, 2023\n"
 "Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
@@ -90,7 +90,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr "Toutes les commandes sont soumises à nos termes et conditions."
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2023
+#. * @copyright Aimeos (aimeos.org), 2015-2024
 msgid "An account has been created for you."
 msgstr "Un compte a été créé pour vous"
 
@@ -126,6 +126,9 @@ msgstr "Import XML catalogue"
 msgid "Catalog site map"
 msgstr "Plan de site du catalogue"
 
+msgid "Cleanup baskets"
+msgstr ""
+
 msgid "Coupon code import CSV"
 msgstr "Importation de code promo CSV"
 
@@ -146,9 +149,6 @@ msgstr "Crée des suggestions de produits achetés ensemble"
 
 msgid "Customer account e-mails"
 msgstr "E-mails du compte client"
-
-msgid "Customer group import XML"
-msgstr "Import XML groupes de clients"
 
 msgid "Customer import XML"
 msgstr "Import XML clients"
@@ -203,6 +203,9 @@ msgstr "Exporte les commandes dans un fichier CSV"
 msgid "Exports subscriptions to CSV file"
 msgstr "Exporte les abonnements au fichier CSV"
 
+msgid "Groups import XML"
+msgstr ""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Si vous avez des questions, merci de répondre à cet e-mail"
 
@@ -218,11 +221,11 @@ msgstr "Importe les nouvelles catégories et met à jour les existantes à parti
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "Importe le nouveau code et met à jour le code de coupon existant à partir de fichiers CSV"
 
-msgid "Imports new and updates existing customer groups from XML files"
-msgstr "Import les nouveaux groupes de client et met à jour ceux existant à partir de fichiers XML"
-
 msgid "Imports new and updates existing customers from XML files"
 msgstr "Importe les nouveaux clients et met à jour les existants à partir de fichiers XML"
+
+msgid "Imports new and updates existing groups from XML files"
+msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Importe les nouveaux produits et met à jour les produits existants à partir de fichiers CSV"
@@ -346,6 +349,9 @@ msgstr "Référence"
 
 msgid "Removes the expired entries from the cache"
 msgstr "Supprime les entrées expirées du cache"
+
+msgid "Removes the old baskets from the database"
+msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -574,3 +580,12 @@ msgstr "Paiement"
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
 msgstr "price:default"
+
+msgid "tax"
+msgstr "Taxe"
+
+msgid "taxgst"
+msgstr ""
+
+msgid "taxpst"
+msgstr ""

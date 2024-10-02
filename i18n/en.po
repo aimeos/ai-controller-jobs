@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-04 16:07+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -544,6 +544,15 @@ msgstr ""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
+msgstr ""
+
+msgid "tax"
+msgstr ""
+
+msgid "taxgst"
+msgstr ""
+
+msgid "taxpst"
 msgstr ""
 
 #~ msgid "Decreases the counts of successfully redeemed coupons"
