@@ -16,6 +16,11 @@ $enc = $this->encoder();
 $pricefmt = $this->translate( 'controller/jobs', 'price:default' );
 $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'controller/jobs', '%1$s %2$s' ) : $pricefmt );
 
+// for xgettext to extract used tax names
+$this->translate( 'controller/jobs', 'tax' );
+$this->translate( 'controller/jobs', 'taxpst' );
+$this->translate( 'controller/jobs', 'taxgst' );
+
 
 ?>
 <?= strip_tags( $this->translate( 'controller/jobs', 'Billing address' ) ) ?>:
