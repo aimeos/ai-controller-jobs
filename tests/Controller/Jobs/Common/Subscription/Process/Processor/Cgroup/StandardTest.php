@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
-				return $subject->getGroups() === ['3', '4'];
+				return $subject->getGroups() === ['3' => 0, '4' => 1];
 			} ) );
 
 

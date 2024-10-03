@@ -79,7 +79,7 @@ class Standard
 			$groupIds = $this->groupIds;
 		}
 
-		$item->setGroups( array_unique( array_merge( $item->getGroups(), array_flip( $groupIds ) ) ) );
+		$item->setGroups( array_merge( $item->getGroups(), array_flip( $groupIds ) ) );
 		$manager->save( $item );
 	}
 
