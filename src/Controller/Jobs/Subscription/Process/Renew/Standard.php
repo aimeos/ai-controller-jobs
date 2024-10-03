@@ -377,9 +377,12 @@ class Standard
 		{
 			$manager = \Aimeos\MShop::create( $context, 'customer' );
 			$customerItem = $manager->get( $order->getCustomerId(), ['group'] );
-
 			$context->setUser( $customerItem );
-			$context->setGroups( $customerItem->getGroups() );
+
+			$manager = \Aimeos\MShop::create( $context, 'group' );
+			$filter = $manager->filter( true )->add( ['group.id' => $customerItem->getGroups()] );
+			$groupItems = $manager->search( $filter->slice( 0, count( $customerItem->getGroups() ) ) )->all();
+			$context->setGroups( $groupItems );
 		}
 		catch( \Exception $e ) {} // Subscription without account
 
