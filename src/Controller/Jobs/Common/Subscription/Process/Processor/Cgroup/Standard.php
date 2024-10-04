@@ -79,7 +79,7 @@ class Standard
 			$groupIds = $this->groupIds;
 		}
 
-		$item->setGroups( array_merge( $item->getGroups(), array_flip( $groupIds ) ) );
+		$item->setGroups( array_replace( $item->getGroups(), array_combine( $groupIds, $groupIds ) ) );
 		$manager->save( $item );
 	}
 
@@ -104,7 +104,7 @@ class Standard
 			$groupIds = $this->groupIds;
 		}
 
-		$item->setGroups( array_diff( $item->getGroups(), array_flip( $groupIds ) ) );
+		$item->setGroups( array_diff_key( $item->getGroups(), array_flip( $groupIds ) ) );
 		$manager->save( $item );
 	}
 }
