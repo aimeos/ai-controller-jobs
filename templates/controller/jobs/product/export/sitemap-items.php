@@ -37,12 +37,8 @@ foreach( $this->get( 'siteItems', [] ) as $id => $item )
 		}
 		$langIds[$langId] = true;
 
-		$name = $item->getName( 'url', $langId );
-		$params = ['d_name' => \Aimeos\Base\Str::slug( $name ), 'd_prodid' => $id, 'd_pos' => ''];
-
-		if( count( $sites ) > 1 ) {
-			$params['site'] = $locale->getSiteCode();
-		}
+		$name = \Aimeos\Base\Str::slug( $item->getName( 'url', $langId ) );
+		$params = ['path' => $name, 'd_name' => $name, 'd_prodid' => $id, 'd_pos' => '', 'site' => $locale->getSiteCode()];
 
 		if( count( $locales ) > 1 )
 		{
