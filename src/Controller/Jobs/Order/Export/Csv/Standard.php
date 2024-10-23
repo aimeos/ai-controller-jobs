@@ -257,7 +257,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $lcontext, 'locale' );
 
 		$sitecode = ( isset( $msg['sitecode'] ) ? $msg['sitecode'] : 'default' );
-		$localeItem = $manager->bootstrap( $sitecode, '', '', false, \Aimeos\MShop\Locale\Manager\Base::SITE_PATH );
+		$localeItem = $manager->bootstrap( $sitecode, '', '', false, \Aimeos\MShop\Locale\Manager\Base::SITE_SUBTREE );
 
 		return $lcontext->setLocale( $localeItem );
 	}
