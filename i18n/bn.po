@@ -3,21 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos, 2022
-# Metal <meteoramic@yahoo.com>, 2015-2020,2022-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2020,2022-2024\n"
-"Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Bengali (http://app.transifex.com/aimeos/aimeos-core/language/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: bn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -42,392 +40,392 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+msgstr ""
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr "%1$s %2$s"
+msgstr ""
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s %2$s indirim"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/ürün"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "+ %1$s%% %2$s"
+msgstr ""
 
 msgid "+ Payment costs"
-msgstr "+ Ödeme maliyetleri"
+msgstr ""
 
 msgid "+ Shipping"
-msgstr "+ Nakliye"
+msgstr ""
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr "-%1$s%%"
+msgstr ""
 
 msgid "Account"
-msgstr "Hesap"
+msgstr "একাউন্ট"
 
 msgid "All XML import"
-msgstr "Tüm XML içe aktarma"
+msgstr ""
 
 msgid "All orders are subject to our terms and conditions."
-msgstr "Tüm siparişler hüküm ve koşullarımıza tabidir."
+msgstr ""
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2024
 msgid "An account has been created for you."
-msgstr "Sizin için bir hesap oluşturuldu."
+msgstr ""
 
 msgid "Article no."
-msgstr "Ürün Kodu"
+msgstr ""
 
 msgid "Attribute import XML"
-msgstr "Nitelikleri XML olarak içe aktarma"
+msgstr ""
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr "Sevkiyattan veya yapılandırılabilir bir zaman zarfından sonra siparişlerin yetkili ödemeleri çekilecektir"
+msgstr ""
 
 msgid "Batch update of payment/delivery status"
-msgstr "Ödeme/teslimat durumunun toplu güncellemesi"
+msgstr ""
 
 msgid "Billing address"
-msgstr "Fatura adresi"
+msgstr ""
 
 msgid "Cache cleanup"
-msgstr "Önbellek temizleme"
+msgstr ""
 
 msgid "Capture authorized payments"
-msgstr "Yetkili ödemeleri çek"
+msgstr ""
 
 msgid "Catalog import CSV"
-msgstr "Katalogları CSV olarak içe aktarma"
+msgstr ""
 
 msgid "Catalog import XML"
-msgstr "Kategorileri XML olarak içe aktarma"
+msgstr ""
 
 msgid "Catalog site map"
-msgstr "Katalog site haritası"
+msgstr ""
 
 msgid "Cleanup baskets"
-msgstr "Sepetleri temizle"
+msgstr ""
 
 msgid "Coupon code import CSV"
-msgstr "Kupon kodunu CSV olarak içe aktarma"
+msgstr ""
 
 msgid "Coupon codes"
-msgstr "Kupon kodları"
+msgstr ""
 
 msgid "Coupons"
-msgstr "Kuponlar"
+msgstr ""
 
 msgid "Creates a catalog site map for search engines"
-msgstr "Arama motorları için bir katalog site haritası oluşturur"
+msgstr ""
 
 msgid "Creates a product site map for search engines"
-msgstr "Arama motorları için bir ürün site haritası oluşturur"
+msgstr ""
 
 msgid "Creates bought together product suggestions"
-msgstr "Beraber satın alınan ürün önerileri oluşturur"
+msgstr ""
 
 msgid "Customer account e-mails"
-msgstr "Müşteri hesabı e-mailleri"
+msgstr ""
 
 msgid "Customer import XML"
-msgstr "Müşterileri XML olarak içe aktarma"
+msgstr ""
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr "Sayın %1$s %2$s"
+msgstr ""
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr "Sayın %1$s %2$s Bey"
+msgstr ""
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr "Sayın %1$s%2$s Hanım"
+msgstr ""
 
 msgid "Dear customer"
-msgstr "Değerli müşterimiz"
+msgstr ""
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr "Bitmemiş siparişleri siler ve bu siparişlere ait ürünleri ve kupon kodlarını tekrar kullanılabilir hale getirir"
+msgstr ""
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr "Veritabanını temiz tutmak için ödenmemiş siparişleri siler"
+msgstr ""
 
 msgid "Delivery address"
-msgstr "Teslimat adresi"
+msgstr "ডেলিভারির ঠিকানা"
 
 msgid "Delivery within"
-msgstr "Teslimat"
+msgstr ""
 
 msgid "Details"
-msgstr "Detaylar"
+msgstr ""
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr "Tüm XML içe aktarıcılarını yürütür ve dizini yeniden oluşturur"
+msgstr ""
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr "Toplu güncelleştirmeleri kullanan ödeme veya teslimat servisi sağlayıcılarını çalıştırır"
+msgstr ""
 
 msgid "Exports all available products"
-msgstr "Mevcut tüm ürünleri dışa aktarır"
+msgstr ""
 
 msgid "Exports orders to CSV file"
-msgstr "Siparişleri CSV dosya formatında dışa aktarır"
+msgstr ""
 
 msgid "Exports subscriptions to CSV file"
-msgstr "Abonelikleri CSV dosya formatında dışa aktarır"
+msgstr ""
 
 msgid "Groups import XML"
-msgstr " Grupları XML olarak içe aktarma"
+msgstr ""
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr "Herhangi bir sorunuz varsa lütfen bu maili cevaplayın."
+msgstr ""
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr "XML dosyalarından yeni nitelikleri içe aktarır veya mevcut nitelikleri günceller"
+msgstr ""
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr "CSV dosyasından yeni kategori içe aktarır veya mevcut kategorileri günceller"
+msgstr ""
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr "XML dosyalarından yeni kategoriler içe aktarır veya mevcut kategorileri günceller"
+msgstr ""
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr "CSV dosyasından yeni kupon kodu içe aktarır veya mevcut kupon kodlarını günceller"
+msgstr ""
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr "XML dosyalarından yeni müşteriler içe aktarır veya mevcut müşterileri günceller"
+msgstr ""
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr " XML dosyalarından yeni gruplar içe aktarır veya mevcut grupları günceller"
+msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr "CSV dosyasından yeni ürün içe aktarır veya mevcut ürünleri günceller"
+msgstr ""
 
 msgid "Imports new and updates existing products from XML files"
-msgstr "XML dosyalarından yeni ürünler içe aktarır veya mevcut ürünleri günceller"
+msgstr ""
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr "CSV dosyalarından yeni stoklar içe aktarır veya mevcut stokları günceller"
+msgstr ""
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr "CSV dosyalarından yeni tedarikçiler içe aktarır veya mevcut tedarikçileri günceller"
+msgstr ""
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr "XML dosyalarından yeni tedarikçiler içe aktarır veya mevcut tedarikçileri günceller"
+msgstr ""
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "%%%1$s %2$s dahil"
+msgstr ""
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr "%%%1$s KDV dahil"
+msgstr ""
 
 msgid "Included rebates"
-msgstr "Dahil indirimler"
+msgstr ""
 
 msgid "Index optimization"
-msgstr "Dizin optimizasyonu"
+msgstr ""
 
 msgid "Index rebuild"
-msgstr "Dizin yeniden oluşturma"
+msgstr ""
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr "Fatura"
+msgstr ""
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr "Fatura %1$s"
+msgstr ""
 
 msgid "Like entered by you"
-msgstr "Tarafınızdan girildiği gibi"
+msgstr ""
 
 msgid "Log cleanup"
-msgstr "Günlük temizleme"
+msgstr ""
 
 msgid "Login"
-msgstr "Oturum aç"
+msgstr ""
 
 msgid "Name"
-msgstr "Ad"
+msgstr ""
 
 msgid "One or more products you are watching have been updated."
-msgstr "İzleme listenizde yer alan bir veya daha fazla ürün güncellendi."
+msgstr ""
 
 msgid "Optimizes the index for searching products faster"
-msgstr "Daha hızlı ürün araması için dizini optimize eder"
+msgstr ""
 
 msgid "Order date"
-msgstr "Sipariş tarihi"
+msgstr ""
 
 msgid "Order delivery related e-mails"
-msgstr "Sipariş teslimatıyla ilgili e-mailler"
+msgstr ""
 
 msgid "Order details"
-msgstr "Sipariş detayları"
+msgstr ""
 
 msgid "Order export CSV"
-msgstr "Siparişleri CSV olarak dışa aktarma"
+msgstr ""
 
 msgid "Order payment related e-mails"
-msgstr "Sipariş ödemesiyle ilgili e-mailler"
+msgstr ""
 
 msgid "Order status import CSV"
-msgstr "Sipariş durumunu CSV olarak dışa aktarma"
+msgstr ""
 
 msgid "Password"
-msgstr "Şifre"
+msgstr ""
 
 msgid "Price"
-msgstr "Fiyat"
+msgstr ""
 
 msgid "Process order delivery services"
-msgstr "Sipariş teslimat hizmetlerini işleme tabi tut"
+msgstr ""
 
 msgid "Process subscriptions initially"
-msgstr "Aboneliklerin ilk kez işlenmesi"
+msgstr ""
 
 msgid "Product export"
-msgstr "Ürün dışa aktarma"
+msgstr ""
 
 msgid "Product import CSV"
-msgstr "Ürünleri CSV olarak içe aktarma"
+msgstr ""
 
 msgid "Product import XML"
-msgstr "Ürünleri XML olarak içe aktarma"
+msgstr ""
 
 msgid "Product notification e-mails"
-msgstr "Ürün bildirim e-mailleri"
+msgstr ""
 
 msgid "Product site map"
-msgstr "Ürün site haritası"
+msgstr ""
 
 msgid "Products bought together"
-msgstr "Beraber satın alınan ürünler"
+msgstr ""
 
 msgid "Qty"
-msgstr "Miktar"
+msgstr ""
 
 msgid "Quantity"
-msgstr "Miktar"
+msgstr ""
 
 msgid "Rebuilds the index for searching products"
-msgstr "Ürün araması için dizini yeniden oluşturur"
+msgstr ""
 
 msgid "Reference"
-msgstr "Referans"
+msgstr ""
 
 msgid "Removes the expired entries from the cache"
-msgstr "Süresi dolan girdileri önbellekten kaldırır"
+msgstr ""
 
 msgid "Removes the old baskets from the database"
-msgstr "Eski sepetleri veritabanından kaldırır"
+msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr "Eski günlük girişlerini veri tabanından kaldırır ve arşivler (isteğe bağlı)"
+msgstr ""
 
 msgid "Removes unfinished orders"
-msgstr "Tamamlanmamış siparişleri kaldırır"
+msgstr ""
 
 msgid "Removes unpaid orders"
-msgstr "Ödenmemiş siparişleri kaldırır"
+msgstr ""
 
 msgid "Renews subscriptions at next date"
-msgstr "Bir sonraki tarihte abonelikleri yeniler"
+msgstr ""
 
 msgid "Rescale product images"
-msgstr "Ürün görsellerini yeniden boyutlandır"
+msgstr ""
 
 msgid "Rescales product images to the new sizes"
-msgstr "Ürün görsellerini yeni ölçülere tekrar boyutlandırır"
+msgstr ""
 
 msgid "Sends e-mails for new customer accounts"
-msgstr "Yeni müşteri hesapları için e-mailler gönderir"
+msgstr ""
 
 msgid "Sends e-mails for watched products"
-msgstr "İzlenen ürünler için e-mailler gönderir"
+msgstr ""
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr "Sipariş doğrulama veya ödeme durum güncelleme e-mailleri gönderir"
+msgstr ""
 
 msgid "Sends order delivery status update e-mails"
-msgstr "Sipariş teslimat durumu güncelleme e-mailleri gönderir"
+msgstr ""
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr "Ödemesi yapılmış siparişleri ERP sistemine veya lojistik ortağa gönderir"
+msgstr ""
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr "Kuponu içeren e-postayı müşteriye gönderir"
+msgstr ""
 
 msgid "Status"
-msgstr "Durum"
+msgstr ""
 
 msgid "Status import for orders from CSV file"
-msgstr "Siparişler için CSV dosyasından durum içe aktarma"
+msgstr ""
 
 msgid "Stock import CSV"
-msgstr "Stokları CSV olarak içe aktarma"
+msgstr ""
 
 msgid "Sub-total"
-msgstr "Ara Toplam"
+msgstr ""
 
 msgid "Subscription export CSV"
-msgstr "Abonelikleri CSV olarak dışa aktarma"
+msgstr ""
 
 msgid "Subscription process end"
-msgstr "Abonelik sürecinin sonu"
+msgstr ""
 
 msgid "Subscription process renew"
-msgstr "Aboneliğin yenilenmesi"
+msgstr ""
 
 msgid "Subscription process start"
-msgstr "Abonelik sürecini başlat"
+msgstr ""
 
 msgid "Subscription product"
-msgstr "Abonelik ürünü"
+msgstr ""
 
 msgid "Sum"
-msgstr "Toplam"
+msgstr ""
 
 msgid "Supplier import CSV"
-msgstr "Tedarikçileri CSV olarak içe aktarma"
+msgstr ""
 
 msgid "Supplier import XML"
-msgstr "Tedarikçileri XML olarak içe aktarma"
+msgstr ""
 
 msgid "Terminates expired subscriptions"
-msgstr "Süresi dolan abonelikleri sonlandırır"
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz için teşekkür ederiz."
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -435,7 +433,7 @@ msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz içi
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişinizin teslimat durumu \"%3$s\" olarak güncellendi."
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -444,21 +442,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "Nihai ödeme tarafımızca tahsil edilene kadar sipariş beklemede. Eğer peşin ödemeyi seçtiyseniz, lütfen ücreti %1$s sipariş kimlik numaranızı referans olarak ekleyerek banka hesabımıza transfer edin."
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz teslim edilemedi."
+msgstr ""
 
 msgid "The payment couldn't be renewed"
-msgstr "Ödeme yenilenemedi"
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişinizin ödemesi iade edilmiştir."
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -466,119 +464,119 @@ msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişinizin ö
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "%2$s'den %1$s siparişinizin ödeme durumu \"%3$s\" olarak değiştirildi."
+msgstr ""
 
 msgid "The subscription for the product has ended"
-msgstr "Ürün için abonelik sona erdi"
+msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] "Kuponunuzun değeri: %1$s"
-msgstr[1] "Kuponlarınızın değeri: %1$s"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Total"
-msgstr "Toplam"
+msgstr ""
 
 msgid "Transfers money to vendors"
-msgstr "Satıcılara para aktarır"
+msgstr ""
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr "Komisyon işlemleri de dahil olmak üzere sipariş edilen ürünlerin fiyatını satıcılara aktarır"
+msgstr ""
 
 msgid "Voucher"
-msgstr "Kupon"
+msgstr ""
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr "Kupon %1$s"
+msgstr ""
 
 msgid "Voucher related e-mails"
-msgstr "Kuponla ilgili e-postalar"
+msgstr ""
 
 msgid "Watched products"
-msgstr "İzlenen ürünler"
+msgstr ""
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr "Ödemenizi aldık, derhal siparişinizle alakalı işlemlerle ilgileneceğiz."
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz için iade edilen paketi teslim aldık."
+msgstr ""
 
 msgid "Y-m-d"
-msgstr "Y-m-d"
+msgstr ""
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr "Kuponlarınızı istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
+msgstr ""
 
 msgid "You've cancelled the subscription"
-msgstr "Aboneliği iptal ettiniz"
+msgstr ""
 
 msgid "Your account"
-msgstr "Hesabınız"
+msgstr ""
 
 msgid "Your comment"
-msgstr "Yorumunuz"
+msgstr ""
 
 msgid "Your new account"
-msgstr "Yeni hesabınız"
+msgstr ""
 
 #, php-format
 msgid "Your order %1$s"
-msgstr "%1$s sıra numaralı siparişiniz"
+msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz sevk edildi."
+msgstr ""
 
 msgid "Your reference"
-msgstr "Referansınız"
+msgstr ""
 
 msgid "Your reference number"
-msgstr "Referans numaranız"
+msgstr ""
 
 msgid "Your subscription"
-msgstr "Aboneliğiniz"
+msgstr ""
 
 msgid "Your voucher"
-msgstr "Kuponunuz"
+msgstr ""
 
 msgid "Your watched products"
-msgstr "İzlediğiniz ürünler"
+msgstr ""
 
 msgid "delivery"
-msgstr "Teslimat"
+msgstr ""
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr "%1$s adet için"
+msgstr ""
 
 msgid "like billing address"
-msgstr "Fatura adresi ile aynı"
+msgstr ""
 
 msgid "payment"
-msgstr "Ödeme"
+msgstr ""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 msgid "price:default"
-msgstr "price:default"
+msgstr ""
 
 msgid "tax"
-msgstr "kdv"
+msgstr ""
 
 msgid "taxgst"
-msgstr "taxgst"
+msgstr ""
 
 msgid "taxpst"
-msgstr "taxpst"
+msgstr ""
