@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2024-10-28 11:15+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
@@ -42,6 +42,7 @@ msgid ""
 "%18$s\n"
 msgstr ""
 
+#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr ""
@@ -565,10 +566,6 @@ msgid "like billing address"
 msgstr ""
 
 msgid "payment"
-msgstr ""
-
-#. / Price format with price value (%1$s) and currency (%2$s)
-msgid "price:default"
 msgstr ""
 
 msgid "tax"
