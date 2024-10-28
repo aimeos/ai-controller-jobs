@@ -17,8 +17,9 @@ $key = 'pay:' . $this->orderItem->getStatusPayment();
 $orderStatus = $this->translate( 'mshop/code', $key );
 $orderDate = date_create( $this->orderItem->getTimeCreated() )->format( $this->translate( 'controller/jobs', 'Y-m-d' ) );
 
+$pricetype = 'price:default';
+$pricefmt = $this->translate( 'controller/jobs', $pricetype );
 /// Price format with price value (%1$s) and currency (%2$s)
-$pricefmt = $this->translate( 'controller/jobs', 'price:default' );
 $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'controller/jobs', '%1$s %2$s' ) : $pricefmt );
 
 

@@ -13,8 +13,9 @@
 $totalQty = 0;
 $enc = $this->encoder();
 
+$pricetype = 'price:default';
+$pricefmt = $this->translate( 'controller/jobs', $pricetype );
 /// Price format with price value (%1$s) and currency (%2$s)
-$pricefmt = $this->translate( 'controller/jobs', 'price:default' );
 $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'controller/jobs', '%1$s %2$s' ) : $pricefmt );
 
 
