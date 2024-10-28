@@ -12,8 +12,9 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
 
+$pricetype = 'price:default';
+$pricefmt = $this->translate( 'controller/jobs', $pricetype );
 /// Price format with price value (%1$s) and currency (%2$s)
-$pricefmt = $this->translate( 'controller/jobs', 'price:default' );
 $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'controller/jobs', '%1$s %2$s' );
 
 ?>

@@ -16,8 +16,9 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
 $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
+$pricetype = 'price:default';
+$pricefmt = $this->translate( 'controller/jobs', $pricetype );
 /// Price format with price value (%1$s) and currency (%2$s)
-$pricefmt = $this->translate( 'controller/jobs', 'price:default' );
 $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'controller/jobs', '%1$s %2$s' );
 
 /// Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
