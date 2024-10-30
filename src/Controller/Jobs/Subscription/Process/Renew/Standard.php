@@ -419,15 +419,17 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\ContextIface Context object
 	 * @param \Aimeos\MShop\Order\Item\Iface $order Complete order with product, addresses and services
-	 * @param \Aimeos\MShop\Order\Item\Iface New invoice item associated to the order
+	 * @return \Aimeos\MShop\Order\Item\Iface Updated order item
 	 */
-	protected function createPayment( \Aimeos\MShop\ContextIface $context, \Aimeos\MShop\Order\Item\Iface $order )
+	protected function createPayment( \Aimeos\MShop\ContextIface $context, \Aimeos\MShop\Order\Item\Iface $order ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$manager = \Aimeos\MShop::create( $context, 'service' );
 
 		foreach( $order->getService( \Aimeos\MShop\Order\Item\Service\Base::TYPE_PAYMENT ) as $service ) {
 			$manager->getProvider( $manager->get( $service->getServiceId() ), 'payment' )->repay( $order );
 		}
+
+		return $order;
 	}
 
 
@@ -561,7 +563,7 @@ class Standard
 
 		try
 		{
-			$this->createPayment( $context, $newOrder );
+			$newOrder = $orderManager->save( $this->createPayment( $context, $newOrder ) );
 
 			$interval = new \DateInterval( $item->getInterval() );
 			$date = date_create( (string) $item->getDateNext() )->add( $interval )->format( 'Y-m-d H:i:s' );

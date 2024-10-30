@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->willReturn( map( [$item] ), null );
 
 		$managerStub->expects( $this->once() )->method( 'save' );
-		$orderStub->expects( $this->once() )->method( 'save' )->willReturnArgument( 0 );
+		$orderStub->expects( $this->exactly( 2 ) )->method( 'save' )->willReturnArgument( 0 );
 
 		$object->run();
 	}
