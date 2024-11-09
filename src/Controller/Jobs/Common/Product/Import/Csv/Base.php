@@ -28,7 +28,7 @@ class Base
 	 * @return \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Cache\Iface Cache object
 	 * @throws \LogicException If class can't be instantiated
 	 */
-	protected function getCache( string $type, string $name = null ) : \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Cache\Iface
+	protected function getCache( string $type, ?string $name = null ) : \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Cache\Iface
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -63,7 +63,7 @@ class Base
 		$data = [];
 		$count = 0;
 
-		while( ( $row = fgetcsv( $fh ) ) !== false && $count++ < $maxcnt ) {
+		while( ( $row = fgetcsv( $fh, null, ',', '"', '' ) ) !== false && $count++ < $maxcnt ) {
 			$data[$row[$codePos]] = $row;
 		}
 

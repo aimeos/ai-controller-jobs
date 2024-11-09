@@ -274,7 +274,7 @@ class Standard
 	 * @param string|null $type Product type or null for no type
 	 * @return string New product type
 	 */
-	protected function checkType( string $type = null ) : string
+	protected function checkType( ?string $type = null ) : string
 	{
 		if( !isset( $this->types ) )
 		{
@@ -438,7 +438,7 @@ class Standard
 		$total = $errors = 0;
 
 		for( $i = 0; $i < $skiplines; $i++ ) {
-			fgetcsv( $fh );
+			fgetcsv( $fh, null, ',', '"', '' );
 		}
 
 		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )

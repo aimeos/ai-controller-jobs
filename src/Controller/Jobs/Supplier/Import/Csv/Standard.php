@@ -330,7 +330,7 @@ class Standard
 		$total = $errors = 0;
 
 		for( $i = 0; $i < $skiplines; $i++ ) {
-			fgetcsv( $fh );
+			fgetcsv( $fh, null, ',', '"', '' );
 		}
 
 		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )

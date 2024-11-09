@@ -259,7 +259,7 @@ class Standard
 		$fh = $fs->reads( $path );
 
 		for( $i = 0; $i < $skiplines; $i++ ) {
-			fgetcsv( $fh );
+			fgetcsv( $fh, null, ',', '"', '' );
 		}
 
 		$this->importStocks( $fh );
@@ -314,7 +314,7 @@ class Standard
 			$max = $this->max();
 			$codes = $data = $types = [];
 
-			while( ( $row = fgetcsv( $fhandle ) ) !== false && $count < $max )
+			while( ( $row = fgetcsv( $fhandle, null, ',', '"', '' ) ) !== false && $count < $max )
 			{
 				if( $row[0] === '' ) {
 					continue;

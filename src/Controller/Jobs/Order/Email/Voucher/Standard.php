@@ -484,7 +484,7 @@ class Standard
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
 	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\Map $orderProducts,
-		\Aimeos\MShop\Common\Item\Address\Iface $address, string $logoPath = null )
+		\Aimeos\MShop\Common\Item\Address\Iface $address, ?string $logoPath = null )
 	{
 		/** controller/jobs/order/email/voucher/template-html
 		 * Relative path to the template for the HTML part of the voucher emails.
@@ -627,7 +627,7 @@ class Standard
 	 * @param string|null $theme Theme name
 	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Iface $base, ?string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = $this->address( $base );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();

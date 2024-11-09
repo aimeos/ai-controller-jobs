@@ -297,7 +297,7 @@ class Standard
 		$codePos = $this->getCodePosition( $mappings['code'] );
 
 		for( $i = 0; $i < $skiplines; $i++ ) {
-			fgetcsv( $fhandle );
+			fgetcsv( $fhandle, null, ',', '"', '' );
 		}
 
 		while( ( $data = $this->getData( $fhandle, $maxcnt, $codePos ) ) !== [] )

@@ -98,17 +98,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$filename = dirname( dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) ) . '/tmp/' . $jobItems->first()->getLabel();
 		$fp = fopen( $filename, 'r' );
 
-		$invoice = fgetcsv( $fp );
-		$address1 = fgetcsv( $fp );
-		$address2 = fgetcsv( $fp );
-		$service1 = fgetcsv( $fp );
-		$service2 = fgetcsv( $fp );
-		$coupon1 = fgetcsv( $fp );
-		$coupon2 = fgetcsv( $fp );
-		$product1 = fgetcsv( $fp );
-		$product2 = fgetcsv( $fp );
-		$product3 = fgetcsv( $fp );
-		$product4 = fgetcsv( $fp );
+		$invoice = fgetcsv( $fp, null, ',', '"', '' );
+		$address1 = fgetcsv( $fp, null, ',', '"', '' );
+		$address2 = fgetcsv( $fp, null, ',', '"', '' );
+		$service1 = fgetcsv( $fp, null, ',', '"', '' );
+		$service2 = fgetcsv( $fp, null, ',', '"', '' );
+		$coupon1 = fgetcsv( $fp, null, ',', '"', '' );
+		$coupon2 = fgetcsv( $fp, null, ',', '"', '' );
+		$product1 = fgetcsv( $fp, null, ',', '"', '' );
+		$product2 = fgetcsv( $fp, null, ',', '"', '' );
+		$product3 = fgetcsv( $fp, null, ',', '"', '' );
+		$product4 = fgetcsv( $fp, null, ',', '"', '' );
 
 		fclose( $fp );
 		unlink( $filename );

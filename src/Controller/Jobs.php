@@ -39,7 +39,7 @@ class Jobs
 	 * @throws \Aimeos\Controller\Jobs\Exception If the given path is invalid or the controllers wasn't found
 	 */
 	public static function create( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos,
-		string $path, string $name = null ) : \Aimeos\Controller\Jobs\Iface
+		string $path, ?string $name = null ) : \Aimeos\Controller\Jobs\Iface
 	{
 		if( empty( $path ) ) {
 			throw new \Aimeos\Controller\Jobs\Exception( 'Controller path is empty', 400 );
@@ -97,7 +97,7 @@ class Jobs
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Controller\Jobs\Iface|null $controller Frontend controller object
 	 */
-	public static function inject( string $classname, \Aimeos\Controller\Jobs\Iface $controller = null )
+	public static function inject( string $classname, ?\Aimeos\Controller\Jobs\Iface $controller = null )
 	{
 		self::$objects['\\' . ltrim( $classname, '\\' )] = $controller;
 	}
