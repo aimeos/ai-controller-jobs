@@ -285,7 +285,7 @@ class Standard
 		$fs = $context->fs( 'fs-import' );
 		$tmpfile = $fs->readf( $path );
 
-		if( $xml->open( $tmpfile, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
+		if( $xml->open( $tmpfile, null, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $tmpfile ) );
 		}
 

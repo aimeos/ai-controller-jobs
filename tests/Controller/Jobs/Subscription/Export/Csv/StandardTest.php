@@ -99,10 +99,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$filename = dirname( dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) ) . '/tmp/' . $jobItems->first()->getLabel();
 		$fp = fopen( $filename, 'r' );
 
-		$subscription = fgetcsv( $fp );
-		$address1 = fgetcsv( $fp );
-		$address2 = fgetcsv( $fp );
-		$product1 = fgetcsv( $fp );
+		$subscription = fgetcsv( $fp, null, ',', '"', '' );
+		$address1 = fgetcsv( $fp, null, ',', '"', '' );
+		$address2 = fgetcsv( $fp, null, ',', '"', '' );
+		$product1 = fgetcsv( $fp, null, ',', '"', '' );
 
 		fclose( $fp );
 		unlink( $filename );

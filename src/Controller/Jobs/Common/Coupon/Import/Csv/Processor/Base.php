@@ -33,7 +33,7 @@ class Base
 	 * @param \Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Iface $object Decorated processor
 	 */
 	public function __construct( \Aimeos\MShop\ContextIface $context, array $mapping,
-		\Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Iface $object = null )
+		?\Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Iface $object = null )
 	{
 		$this->context = $context;
 		$this->mapping = $mapping;

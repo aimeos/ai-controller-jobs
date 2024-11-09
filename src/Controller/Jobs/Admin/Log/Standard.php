@@ -169,7 +169,7 @@ class Standard
 		{
 			foreach( $items as $id => $item )
 			{
-				if( fputcsv( $fh, $item->toArray() ) === false ) {
+				if( fputcsv( $fh, $item->toArray(), ',', '"', '' ) === false ) {
 					throw new \Aimeos\Controller\Jobs\Exception( 'Unable to write log data to temporary file' );
 				}
 			}

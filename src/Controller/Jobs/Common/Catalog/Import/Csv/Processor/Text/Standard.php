@@ -43,7 +43,7 @@ class Standard
 	 * @param \Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $object Decorated processor
 	 */
 	public function __construct( \Aimeos\MShop\ContextIface $context, array $mapping,
-			\Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $object = null )
+			?\Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $object = null )
 	{
 		parent::__construct( $context, $mapping, $object );
 

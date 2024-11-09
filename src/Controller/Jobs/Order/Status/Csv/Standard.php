@@ -213,7 +213,7 @@ class Standard
 		$cnt = 0;
 		$orders = $products = [];
 
-		while( ( $row = fgetcsv( $handle, 0, $sep ) ) && $cnt < $maxcnt )
+		while( ( $row = fgetcsv( $handle, 0, $sep, '"', '' ) ) && $cnt < $maxcnt )
 		{
 			if( empty( $row[0] ) ) {
 				continue;
@@ -284,7 +284,7 @@ class Standard
 		$skip = (int) $config->get( 'controller/jobs/order/status/csv/skip', 0 );
 
 		for( $i = 0; $i < $skip; $i++ ) {
-			fgetcsv( $handle, 0, $sep );
+			fgetcsv( $handle, 0, $sep, '"', '' );
 		}
 
 		$pmanager = \Aimeos\MShop::create( $context, 'order/product' );

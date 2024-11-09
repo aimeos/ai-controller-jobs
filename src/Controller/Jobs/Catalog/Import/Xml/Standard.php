@@ -274,7 +274,7 @@ class Standard
 		$fs = $context->fs( 'fs-import' );
 		$tmpfile = $fs->readf( $path );
 
-		if( $xml->open( $tmpfile, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
+		if( $xml->open( $tmpfile, null, LIBXML_COMPACT | LIBXML_PARSEHUGE ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No XML file "%1$s" found', $tmpfile ) );
 		}
 
@@ -308,7 +308,7 @@ class Standard
 	 * @param array &$map Will contain the associative list of code/ID pairs of the child categories
 	 * @return string Catalog ID of the imported category
 	 */
-	protected function importNode( \DomElement $node, array $domains, string $parentid = null, array &$map ) : string
+	protected function importNode( \DomElement $node, array $domains, ?string $parentid, array &$map ) : string
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 
@@ -347,7 +347,7 @@ class Standard
 	 * @param string|null $parentid ID of the parent catalog node
 	 * @param array $map Associative list of catalog code as keys and category ID as values
 	 */
-	protected function importTree( \XMLReader $xml, array $domains, string $parentid = null, array $map = [] )
+	protected function importTree( \XMLReader $xml, array $domains, ?string $parentid = null, array $map = [] )
 	{
 		$total = 0;
 		$childMap = [];
