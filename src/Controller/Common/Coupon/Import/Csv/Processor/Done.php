@@ -28,7 +28,7 @@ class Done
 	 * @param \Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $object Decorated processor
 	 */
 	public function __construct( \Aimeos\MShop\ContextIface $context, array $mapping,
-		\Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $object = null )
+		?\Aimeos\Controller\Common\Coupon\Import\Csv\Processor\Iface $object = null )
 	{
 	}
 

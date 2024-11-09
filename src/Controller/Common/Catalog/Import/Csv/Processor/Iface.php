@@ -27,7 +27,7 @@ interface Iface
 	 * @param \Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor Decorated processor
 	 */
 	public function __construct( \Aimeos\MShop\ContextIface $context, array $mapping,
-		\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor = null );
+		?\Aimeos\Controller\Common\Catalog\Import\Csv\Processor\Iface $processor = null );
 
 
 	/**

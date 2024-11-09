@@ -277,7 +277,7 @@ class Standard
 	 * @param string|null $type Product type or null for no type
 	 * @return string New product type
 	 */
-	protected function checkType( string $type = null ) : string
+	protected function checkType( ?string $type = null ) : string
 	{
 		if( !isset( $this->types ) )
 		{

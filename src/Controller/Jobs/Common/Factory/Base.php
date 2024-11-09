@@ -30,7 +30,7 @@ abstract class Base
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Controller\Jobs\Iface|null $controller Frontend controller object
 	 */
-	public static function injectController( string $classname, \Aimeos\Controller\Jobs\Iface $controller = null )
+	public static function injectController( string $classname, ?\Aimeos\Controller\Jobs\Iface $controller = null )
 	{
 		self::$objects[$classname] = $controller;
 	}

@@ -107,7 +107,7 @@ trait Mail
 	 * @param string|null $langId Language ID the content should be generated for
 	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function mailView( string $langId = null ) : \Aimeos\Base\View\Iface
+	protected function mailView( ?string $langId = null ) : \Aimeos\Base\View\Iface
 	{
 		$view = $this->context()->view();
 

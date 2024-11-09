@@ -28,7 +28,7 @@ class Base
 	 * @return \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface Cache object
 	 * @throws \LogicException If class can't be instantiated
 	 */
-	protected function getCache( string $type, string $name = null ) : \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface
+	protected function getCache( string $type, ?string $name = null ) : \Aimeos\Controller\Common\Product\Import\Csv\Cache\Iface
 	{
 		$context = $this->context();
 		$config = $context->config();

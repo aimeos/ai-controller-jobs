@@ -41,7 +41,7 @@ class Standard
 	 * @param string|null $type Attribute type
 	 * @return string|null Product ID or null if not found
 	 */
-	public function get( string $code, string $type = null )
+	public function get( string $code, ?string $type = null )
 	{
 		if( isset( $this->prodmap[$code] ) ) {
 			return $this->prodmap[$code];

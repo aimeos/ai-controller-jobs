@@ -59,7 +59,7 @@ class Standard
 	 * @param string|null $type Not used
 	 * @return string|null Catalog ID or null if not found
 	 */
-	public function get( string $code, string $type = null )
+	public function get( string $code, ?string $type = null )
 	{
 		if( isset( $this->categories[$code] ) ) {
 			return $this->categories[$code];

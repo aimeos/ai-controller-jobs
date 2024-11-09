@@ -55,7 +55,7 @@ class Standard
 	 * @param string|null $type Not used
 	 * @return \Aimeos\MShop\Supplier\Item\Iface|null Supplier item or null if not found
 	 */
-	public function get( string $code, string $type = null )
+	public function get( string $code, ?string $type = null )
 	{
 		if( isset( $this->suppliers[$code] ) ) {
 			return $this->suppliers[$code];

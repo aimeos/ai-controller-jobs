@@ -335,7 +335,7 @@ class Standard
 	 * @param string|null $theme Theme name or NULL for default theme
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\MShop\Order\Item\Iface $order, string $theme = null, string $logoPath = null )
+	protected function send( \Aimeos\MShop\Order\Item\Iface $order, ?string $theme = null, ?string $logoPath = null )
 	{
 		/** controller/jobs/order/email/delivery/template-html
 		 * Relative path to the template for the HTML part of the delivery emails.
@@ -469,7 +469,7 @@ class Standard
 	 * @param string|null $theme Theme name
 	 * @return \Aimeos\Base\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Iface $base, string $theme = null ) : \Aimeos\Base\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Iface $base, ?string $theme = null ) : \Aimeos\Base\View\Iface
 	{
 		$address = $this->address( $base );
 		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();
