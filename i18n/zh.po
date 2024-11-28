@@ -5,15 +5,16 @@
 # Translators:
 # Bruce Liu <zcon.bruce@gmail.com>, 2016
 # Hans He, 2022
+# Hans He, 2022
 # stevechen <steve.stevechen@gmail.com>, 2018
 # stevechen <steve.stevechen@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 15:47+0200\n"
+"POT-Creation-Date: 2024-10-28 11:15+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Hans He, 2022\n"
+"Last-Translator: stevechen <steve.stevechen@gmail.com>, 2018\n"
 "Language-Team: Chinese (http://app.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,6 +47,7 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
@@ -86,7 +88,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr "所有订单均受我们的条款和条件约束。"
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2023
+#. * @copyright Aimeos (aimeos.org), 2015-2024
 msgid "An account has been created for you."
 msgstr "已為您創建帳戶。"
 
@@ -122,6 +124,9 @@ msgstr "目录导入 XML"
 msgid "Catalog site map"
 msgstr "站点目录地图"
 
+msgid "Cleanup baskets"
+msgstr ""
+
 msgid "Coupon code import CSV"
 msgstr "优惠码导入 CSV"
 
@@ -142,9 +147,6 @@ msgstr "創建一起購買商品推薦"
 
 msgid "Customer account e-mails"
 msgstr "顧客帳號e-mails"
-
-msgid "Customer group import XML"
-msgstr "客户分组导入 XML"
 
 msgid "Customer import XML"
 msgstr "客户导入 XML"
@@ -199,6 +201,9 @@ msgstr "訂單匯出至 CVS 檔案"
 msgid "Exports subscriptions to CSV file"
 msgstr "訂閱匯出至 CVS 檔案"
 
+msgid "Groups import XML"
+msgstr ""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "如果您有任何疑問，請回覆此郵件。"
 
@@ -214,11 +219,11 @@ msgstr "从 XML 文件导入新分类并更新已存在的分类"
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "从 CSV 文件导入新优惠码并更新已存在的优惠码"
 
-msgid "Imports new and updates existing customer groups from XML files"
-msgstr "从 XML 文件导入新客户组并更新已存在的客户组"
-
 msgid "Imports new and updates existing customers from XML files"
 msgstr "从 XML 文件导入新客户并更新已存在的客户"
+
+msgid "Imports new and updates existing groups from XML files"
+msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "從CSV匯入新的商品並更新既有商品"
@@ -342,6 +347,9 @@ msgstr "參考"
 
 msgid "Removes the expired entries from the cache"
 msgstr "從快取中移除過期的條目"
+
+msgid "Removes the old baskets from the database"
+msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -565,6 +573,11 @@ msgstr "同帳單地址"
 msgid "payment"
 msgstr "支付"
 
-#. / Price format with price value (%1$s) and currency (%2$s)
-msgid "price:default"
-msgstr "價格: 標準"
+msgid "tax"
+msgstr "稅"
+
+msgid "taxgst"
+msgstr ""
+
+msgid "taxpst"
+msgstr ""

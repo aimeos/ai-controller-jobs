@@ -4,15 +4,16 @@
 # 
 # Translators:
 # George Cojocaru, 2024
+# George Cojocaru, 2024
 # Yolo San, 2021
 # Yolo San, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 15:47+0200\n"
+"POT-Creation-Date: 2024-10-28 11:15+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: George Cojocaru, 2024\n"
+"Last-Translator: Yolo San, 2021\n"
 "Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,6 +46,7 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
@@ -85,7 +87,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr "Toate comenzile sunt supuse termenilor și condițiilor noastre."
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2023
+#. * @copyright Aimeos (aimeos.org), 2015-2024
 msgid "An account has been created for you."
 msgstr "Contul tau a fost creat."
 
@@ -121,6 +123,9 @@ msgstr "Import de catalog XML"
 msgid "Catalog site map"
 msgstr "Catalog harta site-ului"
 
+msgid "Cleanup baskets"
+msgstr ""
+
 msgid "Coupon code import CSV"
 msgstr "Cod de cupon de import CSV"
 
@@ -141,9 +146,6 @@ msgstr "Creează sugestii de produse cumpărate împreună"
 
 msgid "Customer account e-mails"
 msgstr "E-mailurile contului clientului"
-
-msgid "Customer group import XML"
-msgstr "Import grup de clienți XML"
 
 msgid "Customer import XML"
 msgstr "Import client XML"
@@ -198,6 +200,9 @@ msgstr "Exportă comenzile în fișierul CSV"
 msgid "Exports subscriptions to CSV file"
 msgstr ""
 
+msgid "Groups import XML"
+msgstr ""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Daca aveti intrebari, respundeti la acest e-mail"
 
@@ -213,10 +218,10 @@ msgstr ""
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr ""
 
-msgid "Imports new and updates existing customer groups from XML files"
+msgid "Imports new and updates existing customers from XML files"
 msgstr ""
 
-msgid "Imports new and updates existing customers from XML files"
+msgid "Imports new and updates existing groups from XML files"
 msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
@@ -341,6 +346,9 @@ msgstr "Referinta"
 
 msgid "Removes the expired entries from the cache"
 msgstr "Elimină intrările expirate din cache"
+
+msgid "Removes the old baskets from the database"
+msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -566,6 +574,11 @@ msgstr "la fel ca adresa de facturare"
 msgid "payment"
 msgstr "plata"
 
-#. / Price format with price value (%1$s) and currency (%2$s)
-msgid "price:default"
-msgstr "price:default"
+msgid "tax"
+msgstr "tva"
+
+msgid "taxgst"
+msgstr ""
+
+msgid "taxpst"
+msgstr ""

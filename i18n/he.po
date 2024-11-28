@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Aimeos, 2024
+# Aimeos, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 15:47+0200\n"
+"POT-Creation-Date: 2024-10-28 11:15+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Aimeos, 2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
@@ -43,6 +44,7 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
@@ -83,7 +85,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr "כל ההזמנות כפופות לתנאים וההגבלות שלנו."
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2023
+#. * @copyright Aimeos (aimeos.org), 2015-2024
 msgid "An account has been created for you."
 msgstr "נוצר עבורך חשבון."
 
@@ -119,6 +121,9 @@ msgstr "ייבוא ​​קטלוג XML"
 msgid "Catalog site map"
 msgstr "מפת אתר קטלוג"
 
+msgid "Cleanup baskets"
+msgstr ""
+
 msgid "Coupon code import CSV"
 msgstr "ייבוא ​​קוד קופון CSV"
 
@@ -139,9 +144,6 @@ msgstr "יוצר הצעות מוצרים שנרכשו ביחד"
 
 msgid "Customer account e-mails"
 msgstr "דואר אלקטרוני של חשבון לקוח"
-
-msgid "Customer group import XML"
-msgstr "ייבוא ​​XML של קבוצת לקוחות"
 
 msgid "Customer import XML"
 msgstr "ייבוא ​​לקוח XML"
@@ -196,6 +198,9 @@ msgstr "ייצוא הזמנות לקובץ CSV"
 msgid "Exports subscriptions to CSV file"
 msgstr "ייצוא מנויים לקובץ CSV"
 
+msgid "Groups import XML"
+msgstr ""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "אם יש לך שאלות, אנא השב לדוא\"ל זה"
 
@@ -211,11 +216,11 @@ msgstr "מייבא חדש ומעדכן קטגוריות קיימות מקובצ�
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "מייבא חדש ומעדכן קוד קופון קיים מקובצי CSV"
 
-msgid "Imports new and updates existing customer groups from XML files"
-msgstr "מייבא חדש ומעדכן קבוצות לקוחות קיימות מקובצי XML"
-
 msgid "Imports new and updates existing customers from XML files"
 msgstr "מייבאת חדשים ומעדכנת לקוחות קיימים מקובצי XML"
+
+msgid "Imports new and updates existing groups from XML files"
+msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "מייבא מוצרים חדשים ומעדכן מוצרים קיימים מקובצי CSV"
@@ -339,6 +344,9 @@ msgstr "הפניה"
 
 msgid "Removes the expired entries from the cache"
 msgstr "מסיר את הערכים שפג תוקפם מהמטמון"
+
+msgid "Removes the old baskets from the database"
+msgstr ""
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -564,6 +572,11 @@ msgstr "כתובת לחיוב כמו"
 msgid "payment"
 msgstr "תשלום"
 
-#. / Price format with price value (%1$s) and currency (%2$s)
-msgid "price:default"
-msgstr "מחיר:ברירת מחדל"
+msgid "tax"
+msgstr "מס"
+
+msgid "taxgst"
+msgstr ""
+
+msgid "taxpst"
+msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 15:47+0200\n"
+"POT-Creation-Date: 2024-10-28 11:15+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Georgian (http://app.transifex.com/aimeos/aimeos-core/language/ka/)\n"
@@ -42,6 +42,7 @@ msgid ""
 "%18$s\n"
 msgstr ""
 
+#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr ""
@@ -82,7 +83,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2023
+#. * @copyright Aimeos (aimeos.org), 2015-2024
 msgid "An account has been created for you."
 msgstr ""
 
@@ -118,6 +119,9 @@ msgstr ""
 msgid "Catalog site map"
 msgstr ""
 
+msgid "Cleanup baskets"
+msgstr ""
+
 msgid "Coupon code import CSV"
 msgstr ""
 
@@ -137,9 +141,6 @@ msgid "Creates bought together product suggestions"
 msgstr ""
 
 msgid "Customer account e-mails"
-msgstr ""
-
-msgid "Customer group import XML"
 msgstr ""
 
 msgid "Customer import XML"
@@ -195,6 +196,9 @@ msgstr ""
 msgid "Exports subscriptions to CSV file"
 msgstr ""
 
+msgid "Groups import XML"
+msgstr ""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr ""
 
@@ -210,10 +214,10 @@ msgstr ""
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr ""
 
-msgid "Imports new and updates existing customer groups from XML files"
+msgid "Imports new and updates existing customers from XML files"
 msgstr ""
 
-msgid "Imports new and updates existing customers from XML files"
+msgid "Imports new and updates existing groups from XML files"
 msgstr ""
 
 msgid "Imports new and updates existing products from CSV files"
@@ -337,6 +341,9 @@ msgid "Reference"
 msgstr ""
 
 msgid "Removes the expired entries from the cache"
+msgstr ""
+
+msgid "Removes the old baskets from the database"
 msgstr ""
 
 msgid ""
@@ -562,6 +569,11 @@ msgstr ""
 msgid "payment"
 msgstr ""
 
-#. / Price format with price value (%1$s) and currency (%2$s)
-msgid "price:default"
+msgid "tax"
+msgstr ""
+
+msgid "taxgst"
+msgstr ""
+
+msgid "taxpst"
 msgstr ""
