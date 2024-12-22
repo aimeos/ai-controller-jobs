@@ -156,9 +156,9 @@ class Standard
 	 */
 	public function run()
 	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/basket' );
-		$filter = $manager->filter()->add( 'order.basket.mtime', '<=', $this->timestamp() )
-			->add( 'order.basket.name', '==', '' )->slice( 0, 1000 );
+		$manager = \Aimeos\MShop::create( $this->context(), 'basket' );
+		$filter = $manager->filter()->add( 'basket.mtime', '<=', $this->timestamp() )
+			->add( 'basket.name', '==', '' )->slice( 0, 1000 );
 		$cursor = $manager->cursor( $filter );
 
 		while( $items = $manager->iterate( $cursor ) ) {
