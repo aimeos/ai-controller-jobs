@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Aldemar Hernández <napalm-beach@lycos.com>, 2016
 # Daniel Vega <danielvega131990@gmail.com>, 2015
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: S 0l, 2021\n"
 "Language-Team: Spanish (http://app.transifex.com/aimeos/aimeos-core/language/es/)\n"
@@ -66,7 +66,7 @@ msgstr "+ %1$s %2$s/unidad"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "+%1$s%%%2$s"
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ Comisiones de pago"
@@ -126,7 +126,7 @@ msgid "Catalog site map"
 msgstr "Mapa del sitio del catálogo"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Cestas de limpieza"
 
 msgid "Coupon code import CSV"
 msgstr "CSV de importe de código de cupón "
@@ -147,7 +147,7 @@ msgid "Creates bought together product suggestions"
 msgstr "Crea sugerencias de productos comprados juntos"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "Correos electrónicos de cuentas de clientes"
 
 msgid "Customer import XML"
 msgstr "XML de importe de clientes"
@@ -188,7 +188,7 @@ msgid "Details"
 msgstr "Detalles"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Ejecuta todos los importadores XML y reconstruye el índice"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
 msgstr "Ejecuta el pago o la entrega de servicios de proveedores que utilizan actualizaciones por lotes"
@@ -197,53 +197,53 @@ msgid "Exports all available products"
 msgstr "Exporta todos los productos disponibles"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Exportación de pedidos a un archivo CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Exporta las suscripciones a un archivo CSV"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Grupos importación XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Si tiene alguna pregunta, responda a este email"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Importa atributos nuevos y actualiza los existentes a partir de archivos XML"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Importa categorías nuevas y actualiza las existentes a partir de archivos CSV"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Importa categorías nuevas y actualiza las existentes a partir de archivos XML"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Importa códigos de cupón nuevos y actualiza los existentes a partir de archivos CSV"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Importa nuevos clientes y actualiza los existentes a partir de archivos XML"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Importa grupos nuevos y actualiza los existentes a partir de archivos XML"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Importa nuevos y actualiza los productos existentes a partir de archivos CSV"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Importa productos nuevos y actualiza los existentes a partir de archivos XML"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Importa nuevas existencias y actualiza las existentes a partir de archivos CSV"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Importa nuevos proveedores y actualiza los existentes a partir de archivos CSV"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Importa nuevos proveedores y actualiza los existentes a partir de archivos XML"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "Incl. %1$s%%%2$s"
+msgstr "Incl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -254,10 +254,10 @@ msgid "Included rebates"
 msgstr "Rebajas incluidas"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Optimización del índice"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Reconstrucción del índice"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -284,7 +284,7 @@ msgid "One or more products you are watching have been updated."
 msgstr "Uno o más de los productos observados por ud. han sido actualizados."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimiza el índice para buscar productos más rápidamente"
 
 msgid "Order date"
 msgstr "Fecha pedido"
@@ -296,13 +296,13 @@ msgid "Order details"
 msgstr "Detalles del pedido"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Exportación de pedidos CSV"
 
 msgid "Order payment related e-mails"
 msgstr "Mensajes de correo electrónico relacionados con el pago de los pedidos"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Importación del estado del pedido CSV"
 
 msgid "Password"
 msgstr "Contraseña"
@@ -314,7 +314,7 @@ msgid "Process order delivery services"
 msgstr "Servicios de proceso de la entrega de pedidos"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Procesar las suscripciones inicialmente"
 
 msgid "Product export"
 msgstr "Exportar producto"
@@ -323,7 +323,7 @@ msgid "Product import CSV"
 msgstr "Importar CSV de producto"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "XML de importación de productos"
 
 msgid "Product notification e-mails"
 msgstr "Mensajes de correo electrónico de notificaciones del producto"
@@ -341,7 +341,7 @@ msgid "Quantity"
 msgstr "Cantidad"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Reconstruye el índice para buscar productos"
 
 msgid "Reference"
 msgstr "Referencias"
@@ -350,7 +350,7 @@ msgid "Removes the expired entries from the cache"
 msgstr "Elimina las entradas caducadas de la caché"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Elimina las antiguas cestas de la base de datos"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -366,13 +366,13 @@ msgid "Renews subscriptions at next date"
 msgstr "Renueva suscripciones en la próxima fecha"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Reescalar imágenes de productos"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Reescala las imágenes de los productos a los nuevos tamaños"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Envío de correos electrónicos para nuevas cuentas de clientes"
 
 msgid "Sends e-mails for watched products"
 msgstr "Envía mensajes de correo electrónicos de los productos observados"
@@ -393,16 +393,16 @@ msgid "Status"
 msgstr "Estado"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Importación del estado de los pedidos desde un archivo CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Importación de existencias CSV"
 
 msgid "Sub-total"
 msgstr "Subtotal"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Exportación de suscripciones CSV"
 
 msgid "Subscription process end"
 msgstr "Fin del proceso de suscripción"
@@ -420,13 +420,13 @@ msgid "Sum"
 msgstr "Suma"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "CSV de importación de proveedores"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "XML de importación de proveedores"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Finaliza las suscripciones caducadas"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -487,12 +487,12 @@ msgid "Total"
 msgstr "Total"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Transfiere dinero a los proveedores"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Transfiere el precio de los productos pedidos a los proveedores, incluida la gestión de comisiones."
 
 msgid "Voucher"
 msgstr "Cupón"
@@ -502,7 +502,7 @@ msgid "Voucher %1$s"
 msgstr "Cupón %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Correos electrónicos relacionados con vales"
 
 msgid "Watched products"
 msgstr "Productos observados"
@@ -580,7 +580,7 @@ msgid "tax"
 msgstr "impuesto"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"

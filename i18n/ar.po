@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Arabic (http://app.transifex.com/aimeos/aimeos-core/language/ar/)\n"
@@ -50,17 +50,17 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "تم إيقاف %2$s %1$s"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %1$s %2$s/عنصر"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ تكاليف الدفع"
@@ -71,16 +71,16 @@ msgstr "+ الشحن"
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "الحساب"
 
 msgid "All XML import"
-msgstr ""
+msgstr "كل استيراد XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "تخضع جميع الطلبات لشروطنا وأحكامنا."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
@@ -91,182 +91,182 @@ msgid "Article no."
 msgstr "منتوج رقم"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "استيراد السمات XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "سيتم تسجيل الدفعات المصرح بها للطلبات بعد الإرسال أو بعد فترة زمنية قابلة للتكوين"
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "تحديث دفعة من حالة الدفع/التسليم"
 
 msgid "Billing address"
 msgstr "عنوان الدفع"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "تنظيف ذاكرة التخزين المؤقت"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "قبض المدفوعات المصرح بها"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "استيراد الكتالوج CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "استيراد الكتالوج XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "خريطة موقع الكتالوج"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "سلال التنظيف"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "استيراد رمز القسيمة CSV"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "أكواد القسائم"
 
 msgid "Coupons"
-msgstr ""
+msgstr "الكوبونات"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "إنشاء خريطة موقع كتالوج لمحركات البحث"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "إنشاء خريطة موقع المنتج لمحركات البحث"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "إنشاء اقتراحات المنتجات التي تم شراؤها معًا"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني لحساب العميل"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "استيراد العميل XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "عزيزي %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "عزيزي السيد %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "عزيزتي السيدة %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "عزيزي العميل"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "حذف الطلبات غير المكتملة وإتاحة منتجاتها وأكواد القسائم مرة أخرى"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "حذف الطلبات غير المدفوعة للحفاظ على قاعدة البيانات نظيفة"
 
 msgid "Delivery address"
 msgstr "عنوان التوصيل"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "التسليم داخل"
 
 msgid "Details"
 msgstr "التفاصيل"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "تنفيذ جميع مستوردات XML وإعادة بناء الفهرس"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "تنفيذ عمليات الدفع أو موفري خدمات التوصيل التي تستخدم تحديثات الدُفعات"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "تصدير جميع المنتجات المتاحة"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "تصدير الطلبات إلى ملف CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "تصدير الاشتراكات إلى ملف CSV"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "استيراد المجموعات XML"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "إذا كان لديك أي أسئلة، يرجى الرد على هذا البريد الإلكتروني"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "استيراد سمات جديدة وتحديث السمات الموجودة من ملفات XML"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "استيراد الفئات الجديدة وتحديث الفئات الموجودة من ملفات CSV"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "استيراد فئات جديدة وتحديث الفئات الموجودة من ملفات XML"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "استيراد رموز القسائم الجديدة وتحديث رموز القسائم الحالية من ملفات CSV"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "استيراد عملاء جدد وتحديث العملاء الحاليين من ملفات XML"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "استيراد مجموعات جديدة وتحديث المجموعات الموجودة من ملفات XML"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "استيراد المنتجات الجديدة وتحديث المنتجات الحالية من ملفات CSV"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "استيراد منتجات جديدة وتحديث المنتجات الحالية من ملفات XML"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "استيراد مخزون جديد وتحديث المخزون الحالي من ملفات CSV"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "استيراد موردين جدد وتحديث الموردين الحاليين من ملفات CSV"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "استيراد موردين جدد وتحديث الموردين الحاليين من ملفات XML"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "بما في ذلك %1$s%%%2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "بما في ذلك %1$s%% ضريبة القيمة المضافة"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "الخصومات المشمولة"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "تحسين الفهرس"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "إعادة بناء الفهرس"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "الفاتورة"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "الفاتورة %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "مثل التي أدخلتها"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "تنظيف السجل"
 
 msgid "Login"
 msgstr "تسجيل الدخول"
@@ -275,28 +275,28 @@ msgid "Name"
 msgstr "الإسم"
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "تم تحديث منتج أو أكثر من المنتجات التي تشاهدها."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "تحسين الفهرس للبحث عن المنتجات بشكل أسرع"
 
 msgid "Order date"
 msgstr "تاريخ الطلب"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني المتعلقة بتسليم الطلبات"
 
 msgid "Order details"
-msgstr ""
+msgstr "تفاصيل الطلب"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "طلب تصدير CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني المتعلقة بطلب الدفع"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "استيراد حالة الطلب CSV"
 
 msgid "Password"
 msgstr "كلمة المرور"
@@ -305,107 +305,107 @@ msgid "Price"
 msgstr "السعر"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "معالجة خدمات توصيل الطلبات"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "معالجة الاشتراكات في البداية"
 
 msgid "Product export"
-msgstr ""
+msgstr "تصدير المنتج"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "استيراد المنتج CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "استيراد المنتج XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني لإشعارات المنتج"
 
 msgid "Product site map"
-msgstr ""
+msgstr "خريطة موقع المنتج"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "المنتجات التي تم شراؤها معًا"
 
 msgid "Qty"
 msgstr "الكمية"
 
 msgid "Quantity"
-msgstr ""
+msgstr "الكمية"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "يعيد بناء الفهرس للبحث عن المنتجات"
 
 msgid "Reference"
-msgstr ""
+msgstr "المرجع"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "إزالة الإدخالات منتهية الصلاحية من ذاكرة التخزين المؤقت"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "إزالة السلال القديمة من قاعدة البيانات"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "إزالة إدخالات السجل القديم من قاعدة البيانات وأرشفتها (اختياري)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "إزالة الطلبات غير المكتملة"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "إزالة الطلبات غير المدفوعة"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "تجديد الاشتراكات في التاريخ التالي"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "إعادة قياس صور المنتج"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "تغيير مقاسات صور المنتج إلى المقاسات الجديدة"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "إرسال رسائل البريد الإلكتروني لحسابات العملاء الجدد"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "إرسال رسائل البريد الإلكتروني للمنتجات التي تمت مشاهدتها"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "إرسال رسائل بريد إلكتروني لتأكيد الطلب أو تحديث حالة الدفع"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "إرسال رسائل بريد إلكتروني لتحديث حالة تسليم الطلبات"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "إرسال الطلبات المدفوعة إلى نظام تخطيط موارد المؤسسات أو الشريك اللوجستي"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "يرسل البريد الإلكتروني مع القسيمة إلى العميل"
 
 msgid "Status"
 msgstr "الحالة"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "استيراد الحالة للطلبات من ملف CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "استيراد المخزون CSV"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "المجموع الفرعي"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "تصدير الاشتراك CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "انتهاء عملية الاشتراك"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "تجديد عملية الاشتراك"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "بدء عملية الاشتراك"
 
 msgid "Subscription product"
 msgstr "المنتج المسجل للإشتراك"
@@ -414,19 +414,19 @@ msgid "Sum"
 msgstr "المجموع"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "استيراد الموردين CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "استيراد الموردين XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "إنهاء الاشتراكات المنتهية صلاحيتها"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "شكراً على طلبك %1$s من %2$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -434,7 +434,7 @@ msgstr ""
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "تم تغيير حالة تسليم طلبك %1$s من %2$s إلى \"%3$s\"."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -443,21 +443,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "الطلب معلق حتى نتلقى الدفعة النهائية. إذا كنت قد اخترت الدفع مقدمًا، يُرجى تحويل الأموال إلى حسابنا المصرفي مع معرف الطلب %1$s كمرجع."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "تعذر تسليم الطرد الخاص بطلبك %1$s من %2$s."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "لا يمكن تجديد الدفع"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "تم استرداد المبلغ المدفوع لطلبك %1$s من %2$s."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -465,62 +465,62 @@ msgstr ""
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "تم تغيير حالة الدفع الخاصة بطلبك %1$s من %2$s إلى \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "انتهى الاشتراك في المنتج"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[1] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[2] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[3] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[4] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[5] "قيمة القسيمة الخاصة بك هي %1$s"
 
 msgid "Total"
 msgstr "المجموع"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "تحويل الأموال إلى البائعين"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "تحويل أسعار المنتجات المطلوبة إلى البائعين بما في ذلك عمولة المناولة"
 
 msgid "Voucher"
-msgstr ""
+msgstr "القسيمة"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "القسيمة %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني المتعلقة بالقسائم"
 
 msgid "Watched products"
-msgstr ""
+msgstr "المنتجات المشاهدة"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "لقد استلمنا دفعتك، وسوف نتولى أمر طلبك على الفور."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "لقد استلمنا الطرد المرتجع لطلبك %1$s من %2$s."
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "ي-م-د"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "يمكنك استخدام قسائمك في أي وقت في متجرنا عبر الإنترنت"
 
 msgid "You've cancelled the subscription"
 msgstr "تم إلغاء الإشتراك الخاص بك"
@@ -536,28 +536,28 @@ msgstr "حسابك الجديد"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "طلبك %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "تم إرسال طلبك %1$s من %2$s من %1$s."
 
 msgid "Your reference"
-msgstr ""
+msgstr "مرجعك"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "رقمك المرجعي"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "اشتراكك"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "قسيمتك"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "المنتجات التي شاهدتها"
 
 msgid "delivery"
 msgstr "التوصيل"
@@ -565,19 +565,19 @@ msgstr "التوصيل"
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "من %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "مثل عنوان إرسال الفواتير"
 
 msgid "payment"
 msgstr "الدفع"
 
 msgid "tax"
-msgstr ""
+msgstr "الضريبة"
 
 msgid "taxgst"
-msgstr ""
+msgstr "تاكسجست"
 
 msgid "taxpst"
-msgstr ""
+msgstr "الضرائب"

@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Bruce Liu <zcon.bruce@gmail.com>, 2016
 # Hans He, 2022
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: stevechen <steve.stevechen@gmail.com>, 2018\n"
 "Language-Team: Chinese (http://app.transifex.com/aimeos/aimeos-core/language/zh/)\n"
@@ -65,7 +65,7 @@ msgstr "+ %1$s %2$s/項目"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "+ %1$s%%%2$s"
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ 支付系統手續費"
@@ -125,7 +125,7 @@ msgid "Catalog site map"
 msgstr "站点目录地图"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "清洁篮"
 
 msgid "Coupon code import CSV"
 msgstr "优惠码导入 CSV"
@@ -202,7 +202,7 @@ msgid "Exports subscriptions to CSV file"
 msgstr "訂閱匯出至 CVS 檔案"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "组群导入 XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "如果您有任何疑問，請回覆此郵件。"
@@ -223,7 +223,7 @@ msgid "Imports new and updates existing customers from XML files"
 msgstr "从 XML 文件导入新客户并更新已存在的客户"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "从 XML 文件导入新组并更新现有组"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "從CSV匯入新的商品並更新既有商品"
@@ -265,7 +265,7 @@ msgstr "發票"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "发票 %1$s"
 
 msgid "Like entered by you"
 msgstr "您輸入的密碼"
@@ -349,7 +349,7 @@ msgid "Removes the expired entries from the cache"
 msgstr "從快取中移除過期的條目"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "从数据库中删除旧篮子"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -496,7 +496,7 @@ msgstr "代金券"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "优惠券 %1$s"
 
 msgid "Voucher related e-mails"
 msgstr "代金券相关的邮件"
@@ -577,7 +577,7 @@ msgid "tax"
 msgstr "稅"
 
 msgid "taxgst"
-msgstr ""
+msgstr "税率"
 
 msgid "taxpst"
-msgstr ""
+msgstr "纳税人"

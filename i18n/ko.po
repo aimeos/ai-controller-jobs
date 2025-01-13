@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
@@ -40,393 +40,393 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s 할인"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %2$s/항목"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+ 결제 비용"
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "+ 배송"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "계정"
 
 msgid "All XML import"
-msgstr ""
+msgstr "모든 XML 가져오기"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "모든 주문에는 당사의 이용약관이 적용됩니다."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
-msgstr ""
+msgstr "계정이 생성되었습니다."
 
 msgid "Article no."
-msgstr ""
+msgstr "기사 번호"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "속성 가져오기 XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "주문에 대한 승인된 결제는 발송 후 또는 구성 가능한 시간 후에 캡처됩니다."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "결제/배송 상태 일괄 업데이트"
 
 msgid "Billing address"
 msgstr "청구지"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "캐시 정리"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "승인된 결제 캡처"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "카탈로그 가져오기 CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "카탈로그 가져오기 XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "카탈로그 사이트 맵"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "정리 바구니"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "쿠폰 코드 가져오기 CSV"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "쿠폰 코드"
 
 msgid "Coupons"
-msgstr ""
+msgstr "쿠폰"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "검색 엔진용 카탈로그 사이트 맵 생성"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "검색 엔진용 제품 사이트 맵 생성"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "함께 구매한 제품 제안 생성"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "고객 계정 이메일"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "고객 가져오기 XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s에게"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s 씨에게"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Ms %1$s %2$s에게"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "고객님께"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "미완료 주문을 삭제하고 해당 제품 및 쿠폰 코드를 다시 사용할 수 있도록 설정합니다."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "미결제 주문을 삭제하여 데이터베이스를 깨끗하게 유지합니다."
 
 msgid "Delivery address"
 msgstr "배송 주소"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "이내 배송"
 
 msgid "Details"
-msgstr ""
+msgstr "세부 정보"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "모든 XML 가져오기를 실행하고 인덱스를 다시 빌드합니다."
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "일괄 업데이트를 사용하는 결제 또는 배송 서비스 제공업체를 실행합니다."
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "사용 가능한 모든 제품 내보내기"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "주문을 CSV 파일로 내보내기"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "구독을 CSV 파일로 내보내기"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "그룹 가져오기 XML"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "궁금한 점이 있으면 이 이메일로 답장해 주세요."
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "XML 파일에서 새 속성을 가져오고 기존 속성을 업데이트합니다."
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "CSV 파일에서 새 카테고리를 가져오거나 기존 카테고리를 업데이트합니다."
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "XML 파일에서 새 카테고리를 가져오거나 기존 카테고리를 업데이트합니다."
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "CSV 파일에서 새 쿠폰 코드 가져오기 및 기존 쿠폰 코드 업데이트"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "XML 파일에서 신규 고객 가져오기 및 기존 고객 업데이트하기"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "XML 파일에서 새 그룹을 가져오고 기존 그룹을 업데이트합니다."
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "CSV 파일에서 새 제품 가져오기 및 기존 제품 업데이트하기"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "XML 파일에서 새 제품을 가져오고 기존 제품을 업데이트합니다."
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "CSV 파일에서 새 주식을 가져오고 기존 주식을 업데이트합니다."
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "CSV 파일에서 신규 공급업체를 가져오거나 기존 공급업체를 업데이트합니다."
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "XML 파일에서 신규 공급업체를 가져오거나 기존 공급업체를 업데이트합니다."
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "포함 %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "포함 %1$s%% 부가가치세"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "리베이트 포함"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "인덱스 최적화"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "인덱스 재구축"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "인보이스"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "송장 %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "사용자가 입력한 좋아요"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "로그 정리"
 
 msgid "Login"
-msgstr ""
+msgstr "로그인"
 
 msgid "Name"
 msgstr "이름"
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "보고 있는 제품이 하나 이상 업데이트되었습니다."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "제품 검색 속도를 높이기 위한 인덱스 최적화"
 
 msgid "Order date"
-msgstr ""
+msgstr "주문 날짜"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "주문 배송 관련 이메일"
 
 msgid "Order details"
-msgstr ""
+msgstr "주문 세부 정보"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "주문 내보내기 CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "주문 결제 관련 이메일"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "주문 상태 가져오기 CSV"
 
 msgid "Password"
-msgstr ""
+msgstr "비밀번호"
 
 msgid "Price"
-msgstr ""
+msgstr "가격"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "주문 배송 서비스 처리"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "처음에 구독 처리하기"
 
 msgid "Product export"
-msgstr ""
+msgstr "제품 내보내기"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "제품 가져오기 CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "제품 가져오기 XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "제품 알림 이메일"
 
 msgid "Product site map"
-msgstr ""
+msgstr "제품 사이트 맵"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "함께 구매한 제품"
 
 msgid "Qty"
-msgstr ""
+msgstr "수량"
 
 msgid "Quantity"
-msgstr ""
+msgstr "수량"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "제품 검색을 위한 인덱스 재구축"
 
 msgid "Reference"
-msgstr ""
+msgstr "참조"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "캐시에서 만료된 항목을 제거합니다."
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "데이터베이스에서 이전 바구니를 제거합니다."
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "데이터베이스에서 이전 로그 항목을 제거하고 아카이브합니다(선택 사항)."
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "완료되지 않은 주문을 제거합니다."
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "미결제 주문 제거"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "다음 날짜에 구독을 갱신합니다."
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "제품 이미지 크기 조정"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "제품 이미지를 새 크기로 재조정합니다."
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "신규 고객 계정에 대한 이메일 보내기"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "시청한 제품에 대한 이메일 전송"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "주문 확인 또는 결제 상태 업데이트 이메일 전송"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "주문 배송 상태 업데이트 이메일 전송"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "ERP 시스템 또는 물류 파트너에게 유료 주문 전송"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "바우처가 포함된 이메일을 고객에게 전송합니다."
 
 msgid "Status"
 msgstr "상태"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "CSV 파일에서 주문 상태 가져오기"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "재고 가져오기 CSV"
 
 msgid "Sub-total"
 msgstr "중간 합계"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "구독 내보내기 CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "구독 프로세스 종료"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "구독 프로세스 갱신"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "구독 프로세스 시작"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "구독 제품"
 
 msgid "Sum"
 msgstr "합"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "공급업체 가져오기 CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "공급업체 가져오기 XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "만료된 구독을 종료합니다."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "%2$s에서 %1$s를 주문해 주셔서 감사합니다."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -434,7 +434,7 @@ msgstr ""
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "%2$s에서 주문한 %1$s의 배송 상태가 \"%3$s\"로 변경되었습니다."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -443,21 +443,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "최종 결제가 완료될 때까지 주문이 보류 중입니다. 선결제를 선택한 경우 주문 ID %1$s를 참조하여 당사 은행 계좌로 송금해 주세요."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "%2$s에서 주문한 %1$s의 소포를 배송하지 못했습니다."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "결제를 갱신할 수 없습니다."
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "%2$s에서 주문한 %1$s에 대한 결제 금액이 환불되었습니다."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -465,114 +465,114 @@ msgstr ""
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "%2$s에서 %1$s 주문의 결제 상태가 \"%3$s\"로 변경되었습니다."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "제품 구독이 종료되었습니다."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
+msgstr[0] "바우처 값은 %1$s입니다."
 
 msgid "Total"
 msgstr "총"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "벤더에게 송금"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "주문한 제품의 가격을 판매자에게 전달하고 수수료를 처리합니다."
 
 msgid "Voucher"
-msgstr ""
+msgstr "바우처"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "바우처 %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "바우처 관련 이메일"
 
 msgid "Watched products"
-msgstr ""
+msgstr "시청한 제품"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "결제가 완료되었으며 즉시 주문을 처리해 드리겠습니다."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "%2$s에서 주문한 %1$s에 대한 반품된 소포를 받았습니다."
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "바우처는 온라인 상점에서 언제든지 사용할 수 있습니다."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "구독을 취소했습니다."
 
 msgid "Your account"
-msgstr ""
+msgstr "내 계정"
 
 msgid "Your comment"
-msgstr ""
+msgstr "귀하의 코멘트"
 
 msgid "Your new account"
-msgstr ""
+msgstr "새 계정"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "주문 %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "%2$s에서 주문한 %1$s가 발송되었습니다."
 
 msgid "Your reference"
-msgstr ""
+msgstr "참조"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "참조 번호"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "구독"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "바우처"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "시청한 제품"
 
 msgid "delivery"
-msgstr ""
+msgstr "배달"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "%1$s에서"
 
 msgid "like billing address"
-msgstr ""
+msgstr "청구지 주소와 같은"
 
 msgid "payment"
-msgstr ""
+msgstr "결제"
 
 msgid "tax"
-msgstr ""
+msgstr "세금"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"

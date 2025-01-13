@@ -3,21 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos, 2024
-# Aimeos, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Aimeos, 2024\n"
-"Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lithuanian (http://app.transifex.com/aimeos/aimeos-core/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: he\n"
-"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -52,23 +50,23 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s %2$s הנחה"
+msgstr "%1$s %2$s išjungta"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr "%1$s %2$s/פריט"
+msgstr "+ %1$s %2$s/pozicija"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "%1$s%% %2$s"
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
-msgstr "+ תשלום עלויות"
+msgstr "+ Mokėjimo išlaidos"
 
 msgid "+ Shipping"
-msgstr "+ משלוח"
+msgstr "+ Pristatymas"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -76,359 +74,359 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "Account"
-msgstr "חשבון"
+msgstr "Sąskaita"
 
 msgid "All XML import"
-msgstr "כל ייבוא ​​XML"
+msgstr "Visi XML importai"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr "כל ההזמנות כפופות לתנאים וההגבלות שלנו."
+msgstr "Visiems užsakymams taikomos mūsų sąlygos."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
-msgstr "נוצר עבורך חשבון."
+msgstr "Jums sukurta paskyra."
 
 msgid "Article no."
-msgstr "סעיף מס."
+msgstr "Straipsnio Nr."
 
 msgid "Attribute import XML"
-msgstr "ייבוא ​​תכונות XML"
+msgstr "Atributų importas XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr "תשלומים מורשים של הזמנות ייקלטו לאחר שיגור או לאחר פרק זמן שניתן להגדרה"
+msgstr "Autorizuoti užsakymų mokėjimai bus užfiksuoti po išsiuntimo arba po konfigūruojamo laiko."
 
 msgid "Batch update of payment/delivery status"
-msgstr "עדכון אצווה של מצב תשלום/משלוח"
+msgstr "Mokėjimo ir (arba) pristatymo būsenos paketinis atnaujinimas"
 
 msgid "Billing address"
-msgstr "כתובת:תשלום"
+msgstr "Atsiskaitymo adresas"
 
 msgid "Cache cleanup"
-msgstr "ניקוי מטמון"
+msgstr "Domenų talpyklos valymas"
 
 msgid "Capture authorized payments"
-msgstr "לכידת תשלומים מורשים"
+msgstr "fiksuoti autorizuotus mokėjimus"
 
 msgid "Catalog import CSV"
-msgstr "CSV ייבוא ​​קטלוגים"
+msgstr "Katalogo importas CSV"
 
 msgid "Catalog import XML"
-msgstr "ייבוא ​​קטלוג XML"
+msgstr "Katalogo importo XML"
 
 msgid "Catalog site map"
-msgstr "מפת אתר קטלוג"
+msgstr "Katalogo svetainės žemėlapis"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Valymo krepšeliai"
 
 msgid "Coupon code import CSV"
-msgstr "ייבוא ​​קוד קופון CSV"
+msgstr "Kupono kodo importas CSV"
 
 msgid "Coupon codes"
-msgstr "קודי קופון"
+msgstr "Kuponų kodai"
 
 msgid "Coupons"
-msgstr "קופונים"
+msgstr "Kuponai"
 
 msgid "Creates a catalog site map for search engines"
-msgstr "יוצר מפת אתר קטלוגית למנועי חיפוש"
+msgstr "Sukuria katalogo svetainės žemėlapį, skirtą paieškos sistemoms"
 
 msgid "Creates a product site map for search engines"
-msgstr "יוצר מפת אתר מוצר למנועי חיפוש"
+msgstr "Sukuria produkto svetainės žemėlapį, skirtą paieškos sistemoms"
 
 msgid "Creates bought together product suggestions"
-msgstr "יוצר הצעות מוצרים שנרכשו ביחד"
+msgstr "Kuria kartu įsigytų produktų pasiūlymus"
 
 msgid "Customer account e-mails"
-msgstr "דואר אלקטרוני של חשבון לקוח"
+msgstr "Kliento paskyros el. laiškai"
 
 msgid "Customer import XML"
-msgstr "ייבוא ​​לקוח XML"
+msgstr "Klientų importo XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr "%1$s %2$s היקר"
+msgstr "Gerbiamas %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr "מר %1$s %2$s היקר"
+msgstr "Gerbiamasis %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr "גב' %1$s %2$s היקרה"
+msgstr "Gerbiama ponia %1$s %2$s"
 
 msgid "Dear customer"
-msgstr "לקוח יקר"
+msgstr "Gerbiamas kliente"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr "מוחק הזמנות שטרם הסתיימו והופך את המוצרים ואת קודי הקופון שלהן לזמינים שוב"
+msgstr "Ištrina nebaigtus užsakymus ir vėl leidžia naudotis jų produktais ir kuponų kodais."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr "מחק הזמנות שלא שולמו כדי לשמור על ניקיון מסד הנתונים"
+msgstr "Ištrina neapmokėtus užsakymus, kad duomenų bazė būtų švari."
 
 msgid "Delivery address"
-msgstr "כתובת:משלוח"
+msgstr "Pristatymo adresas"
 
 msgid "Delivery within"
-msgstr "משלוח בתוך"
+msgstr "Pristatymas per"
 
 msgid "Details"
-msgstr "פרטים"
+msgstr "Išsami informacija"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr "מבצע את כל יבואני ה-XML ובונה מחדש את האינדקס"
+msgstr "Įvykdo visus XML importuotojus ir atkuria indeksą"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr "מבצע ספקי שירותי תשלום או משלוחים המשתמשים בעדכוני אצווה"
+msgstr "Vykdo mokėjimo arba pristatymo paslaugų teikėjų, kurie naudoja paketinius atnaujinimus."
 
 msgid "Exports all available products"
-msgstr "מייצא את כל המוצרים הזמינים"
+msgstr "Eksportuoja visus turimus produktus"
 
 msgid "Exports orders to CSV file"
-msgstr "ייצוא הזמנות לקובץ CSV"
+msgstr "Eksportuoja užsakymus į CSV failą"
 
 msgid "Exports subscriptions to CSV file"
-msgstr "ייצוא מנויים לקובץ CSV"
+msgstr "Eksportuoja prenumeratas į CSV failą"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Grupių importas XML"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr "אם יש לך שאלות, אנא השב לדוא\"ל זה"
+msgstr "Jei turite klausimų, atsakykite į šį el. laišką"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr "מייבא חדש ומעדכן תכונות קיימות מקובצי XML"
+msgstr "Importuoja naujus ir atnaujina esamus atributus iš XML failų"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr "מייבא חדש ומעדכן קטגוריות קיימות מקובצי CSV"
+msgstr "Importuoja naujas ir atnaujina esamas kategorijas iš CSV failų"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr "מייבא חדש ומעדכן קטגוריות קיימות מקובצי XML"
+msgstr "Importuoja naujas ir atnaujina esamas kategorijas iš XML failų"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr "מייבא חדש ומעדכן קוד קופון קיים מקובצי CSV"
+msgstr "Importuoja naujus ir atnaujina esamus kuponų kodus iš CSV failų"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr "מייבאת חדשים ומעדכנת לקוחות קיימים מקובצי XML"
+msgstr "Importuoja naujus ir atnaujina esamus klientus iš XML failų"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Importuoja naujas ir atnaujina esamas grupes iš XML failų"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr "מייבא מוצרים חדשים ומעדכן מוצרים קיימים מקובצי CSV"
+msgstr "Importuoja naujus ir atnaujina esamus produktus iš CSV failų"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr "מייבא מוצרים חדשים ומעדכן מוצרים קיימים מקובצי XML"
+msgstr "Importuoja naujus ir atnaujina esamus produktus iš XML failų"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr "מייבא חדש ומעדכן מניות קיימות מקובצי CSV"
+msgstr "Importuoja naujas ir atnaujina esamas atsargas iš CSV failų"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr "מייבא חדש ומעדכן ספקים קיימים מקבצי CSV"
+msgstr "Importuoja naujus ir atnaujina esamus tiekėjus iš CSV failų"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr "מייבא חדש ומעדכן ספקים קיימים מקובצי XML"
+msgstr "Importuoja naujus ir atnaujina esamus tiekėjus iš XML failų"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "לְרַבּוֹת %1$s%% %2$s"
+msgstr "Įskaitant %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr "לְרַבּוֹת %1$s%% VAT"
+msgstr "Su %1$s%% PVM"
 
 msgid "Included rebates"
-msgstr "הנחות כלולות"
+msgstr "Įtrauktos nuolaidos"
 
 msgid "Index optimization"
-msgstr "אופטימיזציה של אינדקס"
+msgstr "Indekso optimizavimas"
 
 msgid "Index rebuild"
-msgstr "בנייה מחדש של האינדקס"
+msgstr "Indekso atstatymas"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr "חשבונית"
+msgstr "Sąskaita faktūra"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr "חשבונית %1$s"
+msgstr "Sąskaita faktūra %1$s"
 
 msgid "Like entered by you"
-msgstr "לייק שהכנסת על ידך"
+msgstr "Kaip ir jūsų įvesta"
 
 msgid "Log cleanup"
-msgstr "ניקוי יומן"
+msgstr "Žurnalo valymas"
 
 msgid "Login"
-msgstr "כניסה"
+msgstr "Prisijungimas"
 
 msgid "Name"
-msgstr "שם"
+msgstr "Pavadinimas"
 
 msgid "One or more products you are watching have been updated."
-msgstr "מוצר אחד או יותר שאתה צופה בו עודכנו."
+msgstr "Vienas ar daugiau stebimų produktų buvo atnaujinti."
 
 msgid "Optimizes the index for searching products faster"
-msgstr "מייעל את האינדקס לחיפוש מוצרים מהר יותר"
+msgstr "Optimizuotas indeksas, kad produktų paieška būtų greitesnė"
 
 msgid "Order date"
-msgstr "תאריך הזמנה"
+msgstr "Užsakymo data"
 
 msgid "Order delivery related e-mails"
-msgstr "הודעות דואר אלקטרוני הקשורות למשלוח הזמנה"
+msgstr "Su užsakymų pristatymu susiję el. laiškai"
 
 msgid "Order details"
-msgstr "פרטי הזמנה"
+msgstr "Užsakymo informacija"
 
 msgid "Order export CSV"
-msgstr "הזמנת יצוא CSV"
+msgstr "Užsakymų eksportas CSV"
 
 msgid "Order payment related e-mails"
-msgstr "הודעות דואר אלקטרוני הקשורות לתשלום"
+msgstr "Su užsakymo apmokėjimu susiję el. laiškai"
 
 msgid "Order status import CSV"
-msgstr "ייבוא ​​סטטוס הזמנה CSV"
+msgstr "Užsakymo būsenos importas CSV"
 
 msgid "Password"
-msgstr "סיסמה"
+msgstr "Slaptažodis"
 
 msgid "Price"
-msgstr "מחיר"
+msgstr "Kaina"
 
 msgid "Process order delivery services"
-msgstr "שירותי משלוח הזמנות תהליכים"
+msgstr "Užsakymų pristatymo paslaugos"
 
 msgid "Process subscriptions initially"
-msgstr "עיבוד מנויים בתחילה"
+msgstr "Iš pradžių apdoroti prenumeratas"
 
 msgid "Product export"
-msgstr "יצוא מוצר"
+msgstr "Produkto eksportas"
 
 msgid "Product import CSV"
-msgstr "CSV של ייבוא ​​מוצרים"
+msgstr "Produkto importas CSV"
 
 msgid "Product import XML"
-msgstr "ייבוא ​​מוצר XML"
+msgstr "Produkto importo XML"
 
 msgid "Product notification e-mails"
-msgstr "הודעות דואר אלקטרוני על מוצר"
+msgstr "Pranešimų apie gaminius el. laiškai"
 
 msgid "Product site map"
-msgstr "מפת אתר מוצר"
+msgstr "Produkto svetainės žemėlapis"
 
 msgid "Products bought together"
-msgstr "מוצרים שנרכשו יחד"
+msgstr "Kartu perkami produktai"
 
 msgid "Qty"
-msgstr "כמות"
+msgstr "Kiekis"
 
 msgid "Quantity"
-msgstr "כמות"
+msgstr "Kiekis"
 
 msgid "Rebuilds the index for searching products"
-msgstr "בונה מחדש את האינדקס לחיפוש מוצרים"
+msgstr "Atkuriamas produktų paieškos indeksas"
 
 msgid "Reference"
-msgstr "הפניה"
+msgstr "Nuoroda"
 
 msgid "Removes the expired entries from the cache"
-msgstr "מסיר את הערכים שפג תוקפם מהמטמון"
+msgstr "Pašalina pasibaigusius įrašus iš talpyklos"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Iš duomenų bazės pašalinami seni krepšeliai"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr "מסיר את ערכי היומן הישנים ממסד הנתונים ומעביר אותם לארכיון (אופציונלי)"
+msgstr "Pašalina senus žurnalo įrašus iš duomenų bazės ir juos archyvuoja (neprivaloma)"
 
 msgid "Removes unfinished orders"
-msgstr "מסיר הזמנות לא גמורות"
+msgstr "Pašalina nebaigtus užsakymus"
 
 msgid "Removes unpaid orders"
-msgstr "מסיר הזמנות שלא שולמו"
+msgstr "Pašalina neapmokėtus užsakymus"
 
 msgid "Renews subscriptions at next date"
-msgstr "חידוש מנויים בתאריך הבא"
+msgstr "Prenumeratos atnaujinimas kitą dieną"
 
 msgid "Rescale product images"
-msgstr "שינוי קנה מידה של תמונות מוצר"
+msgstr "Pakeiskite produktų vaizdų mastelio keitimą"
 
 msgid "Rescales product images to the new sizes"
-msgstr "קנה מידה מחדש של תמונות המוצר לגדלים החדשים"
+msgstr "keičia produktų vaizdų mastelius į naujus dydžius"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr "שולח הודעות דואר אלקטרוני עבור חשבונות לקוחות חדשים"
+msgstr "siunčia el. laiškus dėl naujų klientų paskyrų"
 
 msgid "Sends e-mails for watched products"
-msgstr "שולח הודעות דואר אלקטרוני עבור מוצרים שנצפו"
+msgstr "Siunčia el. laiškus apie stebimus produktus"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr "שולח אישור הזמנה או עדכון סטטוס תשלום בדואר אלקטרוני"
+msgstr "siunčia užsakymo patvirtinimo arba mokėjimo būsenos atnaujinimo el. laiškus."
 
 msgid "Sends order delivery status update e-mails"
-msgstr "שולח דואר אלקטרוני של עדכון סטטוס מסירת הזמנה"
+msgstr "siunčia užsakymo pristatymo būsenos atnaujinimo el. laiškus"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr "שולח הזמנות בתשלום למערכת ה-ERP או לשותף לוגיסטי"
+msgstr "siunčia apmokėtus užsakymus į ERP sistemą arba logistikos partneriui."
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr "שולח את המייל עם השובר ללקוח"
+msgstr "siunčia el. laišką su kuponu klientui"
 
 msgid "Status"
-msgstr "סטטוס"
+msgstr "Statusas"
 
 msgid "Status import for orders from CSV file"
-msgstr "ייבוא ​​סטטוס עבור הזמנות מקובץ CSV"
+msgstr "Užsakymų būsenos importas iš CSV failo"
 
 msgid "Stock import CSV"
-msgstr "CSV ייבוא ​​מלאי"
+msgstr "Atsargų importas CSV"
 
 msgid "Sub-total"
-msgstr "סה\"כ משנה"
+msgstr "Tarpinė suma"
 
 msgid "Subscription export CSV"
-msgstr "ייצוא מנוי CSV"
+msgstr "Prenumeratos eksportas CSV"
 
 msgid "Subscription process end"
-msgstr "סיום תהליך המנוי"
+msgstr "Prenumeratos proceso pabaiga"
 
 msgid "Subscription process renew"
-msgstr "חידוש תהליך המנוי"
+msgstr "Prenumeratos proceso atnaujinimas"
 
 msgid "Subscription process start"
-msgstr "התחלת תהליך המנוי"
+msgstr "Prenumeratos proceso pradžia"
 
 msgid "Subscription product"
-msgstr "מוצר מנוי"
+msgstr "Prenumeruojamas produktas"
 
 msgid "Sum"
-msgstr "סכום"
+msgstr "Suma"
 
 msgid "Supplier import CSV"
-msgstr "CSV ייבוא ​​ספק"
+msgstr "Tiekėjų importo CSV"
 
 msgid "Supplier import XML"
-msgstr "ייבוא ​​XML של ספקים"
+msgstr "Tiekėjo importo XML"
 
 msgid "Terminates expired subscriptions"
-msgstr "מסיים מנויים שפג תוקפם"
+msgstr "Nutraukia pasibaigusias prenumeratas"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "תודה על הזמנתך %1$s מ-%2$s."
+msgstr "Dėkojame už užsakymą %1$s iš %2$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -436,7 +434,7 @@ msgstr "תודה על הזמנתך %1$s מ-%2$s."
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "סטטוס המשלוח של ההזמנה שלך %1$s מ-%2$s השתנה ל- \"%3$s\"."
+msgstr "Jūsų užsakymo %1$s iš %2$s pristatymo būsena pakeista į \"%3$s\"."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -445,21 +443,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "ההזמנה ממתינה עד שנקבל את התשלום הסופי. אם בחרת לשלם מראש, אנא העבר את הכסף לחשבון הבנק שלנו עם מזהה ההזמנה \"%1$s\" כעיון."
+msgstr "Užsakymas laukia, kol gausime galutinį mokėjimą. Jei nusprendėte sumokėti iš anksto, prašome pervesti pinigus į mūsų banko sąskaitą, kaip nuorodą nurodydami užsakymo ID %1$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "לא ניתן היה לשלוח את החבילה עבור ההזמנה שלך %1$s מ-%2$s."
+msgstr "Jūsų užsakymo %1$s iš %2$s siuntinio nepavyko pristatyti."
 
 msgid "The payment couldn't be renewed"
-msgstr "לא ניתן היה לחדש את התשלום"
+msgstr "Mokėjimas negalėjo būti atnaujintas"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "התשלום עבור ההזמנה שלך %1$s מ-%2$s הוחזר."
+msgstr "Mokėjimas už jūsų užsakymą %1$s iš %2$s buvo grąžintas."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -467,116 +465,117 @@ msgstr "התשלום עבור ההזמנה שלך %1$s מ-%2$s הוחזר."
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "סטטוס התשלום של ההזמנה שלך %1$s מ-%2$s השתנה ל- \"%3$s\"."
+msgstr "Jūsų užsakymo %1$s iš %2$s mokėjimo būsena pakeista į \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr "המנוי למוצר הסתיים"
+msgstr "Produkto prenumerata baigėsi"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jūsų kupono vertė yra %1$s"
+msgstr[1] "Jūsų kupono vertė yra %1$s"
+msgstr[2] "Jūsų kupono vertė yra %1$s"
+msgstr[3] "Jūsų kupono vertė yra %1$s"
 
 msgid "Total"
-msgstr "סה\"כ"
+msgstr "Iš viso"
 
 msgid "Transfers money to vendors"
-msgstr "מעביר כסף לספקים"
+msgstr "Pinigų pervedimai pardavėjams"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr "מעביר את מחיר המוצרים שהוזמנו לספקים כולל. "
+msgstr "Perveda užsakytų produktų kainą pardavėjams, įskaitant komisinių tvarkymą."
 
 msgid "Voucher"
-msgstr "שובר"
+msgstr "Kuponas"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr "שובר %1$s"
+msgstr "Kuponas %1$s"
 
 msgid "Voucher related e-mails"
-msgstr "מיילים הקשורים לשוברים"
+msgstr "Su kuponais susiję el. laiškai"
 
 msgid "Watched products"
-msgstr "מוצרים נצפו"
+msgstr "Stebimi produktai"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr "קיבלנו את התשלום שלך, ונטפל בהזמנה שלך באופן מיידי."
+msgstr "Gavome jūsų mokėjimą ir nedelsdami pasirūpinsime jūsų užsakymu."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "קיבלנו את החבילה שהוחזרה עבור ההזמנה שלך %1$s מ-%2$s."
+msgstr "Gavome jūsų užsakymo %1$s grąžinamą siuntą iš %2$s."
 
 msgid "Y-m-d"
-msgstr "י-מ-ד"
+msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr "אתה יכול להשתמש בשוברים שלך בכל עת בחנות המקוונת שלנו"
+msgstr "Kuponus galite bet kada panaudoti mūsų internetinėje parduotuvėje"
 
 msgid "You've cancelled the subscription"
-msgstr "ביטלת את המנוי"
+msgstr "Atšaukėte prenumeratą"
 
 msgid "Your account"
-msgstr "החשבון שלך"
+msgstr "Jūsų paskyra"
 
 msgid "Your comment"
-msgstr "ההערה שלך"
+msgstr "Jūsų komentaras"
 
 msgid "Your new account"
-msgstr "החשבון החדש שלך"
+msgstr "Jūsų naujoji paskyra"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr "ההזמנה שלך %1$s"
+msgstr "Jūsų užsakymas %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "ההזמנה שלך %1$s מ-%2$s נשלחה."
+msgstr "Jūsų užsakymas %1$s iš %2$s buvo išsiųstas."
 
 msgid "Your reference"
-msgstr "ההפניה שלך"
+msgstr "Jūsų nuoroda"
 
 msgid "Your reference number"
-msgstr "מספר האסמכתה שלך"
+msgstr "Jūsų nuorodos numeris"
 
 msgid "Your subscription"
-msgstr "המנוי שלך"
+msgstr "Jūsų prenumerata"
 
 msgid "Your voucher"
-msgstr "השובר שלך"
+msgstr "Jūsų kuponas"
 
 msgid "Your watched products"
-msgstr "המוצרים שצפיתם בהם"
+msgstr "Jūsų stebimi produktai"
 
 msgid "delivery"
-msgstr "משלוח"
+msgstr "pristatymas"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr "מ-%1$s"
+msgstr "iš %1$s"
 
 msgid "like billing address"
-msgstr "כתובת לחיוב כמו"
+msgstr "kaip atsiskaitymo adresas"
 
 msgid "payment"
-msgstr "תשלום"
+msgstr "mokėjimas"
 
 msgid "tax"
-msgstr "מס"
+msgstr "mokesčiai"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"

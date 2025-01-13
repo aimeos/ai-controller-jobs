@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish (http://app.transifex.com/aimeos/aimeos-core/language/sv/)\n"
@@ -60,7 +60,7 @@ msgstr "+ %2$s %1$s/item"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "Avgifter"
@@ -77,10 +77,10 @@ msgid "Account"
 msgstr "Konto"
 
 msgid "All XML import"
-msgstr ""
+msgstr "All XML-import"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Alla beställningar omfattas av våra allmänna villkor."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
@@ -91,39 +91,39 @@ msgid "Article no."
 msgstr "Artikelnummer"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Import av attribut XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "Godkända betalningar av order registreras efter avsändning eller efter en konfigurerbar tidsperiod"
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Batchuppdatering av betalnings-/leveransstatus"
 
 msgid "Billing address"
 msgstr "Faktureringsadress"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Rensning av cacheminnet"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Registrera auktoriserade betalningar"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Katalogimport CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Katalogimport XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Katalogens webbplatskarta"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Korgar för städning"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Import av kupongkod CSV"
 
 msgid "Coupon codes"
 msgstr "Rabattkoder"
@@ -132,34 +132,34 @@ msgid "Coupons"
 msgstr "Rabattkuponger"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Skapar en webbplatskarta för katalogen för sökmotorer"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Skapar en produktwebbplatskarta för sökmotorer"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Skapar tillsammans köpta produktförslag"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "E-postmeddelanden om kundkonton"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "XML för kundimport"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Kära %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Kära Mr %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Kära Ms %1$s %2$s"
 
 msgid "Dear customer"
 msgstr "Kära kund"
@@ -167,77 +167,77 @@ msgstr "Kära kund"
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "Raderar oavslutade beställningar och gör deras produkter och kupongkoder tillgängliga igen"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Raderar obetalda order för att hålla databasen ren"
 
 msgid "Delivery address"
 msgstr "Leveransadress"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Leverans inom"
 
 msgid "Details"
 msgstr "Detaljer"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Exekverar alla XML-importörer och bygger om indexet"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Genomför betalning eller leverans till tjänsteleverantörer som använder batchuppdateringar"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Exporterar alla tillgängliga produkter"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Exporterar order till CSV-fil"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Exporterar prenumerationer till CSV-fil"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Grupper importerar XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Har du några frågor, vänligen besvara detta mail"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga attribut från XML-filer"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga kategorier från CSV-filer"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga kategorier från XML-filer"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga kupongkoder från CSV-filer"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga kunder från XML-filer"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga grupper från XML-filer"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga produkter från CSV-filer"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga produkter från XML-filer"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga lager från CSV-filer"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Importera nya och uppdatera befintliga leverantörer från CSV-filer"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Importerar nya och uppdaterar befintliga leverantörer från XML-filer"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Inkl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -248,28 +248,28 @@ msgid "Included rebates"
 msgstr "Inkluderad rabatt"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Optimering av index"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Återuppbyggnad av index"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Faktura %1$s"
 
 msgid "Like entered by you"
 msgstr "Gillar, satt av dig"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Uppstädning av loggar"
 
 msgid "Login"
-msgstr ""
+msgstr "Logga in"
 
 msgid "Name"
 msgstr "Namn"
@@ -278,25 +278,25 @@ msgid "One or more products you are watching have been updated."
 msgstr "En eller flera av produkterna du bevakar har uppdaterats"
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimerar indexet för snabbare sökning efter produkter"
 
 msgid "Order date"
 msgstr "Orderdatum,"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "E-postmeddelanden relaterade till orderleverans"
 
 msgid "Order details"
 msgstr "Orderdetaljer"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Orderexport CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "E-postmeddelanden relaterade till orderbetalning"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Import av orderstatus CSV"
 
 msgid "Password"
 msgstr "Lösenord"
@@ -305,28 +305,28 @@ msgid "Price"
 msgstr "Pris"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Behandla beställningar av leveranstjänster"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Behandla prenumerationer initialt"
 
 msgid "Product export"
-msgstr ""
+msgstr "Export av produkter"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Produktimport CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "Produktimport XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "E-postmeddelanden om produktaviseringar"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Produktens webbplatskarta"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Produkter som köpts tillsammans"
 
 msgid "Qty"
 msgstr "Antal"
@@ -335,77 +335,77 @@ msgid "Quantity"
 msgstr "Antal"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Bygger om indexet för sökning av produkter"
 
 msgid "Reference"
 msgstr "Referens"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Tar bort utgångna poster från cacheminnet"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Tar bort de gamla korgarna från databasen"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "Tar bort de gamla loggposterna från databasen och arkiverar dem (valfritt)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Avlägsnar oavslutade order"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Tar bort obetalda beställningar"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Förnya prenumerationer vid nästa datum"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Skala om produktbilder"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Skalar om produktbilder till de nya storlekarna"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Skickar e-post för nya kundkonton"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Skickar e-post för bevakade produkter"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Skickar e-postmeddelanden med orderbekräftelse eller uppdatering av betalningsstatus"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Skickar e-postmeddelanden med statusuppdateringar för orderleverans"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Skickar betalda order till ERP-systemet eller logistikpartnern"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Skickar e-postmeddelandet med värdebeviset till kunden"
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Import av status för order från CSV-fil"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Lagerimport CSV"
 
 msgid "Sub-total"
 msgstr "Delsumma"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Prenumerationsexport CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Prenumerationsprocessens slut"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Prenumerationsprocess förnya"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Start av prenumerationsprocessen"
 
 msgid "Subscription product"
 msgstr "Produktprenumeration"
@@ -414,13 +414,13 @@ msgid "Sum"
 msgstr "Summa"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Import av leverantör CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Leverantörsimport XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Avslutar förfallna prenumerationer"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -465,7 +465,7 @@ msgstr "Betalningen för din order %1$s från %2$s har återbetalats."
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Betalningsstatusen för din order %1$s från %2$s har ändrats till \"%3$s\"."
 
 msgid "The subscription for the product has ended"
 msgstr "Prenumerationen på produktern har upphört"
@@ -480,22 +480,22 @@ msgid "Total"
 msgstr "Total"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Överför pengar till leverantörer"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Överför priset på beställda produkter till leverantörerna inklusive provisionshantering"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Kupong"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Värdebevis %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Voucher-relaterade e-postmeddelanden"
 
 msgid "Watched products"
 msgstr "Matchande produkter"
@@ -573,7 +573,7 @@ msgid "tax"
 msgstr "moms"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"

@@ -1,0 +1,579 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: aimeos-core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Greek (http://app.transifex.com/aimeos/aimeos-core/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+
+#. / Price format with price value (%1$s) and currency (%2$s)
+#, php-format
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#. / Rebate format with rebate value (%1$s) and currency (%2$s)
+#, php-format
+msgid "%1$s %2$s off"
+msgstr "%1$s %2$s off"
+
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
+#, php-format
+msgid "+ %1$s %2$s/item"
+msgstr "+ %1$s %2$s/item"
+
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr "+ %1$s%% %2$s"
+
+msgid "+ Payment costs"
+msgstr "+ Κόστος πληρωμής"
+
+msgid "+ Shipping"
+msgstr "+ Ναυτιλία"
+
+#. / Rebate percent format with rebate percent value (%1$s)
+#, php-format
+msgid "-%1$s%%"
+msgstr "-%1$s%%"
+
+msgid "Account"
+msgstr "Λογαριασμός"
+
+msgid "All XML import"
+msgstr "Όλες οι εισαγωγές XML"
+
+msgid "All orders are subject to our terms and conditions."
+msgstr "Όλες οι παραγγελίες υπόκεινται στους όρους και τις προϋποθέσεις μας."
+
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2025
+msgid "An account has been created for you."
+msgstr "Ένας λογαριασμός έχει δημιουργηθεί για εσάς."
+
+msgid "Article no."
+msgstr "Αρ."
+
+msgid "Attribute import XML"
+msgstr "Εισαγωγή χαρακτηριστικών XML"
+
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
+msgstr "Οι εξουσιοδοτημένες πληρωμές των παραγγελιών θα καταγράφονται μετά την αποστολή ή μετά από ένα διαμορφώσιμο χρονικό διάστημα."
+
+msgid "Batch update of payment/delivery status"
+msgstr "Επικαιροποίηση της κατάστασης πληρωμής/παράδοσης σε παρτίδες"
+
+msgid "Billing address"
+msgstr "Διεύθυνση χρέωσης"
+
+msgid "Cache cleanup"
+msgstr "Καθαρισμός προσωρινής μνήμης cache"
+
+msgid "Capture authorized payments"
+msgstr "Συλλογή εγκεκριμένων πληρωμών"
+
+msgid "Catalog import CSV"
+msgstr "Εισαγωγή καταλόγου CSV"
+
+msgid "Catalog import XML"
+msgstr "Εισαγωγή καταλόγου XML"
+
+msgid "Catalog site map"
+msgstr "Χάρτης ιστότοπου καταλόγου"
+
+msgid "Cleanup baskets"
+msgstr "Καλάθια καθαρισμού"
+
+msgid "Coupon code import CSV"
+msgstr "Εισαγωγή κωδικού κουπονιού CSV"
+
+msgid "Coupon codes"
+msgstr "Κωδικοί κουπονιών"
+
+msgid "Coupons"
+msgstr "Κουπόνια"
+
+msgid "Creates a catalog site map for search engines"
+msgstr "Δημιουργεί έναν χάρτη ιστότοπου καταλόγου για μηχανές αναζήτησης"
+
+msgid "Creates a product site map for search engines"
+msgstr "Δημιουργεί έναν χάρτη ιστότοπου προϊόντος για μηχανές αναζήτησης"
+
+msgid "Creates bought together product suggestions"
+msgstr "Δημιουργεί προτάσεις προϊόντων που αγοράζονται μαζί"
+
+msgid "Customer account e-mails"
+msgstr "Ηλεκτρονικά μηνύματα λογαριασμού πελάτη"
+
+msgid "Customer import XML"
+msgstr "Εισαγωγή πελατών XML"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear %1$s %2$s"
+msgstr "Αγαπητή %1$s %2$s"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr "Αγαπητέ κύριε %1$s %2$s"
+
+#. / E-mail intro with first name (%1$s) and last name (%2$s)
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr "Αγαπητή κυρία %1$s %2$s"
+
+msgid "Dear customer"
+msgstr "Αγαπητέ πελάτη"
+
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
+msgstr "Διαγράφει ημιτελείς παραγγελίες και καθιστά τα προϊόντα και τους κωδικούς κουπονιών τους και πάλι διαθέσιμα"
+
+msgid "Deletes unpaid orders to keep the database clean"
+msgstr "Διαγράφει τις απλήρωτες παραγγελίες για να κρατήσει τη βάση δεδομένων καθαρή"
+
+msgid "Delivery address"
+msgstr "Διεύθυνση παράδοσης"
+
+msgid "Delivery within"
+msgstr "Παράδοση εντός"
+
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+msgid "Executes all XML importers and rebuild the index"
+msgstr "Εκτελεί όλους τους εισαγωγείς XML και ανακατασκευάζει το ευρετήριο"
+
+msgid "Executes payment or delivery service providers that uses batch updates"
+msgstr "Εκτελεί παρόχους υπηρεσιών πληρωμής ή παράδοσης που χρησιμοποιούν ενημερώσεις παρτίδας"
+
+msgid "Exports all available products"
+msgstr "Εξάγει όλα τα διαθέσιμα προϊόντα"
+
+msgid "Exports orders to CSV file"
+msgstr "Εξαγωγή παραγγελιών σε αρχείο CSV"
+
+msgid "Exports subscriptions to CSV file"
+msgstr "Εξαγωγή συνδρομών σε αρχείο CSV"
+
+msgid "Groups import XML"
+msgstr "Ομάδες εισαγωγής XML"
+
+msgid "If you have any questions, please reply to this e-mail"
+msgstr "Εάν έχετε ερωτήσεις, απαντήστε σε αυτό το e-mail"
+
+msgid "Imports new and updates existing attributes from XML files"
+msgstr "Εισάγει νέα και ενημερώνει υπάρχοντα χαρακτηριστικά από αρχεία XML"
+
+msgid "Imports new and updates existing categories from CSV files"
+msgstr "Εισάγει νέες και ενημερώνει υπάρχουσες κατηγορίες από αρχεία CSV"
+
+msgid "Imports new and updates existing categories from XML files"
+msgstr "Εισάγει νέες και ενημερώνει υπάρχουσες κατηγορίες από αρχεία XML"
+
+msgid "Imports new and updates existing coupon code from CSV files"
+msgstr "Εισάγει νέους και ενημερώνει υφιστάμενους κωδικούς κουπονιών από αρχεία CSV"
+
+msgid "Imports new and updates existing customers from XML files"
+msgstr "Εισάγει νέους και ενημερώνει υπάρχοντες πελάτες από αρχεία XML"
+
+msgid "Imports new and updates existing groups from XML files"
+msgstr "Εισάγει νέες και ενημερώνει υπάρχουσες ομάδες από αρχεία XML"
+
+msgid "Imports new and updates existing products from CSV files"
+msgstr "Εισάγει νέα και ενημερώνει υπάρχοντα προϊόντα από αρχεία CSV"
+
+msgid "Imports new and updates existing products from XML files"
+msgstr "Εισάγει νέα και ενημερώνει υπάρχοντα προϊόντα από αρχεία XML"
+
+msgid "Imports new and updates existing stocks from CSV files"
+msgstr "Εισάγει νέα και ενημερώνει τα υπάρχοντα αποθέματα από αρχεία CSV"
+
+msgid "Imports new and updates existing suppliers from CSV files"
+msgstr "Εισάγει νέους και ενημερώνει υπάρχοντες προμηθευτές από αρχεία CSV"
+
+msgid "Imports new and updates existing suppliers from XML files"
+msgstr "Εισάγει νέους και ενημερώνει υπάρχοντες προμηθευτές από αρχεία XML"
+
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr "Συμπεριλαμβανομένων %1$s%% %2$s"
+
+#. / Tax rate format with tax rate in percent (%1$s)
+#, php-format
+msgid "Incl. %1$s%% VAT"
+msgstr "Συμπεριλαμβανομένου του ΦΠΑ %1$s%%"
+
+msgid "Included rebates"
+msgstr "Συμπεριλαμβανόμενες εκπτώσεις"
+
+msgid "Index optimization"
+msgstr "Βελτιστοποίηση ευρετηρίου"
+
+msgid "Index rebuild"
+msgstr "Ανακατασκευή ευρετηρίου"
+
+#. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+#. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+msgid "Invoice"
+msgstr "Τιμολόγιο"
+
+#, php-format
+msgid "Invoice %1$s"
+msgstr "Τιμολόγιο %1$s"
+
+msgid "Like entered by you"
+msgstr "Όπως εισήχθη από εσάς"
+
+msgid "Log cleanup"
+msgstr "Καθαρισμός αρχείων καταγραφής"
+
+msgid "Login"
+msgstr "Σύνδεση"
+
+msgid "Name"
+msgstr "Όνομα"
+
+msgid "One or more products you are watching have been updated."
+msgstr "Ένα ή περισσότερα προϊόντα που παρακολουθείτε έχουν ενημερωθεί."
+
+msgid "Optimizes the index for searching products faster"
+msgstr "Βελτιστοποιεί το ευρετήριο για ταχύτερη αναζήτηση προϊόντων"
+
+msgid "Order date"
+msgstr "Ημερομηνία παραγγελίας"
+
+msgid "Order delivery related e-mails"
+msgstr "Ηλεκτρονικά μηνύματα σχετικά με την παράδοση παραγγελιών"
+
+msgid "Order details"
+msgstr "Λεπτομέρειες παραγγελίας"
+
+msgid "Order export CSV"
+msgstr "Εξαγωγή παραγγελίας CSV"
+
+msgid "Order payment related e-mails"
+msgstr "Ηλεκτρονικά μηνύματα σχετικά με την πληρωμή της παραγγελίας"
+
+msgid "Order status import CSV"
+msgstr "Εισαγωγή κατάστασης παραγγελίας CSV"
+
+msgid "Password"
+msgstr "Κωδικός πρόσβασης"
+
+msgid "Price"
+msgstr "Τιμή"
+
+msgid "Process order delivery services"
+msgstr "Διαδικασία υπηρεσιών παράδοσης παραγγελιών"
+
+msgid "Process subscriptions initially"
+msgstr "Επεξεργασία συνδρομών αρχικά"
+
+msgid "Product export"
+msgstr "Εξαγωγή προϊόντος"
+
+msgid "Product import CSV"
+msgstr "Εισαγωγή προϊόντων CSV"
+
+msgid "Product import XML"
+msgstr "Εισαγωγή προϊόντος XML"
+
+msgid "Product notification e-mails"
+msgstr "Ηλεκτρονικά μηνύματα ειδοποίησης προϊόντων"
+
+msgid "Product site map"
+msgstr "Χάρτης ιστότοπου προϊόντος"
+
+msgid "Products bought together"
+msgstr "Προϊόντα που αγοράζονται μαζί"
+
+msgid "Qty"
+msgstr "Ποσότητα"
+
+msgid "Quantity"
+msgstr "Ποσότητα"
+
+msgid "Rebuilds the index for searching products"
+msgstr "Ανακατασκευάζει το ευρετήριο για την αναζήτηση προϊόντων"
+
+msgid "Reference"
+msgstr "Αναφορά"
+
+msgid "Removes the expired entries from the cache"
+msgstr "Αφαιρεί τις ληγμένες καταχωρήσεις από τη μνήμη cache"
+
+msgid "Removes the old baskets from the database"
+msgstr "Αφαιρεί τα παλιά καλάθια από τη βάση δεδομένων"
+
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
+msgstr "Αφαιρεί τις παλιές εγγραφές καταγραφής από τη βάση δεδομένων και τις αρχειοθετεί (προαιρετικά)"
+
+msgid "Removes unfinished orders"
+msgstr "Αφαιρεί ημιτελείς παραγγελίες"
+
+msgid "Removes unpaid orders"
+msgstr "Αφαιρεί τις απλήρωτες παραγγελίες"
+
+msgid "Renews subscriptions at next date"
+msgstr "Ανανεώνει τις συνδρομές στην επόμενη ημερομηνία"
+
+msgid "Rescale product images"
+msgstr "Επανακλιμάκωση εικόνων προϊόντων"
+
+msgid "Rescales product images to the new sizes"
+msgstr "Αναβαθμίζει τις εικόνες των προϊόντων στα νέα μεγέθη"
+
+msgid "Sends e-mails for new customer accounts"
+msgstr "Στέλνει e-mail για νέους λογαριασμούς πελατών"
+
+msgid "Sends e-mails for watched products"
+msgstr "Στέλνει e-mail για παρακολουθούμενα προϊόντα"
+
+msgid "Sends order confirmation or payment status update e-mails"
+msgstr "Αποστέλλει e-mail επιβεβαίωσης παραγγελίας ή ενημέρωσης κατάστασης πληρωμής"
+
+msgid "Sends order delivery status update e-mails"
+msgstr "Αποστέλλει ενημερωτικά μηνύματα ηλεκτρονικού ταχυδρομείου για την κατάσταση παράδοσης της παραγγελίας"
+
+msgid "Sends paid orders to the ERP system or logistic partner"
+msgstr "Αποστέλλει τις πληρωμένες παραγγελίες στο σύστημα ERP ή στον συνεργάτη εφοδιασμού."
+
+msgid "Sends the e-mail with the voucher to the customer"
+msgstr "Στέλνει το e-mail με το κουπόνι στον πελάτη"
+
+msgid "Status"
+msgstr "Κατάσταση"
+
+msgid "Status import for orders from CSV file"
+msgstr "Εισαγωγή κατάστασης για παραγγελίες από αρχείο CSV"
+
+msgid "Stock import CSV"
+msgstr "Εισαγωγή αποθεμάτων CSV"
+
+msgid "Sub-total"
+msgstr "Υποσύνολο"
+
+msgid "Subscription export CSV"
+msgstr "Εξαγωγή συνδρομής CSV"
+
+msgid "Subscription process end"
+msgstr "Τέλος διαδικασίας εγγραφής"
+
+msgid "Subscription process renew"
+msgstr "Ανανέωση διαδικασίας συνδρομής"
+
+msgid "Subscription process start"
+msgstr "Έναρξη διαδικασίας συνδρομής"
+
+msgid "Subscription product"
+msgstr "Προϊόν συνδρομής"
+
+msgid "Sum"
+msgstr "Άθροισμα"
+
+msgid "Supplier import CSV"
+msgstr "Εισαγωγή προμηθευτή CSV"
+
+msgid "Supplier import XML"
+msgstr "Εισαγωγή προμηθευτή XML"
+
+msgid "Terminates expired subscriptions"
+msgstr "Τερματίζει ληγμένες συνδρομές"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid "Thank you for your order %1$s from %2$s."
+msgstr "Σας ευχαριστούμε για την παραγγελία σας %1$s από %2$s."
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
+msgstr "Η κατάσταση παράδοσης της παραγγελίας σας %1$s από %2$s έχει αλλάξει σε \"%3$s\"."
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
+msgstr "Η παραγγελία εκκρεμεί μέχρι να λάβουμε την τελική πληρωμή. Εάν έχετε επιλέξει να πληρώσετε προκαταβολικά, παρακαλούμε να μεταφέρετε τα χρήματα στον τραπεζικό μας λογαριασμό με την ταυτότητα παραγγελίας %1$s ως αναφορά."
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "The parcel for your order %1$s from %2$s could not be delivered."
+msgstr "Το δέμα για την παραγγελία σας %1$s από %2$s δεν μπόρεσε να παραδοθεί."
+
+msgid "The payment couldn't be renewed"
+msgstr "Η πληρωμή δεν μπορούσε να ανανεωθεί"
+
+#. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
+#, php-format
+msgid "The payment for your order %1$s from %2$s has been refunded."
+msgstr "Η πληρωμή για την παραγγελία σας %1$s από %2$s έχει επιστραφεί."
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+#, php-format
+msgid ""
+"The payment status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
+msgstr "Η κατάσταση πληρωμής της παραγγελίας σας %1$s από %2$s έχει αλλάξει σε \"%3$s\"."
+
+msgid "The subscription for the product has ended"
+msgstr "Η συνδρομή για το προϊόν έχει λήξει"
+
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] "Η αξία του κουπονιού σας είναι %1$s"
+msgstr[1] "Η αξία του κουπονιού σας είναι %1$s"
+
+msgid "Total"
+msgstr "Σύνολο"
+
+msgid "Transfers money to vendors"
+msgstr "Μεταφέρει χρήματα σε προμηθευτές"
+
+msgid ""
+"Transfers the price of ordered products to the vendors incl. commission "
+"handling"
+msgstr "Μεταφέρει την τιμή των παραγγελθέντων προϊόντων στους πωλητές, συμπεριλαμβανομένης της προμήθειας."
+
+msgid "Voucher"
+msgstr "Κουπόνι"
+
+#, php-format
+msgid "Voucher %1$s"
+msgstr "Κουπόνι %1$s"
+
+msgid "Voucher related e-mails"
+msgstr "Ηλεκτρονικά μηνύματα σχετικά με κουπόνια"
+
+msgid "Watched products"
+msgstr "Παρακολουθούμενα προϊόντα"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+msgid ""
+"We have received your payment, and will take care of your order immediately."
+msgstr "Λάβαμε την πληρωμή σας και θα φροντίσουμε αμέσως για την παραγγελία σας."
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "We received the returned parcel for your order %1$s from %2$s."
+msgstr "Λάβαμε το επιστρεφόμενο δέμα για την παραγγελία σας %1$s από %2$s."
+
+msgid "Y-m-d"
+msgstr "Y-m-d"
+
+msgid "You can use your vouchers at any time in our online shop"
+msgstr "Μπορείτε να χρησιμοποιήσετε τα κουπόνια σας ανά πάσα στιγμή στο ηλεκτρονικό μας κατάστημα."
+
+msgid "You've cancelled the subscription"
+msgstr "Έχετε ακυρώσει τη συνδρομή"
+
+msgid "Your account"
+msgstr "Ο λογαριασμός σας"
+
+msgid "Your comment"
+msgstr "Το σχόλιό σας"
+
+msgid "Your new account"
+msgstr "Ο νέος σας λογαριασμός"
+
+#, php-format
+msgid "Your order %1$s"
+msgstr "Η παραγγελία σας %1$s"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "Your order %1$s from %2$s has been dispatched."
+msgstr "Η παραγγελία σας %1$s από %2$s έχει αποσταλεί."
+
+msgid "Your reference"
+msgstr "Η αναφορά σας"
+
+msgid "Your reference number"
+msgstr "Ο αριθμός αναφοράς σας"
+
+msgid "Your subscription"
+msgstr "Η συνδρομή σας"
+
+msgid "Your voucher"
+msgstr "Το κουπόνι σας"
+
+msgid "Your watched products"
+msgstr "Τα προϊόντα που παρακολουθήσατε"
+
+msgid "delivery"
+msgstr "παράδοση"
+
+#. / Price quantity format with quantity (%1$s)
+#, php-format
+msgid "from %1$s"
+msgstr "από %1$s"
+
+msgid "like billing address"
+msgstr "όπως η διεύθυνση χρέωσης"
+
+msgid "payment"
+msgstr "πληρωμή"
+
+msgid "tax"
+msgstr "φόρος"
+
+msgid "taxgst"
+msgstr "taxgst"
+
+msgid "taxpst"
+msgstr "taxpst"

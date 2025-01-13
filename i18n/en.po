@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-11 13:38+0100\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -38,6 +38,7 @@ msgid ""
 "%18$s\n"
 msgstr ""
 
+#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr ""
@@ -540,10 +541,6 @@ msgid "like billing address"
 msgstr ""
 
 msgid "payment"
-msgstr ""
-
-#. / Price format with price value (%1$s) and currency (%2$s)
-msgid "price:default"
 msgstr ""
 
 msgid "tax"

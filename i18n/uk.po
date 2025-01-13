@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian (http://app.transifex.com/aimeos/aimeos-core/language/uk/)\n"
@@ -77,10 +77,10 @@ msgid "Account"
 msgstr "Акаунт"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Весь імпорт XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "На всі замовлення поширюються наші умови та положення."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
@@ -91,39 +91,39 @@ msgid "Article no."
 msgstr "Артикул"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Імпорт атрибутів XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "Авторизована оплата замовлень буде зафіксована після відправлення або через певний проміжок часу, який можна налаштувати."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Пакетне оновлення статусу платежу/доставки"
 
 msgid "Billing address"
 msgstr "Адреса виставлення рахунку"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Очищення кешу"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Фіксація авторизованих платежів"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Імпорт каталогу CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Імпорт каталогу XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Каталог Карта сайту"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Кошики для сміття"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Імпорт коду купона CSV"
 
 msgid "Coupon codes"
 msgstr "У мене є промо-код"
@@ -132,45 +132,45 @@ msgid "Coupons"
 msgstr "Купони"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Створює карту сайту в каталозі для пошукових систем"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Створює карту товарного сайту для пошукових систем"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Створює пропозиції спільних покупок"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "Електронні адреси облікових записів клієнтів"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Імпорт клієнта XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Шановні %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Шановний пане %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Шановна пані %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Шановний клієнт"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "Видаляє незавершені замовлення та робить їхні товари та коди купонів знову доступними"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Видаляє неоплачені замовлення, щоб зберегти базу даних чистою"
 
 msgid "Delivery address"
 msgstr "Адреса доставки"
@@ -182,62 +182,62 @@ msgid "Details"
 msgstr "Деталі"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Виконує всі імпортери XML і перебудовує індекс"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Виконує платіжні або постачальники послуг доставки, які використовують пакетні оновлення"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Експортує всі наявні продукти"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Експорт замовлень у файл CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Експорт підписок у файл CSV"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Групи імпортують XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Якщо у вас виникли запитання, будь ласка, дайте відповідь на цей e-mail"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Імпортує нові та оновлює наявні атрибути з XML-файлів"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Імпортує нові та оновлює наявні категорії з файлів CSV"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Імпортує нові та оновлює існуючі категорії з XML-файлів"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Імпортує нові та оновлює існуючі коди купонів з файлів CSV"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Імпортує нових та оновлює існуючих клієнтів з XML-файлів"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Імпортує нові та оновлює існуючі групи з XML-файлів"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Імпортує нові та оновлює наявні продукти з файлів CSV"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Імпортує нові та оновлює наявні продукти з XML-файлів"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Імпортує нові та оновлює наявні запаси з файлів CSV"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Імпортує нових та оновлює існуючих постачальників з файлів CSV"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Імпортує нових та оновлює існуючих постачальників з XML-файлів"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "В т.ч. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -248,10 +248,10 @@ msgid "Included rebates"
 msgstr "Застосовані знижки"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Оптимізація індексу"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Перебудова індексу"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -260,13 +260,13 @@ msgstr "Рахунок"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Рахунок-фактура %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Як введено вами"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Очищення журналу"
 
 msgid "Login"
 msgstr "Логін"
@@ -278,25 +278,25 @@ msgid "One or more products you are watching have been updated."
 msgstr "Один або кілька продуктів, які ви переглядаєте, оновлено."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Оптимізує індекс для швидшого пошуку товарів"
 
 msgid "Order date"
 msgstr "Дата замовлення"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Електронні листи, пов'язані з доставкою замовлення"
 
 msgid "Order details"
 msgstr "Деталі замовлення"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Замовити експорт CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Електронні листи, пов'язані з оплатою замовлення"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Імпорт статусу замовлення CSV"
 
 msgid "Password"
 msgstr "Пароль"
@@ -305,122 +305,122 @@ msgid "Price"
 msgstr "Ціна"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Опрацювати послуги з доставки замовлень"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Спочатку обробляйте підписки"
 
 msgid "Product export"
-msgstr ""
+msgstr "Експорт продукції"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Імпорт товару CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "Імпорт продуктів XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "Електронні листи з повідомленнями про продукти"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Карта сайту продукту"
 
 msgid "Products bought together"
 msgstr "Супутні товари"
 
 msgid "Qty"
-msgstr ""
+msgstr "Кількість"
 
 msgid "Quantity"
 msgstr "Кількість"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Перебудовує індекс для пошуку товарів"
 
 msgid "Reference"
 msgstr "Посилання"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Видаляє прострочені записи з кешу"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Видаляє старі кошики з бази даних"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "Видаляє старі записи журналу з бази даних та архівує їх (необов'язково)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Видаляє незавершені замовлення"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Видаляє неоплачені замовлення"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Поновлює підписку на наступну дату"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Зміна масштабу зображень товарів"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Масштабування зображень товарів до нових розмірів"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Надсилає електронні листи для нових облікових записів клієнтів"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Надсилає електронні листи про переглянуті продукти"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Надсилає електронні листи з підтвердженням замовлення або оновленням статусу платежу"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Надсилає електронні листи з оновленням статусу доставки замовлення"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Надсилає оплачені замовлення до ERP-системи або логістичного партнера"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Відправляє електронний лист з ваучером клієнту"
 
 msgid "Status"
 msgstr "Статус"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Імпорт статусів замовлень з файлу CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Імпорт акцій CSV"
 
 msgid "Sub-total"
 msgstr "Проміжна сума"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Експорт підписки CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Процес підписки завершено"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Оновлення процесу підписки"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Початок процесу підписки"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Продукт для підписки"
 
 msgid "Sum"
 msgstr "Сума"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Імпорт CSV постачальника"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Імпорт постачальника XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Припиняє прострочені підписки"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -443,7 +443,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "Замовлення очікує на виконання, доки ми не отримаємо остаточний платіж. Якщо ви вирішили заплатити заздалегідь, будь ласка, перекажіть гроші на наш банківський рахунок, зазначивши номер замовлення %1$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -452,7 +452,7 @@ msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Неможливо надіслати ваше замовлення %1$s від %2$s."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Платіж не вдалося поновити"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
@@ -465,39 +465,39 @@ msgstr "Оплата за ваше замовлення %1$s від %2$s бул�
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Статус оплати вашого замовлення %1$s з %2$s було змінено на \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Підписка на продукт закінчилася"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Вартість вашого ваучера становить %1$s"
+msgstr[1] "Вартість вашого ваучера становить %1$s"
+msgstr[2] "Вартість вашого ваучера становить %1$s"
+msgstr[3] "Вартість вашого ваучера становить %1$s"
 
 msgid "Total"
 msgstr "Разом"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Переказує гроші постачальникам"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Перераховує ціну замовлених товарів постачальникам з урахуванням комісійних"
 
 msgid "Voucher"
 msgstr "Ваучер"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Ваучер %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Електронні листи, пов'язані з ваучерами"
 
 msgid "Watched products"
 msgstr "Відслідковувані товари"
@@ -506,7 +506,7 @@ msgstr "Відслідковувані товари"
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Ми отримали ваш платіж і негайно займемося вашим замовленням."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -518,10 +518,10 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Ви можете скористатися ваучерами в будь-який час в нашому інтернет-магазині"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Ви скасували підписку"
 
 msgid "Your account"
 msgstr "Ваш акаунт"
@@ -543,10 +543,10 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Ваше замовлення %1$s від %2$s оброблено"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Ваша довідка"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Ваш ідентифікаційний номер"
 
 msgid "Your subscription"
 msgstr "Ваша підписка"
@@ -575,7 +575,7 @@ msgid "tax"
 msgstr "податок"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "так, так, так, так."

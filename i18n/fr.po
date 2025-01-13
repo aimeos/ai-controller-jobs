@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # a270031086f2a0d3514bc0cb507b48f6, 2019
 # Aimeos, 2023
@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Six byNine <wwinx@hotmail.com>, 2018\n"
 "Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
@@ -130,7 +130,7 @@ msgid "Catalog site map"
 msgstr "Plan de site du catalogue"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Paniers de nettoyage"
 
 msgid "Coupon code import CSV"
 msgstr "Importation de code promo CSV"
@@ -207,7 +207,7 @@ msgid "Exports subscriptions to CSV file"
 msgstr "Exporte les abonnements au fichier CSV"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Importation de groupes XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Si vous avez des questions, merci de répondre à cet e-mail"
@@ -228,7 +228,7 @@ msgid "Imports new and updates existing customers from XML files"
 msgstr "Importe les nouveaux clients et met à jour les existants à partir de fichiers XML"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Importation de nouveaux groupes et mise à jour des groupes existants à partir de fichiers XML"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Importe les nouveaux produits et met à jour les produits existants à partir de fichiers CSV"
@@ -354,7 +354,7 @@ msgid "Removes the expired entries from the cache"
 msgstr "Supprime les entrées expirées du cache"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Supprime les anciens paniers de la base de données"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -584,7 +584,7 @@ msgid "tax"
 msgstr "Taxe"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"

@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Estonian (http://app.transifex.com/aimeos/aimeos-core/language/et/)\n"
@@ -50,17 +50,17 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s välja"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %2$s/artikkel"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ Maksmiskulu"
@@ -77,10 +77,10 @@ msgid "Account"
 msgstr "Konto"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Kogu XML-import"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Kõikide tellimuste suhtes kehtivad meie tingimused."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
@@ -91,39 +91,39 @@ msgid "Article no."
 msgstr "Toote kood."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Atribuutide import XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "Tellimuste autoriseeritud maksed registreeritakse pärast lähetamist või konfigureeritava aja möödudes."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Maksete/tarnete staatuse partii ajakohastamine"
 
 msgid "Billing address"
 msgstr "Arve esitamise aadress"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Puhastamine vahemälust"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Lubatud maksete kinnipidamine"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Kataloogi import CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Kataloogi import XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Kataloogi saidi kaart"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Puhastuskorvid"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Kupongi koodide import CSV"
 
 msgid "Coupon codes"
 msgstr "Allahindluskoodid"
@@ -132,19 +132,19 @@ msgid "Coupons"
 msgstr "Allahindluskoodid"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Loob kataloogi saidi kaart otsingumootorite jaoks"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Luuakse toote veebilehe kaart otsingumootorite jaoks"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Loob kokku ostetud tootesoovitused"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "Kliendikonto e-kirjad"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Kliendi import XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
@@ -154,23 +154,23 @@ msgstr "Hea %1$s %2$s"
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Lugupeetud härra %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Lugupeetud proua %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Lugupeetud klient"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "Kustutab lõpetamata tellimused ja muudab nende tooted ja kupongikoodid uuesti kättesaadavaks."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Kustutab maksmata tellimused, et hoida andmebaas puhtana."
 
 msgid "Delivery address"
 msgstr "Saadetise kättetoimetamise aadress"
@@ -182,62 +182,62 @@ msgid "Details"
 msgstr "Detailid"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Käivitab kõik XML-importöörid ja ehitab indeksi uuesti üles"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Teostab makse- või kohaletoimetamisteenuse pakkujad, kes kasutavad partiiuuendusi"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Ekspordib kõik olemasolevad tooted"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Ekspordib tellimusi CSV-faili"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Ekspordib tellimusi CSV-faili"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Rühmade import XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Kui Teil on veel küsimusi, palun vastake sellele e-kirjale"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid atribuute XML-failidest"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Impordib uusi ja uuendab olemasolevaid kategooriaid CSV-failidest"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid kategooriaid XML-failidest"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Impordib uusi ja uuendab olemasolevaid kupongikoode CSV-failidest"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid kliente XML-failidest"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid rühmi XML-failidest"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid tooteid CSV-failidest"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid tooteid XML-failidest"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid varusid CSV-failidest"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Uute tarnijate importimine ja olemasolevate tarnijate ajakohastamine CSV-failidest"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Impordib uusi ja ajakohastab olemasolevaid tarnijaid XML-failidest"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Sealhulgas %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -248,25 +248,25 @@ msgid "Included rebates"
 msgstr "Sisaldavad soodustust"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Indeksi optimeerimine"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Indeksi taastamine"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Arve"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Arve %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Nagu teie poolt sisestatud"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Logi puhastamine"
 
 msgid "Login"
 msgstr "Sisene"
@@ -278,25 +278,25 @@ msgid "One or more products you are watching have been updated."
 msgstr "Ühte või mitut toodet, mida te jälgite, on uuendatud."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimeerib indeksit toodete kiiremaks otsimiseks"
 
 msgid "Order date"
 msgstr "Tellimuse kuupäev"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Tellimuse kättetoimetamisega seotud e-kirjad"
 
 msgid "Order details"
 msgstr "Tellimuse detailid"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Tellimuse eksport CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Tellimuse maksmisega seotud e-kirjad"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Tellimuse staatuse import CSV"
 
 msgid "Password"
 msgstr "Salasõna"
@@ -305,28 +305,28 @@ msgid "Price"
 msgstr "Hind"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Protsessi tellimuse kättetoimetamise teenused"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Töötle esialgu tellimusi"
 
 msgid "Product export"
-msgstr ""
+msgstr "Toote eksport"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Toote import CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "Toote import XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "Toote teavitamise e-kirjad"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Toote veebilehe kaart"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Koos ostetud tooted"
 
 msgid "Qty"
 msgstr "Tk"
@@ -335,92 +335,92 @@ msgid "Quantity"
 msgstr "Kogus"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Uuendab toodete otsimiseks mõeldud indeksit"
 
 msgid "Reference"
-msgstr ""
+msgstr "Viide"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Eemaldab aegunud kirjed vahemälust"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Eemaldab vanad korvid andmebaasist"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "Eemaldab vanad logikirjed andmebaasist ja arhiveerib need (valikuline)."
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Eemaldab lõpetamata tellimused"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Eemaldab maksmata tellimused"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Uuendab tellimusi järgmisel kuupäeval"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Toote piltide ümbermõõtmine"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Muudab tootepiltide mõõtmed uutele suurustele"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Saadab uute kliendikontode jaoks e-kirju"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Saadab e-kirju vaadatud toodete kohta"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Saadab tellimuse kinnituse või makse staatuse ajakohastamise e-kirju."
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Saadab tellimuse kättetoimetamise seisu ajakohastatud e-kirju"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Saadab tasutud tellimused ERP-süsteemi või logistikapartnerile."
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Saadab kliendile e-kirja koos vautšeriga."
 
 msgid "Status"
 msgstr "Staatus"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Tellimuste staatuse importimine CSV-failist"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Varude import CSV"
 
 msgid "Sub-total"
 msgstr "Vahesumma"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Tellimuse eksport CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Tellimisprotsessi lõpp"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Tellimusprotsessi uuendamine"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Tellimusprotsessi algus"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Tellimustoode"
 
 msgid "Sum"
 msgstr "Summa"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Tarnija import CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Tarnija import XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Lõpetab aegunud tellimused"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -452,7 +452,7 @@ msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Teie tellimust %1$s leheküljelt %2$s ei saanud kohale toimetada."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Makset ei saanud uuendada"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
@@ -465,37 +465,37 @@ msgstr "Tagastasime makse Teie tellimuse %1$s eest leheküljelt %2$s."
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Teie %1$s tellimuse %2$s maksestaatus on muudetud \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Toote tellimus on lõppenud"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Teie vautšeri väärtus on %1$s"
+msgstr[1] "Teie vautšeri väärtus on %1$s"
 
 msgid "Total"
 msgstr "Summa"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Raha ülekandmine müüjatele"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "edastab tellitud toodete hinna müüjatele, sh komisjonitasu käitlemise eest."
 
 msgid "Voucher"
-msgstr ""
+msgstr "Voucher"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Voucher %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Voucheriga seotud e-kirjad"
 
 msgid "Watched products"
 msgstr "Vaadatud tooted"
@@ -516,16 +516,16 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Saate oma vautšereid kasutada igal ajal meie veebipoes."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Te olete tühistanud tellimuse"
 
 msgid "Your account"
 msgstr "Teie konto"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Teie kommentaar"
 
 msgid "Your new account"
 msgstr "Teie uus konto"
@@ -541,16 +541,16 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Teie tellimus %1$s leheküljelt %2$s on teele saadetud."
 
 msgid "Your reference"
-msgstr ""
+msgstr "Teie viide"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Teie viitenumber"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Teie tellimus"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Teie vautšer"
 
 msgid "Your watched products"
 msgstr "Teie jälgimisnimekirjas olevad tooted"
@@ -573,7 +573,7 @@ msgid "tax"
 msgstr "Maksud"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"

@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
@@ -40,47 +40,47 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s off"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %2$s / item"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+ Biaya pembayaran"
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "+ Pengiriman"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "Akun"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Semua impor XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Semua pesanan tunduk pada syarat dan ketentuan kami."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
@@ -88,42 +88,42 @@ msgid "An account has been created for you."
 msgstr "Akun anda sudah dibuat"
 
 msgid "Article no."
-msgstr ""
+msgstr "No."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Atribut impor XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "Pembayaran pesanan yang diotorisasi akan dicatat setelah pengiriman atau setelah jangka waktu yang dapat dikonfigurasi"
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Pembaruan batch status pembayaran/pengiriman"
 
 msgid "Billing address"
 msgstr "Alamat penagihan"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Pembersihan cache"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Menangkap pembayaran yang diotorisasi"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Impor katalog CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Katalog impor XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Peta situs katalog"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Keranjang pembersih"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Impor kode kupon CSV"
 
 msgid "Coupon codes"
 msgstr "Kode kupon"
@@ -132,201 +132,201 @@ msgid "Coupons"
 msgstr "Kupon"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Membuat peta situs katalog untuk mesin pencari"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Membuat peta situs produk untuk mesin pencari"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Membuat saran produk yang dibeli bersama"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "Email akun pelanggan"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Pelanggan mengimpor XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Kepada %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Tuan %1$s %2$s yang terhormat"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Ibu yang terhormat %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Pelanggan yang terhormat"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "Menghapus pesanan yang belum selesai dan membuat produk dan kode kupon mereka tersedia lagi"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Menghapus pesanan yang belum dibayar untuk menjaga basis data tetap bersih"
 
 msgid "Delivery address"
 msgstr "Alamat pengiriman"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Pengiriman dalam"
 
 msgid "Details"
 msgstr "Detail"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Mengeksekusi semua pengimpor XML dan membangun ulang indeks"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Menjalankan penyedia layanan pembayaran atau pengiriman yang menggunakan pembaruan batch"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Mengekspor semua produk yang tersedia"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Mengekspor pesanan ke file CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Mengekspor langganan ke file CSV"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Grup mengimpor XML"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "Jika Anda memiliki pertanyaan, silakan balas email ini"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Mengimpor atribut baru dan memperbarui atribut yang sudah ada dari file XML"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Mengimpor kategori baru dan memperbarui kategori yang sudah ada dari file CSV"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Mengimpor kategori baru dan memperbarui kategori yang sudah ada dari file XML"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Mengimpor kode kupon baru dan memperbarui kode kupon yang sudah ada dari file CSV"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Mengimpor pelanggan baru dan memperbarui pelanggan yang sudah ada dari file XML"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Mengimpor grup baru dan memperbarui grup yang sudah ada dari file XML"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Mengimpor produk baru dan memperbarui produk yang sudah ada dari file CSV"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Mengimpor produk baru dan memperbarui produk yang sudah ada dari file XML"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Mengimpor stok baru dan memperbarui stok yang ada dari file CSV"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Mengimpor pemasok baru dan memperbarui pemasok yang sudah ada dari file CSV"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Mengimpor pemasok baru dan memperbarui pemasok yang sudah ada dari file XML"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Termasuk.%1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Termasuk %1$s%% PPN"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "Rabat yang disertakan"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Pengoptimalan indeks"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Membangun kembali indeks"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Faktur"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Faktur %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Suka dimasukkan oleh Anda"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Pembersihan log"
 
 msgid "Login"
-msgstr ""
+msgstr "Masuk"
 
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "Satu atau beberapa produk yang Anda lihat telah diperbarui."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Mengoptimalkan indeks untuk mencari produk dengan lebih cepat"
 
 msgid "Order date"
-msgstr ""
+msgstr "Tanggal pemesanan"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Email terkait pengiriman pesanan"
 
 msgid "Order details"
-msgstr ""
+msgstr "Rincian pesanan"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Pesan ekspor CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Email terkait pembayaran pesanan"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Impor status pesanan CSV"
 
 msgid "Password"
-msgstr ""
+msgstr "Kata sandi"
 
 msgid "Price"
 msgstr "Harga"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Memproses layanan pengiriman pesanan"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Memproses langganan pada awalnya"
 
 msgid "Product export"
-msgstr ""
+msgstr "Ekspor produk"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Impor produk CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "XML impor produk"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "Email pemberitahuan produk"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Peta situs produk"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Produk yang dibeli bersama"
 
 msgid "Qty"
 msgstr "Jml"
@@ -335,98 +335,98 @@ msgid "Quantity"
 msgstr "Jumlah"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Membangun kembali indeks untuk mencari produk"
 
 msgid "Reference"
-msgstr ""
+msgstr "Referensi"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Menghapus entri kedaluwarsa dari cache"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Menghapus keranjang lama dari database"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "Menghapus entri log lama dari basis data dan mengarsipkannya (opsional)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Menghapus pesanan yang belum selesai"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Menghapus pesanan yang belum dibayar"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Memperbarui langganan pada tanggal berikutnya"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Mengubah skala gambar produk"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Mengubah skala gambar produk ke ukuran baru"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Mengirim email untuk akun pelanggan baru"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Mengirim email untuk produk yang ditonton"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Mengirim email konfirmasi pesanan atau pembaruan status pembayaran"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Mengirim email pembaruan status pengiriman pesanan"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Mengirim pesanan berbayar ke sistem ERP atau mitra logistik"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Mengirimkan email berisi voucher kepada pelanggan"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Impor status untuk pesanan dari file CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "CSV impor stok"
 
 msgid "Sub-total"
 msgstr "Sub-total"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "CSV ekspor langganan"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Proses berlangganan berakhir"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Memperbarui proses berlangganan"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Proses berlangganan dimulai"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Produk langganan"
 
 msgid "Sum"
 msgstr "Jumlah"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "CSV impor pemasok"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "XML impor pemasok"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Menghentikan langganan yang sudah kedaluwarsa"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "Terima kasih atas pesanan Anda %1$s dari %2$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -434,7 +434,7 @@ msgstr ""
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Status pengiriman pesanan Anda %1$s dari %2$s telah diubah menjadi \"%3$s\"."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -443,21 +443,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "Pesanan akan ditunda hingga kami menerima pembayaran akhir. Jika Anda memilih untuk membayar di muka, silakan transfer uang ke rekening bank kami dengan ID pesanan %1$ sebagai referensi."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "Paket untuk pesanan Anda %1$s dari %2$s tidak dapat dikirimkan."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Pembayaran tidak dapat diperpanjang"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "Pembayaran untuk pesanan Anda sebesar %1$s dari %2$s telah dikembalikan."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -465,114 +465,114 @@ msgstr ""
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Status pembayaran pesanan Anda %1$s dari %2$s telah diubah menjadi \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Langganan untuk produk telah berakhir"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
+msgstr[0] "Nilai voucher Anda adalah %1$s"
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Mentransfer uang ke vendor"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Mentransfer harga produk yang dipesan ke vendor termasuk penanganan komisi"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Voucher"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Voucher %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Email terkait voucher"
 
 msgid "Watched products"
-msgstr ""
+msgstr "Produk yang ditonton"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Kami telah menerima pembayaran Anda, dan akan segera mengurus pesanan Anda."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "Kami menerima paket yang dikembalikan untuk pesanan Anda %1$s dari %2$s."
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Anda dapat menggunakan voucher Anda kapan saja di toko online kami"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Anda telah membatalkan langganan"
 
 msgid "Your account"
-msgstr ""
+msgstr "Akun Anda"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Komentar Anda"
 
 msgid "Your new account"
-msgstr ""
+msgstr "Akun baru Anda"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "Pesanan Anda %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "Pesanan Anda %1$s dari %2$s telah dikirim."
 
 msgid "Your reference"
-msgstr ""
+msgstr "Referensi Anda"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Nomor referensi Anda"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Langganan Anda"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Voucher Anda"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "Produk yang Anda tonton"
 
 msgid "delivery"
-msgstr ""
+msgstr "pengiriman"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "dari %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "seperti alamat penagihan"
 
 msgid "payment"
-msgstr ""
+msgstr "pembayaran"
 
 msgid "tax"
-msgstr ""
+msgstr "pajak"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"
