@@ -44,9 +44,9 @@
 	<target name="i18n-update" description="Updates translation message files">
 		<fail unless="po-filename" message="Missing file name" />
 		<echo msg="File: ${po-filename}" />
-		<exec command="msgmerge --no-wrap -s -U --backup=none ${po-filename} i18n/controller-jobs.pot"
-			checkreturn="true" logoutput="true" />
-  </target>
+		<exec command="msgmerge --no-wrap -s -U --backup=none ${po-filename} i18n/controller-jobs.pot" checkreturn="true" logoutput="true" />
+		<exec command="${bindir}potrans deepl --only --dir=${coredir} ${extdir}/ai-controller-jobs/${po-filename}" logoutput="true" />
+	</target>
 
 	<target name="build" description="Builds package for deployment">
 		<exec command="tx pull -a -f --minimum-perc=1" checkreturn="true" logoutput="true" />
