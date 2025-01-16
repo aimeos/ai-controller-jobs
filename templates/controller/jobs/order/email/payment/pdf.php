@@ -13,6 +13,7 @@
 
 
 $enc = $this->encoder();
+$logo = $this->get( "logodata" );
 
 $this->pdf->setMargins( 15, 30, 15 );
 $this->pdf->setAutoPageBreak( true, 30 );
@@ -37,7 +38,7 @@ $vmargin = [
 $this->pdf->setHtmlVSpace( $vmargin );
 $this->pdf->setListIndentWidth( 4 );
 
-$this->pdf->setHeaderFunction( function( $pdf ) {
+$this->pdf->setHeaderFunction( function( $pdf ) use ( $logo ) {
 	/* Add background image
 	$margin = $pdf->getBreakMargin();
 	$pdf->setAutoPageBreak( false, 0 );
@@ -49,7 +50,7 @@ $this->pdf->setHeaderFunction( function( $pdf ) {
 	$pdf->writeHtmlCell( 210, 20, 0, 0, '
 		<div style="background-color: #103050; color: #ffffff; text-align: center; font-weight: bold">
 			<div style="font-size: 0px"> </div>
-			<img src="@<?= base64_encode( $this->get( "logodata" ) ) ?>" height="30">
+			<img src="' . ( $logo ? '@' . base64_encode( $logo ) : '' ) . '" height="30">
 			Example company
 			<div style="font-size: 0px"> </div>
 		</div>
