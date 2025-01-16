@@ -520,6 +520,7 @@ class Standard
 		$config = $context->config();
 		$logo = $this->call( 'mailLogo', $logoPath );
 		$view->orderAddressItem = $address;
+		$view->logodata = $logo;
 
 		foreach( $orderProducts as $orderProductItem )
 		{

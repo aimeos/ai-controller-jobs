@@ -426,14 +426,16 @@ class Standard
 		$context = $this->context();
 		$context->locale()->setLanguageId( $address->getLanguageId() );
 
+		$logo = $this->call( 'mailLogo', $logoPath );
 		$msg = $this->call( 'mailTo', $address );
 		$msg = $this->attachments( $msg );
 
 		$view = $this->view( $order, $theme );
-		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
+		$view->logo = $msg->embed( $logo, basename( (string) $logoPath ) );
 		$view->summaryBasket = $order;
 		$view->addressItem = $address;
 		$view->orderItem = $order;
+		$view->logodata = $logo;
 
 		$config = $context->config();
 

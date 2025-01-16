@@ -49,7 +49,7 @@ $this->pdf->setHeaderFunction( function( $pdf ) {
 	$pdf->writeHtmlCell( 210, 20, 0, 0, '
 		<div style="background-color: #103050; color: #ffffff; text-align: center; font-weight: bold">
 			<div style="font-size: 0px"> </div>
-			<!-- img src="https://aimeos.org/fileadmin/logos/logo-aimeos-white.png" height="30" -->
+			<img src="@<?= base64_encode( $this->get( "logodata" ) ) ?>" height="30">
 			Example company
 			<div style="font-size: 0px"> </div>
 		</div>
