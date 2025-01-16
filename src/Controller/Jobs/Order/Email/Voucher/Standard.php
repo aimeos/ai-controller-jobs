@@ -193,7 +193,7 @@ class Standard
 			return $addr;
 		}
 
-		$msg = sprintf( 'No address with e-mail found in order base with ID "%1$s"', $orderBaseItem->getId() );
+		$msg = sprintf( 'No address with e-mail found in order with ID "%1$s"', $orderBaseItem->getId() );
 		throw new \Aimeos\Controller\Jobs\Exception( $msg );
 	}
 

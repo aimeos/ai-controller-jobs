@@ -188,7 +188,7 @@ class Standard
 			return $addr;
 		};
 
-		$msg = sprintf( 'No address with e-mail found in order base with ID "%1$s"', $basket->getId() );
+		$msg = sprintf( 'No address with e-mail found in order with ID "%1$s"', $basket->getId() );
 		throw new \Aimeos\Controller\Jobs\Exception( $msg );
 	}
 
