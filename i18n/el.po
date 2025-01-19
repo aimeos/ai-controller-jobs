@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"POT-Creation-Date: 2025-01-19 18:14+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek (http://app.transifex.com/aimeos/aimeos-core/language/el/)\n"
@@ -51,6 +51,14 @@ msgstr "%1$s %2$s"
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s off"
+
+#, php-format
+msgid "%s-sitemap-%d.xml"
+msgstr ""
+
+#, php-format
+msgid "%s-sitemap-index.xml"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -118,6 +126,10 @@ msgstr "Εισαγωγή καταλόγου XML"
 
 msgid "Catalog site map"
 msgstr "Χάρτης ιστότοπου καταλόγου"
+
+#, php-format
+msgid "Cleaned %1$s old products"
+msgstr ""
 
 msgid "Cleanup baskets"
 msgstr "Καλάθια καθαρισμού"
@@ -187,6 +199,10 @@ msgstr "Εκτελεί όλους τους εισαγωγείς XML και αν�
 msgid "Executes payment or delivery service providers that uses batch updates"
 msgstr "Εκτελεί παρόχους υπηρεσιών πληρωμής ή παράδοσης που χρησιμοποιούν ενημερώσεις παρτίδας"
 
+#, php-format
+msgid "Expanding \"%1$s\" node failed"
+msgstr "Η επέκταση του κόμβου \"%1$s\" απέτυχε"
+
 msgid "Exports all available products"
 msgstr "Εξάγει όλα τα διαθέσιμα προϊόντα"
 
@@ -195,6 +211,78 @@ msgstr "Εξαγωγή παραγγελιών σε αρχείο CSV"
 
 msgid "Exports subscriptions to CSV file"
 msgstr "Εξαγωγή συνδρομών σε αρχείο CSV"
+
+#, php-format
+msgid "Finished attribute import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished attribute import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
+msgstr ""
+
+#, php-format
+msgid "Finished catalog import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished coupon/code import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished customer import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished customer import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished group import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished group import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished product import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
+msgstr ""
+
+#, php-format
+msgid "Finished product import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished stock import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished stock import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
+msgstr ""
+
+#, php-format
+msgid "Finished supplier import from file \"%1$s\""
+msgstr ""
 
 msgid "Groups import XML"
 msgstr "Ομάδες εισαγωγής XML"
@@ -253,6 +341,46 @@ msgstr "Βελτιστοποίηση ευρετηρίου"
 msgid "Index rebuild"
 msgstr "Ανακατασκευή ευρετηρίου"
 
+#, php-format
+msgid "Invalid JSON encode message: %1$s"
+msgstr ""
+
+#, php-format
+msgid "Invalid catalog lines during import: %1$d"
+msgstr ""
+
+#, php-format
+msgid "Invalid characters in class name \"%1$s\""
+msgstr "Μη έγκυροι χαρακτήρες στο όνομα της κλάσης \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor name \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Invalid characters in processor type \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr "Μη έγκυρο όνομα κλάσης \"%1$s\""
+
+#, php-format
+msgid "Invalid message: %1$s"
+msgstr ""
+
+#, php-format
+msgid "Invalid product lines during import: %1$d"
+msgstr ""
+
+#, php-format
+msgid "Invalid supplier lines during import: %1$d"
+msgstr ""
+
+#, php-format
+msgid "Invalid type \"%1$s\" (%2$s)"
+msgstr ""
+
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
@@ -273,6 +401,30 @@ msgstr "Σύνδεση"
 
 msgid "Name"
 msgstr "Όνομα"
+
+#, php-format
+msgid "No \"catalog.code\" column in CSV mapping found"
+msgstr ""
+
+#, php-format
+msgid "No \"coupon.code.code\" column in CSV mapping found"
+msgstr ""
+
+#, php-format
+msgid "No \"product.code\" column in CSV mapping found"
+msgstr ""
+
+#, php-format
+msgid "No \"supplier.code\" column in CSV mapping found"
+msgstr ""
+
+#, php-format
+msgid "No XML file \"%1$s\" found"
+msgstr "Δεν βρέθηκε αρχείο XML \"%1$s\""
+
+#, php-format
+msgid "No address with e-mail found in order with ID \"%1$s\""
+msgstr ""
 
 msgid "One or more products you are watching have been updated."
 msgstr "Ένα ή περισσότερα προϊόντα που παρακολουθείτε έχουν ενημερωθεί."
@@ -297,6 +449,10 @@ msgstr "Ηλεκτρονικά μηνύματα σχετικά με την πλ�
 
 msgid "Order status import CSV"
 msgstr "Εισαγωγή κατάστασης παραγγελίας CSV"
+
+#, php-format
+msgid "Parent node for code \"%1$s\" not found"
+msgstr ""
 
 msgid "Password"
 msgstr "Κωδικός πρόσβασης"
@@ -359,11 +515,31 @@ msgstr "Αφαιρεί τις απλήρωτες παραγγελίες"
 msgid "Renews subscriptions at next date"
 msgstr "Ανανεώνει τις συνδρομές στην επόμενη ημερομηνία"
 
+#, php-format
+msgid "Required column \"%1$s\" not found for code \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Required configuration for \"%1$s\" is missing"
+msgstr ""
+
+#, php-format
+msgid "Required mapping key \"%1$s\" is missing or contains no array"
+msgstr ""
+
 msgid "Rescale product images"
 msgstr "Επανακλιμάκωση εικόνων προϊόντων"
 
 msgid "Rescales product images to the new sizes"
 msgstr "Αναβαθμίζει τις εικόνες των προϊόντων στα νέα μεγέθη"
+
+#, php-format
+msgid "Scaling image \"%1$s\" failed: %2$s"
+msgstr ""
+
+#, php-format
+msgid "Scaling media item \"%1$s\" failed: %2$s"
+msgstr ""
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "Στέλνει e-mail για νέους λογαριασμούς πελατών"
@@ -382,6 +558,90 @@ msgstr "Αποστέλλει τις πληρωμένες παραγγελίες 
 
 msgid "Sends the e-mail with the voucher to the customer"
 msgstr "Στέλνει το e-mail με το κουπόνι στον πελάτη"
+
+#, php-format
+msgid "Sent customer account e-mail to \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Sent product notification e-mail to \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Sent voucher e-mails for order ID \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started attribute import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started attribute import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started catalog import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started catalog import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started coupon code import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started coupon/code import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started customer import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started customer import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started group import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started group import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started product import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started product import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started stock import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started stock import from file \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started supplier import from \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Started supplier import from file \"%1$s\""
+msgstr ""
 
 msgid "Status"
 msgstr "Κατάσταση"
@@ -487,6 +747,26 @@ msgid ""
 "handling"
 msgstr "Μεταφέρει την τιμή των παραγγελθέντων προϊόντων στους πωλητές, συμπεριλαμβανομένης της προμήθειας."
 
+#, php-format
+msgid "Unable to add current address for customer with ID \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Unable to call method \"%1$s\""
+msgstr "Αδυναμία κλήσης της μεθόδου \"%1$s\""
+
+#, php-format
+msgid "Unable to import catalog with code \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
+msgid "Unable to import product with code \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
+msgid "Unable to import supplier with code \"%1$s\": %2$s"
+msgstr ""
+
 msgid "Voucher"
 msgstr "Κουπόνι"
 
@@ -554,6 +834,10 @@ msgstr "Το κουπόνι σας"
 
 msgid "Your watched products"
 msgstr "Τα προϊόντα που παρακολουθήσατε"
+
+#, php-format
+msgid "aimeos-catalog-sitemap-%d.xml"
+msgstr ""
 
 msgid "delivery"
 msgstr "παράδοση"
