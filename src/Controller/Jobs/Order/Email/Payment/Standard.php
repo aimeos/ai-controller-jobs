@@ -508,7 +508,6 @@ class Standard
 	protected function status() : array
 	{
 		$default = [
-			\Aimeos\MShop\Order\Item\Base::PAY_REFUND,
 			\Aimeos\MShop\Order\Item\Base::PAY_PENDING,
 			\Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED,
 			\Aimeos\MShop\Order\Item\Base::PAY_RECEIVED,
