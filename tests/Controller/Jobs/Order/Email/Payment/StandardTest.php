@@ -57,8 +57,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderItem = $orderManagerStub->create();
 
-		$orderManagerStub->expects( $this->exactly( 5 ) )->method( 'iterate' )
-			->willReturn( map( [$orderItem] ), null, null, null, null );
+		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'iterate' )
+			->willReturn( map( [$orderItem] ), null, null, null );
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
