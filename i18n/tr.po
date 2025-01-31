@@ -5,12 +5,12 @@
 # Translators:
 # Aimeos, 2022
 # Aimeos, 2022
-# Metal <meteoramic@yahoo.com>, 2015-2020,2022-2024
+# Metal <meteoramic@yahoo.com>, 2015-2020,2022-2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-01-28 15:45+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Aimeos, 2022\n"
 "Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
@@ -57,11 +57,11 @@ msgstr "%1$s %2$s indirim"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-siteharitasi-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-siteharitasi-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -132,7 +132,7 @@ msgstr "Katalog site haritası"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "%1$s eski ürün temizlendi"
 
 msgid "Cleanup baskets"
 msgstr "Sepetleri temizle"
@@ -229,7 +229,7 @@ msgstr "\"%1$s\" dan katalog içe aktarma tamamlandı"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\"dan kategori içe aktarımı tamamlandı (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
@@ -237,7 +237,7 @@ msgstr "\"%1$s\" dosyasından katalog içe aktarma tamamlandı"
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"dan kupon/kod içe aktarımı tamamlandı"
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
@@ -249,11 +249,11 @@ msgstr "\"%1$s\" dosyasından müşteri içe aktarma tamamlandı"
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"dan grup içe aktarımı tamamlandı"
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" dosyasından dan grup içe aktarımı tamamlandı"
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
@@ -261,7 +261,7 @@ msgstr "\"%1$s\" dan ürün içe aktarma tamamlandı"
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\"dan ürün içe aktarımı tamamlandı (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
@@ -277,15 +277,15 @@ msgstr "\"%1$s\" dosyasından stok içe aktarma tamamlandı"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"dan tedarikçi içe aktarımı tamamlandı"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\"dan tedarikçi içe aktarımı tamamlandı (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" dosyasından tedarikçi içe aktarımı tamamlandı"
 
 msgid "Groups import XML"
 msgstr " Grupları XML olarak içe aktarma"
@@ -350,7 +350,7 @@ msgstr "Geçersiz JSON kodlama mesajı: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "İçe aktarma sırasında geçersiz katalog satırları bulundu: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -358,11 +358,11 @@ msgstr "\"%1$s\" class adında geçersiz karakterler"
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" işlemci adında geçersiz karakterler var"
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" işlemci türünde geçersiz karakterler var"
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -374,15 +374,15 @@ msgstr "Geçersiz mesaj: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "İçe aktarma sırasında geçersiz ürün satırları bulundu: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "İçe aktarma sırasında geçersiz tedarikçi satırları bulundu: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Geçersiz tür \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -427,7 +427,7 @@ msgstr "\"%1$s\" XML dosyası bulunamadı"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" kimlik numaralı siparişte e-posta içeren bir adres mevcut değil"
 
 msgid "One or more products you are watching have been updated."
 msgstr "İzleme listenizde yer alan bir veya daha fazla ürün güncellendi."
@@ -538,7 +538,7 @@ msgstr "Ürün görsellerini yeni ölçülere tekrar boyutlandırır"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "\"%1$s\" resminin ölçeklenme işlemi  başarısız oldu: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
@@ -564,23 +564,23 @@ msgstr "Kuponu içeren e-postayı müşteriye gönderir"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" a müşteri hesabı e-postası gönderildi"
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "\"%1$s\" siparişi ve \"%2$s\" durumu için teslimat e-postası gönderildi"
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "\"%1$s\" siparişi ve \"%2$s\" durumu için ödeme e-postası gönderildi"
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"a ürün bildirim e-postası gönderildi"
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" kimlik numaralı sipariş için kupon e-postaları gönderildi"
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
@@ -600,11 +600,11 @@ msgstr "\"%1$s\" dosyasından katalog içe aktarma başladı"
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"dan kupon kodu içe aktarma başladı"
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"dan kupon/kod içe aktarma başladı"
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
@@ -616,11 +616,11 @@ msgstr "\"%1$s\" dosyasından müşteri içe aktarma başladı"
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"dan grup içe aktarma başladı"
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" dosyasından grup içe aktarma başladı"
 
 #, php-format
 msgid "Started product import from \"%1$s\""
@@ -640,11 +640,11 @@ msgstr "\"%1$s\" dosyasından stok içe aktarma başladı"
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"dan tedarikçi içe aktarma başladı"
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" dosyasından tedarikçi içe aktarma başladı"
 
 msgid "Status"
 msgstr "Durum"
