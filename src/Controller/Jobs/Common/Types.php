@@ -58,23 +58,21 @@ trait Types
 			$manager = \Aimeos\MShop::create( $this->context(), $path );
 			$prefix = str_replace( '/', '.', $path );
 
-			foreach( $list as $domain => $codes )
+			foreach( $list as $codes )
 			{
 				$manager->begin();
 
 				try
 				{
 					$types = $items = [];
-					$search = $manager->filter()
-						->add( [$prefix . '.domain' => $domain, $prefix . '.code' => $codes] )
-						->slice( 0, 10000 );
+					$search = $manager->filter()->add( [$prefix . '.code' => $codes] )->slice( 0, 10000 );
 
 					foreach( $manager->search( $search ) as $item ) {
 						$types[] = $item->getCode();
 					}
 
 					foreach( array_diff( $codes, $types ) as $code ) {
-						$items[] = $manager->create()->setDomain( $domain )->setCode( $code )->setLabel( $code );
+						$items[] = $manager->create()->setCode( $code )->setLabel( $code );
 					}
 
 					$manager->save( $items, false );

@@ -71,27 +71,22 @@ class Standard
 		{
 			$this->listTypes = [];
 			$manager = \Aimeos\MShop::create( $context, 'supplier/lists/type' );
-
 			$search = $manager->filter()->slice( 0, 0x7fffffff );
-			$search->setConditions( $search->compare( '==', 'supplier.lists.type.domain', 'text' ) );
 
-			foreach( $manager->search( $search ) as $item )
-			{
+			foreach( $manager->search( $search ) as $item ) {
 				$this->listTypes[$item->getCode()] = $item->getCode();
 			}
-		} else
+		}
+		else
 		{
 			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
 
 		$manager = \Aimeos\MShop::create( $context, 'text/type' );
-
 		$search = $manager->filter()->slice( 0, 0x7fffffff );
-		$search->setConditions( $search->compare( '==', 'text.type.domain', 'supplier' ) );
 
-		foreach( $manager->search( $search ) as $item )
-		{
+		foreach( $manager->search( $search ) as $item ) {
 			$this->types[$item->getCode()] = $item->getCode();
 		}
 	}
