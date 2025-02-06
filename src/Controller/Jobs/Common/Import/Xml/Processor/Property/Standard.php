@@ -44,7 +44,7 @@ class Standard
 		\Aimeos\Utils::implements( $item, \Aimeos\MShop\Common\Item\PropertyRef\Iface::class );
 
 		$resource = $item->getResourceType();
-		$manager = \Aimeos\MShop::create( $this->context(), $resource . '/property' );
+		$manager = \Aimeos\MShop::create( $this->context(), $resource );
 		$propItems = $item->getPropertyItems( null, false );
 		$map = [];
 
@@ -64,7 +64,7 @@ class Standard
 				$list[$tagNode->nodeName] = $tagNode->nodeValue;
 			}
 
-			$propItem = $manager->create()->fromArray( $list );
+			$propItem = $manager->createPropertyItem()->fromArray( $list );
 
 			if( isset( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] ) ) {
 				$propItems->remove( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] );

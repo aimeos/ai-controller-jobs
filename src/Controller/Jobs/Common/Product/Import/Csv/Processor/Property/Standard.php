@@ -41,7 +41,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Product\Item\Iface $product, array $data ) : array
 	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'product/property' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 
 		$propMap = [];
 		$items = $product->getPropertyItems( null, false );
@@ -67,7 +67,7 @@ class Standard
 			}
 			else
 			{
-				$item = $manager->create()->setType( $type );
+				$item = $manager->createPropertyItem()->setType( $type );
 			}
 
 			$product->addPropertyItem( $item->fromArray( $list ) );

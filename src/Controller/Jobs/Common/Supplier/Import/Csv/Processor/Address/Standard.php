@@ -55,6 +55,7 @@ class Standard
 	 */
 	public function process( \Aimeos\MShop\Supplier\Item\Iface $supplier, array $data ) : array
 	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
 		$map = $this->getMappedChunk( $data, $this->getMapping() );
 		$items = $supplier->getAddressItems();
 
@@ -65,7 +66,7 @@ class Standard
 			}
 
 			$key = $items->lastKey();
-			$item = $items->pop() ?? \Aimeos\MShop::create( $this->context(), 'supplier/address' )->create();
+			$item = $items->pop() ?? $manager->createAddressItem();
 
 			$item->fromArray( $list );
 			$supplier->addAddressItem( $item, $key );

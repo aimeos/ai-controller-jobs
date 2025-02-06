@@ -206,7 +206,7 @@ class Standard
 	protected function createCoupons( \Aimeos\Map $orderProdItems )
 	{
 		$map = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/product/attribute' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order' );
 
 		foreach( $orderProdItems as $orderProductItem )
 		{
@@ -224,7 +224,7 @@ class Standard
 				$codes[] = $code;
 			}
 
-			$item = $manager->create()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
+			$item = $manager->createProductAttribute()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
 			$orderProductItem->setAttributeItem( $item );
 		}
 

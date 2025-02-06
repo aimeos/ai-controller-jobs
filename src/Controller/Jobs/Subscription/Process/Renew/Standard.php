@@ -222,7 +222,7 @@ class Standard
 		try
 		{
 			$customer = \Aimeos\MShop::create( $context, 'customer' )->get( $newOrder->getCustomerId() );
-			$address = \Aimeos\MShop::create( $context, 'order/address' )->create();
+			$address = \Aimeos\MShop::create( $context, 'order' )->createAddress();
 
 			$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 			$newOrder->addAddress( $address->copyFrom( $customer->getPaymentAddress() ), $type, 0 );
@@ -332,7 +332,7 @@ class Standard
 		$type = \Aimeos\MShop\Order\Item\Service\Base::TYPE_DELIVERY;
 
 		$serviceManager = \Aimeos\MShop::create( $context, 'service' );
-		$orderServiceManager = \Aimeos\MShop::create( $context, 'order/service' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$search = $serviceManager->filter( true );
 		$search->setSortations( [$search->sort( '+', 'service.position' )] );
@@ -344,7 +344,7 @@ class Standard
 
 			if( $provider->isAvailable( $newOrder ) === true )
 			{
-				$orderServiceItem = $orderServiceManager->create()->copyFrom( $item );
+				$orderServiceItem = $orderManager->createService()->copyFrom( $item );
 				return $newOrder->addService( $orderServiceItem, $type, $idx++ );
 			}
 		}
