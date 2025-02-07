@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Lithuanian (http://app.transifex.com/aimeos/aimeos-core/language/lt/)\n"
@@ -54,11 +54,11 @@ msgstr "%1$s %2$s išjungta"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -129,7 +129,7 @@ msgstr "Katalogo svetainės žemėlapis"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Išvalyti %1$s senų produktų"
 
 msgid "Cleanup baskets"
 msgstr "Valymo krepšeliai"
@@ -214,75 +214,75 @@ msgstr "Eksportuoja prenumeratas į CSV failą"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Baigtas atributų importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Baigtas atributų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Baigtas katalogo importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Baigtas katalogo importas iš \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Baigtas katalogo importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Baigtas kupono/kodo importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Baigtas klientų importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Baigtas klientų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Baigtas grupės importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Baigtas grupės importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Gatavo produkto importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Gatavo produkto importas iš \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Baigto produkto importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Baigtų atsargų importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Baigtas atsargų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Baigtas tiekėjo importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Baigtas tiekėjo importas iš \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Baigtas tiekėjo importas iš failo \"%1$s\""
 
 msgid "Groups import XML"
 msgstr "Grupių importas XML"
@@ -343,11 +343,11 @@ msgstr "Indekso atstatymas"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Netinkamas JSON kodavimo pranešimas: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Netinkamos katalogo eilutės importuojant: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -355,11 +355,11 @@ msgstr "Netinkami simboliai klasės pavadinime \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Procesoriaus pavadinime \"%1$s\" įrašyti neteisingi simboliai"
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Procesoriaus tipo \"%1$s\" netinkami simboliai"
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -367,19 +367,19 @@ msgstr "Netinkamas klasės pavadinimas \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Netinkamas pranešimas: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Importuojant neteisingos produktų linijos: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Netinkamos tiekėjo eilutės importuojant: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Netinkamas tipas \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -404,19 +404,19 @@ msgstr "Pavadinimas"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV atvaizdavime nerasta stulpelio \"catalog.code\""
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV atvaizdavime nerasta stulpelio \"coupon.code.code\""
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV atvaizdavime nerasta stulpelio \"product.code\""
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV atvaizdavime nerasta stulpelio \"supplier.code\""
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -424,7 +424,7 @@ msgstr "XML failo \"%1$s\" nerasta"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Užsakyme su ID \"%1$s\" nerastas el. pašto adresas."
 
 msgid "One or more products you are watching have been updated."
 msgstr "Vienas ar daugiau stebimų produktų buvo atnaujinti."
@@ -452,7 +452,7 @@ msgstr "Užsakymo būsenos importas CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Nerastas kodo \"%1$s\" pagrindinis mazgas"
 
 msgid "Password"
 msgstr "Slaptažodis"
@@ -517,15 +517,15 @@ msgstr "Prenumeratos atnaujinimas kitą dieną"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Reikalaujamas stulpelis \"%1$s\" nerastas kodui \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Trūksta reikiamos konfigūracijos \"%1$s\""
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Nėra privalomo atvaizdavimo rakto \"%1$s\" arba jame nėra masyvo"
 
 msgid "Rescale product images"
 msgstr "Pakeiskite produktų vaizdų mastelio keitimą"
@@ -535,11 +535,11 @@ msgstr "keičia produktų vaizdų mastelius į naujus dydžius"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Nepavyko sumažinti vaizdo \"%1$s\": %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Žiniasklaidos elemento \"%1$s\" mastelio keitimas nepavyko: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "siunčia el. laiškus dėl naujų klientų paskyrų"
@@ -561,87 +561,87 @@ msgstr "siunčia el. laišką su kuponu klientui"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Išsiųstas kliento paskyros el. laiškas į \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Išsiųstas užsakymo \"%1$s\" ir būsenos \"%2$s\" pristatymo el. laiškas"
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Išsiųstas užsakymo apmokėjimo el. laiškas už užsakymą \"%1$s\" ir būseną \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Išsiųstas pranešimas apie produktą el. paštu \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Išsiųstas užsakymo ID \"%1$s\" kupono el. laiškas"
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas atributų importas iš \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Pradėtas atributų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas katalogo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Pradėtas katalogo importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas kupono kodo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas kupono/kodo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas klientų importas iš \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Pradėtas klientų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas grupės importas iš \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Pradėtas grupės importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas produkto importas iš \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Pradėtas produkto importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas atsargų importas iš \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Pradėtas atsargų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Pradėtas tiekėjo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Pradėtas tiekėjo importas iš failo \"%1$s\""
 
 msgid "Status"
 msgstr "Statusas"
@@ -751,7 +751,7 @@ msgstr "Perveda užsakytų produktų kainą pardavėjams, įskaitant komisinių 
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Nepavyksta pridėti kliento, kurio ID \"%1$s\", dabartinio adreso"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -759,15 +759,15 @@ msgstr "Nepavyksta iškviesti metodo \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nepavyksta importuoti katalogo su kodu \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nepavyksta importuoti produkto, kurio kodas \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nepavyksta importuoti tiekėjo, kurio kodas \"%1$s\": %2$s"
 
 msgid "Voucher"
 msgstr "Kuponas"
@@ -839,7 +839,7 @@ msgstr "Jūsų stebimi produktai"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "pristatymas"

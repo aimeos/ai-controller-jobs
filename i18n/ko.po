@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,11 +55,11 @@ msgstr "%1$s %2$s 할인"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -129,7 +130,7 @@ msgstr "카탈로그 사이트 맵"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "%1$s 의 오래된 제품을 청소했습니다."
 
 msgid "Cleanup baskets"
 msgstr "정리 바구니"
@@ -214,75 +215,75 @@ msgstr "구독을 CSV 파일로 내보내기"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 속성 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "파일 \"%1$s\"에서 속성 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 카탈로그 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\"(%2$d/%3$d)에서 카탈로그 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 카탈로그 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 쿠폰/코드 가져오기를 완료했습니다."
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 고객 가져오기를 완료했습니다."
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 고객 가져오기를 완료했습니다."
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 그룹 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 그룹 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 완제품 가져오기 완료"
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\"(%2$d/%3$d)에서 완제품 가져오기를 완료했습니다."
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 제품 가져오기를 완료했습니다."
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 재고 가져오기를 완료했습니다."
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 재고 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 공급업체 가져오기를 완료했습니다."
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\"(%2$d/%3$d)에서 공급업체 가져오기를 마쳤습니다."
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 공급업체 가져오기를 완료했습니다."
 
 msgid "Groups import XML"
 msgstr "그룹 가져오기 XML"
@@ -343,11 +344,11 @@ msgstr "인덱스 재구축"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "잘못된 JSON 인코딩 메시지입니다: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "가져오는 동안 카탈로그 줄이 잘못되었습니다: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -355,11 +356,11 @@ msgstr "클래스 이름 \"%1$s\"에 잘못된 문자가 있습니다."
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "프로세서 이름 \"%1$s\"에 잘못된 문자가 있습니다."
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "프로세서 유형 \"%1$s\"에 잘못된 문자가 있습니다."
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -367,19 +368,19 @@ msgstr "잘못된 클래스 이름 \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "잘못된 메시지입니다: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "가져오는 동안 잘못된 제품 라인: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "가져오기 중 잘못된 공급업체 라인: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "잘못된 유형 \"%1$s\"(%2$s)입니다."
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -404,19 +405,19 @@ msgstr "이름"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV 매핑에서 \"catalog.code\" 열을 찾을 수 없음"
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV 매핑에서 \"coupon.code.code\" 열을 찾을 수 없습니다."
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV 매핑에서 \"product.code\" 열을 찾을 수 없음"
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV 매핑에서 \"supplier.code\" 열을 찾을 수 없음"
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -424,7 +425,7 @@ msgstr "XML 파일 \"%1$s\"를 찾을 수 없습니다."
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "ID \"%1$s\"로 주문할 수 있는 전자 메일 주소가 없습니다."
 
 msgid "One or more products you are watching have been updated."
 msgstr "보고 있는 제품이 하나 이상 업데이트되었습니다."
@@ -452,7 +453,7 @@ msgstr "주문 상태 가져오기 CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "\"%1$s\" 코드의 상위 노드를 찾을 수 없습니다."
 
 msgid "Password"
 msgstr "비밀번호"
@@ -517,15 +518,15 @@ msgstr "다음 날짜에 구독을 갱신합니다."
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "코드 \"%2$s\"에 필요한 열 \"%1$s\"을(를) 찾을 수 없습니다."
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "\"%1$s\"에 대한 필수 구성이 없습니다."
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "필수 매핑 키 \"%1$s\"가 누락되었거나 배열을 포함하지 않습니다."
 
 msgid "Rescale product images"
 msgstr "제품 이미지 크기 조정"
@@ -535,11 +536,11 @@ msgstr "제품 이미지를 새 크기로 재조정합니다."
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "이미지 \"%1$s\"의 크기를 조정하지 못했습니다: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "미디어 항목 \"%1$s\"을(를) 확장하지 못했습니다: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "신규 고객 계정에 대한 이메일 보내기"
@@ -561,87 +562,87 @@ msgstr "바우처가 포함된 이메일을 고객에게 전송합니다."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "고객 계정 전자 메일을 \"%1$s\"로 보냈습니다."
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "주문 \"%1$s\" 및 상태 \"%2$s\"에 대한 주문 배달 전자 메일을 보냈습니다."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "주문 \"%1$s\" 및 상태 \"%2$s\"에 대한 주문 결제 전자 메일을 보냈습니다."
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에게 제품 알림 전자 메일을 보냈습니다."
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "주문 ID \"%1$s\"에 대한 바우처 전자 메일을 보냈습니다."
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 속성 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "파일 \"%1$s\"에서 속성 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 카탈로그 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 카탈로그 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 쿠폰 코드 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 쿠폰/코드 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 고객 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 고객 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 그룹 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 그룹 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 제품 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 제품 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 재고 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 재고 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에서 공급업체 가져오기를 시작했습니다."
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" 파일에서 공급업체 가져오기를 시작했습니다."
 
 msgid "Status"
 msgstr "상태"
@@ -748,7 +749,7 @@ msgstr "주문한 제품의 가격을 판매자에게 전달하고 수수료를 
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "ID가 \"%1$s\"인 고객의 현재 주소를 추가할 수 없습니다."
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -756,15 +757,15 @@ msgstr "\"%1$s\" 메서드를 호출할 수 없습니다."
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "코드 \"%1$s\"로 카탈로그를 가져올 수 없습니다: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "코드 \"%1$s\"로 제품을 가져올 수 없습니다: %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "코드 \"%1$s\"로 공급업체를 가져올 수 없습니다: %2$s"
 
 msgid "Voucher"
 msgstr "바우처"
@@ -836,7 +837,7 @@ msgstr "시청한 제품"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "아이메오스 카탈로그 사이트맵-%d.xml"
 
 msgid "delivery"
 msgstr "배달"

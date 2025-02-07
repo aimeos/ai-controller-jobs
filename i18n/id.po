@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
@@ -54,11 +54,11 @@ msgstr "%1$s %2$s off"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -129,7 +129,7 @@ msgstr "Peta situs katalog"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Produk lama yang sudah dibersihkan %1$s"
 
 msgid "Cleanup baskets"
 msgstr "Keranjang pembersih"
@@ -214,75 +214,75 @@ msgstr "Mengekspor langganan ke file CSV"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Impor atribut yang sudah selesai dari \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Impor atribut yang sudah selesai dari file \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Impor katalog yang sudah selesai dari \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Impor katalog yang telah selesai dari \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Impor katalog yang sudah selesai dari file \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Impor kupon/kode yang sudah selesai dari \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Impor pelanggan yang sudah selesai dari \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Impor pelanggan yang sudah selesai dari file \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Impor grup yang sudah selesai dari \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Impor grup yang sudah selesai dari file \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Impor produk jadi dari \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Impor produk jadi dari \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Impor produk jadi dari file \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Impor stok yang sudah jadi dari \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Impor stok yang sudah selesai dari file \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Impor pemasok yang sudah jadi dari \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Impor pemasok yang sudah jadi dari \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Impor pemasok yang sudah selesai dari file \"%1$s\""
 
 msgid "Groups import XML"
 msgstr "Grup mengimpor XML"
@@ -343,11 +343,11 @@ msgstr "Membangun kembali indeks"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Pesan penyandian JSON tidak valid: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Baris katalog yang tidak valid selama impor: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -355,11 +355,11 @@ msgstr "Karakter tidak valid dalam nama kelas \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Karakter tidak valid dalam nama prosesor \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Karakter tidak valid dalam tipe prosesor \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -367,19 +367,19 @@ msgstr "Nama kelas tidak valid \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Pesan tidak valid: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Lini produk yang tidak valid selama impor: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Jalur pemasok yang tidak valid selama impor: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Jenis yang tidak valid \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -404,19 +404,19 @@ msgstr "Nama"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Tidak ditemukan kolom \"catalog.code\" dalam pemetaan CSV"
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Tidak ditemukan kolom \"coupon.code.code\" dalam pemetaan CSV"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Tidak ditemukan kolom \"product.code\" dalam pemetaan CSV"
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Tidak ditemukan kolom \"supplier.code\" dalam pemetaan CSV"
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -424,7 +424,7 @@ msgstr "Tidak ditemukan file XML \"%1$s\""
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Tidak ada alamat dengan email yang ditemukan dalam urutan dengan ID \"%1$s\""
 
 msgid "One or more products you are watching have been updated."
 msgstr "Satu atau beberapa produk yang Anda lihat telah diperbarui."
@@ -452,7 +452,7 @@ msgstr "Impor status pesanan CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Simpul induk untuk kode \"%1$s\" tidak ditemukan"
 
 msgid "Password"
 msgstr "Kata sandi"
@@ -517,15 +517,15 @@ msgstr "Memperbarui langganan pada tanggal berikutnya"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Kolom yang diperlukan \"%1$s\" tidak ditemukan untuk kode \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Konfigurasi yang diperlukan untuk \"%1$s\" tidak ada"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Kunci pemetaan yang diperlukan \"%1$s\" tidak ada atau tidak berisi larik"
 
 msgid "Rescale product images"
 msgstr "Mengubah skala gambar produk"
@@ -535,11 +535,11 @@ msgstr "Mengubah skala gambar produk ke ukuran baru"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Penskalaan gambar \"%1$s\" gagal: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Item media penskalaan \"%1$s\" gagal: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "Mengirim email untuk akun pelanggan baru"
@@ -561,87 +561,87 @@ msgstr "Mengirimkan email berisi voucher kepada pelanggan"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Mengirim email akun pelanggan ke \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Mengirim email pengiriman pesanan untuk pesanan \"%1$s\" dan status \"%2$s\""
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Mengirim email pembayaran pesanan untuk pesanan \"%1$s\" dan status \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Mengirim email pemberitahuan produk ke \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Mengirim email voucher untuk ID pesanan \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor atribut dari \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Memulai impor atribut dari file \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor katalog dari \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Memulai impor katalog dari file \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor kode kupon dari \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor kupon/kode dari \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor pelanggan dari \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Memulai impor pelanggan dari file \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor grup dari \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Memulai impor grup dari file \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor produk dari \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Memulai impor produk dari file \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor stok dari \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Memulai impor stok dari file \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Memulai impor pemasok dari \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Memulai impor pemasok dari file \"%1$s\""
 
 msgid "Status"
 msgstr "Status"
@@ -748,7 +748,7 @@ msgstr "Mentransfer harga produk yang dipesan ke vendor termasuk penanganan komi
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Tidak dapat menambahkan alamat saat ini untuk pelanggan dengan ID \"%1$s\""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -756,15 +756,15 @@ msgstr "Tidak bisa memanggil method \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Tidak dapat mengimpor katalog dengan kode \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Tidak dapat mengimpor produk dengan kode \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Tidak dapat mengimpor pemasok dengan kode \"%1$s\": %2$s"
 
 msgid "Voucher"
 msgstr "Voucher"
@@ -836,7 +836,7 @@ msgstr "Produk yang Anda tonton"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "pengiriman"

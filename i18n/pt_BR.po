@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
+"Last-Translator: Keite Clembet, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,11 +59,11 @@ msgstr "%2$s %1$s de desconto"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -134,7 +134,7 @@ msgstr "Mapa do site de produtos"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Limpou %1$s produtos antigos"
 
 msgid "Cleanup baskets"
 msgstr "Cestas de limpeza"
@@ -219,75 +219,75 @@ msgstr "Exporta subscrições para arquivo CSV"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Importação de atributo concluída de \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Importação de atributo concluída do arquivo \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Importação de catálogo concluída de \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Importação de catálogo concluída de \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Importação de catálogo concluída do arquivo \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Importação de cupom/código concluída de \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Importação de cliente concluída de \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Importação de cliente concluída do arquivo \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Importação de grupo concluída de \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Importação de grupo concluída do arquivo \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Importação de produto acabado de \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Importação de produto acabado de \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Importação de produto acabado do arquivo \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Importação de estoque finalizado de \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Importação de estoque concluída do arquivo \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Importação de fornecedor concluída de \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Importação de fornecedor finalizado de \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Importação de fornecedor concluída do arquivo \"%1$s\""
 
 msgid "Groups import XML"
 msgstr "Importação de XML de grupos"
@@ -348,11 +348,11 @@ msgstr "Recriar índice"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Mensagem de codificação JSON inválida: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Linhas de catálogo inválidas durante a importação: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -360,11 +360,11 @@ msgstr "Caracteres inválidos no nome da classe \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Caracteres inválidos no nome do processador \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Caracteres inválidos no tipo de processador \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -372,19 +372,19 @@ msgstr "Nome de classe inválido \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Mensagem inválida: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Linhas de produtos inválidas durante a importação: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Linhas de fornecedor inválidas durante a importação: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Tipo inválido \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -409,11 +409,11 @@ msgstr "Nome"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Não foi encontrada nenhuma coluna \"catalog.code\" no mapeamento CSV"
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Não foi encontrada a coluna \"coupon.code.code\" no mapeamento CSV"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -421,7 +421,7 @@ msgstr "Nenhuma coluna \"product.code\" foi encontrada no mapeamento do CSV"
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Nenhuma coluna \"supplier.code\" encontrada no mapeamento CSV"
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -429,7 +429,7 @@ msgstr "Arquivo XML \"%1$s\" não encontrado"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Nenhum endereço com e-mail encontrado no pedido com ID \"%1$s\""
 
 msgid "One or more products you are watching have been updated."
 msgstr "Um ou mais produtos que você está observando foram atualizados"
@@ -457,7 +457,7 @@ msgstr "Importação de status do pedido em CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "O nó pai para o código \"%1$s\" não foi encontrado"
 
 msgid "Password"
 msgstr "Senha"
@@ -522,11 +522,11 @@ msgstr "Renova as assinaturas na próxima data"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "A coluna obrigatória \"%1$s\" não foi encontrada para o código \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "A configuração necessária para \"%1$s\" está faltando"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
@@ -540,11 +540,11 @@ msgstr "Redimensiona as imagens do produto para os novos tamanhos"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Falha no dimensionamento da imagem \"%1$s\": %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Falha no dimensionamento do item de mídia \"%1$s\": %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "Envia e-mails para novas contas de clientes"
@@ -566,87 +566,87 @@ msgstr "Envia o e-mail com o voucher para o cliente"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "E-mail da conta do cliente enviado para \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "E-mail de entrega de pedido enviado para o pedido \"%1$s\" e status \"%2$s\""
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "E-mail de pagamento de pedido enviado para o pedido \"%1$s\" e status \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Enviou um e-mail de notificação de produto para \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "E-mails de voucher enviados para o ID do pedido \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação de atributos de \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação de atributos do arquivo \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação do catálogo de \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação do catálogo do arquivo \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação do código de cupom de \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação de cupom/código de \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Iniciou a importação de clientes de \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Iniciou a importação de clientes do arquivo \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Iniciou a importação de grupos de \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação de grupos do arquivo \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Iniciou a importação de produtos de \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação de produtos do arquivo \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Iniciou a importação de estoque de \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Iniciada a importação de estoque do arquivo \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Iniciou a importação do fornecedor de \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Iniciou a importação de fornecedores do arquivo \"%1$s\""
 
 msgid "Status"
 msgstr "Status"
@@ -755,7 +755,7 @@ msgstr "Transfere o preço dos produtos encomendados para os fornecedores incl. 
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Não foi possível adicionar o endereço atual do cliente com ID \"%1$s\""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -763,7 +763,7 @@ msgstr "Incapaz de chamar o método \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Não foi possível importar o catálogo com o código \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -771,7 +771,7 @@ msgstr "Incapaz de importar o produto com o código \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Não foi possível importar o fornecedor com o código \"%1$s\": %2$s"
 
 msgid "Voucher"
 msgstr "Voucher"
@@ -843,7 +843,7 @@ msgstr "Seus produtos observados"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "entrega"

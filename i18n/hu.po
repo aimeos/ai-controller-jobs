@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Patrik Szakos <szakos0208@gmail.com>, 2021\n"
 "Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
@@ -57,11 +57,11 @@ msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -132,7 +132,7 @@ msgstr "Jegyzék honlaptérképe"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Tisztított %1$s régi termékek"
 
 msgid "Cleanup baskets"
 msgstr "Tisztító kosarak"
@@ -217,75 +217,75 @@ msgstr "Előfizetéseket exportál CSV -fájlba"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Befejeződött az attribútum importálása a \"%1$s\"-ból."
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Befejeződött az attribútum importálása a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Befejeződött a katalógus importálása a \"%1$s\"-ból."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Befejeződött a katalógus importálása a \"%1$s\"-ból (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Befejeződött a katalógus importálása a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Befejeződött a kupon/kód importálása a \"%1$s\"-ból."
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Befejeződött az ügyfél importálása a \"%1$s\"-ból."
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Befejeződött az ügyfél importálása a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Befejeződött a csoportos importálás a \"%1$s\"-ból."
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Befejeződött a csoport importálása a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Késztermék importálása a \"%1$s\"-ból"
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Késztermék importálása \"%1$s\"-ből (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Késztermék importálása a \"%1$s\" fájlból"
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Befejezett készlet importálása \"%1$s\"-ból"
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Befejeződött a készletimport a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Befejezett beszállítói import a \"%1$s\"-tól"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Befejezett beszállítói import \"%1$s\"-ból (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Befejeződött a beszállító importálása a \"%1$s\" fájlból."
 
 msgid "Groups import XML"
 msgstr "Csoportok importálása XML"
@@ -346,11 +346,11 @@ msgstr "Index újjáépítése"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Érvénytelen JSON kódolási üzenet: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Érvénytelen katalógus sorok az importálás során: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -358,11 +358,11 @@ msgstr "Érvénytelen karakter a/az \"%1$s\" osztály nevében"
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Érvénytelen karakterek a processzor nevében \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Érvénytelen karakterek a processzor \"%1$s\" típusában."
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -370,19 +370,19 @@ msgstr "Érvénytelen osztálynév: \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Érvénytelen üzenet: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Érvénytelen termék sorok az importálás során: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Érvénytelen beszállítói sorok az importálás során: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Érvénytelen típus \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -427,7 +427,7 @@ msgstr "Nem találtunk \"%1$s\" XML fájlt"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "A \"%1$s\" azonosítóval rendelkező rendelésben nem találtunk e-mail címet."
 
 msgid "One or more products you are watching have been updated."
 msgstr "Az Ön által nézegetett termékek közül egy vagy több idő közben frissült."
@@ -455,7 +455,7 @@ msgstr "Megrendelés státusz CSV importálása"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "A \"%1$s\" kód szülői csomópontja nem található"
 
 msgid "Password"
 msgstr "Jelszó"
@@ -520,15 +520,15 @@ msgstr "Megújítja az előfizetéseket a következő időpontban"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "A \"%1$s\" oszlop nem található a \"%2$s\" kódhoz."
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "A \"%1$s\" szükséges konfiguráció hiányzik"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "A szükséges \"%1$s\" leképezési kulcs hiányzik, vagy nem tartalmaz tömböt."
 
 msgid "Rescale product images"
 msgstr "Termékképek átméretezése"
@@ -538,11 +538,11 @@ msgstr "Átméretezi a termékképeket az új méretekre"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "A \"%1$s\" kép méretezése sikertelen: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "A \"%1$s\" médiaelem méretezése sikertelen: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "e-maileket küld az új ügyfélszámlákhoz"
@@ -564,87 +564,87 @@ msgstr "Elküldi az e-mailt az utalvánnyal az ügyfélnek."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Küldött ügyfélszámla e-mail \"%1$s\" címre"
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Elküldte a \"%1$s\" megrendelés kézbesítési e-mailjét és a \"%2$s\" státuszt."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Elküldte a \"%1$s\" megrendelés és a \"%2$s\" státuszú megrendelés fizetési e-mailjét."
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Termékértesítés e-mail elküldése \"%1$s\" címre"
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Elküldött utalvány e-mailek a \"%1$s\" rendelési azonosítóhoz."
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Az attribútum importálása megkezdődött a \"%1$s\"-ból."
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Az attribútum importálása megkezdődött a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Katalógus importálása megkezdődött a \"%1$s\" katalógusból."
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Katalógus importálása megkezdődött a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Kuponkód importálása megkezdődött a \"%1$s\" kódból"
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Kupon/kód importálása indult a \"%1$s\" -ból"
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Elkezdődött az ügyfél importálása a \"%1$s\"-ból."
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Elkezdődött az ügyfél importálása a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Csoportos importálás megkezdve \"%1$s\"-ról"
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Csoport importálása megkezdődött a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Termék importálása megkezdődött a \"%1$s\" címről."
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Termék importálása megkezdődött a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Készletimport indult \"%1$s\"-ról"
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Elkezdődött a készletimport a \"%1$s\" fájlból."
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Beszállítói importálás megkezdve \"%1$s\"-ról"
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "A beszállítói importálás megkezdődött a \"%1$s\" fájlból."
 
 msgid "Status"
 msgstr "Státusz"
@@ -752,7 +752,7 @@ msgstr "Átutalja a megrendelt termékek árát a szállítóknak, beleértve a 
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Nem sikerült hozzáadni a \"%1$s\" azonosítóval rendelkező ügyfél aktuális címét."
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -760,15 +760,15 @@ msgstr "Nem lehet, meghívni a \"%1$s\" eljárást"
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "A \"%1$s\" kódú katalógus importálása nem lehetséges: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nem sikerült importálni a \"%1$s\" kódú terméket: %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nem sikerült importálni a \"%1$s\" kódú szállítót: %2$s"
 
 msgid "Voucher"
 msgstr "Utalvány"
@@ -840,7 +840,7 @@ msgstr "Figyelt termékek"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-katalógus-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "Szállítás"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: stevechen <steve.stevechen@gmail.com>, 2018\n"
 "Language-Team: Chinese (http://app.transifex.com/aimeos/aimeos-core/language/zh/)\n"
@@ -59,11 +59,11 @@ msgstr "%1$s %2$s 折扣"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -134,7 +134,7 @@ msgstr "站点目录地图"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "已清理 %1$s 旧产品"
 
 msgid "Cleanup baskets"
 msgstr "清洁篮"
@@ -219,75 +219,75 @@ msgstr "訂閱匯出至 CVS 檔案"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "完成从\"%1$s \"导入属性"
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "完成从文件\"%1$s \"导入属性"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "完成从\"%1$s \"导入目录"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "完成从\"%1$s \"导入目录 (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "完成从文件\"%1$s \"导入目录"
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "完成从\"%1$s \"导入优惠券/代码"
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "从\"%1$s \"完成客户导入"
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "完成从文件\"%1$s \"导入客户信息"
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "从\"%1$s \"完成组导入"
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "完成从文件\"%1$s \"导入分组"
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "从\"%1$s \"导入成品"
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "从\"%1$s\"（%2$d/%3$d）进口成品"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "从文件\"%1$s \"导入成品"
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "从\"%1$s \"导入成品库存"
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "完成从文件\"%1$s \"导入库存"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "从\"%1$s \"完成供应商导入"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "从\"%1$s\"（%2$d/%3$d）导入已完成的供应商信息"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "完成从文件\"%1$s \"导入供应商信息"
 
 msgid "Groups import XML"
 msgstr "组群导入 XML"
@@ -352,7 +352,7 @@ msgstr "無效的JSON編碼訊息： %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "导入时目录行无效： %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -360,11 +360,11 @@ msgstr "class名稱 \"%1$s\" 包含無效的字符"
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "处理器名称\"%1$s \"中的字符无效"
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "处理器类型\"%1$s \"中的字符无效"
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -376,15 +376,15 @@ msgstr "無效訊息： %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "导入时产品系列无效：%1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "导入时供应商行无效：%1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "无效类型\"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -409,11 +409,11 @@ msgstr "姓名"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "在 CSV 映射中未发现 \"catalog.code \"列"
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "在 CSV 映射中未发现 \"coupon.code.code \"列"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -421,7 +421,7 @@ msgstr "在CSV找不到 \"product.code\" 欄位"
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "在 CSV 映射中未发现 \"supplier.code \"列"
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -429,7 +429,7 @@ msgstr "未找到 XML 文件 \"%1$s\""
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "在 ID 为\"%1$s \"的订单中未发现带有电子邮件的地址"
 
 msgid "One or more products you are watching have been updated."
 msgstr "一個或多個您關注中的商品已被更新。"
@@ -457,7 +457,7 @@ msgstr "订单状态导入 CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "未找到代码\"%1$s \"的父节点"
 
 msgid "Password"
 msgstr "密碼"
@@ -522,11 +522,11 @@ msgstr "在下个日期续订"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "未找到代码\"%2$s \"所需的列\"%1$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "缺少\"%1$s \"所需的配置"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
@@ -540,11 +540,11 @@ msgstr "将产品图像重新缩放为新尺寸"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "缩放图像\"%1$s \"失败：%2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "缩放媒体项目\"%1$s \"失败：%2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "發送新顧客帳號的e-mails"
@@ -566,87 +566,87 @@ msgstr "向客户发送代金券邮件"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "向\"%1$s \"发送客户帐户电子邮件"
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "已发送订单\"%1$s \"和状态\"%2$s \"的订单交付电子邮件"
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "已发送订单\"%1$s \"和状态\"%2$s \"的订单付款电子邮件"
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "已向\"%1$s \"发送产品通知电子邮件"
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "已发送订单号为\"%1$s \"的优惠券电子邮件"
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "开始从\"%1$s \"导入属性"
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "开始从文件\"%1$s \"导入属性"
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "开始从\"%1$s \"导入目录"
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "开始从文件\"%1$s \"导入目录"
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "开始从\"%1$s \"导入优惠券代码"
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "开始从\"%1$s \"导入优惠券/代码"
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "开始从\"%1$s \"导入客户信息"
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "开始从文件\"%1$s \"导入客户信息"
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "从\"%1$s \"开始组导入"
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "开始从文件\"%1$s \"导入分组"
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "开始从\"%1$s \"导入产品"
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "开始从文件\"%1$s \"导入产品"
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "开始从\"%1$s \"导入存货"
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "开始从文件\"%1$s \"导入股票"
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "开始从 \"%1$s\" 导入供应商"
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "开始从文件\"%1$s \"导入供应商信息"
 
 msgid "Status"
 msgstr "狀態"
@@ -753,7 +753,7 @@ msgstr "将订购产品的价格转移给供应商，包括佣金处理费"
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "无法为 ID 为\"%1$s \"的客户添加当前地址"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -761,7 +761,7 @@ msgstr "無法呼叫method \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "无法导入代码为\"%1$s \"的目录：%2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -769,7 +769,7 @@ msgstr "無法匯入代碼為 \"%1$s\": %2$s 的商品"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "无法导入代码为\"%1$s \"的供应商：%2$s"
 
 msgid "Voucher"
 msgstr "代金券"
@@ -841,7 +841,7 @@ msgstr "您關注中的商品"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "運送"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Estonian (http://app.transifex.com/aimeos/aimeos-core/language/et/)\n"
@@ -54,11 +54,11 @@ msgstr "%1$s %2$s välja"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -129,7 +129,7 @@ msgstr "Kataloogi saidi kaart"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Puhastatud %1$s vanad tooted"
 
 msgid "Cleanup baskets"
 msgstr "Puhastuskorvid"
@@ -214,75 +214,75 @@ msgstr "Ekspordib tellimusi CSV-faili"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Atribuutide importimine on lõppenud \"%1$s\"."
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Atribuutide importimine failist \"%1$s\" lõpetatud."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud kataloogi import \"%1$s\"."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Lõpetatud kataloogi import \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Kataloogi importimine failist \"%1$s\" lõpetatud."
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud kupongi/koodi import \"%1$s\" alt"
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud kliendi import \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud kliendi import failist \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud grupi import \"%1$s\"-st"
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud grupi import failist \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Valmis toote import \"%1$s\"."
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Valmis toote import \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Valmis toote import failist \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud varude import \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud varude import failist \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Lõpetatud tarnija import \"%1$s\"."
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Lõpetatud tarnija import \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Tarnija importimine failist \"%1$s\" on lõpetatud."
 
 msgid "Groups import XML"
 msgstr "Rühmade import XML"
@@ -343,11 +343,11 @@ msgstr "Indeksi taastamine"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Vigane JSON-kodeerimissõnum: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Vigased kataloogiread importimisel: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -355,11 +355,11 @@ msgstr "Lubamatud tähemärgid klassi nimes \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Väärad tähemärgid protsessori nimes \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Väärad tähemärgid protsessori tüübis \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -367,19 +367,19 @@ msgstr "Vale klassi nimi \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Vale sõnum: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Impordi ajal valed tooteread: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Impordi ajal valed tarnija read: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Vale tüüp \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -404,19 +404,19 @@ msgstr "Nimi"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV kaardistuses ei leitud veergu \"kataloog.kood\"."
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV kaardistamisel ei leitud veergu \"coupon.code.code\"."
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV kaardistuses ei leitud veergu \"product.code\"."
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV kaardistuses ei leitud veergu \"supplier.code\"."
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -424,7 +424,7 @@ msgstr "XML-faili \"%1$s\" ei leitud"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Tellimuses ID \"%1$s\" ei leitud ühtegi aadressi koos e-mailiga."
 
 msgid "One or more products you are watching have been updated."
 msgstr "Ühte või mitut toodet, mida te jälgite, on uuendatud."
@@ -452,7 +452,7 @@ msgstr "Tellimuse staatuse import CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Koodi \"%1$s\" vanemsõlme ei leitud."
 
 msgid "Password"
 msgstr "Salasõna"
@@ -517,15 +517,15 @@ msgstr "Uuendab tellimusi järgmisel kuupäeval"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Nõutavat veergu \"%1$s\" ei leitud koodi \"%2$s\" jaoks."
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Vajalik konfiguratsioon \"%1$s\" puudub"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Vajalik kaardistamisvõti \"%1$s\" puudub või ei sisalda massiivi"
 
 msgid "Rescale product images"
 msgstr "Toote piltide ümbermõõtmine"
@@ -535,11 +535,11 @@ msgstr "Muudab tootepiltide mõõtmed uutele suurustele"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Pildi \"%1$s\" skaleerimine ebaõnnestus: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Meediaelemendi \"%1$s\" skaleerimine ebaõnnestus: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "Saadab uute kliendikontode jaoks e-kirju"
@@ -561,87 +561,87 @@ msgstr "Saadab kliendile e-kirja koos vautšeriga."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Saadetud kliendikonto e-kiri aadressile \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Tellimuse \"%1$s\" ja staatusega \"%2$s\" saadetud tellimuse kättetoimetamise e-kiri."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Tellimuse \"%1$s\" ja staatuse \"%2$s\" makse e-kiri on saadetud."
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Saadetud tooteteavitus e-kiri aadressile \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Saadetud vautšerite e-kirjad tellimuse ID \"%1$s\" jaoks."
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Algas atribuutide import \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Algas atribuutide import failist \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Algas kataloogi importimine \"%1$s\"."
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Algas kataloogi import failist \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Algas kupongikoodi import \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Algas kupongi/koodi importimine lehelt \"%1$s\"."
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Algas kliendi import \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Algas kliendi importimine failist \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Alustasime grupi importimist \"%1$s\"."
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Algas grupi import failist \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Algas toote import \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Algas toote importimine failist \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Algas varude importimine \"%1$s\"."
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Algas varude import failist \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Algas tarnija import \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Algas tarnija importimine failist \"%1$s\""
 
 msgid "Status"
 msgstr "Staatus"
@@ -749,7 +749,7 @@ msgstr "edastab tellitud toodete hinna müüjatele, sh komisjonitasu käitlemise
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Ei ole võimalik lisada praegust aadressi kliendile, kelle ID on \"%1$s\"."
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -757,15 +757,15 @@ msgstr "Meetodit \"%1$s\" ei ole võimalik välja kutsuda."
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Koodiga \"%1$s\" ei ole võimalik kataloogi importida: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Ei ole võimalik importida toodet koodiga \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Koodiga \"%1$s\" ei ole võimalik tarnijat importida: %2$s"
 
 msgid "Voucher"
 msgstr "Voucher"
@@ -837,7 +837,7 @@ msgstr "Teie jälgimisnimekirjas olevad tooted"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-kataloogi-saitemap-%d.xml"
 
 msgid "delivery"
 msgstr "saadetis"

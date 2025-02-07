@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Finnish (http://app.transifex.com/aimeos/aimeos-core/language/fi/)\n"
@@ -54,11 +54,11 @@ msgstr "%1$s %2$s off"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -129,7 +129,7 @@ msgstr "Luettelon sivustokartta"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Puhdistettu %1$s vanhoja tuotteita"
 
 msgid "Cleanup baskets"
 msgstr "Siivouskorit"
@@ -214,75 +214,75 @@ msgstr "Vie tilaukset CSV-tiedostoon"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Attribuutin tuonti \"%1$s\" -laitteesta on päättynyt."
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Attribuutin tuonti tiedostosta \"%1$s\" on päättynyt."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Tuonti luettelosta \"%1$s\" saatiin valmiiksi"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Luettelon tuonti \"%1$s\" (%2$d/%3$d) on päättynyt."
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Luettelon tuonti tiedostosta \"%1$s\" saatiin valmiiksi"
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Kupongin/koodin tuonti osoitteesta \"%1$s\" on päättynyt."
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Asiakkaan tuonti \"%1$s\" on päättynyt."
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Asiakkaan tuonti tiedostosta \"%1$s\" saatiin valmiiksi"
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Ryhmätuonti \"%1$s\" on päättynyt."
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Ryhmien tuonti tiedostosta \"%1$s\" on päättynyt."
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Valmiin tuotteen tuonti osoitteesta \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Valmiin tuotteen tuonti \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Valmiin tuotteen tuonti tiedostosta \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Valmiiden varastojen tuonti \"%1$s\":stä"
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Varastojen tuonti tiedostosta \"%1$s\" on päättynyt."
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Toimittajan tuonti päättynyt \"%1$s\"-osoitteesta"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Valmis toimittajan tuonti osoitteesta \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Toimittajan tuonti tiedostosta \"%1$s\" on päättynyt."
 
 msgid "Groups import XML"
 msgstr "Ryhmien tuonti XML"
@@ -343,11 +343,11 @@ msgstr "Indeksin uudelleenrakentaminen"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Väärä JSON-koodausviesti: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Tuonnin aikana virheelliset luettelorivit: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -355,11 +355,11 @@ msgstr "Virheellisiä merkkejä luokkanimessä \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Prosessorin nimessä \"%1$s\" on virheellisiä merkkejä."
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Prosessorityypissä \"%1$s\" on virheellisiä merkkejä."
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -367,19 +367,19 @@ msgstr "Virheellinen luokkanimi \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Virheellinen viesti: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Tuonnin aikana virheelliset tuoterivit: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Tuonnin aikana virheelliset toimittajarivit: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Virheellinen tyyppi \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -404,19 +404,19 @@ msgstr "Nimi"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV-kartoituksessa ei löytynyt saraketta \"catalog.code\"."
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV-kartoituksessa ei löytynyt saraketta \"coupon.code.code\"."
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV-kartoituksessa ei löytynyt saraketta \"product.code\"."
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV-kartoituksessa ei löytynyt saraketta \"supplier.code\"."
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -424,7 +424,7 @@ msgstr "XML-tiedostoa \"%1$s\" ei löytynyt"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Tilauksesta, jonka ID on \"%1$s\", ei löytynyt sähköpostiosoitetta."
 
 msgid "One or more products you are watching have been updated."
 msgstr "Yksi tai useampi seuraamasi tuote on päivitetty."
@@ -452,7 +452,7 @@ msgstr "Tilauksen tilan tuonti CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Koodin \"%1$s\" vanhempaa solmua ei löydy."
 
 msgid "Password"
 msgstr "Salasana"
@@ -517,15 +517,15 @@ msgstr "Uusii tilaukset seuraavana päivänä"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Vaadittua saraketta \"%1$s\" ei löydy koodille \"%2$s\"."
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Vaadittu kokoonpano \"%1$s\" puuttuu."
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Vaadittu yhdistämisavain \"%1$s\" puuttuu tai ei sisällä arraya."
 
 msgid "Rescale product images"
 msgstr "Tuotekuvien uudelleenskaalaus"
@@ -535,11 +535,11 @@ msgstr "Skaalaa tuotekuvat uuteen kokoon"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Kuvan \"%1$s\" skaalaus epäonnistui: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Mediaelementin \"%1$s\" skaalaus epäonnistui: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "Lähettää sähköpostiviestejä uusia asiakastilejä varten"
@@ -561,87 +561,87 @@ msgstr "Lähettää asiakkaalle sähköpostiviestin, jossa on arvoseteli."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Lähetetty asiakastilin sähköpostiviesti osoitteeseen \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Lähetetty tilauksen toimitussähköposti tilaukselle \"%1$s\" ja tilalle \"%2$s\"."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Lähetetty tilauksen maksusähköposti tilaukselle \"%1$s\" ja tilalle \"%2$s\"."
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Lähetetty tuoteilmoitussähköposti osoitteeseen \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Lähetetyt tosite sähköpostit tilauksen ID \"%1$s\" osalta."
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Aloitettiin attribuutin tuonti osoitteesta \"%1$s\"."
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Aloitettiin attribuutin tuonti tiedostosta \"%1$s\"."
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Luettelon tuonti aloitettu osoitteesta \"%1$s\"."
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Luettelon tuonti tiedostosta \"%1$s\" aloitettu."
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Kuponkikoodin tuonti aloitettu osoitteesta \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Kupongin/koodin tuonti aloitettu osoitteesta \"%1$s\"."
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Aloitettiin asiakkaan tuonti osoitteesta \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Asiakkaan tuonti tiedostosta \"%1$s\" aloitettu."
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Ryhmän tuonti aloitettu \"%1$s\" -osoitteesta."
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Ryhmän tuonti tiedostosta \"%1$s\" aloitettu."
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Tuotteen tuonti aloitettu osoitteesta \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Tuotteen tuonti tiedostosta \"%1$s\" aloitettu."
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Aloitettiin varastojen tuonti \"%1$s\"-osoitteesta"
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Aloitettiin varastojen tuonti tiedostosta \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Toimittajan tuonti aloitettu osoitteesta \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Toimittajan tuonti tiedostosta \"%1$s\" aloitettu."
 
 msgid "Status"
 msgstr "Tila"
@@ -749,7 +749,7 @@ msgstr "Siirtää tilattujen tuotteiden hinnan myyjille, mukaan lukien palkkion 
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Nykyistä osoitetta ei pystytä lisäämään asiakkaalle, jonka tunnus on \"%1$s\"."
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -757,15 +757,15 @@ msgstr "Toimintoa \"%1$s” ei voitu suorittaa"
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Luetteloa ei voida tuoda koodilla \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Tuotetta, jonka koodi on \"%1$s\", ei voida tuoda: %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Koodilla \"%1$s\" varustetun toimittajan tuonti ei onnistu: %2$s"
 
 msgid "Voucher"
 msgstr "Voucher"
@@ -837,7 +837,7 @@ msgstr "Katsomasi tuotteet"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-katalogi-sivukartta-%d.xml"
 
 msgid "delivery"
 msgstr "toimitus"

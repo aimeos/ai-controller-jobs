@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovak (http://app.transifex.com/aimeos/aimeos-core/language/sk/)\n"
@@ -54,11 +54,11 @@ msgstr "%1$s %2$s rabat"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -129,7 +129,7 @@ msgstr "Mapa stránok katalógu"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Vyčistené %1$s starých produktov"
 
 msgid "Cleanup baskets"
 msgstr "Koše na čistenie"
@@ -214,75 +214,75 @@ msgstr "Export odberov do súboru CSV"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Dokončený import atribútov z \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Dokončený import atribútov zo súboru \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Dokončený import katalógu z \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Dokončený import katalógu z \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Dokončený import katalógu zo súboru \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Dokončený import kupónu/kódu z \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Dokončený import zákazníka z \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Dokončený import zákazníka zo súboru \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Dokončený import skupiny z \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Dokončený import skupiny zo súboru \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Dovoz hotového výrobku z \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Dovoz hotového výrobku z \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Import hotového výrobku zo súboru \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Dovoz hotových zásob z \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Dokončený import zásob zo súboru \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Ukončený import dodávateľa z \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Ukončený import dodávateľa z \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Dokončený import dodávateľa zo súboru \"%1$s\""
 
 msgid "Groups import XML"
 msgstr "Import skupín XML"
@@ -343,11 +343,11 @@ msgstr "Prestavba indexu"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Nesprávne kódovanie správy JSON: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Neplatné riadky katalógu počas importu: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -355,11 +355,11 @@ msgstr "Neplatné znaky v triede  \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Neplatné znaky v názve procesora \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Neplatné znaky v type procesora \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -367,19 +367,19 @@ msgstr "Neplatný názov triedy \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Neplatná správa: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Neplatné produktové rady počas importu: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Neplatné riadky dodávateľa počas importu: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Neplatný typ \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -404,19 +404,19 @@ msgstr "Meno"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "V mapovaní CSV nebol nájdený stĺpec \"catalog.code\""
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "V mapovaní CSV nebol nájdený stĺpec \"coupon.code.code\""
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "V mapovaní CSV nebol nájdený stĺpec \"product.code\""
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "V mapovaní CSV nebol nájdený stĺpec \"supplier.code\""
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
@@ -424,7 +424,7 @@ msgstr "Nenašiel sa žiadny súbor XML \"%1$s\""
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "V objednávke s ID \"%1$s\" nebola nájdená žiadna adresa s e-mailom"
 
 msgid "One or more products you are watching have been updated."
 msgstr "Jeden alebo viac sledovaných produktov bolo aktualizovaných."
@@ -452,7 +452,7 @@ msgstr "Stav objednávky import CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Nadradený uzol pre kód \"%1$s\" nebol nájdený"
 
 msgid "Password"
 msgstr "Heslo"
@@ -517,15 +517,15 @@ msgstr "Obnovenie predplatného k ďalšiemu dátumu"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Požadovaný stĺpec \"%1$s\" nebol nájdený pre kód \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Chýba požadovaná konfigurácia pre \"%1$s\""
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Chýba požadovaný mapovací kľúč \"%1$s\" alebo neobsahuje žiadne pole"
 
 msgid "Rescale product images"
 msgstr "Zmena mierky obrázkov produktov"
@@ -535,11 +535,11 @@ msgstr "Zmena mierky obrázkov produktov na nové veľkosti"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Škálovanie obrázka \"%1$s\" zlyhalo: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Zlyhalo škálovanie mediálneho prvku \"%1$s\": %2$s"
 
 msgid "Sends e-mails for new customer accounts"
 msgstr "Odosiela e-maily pre nové zákaznícke účty"
@@ -561,87 +561,87 @@ msgstr "Odoslanie e-mailu s poukazom zákazníkovi"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Odoslaný e-mail zákazníckeho účtu na adresu \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Odoslaný e-mail o doručení objednávky \"%1$s\" a stave \"%2$s\""
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Odoslaný e-mail s platbou za objednávku \"%1$s\" a stavom \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Odoslaný e-mail s oznámením o produkte na adresu \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Odoslané e-maily s poukazmi pre ID objednávky \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import atribútov z \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Spustený import atribútov zo súboru \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import katalógu z \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Spustený import katalógu zo súboru \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import kódu kupónu z \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import kupónu/kódu z \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import zákazníka z \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Spustený import zákazníka zo súboru \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Spustený skupinový import z \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Spustený import skupiny zo súboru \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import produktu z \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Spustený import produktu zo súboru \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import zásob z \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Spustený import zásob zo súboru \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Spustený import dodávateľa z \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Spustený import dodávateľa zo súboru \"%1$s\""
 
 msgid "Status"
 msgstr "Status"
@@ -751,7 +751,7 @@ msgstr "Prevedie cenu objednaných produktov predajcom vrátane provízie za spr
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Nie je možné pridať aktuálnu adresu pre zákazníka s ID \"%1$s\""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -759,15 +759,15 @@ msgstr "Nepodarilo sa zavolať metódu \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nie je možné importovať katalóg s kódom \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nie je možné importovať produkt s kódom \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nie je možné importovať dodávateľa s kódom \"%1$s\": %2$s"
 
 msgid "Voucher"
 msgstr "Voucher"
@@ -839,7 +839,7 @@ msgstr "Vaše sledované produkty"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "doručenie"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:14+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Janosch Ott <janosch.ott@bluewin.ch>, 2015\n"
 "Language-Team: German (http://app.transifex.com/aimeos/aimeos-core/language/de/)\n"
@@ -57,11 +57,11 @@ msgstr "%1$s %2$s Rabatt"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -132,7 +132,7 @@ msgstr "Kategorien-Sitemap"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Gereinigt %1$s alte Produkte"
 
 msgid "Cleanup baskets"
 msgstr "Alte Warenkörbe löschen"
@@ -229,7 +229,7 @@ msgstr "Kategorienimport aus \"%1$s\" beendet"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Beendeter Katalogimport von \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
@@ -237,7 +237,7 @@ msgstr "Kategorienimport aus Datei \"%1$s\" beendet"
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Gutschein/Code-Import von \"%1$s\" abgeschlossen"
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
@@ -249,11 +249,11 @@ msgstr "Kundenimport aus Datei \"%1$s\" beendet"
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Beendeter Gruppenimport von \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Gruppenimport aus Datei \"%1$s\" abgeschlossen"
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
@@ -261,7 +261,7 @@ msgstr "Produktimport aus \"%1$s\" beendet"
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Fertigerzeugnisimport aus \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
@@ -277,15 +277,15 @@ msgstr "Bestandsimport aus Datei \"%1$s\" beendet"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Beendeter Lieferantenimport von \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Beendeter Lieferantenimport von \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Lieferantenimport aus Datei \"%1$s\" abgeschlossen"
 
 msgid "Groups import XML"
 msgstr "Gruppen XML Import"
@@ -350,7 +350,7 @@ msgstr "Ungültige JSON-kodierte Nachricht: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Ungültige Katalogzeilen beim Import: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -374,11 +374,11 @@ msgstr "Ungültige Nachricht: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Ungültige Produktlinien beim Import: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Ungültige Lieferantenzeilen beim Import: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
@@ -427,7 +427,7 @@ msgstr "Keine XML-Datei \"%1$s\" gefunden"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Keine Adresse mit E-Mail in Auftrag mit ID \"%1$s\" gefunden"
 
 msgid "One or more products you are watching have been updated."
 msgstr "Ein oder mehrere Produkte die Sie beobachten wurden aktualisiert"
@@ -568,19 +568,19 @@ msgstr "Kundenkonto E-Mail an \"%1$s\" versandt"
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "E-Mail für Bestellung \"%1$s\" und Status \"%2$s\" gesendet"
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Gesendete Zahlungs-E-Mail für Bestellung \"%1$s\" und Status \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Produktbenachrichtigung per E-Mail an \"%1$s\" gesendet"
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Gesendete Gutschein-E-Mails für Bestell-ID \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
@@ -600,11 +600,11 @@ msgstr "Kategorienimport aus Datei \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Import des Gutscheincodes von \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Import von Gutscheinen/Codes von \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
@@ -616,11 +616,11 @@ msgstr "Kundenimport aus Datei \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Gruppenimport von \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Gruppenimport aus Datei \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started product import from \"%1$s\""
@@ -640,11 +640,11 @@ msgstr "Bestandsimport aus Datei \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Lieferantenimport von \"%1$s\" gestartet"
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Lieferantenimport aus Datei \"%1$s\" gestartet"
 
 msgid "Status"
 msgstr "Status"
