@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish (http://app.transifex.com/aimeos/aimeos-core/language/da/)\n"
@@ -52,6 +52,14 @@ msgstr "%1$s %2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s rabat"
 
+#, php-format
+msgid "%s-sitemap-%d.xml"
+msgstr "%s-sitemap-%d.xml"
+
+#, php-format
+msgid "%s-sitemap-index.xml"
+msgstr "%s-sitemap-index.xml"
+
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
@@ -77,13 +85,13 @@ msgid "Account"
 msgstr "Konto"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Al XML-import"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Alle ordrer er underlagt vores vilkår og betingelser."
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2024
+#. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
 msgstr "Din konto er nu oprettet."
 
@@ -91,39 +99,43 @@ msgid "Article no."
 msgstr "Varenr."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Attribut-import XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "Autoriserede betalinger af ordrer registreres efter afsendelse eller efter en konfigurerbar tidsperiode."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Batch-opdatering af betalings-/leveringsstatus"
 
 msgid "Billing address"
 msgstr "Faktureringsadresse"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Oprydning i cachen"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Registrer godkendte betalinger"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Katalogimport CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Import af katalog XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Kort over kataloget"
+
+#, php-format
+msgid "Cleaned %1$s old products"
+msgstr "Rensede %1$s gamle produkter"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Kurve til oprydning"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Import af kuponkode som CSV"
 
 msgid "Coupon codes"
 msgstr "Kuponkode"
@@ -132,19 +144,19 @@ msgid "Coupons"
 msgstr "Kuponer"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Opretter et katalog-sitemap til søgemaskiner"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Opretter et produktkort til søgemaskiner"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Skaber sammenkøbte produktforslag"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "E-mails til kundekontoer"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Kundeimport XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
@@ -159,18 +171,18 @@ msgstr "Kære %1$s %2$s"
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Kære fru %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Kære kunde"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "Sletter uafsluttede ordrer og gør deres produkter og kuponkoder tilgængelige igen"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Sletter ubetalte ordrer for at holde databasen ren"
 
 msgid "Delivery address"
 msgstr "Leveringsadresse"
@@ -182,58 +194,134 @@ msgid "Details"
 msgstr "Detajler"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Udfører alle XML-importører og genopbygger indekset"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Udfører betalings- eller leveringstjenesteudbydere, der bruger batchopdateringer"
+
+#, php-format
+msgid "Expanding \"%1$s\" node failed"
+msgstr "Udvidelse af noden \"%1$s\" mislykkedes"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Eksporterer alle tilgængelige produkter"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Eksporterer ordrer til CSV-fil"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Eksporterer abonnementer til CSV-fil"
+
+#, php-format
+msgid "Finished attribute import from \"%1$s\""
+msgstr "Færdig med at importere attributter fra \"%1$s\""
+
+#, php-format
+msgid "Finished attribute import from file \"%1$s\""
+msgstr "Færdig med at importere attributter fra filen \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\""
+msgstr "Færdig med katalogimport fra \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Færdig katalogimport fra \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished catalog import from file \"%1$s\""
+msgstr "Færdig med katalogimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Finished coupon/code import from \"%1$s\""
+msgstr "Færdig med at importere kuponer/koder fra \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from \"%1$s\""
+msgstr "Færdig med at importere kunder fra \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from file \"%1$s\""
+msgstr "Færdig med at importere kunder fra filen \"%1$s\""
+
+#, php-format
+msgid "Finished group import from \"%1$s\""
+msgstr "Færdig med gruppeimport fra \"%1$s\""
+
+#, php-format
+msgid "Finished group import from file \"%1$s\""
+msgstr "Færdig med gruppeimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\""
+msgstr "Import af færdigt produkt fra \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Import af færdigt produkt fra \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished product import from file \"%1$s\""
+msgstr "Import af færdigt produkt fra filen \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from \"%1$s\""
+msgstr "Import af færdigt lager fra \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from file \"%1$s\""
+msgstr "Færdig med lagerimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\""
+msgstr "Færdig leverandørimport fra \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Færdig leverandørimport fra \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished supplier import from file \"%1$s\""
+msgstr "Færdig leverandørimport fra filen \"%1$s\""
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Grupper importerer XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Har du nogle spørgsmål, kan du besvare denne mail"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende attributter fra XML-filer"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende kategorier fra CSV-filer"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende kategorier fra XML-filer"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende kuponkoder fra CSV-filer"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende kunder fra XML-filer"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende grupper fra XML-filer"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende produkter fra CSV-filer"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende produkter fra XML-filer"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende lagre fra CSV-filer"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende leverandører fra CSV-filer"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Importerer nye og opdaterer eksisterende leverandører fra XML-filer"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
@@ -248,25 +336,65 @@ msgid "Included rebates"
 msgstr "Inkluderet rabat"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Optimering af indeks"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Genopbygning af indeks"
+
+#, php-format
+msgid "Invalid JSON encode message: %1$s"
+msgstr "Ugyldig JSON-kodning af besked: %1$s"
+
+#, php-format
+msgid "Invalid catalog lines during import: %1$d"
+msgstr "Ugyldige kataloglinjer under import: %1$d"
+
+#, php-format
+msgid "Invalid characters in class name \"%1$s\""
+msgstr "Ugyldige tegn i klassenavnet \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor name \"%1$s\""
+msgstr "Ugyldige tegn i processornavnet \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor type \"%1$s\""
+msgstr "Ugyldige tegn i processortypen \"%1$s\""
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr "Ugyldigt klassenavn \"%1$s\""
+
+#, php-format
+msgid "Invalid message: %1$s"
+msgstr "Ugyldig besked: %1$s"
+
+#, php-format
+msgid "Invalid product lines during import: %1$d"
+msgstr "Ugyldige produktlinjer under import: %1$d"
+
+#, php-format
+msgid "Invalid supplier lines during import: %1$d"
+msgstr "Ugyldige leverandørlinjer under import: %1$d"
+
+#, php-format
+msgid "Invalid type \"%1$s\" (%2$s)"
+msgstr "Ugyldig type \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Faktura %1$s"
 
 msgid "Like entered by you"
 msgstr "Som skrevet af dig"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Oprydning i loggen"
 
 msgid "Login"
 msgstr "Login"
@@ -274,29 +402,57 @@ msgstr "Login"
 msgid "Name"
 msgstr "Navn"
 
+#, php-format
+msgid "No \"catalog.code\" column in CSV mapping found"
+msgstr "Ingen \"catalog.code\"-kolonne fundet i CSV-mappingen"
+
+#, php-format
+msgid "No \"coupon.code.code\" column in CSV mapping found"
+msgstr "Ingen \"coupon.code.code\"-kolonne fundet i CSV-mappingen"
+
+#, php-format
+msgid "No \"product.code\" column in CSV mapping found"
+msgstr "Ingen \"product.code\"-kolonne i CSV-mappingen fundet"
+
+#, php-format
+msgid "No \"supplier.code\" column in CSV mapping found"
+msgstr "Ingen \"supplier.code\"-kolonne i CSV-mappingen fundet"
+
+#, php-format
+msgid "No XML file \"%1$s\" found"
+msgstr "Ingen XML-fil \"%1$s\" fundet"
+
+#, php-format
+msgid "No address with e-mail found in order with ID \"%1$s\""
+msgstr "Ingen adresse med e-mail fundet i ordre med ID \"%1$s\""
+
 msgid "One or more products you are watching have been updated."
 msgstr "En eller flere produkter du ser, er blevet opdateret."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimerer indekset til hurtigere søgning efter produkter"
 
 msgid "Order date"
 msgstr "Ordredato"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "E-mails relateret til ordrelevering"
 
 msgid "Order details"
 msgstr "Ordredetajler"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Ordreeksport CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "E-mails relateret til ordrebetaling"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Import af ordrestatus som CSV"
+
+#, php-format
+msgid "Parent node for code \"%1$s\" not found"
+msgstr "Overordnet node for koden \"%1$s\" ikke fundet"
 
 msgid "Password"
 msgstr "kodeord"
@@ -305,25 +461,25 @@ msgid "Price"
 msgstr "Pris"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Behandl levering af ordrer"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Behandl abonnementer i første omgang"
 
 msgid "Product export"
-msgstr ""
+msgstr "Eksport af produkter"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Produkt import CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "XML-import af produkter"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "E-mails med produktmeddelelser"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Kort over produktwebsted"
 
 msgid "Products bought together"
 msgstr "Produkter købt sammen"
@@ -335,92 +491,196 @@ msgid "Quantity"
 msgstr "Antal"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Genopbygger indekset til søgning af produkter"
 
 msgid "Reference"
 msgstr "Reference"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Fjerner de udløbne poster fra cachen"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Fjerner de gamle kurve fra databasen"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "Fjerner de gamle logposter fra databasen og arkiverer dem (valgfrit)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Fjerner ufærdige ordrer"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Fjerner ubetalte ordrer"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Fornyer abonnementer på næste dato"
+
+#, php-format
+msgid "Required column \"%1$s\" not found for code \"%2$s\""
+msgstr "Den påkrævede kolonne \"%1$s\" blev ikke fundet for koden \"%2$s\"."
+
+#, php-format
+msgid "Required configuration for \"%1$s\" is missing"
+msgstr "Den nødvendige konfiguration for \"%1$s\" mangler"
+
+#, php-format
+msgid "Required mapping key \"%1$s\" is missing or contains no array"
+msgstr "Den nødvendige kortlægningsnøgle \"%1$s\" mangler eller indeholder ikke noget array"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Omskalering af produktbilleder"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Skalerer produktbilleder til de nye størrelser"
+
+#, php-format
+msgid "Scaling image \"%1$s\" failed: %2$s"
+msgstr "Skalering af billedet \"%1$s\" mislykkedes: %2$s"
+
+#, php-format
+msgid "Scaling media item \"%1$s\" failed: %2$s"
+msgstr "Skalering af medieelementet \"%1$s\" mislykkedes: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Sender e-mails til nye kundekonti"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Sender e-mails for overvågede produkter"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Sender e-mails med ordrebekræftelse eller opdatering af betalingsstatus"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Sender e-mails med opdatering af ordrestatus"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Sender betalte ordrer til ERP-systemet eller logistikpartneren"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Sender e-mailen med voucheren til kunden"
+
+#, php-format
+msgid "Sent customer account e-mail to \"%1$s\""
+msgstr "Sendt e-mail om kundekonto til \"%1$s\""
+
+#, php-format
+msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "Sendt e-mail om ordrelevering for ordre \"%1$s\" og status \"%2$s\""
+
+#, php-format
+msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "Sendt e-mail om ordrebetaling for ordre \"%1$s\" og status \"%2$s\""
+
+#, php-format
+msgid "Sent product notification e-mail to \"%1$s\""
+msgstr "Sendt e-mail med produktmeddelelse til \"%1$s\""
+
+#, php-format
+msgid "Sent voucher e-mails for order ID \"%1$s\""
+msgstr "Sendt voucher-e-mails for ordre-ID \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from \"%1$s\""
+msgstr "Startet attribut-import fra \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from file \"%1$s\""
+msgstr "Startet attributimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from \"%1$s\""
+msgstr "Startede katalogimport fra \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from file \"%1$s\""
+msgstr "Startet katalogimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Started coupon code import from \"%1$s\""
+msgstr "Startet import af kuponkode fra \"%1$s\""
+
+#, php-format
+msgid "Started coupon/code import from \"%1$s\""
+msgstr "Startet import af kupon/kode fra \"%1$s\""
+
+#, php-format
+msgid "Started customer import from \"%1$s\""
+msgstr "Startede kundeimport fra \"%1$s\""
+
+#, php-format
+msgid "Started customer import from file \"%1$s\""
+msgstr "Startet kundeimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Started group import from \"%1$s\""
+msgstr "Startede gruppeimport fra \"%1$s\""
+
+#, php-format
+msgid "Started group import from file \"%1$s\""
+msgstr "Startet gruppeimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Started product import from \"%1$s\""
+msgstr "Startet produktimport fra \"%1$s\""
+
+#, php-format
+msgid "Started product import from file \"%1$s\""
+msgstr "Startet produktimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Started stock import from \"%1$s\""
+msgstr "Startet lagerimport fra \"%1$s\""
+
+#, php-format
+msgid "Started stock import from file \"%1$s\""
+msgstr "Startet lagerimport fra filen \"%1$s\""
+
+#, php-format
+msgid "Started supplier import from \"%1$s\""
+msgstr "Startet import af leverandør fra \"%1$s\""
+
+#, php-format
+msgid "Started supplier import from file \"%1$s\""
+msgstr "Startet leverandørimport fra filen \"%1$s\""
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Import af status for ordrer fra CSV-fil"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Lagerimport CSV"
 
 msgid "Sub-total"
 msgstr "Sub-total"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Eksport af abonnementer som CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Slut på abonnementsprocessen"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Proces for fornyelse af abonnement"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Start af abonnementsproces"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Abonnementsprodukt"
 
 msgid "Sum"
 msgstr "Total"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Import af leverandør CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Import af leverandør XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Opsiger udløbne abonnementer"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -443,21 +703,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "Ordren er afventende, indtil vi modtager den endelige betaling. Hvis du har valgt at betale på forhånd, bedes du overføre pengene til vores bankkonto med ordre-ID %1$s som reference."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "Pakken til din ordre %1$s fra %2$s kunne ikke leveres."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Betalingen kunne ikke fornyes"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "Betalingen for din ordre %1$s fra %2$s er blevet refunderet."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -465,37 +725,57 @@ msgstr ""
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Betalingsstatus for din ordre %1$s fra %2$s er blevet ændret til \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Abonnementet på produktet er afsluttet"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Værdien af din voucher er %1$s"
+msgstr[1] "Værdien af din voucher er %1$s"
 
 msgid "Total"
 msgstr "Total"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Overfører penge til leverandører"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Overfører prisen på bestilte produkter til leverandørerne inkl. provisionshåndtering"
+
+#, php-format
+msgid "Unable to add current address for customer with ID \"%1$s\""
+msgstr "Kunne ikke tilføje nuværende adresse for kunde med ID \"%1$s\""
+
+#, php-format
+msgid "Unable to call method \"%1$s\""
+msgstr "Kunne ikke kalde metoden \"%1$s\""
+
+#, php-format
+msgid "Unable to import catalog with code \"%1$s\": %2$s"
+msgstr "Det er ikke muligt at importere kataloget med koden \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import product with code \"%1$s\": %2$s"
+msgstr "Produkt med koden \"%1$s\" kan ikke importeres: %2$s"
+
+#, php-format
+msgid "Unable to import supplier with code \"%1$s\": %2$s"
+msgstr "Det er ikke muligt at importere en leverandør med koden \"%1$s\": %2$s"
 
 msgid "Voucher"
 msgstr "Rabatkupon"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Voucher %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Voucher-relaterede e-mails"
 
 msgid "Watched products"
 msgstr "Sete produkter"
@@ -510,16 +790,16 @@ msgstr "Vi har modtaget din betaling og vil håndtere din ordre med det samme."
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "Vi har modtaget den returnerede pakke for din ordre %1$s fra %2$s."
 
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Du kan bruge dine værdikuponer når som helst i vores online shop."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Du har opsagt dit abonnement"
 
 msgid "Your account"
 msgstr "Din konto"
@@ -547,13 +827,17 @@ msgid "Your reference number"
 msgstr "Dit referencenummer"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Dit abonnement"
 
 msgid "Your voucher"
 msgstr "Din rabatkode"
 
 msgid "Your watched products"
 msgstr "Dine sete produkter"
+
+#, php-format
+msgid "aimeos-catalog-sitemap-%d.xml"
+msgstr "aimeos-katalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "Levering"
@@ -573,7 +857,7 @@ msgid "tax"
 msgstr "moms"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "skattefar"

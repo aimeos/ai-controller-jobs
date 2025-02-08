@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
 "Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
@@ -53,6 +53,14 @@ msgstr "%1$s %2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s vypnuto"
 
+#, php-format
+msgid "%s-sitemap-%d.xml"
+msgstr "%s-sitemap-%d.xml"
+
+#, php-format
+msgid "%s-sitemap-index.xml"
+msgstr "%s-sitemap-index.xml"
+
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
@@ -61,7 +69,7 @@ msgstr "+ %1$s %2$s/položka"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ platební náklady"
@@ -78,21 +86,21 @@ msgid "Account"
 msgstr "Účet"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Veškerý import XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Všechny objednávky podléhají našim obchodním podmínkám."
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2024
+#. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
 msgstr "Byl pro vás vytvořen účet."
 
 msgid "Article no."
-msgstr ""
+msgstr "Článek č."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Import atributů XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
@@ -112,19 +120,23 @@ msgid "Capture authorized payments"
 msgstr "Načíst autorizované platby"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Import katalogu CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "XML import katalogu"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Mapa stránek katalogu"
+
+#, php-format
+msgid "Cleaned %1$s old products"
+msgstr "Vyčištěno %1$s starých produktů"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Úklidové koše"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Import kódu kupónu CSV"
 
 msgid "Coupon codes"
 msgstr "Kupónové kódy"
@@ -133,112 +145,188 @@ msgid "Coupons"
 msgstr "Kupóny"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Vytváří mapu katalogových stránek pro vyhledávače"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Vytváří mapu stránek produktu pro vyhledávače"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Vytváří společně zakoupené návrhy produktů"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "E-maily zákaznického účtu"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Import XML od zákazníka"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Vážený %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Vážený pane %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Vážená paní %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Vážený zákazníku"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "Odstraní nedokončené objednávky a znovu zpřístupní jejich produkty a kupónové kódy."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Odstraňuje nezaplacené objednávky, aby byla databáze čistá."
 
 msgid "Delivery address"
 msgstr "Doručovací adresa"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Dodání v rámci"
 
 msgid "Details"
 msgstr "Podrobnosti"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Spustí všechny importéry XML a obnoví index."
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Provádí platební nebo doručovací služby poskytovatelů, kteří používají dávkové aktualizace."
+
+#, php-format
+msgid "Expanding \"%1$s\" node failed"
+msgstr "Rozbalení uzlu \"%1$s\" se nezdařilo"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Exportuje všechny dostupné produkty"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Export objednávek do souboru CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Export odběru do souboru CSV"
+
+#, php-format
+msgid "Finished attribute import from \"%1$s\""
+msgstr "Dokončen import atributů z \"%1$s\""
+
+#, php-format
+msgid "Finished attribute import from file \"%1$s\""
+msgstr "Dokončen import atributů ze souboru \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\""
+msgstr "Dokončen import katalogu z \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Dokončen import katalogu z \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished catalog import from file \"%1$s\""
+msgstr "Dokončen import katalogu ze souboru \"%1$s\""
+
+#, php-format
+msgid "Finished coupon/code import from \"%1$s\""
+msgstr "Dokončen import kupónu/kódu z \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from \"%1$s\""
+msgstr "Dokončený import zákazníka z \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from file \"%1$s\""
+msgstr "Dokončen import zákazníků ze souboru \"%1$s\""
+
+#, php-format
+msgid "Finished group import from \"%1$s\""
+msgstr "Dokončen import skupiny z \"%1$s\""
+
+#, php-format
+msgid "Finished group import from file \"%1$s\""
+msgstr "Dokončen import skupiny ze souboru \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\""
+msgstr "Import hotového výrobku z \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Dovoz hotového výrobku z \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished product import from file \"%1$s\""
+msgstr "Import hotového výrobku ze souboru \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from \"%1$s\""
+msgstr "Import hotových zásob z \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from file \"%1$s\""
+msgstr "Dokončen import zásob ze souboru \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\""
+msgstr "Dokončený import dodavatele z \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Dokončený import dodavatele z \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished supplier import from file \"%1$s\""
+msgstr "Dokončen import dodavatele ze souboru \"%1$s\""
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Import skupin XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Pokud máte jakékoliv dotazy, kontaktujte nás prosím na tomto e-mailu"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících atributů ze souborů XML"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících kategorií ze souborů CSV"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících kategorií ze souborů XML"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících kódů kupónů ze souborů CSV"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících zákazníků ze souborů XML"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících skupin ze souborů XML"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících produktů ze souborů CSV"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících produktů ze souborů XML"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících zásob ze souborů CSV"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících dodavatelů ze souborů CSV"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Import nových a aktualizace stávajících dodavatelů ze souborů XML"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Včetně %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -249,55 +337,123 @@ msgid "Included rebates"
 msgstr "včetně slev"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Optimalizace indexu"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Přestavba indexu"
+
+#, php-format
+msgid "Invalid JSON encode message: %1$s"
+msgstr "Neplatné kódování zprávy JSON: %1$s"
+
+#, php-format
+msgid "Invalid catalog lines during import: %1$d"
+msgstr "Neplatné řádky katalogu při importu: %1$d"
+
+#, php-format
+msgid "Invalid characters in class name \"%1$s\""
+msgstr "Zakázané znaky ve jméně třídy \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor name \"%1$s\""
+msgstr "Neplatné znaky v názvu procesoru \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor type \"%1$s\""
+msgstr "Neplatné znaky v typu procesoru \"%1$s\""
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr "Chybné jméno třídy \"%1$s\""
+
+#, php-format
+msgid "Invalid message: %1$s"
+msgstr "Neplatná zpráva: %1$s"
+
+#, php-format
+msgid "Invalid product lines during import: %1$d"
+msgstr "Neplatné produktové řady při importu: %1$d"
+
+#, php-format
+msgid "Invalid supplier lines during import: %1$d"
+msgstr "Neplatné řádky dodavatele při importu: %1$d"
+
+#, php-format
+msgid "Invalid type \"%1$s\" (%2$s)"
+msgstr "Neplatný typ \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Faktura %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Jak jste zadali"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Čištění protokolu"
 
 msgid "Login"
-msgstr ""
+msgstr "Přihlášení"
 
 msgid "Name"
 msgstr "Jméno"
+
+#, php-format
+msgid "No \"catalog.code\" column in CSV mapping found"
+msgstr "V mapování CSV nebyl nalezen žádný sloupec \"catalog.code\""
+
+#, php-format
+msgid "No \"coupon.code.code\" column in CSV mapping found"
+msgstr "V mapování CSV nebyl nalezen žádný sloupec \"coupon.code.code\""
+
+#, php-format
+msgid "No \"product.code\" column in CSV mapping found"
+msgstr "V mapování CSV nebyl nalezen žádný sloupec \"product.code\""
+
+#, php-format
+msgid "No \"supplier.code\" column in CSV mapping found"
+msgstr "V mapování CSV nebyl nalezen žádný sloupec \"supplier.code\""
+
+#, php-format
+msgid "No XML file \"%1$s\" found"
+msgstr "Nebyl nalezen žádný soubor XML \"%1$s\""
+
+#, php-format
+msgid "No address with e-mail found in order with ID \"%1$s\""
+msgstr "V objednávce s ID \"%1$s\" nebyla nalezena žádná adresa s e-mailem."
 
 msgid "One or more products you are watching have been updated."
 msgstr "Jeden či více produktů, které sledujete, byly aktualizovány."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimalizuje index pro rychlejší vyhledávání produktů"
 
 msgid "Order date"
-msgstr ""
+msgstr "Datum objednávky"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "E-maily související s doručováním objednávek"
 
 msgid "Order details"
 msgstr "Podrobnosti objednávky"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Export objednávek CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "E-maily související s platbou objednávky"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Stav objednávky import CSV"
+
+#, php-format
+msgid "Parent node for code \"%1$s\" not found"
+msgstr "Nadřazený uzel pro kód \"%1$s\" nenalezen"
 
 msgid "Password"
 msgstr "Heslo"
@@ -306,28 +462,28 @@ msgid "Price"
 msgstr "Cena"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Zpracování služeb doručování objednávek"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Zpracování předplatného na začátku"
 
 msgid "Product export"
-msgstr ""
+msgstr "Vývoz produktu"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Import produktu CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "XML import produktu"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "E-maily s upozorněním na produkt"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Mapa stránek produktu"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Produkty zakoupené společně"
 
 msgid "Qty"
 msgstr "Množství"
@@ -336,92 +492,196 @@ msgid "Quantity"
 msgstr "Množství"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Obnoví index pro vyhledávání produktů"
 
 msgid "Reference"
-msgstr ""
+msgstr "Odkaz"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Odstraní z mezipaměti záznamy, jejichž platnost vypršela."
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Odstraní staré koše z databáze."
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "Odstraní staré záznamy protokolu z databáze a archivuje je (nepovinné)."
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Odstraní nedokončené objednávky"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Odstraní nezaplacené objednávky"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Obnovení předplatného k dalšímu datu"
+
+#, php-format
+msgid "Required column \"%1$s\" not found for code \"%2$s\""
+msgstr "Požadovaný sloupec \"%1$s\" nebyl nalezen pro kód \"%2$s\"."
+
+#, php-format
+msgid "Required configuration for \"%1$s\" is missing"
+msgstr "Chybí požadovaná konfigurace pro \"%1$s\""
+
+#, php-format
+msgid "Required mapping key \"%1$s\" is missing or contains no array"
+msgstr "Chybí požadovaný mapovací klíč \"%1$s\" nebo neobsahuje žádné pole"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Změna měřítka obrázků produktů"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Změní měřítko obrázků produktů na nové velikosti"
+
+#, php-format
+msgid "Scaling image \"%1$s\" failed: %2$s"
+msgstr "Škálování obrázku \"%1$s\" se nezdařilo: %2$s"
+
+#, php-format
+msgid "Scaling media item \"%1$s\" failed: %2$s"
+msgstr "Škálování položky médií \"%1$s\" se nezdařilo: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Odesílá e-maily pro nové zákaznické účty"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Odesílá e-maily pro sledované produkty"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Odesílá e-maily s potvrzením objednávky nebo aktualizací stavu platby."
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Odesílá e-maily s aktualizací stavu doručení objednávky"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "odeslání zaplacených objednávek do systému ERP nebo logistickému partnerovi."
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Odeslání e-mailu s poukazem zákazníkovi."
+
+#, php-format
+msgid "Sent customer account e-mail to \"%1$s\""
+msgstr "Odeslaný e-mail zákaznického účtu na adresu \"%1$s\"."
+
+#, php-format
+msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "Odeslán e-mail s doručením objednávky \"%1$s\" a stavem \"%2$s\"."
+
+#, php-format
+msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "Odeslán e-mail s platbou objednávky \"%1$s\" a stavem \"%2$s\"."
+
+#, php-format
+msgid "Sent product notification e-mail to \"%1$s\""
+msgstr "Odeslán e-mail s oznámením o produktu na adresu \"%1$s\"."
+
+#, php-format
+msgid "Sent voucher e-mails for order ID \"%1$s\""
+msgstr "Odeslané e-maily s poukazy pro ID objednávky \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from \"%1$s\""
+msgstr "Spuštěn import atributů z \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from file \"%1$s\""
+msgstr "Spuštěn import atributů ze souboru \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from \"%1$s\""
+msgstr "Spuštěn import katalogu z \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from file \"%1$s\""
+msgstr "Spuštěn import katalogu ze souboru \"%1$s\""
+
+#, php-format
+msgid "Started coupon code import from \"%1$s\""
+msgstr "Spuštěn import kódu kupónu z \"%1$s\""
+
+#, php-format
+msgid "Started coupon/code import from \"%1$s\""
+msgstr "Spuštěn import kupónu/kódu z \"%1$s\""
+
+#, php-format
+msgid "Started customer import from \"%1$s\""
+msgstr "Spuštěn import zákazníků z \"%1$s\""
+
+#, php-format
+msgid "Started customer import from file \"%1$s\""
+msgstr "Spuštěn import zákazníků ze souboru \"%1$s\"."
+
+#, php-format
+msgid "Started group import from \"%1$s\""
+msgstr "Spuštěn skupinový import z \"%1$s\""
+
+#, php-format
+msgid "Started group import from file \"%1$s\""
+msgstr "Spuštěn skupinový import ze souboru \"%1$s\"."
+
+#, php-format
+msgid "Started product import from \"%1$s\""
+msgstr "Spuštěn import produktu z \"%1$s\""
+
+#, php-format
+msgid "Started product import from file \"%1$s\""
+msgstr "Spuštěn import produktu ze souboru \"%1$s\""
+
+#, php-format
+msgid "Started stock import from \"%1$s\""
+msgstr "Spuštěn import zásob z \"%1$s\""
+
+#, php-format
+msgid "Started stock import from file \"%1$s\""
+msgstr "Spuštěn import zásob ze souboru \"%1$s\"."
+
+#, php-format
+msgid "Started supplier import from \"%1$s\""
+msgstr "Zahájen import dodavatele z \"%1$s\""
+
+#, php-format
+msgid "Started supplier import from file \"%1$s\""
+msgstr "Spuštěn import dodavatele ze souboru \"%1$s\""
 
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Import stavu objednávek ze souboru CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Import zásob CSV"
 
 msgid "Sub-total"
 msgstr "Mezisoučet"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Export předplatného CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Ukončení procesu předplatného"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Obnovení procesu předplatného"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Spuštění procesu předplatného"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Předplacený produkt"
 
 msgid "Sum"
 msgstr "Součet"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Dodavatel import CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Import XML dodavatele"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Ukončuje předplatné, kterému vypršela platnost"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -444,7 +704,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "Objednávka je nevyřízená, dokud neobdržíme konečnou platbu. Pokud jste se rozhodli zaplatit předem, převeďte prosím peníze na náš bankovní účet, jako referenční číslo uveďte ID objednávky %1$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -453,7 +713,7 @@ msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Balík vaší objednávky %1$s z %2$s nemohl být doručen."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Platba nemohla být obnovena"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
@@ -466,39 +726,59 @@ msgstr "Platba vaší objednávky %1$s z %2$s byla vrácena."
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Stav platby vaší objednávky %1$s z %2$s byl změněn na \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Předplatné produktu bylo ukončeno"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Hodnota vašeho poukazu je %1$s"
+msgstr[1] "Hodnota vašeho poukazu je %1$s"
+msgstr[2] "Hodnota vašeho poukazu je %1$s"
+msgstr[3] "Hodnota vašeho poukazu je %1$s"
 
 msgid "Total"
 msgstr "Celkem"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Převody peněz prodejcům"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Převádí cenu objednaných produktů prodejcům včetně manipulační provize."
+
+#, php-format
+msgid "Unable to add current address for customer with ID \"%1$s\""
+msgstr "Nelze přidat aktuální adresu pro zákazníka s ID \"%1$s\"."
+
+#, php-format
+msgid "Unable to call method \"%1$s\""
+msgstr "Nelze nazvat metodu \"%1$s\""
+
+#, php-format
+msgid "Unable to import catalog with code \"%1$s\": %2$s"
+msgstr "Nelze importovat katalog s kódem \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import product with code \"%1$s\": %2$s"
+msgstr "Nelze importovat produkt s kódem \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import supplier with code \"%1$s\": %2$s"
+msgstr "Nelze importovat dodavatele s kódem \"%1$s\": %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Voucher"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Poukaz %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "E-maily související s vouchery"
 
 msgid "Watched products"
 msgstr "Sledované produkty"
@@ -507,7 +787,7 @@ msgstr "Sledované produkty"
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Obdrželi jsme vaši platbu a okamžitě se postaráme o vaši objednávku."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -519,16 +799,16 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Poukázky můžete kdykoli použít v našem internetovém obchodě."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Zrušili jste předplatné"
 
 msgid "Your account"
 msgstr "Váš účet"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Váš komentář"
 
 msgid "Your new account"
 msgstr "Váš nový účet"
@@ -544,19 +824,23 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Vaše objednávka %1$s z %2$s byla odeslána."
 
 msgid "Your reference"
-msgstr ""
+msgstr "Váš odkaz"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Vaše referenční číslo"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Vaše předplatné"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Váš poukaz"
 
 msgid "Your watched products"
 msgstr "Vámi sledované produkty"
+
+#, php-format
+msgid "aimeos-catalog-sitemap-%d.xml"
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "doručení"
@@ -573,10 +857,10 @@ msgid "payment"
 msgstr "platba"
 
 msgid "tax"
-msgstr ""
+msgstr "daň"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"
