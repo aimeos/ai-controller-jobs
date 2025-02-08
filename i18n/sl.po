@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: Goran Sabo <info@noaset.pro>, 2020\n"
 "Language-Team: Slovenian (http://app.transifex.com/aimeos/aimeos-core/language/sl/)\n"
@@ -54,6 +54,14 @@ msgstr "%1$s %2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s popust"
 
+#, php-format
+msgid "%s-sitemap-%d.xml"
+msgstr "%s-sitemap-%d.xml"
+
+#, php-format
+msgid "%s-sitemap-index.xml"
+msgstr "%s-sitemap-index.xml"
+
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
@@ -82,10 +90,10 @@ msgid "All XML import"
 msgstr "All XML import"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Za vsa naročila veljajo naši pogoji in določila."
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2024
+#. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
 msgstr "Naročniški račun je ustvarjen"
 
@@ -121,8 +129,12 @@ msgstr "Catalog import XML"
 msgid "Catalog site map"
 msgstr "Catalog site map"
 
+#, php-format
+msgid "Cleaned %1$s old products"
+msgstr "Očistil %1$s starih izdelkov"
+
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Košare za čiščenje"
 
 msgid "Coupon code import CSV"
 msgstr "Coupon code import CSV"
@@ -143,7 +155,7 @@ msgid "Creates bought together product suggestions"
 msgstr "Creates bought together product suggestions"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "e-poštna sporočila o računih strank"
 
 msgid "Customer import XML"
 msgstr "Customer import XML"
@@ -161,7 +173,7 @@ msgstr "Spoštovani gospod %1$s %2$s"
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Spoštovana gospa %1$s %2$s"
 
 msgid "Dear customer"
 msgstr "Spoštovani naročnik"
@@ -189,6 +201,10 @@ msgstr "Executes all XML importers and rebuild the index"
 msgid "Executes payment or delivery service providers that uses batch updates"
 msgstr "Executes payment or delivery service providers that uses batch updates"
 
+#, php-format
+msgid "Expanding \"%1$s\" node failed"
+msgstr "Expanding \"%1$s\" node failed"
+
 msgid "Exports all available products"
 msgstr "Exports all available products"
 
@@ -198,8 +214,80 @@ msgstr "Exports orders to CSV file"
 msgid "Exports subscriptions to CSV file"
 msgstr "Exports subscriptions to CSV file"
 
+#, php-format
+msgid "Finished attribute import from \"%1$s\""
+msgstr "Finished attribute import from \"%1$s\""
+
+#, php-format
+msgid "Finished attribute import from file \"%1$s\""
+msgstr "Finished attribute import from file \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\""
+msgstr "Finished catalog import from \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Končan uvoz iz kataloga \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished catalog import from file \"%1$s\""
+msgstr "Finished catalog import from file \"%1$s\""
+
+#, php-format
+msgid "Finished coupon/code import from \"%1$s\""
+msgstr "Končan uvoz kupona/kode iz \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from \"%1$s\""
+msgstr "Finished customer import from \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from file \"%1$s\""
+msgstr "Finished customer import from file \"%1$s\""
+
+#, php-format
+msgid "Finished group import from \"%1$s\""
+msgstr "Končan uvoz skupine iz \"%1$s\""
+
+#, php-format
+msgid "Finished group import from file \"%1$s\""
+msgstr "Končan uvoz skupine iz datoteke \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\""
+msgstr "Finished product import from \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Uvoz končnega izdelka iz \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished product import from file \"%1$s\""
+msgstr "Finished product import from file \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from \"%1$s\""
+msgstr "Finished stock import from \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from file \"%1$s\""
+msgstr "Finished stock import from file \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\""
+msgstr "Končan uvoz dobavitelja iz \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Končan uvoz dobavitelja iz \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished supplier import from file \"%1$s\""
+msgstr "Končan uvoz dobavitelja iz datoteke \"%1$s\""
+
 msgid "Groups import XML"
-msgstr ""
+msgstr "Skupine uvoz XML"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "V primeru dodatnih vprašanj, le odgovorite na to sporočilo"
@@ -220,7 +308,7 @@ msgid "Imports new and updates existing customers from XML files"
 msgstr "Imports new and updates existing customers from XML files"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Uvoz novih in posodobitev obstoječih skupin iz datotek XML"
 
 msgid "Imports new and updates existing products from CSV files"
 msgstr "Imports new and updates existing products from CSV files"
@@ -255,6 +343,46 @@ msgstr "Index optimization"
 msgid "Index rebuild"
 msgstr "Index rebuild"
 
+#, php-format
+msgid "Invalid JSON encode message: %1$s"
+msgstr "Nepravilno sporočilo za kodiranje JSON: %1$s"
+
+#, php-format
+msgid "Invalid catalog lines during import: %1$d"
+msgstr "Neveljavne vrstice kataloga med uvozom: %1$d"
+
+#, php-format
+msgid "Invalid characters in class name \"%1$s\""
+msgstr "Invalid characters in class name \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor name \"%1$s\""
+msgstr "Neveljavni znaki v imenu procesorja \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor type \"%1$s\""
+msgstr "Neveljavni znaki v vrsti procesorja \"%1$s\""
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr "Invalid class name \"%1$s\""
+
+#, php-format
+msgid "Invalid message: %1$s"
+msgstr "Invalid message: %1$s"
+
+#, php-format
+msgid "Invalid product lines during import: %1$d"
+msgstr "Neveljavne linije izdelkov med uvozom: %1$d"
+
+#, php-format
+msgid "Invalid supplier lines during import: %1$d"
+msgstr "Neveljavne vrstice dobaviteljev med uvozom: %1$d"
+
+#, php-format
+msgid "Invalid type \"%1$s\" (%2$s)"
+msgstr "Nepravilna vrsta \"%1$s\" (%2$s)"
+
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
@@ -262,7 +390,7 @@ msgstr "Invoice"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Račun %1$s"
 
 msgid "Like entered by you"
 msgstr "Vi ste všečkali"
@@ -276,6 +404,30 @@ msgstr "Prijava"
 msgid "Name"
 msgstr "Name"
 
+#, php-format
+msgid "No \"catalog.code\" column in CSV mapping found"
+msgstr "No \"catalog.code\" column in CSV mapping found"
+
+#, php-format
+msgid "No \"coupon.code.code\" column in CSV mapping found"
+msgstr "No \"coupon.code.code\" column in CSV mapping found"
+
+#, php-format
+msgid "No \"product.code\" column in CSV mapping found"
+msgstr "No \"product.code\" column in CSV mapping found"
+
+#, php-format
+msgid "No \"supplier.code\" column in CSV mapping found"
+msgstr "No \"supplier.code\" column in CSV mapping found"
+
+#, php-format
+msgid "No XML file \"%1$s\" found"
+msgstr "No XML file \"%1$s\" found"
+
+#, php-format
+msgid "No address with e-mail found in order with ID \"%1$s\""
+msgstr "V naročilu z ID \"%1$s\" ni bil najden noben naslov z e-pošto."
+
 msgid "One or more products you are watching have been updated."
 msgstr "Eden ali več izdelkov, ki jih opazujete, so spremenjeni."
 
@@ -286,7 +438,7 @@ msgid "Order date"
 msgstr "Datum naročila"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "e-poštna sporočila, povezana z dostavo naročil"
 
 msgid "Order details"
 msgstr "Podrobnosti naročila"
@@ -295,10 +447,14 @@ msgid "Order export CSV"
 msgstr "Order export CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "e-poštna sporočila, povezana s plačilom naročila"
 
 msgid "Order status import CSV"
 msgstr "Order status import CSV"
+
+#, php-format
+msgid "Parent node for code \"%1$s\" not found"
+msgstr "Parent node for code \"%1$s\" not found"
 
 msgid "Password"
 msgstr "Password"
@@ -322,7 +478,7 @@ msgid "Product import XML"
 msgstr "Product import XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "e-poštna sporočila z obvestili o izdelkih"
 
 msgid "Product site map"
 msgstr "Product site map"
@@ -346,7 +502,7 @@ msgid "Removes the expired entries from the cache"
 msgstr "Removes the expired entries from the cache"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Odstranitev starih košaric iz podatkovne zbirke"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
@@ -361,35 +517,139 @@ msgstr "Removes unpaid orders"
 msgid "Renews subscriptions at next date"
 msgstr "Renews subscriptions at next date"
 
+#, php-format
+msgid "Required column \"%1$s\" not found for code \"%2$s\""
+msgstr "Required column \"%1$s\" not found for code \"%2$s\""
+
+#, php-format
+msgid "Required configuration for \"%1$s\" is missing"
+msgstr "Required configuration for \"%1$s\" is missing"
+
+#, php-format
+msgid "Required mapping key \"%1$s\" is missing or contains no array"
+msgstr "Required mapping key \"%1$s\" is missing or contains no array"
+
 msgid "Rescale product images"
 msgstr "Rescale product images"
 
 msgid "Rescales product images to the new sizes"
 msgstr "Rescales product images to the new sizes"
 
+#, php-format
+msgid "Scaling image \"%1$s\" failed: %2$s"
+msgstr "Pomanjševanje slike \"%1$s\" ni uspelo: %2$s"
+
+#, php-format
+msgid "Scaling media item \"%1$s\" failed: %2$s"
+msgstr "Scaling media item \"%1$s\" failed: %2$s"
+
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "pošilja e-pošto za nove račune strank."
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Pošilja e-poštna sporočila za opazovane izdelke"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Pošiljanje e-poštnih sporočil o potrditvi naročila ali posodobitvi statusa plačila."
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "pošilja posodobljena e-poštna sporočila o stanju dostave naročila"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
 msgstr "Sends paid orders to the ERP system or logistic partner"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Pošlje e-poštno sporočilo s kuponom stranki."
+
+#, php-format
+msgid "Sent customer account e-mail to \"%1$s\""
+msgstr "Poslano e-poštno sporočilo računa stranke na naslov \"%1$s\"."
+
+#, php-format
+msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "Poslano e-poštno sporočilo o dostavi naročila za naročilo \"%1$s\" in status \"%2$s\""
+
+#, php-format
+msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "Poslano e-poštno sporočilo o plačilu naročila za naročilo \"%1$s\" in status \"%2$s\""
+
+#, php-format
+msgid "Sent product notification e-mail to \"%1$s\""
+msgstr "Poslano e-poštno sporočilo z obvestilom o izdelku na naslov \"%1$s\""
+
+#, php-format
+msgid "Sent voucher e-mails for order ID \"%1$s\""
+msgstr "Poslana e-poštna sporočila kuponov za ID naročila \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from \"%1$s\""
+msgstr "Started attribute import from \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from file \"%1$s\""
+msgstr "Started attribute import from file \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from \"%1$s\""
+msgstr "Started catalog import from \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from file \"%1$s\""
+msgstr "Started catalog import from file \"%1$s\""
+
+#, php-format
+msgid "Started coupon code import from \"%1$s\""
+msgstr "Začel se je uvoz kode kupona iz \"%1$s\""
+
+#, php-format
+msgid "Started coupon/code import from \"%1$s\""
+msgstr "Začel se je uvoz kupona/kode iz \"%1$s\""
+
+#, php-format
+msgid "Started customer import from \"%1$s\""
+msgstr "Started customer import from \"%1$s\""
+
+#, php-format
+msgid "Started customer import from file \"%1$s\""
+msgstr "Started customer import from file \"%1$s\""
+
+#, php-format
+msgid "Started group import from \"%1$s\""
+msgstr "Začel se je uvoz skupine iz \"%1$s\""
+
+#, php-format
+msgid "Started group import from file \"%1$s\""
+msgstr "Začel se je uvoz skupine iz datoteke \"%1$s\""
+
+#, php-format
+msgid "Started product import from \"%1$s\""
+msgstr "Started product import from \"%1$s\""
+
+#, php-format
+msgid "Started product import from file \"%1$s\""
+msgstr "Started product import from file \"%1$s\""
+
+#, php-format
+msgid "Started stock import from \"%1$s\""
+msgstr "Started stock import from \"%1$s\""
+
+#, php-format
+msgid "Started stock import from file \"%1$s\""
+msgstr "Started stock import from file \"%1$s\""
+
+#, php-format
+msgid "Started supplier import from \"%1$s\""
+msgstr "Začel se je uvoz dobavitelja iz \"%1$s\""
+
+#, php-format
+msgid "Started supplier import from file \"%1$s\""
+msgstr "Začel se je uvoz dobavitelja iz datoteke \"%1$s\""
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Uvoz statusa za naročila iz datoteke CSV"
 
 msgid "Stock import CSV"
 msgstr "Stock import CSV"
@@ -467,7 +727,7 @@ msgstr "The payment for your order %1$s from %2$s has been refunded."
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Status plačila vašega naročila %1$s iz %2$s je bil spremenjen v \"%3$s\"."
 
 msgid "The subscription for the product has ended"
 msgstr "Vaša naročnina je potekla"
@@ -475,31 +735,51 @@ msgstr "Vaša naročnina je potekla"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Vrednost vašega kupona je %1$s"
+msgstr[1] "Vrednost vašega kupona je %1$s"
+msgstr[2] "Vrednost vašega kupona je %1$s"
+msgstr[3] "Vrednost vašega kupona je %1$s"
 
 msgid "Total"
 msgstr "Total"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Prenosi denarja prodajalcem"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Prenos cene naročenih izdelkov prodajalcem, vključno z obdelavo provizije"
+
+#, php-format
+msgid "Unable to add current address for customer with ID \"%1$s\""
+msgstr "Unable to add current address for customer with ID \"%1$s\""
+
+#, php-format
+msgid "Unable to call method \"%1$s\""
+msgstr "Unable to call method \"%1$s\""
+
+#, php-format
+msgid "Unable to import catalog with code \"%1$s\": %2$s"
+msgstr "Unable to import catalog with code \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import product with code \"%1$s\": %2$s"
+msgstr "Unable to import product with code \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import supplier with code \"%1$s\": %2$s"
+msgstr "Unable to import supplier with code \"%1$s\": %2$s"
 
 msgid "Voucher"
 msgstr "Voucher"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Voucher %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "e-poštna sporočila, povezana z boni"
 
 msgid "Watched products"
 msgstr "Spremljaj izdelke"
@@ -520,7 +800,7 @@ msgid "Y-m-d"
 msgstr "d.m.Y"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Kupone lahko kadar koli uporabite v naši spletni trgovini."
 
 msgid "You've cancelled the subscription"
 msgstr "Preklicali ste naročnino"
@@ -559,6 +839,10 @@ msgstr "Vaš darilni bon"
 msgid "Your watched products"
 msgstr "Izdelki, ki jih opazujete"
 
+#, php-format
+msgid "aimeos-catalog-sitemap-%d.xml"
+msgstr "aimeos-catalog-sitemap-%d.xml"
+
 msgid "delivery"
 msgstr "dostava"
 
@@ -577,7 +861,7 @@ msgid "tax"
 msgstr "davek"
 
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "Taxpst"

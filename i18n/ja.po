@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,6 +53,14 @@ msgstr "%1$s%2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s%2$sオフ　"
 
+#, php-format
+msgid "%s-sitemap-%d.xml"
+msgstr "%s-sitemap-%d.xml"
+
+#, php-format
+msgid "%s-sitemap-index.xml"
+msgstr "%s-sitemap-index.xml"
+
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
@@ -60,7 +69,7 @@ msgstr "+%1$s%2$s/項目"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+支払費用"
@@ -77,53 +86,57 @@ msgid "Account"
 msgstr "アカウント"
 
 msgid "All XML import"
-msgstr ""
+msgstr "すべてのXMLインポート"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "すべてのご注文は、当社の利用規約に従うものとします。"
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2024
+#. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
 msgstr "アカウントが作成されました。"
 
 msgid "Article no."
-msgstr ""
+msgstr "記事番号"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "属性インポート XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "注文の承認された支払いは、発送後または設定可能な時間経過後にキャプチャされます。"
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "支払/配送状況の一括更新"
 
 msgid "Billing address"
 msgstr "請求先住所"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "キャッシュのクリーンアップ"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "承認された支払いをキャプチャする"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "カタログインポートCSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "カタログインポートXML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "カタログサイトマップ"
+
+#, php-format
+msgid "Cleaned %1$s old products"
+msgstr "古い製品 %1$s をクリーニングしました。"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "清掃用バスケット"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "クーポンコードインポートCSV"
 
 msgid "Coupon codes"
 msgstr "クーポンコード"
@@ -132,112 +145,188 @@ msgid "Coupons"
 msgstr "クーポン"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "検索エンジン用のカタログサイトマップを作成します。"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "検索エンジン向けに製品サイトマップを作成"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "一緒に購入した製品の提案を作成する"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "顧客アカウントのEメール"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "顧客インポート XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "親愛なる %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "拝啓 %1$s %2$s 様"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "さんへ %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "お客様各位"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "未完了の注文を削除し、その商品とクーポンコードを再び利用できるようにする。"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "未払いの注文を削除し、データベースをクリーンに保つ。"
 
 msgid "Delivery address"
 msgstr "配信先住所"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "納期"
 
 msgid "Details"
 msgstr "詳細"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "すべてのXMLインポータを実行し、インデックスを再構築する。"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "バッチアップデートを使用する支払いまたは配送サービスプロバイダーを実行します。"
+
+#, php-format
+msgid "Expanding \"%1$s\" node failed"
+msgstr "%1$s \"ノードの展開に失敗しました。"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "利用可能なすべての製品を輸出"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "注文をCSVファイルにエクスポート"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "購読をCSVファイルにエクスポート"
+
+#, php-format
+msgid "Finished attribute import from \"%1$s\""
+msgstr "\"%1$s\" からの属性インポートを終了しました。"
+
+#, php-format
+msgid "Finished attribute import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からの属性のインポートを終了しました。"
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\""
+msgstr "カタログのインポートを \"%1$s\" から終了しました。"
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
+msgstr "\"%1$s\" からのカタログ・インポートを終了しました (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished catalog import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からのカタログ・インポートを終了しました。"
+
+#, php-format
+msgid "Finished coupon/code import from \"%1$s\""
+msgstr "\"%1$s\" からのクーポン/コードのインポートが終了しました。"
+
+#, php-format
+msgid "Finished customer import from \"%1$s\""
+msgstr "\"%1$s\" からの顧客インポートを終了しました。"
+
+#, php-format
+msgid "Finished customer import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からの顧客のインポートを終了しました。"
+
+#, php-format
+msgid "Finished group import from \"%1$s\""
+msgstr "\"%1$s\" からのグループ・インポートを終了しました。"
+
+#, php-format
+msgid "Finished group import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からのグループ・インポートを終了しました。"
+
+#, php-format
+msgid "Finished product import from \"%1$s\""
+msgstr "\"%1$s\" からの完成品輸入"
+
+#, php-format
+msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
+msgstr "\"%1$s\" からの完成品輸入 (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished product import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からの完成品インポート"
+
+#, php-format
+msgid "Finished stock import from \"%1$s\""
+msgstr "\"%1$s\" からの完成在庫インポート"
+
+#, php-format
+msgid "Finished stock import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からの在庫インポートを終了しました。"
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\""
+msgstr "\"%1$s\" からのインポートが完了しました。"
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
+msgstr "\"%1$s\" (%2$d/%3$d) からの輸入が完了しました。"
+
+#, php-format
+msgid "Finished supplier import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からのサプライヤ・インポートを終了しました。"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "グループのXMLインポート"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "ご不明な点がございましたら、このメールに返信してください"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "XMLファイルから新しい属性をインポートし、既存の属性を更新します。"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "CSVファイルから新しいカテゴリをインポートし、既存のカテゴリを更新する"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "XMLファイルから新しいカテゴリーをインポートし、既存のカテゴリーを更新します。"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "CSVファイルから新しいクーポンコードをインポートし、既存のクーポンコードを更新します。"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "XMLファイルからの新規顧客のインポートと既存顧客の更新"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "XMLファイルから新しいグループをインポートし、既存のグループを更新します。"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "CSVファイルから新しい製品をインポートし、既存の製品を更新します。"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "XMLファイルから新しい製品をインポートし、既存の製品を更新します。"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "CSVファイルから新規銘柄をインポート、既存銘柄を更新"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "CSVファイルから新しいサプライヤーをインポートし、既存のサプライヤーを更新します。"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "XMLファイルから新しいサプライヤをインポートし、既存のサプライヤを更新します。"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "%1$s%% %2$s を含む。"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -248,10 +337,50 @@ msgid "Included rebates"
 msgstr "含まれたリベート"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "インデックスの最適化"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "インデックスの再構築"
+
+#, php-format
+msgid "Invalid JSON encode message: %1$s"
+msgstr "無効な JSON エンコード・メッセージです：%1$s"
+
+#, php-format
+msgid "Invalid catalog lines during import: %1$d"
+msgstr "インポート中に無効なカタログ行があります: %1$d。"
+
+#, php-format
+msgid "Invalid characters in class name \"%1$s\""
+msgstr "クラス名 \"1%1$s\"に無効な文字があります"
+
+#, php-format
+msgid "Invalid characters in processor name \"%1$s\""
+msgstr "プロセッサ名 \"%1$s\" に無効な文字があります。"
+
+#, php-format
+msgid "Invalid characters in processor type \"%1$s\""
+msgstr "プロセッサ・タイプ \"%1$s\" に無効な文字があります。"
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr "無効なクラス名 \"%1$s\""
+
+#, php-format
+msgid "Invalid message: %1$s"
+msgstr "無効なメッセージです：%1$s"
+
+#, php-format
+msgid "Invalid product lines during import: %1$d"
+msgstr "インポート中に無効な製品行があります: %1$d"
+
+#, php-format
+msgid "Invalid supplier lines during import: %1$d"
+msgstr "インポート中の無効なサプライヤ行: %1$d"
+
+#, php-format
+msgid "Invalid type \"%1$s\" (%2$s)"
+msgstr "無効な型 \"%1$s\" (%2$s) です。"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -260,43 +389,71 @@ msgstr "請求書"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "請求書 %1$s"
 
 msgid "Like entered by you"
 msgstr "あなたが入力したLike"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "ログのクリーンアップ"
 
 msgid "Login"
-msgstr ""
+msgstr "ログイン"
 
 msgid "Name"
 msgstr "名前"
+
+#, php-format
+msgid "No \"catalog.code\" column in CSV mapping found"
+msgstr "CSVマッピングに \"catalog.code \"カラムが見つかりません。"
+
+#, php-format
+msgid "No \"coupon.code.code\" column in CSV mapping found"
+msgstr "CSVマッピングに \"coupon.code.code \"カラムが見つかりません。"
+
+#, php-format
+msgid "No \"product.code\" column in CSV mapping found"
+msgstr "CSVマッピングに \"product.code \"カラムが見つかりません。"
+
+#, php-format
+msgid "No \"supplier.code\" column in CSV mapping found"
+msgstr "CSVマッピングに \"supplier.code \"カラムが見つかりません。"
+
+#, php-format
+msgid "No XML file \"%1$s\" found"
+msgstr "XML ファイル \"%1$s\" が見つかりません。"
+
+#, php-format
+msgid "No address with e-mail found in order with ID \"%1$s\""
+msgstr "ID \"%1$s\" の注文に電子メールを含むアドレスが見つかりません。"
 
 msgid "One or more products you are watching have been updated."
 msgstr "あなたが見ている1つ以上の商品が更新されました。"
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "インデックスを最適化し、商品検索を高速化"
 
 msgid "Order date"
-msgstr ""
+msgstr "注文日"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "注文配送関連メール"
 
 msgid "Order details"
 msgstr "注文詳細"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "CSVエクスポート"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "注文支払い関連メール"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "注文状況インポートCSV"
+
+#, php-format
+msgid "Parent node for code \"%1$s\" not found"
+msgstr "コード \"%1$s\" の親ノードが見つかりません。"
 
 msgid "Password"
 msgstr "パスワード"
@@ -305,25 +462,25 @@ msgid "Price"
 msgstr "価格"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "注文配送サービスの処理"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "初期契約処理"
 
 msgid "Product export"
-msgstr ""
+msgstr "製品輸出"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "製品インポートCSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "製品インポートXML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "製品通知メール"
 
 msgid "Product site map"
-msgstr ""
+msgstr "製品サイトマップ"
 
 msgid "Products bought together"
 msgstr "一緒に買った商品"
@@ -335,77 +492,181 @@ msgid "Quantity"
 msgstr "数量"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "商品検索用のインデックスを再構築"
 
 msgid "Reference"
-msgstr ""
+msgstr "参考"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "キャッシュから期限切れのエントリを削除する。"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "データベースから古いバスケットを削除します。"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "データベースから古いログエントリを削除し、アーカイブする（オプション）"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "未完了の注文を削除する"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "未払い注文の削除"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "次回の契約更新日"
+
+#, php-format
+msgid "Required column \"%1$s\" not found for code \"%2$s\""
+msgstr "コード \"%2$s\" に必須の列 \"%1$s\" が見つかりません。"
+
+#, php-format
+msgid "Required configuration for \"%1$s\" is missing"
+msgstr "\"%1$s\" に必要な設定がありません。"
+
+#, php-format
+msgid "Required mapping key \"%1$s\" is missing or contains no array"
+msgstr "必須のマッピング・キー \"%1$s\" がないか、配列が含まれていません。"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "商品画像の拡大縮小"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "商品画像を新しいサイズにリスケーリング"
+
+#, php-format
+msgid "Scaling image \"%1$s\" failed: %2$s"
+msgstr "画像 \"%1$s\" のスケーリングに失敗しました: %2$s"
+
+#, php-format
+msgid "Scaling media item \"%1$s\" failed: %2$s"
+msgstr "メディア・アイテム \"%1$s\" のスケーリングに失敗しました: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "新規顧客アカウントのEメール送信"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "ウォッチされた商品のEメールを送信"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "注文確認または支払い状況更新メールの送信"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "注文の配送状況を更新する電子メールを送信する"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "支払い済みの注文をERPシステムまたはロジスティック・パートナーに送信する。"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "バウチャーを添付したEメールを顧客に送信する。"
+
+#, php-format
+msgid "Sent customer account e-mail to \"%1$s\""
+msgstr "顧客アカウントの電子メールを \"%1$s\" に送信しました。"
+
+#, php-format
+msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "注文 \"%1$s\" およびステータス \"%2$s\" の注文配信メールを送信しました。"
+
+#, php-format
+msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "注文 \"%1$s\" およびステータス \"%2$s\" の注文支払い電子メールを送信しました。"
+
+#, php-format
+msgid "Sent product notification e-mail to \"%1$s\""
+msgstr "商品通知メールを \"%1$s\" に送信しました。"
+
+#, php-format
+msgid "Sent voucher e-mails for order ID \"%1$s\""
+msgstr "注文ID \"%1$s\" のバウチャーメールを送信しました。"
+
+#, php-format
+msgid "Started attribute import from \"%1$s\""
+msgstr "\"%1$s\" から属性のインポートを開始しました。"
+
+#, php-format
+msgid "Started attribute import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" から属性のインポートを開始しました。"
+
+#, php-format
+msgid "Started catalog import from \"%1$s\""
+msgstr "カタログのインポートを \"%1$s\" から開始しました。"
+
+#, php-format
+msgid "Started catalog import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からカタログ・インポートを開始しました。"
+
+#, php-format
+msgid "Started coupon code import from \"%1$s\""
+msgstr "\"%1$s\" からクーポンコードのインポートを開始しました。"
+
+#, php-format
+msgid "Started coupon/code import from \"%1$s\""
+msgstr "\"%1$s\" からクーポン/コードのインポートを開始しました。"
+
+#, php-format
+msgid "Started customer import from \"%1$s\""
+msgstr "\"%1$s\" から顧客のインポートを開始しました。"
+
+#, php-format
+msgid "Started customer import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" から顧客のインポートを開始しました。"
+
+#, php-format
+msgid "Started group import from \"%1$s\""
+msgstr "\"%1$s\" からグループのインポートを開始しました。"
+
+#, php-format
+msgid "Started group import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からグループのインポートを開始しました。"
+
+#, php-format
+msgid "Started product import from \"%1$s\""
+msgstr "\"%1$s\" から製品のインポートを開始しました。"
+
+#, php-format
+msgid "Started product import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" から製品のインポートを開始しました。"
+
+#, php-format
+msgid "Started stock import from \"%1$s\""
+msgstr "\"%1$s\" から在庫のインポートを開始した。"
+
+#, php-format
+msgid "Started stock import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" から在庫のインポートを開始しました。"
+
+#, php-format
+msgid "Started supplier import from \"%1$s\""
+msgstr "\"%1$s\" からサプライヤのインポートを開始しました。"
+
+#, php-format
+msgid "Started supplier import from file \"%1$s\""
+msgstr "ファイル \"%1$s\" からサプライヤのインポートを開始しました。"
 
 msgid "Status"
 msgstr "状態"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "CSVファイルからの注文状況インポート"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "在庫インポートCSV"
 
 msgid "Sub-total"
 msgstr "小計"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "CSVエクスポート"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "加入手続き終了"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "購読プロセス更新"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "加入手続き開始"
 
 msgid "Subscription product"
 msgstr "サブスクリプション商品"
@@ -414,13 +675,13 @@ msgid "Sum"
 msgstr "合計"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "サプライヤーインポートCSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "サプライヤー・インポート XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "期限切れのサブスクリプションを終了する"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -452,7 +713,7 @@ msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "%2$sの注文%1$s sのパーセルを配送できませんでした。"
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "支払いが更新されなかった"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
@@ -465,36 +726,56 @@ msgstr "%2$s sから注文%1$sの支払いが払い戻されました。"
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "%2$s からのご注文 %1$s の支払いステータスが \"%3$s\" に変更されました。"
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "本製品のサブスクリプションは終了しました。"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
+msgstr[0] "バウチャーの価値は %1$s です。"
 
 msgid "Total"
 msgstr "合計"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "業者への送金"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "注文された商品の代金を、手数料を含めてベンダーに振り込む。"
+
+#, php-format
+msgid "Unable to add current address for customer with ID \"%1$s\""
+msgstr "ID \"%1$s\" を持つ顧客の現住所を追加できません。"
+
+#, php-format
+msgid "Unable to call method \"%1$s\""
+msgstr "メソッド \"%1$s\"を呼び出すことができません"
+
+#, php-format
+msgid "Unable to import catalog with code \"%1$s\": %2$s"
+msgstr "コード \"%1$s\" のカタログをインポートできません：%2$s"
+
+#, php-format
+msgid "Unable to import product with code \"%1$s\": %2$s"
+msgstr "コード \"%1$s\" の製品をインポートできません：%2$s"
+
+#, php-format
+msgid "Unable to import supplier with code \"%1$s\": %2$s"
+msgstr "コード \"%1$s\" を持つサプライヤをインポートできません：%2$s"
 
 msgid "Voucher"
 msgstr "バウチャー"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "クーポン %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "クーポン券関連メール"
 
 msgid "Watched products"
 msgstr "見られた商品"
@@ -515,10 +796,10 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "バウチャーはオンラインショップでいつでもご利用いただけます。"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "サブスクリプションをキャンセルした"
 
 msgid "Your account"
 msgstr "あなたのアカウント"
@@ -540,19 +821,23 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$sの注文%1$sが発送されました。"
 
 msgid "Your reference"
-msgstr ""
+msgstr "参考"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "整理番号"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "サブスクリプション"
 
 msgid "Your voucher"
 msgstr "あなたのバウチャー"
 
 msgid "Your watched products"
 msgstr "あなたの見た商品"
+
+#, php-format
+msgid "aimeos-catalog-sitemap-%d.xml"
+msgstr "aimeos-カタログ-サイトマップ-%d.xml"
 
 msgid "delivery"
 msgstr "配達"
@@ -569,10 +854,10 @@ msgid "payment"
 msgstr "支払い"
 
 msgid "tax"
-msgstr ""
+msgstr "税金"
 
 msgid "taxgst"
-msgstr ""
+msgstr "タックスグスト"
 
 msgid "taxpst"
-msgstr ""
+msgstr "納税者"

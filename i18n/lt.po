@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Finnish (http://app.transifex.com/aimeos/aimeos-core/language/fi/)\n"
+"Language-Team: Lithuanian (http://app.transifex.com/aimeos/aimeos-core/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -50,7 +50,7 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s %2$s off"
+msgstr "%1$s %2$s išjungta"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
@@ -64,17 +64,17 @@ msgstr "%s-sitemap-index.xml"
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/item"
+msgstr "+ %1$s %2$s/pozicija"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
-msgstr "+ Maksukustannukset"
+msgstr "+ Mokėjimo išlaidos"
 
 msgid "+ Shipping"
-msgstr "+ Toimitus"
+msgstr "+ Pristatymas"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -82,611 +82,611 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "Account"
-msgstr "Käyttäjätili"
+msgstr "Sąskaita"
 
 msgid "All XML import"
-msgstr "Kaikki XML-tuonti"
+msgstr "Visi XML importai"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr "Kaikkiin tilauksiin sovelletaan käyttöehtojamme."
+msgstr "Visiems užsakymams taikomos mūsų sąlygos."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
-msgstr "Sinulle on luotu käyttäjätili"
+msgstr "Jums sukurta paskyra."
 
 msgid "Article no."
-msgstr "Esine nro."
+msgstr "Straipsnio Nr."
 
 msgid "Attribute import XML"
-msgstr "Attribuutin tuonti XML"
+msgstr "Atributų importas XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr "Tilausten hyväksytyt maksut kirjataan lähetyksen jälkeen tai määritettävissä olevan ajan kuluttua."
+msgstr "Autorizuoti užsakymų mokėjimai bus užfiksuoti po išsiuntimo arba po konfigūruojamo laiko."
 
 msgid "Batch update of payment/delivery status"
-msgstr "Maksun/toimituksen tilan eräpäivitys"
+msgstr "Mokėjimo ir (arba) pristatymo būsenos paketinis atnaujinimas"
 
 msgid "Billing address"
-msgstr "Laskutusosoite"
+msgstr "Atsiskaitymo adresas"
 
 msgid "Cache cleanup"
-msgstr "Välimuistin siivous"
+msgstr "Domenų talpyklos valymas"
 
 msgid "Capture authorized payments"
-msgstr "Hyväksyttyjen maksujen tallentaminen"
+msgstr "fiksuoti autorizuotus mokėjimus"
 
 msgid "Catalog import CSV"
-msgstr "Luettelon tuonti CSV"
+msgstr "Katalogo importas CSV"
 
 msgid "Catalog import XML"
-msgstr "Luettelon tuonti XML"
+msgstr "Katalogo importo XML"
 
 msgid "Catalog site map"
-msgstr "Luettelon sivustokartta"
+msgstr "Katalogo svetainės žemėlapis"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr "Puhdistettu %1$s vanhoja tuotteita"
+msgstr "Išvalyti %1$s senų produktų"
 
 msgid "Cleanup baskets"
-msgstr "Siivouskorit"
+msgstr "Valymo krepšeliai"
 
 msgid "Coupon code import CSV"
-msgstr "Kuponkikoodin tuonti CSV"
+msgstr "Kupono kodo importas CSV"
 
 msgid "Coupon codes"
-msgstr "Alennuskoodit"
+msgstr "Kuponų kodai"
 
 msgid "Coupons"
-msgstr "Alennukset"
+msgstr "Kuponai"
 
 msgid "Creates a catalog site map for search engines"
-msgstr "Luo luettelon sivustokartan hakukoneita varten"
+msgstr "Sukuria katalogo svetainės žemėlapį, skirtą paieškos sistemoms"
 
 msgid "Creates a product site map for search engines"
-msgstr "Luo tuotteen sivustokartan hakukoneita varten"
+msgstr "Sukuria produkto svetainės žemėlapį, skirtą paieškos sistemoms"
 
 msgid "Creates bought together product suggestions"
-msgstr "Luo yhdessä ostettuja tuote-ehdotuksia"
+msgstr "Kuria kartu įsigytų produktų pasiūlymus"
 
 msgid "Customer account e-mails"
-msgstr "Asiakastilin sähköpostit"
+msgstr "Kliento paskyros el. laiškai"
 
 msgid "Customer import XML"
-msgstr "Asiakkaan tuonti XML"
+msgstr "Klientų importo XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr "Hei %1$s %2$s"
+msgstr "Gerbiamas %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr "Hei herra %1$s %2$s"
+msgstr "Gerbiamasis %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr "Hei %1$s %2$s"
+msgstr "Gerbiama ponia %1$s %2$s"
 
 msgid "Dear customer"
-msgstr "Arvoisa asiakas"
+msgstr "Gerbiamas kliente"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr "Poistaa keskeneräiset tilaukset ja tekee niiden tuotteet ja kuponkikoodit jälleen saataville."
+msgstr "Ištrina nebaigtus užsakymus ir vėl leidžia naudotis jų produktais ir kuponų kodais."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr "Poistaa maksamattomat tilaukset pitääkseen tietokannan puhtaana."
+msgstr "Ištrina neapmokėtus užsakymus, kad duomenų bazė būtų švari."
 
 msgid "Delivery address"
-msgstr "Toimitusosoite"
+msgstr "Pristatymo adresas"
 
 msgid "Delivery within"
-msgstr "Toimitus ajassa"
+msgstr "Pristatymas per"
 
 msgid "Details"
-msgstr "Lisätiedot"
+msgstr "Išsami informacija"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr "Suorittaa kaikki XML-importterit ja rakentaa indeksin uudelleen."
+msgstr "Įvykdo visus XML importuotojus ir atkuria indeksą"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr "Suorittaa maksu- tai toimituspalvelujen tarjoajia, jotka käyttävät eräpäivityksiä."
+msgstr "Vykdo mokėjimo arba pristatymo paslaugų teikėjų, kurie naudoja paketinius atnaujinimus."
 
 #, php-format
 msgid "Expanding \"%1$s\" node failed"
-msgstr "Solmun \"%1$s\" laajentaminen epäonnistui."
+msgstr "Nepavyko išplėsti mazgo \"%1$s\""
 
 msgid "Exports all available products"
-msgstr "Vie kaikki saatavilla olevat tuotteet"
+msgstr "Eksportuoja visus turimus produktus"
 
 msgid "Exports orders to CSV file"
-msgstr "Vie tilaukset CSV-tiedostoon"
+msgstr "Eksportuoja užsakymus į CSV failą"
 
 msgid "Exports subscriptions to CSV file"
-msgstr "Vie tilaukset CSV-tiedostoon"
+msgstr "Eksportuoja prenumeratas į CSV failą"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr "Attribuutin tuonti \"%1$s\" -laitteesta on päättynyt."
+msgstr "Baigtas atributų importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr "Attribuutin tuonti tiedostosta \"%1$s\" on päättynyt."
+msgstr "Baigtas atributų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr "Tuonti luettelosta \"%1$s\" saatiin valmiiksi"
+msgstr "Baigtas katalogo importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr "Luettelon tuonti \"%1$s\" (%2$d/%3$d) on päättynyt."
+msgstr "Baigtas katalogo importas iš \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr "Luettelon tuonti tiedostosta \"%1$s\" saatiin valmiiksi"
+msgstr "Baigtas katalogo importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr "Kupongin/koodin tuonti osoitteesta \"%1$s\" on päättynyt."
+msgstr "Baigtas kupono/kodo importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr "Asiakkaan tuonti \"%1$s\" on päättynyt."
+msgstr "Baigtas klientų importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr "Asiakkaan tuonti tiedostosta \"%1$s\" saatiin valmiiksi"
+msgstr "Baigtas klientų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr "Ryhmätuonti \"%1$s\" on päättynyt."
+msgstr "Baigtas grupės importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr "Ryhmien tuonti tiedostosta \"%1$s\" on päättynyt."
+msgstr "Baigtas grupės importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr "Valmiin tuotteen tuonti osoitteesta \"%1$s\""
+msgstr "Gatavo produkto importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr "Valmiin tuotteen tuonti \"%1$s\" (%2$d/%3$d)"
+msgstr "Gatavo produkto importas iš \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr "Valmiin tuotteen tuonti tiedostosta \"%1$s\""
+msgstr "Baigto produkto importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr "Valmiiden varastojen tuonti \"%1$s\":stä"
+msgstr "Baigtų atsargų importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr "Varastojen tuonti tiedostosta \"%1$s\" on päättynyt."
+msgstr "Baigtas atsargų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr "Toimittajan tuonti päättynyt \"%1$s\"-osoitteesta"
+msgstr "Baigtas tiekėjo importas iš \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr "Valmis toimittajan tuonti osoitteesta \"%1$s\" (%2$d/%3$d)"
+msgstr "Baigtas tiekėjo importas iš \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr "Toimittajan tuonti tiedostosta \"%1$s\" on päättynyt."
+msgstr "Baigtas tiekėjo importas iš failo \"%1$s\""
 
 msgid "Groups import XML"
-msgstr "Ryhmien tuonti XML"
+msgstr "Grupių importas XML"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr "Mikäli sinulla on kysymyksiä, ole hyvä ja vastaa tähän sähköpostiin"
+msgstr "Jei turite klausimų, atsakykite į šį el. laišką"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr "Tuo uusia ja päivittää olemassa olevia attribuutteja XML-tiedostoista."
+msgstr "Importuoja naujus ir atnaujina esamus atributus iš XML failų"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr "Tuo uusia ja päivittää olemassa olevia luokkia CSV-tiedostoista."
+msgstr "Importuoja naujas ir atnaujina esamas kategorijas iš CSV failų"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr "Tuo uusia ja päivittää olemassa olevia luokkia XML-tiedostoista."
+msgstr "Importuoja naujas ir atnaujina esamas kategorijas iš XML failų"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr "Tuo uusia ja päivittää olemassa olevia kuponkikoodeja CSV-tiedostoista."
+msgstr "Importuoja naujus ir atnaujina esamus kuponų kodus iš CSV failų"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr "Tuo uusia ja päivittää olemassa olevia asiakkaita XML-tiedostoista."
+msgstr "Importuoja naujus ir atnaujina esamus klientus iš XML failų"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr "Tuo uusia ryhmiä ja päivittää olemassa olevia ryhmiä XML-tiedostoista."
+msgstr "Importuoja naujas ir atnaujina esamas grupes iš XML failų"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr "Tuo uusia tuotteita ja päivittää olemassa olevia tuotteita CSV-tiedostoista."
+msgstr "Importuoja naujus ir atnaujina esamus produktus iš CSV failų"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr "Tuo uusia tuotteita ja päivittää olemassa olevia tuotteita XML-tiedostoista."
+msgstr "Importuoja naujus ir atnaujina esamus produktus iš XML failų"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr "Tuo uusia ja päivittää olemassa olevia varastoja CSV-tiedostoista."
+msgstr "Importuoja naujas ir atnaujina esamas atsargas iš CSV failų"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr "Tuo uusia ja päivittää olemassa olevia toimittajia CSV-tiedostoista."
+msgstr "Importuoja naujus ir atnaujina esamus tiekėjus iš CSV failų"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr "Tuo uusia ja päivittää olemassa olevia toimittajia XML-tiedostoista."
+msgstr "Importuoja naujus ir atnaujina esamus tiekėjus iš XML failų"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "Sis. %1$s%% %2$s"
+msgstr "Įskaitant %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr "Sis. %1$s%% Alv."
+msgstr "Su %1$s%% PVM"
 
 msgid "Included rebates"
-msgstr "Sisältää hyvitykset"
+msgstr "Įtrauktos nuolaidos"
 
 msgid "Index optimization"
-msgstr "Indeksin optimointi"
+msgstr "Indekso optimizavimas"
 
 msgid "Index rebuild"
-msgstr "Indeksin uudelleenrakentaminen"
+msgstr "Indekso atstatymas"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr "Väärä JSON-koodausviesti: %1$s"
+msgstr "Netinkamas JSON kodavimo pranešimas: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr "Tuonnin aikana virheelliset luettelorivit: %1$d"
+msgstr "Netinkamos katalogo eilutės importuojant: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr "Virheellisiä merkkejä luokkanimessä \"%1$s\""
+msgstr "Netinkami simboliai klasės pavadinime \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr "Prosessorin nimessä \"%1$s\" on virheellisiä merkkejä."
+msgstr "Procesoriaus pavadinime \"%1$s\" įrašyti neteisingi simboliai"
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr "Prosessorityypissä \"%1$s\" on virheellisiä merkkejä."
+msgstr "Procesoriaus tipo \"%1$s\" netinkami simboliai"
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr "Virheellinen luokkanimi \"%1$s\""
+msgstr "Netinkamas klasės pavadinimas \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr "Virheellinen viesti: %1$s"
+msgstr "Netinkamas pranešimas: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr "Tuonnin aikana virheelliset tuoterivit: %1$d"
+msgstr "Importuojant neteisingos produktų linijos: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr "Tuonnin aikana virheelliset toimittajarivit: %1$d"
+msgstr "Netinkamos tiekėjo eilutės importuojant: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr "Virheellinen tyyppi \"%1$s\" (%2$s)"
+msgstr "Netinkamas tipas \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr "Lasku"
+msgstr "Sąskaita faktūra"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr "Lasku %1$s"
+msgstr "Sąskaita faktūra %1$s"
 
 msgid "Like entered by you"
-msgstr "Antamasi tykkäys"
+msgstr "Kaip ir jūsų įvesta"
 
 msgid "Log cleanup"
-msgstr "Lokien siivous"
+msgstr "Žurnalo valymas"
 
 msgid "Login"
-msgstr "Kirjaudu sisään"
+msgstr "Prisijungimas"
 
 msgid "Name"
-msgstr "Nimi"
+msgstr "Pavadinimas"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr "CSV-kartoituksessa ei löytynyt saraketta \"catalog.code\"."
+msgstr "CSV atvaizdavime nerasta stulpelio \"catalog.code\""
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr "CSV-kartoituksessa ei löytynyt saraketta \"coupon.code.code\"."
+msgstr "CSV atvaizdavime nerasta stulpelio \"coupon.code.code\""
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr "CSV-kartoituksessa ei löytynyt saraketta \"product.code\"."
+msgstr "CSV atvaizdavime nerasta stulpelio \"product.code\""
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr "CSV-kartoituksessa ei löytynyt saraketta \"supplier.code\"."
+msgstr "CSV atvaizdavime nerasta stulpelio \"supplier.code\""
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
-msgstr "XML-tiedostoa \"%1$s\" ei löytynyt"
+msgstr "XML failo \"%1$s\" nerasta"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr "Tilauksesta, jonka ID on \"%1$s\", ei löytynyt sähköpostiosoitetta."
+msgstr "Užsakyme su ID \"%1$s\" nerastas el. pašto adresas."
 
 msgid "One or more products you are watching have been updated."
-msgstr "Yksi tai useampi seuraamasi tuote on päivitetty."
+msgstr "Vienas ar daugiau stebimų produktų buvo atnaujinti."
 
 msgid "Optimizes the index for searching products faster"
-msgstr "Optimoi indeksin tuotteiden nopeampaa hakua varten"
+msgstr "Optimizuotas indeksas, kad produktų paieška būtų greitesnė"
 
 msgid "Order date"
-msgstr "Tilauspäivämäärä"
+msgstr "Užsakymo data"
 
 msgid "Order delivery related e-mails"
-msgstr "Tilauksen toimitukseen liittyvät sähköpostit"
+msgstr "Su užsakymų pristatymu susiję el. laiškai"
 
 msgid "Order details"
-msgstr "Tilauksen lisätiedot"
+msgstr "Užsakymo informacija"
 
 msgid "Order export CSV"
-msgstr "Tilauksen vienti CSV"
+msgstr "Užsakymų eksportas CSV"
 
 msgid "Order payment related e-mails"
-msgstr "Tilauksen maksuun liittyvät sähköpostit"
+msgstr "Su užsakymo apmokėjimu susiję el. laiškai"
 
 msgid "Order status import CSV"
-msgstr "Tilauksen tilan tuonti CSV"
+msgstr "Užsakymo būsenos importas CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr "Koodin \"%1$s\" vanhempaa solmua ei löydy."
+msgstr "Nerastas kodo \"%1$s\" pagrindinis mazgas"
 
 msgid "Password"
-msgstr "Salasana"
+msgstr "Slaptažodis"
 
 msgid "Price"
-msgstr "Hinta"
+msgstr "Kaina"
 
 msgid "Process order delivery services"
-msgstr "Käsittele tilauksen toimituspalvelut"
+msgstr "Užsakymų pristatymo paslaugos"
 
 msgid "Process subscriptions initially"
-msgstr "Käsittele tilaukset aluksi"
+msgstr "Iš pradžių apdoroti prenumeratas"
 
 msgid "Product export"
-msgstr "Tuotteen vienti"
+msgstr "Produkto eksportas"
 
 msgid "Product import CSV"
-msgstr "Tuotteen tuonti CSV"
+msgstr "Produkto importas CSV"
 
 msgid "Product import XML"
-msgstr "Tuotteen tuonti XML"
+msgstr "Produkto importo XML"
 
 msgid "Product notification e-mails"
-msgstr "Tuoteilmoitussähköpostit"
+msgstr "Pranešimų apie gaminius el. laiškai"
 
 msgid "Product site map"
-msgstr "Tuotteen sivustokartta"
+msgstr "Produkto svetainės žemėlapis"
 
 msgid "Products bought together"
-msgstr "Yhdessä ostetut tuotteet"
+msgstr "Kartu perkami produktai"
 
 msgid "Qty"
-msgstr "Kpl"
+msgstr "Kiekis"
 
 msgid "Quantity"
-msgstr "Määrä"
+msgstr "Kiekis"
 
 msgid "Rebuilds the index for searching products"
-msgstr "Rakentaa indeksin uudelleen tuotteiden hakua varten"
+msgstr "Atkuriamas produktų paieškos indeksas"
 
 msgid "Reference"
-msgstr "Viittaus"
+msgstr "Nuoroda"
 
 msgid "Removes the expired entries from the cache"
-msgstr "Poistaa vanhentuneet merkinnät välimuistista"
+msgstr "Pašalina pasibaigusius įrašus iš talpyklos"
 
 msgid "Removes the old baskets from the database"
-msgstr "Poistaa vanhat korit tietokannasta."
+msgstr "Iš duomenų bazės pašalinami seni krepšeliai"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr "Poistaa vanhat lokimerkinnät tietokannasta ja arkistoi ne (valinnainen)."
+msgstr "Pašalina senus žurnalo įrašus iš duomenų bazės ir juos archyvuoja (neprivaloma)"
 
 msgid "Removes unfinished orders"
-msgstr "Poistaa keskeneräiset tilaukset"
+msgstr "Pašalina nebaigtus užsakymus"
 
 msgid "Removes unpaid orders"
-msgstr "Poistaa maksamattomat tilaukset"
+msgstr "Pašalina neapmokėtus užsakymus"
 
 msgid "Renews subscriptions at next date"
-msgstr "Uusii tilaukset seuraavana päivänä"
+msgstr "Prenumeratos atnaujinimas kitą dieną"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr "Vaadittua saraketta \"%1$s\" ei löydy koodille \"%2$s\"."
+msgstr "Reikalaujamas stulpelis \"%1$s\" nerastas kodui \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr "Vaadittu kokoonpano \"%1$s\" puuttuu."
+msgstr "Trūksta reikiamos konfigūracijos \"%1$s\""
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr "Vaadittu yhdistämisavain \"%1$s\" puuttuu tai ei sisällä arraya."
+msgstr "Nėra privalomo atvaizdavimo rakto \"%1$s\" arba jame nėra masyvo"
 
 msgid "Rescale product images"
-msgstr "Tuotekuvien uudelleenskaalaus"
+msgstr "Pakeiskite produktų vaizdų mastelio keitimą"
 
 msgid "Rescales product images to the new sizes"
-msgstr "Skaalaa tuotekuvat uuteen kokoon"
+msgstr "keičia produktų vaizdų mastelius į naujus dydžius"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr "Kuvan \"%1$s\" skaalaus epäonnistui: %2$s"
+msgstr "Nepavyko sumažinti vaizdo \"%1$s\": %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr "Mediaelementin \"%1$s\" skaalaus epäonnistui: %2$s"
+msgstr "Žiniasklaidos elemento \"%1$s\" mastelio keitimas nepavyko: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr "Lähettää sähköpostiviestejä uusia asiakastilejä varten"
+msgstr "siunčia el. laiškus dėl naujų klientų paskyrų"
 
 msgid "Sends e-mails for watched products"
-msgstr "Lähettää sähköpostiviestejä katsotuista tuotteista"
+msgstr "Siunčia el. laiškus apie stebimus produktus"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr "Lähettää tilausvahvistus- tai maksun tilapäivityssähköpostiviestejä."
+msgstr "siunčia užsakymo patvirtinimo arba mokėjimo būsenos atnaujinimo el. laiškus."
 
 msgid "Sends order delivery status update e-mails"
-msgstr "Lähettää tilauksen toimitustilan päivityssähköpostiviestejä"
+msgstr "siunčia užsakymo pristatymo būsenos atnaujinimo el. laiškus"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr "Lähettää maksetut tilaukset toiminnanohjausjärjestelmään tai logistiikkakumppanille."
+msgstr "siunčia apmokėtus užsakymus į ERP sistemą arba logistikos partneriui."
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr "Lähettää asiakkaalle sähköpostiviestin, jossa on arvoseteli."
+msgstr "siunčia el. laišką su kuponu klientui"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr "Lähetetty asiakastilin sähköpostiviesti osoitteeseen \"%1$s\""
+msgstr "Išsiųstas kliento paskyros el. laiškas į \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr "Lähetetty tilauksen toimitussähköposti tilaukselle \"%1$s\" ja tilalle \"%2$s\"."
+msgstr "Išsiųstas užsakymo \"%1$s\" ir būsenos \"%2$s\" pristatymo el. laiškas"
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr "Lähetetty tilauksen maksusähköposti tilaukselle \"%1$s\" ja tilalle \"%2$s\"."
+msgstr "Išsiųstas užsakymo apmokėjimo el. laiškas už užsakymą \"%1$s\" ir būseną \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr "Lähetetty tuoteilmoitussähköposti osoitteeseen \"%1$s\""
+msgstr "Išsiųstas pranešimas apie produktą el. paštu \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr "Lähetetyt tosite sähköpostit tilauksen ID \"%1$s\" osalta."
+msgstr "Išsiųstas užsakymo ID \"%1$s\" kupono el. laiškas"
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr "Aloitettiin attribuutin tuonti osoitteesta \"%1$s\"."
+msgstr "Pradėtas atributų importas iš \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr "Aloitettiin attribuutin tuonti tiedostosta \"%1$s\"."
+msgstr "Pradėtas atributų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr "Luettelon tuonti aloitettu osoitteesta \"%1$s\"."
+msgstr "Pradėtas katalogo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr "Luettelon tuonti tiedostosta \"%1$s\" aloitettu."
+msgstr "Pradėtas katalogo importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr "Kuponkikoodin tuonti aloitettu osoitteesta \"%1$s\""
+msgstr "Pradėtas kupono kodo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr "Kupongin/koodin tuonti aloitettu osoitteesta \"%1$s\"."
+msgstr "Pradėtas kupono/kodo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr "Aloitettiin asiakkaan tuonti osoitteesta \"%1$s\""
+msgstr "Pradėtas klientų importas iš \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr "Asiakkaan tuonti tiedostosta \"%1$s\" aloitettu."
+msgstr "Pradėtas klientų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr "Ryhmän tuonti aloitettu \"%1$s\" -osoitteesta."
+msgstr "Pradėtas grupės importas iš \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr "Ryhmän tuonti tiedostosta \"%1$s\" aloitettu."
+msgstr "Pradėtas grupės importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr "Tuotteen tuonti aloitettu osoitteesta \"%1$s\""
+msgstr "Pradėtas produkto importas iš \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr "Tuotteen tuonti tiedostosta \"%1$s\" aloitettu."
+msgstr "Pradėtas produkto importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr "Aloitettiin varastojen tuonti \"%1$s\"-osoitteesta"
+msgstr "Pradėtas atsargų importas iš \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr "Aloitettiin varastojen tuonti tiedostosta \"%1$s\""
+msgstr "Pradėtas atsargų importas iš failo \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr "Toimittajan tuonti aloitettu osoitteesta \"%1$s\""
+msgstr "Pradėtas tiekėjo importas iš \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr "Toimittajan tuonti tiedostosta \"%1$s\" aloitettu."
+msgstr "Pradėtas tiekėjo importas iš failo \"%1$s\""
 
 msgid "Status"
-msgstr "Tila"
+msgstr "Statusas"
 
 msgid "Status import for orders from CSV file"
-msgstr "Tilan tuonti tilauksille CSV-tiedostosta"
+msgstr "Užsakymų būsenos importas iš CSV failo"
 
 msgid "Stock import CSV"
-msgstr "Varastojen tuonti CSV"
+msgstr "Atsargų importas CSV"
 
 msgid "Sub-total"
-msgstr "Välisumma"
+msgstr "Tarpinė suma"
 
 msgid "Subscription export CSV"
-msgstr "Tilauksen vienti CSV"
+msgstr "Prenumeratos eksportas CSV"
 
 msgid "Subscription process end"
-msgstr "Tilausprosessin loppu"
+msgstr "Prenumeratos proceso pabaiga"
 
 msgid "Subscription process renew"
-msgstr "Tilausprosessin uusiminen"
+msgstr "Prenumeratos proceso atnaujinimas"
 
 msgid "Subscription process start"
-msgstr "Tilausprosessin aloitus"
+msgstr "Prenumeratos proceso pradžia"
 
 msgid "Subscription product"
-msgstr "Tilaustuote"
+msgstr "Prenumeruojamas produktas"
 
 msgid "Sum"
-msgstr "Summa"
+msgstr "Suma"
 
 msgid "Supplier import CSV"
-msgstr "Toimittajan tuonti CSV"
+msgstr "Tiekėjų importo CSV"
 
 msgid "Supplier import XML"
-msgstr "Toimittajan tuonti XML"
+msgstr "Tiekėjo importo XML"
 
 msgid "Terminates expired subscriptions"
-msgstr "Lopettaa vanhentuneet tilaukset"
+msgstr "Nutraukia pasibaigusias prenumeratas"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Kiitos tilauksestasi %1$s sivulta %2$s."
+msgstr "Dėkojame už užsakymą %1$s iš %2$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -694,7 +694,7 @@ msgstr "Kiitos tilauksestasi %1$s sivulta %2$s."
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "Sivulta %2$s tekemäsi tilauksen %1$s toimituksen tila on muutettu tilaan \"%3$s\"."
+msgstr "Jūsų užsakymo %1$s iš %2$s pristatymo būsena pakeista į \"%3$s\"."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -703,21 +703,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "Tilaus on vireillä kunnes vastaanotamme koko maksun. Jos olet päättänyt maksaa etukäteen, ole hyvä ja siirrä rahat pankkitilillemme käyttäen tilaus-ID:tä %1$s viitteenä."
+msgstr "Užsakymas laukia, kol gausime galutinį mokėjimą. Jei nusprendėte sumokėti iš anksto, prašome pervesti pinigus į mūsų banko sąskaitą, kaip nuorodą nurodydami užsakymo ID %1$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "Sivulta %2$s tilaamasi tilauksen %1$s pakettia ei voitu toimittaa."
+msgstr "Jūsų užsakymo %1$s iš %2$s siuntinio nepavyko pristatyti."
 
 msgid "The payment couldn't be renewed"
-msgstr "Maksua ei voitu uusia"
+msgstr "Mokėjimas negalėjo būti atnaujintas"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "%2$s tilaamasi tilauksen %1$s maksu on hyvitetty."
+msgstr "Mokėjimas už jūsų užsakymą %1$s iš %2$s buvo grąžintas."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -725,136 +725,138 @@ msgstr "%2$s tilaamasi tilauksen %1$s maksu on hyvitetty."
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "Tilauksen %1$s tilauksen %2$s maksutilaksi on muutettu \"%3$s\"."
+msgstr "Jūsų užsakymo %1$s iš %2$s mokėjimo būsena pakeista į \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr "Tuotteen tilausaika on päättynyt"
+msgstr "Produkto prenumerata baigėsi"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] "Etusetelisi arvo on %1$s"
-msgstr[1] "Etuseteleidesi arvo on %1$s"
+msgstr[0] "Jūsų kupono vertė yra %1$s"
+msgstr[1] "Jūsų kupono vertė yra %1$s"
+msgstr[2] "Jūsų kupono vertė yra %1$s"
+msgstr[3] "Jūsų kupono vertė yra %1$s"
 
 msgid "Total"
-msgstr "Kokonaisuudessaan"
+msgstr "Iš viso"
 
 msgid "Transfers money to vendors"
-msgstr "Siirtää rahaa myyjille"
+msgstr "Pinigų pervedimai pardavėjams"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr "Siirtää tilattujen tuotteiden hinnan myyjille, mukaan lukien palkkion käsittely."
+msgstr "Perveda užsakytų produktų kainą pardavėjams, įskaitant komisinių tvarkymą."
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr "Nykyistä osoitetta ei pystytä lisäämään asiakkaalle, jonka tunnus on \"%1$s\"."
+msgstr "Nepavyksta pridėti kliento, kurio ID \"%1$s\", dabartinio adreso"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr "Toimintoa \"%1$s” ei voitu suorittaa"
+msgstr "Nepavyksta iškviesti metodo \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr "Luetteloa ei voida tuoda koodilla \"%1$s\": %2$s"
+msgstr "Nepavyksta importuoti katalogo su kodu \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr "Tuotetta, jonka koodi on \"%1$s\", ei voida tuoda: %2$s"
+msgstr "Nepavyksta importuoti produkto, kurio kodas \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr "Koodilla \"%1$s\" varustetun toimittajan tuonti ei onnistu: %2$s"
+msgstr "Nepavyksta importuoti tiekėjo, kurio kodas \"%1$s\": %2$s"
 
 msgid "Voucher"
-msgstr "Voucher"
+msgstr "Kuponas"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr "Tosite %1$s"
+msgstr "Kuponas %1$s"
 
 msgid "Voucher related e-mails"
-msgstr "Tositteisiin liittyvät sähköpostit"
+msgstr "Su kuponais susiję el. laiškai"
 
 msgid "Watched products"
-msgstr "Katsotut tuotteet"
+msgstr "Stebimi produktai"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr "Olemme vastaanottaneet maksusi ja käsittelemme tilauksesi välittömästi."
+msgstr "Gavome jūsų mokėjimą ir nedelsdami pasirūpinsime jūsų užsakymu."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "Vastaanotimme sivulta %2$s tilaamasi tilauksen %1$s palautetun paketin "
+msgstr "Gavome jūsų užsakymo %1$s grąžinamą siuntą iš %2$s."
 
 msgid "Y-m-d"
-msgstr "V-kk-pvä"
+msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr "Voit kauttaa etuseteleitäsi nettikaupassamme milloin vain"
+msgstr "Kuponus galite bet kada panaudoti mūsų internetinėje parduotuvėje"
 
 msgid "You've cancelled the subscription"
-msgstr "Olet perunut tilauksen"
+msgstr "Atšaukėte prenumeratą"
 
 msgid "Your account"
-msgstr "Käyttäjätilisi"
+msgstr "Jūsų paskyra"
 
 msgid "Your comment"
-msgstr "Kommenttisi"
+msgstr "Jūsų komentaras"
 
 msgid "Your new account"
-msgstr "Uusi käyttäjätilisi"
+msgstr "Jūsų naujoji paskyra"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr "Tilauksesi %1$s"
+msgstr "Jūsų užsakymas %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Tilauksesi %1$s sivulta %2$s on lähetetty."
+msgstr "Jūsų užsakymas %1$s iš %2$s buvo išsiųstas."
 
 msgid "Your reference"
-msgstr "Viitteesi"
+msgstr "Jūsų nuoroda"
 
 msgid "Your reference number"
-msgstr "Viitenumerosi"
+msgstr "Jūsų nuorodos numeris"
 
 msgid "Your subscription"
-msgstr "Tilauksesi"
+msgstr "Jūsų prenumerata"
 
 msgid "Your voucher"
-msgstr "Etusetelisi"
+msgstr "Jūsų kuponas"
 
 msgid "Your watched products"
-msgstr "Katsomasi tuotteet"
+msgstr "Jūsų stebimi produktai"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr "aimeos-katalogi-sivukartta-%d.xml"
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
-msgstr "toimitus"
+msgstr "pristatymas"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr "sivulta %1$s"
+msgstr "iš %1$s"
 
 msgid "like billing address"
-msgstr "kuten laskutusosoite"
+msgstr "kaip atsiskaitymo adresas"
 
 msgid "payment"
-msgstr "maksu"
+msgstr "mokėjimas"
 
 msgid "tax"
-msgstr "vero"
+msgstr "mokesčiai"
 
 msgid "taxgst"
 msgstr "taxgst"

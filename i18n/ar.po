@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 11:15+0100\n"
+"POT-Creation-Date: 2025-02-06 13:26+0100\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Arabic (http://app.transifex.com/aimeos/aimeos-core/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,17 +51,25 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "تم إيقاف %2$s %1$s"
+
+#, php-format
+msgid "%s-sitemap-%d.xml"
+msgstr "%s-sitemap-%d.xml"
+
+#, php-format
+msgid "%s-sitemap-index.xml"
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %1$s %2$s/عنصر"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ تكاليف الدفع"
@@ -71,19 +80,19 @@ msgstr "+ الشحن"
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "الحساب"
 
 msgid "All XML import"
-msgstr ""
+msgstr "كل استيراد XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "تخضع جميع الطلبات لشروطنا وأحكامنا."
 
 #. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2024
+#. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
 msgstr "تم إنشاء حسابك الجديد بنجاح "
 
@@ -91,182 +100,302 @@ msgid "Article no."
 msgstr "منتوج رقم"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "استيراد السمات XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "سيتم تسجيل الدفعات المصرح بها للطلبات بعد الإرسال أو بعد فترة زمنية قابلة للتكوين"
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "تحديث دفعة من حالة الدفع/التسليم"
 
 msgid "Billing address"
 msgstr "عنوان الدفع"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "تنظيف ذاكرة التخزين المؤقت"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "قبض المدفوعات المصرح بها"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "استيراد الكتالوج CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "استيراد الكتالوج XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "خريطة موقع الكتالوج"
+
+#, php-format
+msgid "Cleaned %1$s old products"
+msgstr "تم تنظيف %1$s من المنتجات القديمة"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "سلال التنظيف"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "استيراد رمز القسيمة CSV"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "أكواد القسائم"
 
 msgid "Coupons"
-msgstr ""
+msgstr "الكوبونات"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "إنشاء خريطة موقع كتالوج لمحركات البحث"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "إنشاء خريطة موقع المنتج لمحركات البحث"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "إنشاء اقتراحات المنتجات التي تم شراؤها معًا"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني لحساب العميل"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "استيراد العميل XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "عزيزي %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "عزيزي السيد %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "عزيزتي السيدة %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "عزيزي العميل"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "حذف الطلبات غير المكتملة وإتاحة منتجاتها وأكواد القسائم مرة أخرى"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "حذف الطلبات غير المدفوعة للحفاظ على قاعدة البيانات نظيفة"
 
 msgid "Delivery address"
 msgstr "عنوان التوصيل"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "التسليم داخل"
 
 msgid "Details"
 msgstr "التفاصيل"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "تنفيذ جميع مستوردات XML وإعادة بناء الفهرس"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "تنفيذ عمليات الدفع أو موفري خدمات التوصيل التي تستخدم تحديثات الدُفعات"
+
+#, php-format
+msgid "Expanding \"%1$s\" node failed"
+msgstr "فشلت عملية توسيع العقدة \"%1$s\""
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "تصدير جميع المنتجات المتاحة"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "تصدير الطلبات إلى ملف CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "تصدير الاشتراكات إلى ملف CSV"
+
+#, php-format
+msgid "Finished attribute import from \"%1$s\""
+msgstr "تم الانتهاء من استيراد السمة من \"%1$s\""
+
+#, php-format
+msgid "Finished attribute import from file \"%1$s\""
+msgstr "تم الانتهاء من استيراد السمة من الملف \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\""
+msgstr "تم الانتهاء من استيراد الكتالوج من \"%1$s\""
+
+#, php-format
+msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
+msgstr "تم الانتهاء من استيراد الكتالوج من \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished catalog import from file \"%1$s\""
+msgstr "تم الانتهاء من استيراد الكتالوج من الملف \"%1$s\""
+
+#, php-format
+msgid "Finished coupon/code import from \"%1$s\""
+msgstr "تم الانتهاء من استيراد القسيمة/الرمز من \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from \"%1$s\""
+msgstr "تم الانتهاء من استيراد العميل من \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from file \"%1$s\""
+msgstr "تم الانتهاء من استيراد العميل من الملف \"%1$s\""
+
+#, php-format
+msgid "Finished group import from \"%1$s\""
+msgstr "تم الانتهاء من استيراد المجموعة من \"%1$s\""
+
+#, php-format
+msgid "Finished group import from file \"%1$s\""
+msgstr "تم الانتهاء من استيراد المجموعة من الملف \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\""
+msgstr "استيراد المنتج النهائي من \"%1$s\""
+
+#, php-format
+msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
+msgstr "استيراد المنتج النهائي من \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished product import from file \"%1$s\""
+msgstr "استيراد المنتج المنتهي من الملف \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from \"%1$s\""
+msgstr "استيراد المخزون المكتمل من \"%1$s\""
+
+#, php-format
+msgid "Finished stock import from file \"%1$s\""
+msgstr "تم الانتهاء من استيراد المخزون من الملف \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\""
+msgstr "الانتهاء من استيراد المورد من \"%1$s\""
+
+#, php-format
+msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
+msgstr "تم الانتهاء من استيراد المورد من \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
+msgid "Finished supplier import from file \"%1$s\""
+msgstr "انتهاء استيراد المورد من الملف \"%1$s\""
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "استيراد المجموعات XML"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "إذا كان لديك أي أسئلة، يرجى الرد على هذا البريد الإلكتروني"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "استيراد سمات جديدة وتحديث السمات الموجودة من ملفات XML"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "استيراد الفئات الجديدة وتحديث الفئات الموجودة من ملفات CSV"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "استيراد فئات جديدة وتحديث الفئات الموجودة من ملفات XML"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "استيراد رموز القسائم الجديدة وتحديث رموز القسائم الحالية من ملفات CSV"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "استيراد عملاء جدد وتحديث العملاء الحاليين من ملفات XML"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "استيراد مجموعات جديدة وتحديث المجموعات الموجودة من ملفات XML"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "استيراد المنتجات الجديدة وتحديث المنتجات الحالية من ملفات CSV"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "استيراد منتجات جديدة وتحديث المنتجات الحالية من ملفات XML"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "استيراد مخزون جديد وتحديث المخزون الحالي من ملفات CSV"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "استيراد موردين جدد وتحديث الموردين الحاليين من ملفات CSV"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "استيراد موردين جدد وتحديث الموردين الحاليين من ملفات XML"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "بما في ذلك %1$s%%%2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "بما في ذلك %1$s%% ضريبة القيمة المضافة"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "الخصومات المشمولة"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "تحسين الفهرس"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "إعادة بناء الفهرس"
+
+#, php-format
+msgid "Invalid JSON encode message: %1$s"
+msgstr "رسالة ترميز JSON غير صالحة: %1$s"
+
+#, php-format
+msgid "Invalid catalog lines during import: %1$d"
+msgstr "سطور كتالوج غير صالحة أثناء الاستيراد: %1$d"
+
+#, php-format
+msgid "Invalid characters in class name \"%1$s\""
+msgstr "الأحرف غير صالحة في اسم الفئة \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor name \"%1$s\""
+msgstr "الأحرف غير صالحة في اسم المعالج \"%1$s\""
+
+#, php-format
+msgid "Invalid characters in processor type \"%1$s\""
+msgstr "أحرف غير صالحة في نوع المعالج \"%1$s\""
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr "اسم الفئة غير صحيح \"%1$s\""
+
+#, php-format
+msgid "Invalid message: %1$s"
+msgstr "رسالة غير صالحة: %1$s"
+
+#, php-format
+msgid "Invalid product lines during import: %1$d"
+msgstr "سطور المنتجات غير صالحة أثناء الاستيراد: %1$d"
+
+#, php-format
+msgid "Invalid supplier lines during import: %1$d"
+msgstr "سطور الموردين غير صالحة أثناء الاستيراد: %1$d"
+
+#, php-format
+msgid "Invalid type \"%1$s\" (%2$s)"
+msgstr "النوع غير صالح \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "الفاتورة"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "الفاتورة %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "مثل التي أدخلتها"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "تنظيف السجل"
 
 msgid "Login"
 msgstr "تسجيل الدخول"
@@ -274,29 +403,57 @@ msgstr "تسجيل الدخول"
 msgid "Name"
 msgstr "الإسم"
 
+#, php-format
+msgid "No \"catalog.code\" column in CSV mapping found"
+msgstr "لم يتم العثور على عمود \"catalog.code\" في تعيين CSV"
+
+#, php-format
+msgid "No \"coupon.code.code\" column in CSV mapping found"
+msgstr "لم يتم العثور على عمود \"coupon.code.code\" في تعيين CSV"
+
+#, php-format
+msgid "No \"product.code\" column in CSV mapping found"
+msgstr "لم يتم العثور على عمود \"Product.code\" في تعيين CSV"
+
+#, php-format
+msgid "No \"supplier.code\" column in CSV mapping found"
+msgstr "لم يتم العثور على عمود \"رمز المورد\" في تعيين CSV"
+
+#, php-format
+msgid "No XML file \"%1$s\" found"
+msgstr "لم يتم العثور على ملف XML \"%1$s\""
+
+#, php-format
+msgid "No address with e-mail found in order with ID \"%1$s\""
+msgstr "لم يتم العثور على عنوان مع بريد إلكتروني في الطلب ذي المعرف \"%1$s\""
+
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "تم تحديث منتج أو أكثر من المنتجات التي تشاهدها."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "تحسين الفهرس للبحث عن المنتجات بشكل أسرع"
 
 msgid "Order date"
 msgstr "تاريخ الطلب"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني المتعلقة بتسليم الطلبات"
 
 msgid "Order details"
-msgstr ""
+msgstr "تفاصيل الطلب"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "طلب تصدير CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني المتعلقة بطلب الدفع"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "استيراد حالة الطلب CSV"
+
+#, php-format
+msgid "Parent node for code \"%1$s\" not found"
+msgstr "العقدة الرئيسية للرمز \"%1$s\" غير موجودة"
 
 msgid "Password"
 msgstr "كلمة المرور"
@@ -305,107 +462,211 @@ msgid "Price"
 msgstr "السعر"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "معالجة خدمات توصيل الطلبات"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "معالجة الاشتراكات في البداية"
 
 msgid "Product export"
-msgstr ""
+msgstr "تصدير المنتج"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "استيراد المنتج CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "استيراد المنتج XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني لإشعارات المنتج"
 
 msgid "Product site map"
-msgstr ""
+msgstr "خريطة موقع المنتج"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "المنتجات التي تم شراؤها معًا"
 
 msgid "Qty"
 msgstr "الكمية"
 
 msgid "Quantity"
-msgstr ""
+msgstr "الكمية"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "يعيد بناء الفهرس للبحث عن المنتجات"
 
 msgid "Reference"
-msgstr ""
+msgstr "المرجع"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "إزالة الإدخالات منتهية الصلاحية من ذاكرة التخزين المؤقت"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "إزالة السلال القديمة من قاعدة البيانات"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "إزالة إدخالات السجل القديم من قاعدة البيانات وأرشفتها (اختياري)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "إزالة الطلبات غير المكتملة"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "إزالة الطلبات غير المدفوعة"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "تجديد الاشتراكات في التاريخ التالي"
+
+#, php-format
+msgid "Required column \"%1$s\" not found for code \"%2$s\""
+msgstr "العمود المطلوب \"%1$s\" غير موجود للرمز \"%2$s\""
+
+#, php-format
+msgid "Required configuration for \"%1$s\" is missing"
+msgstr "التكوين المطلوب ل \"%1$s\" غير موجود"
+
+#, php-format
+msgid "Required mapping key \"%1$s\" is missing or contains no array"
+msgstr "مفتاح التعيين المطلوب \"%1$s\" مفقود أو لا يحتوي على مصفوفة"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "إعادة قياس صور المنتج"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "تغيير مقاسات صور المنتج إلى المقاسات الجديدة"
+
+#, php-format
+msgid "Scaling image \"%1$s\" failed: %2$s"
+msgstr "فشل تحجيم الصورة \"%1$s\": %2$s"
+
+#, php-format
+msgid "Scaling media item \"%1$s\" failed: %2$s"
+msgstr "فشل تحجيم عنصر الوسائط \"%1$s\": %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "إرسال رسائل البريد الإلكتروني لحسابات العملاء الجدد"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "إرسال رسائل البريد الإلكتروني للمنتجات التي تمت مشاهدتها"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "إرسال رسائل بريد إلكتروني لتأكيد الطلب أو تحديث حالة الدفع"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "إرسال رسائل بريد إلكتروني لتحديث حالة تسليم الطلبات"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "إرسال الطلبات المدفوعة إلى نظام تخطيط موارد المؤسسات أو الشريك اللوجستي"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "يرسل البريد الإلكتروني مع القسيمة إلى العميل"
+
+#, php-format
+msgid "Sent customer account e-mail to \"%1$s\""
+msgstr "إرسال بريد إلكتروني لحساب العميل إلى \"%1$s\""
+
+#, php-format
+msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "تم إرسال بريد إلكتروني لتسليم الطلب \"%1$s\" والحالة \"%2$s\""
+
+#, php-format
+msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
+msgstr "تم إرسال بريد إلكتروني للدفع بالطلب \"%1$s\" والحالة \"%2$s\""
+
+#, php-format
+msgid "Sent product notification e-mail to \"%1$s\""
+msgstr "إرسال إشعار المنتج بالبريد الإلكتروني إلى \"%1$s\""
+
+#, php-format
+msgid "Sent voucher e-mails for order ID \"%1$s\""
+msgstr "رسائل البريد الإلكتروني للقسائم المرسلة لمعرف الطلب \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from \"%1$s\""
+msgstr "بدء استيراد السمة من \"%1$s\""
+
+#, php-format
+msgid "Started attribute import from file \"%1$s\""
+msgstr "تم بدء استيراد السمة من الملف \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from \"%1$s\""
+msgstr "بدء استيراد الكتالوج من \"%1$s\""
+
+#, php-format
+msgid "Started catalog import from file \"%1$s\""
+msgstr "بدء استيراد الكتالوج من الملف \"%1$s\""
+
+#, php-format
+msgid "Started coupon code import from \"%1$s\""
+msgstr "بدء استيراد رمز القسيمة من \"%1$s\""
+
+#, php-format
+msgid "Started coupon/code import from \"%1$s\""
+msgstr "بدء استيراد القسيمة/الرمز من \"%1$s\""
+
+#, php-format
+msgid "Started customer import from \"%1$s\""
+msgstr "بدء استيراد العميل من \"%1$s\""
+
+#, php-format
+msgid "Started customer import from file \"%1$s\""
+msgstr "بدء استيراد العميل من الملف \"%1$s\""
+
+#, php-format
+msgid "Started group import from \"%1$s\""
+msgstr "بدء استيراد المجموعة من \"%1$s\""
+
+#, php-format
+msgid "Started group import from file \"%1$s\""
+msgstr "بدء استيراد المجموعة من الملف \"%1$s\""
+
+#, php-format
+msgid "Started product import from \"%1$s\""
+msgstr "بدء استيراد المنتج من \"%1$s\""
+
+#, php-format
+msgid "Started product import from file \"%1$s\""
+msgstr "بدء استيراد المنتج من الملف \"%1$s\""
+
+#, php-format
+msgid "Started stock import from \"%1$s\""
+msgstr "بدء استيراد المخزون من \"%1$s\""
+
+#, php-format
+msgid "Started stock import from file \"%1$s\""
+msgstr "بدء استيراد المخزون من الملف \"%1$s\""
+
+#, php-format
+msgid "Started supplier import from \"%1$s\""
+msgstr "بدء استيراد المورد من \"%1$s\""
+
+#, php-format
+msgid "Started supplier import from file \"%1$s\""
+msgstr "بدء استيراد المورد من الملف \"%1$s\""
 
 msgid "Status"
 msgstr "الحالة"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "استيراد الحالة للطلبات من ملف CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "استيراد المخزون CSV"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "المجموع الفرعي"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "تصدير الاشتراك CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "انتهاء عملية الاشتراك"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "تجديد عملية الاشتراك"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "بدء عملية الاشتراك"
 
 msgid "Subscription product"
 msgstr "المنتج المسجل للإشتراك"
@@ -414,19 +675,19 @@ msgid "Sum"
 msgstr "المجموع"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "استيراد الموردين CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "استيراد الموردين XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "إنهاء الاشتراكات المنتهية صلاحيتها"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "شكراً على طلبك %1$s من %2$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -434,7 +695,7 @@ msgstr ""
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "تم تغيير حالة تسليم طلبك %1$s من %2$s إلى \"%3$s\"."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -443,21 +704,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "الطلب معلق حتى نتلقى الدفعة النهائية. إذا كنت قد اخترت الدفع مقدمًا، يُرجى تحويل الأموال إلى حسابنا المصرفي مع معرف الطلب %1$s كمرجع."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "تعذر تسليم الطرد الخاص بطلبك %1$s من %2$s."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "لا يمكن تجديد الدفع"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "تم استرداد المبلغ المدفوع لطلبك %1$s من %2$s."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -465,62 +726,82 @@ msgstr ""
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "تم تغيير حالة الدفع الخاصة بطلبك %1$s من %2$s إلى \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "انتهى الاشتراك في المنتج"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[1] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[2] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[3] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[4] "قيمة القسيمة الخاصة بك هي %1$s"
+msgstr[5] "قيمة القسيمة الخاصة بك هي %1$s"
 
 msgid "Total"
 msgstr "المجموع"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "تحويل الأموال إلى البائعين"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "تحويل أسعار المنتجات المطلوبة إلى البائعين بما في ذلك عمولة المناولة"
+
+#, php-format
+msgid "Unable to add current address for customer with ID \"%1$s\""
+msgstr "غير قادر على إضافة العنوان الحالي للعميل الذي يحمل المعرف \"%1$s\""
+
+#, php-format
+msgid "Unable to call method \"%1$s\""
+msgstr "غير قادر على استدعاء الأسلوب \"%1$s\""
+
+#, php-format
+msgid "Unable to import catalog with code \"%1$s\": %2$s"
+msgstr "تعذر استيراد كتالوج برمز \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import product with code \"%1$s\": %2$s"
+msgstr "يتعذر استيراد منتج برمز \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import supplier with code \"%1$s\": %2$s"
+msgstr "يتعذر استيراد مورد برمز \"%1$s\": %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "القسيمة"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "القسيمة %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "رسائل البريد الإلكتروني المتعلقة بالقسائم"
 
 msgid "Watched products"
-msgstr ""
+msgstr "المنتجات المشاهدة"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "لقد استلمنا دفعتك، وسوف نتولى أمر طلبك على الفور."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "لقد استلمنا الطرد المرتجع لطلبك %1$s من %2$s."
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "ي-م-د"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "يمكنك استخدام قسائمك في أي وقت في متجرنا عبر الإنترنت"
 
 msgid "You've cancelled the subscription"
 msgstr "تم إلغاء الإشتراك الخاص بك"
@@ -536,28 +817,32 @@ msgstr "حسابك الجديد"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "طلبك %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "تم إرسال طلبك %1$s من %2$s من %1$s."
 
 msgid "Your reference"
-msgstr ""
+msgstr "مرجعك"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "رقمك المرجعي"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "اشتراكك"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "قسيمتك"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "المنتجات التي شاهدتها"
+
+#, php-format
+msgid "aimeos-catalog-sitemap-%d.xml"
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "التوصيل"
@@ -565,19 +850,19 @@ msgstr "التوصيل"
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "من %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "مثل عنوان إرسال الفواتير"
 
 msgid "payment"
 msgstr "الدفع"
 
 msgid "tax"
-msgstr ""
+msgstr "الضريبة"
 
 msgid "taxgst"
-msgstr ""
+msgstr "تاكسجست"
 
 msgid "taxpst"
-msgstr ""
+msgstr "الضرائب"
