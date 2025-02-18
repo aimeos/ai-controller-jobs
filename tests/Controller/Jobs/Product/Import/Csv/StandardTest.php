@@ -228,7 +228,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunCleanup()
 	{
-		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Product\\Manager\\Standard' )
+		$stub = $this->getMockBuilder( '\\Aimeos\\MShop\\Index\\Manager\\Standard' )
 			->setConstructorArgs( [$this->context] )
 			->onlyMethods( ['save', 'type'] )
 			->getMock();
@@ -237,7 +237,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$stub->method( 'type' )->willReturn( ['product'] );
 		$stub = new \Aimeos\MShop\Common\Manager\Decorator\Lists( $stub, $this->context );
 
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Product\\Manager\\Standard', $stub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Index\\Manager\\Standard', $stub );
 
 		$result = $this->access( 'cleanup' )->invokeArgs( $this->object, [date( 'Y-m-d H:i:s' )] );
 

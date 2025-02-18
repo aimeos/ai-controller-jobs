@@ -175,7 +175,7 @@ class Standard
 				return;
 			}
 
-			$logger->info( sprintf( 'Started product import from "%1$s"', $location ), 'import/xml/product' );
+			$logger->info( sprintf( 'Started product import from "%1$s"', $location ), 'import/csv/product' );
 
 			foreach( map( $fs->scan( $location ) )->sort() as $filename )
 			{
@@ -302,7 +302,7 @@ class Standard
 		$articles = $products->filter( fn( $item ) => $item->getType() === 'select' )
 			->getRefItems( 'product', null, 'default' )->flat( 1 );
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 
 		$manager->begin();
 		$manager->save( $products->merge( $articles )->setStatus( -2 ) );
@@ -331,7 +331,7 @@ class Standard
 	protected function cleanup( string $datetime ) : int
 	{
 		$count = 0;
-		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 
 		$filter = $manager->filter();
 		$filter->add( 'product.mtime', '<', $datetime );
@@ -405,7 +405,7 @@ class Standard
 	 */
 	protected function getProducts( array $codes, array $domains ) : \Aimeos\Map
 	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 		$search = $manager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
 
 		return $manager->search( $search, $domains )->col( null, 'product.code' );
@@ -503,8 +503,7 @@ class Standard
 						$map['product.config'] = json_decode( $config ) ?: [];
 					}
 
-					$product = $product->fromArray( $map, true );
-					$product = $manager->save( $product->setType( $type ) );
+					$product = $product->fromArray( $map, true )->setType( $type );
 
 					$processor->process( $product, $list );
 
