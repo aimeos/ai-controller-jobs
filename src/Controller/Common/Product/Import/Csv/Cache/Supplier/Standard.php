@@ -44,7 +44,7 @@ class Standard
 		parent::__construct( $context );
 
 		$manager = \Aimeos\MShop::create( $context, 'supplier' );
-		$result = $manager->search( $manager->filter() )->col( null, 'supplier.code' );
+		$this->suppliers = $manager->search( $manager->filter(), ['address'] )->col( null, 'supplier.code' )->toArray();
 	}
 
 
@@ -64,8 +64,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
 		$search = $manager->filter()->add( 'supplier.code', '==', $code );
 
-
-		if( $item = $manager->search( $search )->first() ) {
+		if( $item = $manager->search( $search,['address'] )->first() ) {
 			$this->suppliers[$code] = $item;
 		}
 

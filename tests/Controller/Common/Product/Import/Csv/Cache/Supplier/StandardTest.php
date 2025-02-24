@@ -28,20 +28,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop::cache( false );
 	}
 
+
+	public function testGet()
+	{
+		$this->assertInstanceOf( \Aimeos\MShop\Supplier\Item\Iface::class, $this->object->get( 'unitSupplier001' ) );
+	}
+
+
 	public function testGetUnknown()
 	{
 		$this->assertEquals( null, $this->object->get( 'cache-test' ) );
 	}
 
+
 	public function testSet()
 	{
-		$item = \Aimeos\MShop::create( \TestHelper::context(), 'catalog' )->create();
-		$item->setCode( 'cache-test' );
+		$item = \Aimeos\MShop::create( \TestHelper::context(), 'supplier' )->create();
+		$item->setCode( 'cache-test2' );
 		$item->setId( 1 );
 
 		$this->object->set( $item );
-		$id = $this->object->get( 'cache-test' );
+		$result = $this->object->get( 'cache-test2' );
 
-		$this->assertEquals( $item->getId(), $id );
+		$this->assertSame( $item, $result );
 	}
 }

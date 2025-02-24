@@ -109,10 +109,11 @@ class Standard
 	{
 		$context = $this->context();
 		$logger = $context->logger();
+
 		$manager = \Aimeos\MShop::create( $context, 'product' );
 		$separator = $context->config()->get( 'controller/jobs/product/import/csv/separator', "\n" );
 
-		$listItems = $product->getListItems( 'catalog', null, null, false );
+		$listItems = $product->getListItems( 'catalog', $this->listTypes, null, false );
 		$pos = 0;
 
 		foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
@@ -129,25 +130,25 @@ class Standard
 			{
 				$code = trim( $code );
 
-				if( ( $catid = $this->cache->get( $code ) ) === null )
+				if( ( $catItem = $this->cache->get( $code ) ) === null )
 				{
 					$msg = 'No catalog for code "%1$s" available when importing product with code "%2$s"';
 					$logger->warning( sprintf( $msg, $code, $product->getCode() ), 'import/csv/product' );
 					continue;
 				}
 
-				if( ( $listItem = $product->getListItem( 'catalog', $listtype, $catid ) ) === null ) {
+				if( ( $listItem = $product->getListItem( 'catalog', $listtype, $catItem->getId() ) ) === null ) {
 					$listItem = $manager->createListItem()->setType( $listtype );
 				} else {
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem = $listItem->fromArray( $list )->setRefId( $catid )->setConfig( $listConfig )->setPosition( $pos++ );
-				$product->addListItem( 'catalog', $listItem );
+				$listItem = $listItem->fromArray( $list )->setConfig( $listConfig )->setPosition( $pos++ );
+				$product->addListItem( 'catalog', $listItem, $catItem );
 			}
 		}
 
-		$product->deleteListItems( $listItems->toArray() );
+		$product->deleteListItems( $listItems );
 
 		return $this->object()->process( $product, $data );
 	}
