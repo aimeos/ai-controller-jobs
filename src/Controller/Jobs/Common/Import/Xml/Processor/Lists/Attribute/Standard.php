@@ -60,21 +60,19 @@ class Standard
 				continue;
 			}
 
+			if( ( $attr = $attributes->getNamedItem( 'ref' ) ) === null || !isset( $map[$attr->nodeValue] ) ) {
+				continue;
+			}
+
 			if( ( $attr = $attributes->getNamedItem( 'ref' ) ) === null ) {
 				continue;
 			}
 
-			$key = $attr->nodeValue;
-
-			if( !isset( $map[$key] ) ) {
-				continue;
-			}
-
 			$list = [];
-			$refId = $map[$key]->getId();
+			$refItem = $map[$attr->nodeValue];
 			$type = ( $attr = $attributes->getNamedItem( 'lists.type' ) ) !== null ? $attr->nodeValue : 'default';
 
-			if( ( $listItem = $item->getListItem( 'attribute', $type, $refId ) ) === null ) {
+			if( ( $listItem = $item->getListItem( 'attribute', $type, $refItem->getId() ) ) === null ) {
 				$listItem = $manager->createListItem();
 			} else {
 				unset( $listItems[$listItem->getId()] );
@@ -90,8 +88,8 @@ class Standard
 
 			$this->addType( $resource . '/lists/type', 'attribute', $type );
 
-			$listItem = $listItem->fromArray( $list )->setRefId( $refId );
-			$item = $item->addListItem( 'attribute', $listItem );
+			$listItem = $listItem->fromArray( $list );
+			$item->addListItem( 'attribute', $listItem, $refItem );
 		}
 
 		return $item->deleteListItems( $listItems->toArray() );
