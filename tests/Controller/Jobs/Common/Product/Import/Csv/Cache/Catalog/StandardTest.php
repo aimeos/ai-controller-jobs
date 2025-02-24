@@ -31,10 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGet()
 	{
-		$result = $this->object->get( 'root' );
-
-		$this->assertNotEquals( null, $result );
-		$this->assertIsInt( $result );
+		$this->assertInstanceOf( \Aimeos\MShop\Catalog\Item\Iface::class, $this->object->get( 'root' ) );
 	}
 
 
@@ -47,12 +44,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testSet()
 	{
 		$item = \Aimeos\MShop::create( \TestHelper::context(), 'catalog' )->create();
-		$item->setCode( 'cache-test' );
+		$item->setCode( 'cache-test2' );
 		$item->setId( 1 );
 
 		$this->object->set( $item );
-		$id = $this->object->get( 'cache-test' );
+		$result = $this->object->get( 'cache-test2' );
 
-		$this->assertEquals( $item->getId(), $id );
+		$this->assertSame( $item, $result );
 	}
 }
