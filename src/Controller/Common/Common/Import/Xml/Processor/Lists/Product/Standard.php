@@ -65,10 +65,10 @@ class Standard
 			}
 
 			$list = [];
-			$refId = $map[$attr->nodeValue]->getId();
+			$refItem = $map[$attr->nodeValue];
 			$type = ( $attr = $attributes->getNamedItem( 'lists.type' ) ) !== null ? $attr->nodeValue : 'default';
 
-			if( ( $listItem = $item->getListItem( 'product', $type, $refId ) ) === null ) {
+			if( ( $listItem = $item->getListItem( 'product', $type, $refItem->getId() ) ) === null ) {
 				$listItem = $manager->createListItem();
 			} else {
 				unset( $listItems[$listItem->getId()] );
@@ -84,8 +84,8 @@ class Standard
 
 			$this->addType( $resource . '/lists/type', 'product', $type );
 
-			$listItem = $listItem->fromArray( $list )->setRefId( $refId );
-			$item = $item->addListItem( 'product', $listItem );
+			$listItem = $listItem->fromArray( $list );
+			$item = $item->addListItem( 'product', $listItem, $refItem );
 		}
 
 		return $item->deleteListItems( $listItems->toArray() );
