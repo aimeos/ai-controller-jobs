@@ -64,7 +64,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
 		$search = $manager->filter()->add( 'supplier.code', '==', $code );
 
-		if( $item = $manager->search( $search,['address'] )->first() ) {
+		if( $item = $manager->search( $search, ['address'] )->first() ) {
 			$this->suppliers[$code] = $item;
 		}
 
