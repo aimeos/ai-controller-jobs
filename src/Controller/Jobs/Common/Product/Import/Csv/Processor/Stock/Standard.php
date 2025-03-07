@@ -60,7 +60,7 @@ class Standard
 				$list['stock.productid'] = $product->getId();
 				$list['stock.type'] = $this->val( $list, 'stock.type', 'default' );
 
-				$this->addType( 'stock/type', 'product', $list['stock.type'] );
+				$this->addType( 'stock/type', 'stock', $list['stock.type'] );
 
 				$item = $items->pull( $list['stock.type'] ) ?: $manager->create();
 				$manager->save( $item->fromArray( $list ), false );
