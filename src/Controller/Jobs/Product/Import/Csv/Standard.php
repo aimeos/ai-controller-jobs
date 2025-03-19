@@ -503,7 +503,7 @@ class Standard
 						$map['product.config'] = json_decode( $config ) ?: [];
 					}
 
-					$product = $product->fromArray( $map, true )->setType( $type );
+					$product = $manager->save( $product->fromArray( $map, true )->setType( $type ) );
 
 					$processor->process( $product, $list );
 
