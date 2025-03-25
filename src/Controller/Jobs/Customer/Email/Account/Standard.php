@@ -248,7 +248,7 @@ class Standard
 		$msg = $this->call( 'mailTo', $address );
 		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
 
-		$msg->subject( $context->translate( 'client', 'Your new account' ) )
+		$msg->subject( $context->translate( 'controller/jobs', 'Your new account' ) )
 			->html( $view->render( $config->get( 'controller/jobs/customer/email/account/template-html', 'customer/email/account/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/customer/email/account/template-text', 'customer/email/account/text' ) ) )
 			->send();
