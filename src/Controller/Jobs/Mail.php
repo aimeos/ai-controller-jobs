@@ -54,15 +54,15 @@ trait Mail
 		{
 			case '':
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
-				$msg = $this->context()->translate( 'client', 'Dear %1$s %2$s' ); break;
+				$msg = $this->context()->translate( 'controller/jobs', 'Dear %1$s %2$s' ); break;
 			case 'mr':
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
-				$msg = $this->context()->translate( 'client', 'Dear Mr %1$s %2$s' ); break;
+				$msg = $this->context()->translate( 'controller/jobs', 'Dear Mr %1$s %2$s' ); break;
 			case 'ms':
 				/// E-mail intro with first name (%1$s) and last name (%2$s)
-				$msg = $this->context()->translate( 'client', 'Dear Ms %1$s %2$s' ); break;
+				$msg = $this->context()->translate( 'controller/jobs', 'Dear Ms %1$s %2$s' ); break;
 			default:
-				$msg = $this->context()->translate( 'client', 'Dear customer' );
+				$msg = $this->context()->translate( 'controller/jobs', 'Dear customer' );
 		}
 
 		return sprintf( $msg, $addr->getFirstName(), $addr->getLastName() );
