@@ -559,9 +559,9 @@ class Standard
 	 */
 	protected function update( string $orderId, int $value )
 	{
-		$manager = \Aimeos\MShop::create( $this->context(), 'order' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 
-		$item = $manager->createStatus()
+		$item = $manager->create()
 			->setParentId( $orderId )
 			->setType( $this->type() )
 			->setValue( $value );
