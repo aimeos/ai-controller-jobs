@@ -60,12 +60,18 @@ class Standard
 				continue;
 			}
 
-			if( ( $attr = $attributes->getNamedItem( 'ref' ) ) === null || !isset( $map[$attr->nodeValue] ) ) {
+			if( ( $attr = $attributes->getNamedItem( 'ref' ) ) === null ) {
+				continue;
+			}
+
+			$attrValue = \Aimeos\Base\Str::decode( $attr->nodeValue );
+
+			if( !isset( $map[$attrValue] ) ) {
 				continue;
 			}
 
 			$list = [];
-			$refItem = $map[$attr->nodeValue];
+			$refItem = $map[$attrValue];
 			$type = ( $attr = $attributes->getNamedItem( 'lists.type' ) ) !== null ? $attr->nodeValue : 'default';
 
 			if( ( $listItem = $item->getListItem( 'supplier', $type, $refItem->getId() ) ) === null ) {
@@ -75,7 +81,7 @@ class Standard
 			}
 
 			foreach( $attributes as $attrName => $attrNode ) {
-				$list[$resource . '.' . $attrName] = $attrNode->nodeValue;
+				$list[$resource . '.' . $attrName] = \Aimeos\Base\Str::decode( $attrNode->nodeValue );
 			}
 
 			$name = $resource . '.lists.config';
@@ -106,7 +112,7 @@ class Standard
 		foreach( $nodes as $node )
 		{
 			if( $node->nodeName === 'supplieritem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$codes[$attr->nodeValue] = null;
+				$codes[\Aimeos\Base\Str::decode( $attr->nodeValue )] = null;
 			}
 		}
 

@@ -55,11 +55,17 @@ class Standard
 				continue;
 			}
 
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) === null || !isset( $map[$attr->nodeValue] ) ) {
+			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) === null ) {
 				continue;
 			}
 
-			$list[] = $map[$attr->nodeValue]->getId();
+			$attrValue = \Aimeos\Base\Str::decode( $attr->nodeValue );
+
+			if( !isset( $map[$attrValue] ) ) {
+				continue;
+			}
+
+			$list[] = $map[$attrValue]->getId();
 		}
 
 		return $item->setGroups( $list );
@@ -80,7 +86,7 @@ class Standard
 		foreach( $nodes as $node )
 		{
 			if( $node->nodeName === 'groupitem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-				$keys[$attr->nodeValue] = null;
+				$keys[\Aimeos\Base\Str::decode( $attr->nodeValue )] = null;
 			}
 		}
 

@@ -74,14 +74,14 @@ class Standard
 				if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
 					$refItem = $this->getProcessor( $tag->nodeName )->process( $refItem, $tag );
 				} else {
-					$list[$tag->nodeName] = $tag->nodeValue;
+					$list[$tag->nodeName] = \Aimeos\Base\Str::decode( $tag->nodeValue );
 				}
 			}
 
 			$refItem = $this->update( $refItem, $list );
 
 			foreach( $refNode->attributes as $attrName => $attrNode ) {
-				$list[$resource . '.' . $attrName] = $attrNode->nodeValue;
+				$list[$resource . '.' . $attrName] = \Aimeos\Base\Str::decode( $attrNode->nodeValue );
 			}
 
 			$name = $resource . '.lists.config';

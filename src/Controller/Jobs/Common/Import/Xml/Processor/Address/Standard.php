@@ -55,7 +55,7 @@ class Standard
 			$list = [];
 
 			foreach( $addrNode->childNodes as $tagNode ) {
-				$list[$tagNode->nodeName] = $tagNode->nodeValue;
+				$list[$tagNode->nodeName] = \Aimeos\Base\Str::decode( $tagNode->nodeValue );
 			}
 
 			if( ( $addrItem = $addrItems->pop() ) !== null ) {
