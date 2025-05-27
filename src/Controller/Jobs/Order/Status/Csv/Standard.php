@@ -210,10 +210,10 @@ class Standard
 	 */
 	protected function getData( $handle, int $maxcnt, string $sep ) : ?array
 	{
-		$cnt = 0;
+		$count = 0;
 		$orders = $products = [];
 
-		while( ( $row = fgetcsv( $handle, 0, $sep ) ) && $cnt < $maxcnt )
+		while( $count++ < $maxcnt && ( $row = fgetcsv( $handle, 0, $sep, '"', '' ) ) )
 		{
 			if( empty( $row[0] ) ) {
 				continue;
@@ -224,8 +224,6 @@ class Standard
 			} else {
 				$orders[$row[0]] = $row;
 			}
-
-			++$cnt;
 		}
 
 		if( !empty( $orders ) || !empty( $products ) ) {
