@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:57+0100\n"
+"POT-Creation-Date: 2025-07-08 18:45+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Vietnamese (http://app.transifex.com/aimeos/aimeos-core/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -50,25 +51,25 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s giảm %2$s"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %2$s/món"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
 msgstr "+ Chi phí thanh toán"
@@ -79,110 +80,110 @@ msgstr "+ Chi phí vận chuyển"
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
-msgstr ""
+msgstr "Tài khoản"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Nhập tất cả XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Tất cả các đơn hàng đều tuân theo các điều khoản và điều kiện của chúng tôi."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
-msgstr ""
+msgstr "Một tài khoản đã được tạo cho bạn."
 
 msgid "Article no."
-msgstr ""
+msgstr "Số bài viết"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Nhập thuộc tính XML"
 
 msgid ""
 "Authorized payments of orders will be captured after dispatching or after a "
 "configurable amount of time"
-msgstr ""
+msgstr "Thanh toán được ủy quyền cho các đơn hàng sẽ được ghi nhận sau khi đơn hàng được giao hoặc sau một khoảng thời gian có thể cấu hình."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Cập nhật hàng loạt trạng thái thanh toán/giao hàng"
 
 msgid "Billing address"
 msgstr "Địa chỉ hóa đơn"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Dọn dẹp bộ nhớ cache"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Thu thập các khoản thanh toán được ủy quyền"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Nhập danh mục từ tệp CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Nhập tệp XML vào danh mục"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Bản đồ trang web"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Đã làm sạch %1$s sản phẩm cũ"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Giỏ dọn dẹp"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Nhập mã giảm giá từ tệp CSV"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Mã giảm giá"
 
 msgid "Coupons"
-msgstr ""
+msgstr "Phiếu giảm giá"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Tạo sơ đồ trang web cho công cụ tìm kiếm"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Tạo sơ đồ trang web cho sản phẩm dành cho công cụ tìm kiếm."
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Tạo đề xuất sản phẩm được mua cùng nhau"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "Email tài khoản khách hàng"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Nhập tệp XML của khách hàng"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Kính gửi %1$s %2$s,"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Kính gửi ông %1$s %2$s,"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Kính gửi Bà %1$s %2$s,"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Kính gửi quý khách hàng,"
 
 msgid ""
 "Deletes unfinished orders an makes their products and coupon codes available"
 " again"
-msgstr ""
+msgstr "Xóa các đơn hàng chưa hoàn tất và làm cho sản phẩm và mã giảm giá của chúng có sẵn lại."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Xóa các đơn hàng chưa thanh toán để giữ cho cơ sở dữ liệu gọn gàng."
 
 msgid "Delivery address"
 msgstr "Địa chỉ nhận"
@@ -191,502 +192,502 @@ msgid "Delivery within"
 msgstr "Giao nhận bao gồm"
 
 msgid "Details"
-msgstr ""
+msgstr "Chi tiết"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Thực thi tất cả các trình nhập XML và xây dựng lại chỉ mục."
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Thực hiện dịch vụ thanh toán hoặc giao hàng sử dụng cập nhật theo lô."
 
 #, php-format
 msgid "Expanding \"%1$s\" node failed"
-msgstr ""
+msgstr "Mở rộng nút \"%1$s\" không thành công"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Xuất tất cả các sản phẩm có sẵn"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Xuất đơn hàng sang tệp CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Xuất các gói đăng ký sang tệp CSV"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập thuộc tính từ \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập thuộc tính từ tệp \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập danh mục từ \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Hoàn tất việc nhập danh mục từ \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập danh mục từ tệp \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập mã giảm giá/mã khuyến mãi từ \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập dữ liệu khách hàng từ \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập dữ liệu khách hàng từ tệp \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập nhóm từ \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập nhóm từ tệp \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Nhập khẩu sản phẩm hoàn thiện từ \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Nhập khẩu sản phẩm hoàn thiện từ \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Nhập sản phẩm hoàn thiện từ tệp \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất nhập hàng tồn kho từ \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất nhập hàng tồn kho từ tệp \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập dữ liệu từ nhà cung cấp \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Hoàn tất nhập dữ liệu nhà cung cấp từ \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Hoàn tất việc nhập dữ liệu nhà cung cấp từ tệp \"%1$s\""
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Nhập tệp XML theo nhóm"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "Nếu bạn có bất kỳ câu hỏi nào, vui lòng trả lời email này."
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Nhập các thuộc tính mới và cập nhật các thuộc tính hiện có từ các tệp XML."
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Nhập các danh mục mới và cập nhật các danh mục hiện có từ các tệp CSV."
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Nhập các danh mục mới và cập nhật các danh mục hiện có từ các tệp XML."
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Nhập mã giảm giá mới và cập nhật mã giảm giá hiện có từ các tệp CSV."
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Nhập khẩu khách hàng mới và cập nhật thông tin khách hàng hiện có từ các tệp XML."
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Nhập các nhóm mới và cập nhật các nhóm hiện có từ các tệp XML."
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Nhập khẩu sản phẩm mới và cập nhật sản phẩm hiện có từ các tệp CSV."
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Nhập khẩu các sản phẩm mới và cập nhật các sản phẩm hiện có từ các tệp XML."
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Nhập khẩu dữ liệu mới và cập nhật dữ liệu hiện có từ các tệp CSV."
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Nhập khẩu nhà cung cấp mới và cập nhật nhà cung cấp hiện có từ tệp CSV."
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Nhập khẩu nhà cung cấp mới và cập nhật nhà cung cấp hiện có từ các tệp XML."
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Bao gồm %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Bao gồm %1$s%% VAT"
 
 msgid "Included rebates"
 msgstr "Bao gồm phần giảm giá"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Tối ưu hóa chỉ mục"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Xây dựng lại chỉ mục"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Thông báo mã hóa JSON không hợp lệ: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Các dòng danh mục không hợp lệ trong quá trình nhập: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr ""
+msgstr "Có ký tự không hợp lệ trong tên lớp \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Có ký tự không hợp lệ trong tên bộ xử lý \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Có ký tự không hợp lệ trong loại bộ xử lý \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Tên lớp không hợp lệ \"%1$s\""
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Thông báo không hợp lệ: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Dòng sản phẩm không hợp lệ trong quá trình nhập: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Dòng nhà cung cấp không hợp lệ trong quá trình nhập: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Loại không hợp lệ \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Hóa đơn"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Hóa đơn %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Như đã nhập bởi bạn"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Dọn dẹp nhật ký"
 
 msgid "Login"
-msgstr ""
+msgstr "Đăng nhập"
 
 msgid "Name"
 msgstr "Tên"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Không tìm thấy cột \"catalog.code\" trong bản ánh xạ CSV."
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Không tìm thấy cột \"coupon.code.code\" trong bản ánh xạ CSV."
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Không tìm thấy cột \"product.code\" trong bản đồ CSV."
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Không tìm thấy cột \"supplier.code\" trong bản đồ CSV."
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
-msgstr ""
+msgstr "Không tìm thấy tệp XML \"%1$s\""
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Không tìm thấy địa chỉ email trong đơn hàng có ID \"%1$s\"."
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "Một hoặc nhiều sản phẩm bạn đang theo dõi đã được cập nhật."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Tối ưu hóa chỉ mục để tìm kiếm sản phẩm nhanh hơn."
 
 msgid "Order date"
-msgstr ""
+msgstr "Ngày đặt hàng"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Thông báo liên quan đến việc giao hàng"
 
 msgid "Order details"
 msgstr "Chi tiết về hóa đơn"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Xuất file CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Thông báo thanh toán đơn hàng"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Nhập trạng thái đơn hàng dưới dạng CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Không tìm thấy nút cha cho mã \"%1$s\""
 
 msgid "Password"
-msgstr ""
+msgstr "Mật khẩu"
 
 msgid "Price"
 msgstr "Giá"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Dịch vụ giao hàng theo đơn đặt hàng"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Xử lý đăng ký ban đầu"
 
 msgid "Product export"
-msgstr ""
+msgstr "Xuất khẩu sản phẩm"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Nhập khẩu sản phẩm dưới dạng CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "Nhập khẩu sản phẩm XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "Thông báo sản phẩm qua email"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Bản đồ trang web sản phẩm"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Sản phẩm được mua cùng nhau"
 
 msgid "Qty"
-msgstr ""
+msgstr "Số lượng"
 
 msgid "Quantity"
 msgstr "Số lượng"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Xây dựng lại chỉ mục để tìm kiếm sản phẩm"
 
 msgid "Reference"
-msgstr ""
+msgstr "Tham khảo"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Xóa các mục đã hết hạn khỏi bộ nhớ cache."
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Xóa các giỏ hàng cũ khỏi cơ sở dữ liệu"
 
 msgid ""
 "Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgstr "Xóa các mục nhật ký cũ khỏi cơ sở dữ liệu và lưu trữ chúng (tùy chọn)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Xóa các đơn hàng chưa hoàn thành"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Xóa các đơn hàng chưa thanh toán"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Tự động gia hạn đăng ký vào ngày tiếp theo."
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Cột bắt buộc \"%1$s\" không được tìm thấy cho mã \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Cấu hình cần thiết cho \"%1$s\" đang thiếu."
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Khóa ánh xạ bắt buộc \"%1$s\" bị thiếu hoặc không chứa mảng."
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Thay đổi kích thước hình ảnh sản phẩm"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Điều chỉnh kích thước hình ảnh sản phẩm theo kích thước mới."
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Quá trình thu nhỏ hình ảnh \"%1$s\" đã thất bại: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Không thể mở rộng mục phương tiện \"%1$s\": %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Gửi email cho các tài khoản khách hàng mới"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Gửi email cho các sản phẩm đang theo dõi"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Gửi email xác nhận đơn hàng hoặc cập nhật trạng thái thanh toán."
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Gửi email cập nhật trạng thái giao hàng đơn hàng"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Gửi đơn hàng đã thanh toán đến hệ thống ERP hoặc đối tác logistics."
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Gửi email kèm theo phiếu giảm giá cho khách hàng."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Đã gửi email tài khoản khách hàng đến \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Đã gửi email xác nhận đơn hàng cho đơn hàng \"%1$s\" với trạng thái \"%2$s\"."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Đã gửi email thanh toán đơn hàng \"%1$s\" với trạng thái \"%2$s\"."
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Đã gửi email thông báo sản phẩm đến \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Gửi email voucher cho đơn hàng có ID \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập thuộc tính từ \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập thuộc tính từ tệp \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập danh mục từ \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập danh mục từ tệp \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập mã giảm giá từ \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập mã giảm giá/mã khuyến mãi từ \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập dữ liệu khách hàng từ \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập dữ liệu khách hàng từ tệp \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập dữ liệu theo nhóm từ \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập dữ liệu từ tệp \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập khẩu sản phẩm từ \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập sản phẩm từ tệp \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập hàng từ \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập dữ liệu từ tệp \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập hàng từ nhà cung cấp \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Bắt đầu nhập dữ liệu nhà cung cấp từ tệp \"%1$s\""
 
 msgid "Status"
-msgstr ""
+msgstr "Trạng thái"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Nhập trạng thái đơn hàng từ tệp CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Nhập khẩu dữ liệu CSV"
 
 msgid "Sub-total"
 msgstr "Tiền tổng cộng"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Xuất tệp CSV cho đăng ký"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Quá trình đăng ký kết thúc"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Quy trình gia hạn đăng ký"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Quá trình đăng ký bắt đầu"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Sản phẩm đăng ký"
 
 msgid "Sum"
 msgstr "Tổng"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Nhà cung cấp nhập CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Nhà cung cấp nhập XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Kết thúc các gói đăng ký đã hết hạn"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "Cảm ơn quý khách đã đặt hàng %1$s từ %2$s."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -694,7 +695,7 @@ msgstr ""
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Trạng thái giao hàng của đơn hàng %1$s từ %2$s đã được thay đổi thành \"%3$s\"."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -703,21 +704,21 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "Đơn hàng đang chờ xử lý cho đến khi chúng tôi nhận được thanh toán cuối cùng. Nếu quý khách đã chọn thanh toán trước, vui lòng chuyển khoản vào tài khoản ngân hàng của chúng tôi với mã đơn hàng %1$s làm tham chiếu."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "Gói hàng cho đơn hàng %1$s của bạn từ %2$s không thể được giao."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Thanh toán không thể được gia hạn."
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "Số tiền thanh toán cho đơn hàng %1$s từ %2$s đã được hoàn lại."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
@@ -725,118 +726,118 @@ msgstr ""
 msgid ""
 "The payment status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "Trạng thái thanh toán của đơn hàng %1$s từ %2$s đã được thay đổi thành \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Thời hạn đăng ký cho sản phẩm đã hết hạn."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
+msgstr[0] "Giá trị của phiếu giảm giá của bạn là %1$s"
 
 msgid "Total"
 msgstr "Tổng cộng"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Chuyển tiền cho nhà cung cấp"
 
 msgid ""
 "Transfers the price of ordered products to the vendors incl. commission "
 "handling"
-msgstr ""
+msgstr "Chuyển giá sản phẩm đã đặt hàng cho nhà cung cấp, bao gồm phí hoa hồng."
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Không thể thêm địa chỉ hiện tại cho khách hàng có ID \"%1$s\""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr ""
+msgstr "Không thể gọi phương thức \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Không thể nhập danh mục với mã \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Không thể nhập sản phẩm có mã \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Không thể nhập nhà cung cấp có mã \"%1$s\": %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Phiếu giảm giá"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Phiếu giảm giá %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Thư điện tử liên quan đến voucher"
 
 msgid "Watched products"
-msgstr ""
+msgstr "Sản phẩm đã xem"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3$s)
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Chúng tôi đã nhận được thanh toán của quý khách và sẽ xử lý đơn hàng của quý khách ngay lập tức."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "Chúng tôi đã nhận được gói hàng trả lại cho đơn hàng %1$s của quý khách từ %2$s."
 
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Bạn có thể sử dụng các phiếu giảm giá của mình bất cứ lúc nào tại cửa hàng trực tuyến của chúng tôi."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Bạn đã hủy đăng ký."
 
 msgid "Your account"
-msgstr ""
+msgstr "Tài khoản của bạn"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Bình luận của bạn"
 
 msgid "Your new account"
-msgstr ""
+msgstr "Tài khoản mới của bạn"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "Đơn hàng của bạn %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "Đơn hàng của quý khách %1$s từ %2$s đã được gửi đi."
 
 msgid "Your reference"
-msgstr ""
+msgstr "Tham chiếu của bạn"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Số tham chiếu của quý khách"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Gói đăng ký của bạn"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Phiếu giảm giá của bạn"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "Các sản phẩm bạn đang theo dõi"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-danh-muc-sitemap-%d.xml"
 
 msgid "delivery"
 msgstr "vận chuyển"
@@ -844,7 +845,7 @@ msgstr "vận chuyển"
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "Từ %1$s"
 
 msgid "like billing address"
 msgstr "giống như địa chỉ trên hóa đơn"
@@ -853,10 +854,10 @@ msgid "payment"
 msgstr "thanh toán"
 
 msgid "tax"
-msgstr ""
+msgstr "thuế"
 
 msgid "taxgst"
-msgstr ""
+msgstr "thuế GST"
 
 msgid "taxpst"
-msgstr ""
+msgstr "thuế"
