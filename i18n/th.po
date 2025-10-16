@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Peem Phimcha, 2023
 # Peem Phimcha, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 18:45+0200\n"
+"POT-Creation-Date: 2025-10-16 11:58+0200\n"
 "PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Aimeos, 2025\n"
+"Last-Translator: Peem Phimcha, 2023\n"
 "Language-Team: Thai (http://app.transifex.com/aimeos/aimeos-core/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
