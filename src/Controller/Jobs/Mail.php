@@ -97,6 +97,7 @@ trait Mail
 			->header( 'X-MailGenerator', 'Aimeos' )
 			->from( $config->get( 'resource/email/from-email' ), $config->get( 'resource/email/from-name' ) )
 			->to( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() )
+			->replyTo( $config->get( 'resource/email/reply-email' ) )
 			->bcc( $config->get( 'resource/email/bcc-email' ) );
 	}
 
