@@ -100,7 +100,7 @@ trait Mail
 			->bcc( $config->get( 'resource/email/bcc-email' ) );
 
 		if( $replyTo = $config->get( 'resource/email/reply-email' ) ) {
-			$message->replyTo( $replyTo );
+			$mail->replyTo( $replyTo );
 		}
 
 		return $mail;
