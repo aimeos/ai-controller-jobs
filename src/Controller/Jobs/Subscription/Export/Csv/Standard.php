@@ -236,7 +236,7 @@ class Standard
 		}
 
 		rewind( $fh );
-		$lcontext->fs( 'fs-export' )->writes( $path, $fh );
+		$lcontext->fs( 'fs-admin' )->writes( $path, $fh );
 		fclose( $fh );
 
 		$manager = \Aimeos\MAdmin::create( $lcontext, 'job' );
