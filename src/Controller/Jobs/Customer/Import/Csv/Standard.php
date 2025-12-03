@@ -128,9 +128,6 @@ class Standard
 	 */
 
 
-	private ?array $types = null;
-
-
 	/**
 	 * Returns the localized name of the job.
 	 *

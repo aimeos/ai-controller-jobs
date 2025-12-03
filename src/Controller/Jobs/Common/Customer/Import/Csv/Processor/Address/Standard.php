@@ -61,7 +61,7 @@ class Standard
 			$customer->addAddressItem( $address, $key );
 		}
 
-		$customer->deleteAddressItems( $addresses, true );
+		$customer->deleteAddressItems( $addresses );
 
 		return $this->object()->process( $customer, $data );
 	}

@@ -21,36 +21,6 @@ class Base
 	extends \Aimeos\Controller\Jobs\Base
 {
 	/**
-	 * Returns the cache object for the given type
-	 *
-	 * @param string $type Type of the cached data
-	 * @param string|null $name Name of the cache implementation
-	 * @return \Aimeos\Controller\Jobs\Common\Customer\Import\Csv\Cache\Iface Cache object
-	 * @throws \LogicException If class can't be instantiated
-	 */
-	protected function getCache( string $type, ?string $name = null ) : \Aimeos\Controller\Jobs\Common\Customer\Import\Csv\Cache\Iface
-	{
-		$context = $this->context();
-		$config = $context->config();
-
-		if( ctype_alnum( $type ) === false ) {
-			throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $type ), 400 );
-		}
-
-		$name = $name ?: $config->get( 'controller/jobs/customer/import/csv/cache/' . $type . '/name', 'Standard' );
-
-		if( ctype_alnum( $name ) === false ) {
-			throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
-		}
-
-		$classname = '\\Aimeos\\Controller\\Jobs\\Common\\Customer\\Import\\Csv\\Cache\\' . ucfirst( $type ) . '\\' . $name;
-		$interface = \Aimeos\Controller\Jobs\Common\Customer\Import\Csv\Cache\Iface::class;
-
-		return \Aimeos\Utils::create( $classname, [$context], $interface );
-	}
-
-
-	/**
 	 * Returns the rows from the CSV file up to the maximum count
 	 *
 	 * @param resource $fh File handle to CSV file
