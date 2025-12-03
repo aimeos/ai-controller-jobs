@@ -1,0 +1,3 @@
+"item label","item code","item status","test property"
+"job csv test customer","job@csv.test",1,"testpropval"
+"job csv test 2. customer","job2@csv.test",0,"testpropval"
