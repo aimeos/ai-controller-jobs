@@ -145,6 +145,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testRunCheck()
+	{
+		$codes = array( 'job@csv.test', 'job2@csv.test' );
+		$this->context->config()->set( 'controller/jobs/customer/import/csv/checks', [
+			'customer.email' => '/^[a-z]+@[a-z]+\.[a-z]{2,3}$/',
+		] );
+
+		$this->object->run();
+
+		$result = $this->get( $codes, ['customer/address', 'customer/property'] );
+
+		$this->assertEquals( 0, count( $result ) );
+	}
+
+
 	public function testRunBackup()
 	{
 		$config = $this->context->config();

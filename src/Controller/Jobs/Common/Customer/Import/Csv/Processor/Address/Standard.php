@@ -50,10 +50,6 @@ class Standard
 
 		foreach( $map as $entry )
 		{
-			if( $this->checkEntry( $entry ) === false ) {
-				continue;
-			}
-
 			$key = $addresses->firstKey();
 			$address = $addresses->pull( $key ) ?? $manager->createAddressItem();
 			$address->setPosition( $pos++ )->fromArray( $entry );
@@ -64,17 +60,5 @@ class Standard
 		$customer->deleteAddressItems( $addresses );
 
 		return $this->object()->process( $customer, $data );
-	}
-
-
-	/**
-	 * Checks if an entry can be used for updating a address item
-	 *
-	 * @param array $entry Associative list of key/value pairs from the mapping
-	 * @return bool True if valid, false if not
-	 */
-	protected function checkEntry( array $entry ) : bool
-	{
-		return true;
 	}
 }

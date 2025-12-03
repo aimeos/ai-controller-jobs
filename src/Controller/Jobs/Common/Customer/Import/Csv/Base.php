@@ -20,6 +20,44 @@ namespace Aimeos\Controller\Jobs\Common\Customer\Import\Csv;
 class Base
 	extends \Aimeos\Controller\Jobs\Base
 {
+	private array $checks = [];
+
+
+	/**
+	 * Initializes the object.
+	 *
+	 * @param \Aimeos\MShop\ContextIface $context MShop context object
+	 * @param \Aimeos\Bootstrap $aimeos \Aimeos\Bootstrap main object
+	 */
+	public function __construct( \Aimeos\MShop\ContextIface $context, \Aimeos\Bootstrap $aimeos )
+	{
+		parent::__construct( $context, $aimeos );
+
+		$this->checks = $context->config()->get( 'controller/jobs/customer/import/csv/checks', [] );
+	}
+
+
+	/**
+	 * Checks if an entry can be used for updating the item
+	 *
+	 * @param array $entry Associative list of key/value pairs from the mapping
+	 * @throws \Aimeos\Controller\Jobs\Exception If the check fails
+	 */
+	protected function check( array $entry )
+	{
+		foreach( $this->checks as $code => $regex )
+		{
+			$value = $this->val( $entry, $code );
+
+			if( preg_match( $regex, (string) $value ) !== 1 )
+			{
+				$msg = sprintf( 'Checking "%1$s" value "%2$s" against "%3$s" failed', $code, $value, $regex );
+				throw new \Aimeos\Controller\Jobs\Exception( $msg );
+			}
+		}
+	}
+
+
 	/**
 	 * Returns the rows from the CSV file up to the maximum count
 	 *

@@ -469,6 +469,7 @@ class Standard
 
 				if( $map )
 				{
+					$this->check( $map );
 					$customer = $manager->save( $customer->fromArray( $map, true ) );
 
 					$processor->process( $customer, $list );
