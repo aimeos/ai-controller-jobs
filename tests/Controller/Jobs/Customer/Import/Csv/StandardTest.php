@@ -118,12 +118,38 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 		$config->set( 'controller/jobs/customer/import/csv/location', 'customer/position' );
 
+		$mapping = array(
+			'item' => array(
+				0 => 'customer.label',
+				1 => 'customer.code',
+				2 => 'customer.status',
+			),
+			'property' => [
+				3 => [
+					'_' => 'customer.property.value',
+					'customer.property.type' => 'testprop',
+					'customer.property.languageid' => 'de',
+				],
+			],
+		);
+
+		$this->context->config()->set( 'controller/jobs/customer/import/csv/mapping', $mapping );
+
 		$this->object->run();
 
-		$result = $this->get( $codes );
+		$result = $this->get( $codes, ['customer/property'] );
 		$this->delete( $codes );
 
 		$this->assertEquals( 2, count( $result ) );
+
+		foreach( $result as $customer ) {
+			$props = $customer->getPropertyItems( 'testprop' );
+			$this->assertEquals( 1, count( $props ) );
+
+			$prop = $props->first();
+			$this->assertEquals( 'de', $prop->getLanguageId() );
+			$this->assertEquals( 'testpropval', $prop->getValue() );
+		}
 	}
 
 
