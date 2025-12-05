@@ -136,14 +136,24 @@ class Base
 
 		foreach( $mapping as $pos => $key )
 		{
-			if( isset( $map[$idx][$key] ) ) {
+			$code = is_array( $key ) ? $key['_'] : $key;
+
+			if( isset( $map[$idx][$code] ) ) {
 				$idx++;
 			}
 
-			if( isset( $data[$pos] ) )
+			if( is_array( $key ) )
 			{
-				$map[$idx][$key] = $data[$pos];
-				unset( $data[$pos] );
+				foreach( $key as $name => $val )
+				{
+					if( $name !== '_' ) {
+						$map[$idx][$name] = $val;
+					}
+				}
+			}
+
+			if( isset( $data[$pos] ) ) {
+				$map[$idx][$code] = $data[$pos];
 			}
 		}
 
