@@ -127,6 +127,8 @@ class Standard
 	 * @see controller/jobs/product/export/decorators/global
 	 */
 
+	use \Aimeos\Macro\Macroable;
+
 
 	/**
 	 * Returns the localized name of the job.
@@ -166,6 +168,7 @@ class Standard
 		$filenum = 1;
 
 		while( $items = $manager->iterate( $cursor, $domains ) ) {
+			$items = $this->call( 'hydrate', $items );
 			$fs->write( $this->call( 'filename', $filenum++ ), $this->render( $items ) );
 		}
 	}
@@ -231,6 +234,18 @@ class Standard
 	protected function fs() : \Aimeos\Base\Filesystem\Iface
 	{
 		return $this->context()->fs( 'fs-export' );
+	}
+
+
+	/**
+	 * Hydrates the given list of items
+	 *
+	 * @param \Aimeos\Map $items List of items to hydrate
+	 * @return \Aimeos\Map Hydrated list of items
+	 */
+	protected function hydrate( \Aimeos\Map $items ) : \Aimeos\Map
+	{
+		return $items;
 	}
 
 

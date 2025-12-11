@@ -127,6 +127,8 @@ class Standard
 	 * @see controller/jobs/subscription/export/csv/decorators/global
 	 */
 
+	use \Aimeos\Macro\Macroable;
+
 
 	/**
 	 * Returns the localized name of the job.
@@ -230,6 +232,8 @@ class Standard
 
 		while( $items = $manager->iterate( $cursor, ['order', 'order/address', 'order/product'] ) )
 		{
+			$items = $this->call( 'hydrate', $items );
+
 			if( fwrite( $fh, $this->render( $items ) ) === false ) {
 				throw new \Aimeos\Controller\Jobs\Exception( 'Unable to add data to temporary file' );
 			}
@@ -259,6 +263,18 @@ class Standard
 		$localeItem = $manager->bootstrap( $sitecode, '', '', false, \Aimeos\MShop\Locale\Manager\Base::SITE_ONE );
 
 		return $lcontext->setLocale( $localeItem );
+	}
+
+
+	/**
+	 * Hydrates the given list of items
+	 *
+	 * @param \Aimeos\Map $items List of items to hydrate
+	 * @return \Aimeos\Map Hydrated list of items
+	 */
+	protected function hydrate( \Aimeos\Map $items ) : \Aimeos\Map
+	{
+		return $items;
 	}
 
 
