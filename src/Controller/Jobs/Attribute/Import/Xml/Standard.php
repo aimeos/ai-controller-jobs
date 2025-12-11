@@ -165,8 +165,9 @@ class Standard
 		$logger = $context->logger();
 		$process = $context->process();
 
-		$location = $this->location();
 		$fs = $context->fs( 'fs-import' );
+		$site = $context->locale()->getSiteItem()->getCode();
+		$location = $this->location() . '/' . $site;
 
 		if( $fs->isDir( $location ) === false ) {
 			return;
