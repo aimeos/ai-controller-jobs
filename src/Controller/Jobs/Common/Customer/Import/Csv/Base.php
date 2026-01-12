@@ -20,7 +20,8 @@ namespace Aimeos\Controller\Jobs\Common\Customer\Import\Csv;
 class Base
 	extends \Aimeos\Controller\Jobs\Base
 {
-	private array $checks = [];
+	private array $checks;
+	private bool $html;
 
 
 	/**
@@ -33,7 +34,8 @@ class Base
 	{
 		parent::__construct( $context, $aimeos );
 
-		$this->checks = $context->config()->get( 'controller/jobs/customer/import/csv/checks', [] );
+		$this->checks = (array) $context->config()->get( 'controller/jobs/customer/import/csv/checks', [] );
+		$this->html = (bool) $context->config()->get( 'controller/jobs/customer/import/csv/html', false );
 	}
 
 
@@ -53,6 +55,16 @@ class Base
 			{
 				$msg = sprintf( 'Checking "%1$s" value "%2$s" against "%3$s" failed', $code, $value, $regex );
 				throw new \Aimeos\Controller\Jobs\Exception( $msg );
+			}
+		}
+
+		if( !$this->html )
+		{
+			foreach( $entry as $key => $value )
+			{
+				if( is_string( $value ) && strpos( $value, '<' ) !== false ) {
+					throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'HTML tags are not allowed in field "%1$s"', $key ) );
+				}
 			}
 		}
 	}
