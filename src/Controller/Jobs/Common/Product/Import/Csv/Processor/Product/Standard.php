@@ -122,6 +122,9 @@ class Standard
 
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
 			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
+
+			unset( $list['product.lists.config'] );
+
 			$this->addType( 'product/lists/type', 'product', $listtype );
 
 			foreach( explode( $separator, trim( $this->val( $list, 'product.code', '' ) ) ) as $code )
