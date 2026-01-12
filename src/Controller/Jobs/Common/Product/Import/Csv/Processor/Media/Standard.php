@@ -135,6 +135,8 @@ class Standard
 			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
 
+			unset( $list['product.lists.config'] );
+
 			$urls = explode( $separator, trim( $this->val( $list, 'media.url', '' ) ) );
 			unset( $list['media.url'] );
 

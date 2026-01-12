@@ -155,6 +155,8 @@ class Standard
 			$this->addType( 'product/lists/type', 'attribute', $listtype );
 
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
+			unset( $list['product.lists.config'] );
+
 			$codes = explode( $separator, trim( $this->val( $list, 'attribute.code', '' ) ) );
 			unset( $list['attribute.code'], $list['product.lists.config'] );
 

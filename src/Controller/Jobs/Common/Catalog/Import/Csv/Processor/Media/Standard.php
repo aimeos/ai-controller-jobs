@@ -146,6 +146,8 @@ class Standard
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'catalog.lists.config', '' ) ) );
 			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
 
+			unset( $list['catalog.lists.config'] );
+
 			$this->addType( 'catalog/lists/type', 'text', $listtype );
 			$this->addType( 'media/type', 'product', $type );
 

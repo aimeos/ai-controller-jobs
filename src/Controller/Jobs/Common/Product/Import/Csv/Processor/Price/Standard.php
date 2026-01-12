@@ -129,6 +129,8 @@ class Standard
 			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
 
+			unset( $list['product.lists.config'] );
+
 			$this->addType( 'product/lists/type', 'price', $listtype );
 			$this->addType( 'price/type', 'product', $type );
 

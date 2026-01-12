@@ -130,6 +130,8 @@ class Standard
 			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
 
+			unset( $list['product.lists.config'] );
+
 			$language = trim( $this->val( $list, 'text.languageid', '' ) );
 			$content = trim( $this->val( $list, 'text.content', '' ) );
 			$type = trim( $this->val( $list, 'text.type', 'name' ) );
