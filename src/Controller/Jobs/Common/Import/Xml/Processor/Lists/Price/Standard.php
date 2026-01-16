@@ -87,7 +87,7 @@ class Standard
 			$name = $resource . '.lists.config';
 			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
 			$name = $resource . '.lists.type';
-			$list[$name] = ( isset( $list[$name] ) ? $list[$name] : 'default' );
+			$list[$name] = $list[$name] ?? 'default';
 
 			$this->addType( $resource . '/lists/type', 'price', $list[$resource . '.lists.type'] );
 
