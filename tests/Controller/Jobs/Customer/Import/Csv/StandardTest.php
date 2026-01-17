@@ -73,10 +73,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->run();
 
-		$result = $this->get( $codes, ['customer/address', 'customer/property'] );
+		$result = $this->get( $codes, ['customer/address', 'customer/property', 'group'] );
 		$this->delete( $codes );
 
 		$this->assertEquals( 1, count( $result ) );
+		$this->assertEquals( 2, count( current( $result )->getGroups() ) );
 		$this->assertEquals( 1, count( current( $result )->getPropertyItems() ) );
 
 		foreach( $result as $customer ) {
