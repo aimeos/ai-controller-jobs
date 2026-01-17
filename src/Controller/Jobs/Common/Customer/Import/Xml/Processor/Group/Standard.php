@@ -45,22 +45,25 @@ class Standard
 		parent::__construct( $context );
 
 		$this->groupManager = \Aimeos\MShop::create( $context, 'group' );
-		$search = $this->groupManager->filter();
-		$start = 0;
+		$filter = $this->groupManager->filter();
+		$config = $context->config();
 
-		do
+		if( $allowed = $config->get( 'controller/jobs/customer/import/csv/processor/group/allowed' ) ) {
+			$filter->add( 'group.code', '==', (array) $allowed );
+		}
+
+		if( $denied = $config->get( 'controller/jobs/customer/import/csv/processor/group/denied', ['admin', 'editor'] ) ) {
+			$filter->add( 'group.code', '!=', (array) $denied );
+		}
+
+		$cursor = $this->groupManager->cursor( $filter );
+
+		while( $items = $this->groupManager->iterate( $cursor ) )
 		{
-			$items = $this->groupManager->search( $search->slice( $start, 100 ) );
-
 			foreach( $items as $item ) {
 				$this->map[$item->getCode()] = $item->getId();
 			}
-
-			$count = count( $items );
-			$start += $count;
-			unset( $items );
 		}
-		while( $count === $search->getLimit() );
 	}
 
 
