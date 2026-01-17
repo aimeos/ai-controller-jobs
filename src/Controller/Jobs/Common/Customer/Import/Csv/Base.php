@@ -185,6 +185,8 @@ class Base
 				22 => 'customer.latitude',
 				23 => 'customer.birthday',
 				24 => 'customer.status', // Status value (-2, -1, 0, 1)
+			),
+			'group' => array(
 				25 => 'customer.groups',
 			),
 			'address' => array(
