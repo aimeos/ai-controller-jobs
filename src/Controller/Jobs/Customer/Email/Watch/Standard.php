@@ -164,22 +164,14 @@ class Standard
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
 
-		$search = $manager->filter( true );
-		$func = $search->make( 'customer:has', ['product', 'watch'] );
-		$search->add( $search->is( $func, '!=', null ) )->order( 'customer.id' );
+		$filter = $manager->filter( true );
+		$func = $filter->make( 'customer:has', ['product', 'watch'] );
+		$filter->add( $filter->is( $func, '!=', null ) )->order( 'customer.id' );
+		$cursor = $manager->cursor( $filter );
 
-		$start = 0;
-
-		do
-		{
-			$customers = $manager->search( $search->slice( $start ), ['product' => ['watch'], 'price'] );
-			$customers = $this->notify( $customers );
-			$customers = $manager->save( $customers );
-
-			$count = count( $customers );
-			$start += $count;
+		while( $items = $manager->iterate( $cursor, ['product' => ['watch'], 'price'] ) ) {
+			$manager->save( $this->notify( $items ) );
 		}
-		while( $count >= $search->getLimit() );
 	}
 
 

@@ -160,21 +160,20 @@ class Standard
 		$process = $context->process();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
-		$search = $manager->filter()->order( 'media.id' );
-		$search->add( $search->and( [
-			$search->compare( '==', 'media.siteid', $context->locale()->getSiteId() ),
-			$search->compare( '==', 'media.domain', ['attribute', 'catalog', 'product', 'service', 'supplier'] ),
-			$search->compare( '=~', 'media.mimetype', 'image/' ),
+		$filter = $manager->filter();
+		$filter->add( $filter->and( [
+			$filter->compare( '==', 'media.siteid', $context->locale()->getSiteId() ),
+			$filter->compare( '==', 'media.domain', ['attribute', 'catalog', 'product', 'service', 'supplier'] ),
+			$filter->compare( '=~', 'media.mimetype', 'image/' ),
 		] ) );
+		$cursor = $manager->cursor( $filter );
 
 		$fcn = function( \Aimeos\MShop\ContextIface $context, \Aimeos\Map $items ) {
 			$this->rescale( $context, $items );
 		};
 
-		while( !( $items = $manager->search( ( clone $search )->add( 'media.id', '>', $lastId ?? 0 ) ) )->isEmpty() )
-		{
+		while( $items = $manager->iterate( $cursor ) ) {
 			$process->start( $fcn, [$context, $items] );
-			$lastId = $items->last()->getId();
 		}
 
 		$process->wait();
