@@ -452,7 +452,6 @@ class Standard
 	protected function importCustomers( \Aimeos\Map $customers, array $data, array $mapping, array $types,
 		\Aimeos\Controller\Jobs\Common\Customer\Import\Csv\Processor\Iface $processor ) : int
 	{
-		$items = [];
 		$errors = 0;
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
@@ -474,8 +473,7 @@ class Standard
 
 					$processor->process( $customer, $list );
 
-					$customer = $manager->save( $customer );
-					$items[$customer->getId()] = $customer;
+					$manager->save( $customer );
 				}
 
 				$manager->commit();

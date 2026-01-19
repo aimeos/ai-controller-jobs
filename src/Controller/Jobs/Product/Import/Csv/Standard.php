@@ -480,7 +480,6 @@ class Standard
 	protected function importProducts( \Aimeos\Map $products, array $data, array $mapping, array $types,
 		\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Iface $processor ) : int
 	{
-		$items = [];
 		$errors = 0;
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'index' );
@@ -507,8 +506,7 @@ class Standard
 
 					$processor->process( $product, $list );
 
-					$product = $manager->save( $product->setModified() );
-					$items[$product->getId()] = $product;
+					$manager->save( $product );
 				}
 
 				$manager->commit();
