@@ -213,7 +213,7 @@ class Standard
 		$count = 0;
 		$orders = $products = [];
 
-		while( $count++ < $maxcnt && ( $row = fgetcsv( $handle, 0, $sep, '"', '' ) ) )
+		while( $count++ < $maxcnt && ( $row = fgetcsv( $handle, 0, $sep, '"', '' ) ) && $row !== [null] )
 		{
 			if( empty( $row[0] ) ) {
 				continue;

@@ -56,7 +56,7 @@ class Base
 		$count = 0;
 		$data = [];
 
-		while( $count++ < $maxcnt && ( $row = fgetcsv( $fh, null, ',', '"', '' ) ) !== false ) {
+		while( $count++ < $maxcnt && ( $row = fgetcsv( $fh, null, ',', '"', '' ) ) && $row !== [null] ) {
 			$data[$row[$codePos]] = $row;
 		}
 

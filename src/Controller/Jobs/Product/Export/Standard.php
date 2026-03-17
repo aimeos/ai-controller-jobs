@@ -167,7 +167,8 @@ class Standard
 		$fs = $this->fs();
 		$filenum = 1;
 
-		while( $items = $manager->iterate( $cursor, $domains ) ) {
+		while( $items = $manager->iterate( $cursor, $domains ) )
+		{
 			$items = $this->call( 'hydrate', $items );
 			$fs->write( $this->call( 'filename', $filenum++ ), $this->render( $items ) );
 		}
@@ -282,10 +283,10 @@ class Standard
 	protected function render( \Aimeos\Map $items ) : string
 	{
 		/** controller/jobs/product/export/template-items
-		 * Relative path to the XML items template of the product site map job controller.
+		 * Relative path to the XML items template of the product export job controller.
 		 *
 		 * The template file contains the XML code and processing instructions
-		 * to generate the site map files. The configuration string is the path
+		 * to generate the export files. The configuration string is the path
 		 * to the template file relative to the templates directory (usually in
 		 * templates/controller/jobs).
 		 *
@@ -296,7 +297,7 @@ class Standard
 		 * you've implemented an alternative client class as well, "standard"
 		 * should be replaced by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating XML code for the site map items
+		 * @param string Relative path to the template creating XML code for the export items
 		 * @since 2015.01
 		 * @see controller/jobs/product/export/domains
 		 * @see controller/jobs/product/export/filename
