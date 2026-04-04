@@ -120,7 +120,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[$refItem->getUrl()][$refItem->getType()][$refItem->getLanguageId()][$listItem->getType()] = $listItem;
+				$listMap[$refItem->getUrl()][$refItem->getType()][$refItem->getLanguageId() ?? ''][$listItem->getType()] = $listItem;
 			}
 		}
 

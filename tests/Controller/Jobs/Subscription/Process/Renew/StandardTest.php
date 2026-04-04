@@ -220,7 +220,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$class = new \ReflectionClass( \Aimeos\Controller\Jobs\Subscription\Process\Renew\Standard::class );
 		$method = $class->getMethod( $name );
-		$method->setAccessible( true );
 
 		return $method;
 	}

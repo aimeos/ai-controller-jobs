@@ -49,7 +49,7 @@ class Standard
 		$map = [];
 
 		foreach( $propItems as $propItem ) {
-			$map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] = $propItem->getId();
+			$map[$propItem->getType()][$propItem->getLanguageId() ?? ''][$propItem->getValue()] = $propItem->getId();
 		}
 
 		foreach( $node->childNodes as $propNode )
@@ -66,8 +66,8 @@ class Standard
 
 			$propItem = $manager->createPropertyItem()->fromArray( $list );
 
-			if( isset( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] ) ) {
-				$propItems->remove( $map[$propItem->getType()][$propItem->getLanguageId()][$propItem->getValue()] );
+			if( isset( $map[$propItem->getType()][$propItem->getLanguageId() ?? ''][$propItem->getValue()] ) ) {
+				$propItems->remove( $map[$propItem->getType()][$propItem->getLanguageId() ?? ''][$propItem->getValue()] );
 			} else {
 				$item->addPropertyItem( $propItem );
 			}

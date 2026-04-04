@@ -206,7 +206,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$class = new \ReflectionClass( \Aimeos\Controller\Jobs\Customer\Import\Csv\Standard::class );
 		$method = $class->getMethod( $name );
-		$method->setAccessible( true );
 
 		return $method;
 	}

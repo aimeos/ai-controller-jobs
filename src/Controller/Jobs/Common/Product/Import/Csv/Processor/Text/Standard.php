@@ -117,7 +117,7 @@ class Standard
 		foreach( $listItems as $listItem )
 		{
 			if( ( $refItem = $listItem->getRefItem() ) !== null ) {
-				$listMap[$refItem->getContent()][$refItem->getLanguageId()][$refItem->getType()][$listItem->getType()] = $listItem;
+				$listMap[$refItem->getContent()][$refItem->getLanguageId() ?? ''][$refItem->getType()][$listItem->getType()] = $listItem;
 			}
 		}
 
