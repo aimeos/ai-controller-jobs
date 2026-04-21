@@ -50,7 +50,7 @@ class Standard
 
 		foreach( $map as $entry )
 		{
-			$key = $addresses->firstKey();
+			$key = (string) $addresses->firstKey();
 			$address = $addresses->pull( $key ) ?? $manager->createAddressItem();
 			$address->setPosition( $pos++ )->fromArray( $entry );
 
