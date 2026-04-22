@@ -157,6 +157,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunProcessorInvalidData()
 	{
+		$this->expectNotToPerformAssertions();
+
 		$mapping = array(
 			'item' => array(
 				0 => 'catalog.code',

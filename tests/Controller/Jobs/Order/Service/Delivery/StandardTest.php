@@ -51,6 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
+		\Aimeos\MShop::cache( true );
 
 		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
 			->onlyMethods( array( 'getProvider', 'iterate' ) )
@@ -71,6 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Delivery\\Standard' )
 			->setConstructorArgs( array( $context, $serviceItem ) )
+			->onlyMethods( ['push'] )
 			->getMock();
 
 
@@ -83,7 +85,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
 			->willReturn( map( [$orderItem] ), null );
 
-		$serviceProviderStub->expects( $this->once() )->method( 'push' );
+		$serviceProviderStub->expects( $this->once() )->method( 'push' )
+			->willReturn( map( [$orderItem] ) );
 
 		$orderManagerStub->expects( $this->once() )->method( 'save' );
 
@@ -98,6 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
+		\Aimeos\MShop::cache( true );
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->onlyMethods( array( 'save', 'iterate' ) )
@@ -118,6 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Delivery\\Standard' )
 			->setConstructorArgs( array( $context, $serviceItem ) )
+			->onlyMethods( ['push'] )
 			->getMock();
 
 
@@ -146,6 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
+		\Aimeos\MShop::cache( true );
 
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->onlyMethods( array( 'save', 'iterate' ) )

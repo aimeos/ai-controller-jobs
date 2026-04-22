@@ -6,14 +6,14 @@ return [
 	],
 	'fs' => [
 		'adapter' => 'Standard',
-		'basedir' => 'tmp',
+		'basedir' => __DIR__ . '/../tmp',
 	],
 	'fs-import' => [
 		'adapter' => 'Standard',
-		'basedir' => 'tmp/import',
+		'basedir' => __DIR__ . '/../tmp/import',
 	],
 	'fs-mimeicon' => [
 		'adapter' => 'Standard',
-		'basedir' => 'tmp/mime',
+		'basedir' => __DIR__ . '/../tmp/mime',
 	],
 ];

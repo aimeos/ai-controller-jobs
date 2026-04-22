@@ -45,6 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
+		$this->expectNotToPerformAssertions();
 		$this->object->run();
 	}
 }

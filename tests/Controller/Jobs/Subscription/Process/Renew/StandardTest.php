@@ -200,6 +200,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreatePayment()
 	{
+		$this->expectNotToPerformAssertions();
+
 		$item = $this->getSubscription();
 
 		$this->access( 'createPayment' )->invokeArgs( $this->object, [$this->context, $item->getOrderItem()] );

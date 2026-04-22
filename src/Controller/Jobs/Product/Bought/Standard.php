@@ -451,7 +451,7 @@ class Standard
 					{
 						$litem = $item->getListItem( 'product', 'bought-together', $pid, false ) ?: $manager->createListItem();
 						$item->addListItem( 'product', $litem->setType( 'bought-together' )->setRefId( $pid ) );
-						$listItems->remove( $litem->getId() );
+						$listItems->remove( $litem->getId() ?? [] );
 					}
 				}
 

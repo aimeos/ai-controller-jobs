@@ -21,7 +21,7 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::context();
 		$aimeos = \TestHelper::getAimeos();
 
-		$this->stub = $this->getMockBuilder( \Aimeos\Controller\Jobs\Iface::class )->getMock();
+		$this->stub = $this->createStub( \Aimeos\Controller\Jobs\Iface::class );
 		$this->object = new TestBase( $this->stub, $context, $aimeos );
 	}
 
