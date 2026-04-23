@@ -9,6 +9,7 @@
 namespace Aimeos\Controller\Jobs\Order\Email\Voucher;
 
 
+#[\PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations]
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
@@ -22,7 +23,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelper::getAimeos();
 		$this->context = \TestHelper::context();
 
-		$codeManager = $this->createStub( \Aimeos\MShop\Coupon\Manager\Code\Standard::class );
+		$codeManager = $this->getMockBuilder( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard' )
+			->setConstructorArgs( array( $this->context ) )
+			->onlyMethods( array( 'save' ) )
+			->getMock();
+
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard', $codeManager );
 
 		$this->object = new \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard( $this->context, $aimeos );

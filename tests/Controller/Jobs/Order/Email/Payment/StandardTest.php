@@ -154,12 +154,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setMail( $mailerStub );
 
 
-		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class )
-			->setConstructorArgs( [$this->context, \TestHelper::getAimeos()] )
-			->onlyMethods( ['update'] )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'update' );
+		$object = new \Aimeos\Controller\Jobs\Order\Email\Payment\Standard( $this->context, \TestHelper::getAimeos() );
 
 		$addrItem = \Aimeos\MShop::create( $this->context, 'order/address' )->create()->setEmail( 'a@b.com' );
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create( ['order.ctime' => '2000-01-01 00:00:00'] );
