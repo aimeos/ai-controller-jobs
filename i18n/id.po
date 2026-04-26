@@ -1,30 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: id\n"
+"Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -40,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -60,8 +66,7 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s / item"
@@ -101,9 +106,7 @@ msgstr "No."
 msgid "Attribute import XML"
 msgstr "Atribut impor XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "Pembayaran pesanan yang diotorisasi akan dicatat setelah pengiriman atau setelah jangka waktu yang dapat dikonfigurasi"
 
 msgid "Batch update of payment/delivery status"
@@ -126,6 +129,14 @@ msgstr "Katalog impor XML"
 
 msgid "Catalog site map"
 msgstr "Peta situs katalog"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "Pemeriksaan nilai \"%1$s\" terhadap \"%2$s\" dan \"%3$s\" gagal"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "Membersihkan %1$s pelanggan lama"
 
 #, php-format
 msgid "Cleaned %1$s old products"
@@ -155,6 +166,9 @@ msgstr "Membuat saran produk yang dibeli bersama"
 msgid "Customer account e-mails"
 msgstr "Email akun pelanggan"
 
+msgid "Customer import CSV"
+msgstr "Impor CSV pelanggan"
+
 msgid "Customer import XML"
 msgstr "Pelanggan mengimpor XML"
 
@@ -176,9 +190,7 @@ msgstr "Ibu yang terhormat %1$s %2$s"
 msgid "Dear customer"
 msgstr "Pelanggan yang terhormat"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "Menghapus pesanan yang belum selesai dan membuat produk dan kode kupon mereka tersedia lagi"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -241,6 +253,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr "Impor pelanggan yang sudah selesai dari \"%1$s\""
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Impor data pelanggan dari \"%1$s\" telah selesai (%2$d/%3$d)"
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr "Impor pelanggan yang sudah selesai dari file \"%1$s\""
 
@@ -287,6 +303,10 @@ msgstr "Impor pemasok yang sudah selesai dari file \"%1$s\""
 msgid "Groups import XML"
 msgstr "Grup mengimpor XML"
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "Tag HTML tidak diperbolehkan di kolom \"%1$s\""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Jika Anda memiliki pertanyaan, silakan balas email ini"
 
@@ -301,6 +321,9 @@ msgstr "Mengimpor kategori baru dan memperbarui kategori yang sudah ada dari fil
 
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "Mengimpor kode kupon baru dan memperbarui kode kupon yang sudah ada dari file CSV"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Mengimpor data pelanggan baru dan memperbarui data pelanggan yang sudah ada dari berkas CSV"
 
 msgid "Imports new and updates existing customers from XML files"
 msgstr "Mengimpor pelanggan baru dan memperbarui pelanggan yang sudah ada dari file XML"
@@ -366,6 +389,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr "Nama kelas tidak valid \"%1$s\""
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Baris pelanggan yang tidak valid saat impor: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr "Pesan tidak valid: %1$s"
 
@@ -409,6 +436,10 @@ msgstr "Tidak ditemukan kolom \"catalog.code\" dalam pemetaan CSV"
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr "Tidak ditemukan kolom \"coupon.code.code\" dalam pemetaan CSV"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "Tidak ditemukan kolom \"customer.code\" dalam pemetaan CSV"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -502,8 +533,7 @@ msgstr "Menghapus entri kedaluwarsa dari cache"
 msgid "Removes the old baskets from the database"
 msgstr "Menghapus keranjang lama dari database"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "Menghapus entri log lama dari basis data dan mengarsipkannya (opsional)"
 
 msgid "Removes unfinished orders"
@@ -682,31 +712,22 @@ msgstr "XML impor pemasok"
 msgid "Terminates expired subscriptions"
 msgstr "Menghentikan langganan yang sudah kedaluwarsa"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Terima kasih atas pesanan Anda %1$s dari %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Status pengiriman pesanan Anda %1$s dari %2$s telah diubah menjadi \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "Pesanan akan ditunda hingga kami menerima pembayaran akhir. Jika Anda memilih untuk membayar di muka, silakan transfer uang ke rekening bank kami dengan ID pesanan %1$ sebagai referensi."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Paket untuk pesanan Anda %1$s dari %2$s tidak dapat dikirimkan."
@@ -719,12 +740,9 @@ msgstr "Pembayaran tidak dapat diperpanjang"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Pembayaran untuk pesanan Anda sebesar %1$s dari %2$s telah dikembalikan."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Status pembayaran pesanan Anda %1$s dari %2$s telah diubah menjadi \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -741,9 +759,7 @@ msgstr "Total"
 msgid "Transfers money to vendors"
 msgstr "Mentransfer uang ke vendor"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr "Mentransfer harga produk yang dipesan ke vendor termasuk penanganan komisi"
 
 #, php-format
@@ -757,6 +773,10 @@ msgstr "Tidak bisa memanggil method \"%1$s\""
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
 msgstr "Tidak dapat mengimpor katalog dengan kode \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Tidak dapat mengimpor pelanggan dengan kode \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -779,14 +799,11 @@ msgstr "Email terkait voucher"
 msgid "Watched products"
 msgstr "Produk yang ditonton"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "Kami telah menerima pembayaran Anda, dan akan segera mengurus pesanan Anda."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Kami menerima paket yang dikembalikan untuk pesanan Anda %1$s dari %2$s."
@@ -813,8 +830,7 @@ msgstr "Akun baru Anda"
 msgid "Your order %1$s"
 msgstr "Pesanan Anda %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Pesanan Anda %1$s dari %2$s telah dikirim."

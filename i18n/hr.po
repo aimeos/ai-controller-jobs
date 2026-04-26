@@ -1,31 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# Miro Sertić <miro.sertic0606@gmail.com>, 2018
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: hr\n"
+"Language-Team: Croatian (http://app.transifex.com/aimeos/aimeos-core/language/hr/)\n"
+"Last-Translator: Miro Sertić <miro.sertic0606@gmail.com>, 2018\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Miro Sertić <miro.sertic0606@gmail.com>, 2018\n"
-"Language-Team: Croatian (http://app.transifex.com/aimeos/aimeos-core/language/hr/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -41,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -51,28 +56,27 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s popusta"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %2$s po artiklu"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+ Troškovi plaćanja"
 
 msgid "+ Shipping"
 msgstr "+ dostava"
@@ -86,269 +90,287 @@ msgid "Account"
 msgstr "Korisnički račun"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Sve XML uvoze"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Sve narudžbe podliježu našim uvjetima i odredbama."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
-msgstr ""
+msgstr "Za vas je stvoren račun."
 
 msgid "Article no."
-msgstr ""
+msgstr "Artikal br."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Uvoz atributa XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
-msgstr ""
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgstr "Ovlaštene uplate za narudžbe bit će zabilježene nakon otpreme ili nakon podesivog vremenskog razdoblja."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Serijska ažuriranja statusa plaćanja/dostave"
 
 msgid "Billing address"
 msgstr "Adresa za račun"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Očisti keš"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Prijem odobrenih uplata"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Uvoz kataloga CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "XML za uvoz kataloga"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Karta stranice kataloga"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "Provjera vrijednosti \"%1$s\" s \"%2$s\" protiv \"%3$s\" nije uspjela"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "Očistio %1$s starih kupaca"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Očistio %1$s starih proizvoda"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Košare za čišćenje"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Uvoz koda kupona iz CSV-a"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Kodovi kupona"
 
 msgid "Coupons"
-msgstr ""
+msgstr "Kuponi"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Stvara katalog stranice za tražilice"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Stvara sitemap proizvoda za tražilice"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Stvara prijedloge proizvoda za zajedničku kupnju"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "E-poruke s korisničkog računa"
+
+msgid "Customer import CSV"
+msgstr "Uvoz kupaca CSV"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Uvoz XML-a kupca"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Poštovani %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Poštovani gospodine %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Poštovana gospođo %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Poštovani kupče"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
-msgstr ""
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgstr "Brisanje nedovršenih narudžbi i ponovno omogućavanje njihovih proizvoda i kuponskih kodova"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Brisanje neplaćenih narudžbi radi održavanja čistoće baze podataka"
 
 msgid "Delivery address"
 msgstr "Adresa za isporuku"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Dostava unutar"
 
 msgid "Details"
 msgstr "Detalji"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Pokreće sve XML uvoznike i ponovno gradi indeks"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Izvršava pružatelje usluga plaćanja ili dostave koji koriste grupne ažuriranja"
 
 #, php-format
 msgid "Expanding \"%1$s\" node failed"
-msgstr ""
+msgstr "Proširenje čvora \"%1$s\" nije uspjelo"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Izvozi sve dostupne proizvode"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Izvoz narudžbi u CSV datoteku"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Izvoz pretplata u CSV datoteku"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz atributa iz \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Završeno uvođenje atributa iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz kataloga iz \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Završen uvoz kataloga iz \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Završen je uvoz kataloga iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz kupona/koda iz \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz kupaca iz \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Završen uvoz kupaca iz \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz kupaca iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz grupe iz \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz grupe iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Uvoz gotovog proizvoda iz \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Uvoz gotovog proizvoda iz \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Uvoz gotovog proizvoda iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Uvoz stanja je dovršen iz \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz zaliha iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz dobavljača iz \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Završen uvoz dobavljača iz \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Završen uvoz dobavljača iz datoteke \"%1$s\""
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Uvozi XML grupe"
+
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "HTML oznake nisu dopuštene u polju \"%1$s\""
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "Ako imate bilo kakvih pitanja, molimo vas da odgovorite na ovu e-poruku."
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Uvozi nove i ažurira postojeće atribute iz XML datoteka"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Uvozi nove kategorije i ažurira postojeće iz CSV datoteka."
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Uvozi nove kategorije i ažurira postojeće iz XML datoteka."
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Uvozi nove i ažurira postojeće kodove kupona iz CSV datoteka"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Uvozi nove i ažurira postojeće kupce iz CSV datoteka"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Uvozi nove i ažurira postojeće kupce iz XML datoteka"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Uvozi nove i ažurira postojeće grupe iz XML datoteka"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Uvozi nove i ažurira postojeće proizvode iz CSV datoteka"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Uvozi nove i ažurira postojeće proizvode iz XML datoteka"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Uvozi nove i ažurira postojeće zalihe iz CSV datoteka"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Uvozi nove dobavljače i ažurira postojeće iz CSV datoteka"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Uvozi nove dobavljače i ažurira postojeće iz XML datoteka"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Uklj. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Uklj. %1$s%% PDV-a"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "Uključene rabate"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Optimizacija indeksa"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Obnova indeksa"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Neispravna JSON enkodirana poruka: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Neispravne linije kataloga tijekom uvoza: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -356,31 +378,35 @@ msgstr "Nedozvoljen simbol u imenu klase \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Neispravni znakovi u nazivu procesora \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Neispravni znakovi u tipu procesora \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Neispravan naziv klase \"%1$s\""
+
+#, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Neispravne linije kupaca tijekom uvoza: %1$d"
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Neispravna poruka: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Neispravne linije proizvoda tijekom uvoza: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Neispravne linije dobavljača tijekom uvoza: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Neispravan tip \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -389,71 +415,75 @@ msgstr "Račun"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Račun %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Poput onog što ste unijeli"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Očisti zapisnik"
 
 msgid "Login"
-msgstr ""
+msgstr "Prijava"
 
 msgid "Name"
 msgstr "Naziv"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "U CSV mapiranju nije pronađena kolona \"catalog.code\"."
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Nije pronađena kolona \"coupon.code.code\" u CSV mapiranju"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "U CSV mapiranju nije pronađena kolona \"customer.code\"."
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "U CSV mapiranju nije pronađena kolona \"product.code\"."
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "U CSV mapiranju nije pronađena kolona \"supplier.code\""
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
-msgstr ""
+msgstr "Nije pronađena XML datoteka \"%1$s\""
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Nije pronađena adresa e-pošte u narudžbi s ID-om \"%1$s\""
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "Jedan ili više proizvoda koje pratite su ažurirani."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimizira indeks za brže pretraživanje proizvoda"
 
 msgid "Order date"
-msgstr ""
+msgstr "Datum narudžbe"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Naručite e-poruke vezane uz dostavu"
 
 msgid "Order details"
 msgstr "Detalji narudžbe"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Izvezi CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Naručite e-poruke vezane uz plaćanje"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Uvoz CSV statusa narudžbi"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Roditeljski čvor za kod \"%1$s\" nije pronađen"
 
 msgid "Password"
 msgstr "Lozinka"
@@ -462,211 +492,210 @@ msgid "Price"
 msgstr "Cijena"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Usluge dostave po narudžbi"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Prvotno obradite pretplate"
 
 msgid "Product export"
-msgstr ""
+msgstr "Izvoz proizvoda"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Uvoz proizvoda CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "XML za uvoz proizvoda"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "E-poruke o proizvodima"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Karta stranice proizvoda"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Zajedno kupljeni proizvodi"
 
 msgid "Qty"
-msgstr ""
+msgstr "Količina"
 
 msgid "Quantity"
 msgstr "Količina"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Ponovno izgrađuje indeks za pretraživanje proizvoda"
 
 msgid "Reference"
-msgstr ""
+msgstr "Referenca"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Uklanja istekle unose iz predmemorije"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Uklanja stare košare iz baze podataka"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgid "Removes the old log entries from the database and archives them (optional)"
+msgstr "Uklanja stare zapise dnevnika iz baze podataka i arhivira ih (po želji)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Uklanja nedovršene narudžbe"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Uklanja neplaćene narudžbe"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Obnavlja pretplate na sljedeći datum"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Potrebna stupac \"%1$s\" nije pronađen za kod \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Potrebna konfiguracija za \"%1$s\" nedostaje"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Potrebni ključ za mapiranje \"%1$s\" nedostaje ili ne sadrži niz"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Pregledajte slike proizvoda"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Pregrađuje slike proizvoda na nove veličine."
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Povećavanje slike \"%1$s\" nije uspjelo: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Povećavanje medijskog stavka \"%1$s\" nije uspjelo: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Slanje e-mailova za nove korisničke račune"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Slanje e-mailova za praćene proizvode"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Pošalje e-poruke s potvrdom narudžbe ili ažuriranjem statusa plaćanja"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Pošalje e-poruke s ažuriranjem statusa isporuke narudžbe"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Pošalje plaćene narudžbe u ERP sustav ili logističkom partneru"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Pošalje e-poštu s vaučerom kupcu"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Poslano e-poštom na račun kupca \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Poslano e-mail o isporuci narudžbe za narudžbu \"%1$s\" i status \"%2$s\""
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Poslano je e-mailom plaćanje narudžbe \"%1$s\" i status \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Poslano je e-mail obavijest o proizvodu na \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Poslani su e-mailovi s vaučerima za ID narudžbe \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz atributa iz \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz atributa iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz kataloga iz \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz kataloga iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz koda kupona iz \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz kupona/koda iz \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz kupaca iz \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz kupaca iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je grupni uvoz iz \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je grupni uvoz iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz proizvoda iz \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz proizvoda iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz zaliha iz \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz zaliha iz datoteke \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz dobavljača iz \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Pokrenut je uvoz dobavljača iz datoteke \"%1$s\""
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Uvoz statusa za narudžbe iz CSV datoteke"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Uvoz dionica CSV"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "Međuzbroj"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Izvoz pretplate u CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Kraj procesa pretplate"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Obnova procesa pretplate"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Početak procesa pretplate"
 
 msgid "Subscription product"
 msgstr "Pretplaćeni proizvod"
@@ -675,83 +704,69 @@ msgid "Sum"
 msgstr "Sum"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Uvoz CSV dobavljača"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Uvoz XML-a dobavljača"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Raskida istekle pretplate"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "Hvala vam na narudžbi %1$s od %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "Status isporuke vaše narudžbe %1$s od %2$s promijenjen je u \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr ""
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgstr "Narudžba je u čekanju dok ne primimo konačnu uplatu. Ako ste odabrali plaćanje unaprijed, molimo vas da uplatite novac na naš bankovni račun uz referencu ID narudžbe %1$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "Pošiljka vaše narudžbe %1$s od %2$s nije mogla biti dostavljena."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Uplata nije mogla biti obnovljena"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "Uplata za vašu narudžbu %1$s od %2$s je vraćena."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "Status uplate vaše narudžbe %1$s od %2$s promijenjen je u \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Pretplata na proizvod je istekla"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vrijednost vašeg kupona je %1$s"
+msgstr[1] "Vrijednost vaših kupona je %1$s"
+msgstr[2] "Vrijednost vaših kupona je %1$s"
 
 msgid "Total"
 msgstr "Ukupno"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Prenosi novac dobavljačima"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
-msgstr ""
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgstr "Prijenosi cijenu naručenih proizvoda dobavljačima, uključujući proviziju za obradu"
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Nije moguće dodati trenutnu adresu za kupca s ID-om \"%1$s\""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -759,90 +774,90 @@ msgstr "Nemožemo pozvati metodu \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Ne može se uvesti katalog s kodom \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Ne može se uvesti kupac s kodom \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Ne može se uvesti proizvod s kodom \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Neuspjelo uvođenje dobavljača s kodom \"%1$s\": %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Vaučer"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Vaučer %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "E-poruke vezane uz vaučer"
 
 msgid "Watched products"
-msgstr ""
+msgstr "Pregledani proizvodi"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr ""
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
+msgstr "Primili smo vašu uplatu i odmah ćemo se pobrinuti za vašu narudžbu."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "Primili smo vraćenu pošiljku vaše narudžbe %1$s od %2$s."
 
 msgid "Y-m-d"
 msgstr "j.n.Y"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Vaše kupone možete iskoristiti u bilo kojem trenutku u našoj internetskoj trgovini."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Otkazali ste pretplatu"
 
 msgid "Your account"
-msgstr ""
+msgstr "Vaš račun"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Vaš komentar"
 
 msgid "Your new account"
-msgstr ""
+msgstr "Vaš novi račun"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "Vaša narudžba %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "Vaša narudžba %1$s od %2$s je poslana."
 
 msgid "Your reference"
-msgstr ""
+msgstr "Vaša referenca"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Vaš referentni broj"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Vaša pretplata"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Vaš vaučer"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "Vaši praćeni proizvodi"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-katalog-sitemap-d.xml"
 
 msgid "delivery"
-msgstr ""
+msgstr "dostava"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
@@ -850,16 +865,16 @@ msgid "from %1$s"
 msgstr "od %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "kao adresa za naplatu"
 
 msgid "payment"
 msgstr "plaćanje"
 
 msgid "tax"
-msgstr ""
+msgstr "porez"
 
 msgid "taxgst"
-msgstr ""
+msgstr "porez PDV"
 
 msgid "taxpst"
-msgstr ""
+msgstr "porez"

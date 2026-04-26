@@ -1,30 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tk\n"
+"Language-Team: Turkmen (http://app.transifex.com/aimeos/aimeos-core/language/tk/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Turkmen (http://app.transifex.com/aimeos/aimeos-core/language/tk/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: tk\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -40,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s%3$s%4$s%5$s\n"
+"%6$s%7$s\n"
+"%8$s\n"
+"%9$s%10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -54,14 +60,13 @@ msgstr "%1$s %2$s arzanlady\\"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/haryt"
@@ -85,10 +90,10 @@ msgid "Account"
 msgstr "Hasap"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Ähli XML import"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Ähli sargytlar biziň şertlerimize we düzgünlerimize tabydyr."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
@@ -99,43 +104,49 @@ msgid "Article no."
 msgstr "Haryt no."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Atribut import XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
-msgstr ""
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgstr "Rugsat berlen sargyt tölegleri iberilenden soň ýa-da sazlap bolýan belli bir wagt geçenden soň alynar."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Töleg/ýetiriş statusynyň toparda täzelenmesi"
 
 msgid "Billing address"
 msgstr "Hasaplaşyk salgysy"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Käşini arassalamak"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Rugsat berlen tölegleri hasaba alyň"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Katalog importy CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Katalog import XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Katalog saýt kartasy"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "\"%1$s\" bahasyny \"%2$s\" bilen \"%3$s\"-e garanyňda barlamak başa barmady"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "%1$s köne müşderileri arassalady"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "%1$s köne önümleri arassalady"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Arassalaýyş sebetleri"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Kupon kodyny CSV-den import etmek"
 
 msgid "Coupon codes"
 msgstr "Talon kodlary"
@@ -144,19 +155,22 @@ msgid "Coupons"
 msgstr "Talonlar"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Gözleg motorlary üçin katalog saýt kartasyny döredýär"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Gözleg motorlary üçin önümiň sahypa kartasyny döredýär"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Satyn alnan önümler boýunça bilelikde teklip edilýän önümleri döredýär"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "Müşderi hasaby e-poçtalar"
+
+msgid "Customer import CSV"
+msgstr "Müşderi CSV-den import"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Müşderi XML-ini import etmek"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
@@ -176,13 +190,11 @@ msgstr "Hormatly %1$s %2$s"
 msgid "Dear customer"
 msgstr "Hormatly müşderi"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
-msgstr ""
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgstr "Tamamlanmadyk sargytlary öçürýär we olaryň önümlerini hem-de kupon kodlaryny täzeden elýeterli edýär."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Maglumatlar bazasyny arassa saklamak üçin tölenmedik buýruklary öçürýär."
 
 msgid "Delivery address"
 msgstr "Eltip beriş salgysy"
@@ -194,134 +206,145 @@ msgid "Details"
 msgstr "Jikme-jiklikler"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Ähli XML importirlerini işledýär we indeksi täzeden gurýar."
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Topar görnüşli täzelenmeleri ulanýan töleg ýa-da eltip beriş hyzmatlaryny ýerine ýetirýän üpjün edijiler"
 
 #, php-format
 msgid "Expanding \"%1$s\" node failed"
-msgstr ""
+msgstr "\"%1$s\" düwünini giňeltmek şowsuz boldy"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Elýeterli ähli önümleri eksport edýär"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Eksport sargytlaryny CSV faýlyna"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Çykaryşlary CSV faýlyna abuna edýär"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den atribut importyny tamamlandy"
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Faýl \"%1$s\"-den atribut importyny tamamlandy."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den katalog importyny tamamlandy."
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\" (%2$d/%3$d)-den katalog importy tamamlandy"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" faýlyndan katalogy import etmegi tamamlandy."
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den kupon/kod importyny tamamlandy."
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den müşderi importy tamamlandy"
+
+#, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "\"%1$s\" (%2$d/%3$d)-den müşderi importy tamamlandy"
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Faýl \"%1$s\"den müşderi importy tamamlandy."
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den topar importy tamamlandy."
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" faýlyndan topar import tamamlandy."
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Tamamlanan önümi \"%1$s\"-den import etmek"
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Tamamlanan önümi \"%1$s\" (%2$d/%3$d) import etmek"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Tamamlanan önümi \"%1$s\" faýlyndan import etmek"
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den stok importy tamamlandy"
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Faýl \"%1$s\"-den stok importy tamamlandy."
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den üpjün ediji importy tamamlandy"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\" (%2$d/%3$d)-den üpjün ediji importyny tamamlandy"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Faýl \"%1$s\"den üpjün ediji importy tamamlandy."
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Toparlar XML-i import edýärler"
+
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "\"%1$s\" meýdanynda HTML tegleri rugsat berilmeýär."
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Soraglaryňyz bar bolsa, şu e-poçta jogap bermegiňizi haýyş edýäris"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "XML faýllardan täze atributlary import edýär we bar bolan atributlary täzelýär"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "CSV faýllardan täze kategoriýalary import edýär we bar bolan kategoriýalary täzelýär."
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "XML faýllardan täze kategoriýalary import edýär we bar bolan kategoriýalary täzelýär."
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "CSV faýllardan täze kupon kodlaryny import edýär we bar bolan kupon kodlaryny täzelýär."
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "CSV faýllardan täze müşderileri import edýär we bar bolan müşderileri täzelýär"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "XML faýllardan täze müşderileri import edýär we bar bolan müşderileri täzeläp edýär."
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "XML faýllardan täze toparlary import edýär we bar bolan toparlary täzelýär"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "CSV faýllardan täze önümleri import edýär we bar bolan önümleri täzeläp edýär."
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "XML faýllardan täze önümleri import edýär we bar bolan önümleri täzeläp edýär."
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "CSV faýllardan täze stoklary import edýär we bar bolan stoklary täzelýär."
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "CSV faýllardan täze üpjün edijileri import edýär we bar bolan üpjün edijileri täzelýär"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "XML faýllardan täze üpjün edijileri import edýär we bar bolan üpjün edijileri täzelýär"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
@@ -336,18 +359,18 @@ msgid "Included rebates"
 msgstr "Arzanladyşy goşulan"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Indeks optimizasiýasy"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Indeksi gaýtadan gurmak"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "JSON kodlamasy ýalňyş habar: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Import wagtynda ýatylmadyk katalog setirleri: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -355,46 +378,50 @@ msgstr "\"%1$s\" klass adynda nädogry nyşanlar bar"
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Prosessor adyndaky nädogry nyşan \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Prosessor görnüşindäki nädogry belgiler \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
 msgstr "\"%1$s\" nädogry klass ady"
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Import wagtynda ýatyrylan müşderi setirleri: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Nädogry habar: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Import wagtynda ýatylmadyk önüm setirleri: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Import wagtynda nädogry üpjün ediji setirleri: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Nädogry tip \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Hasap-faktura"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Hasap-faktura %1$s"
 
 msgid "Like entered by you"
 msgstr "Girişiňiz ýaly"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Ýazgy arassalaýyş"
 
 msgid "Login"
 msgstr "Giriş"
@@ -404,55 +431,59 @@ msgstr "Ady"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV gabat getirilişinde \"catalog.code\" sütüni tapylmady"
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV gabat getirilişinde \"kupon.kod.kod\" sütüni tapylmady"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "CSV gabat getirilişinde \"customer.code\" sütüni tapylmady"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV gabat getirilişinde \"product.code\" sütüni tapylmady"
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV gabat getirilişinde \"supplier.code\" sütüni tapylmady"
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
-msgstr ""
+msgstr "\"%1$s\" atly XML faýly tapylmady"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "ID \"%1$s\" bilen sargytda e-poçta bilen baglanyşykly hiç bir salgyt tapylmady."
 
 msgid "One or more products you are watching have been updated."
 msgstr "Yzarlaýan bir ýa-da birnäçe önümiňiz täzelendi."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Önümleri has çalt gözlemek üçin indeksi optimizirýär."
 
 msgid "Order date"
 msgstr "Sargyt senesi"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Eltip beriş bilen baglanyşykly e-poçtalar"
 
 msgid "Order details"
 msgstr "Sargyt maglumatlary"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "CSV görnüşinde eksporta sargyt ediň"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Töleg bilen baglanyşykly e-poçtalar sargyt ediň"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Sargyt statusyny CSV görnüşinde import etmek"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Kod \"%1$s\" üçin ene düwze tapylmady"
 
 msgid "Password"
 msgstr "Açar sözi"
@@ -461,28 +492,28 @@ msgid "Price"
 msgstr "Bahasy"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Sargytlary ýetirmek hyzmatlary"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Ilki bilen abunelikleri işläň"
 
 msgid "Product export"
-msgstr ""
+msgstr "Önümiň eksporty"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Önümi import etmek üçin CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "Önümi import etmek üçin XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "Önüm bildiriş e-poçtalar"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Önümiň sahypa kartasy"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Birlikde satyn alnan önümler"
 
 msgid "Qty"
 msgstr "Mukdar"
@@ -491,181 +522,180 @@ msgid "Quantity"
 msgstr "Mukdar"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Önümleri gözlemek üçin indeksi gaýtadan gurýar"
 
 msgid "Reference"
 msgstr "Salgylanma"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Keshden möhleti geçen ýazgylary aýyrýar."
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Maglumatlar bazasyndan köne sebetleri aýyrýar"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgid "Removes the old log entries from the database and archives them (optional)"
+msgstr "Köne ýazgy ýazgylaryny maglumatlar bazasyndan aýyrýar we olary arhiwleýär (isteğe bagly)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Tamamlanmadyk buýruklary aýyrýar"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Tölenmedik buýruklary aýyrýar"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Abunalyklary indiki senede täzeden uzaldýar"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Kod \"%2$s\" üçin zerur sütün \"%1$s\" tapylmady"
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "\"%1$s\" üçin zerur konfigurasiýa ýok."
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "Talap edilýän kartalaşdyryş açary \"%1$s\" ýok ýa-da massiw içermeýär."
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Önüm suratlarynyň ölçegini üýtgetmek"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Önüm suratlaryny täze ölçeglere gaýtadan ölçeýär."
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Suraty göçürlemek \"%1$s\" şowsuz boldy: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Media elementi \"%1$s\"-iň skalirlänişi şowsuz boldy: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Täze müşderi hasaplary üçin e-poçtalar iberýär"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Gözegçilikde saklanýan önümler üçin e-poçta iberýär."
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Sargyt tassyklamasyny ýa-da töleg ýagdaýynyň täzelik e-poçtasyny iberýär"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Sargydyň eltip beriliş ýagdaýy baradaky täzelik e-poçtalarını iberýär"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Tölenen sargytlary ERP ulgamyna ýa-da logistika hyzmatdaşyna ugradýar"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Kupony müşderä elektron poçta arkaly iberýär."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "Müşderiniň hasaby baradaky e-poçta \"%1$s\"-e iberildi."
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Sargyt \"%1$s\" we ýagdaý \"%2$s\" üçin eltip bermek baradaky e-poçta iberildi."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "Sargyt \"%1$s\" we status \"%2$s\" üçin töleg e-poçtasy iberildi."
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "Önümiň bildiriş e-poçtasy \"%1$s\"-e iberildi."
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Sargyt ID \"%1$s\" üçin e-voucher hatlaryny iberdi"
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den atribut importy başlandy"
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" faýlyndan atribut import edilmegi başlandy"
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den katalog importy başlandy"
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" faýlyndan katalog importy başlandy"
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den kupon kodyny import etmegi başlady"
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den kupon/kod importyny başlatdy"
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den müşderi importy başlandy"
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" faýlyndan müşderi importy başlandy"
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den topar importy başlandy"
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" faýlyndan toparça import başlandy"
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den önümi import etmäge başlady"
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" faýlyndan önümi import etmäge başlady"
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den stok importy başlandy"
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Faýl \"%1$s\"-den stok importy başlandy"
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"-den üpjün ediji importyny başlatdy"
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Faýl \"%1$s\"-den üpjün ediji importy başlandy"
 
 msgid "Status"
 msgstr "Ýagdaý"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "CSV faýldan sargytlar üçin status importy"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Stoklary import etmek üçin CSV"
 
 msgid "Sub-total"
 msgstr "Jemi"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Abunelik eksporty CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Abuna prosesi tamamlandy"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Abunalyk prosesi täzelenýär"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Abunalyk prosesi başlandy"
 
 msgid "Subscription product"
 msgstr "Abunalyk harydy"
@@ -674,39 +704,30 @@ msgid "Sum"
 msgstr "Jemi"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Täminleýji import CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Täminleýji XML-i import etmek"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Möhletini geçen abunalyklary bes edýär"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "%2$s-dan %1$s zakaz edeniňiz üçin sag boluň."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "%2$s-dan %1$s zakazyňyzyň gowşuryş ýagdaýy \"%3$s\" görnüşine üýtgedildi."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "Sargyt gutarnykly töleg edilýänçä garaşdyrylýar. Öňünden tölemegi saýlan bolsaňyz, pul salgysyny %1$s sargyt belgisi bilen bank hasabymyza geçirmegiňizi haýyş edýäris."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "%2$s-den %1$s zakazyňyz üçin bukjany iberip bolmady."
@@ -719,13 +740,10 @@ msgstr "Töleg täzelenip bilmedi"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s-den %1$s zakazyňyz üçin töleg yzyna gaýtaryldy."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "Siziň %1$s-den %2$s-e edilen sargydyňyzyň töleg ýagdaýy \"%3$s\" diýip üýtgedildi."
 
 msgid "The subscription for the product has ended"
 msgstr "Önüme ýazylmak tamamlandy"
@@ -740,16 +758,14 @@ msgid "Total"
 msgstr "Jemi"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Satjylara pul geçirýär"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
-msgstr ""
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgstr "Sargyt edilen önümleriň bahasyny komissiýa we işgärçilik çykdajylaryny goşmak bilen üpjün edijilere geçirýär."
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "ID \"%1$s\" bolan müşderiniň häzirki salgysyny goşup bolmady"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -757,37 +773,38 @@ msgstr "\"%1$s\" metodyny işledip bolmaýar"
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Kod \"%1$s\" bilen katalogy import edip bolmady: %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Kod \"%1$s\" bilen müşderini import edip bolmady: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Kod \"%1$s\" bilen önümi import edip bolmady: %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Kod \"%1$s\" bilen üpjün edijini import edip bolmady: %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Wauçer"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Wauçer %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Wauçer bilen baglanyşykly e-poçtalar"
 
 msgid "Watched products"
 msgstr "Gözegçilik edilýän önümler"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "Tölegiňizi aldyk we sargydyňyzy derrew alada ederis."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "%2$s-den %1$s zakazyňyz üçin yzyna iberilen bukjany aldyk."
@@ -814,8 +831,7 @@ msgstr "Siziň täze hasabyňyz"
 msgid "Your order %1$s"
 msgstr "Siziň sargydyňyz %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s-den %1$s zakazyňyz iberildi."
@@ -837,7 +853,7 @@ msgstr "Gözegçilik eden önümleriňiz"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-katalog-sajt-kartasy-%d.xml"
 
 msgid "delivery"
 msgstr "eltip bermek"
@@ -857,7 +873,7 @@ msgid "tax"
 msgstr "salgyt"
 
 msgid "taxgst"
-msgstr ""
+msgstr "salgytgst"
 
 msgid "taxpst"
-msgstr ""
+msgstr "salgytpst"

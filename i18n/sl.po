@@ -1,32 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# Goran Sabo <info@noaset.pro>, 2020
-# Goran Sabo <info@noaset.pro>, 2020
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sl\n"
+"Language-Team: Slovenian (http://app.transifex.com/aimeos/aimeos-core/language/sl/)\n"
+"Last-Translator: Goran Sabo <info@noaset.pro>, 2020\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Goran Sabo <info@noaset.pro>, 2020\n"
-"Language-Team: Slovenian (http://app.transifex.com/aimeos/aimeos-core/language/sl/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -42,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -62,8 +66,7 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/izdelek"
@@ -103,9 +106,7 @@ msgstr "Šifra"
 msgid "Attribute import XML"
 msgstr "Attribute import XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 
 msgid "Batch update of payment/delivery status"
@@ -128,6 +129,14 @@ msgstr "Catalog import XML"
 
 msgid "Catalog site map"
 msgstr "Catalog site map"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "Preverjanje vrednosti »%1$s« glede na »%2$s« in »%3$s« ni uspelo"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "Očiščeno %1$s starih strank"
 
 #, php-format
 msgid "Cleaned %1$s old products"
@@ -157,6 +166,9 @@ msgstr "Creates bought together product suggestions"
 msgid "Customer account e-mails"
 msgstr "e-poštna sporočila o računih strank"
 
+msgid "Customer import CSV"
+msgstr "Uvoz strank iz datoteke CSV"
+
 msgid "Customer import XML"
 msgstr "Customer import XML"
 
@@ -178,9 +190,7 @@ msgstr "Spoštovana gospa %1$s %2$s"
 msgid "Dear customer"
 msgstr "Spoštovani naročnik"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "Deletes unfinished orders an makes their products and coupon codes available again"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -243,6 +253,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr "Finished customer import from \"%1$s\""
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Uvoz strank iz datoteke »%1$s« je končan (%2$d od %3$d)"
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr "Finished customer import from file \"%1$s\""
 
@@ -289,6 +303,10 @@ msgstr "Končan uvoz dobavitelja iz datoteke \"%1$s\""
 msgid "Groups import XML"
 msgstr "Skupine uvoz XML"
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "V polju »%1$s« niso dovoljene oznake HTML"
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "V primeru dodatnih vprašanj, le odgovorite na to sporočilo"
 
@@ -303,6 +321,9 @@ msgstr "Imports new and updates existing categories from XML files"
 
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "Imports new and updates existing coupon code from CSV files"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Uvozi nove stranke in posodobi obstoječe iz datotek CSV"
 
 msgid "Imports new and updates existing customers from XML files"
 msgstr "Imports new and updates existing customers from XML files"
@@ -368,6 +389,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr "Invalid class name \"%1$s\""
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Neveljavne vrstice s podatki o strankah med uvozom: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr "Invalid message: %1$s"
 
@@ -411,6 +436,10 @@ msgstr "No \"catalog.code\" column in CSV mapping found"
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr "No \"coupon.code.code\" column in CSV mapping found"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "V preslikavi CSV ni bilo najdeno stolpca »customer.code«"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -504,8 +533,7 @@ msgstr "Removes the expired entries from the cache"
 msgid "Removes the old baskets from the database"
 msgstr "Odstranitev starih košaric iz podatkovne zbirke"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "Removes the old log entries from the database and archives them (optional)"
 
 msgid "Removes unfinished orders"
@@ -684,31 +712,24 @@ msgstr "Supplier import XML"
 msgid "Terminates expired subscriptions"
 msgstr "Terminates expired subscriptions"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Zahvaljujemo se za naročilo  opravljeno %2$s.\nPri plačilu se sklicujte na SI00 00%1$s"
+msgstr ""
+"Zahvaljujemo se za naročilo  opravljeno %2$s.\n"
+"Pri plačilu se sklicujte na SI00 00%1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "Vaše naročilo bo zadržano do nadaljnjega oziroma dokler ne prejmemo vašega plačila. Če želite plačate preko neposredne bančne transakcije ne pozabite vpisati številko naročila, ki je %1$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "The parcel for your order %1$s from %2$s could not be delivered."
@@ -721,12 +742,9 @@ msgstr "Plačila ni možno obnoviti"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "The payment for your order %1$s from %2$s has been refunded."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Status plačila vašega naročila %1$s iz %2$s je bil spremenjen v \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -746,9 +764,7 @@ msgstr "Total"
 msgid "Transfers money to vendors"
 msgstr "Prenosi denarja prodajalcem"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr "Prenos cene naročenih izdelkov prodajalcem, vključno z obdelavo provizije"
 
 #, php-format
@@ -762,6 +778,10 @@ msgstr "Unable to call method \"%1$s\""
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
 msgstr "Unable to import catalog with code \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Stranke s kodo »%1$s« ni mogoče uvoziti: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -784,14 +804,11 @@ msgstr "e-poštna sporočila, povezana z boni"
 msgid "Watched products"
 msgstr "Spremljaj izdelke"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "Prejeli smo vaše plačilo. Za vaše naročilo bomo poskrbeli v najkrajšem možnem času!"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "We received the returned parcel for your order %1$s from %2$s."
@@ -818,8 +835,7 @@ msgstr "Vaš nov račun"
 msgid "Your order %1$s"
 msgstr "Vaše naročilo %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Vaše naročilo %1$s od %2$s je odposlano."

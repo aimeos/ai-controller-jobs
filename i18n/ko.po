@@ -1,32 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ko\n"
+"Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
+"Last-Translator: Aimeos, 2025\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Aimeos, 2025\n"
-"Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: ko\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -42,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -62,8 +66,7 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/항목"
@@ -103,9 +106,7 @@ msgstr "기사 번호"
 msgid "Attribute import XML"
 msgstr "속성 가져오기 XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "주문에 대한 승인된 결제는 발송 후 또는 구성 가능한 시간 후에 캡처됩니다."
 
 msgid "Batch update of payment/delivery status"
@@ -128,6 +129,14 @@ msgstr "카탈로그 가져오기 XML"
 
 msgid "Catalog site map"
 msgstr "카탈로그 사이트 맵"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "\"%1$s\"의 값 \"%2$s\"를 \"%3$s\"와 비교하는 데 실패했습니다"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "%1$s명의 기존 고객 정보를 정리했습니다"
 
 #, php-format
 msgid "Cleaned %1$s old products"
@@ -157,6 +166,9 @@ msgstr "함께 구매한 제품 제안 생성"
 msgid "Customer account e-mails"
 msgstr "고객 계정 이메일"
 
+msgid "Customer import CSV"
+msgstr "고객 CSV 파일 가져오기"
+
 msgid "Customer import XML"
 msgstr "고객 가져오기 XML"
 
@@ -178,9 +190,7 @@ msgstr "Ms %1$s %2$s에게"
 msgid "Dear customer"
 msgstr "고객님께"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "미완료 주문을 삭제하고 해당 제품 및 쿠폰 코드를 다시 사용할 수 있도록 설정합니다."
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -243,6 +253,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr "\"%1$s\"에서 고객 가져오기를 완료했습니다."
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "\"%1$s\"에서 고객 데이터 가져오기가 완료되었습니다 (%2$d/%3$d)"
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr "\"%1$s\" 파일에서 고객 가져오기를 완료했습니다."
 
@@ -289,6 +303,10 @@ msgstr "\"%1$s\" 파일에서 공급업체 가져오기를 완료했습니다."
 msgid "Groups import XML"
 msgstr "그룹 가져오기 XML"
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "\"%1$s\" 필드에는 HTML 태그를 사용할 수 없습니다."
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "궁금한 점이 있으면 이 이메일로 답장해 주세요."
 
@@ -303,6 +321,9 @@ msgstr "XML 파일에서 새 카테고리를 가져오거나 기존 카테고리
 
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "CSV 파일에서 새 쿠폰 코드 가져오기 및 기존 쿠폰 코드 업데이트"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "CSV 파일에서 신규 고객을 가져오고 기존 고객을 업데이트합니다"
 
 msgid "Imports new and updates existing customers from XML files"
 msgstr "XML 파일에서 신규 고객 가져오기 및 기존 고객 업데이트하기"
@@ -368,6 +389,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr "잘못된 클래스 이름 \"%1$s\""
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "가져오기 중 유효하지 않은 고객 행: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr "잘못된 메시지입니다: %1$s"
 
@@ -411,6 +436,10 @@ msgstr "CSV 매핑에서 \"catalog.code\" 열을 찾을 수 없음"
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr "CSV 매핑에서 \"coupon.code.code\" 열을 찾을 수 없습니다."
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "CSV 매핑에서 \"customer.code\" 열이 발견되지 않았습니다"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -504,8 +533,7 @@ msgstr "캐시에서 만료된 항목을 제거합니다."
 msgid "Removes the old baskets from the database"
 msgstr "데이터베이스에서 이전 바구니를 제거합니다."
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "데이터베이스에서 이전 로그 항목을 제거하고 아카이브합니다(선택 사항)."
 
 msgid "Removes unfinished orders"
@@ -684,31 +712,22 @@ msgstr "공급업체 가져오기 XML"
 msgid "Terminates expired subscriptions"
 msgstr "만료된 구독을 종료합니다."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "%2$s에서 %1$s를 주문해 주셔서 감사합니다."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "%2$s에서 주문한 %1$s의 배송 상태가 \"%3$s\"로 변경되었습니다."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "최종 결제가 완료될 때까지 주문이 보류 중입니다. 선결제를 선택한 경우 주문 ID %1$s를 참조하여 당사 은행 계좌로 송금해 주세요."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "%2$s에서 주문한 %1$s의 소포를 배송하지 못했습니다."
@@ -721,12 +740,9 @@ msgstr "결제를 갱신할 수 없습니다."
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s에서 주문한 %1$s에 대한 결제 금액이 환불되었습니다."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "%2$s에서 %1$s 주문의 결제 상태가 \"%3$s\"로 변경되었습니다."
 
 msgid "The subscription for the product has ended"
@@ -743,9 +759,7 @@ msgstr "총"
 msgid "Transfers money to vendors"
 msgstr "벤더에게 송금"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr "주문한 제품의 가격을 판매자에게 전달하고 수수료를 처리합니다."
 
 #, php-format
@@ -759,6 +773,10 @@ msgstr "\"%1$s\" 메서드를 호출할 수 없습니다."
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
 msgstr "코드 \"%1$s\"로 카탈로그를 가져올 수 없습니다: %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "코드 \"%1$s\"를 가진 고객을 가져올 수 없습니다: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -781,14 +799,11 @@ msgstr "바우처 관련 이메일"
 msgid "Watched products"
 msgstr "시청한 제품"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "결제가 완료되었으며 즉시 주문을 처리해 드리겠습니다."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "%2$s에서 주문한 %1$s에 대한 반품된 소포를 받았습니다."
@@ -815,8 +830,7 @@ msgstr "새 계정"
 msgid "Your order %1$s"
 msgstr "주문 %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s에서 주문한 %1$s가 발송되었습니다."

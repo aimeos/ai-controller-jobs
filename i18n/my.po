@@ -1,30 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: my\n"
+"Language-Team: Burmese (http://app.transifex.com/aimeos/aimeos-core/language/my/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Burmese (http://app.transifex.com/aimeos/aimeos-core/language/my/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: my\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -40,102 +31,122 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
+""
 msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s လျှော့"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-ဆိုက်မက်ပ်-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-ဆိုက်မက်ပုံညွှန်းစာရင်းအညွှန်း.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %2$s တစ်ခုလျှင်"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+ ငွေပေးချေမှုကုန်ကျစရိတ်များ"
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "+ ပို့ဆောင်ခ"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "တစ်ခုခုပါပဲ"
 
 msgid "Account"
 msgstr "အကောင့်"
 
 msgid "All XML import"
-msgstr ""
+msgstr "XML အားလုံးကို တင်သွင်းခြင်း"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "အော်ဒါအားလုံးသည် ကျွန်ုပ်တို့၏ စည်းမျဉ်းစည်းကမ်းများနှင့် အခြေအနေများအောက်တွင် ဖြစ်ပါသည်။"
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
-msgstr ""
+msgstr "သင့်အတွက် အကောင့်တစ်ခု ဖန်တီးထားပါပြီ။"
 
 msgid "Article no."
-msgstr ""
+msgstr "ဆောင်းပါးနံပါတ်"
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "ဂုဏ်သတ္တိ တင်သွင်းခြင်း XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
-msgstr ""
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgstr "အမှာစာများအတွက် ခွင့်ပြုထားသော ငွေပေးချေမှုများကို ပို့ဆောင်ပြီးနောက် သို့မဟုတ် သတ်မှတ်နိုင်သည့် အချိန်ကာလအပြီးတွင် ဖမ်းယူမည်။"
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "ငွေပေးချေမှု/ပို့ဆောင်မှု အခြေအနေများကို အစုလိုက် အပ်ဒိတ်လုပ်ခြင်း"
 
 msgid "Billing address"
-msgstr ""
+msgstr "ငွေတောင်းခံလိပ်စာ"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "ကက်ရှ် သန့်ရှင်းရေး"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "ခွင့်ပြုထားသော ငွေပေးချေမှုများကို မှတ်တမ်းတင်ပါ။"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "စာရင်းတင်သွင်း CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "စာရင်းတင်သွင်း XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "စာရင်းဆိုက်မြေပုံ"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "\"%1$s\" ၏ တန်ဖိုး \"%2$s\" ကို \"%3$s\" နှင့် စစ်ဆေးရာ မအောင်မြင်ပါ။"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "%1$s ယခင်ဖောက်သည်များကို သန့်ရှင်းခဲ့သည်။"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "%1$s အဟောင်းထုတ်ကုန်များကို သန့်ရှင်းပြီး"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "သန့်ရှင်းရေးဘောင်းဘီများ"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "ကူပွန်ကုဒ် CSV မှ တင်သွင်းခြင်း"
 
 msgid "Coupon codes"
 msgstr "ကူပွန်ကုဒ်"
@@ -144,719 +155,724 @@ msgid "Coupons"
 msgstr "ကူပွန်"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "ရှာဖွေရေးအင်ဂျင်များအတွက် ကက်တလော့ဂ်ဆိုက်မေပ်ကို ဖန်တီးပေးသည်။"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "ရှာဖွေရေးအင်ဂျင်များအတွက် ထုတ်ကုန်ဆိုက်မေပ်ကို ဖန်တီးပေးသည်။"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "ဝယ်ယူထားသော ထုတ်ကုန်များအတွက် အတူတကွ အကြံပြုချက်များ ဖန်တီးပေးသည်။"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "ဖောက်သည်အကောင့် အီးမေးလ်များ"
+
+msgid "Customer import CSV"
+msgstr "ဖောက်သည် CSV တင်သွင်းခြင်း"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "ဖောက်သည် XML တင်သွင်းခြင်း"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "ချစ်ခင်လေးစားစွာဖြင့် %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "ခင်ဗျား %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "မစ္စ %1$s %2$s ခင်ဗျား"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "ရိုသေစွာ လေးစားသော ဖောက်သည်ကြီးခင်ဗျား"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
-msgstr ""
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgstr "ပြီးစီးမထားသေးသော အော်ဒါများကို ဖျက်၍ ထုတ်ကုန်များနှင့် ကူပွန်ကုဒ်များကို ထပ်မံအသုံးပြုနိုင်အောင် ပြုလုပ်သည်။"
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "ဒေတာဘေ့စ်ကို သန့်ရှင်းစေရန် ပေးချေမှုမပြုသေးသော အော်ဒါများကို ဖျက်ပစ်သည်။"
 
 msgid "Delivery address"
 msgstr "ပေးပို့ရမည့်လိပ်စာ"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "အတွင်းပို့ဆောင်ခြင်း"
 
 msgid "Details"
 msgstr "အသေးစိတ်"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "XML အင်ပို့တာအားလုံးကို အကောင်အထည်ဖော်ကာ အညွှန်းကို ပြန်လည်တည်ဆောက်သည်။"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "စုစည်းအပ်ဒိတ်များကို အသုံးပြု၍ ငွေပေးချေခြင်း သို့မဟုတ် ပို့ဆောင်ခြင်း ဝန်ဆောင်မှု ပေးသူများအား ဆောင်ရွက်သည်။"
 
 #, php-format
 msgid "Expanding \"%1$s\" node failed"
-msgstr ""
+msgstr "\"%1$s\" node ကို တိုးချဲ့ရာတွင် မအောင်မြင်ပါ။"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "ရရှိနိုင်သည့် ထုတ်ကုန်အားလုံးကို တင်ပို့ပါ။"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "ပို့ကုန်အော်ဒါများကို CSV ဖိုင်သို့ ထုတ်ယူခြင်း"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "စာရင်းသွင်းမှုများကို CSV ဖိုင်သို့ တင်ပို့ပါ။"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ attribute များကို အပြီးသတ် တင်သွင်းပြီးပါပြီ။"
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ အင်ထရိုက့်ဘ် တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ကက်တလော့ဂ် တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\" (%2$d/%3$d) မှ ကက်တလော့ဂ် တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ကက်တလော့ဂ် တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ကူပွန်/ကုဒ် တင်သွင်းခြင်း ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ဖောက်သည်များ တင်သွင်းခြင်း ပြီးစီးပါပြီ။"
+
+#, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "\"%1$s\" (%2$d/%3$d) မှ ဖောက်သည်များ တင်သွင်းပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ဖောက်သည်များအား အပြီးသတ် ထည့်သွင်းပြီးပါပြီ။"
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ အုပ်စုတင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ အုပ်စုတင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ အပြီးသတ်ထုတ်ကုန် တင်သွင်းခြင်း"
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "ပြီးစီးထုတ်ကုန်ကို \"%1$s\" မှ တင်သွင်းခြင်း (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ထုတ်ကုန် တင်သွင်းခြင်း ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ စတော့တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ စတော့တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ပေးသွင်းသူ တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "\"%1$s\" (%2$d/%3$d) မှ ပံ့ပိုးသူ တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ပံ့ပိုးသူ တင်သွင်းမှု ပြီးစီးပါပြီ။"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "အုပ်စုများ XML တင်သွင်းခြင်း"
+
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "field \"%1$s\" တွင် HTML tag များ ထည့်သွင်းခွင့် မပြုပါ။"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "မေးခွန်းများရှိပါက ဤအီးမေးလ်ကို ပြန်လည်ဖြေကြားပါ။"
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "XML ဖိုင်များမှ အင်္ဂါရပ်အသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား အင်္ဂါရပ်များကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "CSV ဖိုင်များမှ အမျိုးအစားအသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား အမျိုးအစားများကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "XML ဖိုင်များမှ အမျိုးအစားအသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား အမျိုးအစားများကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "CSV ဖိုင်များမှ ကူပွန်ကုဒ်အသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား ကူပွန်ကုဒ်များကို အပ်ဒိတ်လုပ်သည်။"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "CSV ဖိုင်များမှ ဖောက်သည်အသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား ဖောက်သည်များကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "XML ဖိုင်များမှ ဖောက်သည်အသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား ဖောက်သည်များကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "XML ဖိုင်များမှ အုပ်စုအသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသားအုပ်စုများကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "CSV ဖိုင်များမှ ထုတ်ကုန်အသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား ထုတ်ကုန်များကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "XML ဖိုင်များမှ ထုတ်ကုန်အသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား ထုတ်ကုန်များကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "CSV ဖိုင်များမှ စတော့များကို အသစ်ထည့်သွင်းပြီး ရှိပြီးသားများကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "CSV ဖိုင်များမှ ထောက်ပံ့သူအသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား ထောက်ပံ့သူများကို အပ်ဒိတ်လုပ်သည်။"
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "XML ဖိုင်များမှ ပံ့ပိုးပေးသူအသစ်များကို ထည့်သွင်းပြီး ရှိပြီးသား ပံ့ပိုးပေးသူများကို အပ်ဒိတ်လုပ်သည်။"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "ပါဝင်သည်။ %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "အပါအဝင် %1$s%% VAT"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "ပါဝင်သော ပြန်အမ်းငွေများ"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "အညွှန်းတိုးတက်အောင်ပြုလုပ်ခြင်း"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "အညွှန်းပြန်တည်ဆောက်ခြင်း"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "မမှန်ကန်သော JSON encode မက်ဆေ့ခ်ျ: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "တင်သွင်းစဉ် မမှန်ကန်သော ကက်တလော့ဂ် လိုင်းများ: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr ""
+msgstr "class အမည် \"%1$s\" တွင် မမှန်ကန်သော အက္ခရာများ ပါဝင်နေပါသည်။"
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "processor အမည် \"%1$s\" တွင် မမှန်ကန်သော အက္ခရာများ ပါဝင်နေသည်။"
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "processor အမျိုးအစား \"%1$s\" တွင် မမှန်ကန်သော အက္ခရာများ ပါဝင်နေသည်။"
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "အတန်းအမည် \"%1$s\" မမှန်ပါ"
+
+#, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "တင်သွင်းစဉ် မမှန်ကန်သော ဖောက်သည်လိုင်းများ: %1$d"
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "မမှန်ကန်သော မက်ဆေ့ခ်ျ: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "တင်သွင်းစဉ် မမှန်ကန်သော ထုတ်ကုန်လိုင်းများ: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "တင်သွင်းစဉ် မမှန်ကန်သော ပေးသွင်းသူ လိုင်းများ: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "မမှန်ကန်သော အမျိုးအစား \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "ငွေတောင်းခံလွှာ"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "ငွေတောင်းခံလွှာ %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "သင်ထည့်သွင်းထားသလို"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "မှတ်တမ်း သန့်ရှင်းရေး"
 
 msgid "Login"
-msgstr ""
+msgstr "ဝင်ရောက်ခြင်း"
 
 msgid "Name"
 msgstr "အမည်"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV mapping တွင် \"catalog.code\" ကော်လံ မတွေ့ပါ။"
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV mapping တွင် \"coupon.code.code\" ကော်လံ မတွေ့ပါ။"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "CSV mapping တွင် \"customer.code\" ကော်လံ မတွေ့ပါ။"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV mapping တွင် \"product.code\" ကော်လံ မတွေ့ပါ။"
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "CSV mapping တွင် \"supplier.code\" ကော်လံ မတွေ့ပါ။"
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
-msgstr ""
+msgstr "XML ဖိုင် \"%1$s\" မတွေ့ပါ။"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "ID \"%1$s\" ပါသော အမှာစာတွင် အီးမေးလ်ပါလိပ်စာ မတွေ့ပါ။"
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "သင်ကြည့်ရှုနေသော ထုတ်ကုန်တစ်ခု သို့မဟုတ် ထက်ပို၍ အပ်ဒိတ်လုပ်ထားပါသည်။"
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "ထုတ်ကုန်များကို ပိုမိုလျင်မြန်စွာ ရှာဖွေရန် အညွှန်းကို အကောင်းဆုံးပြုလုပ်သည်။"
 
 msgid "Order date"
-msgstr ""
+msgstr "မှာယူသည့်ရက်စွဲ"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "ပို့ဆောင်မှုနှင့်ဆိုင်သော အီးမေးလ်များမှာယူခြင်း"
 
 msgid "Order details"
-msgstr ""
+msgstr "အော်ဒါအသေးစိတ်"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "CSV အဖြစ် အော်ဒါ ထုတ်ပို့ခြင်း"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "ငွေပေးချေမှုနှင့်ဆိုင်သော အီးမေးလ်များကို အမှာပေးပါ။"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "အော်ဒါအခြေအနေ CSV သို့ တင်သွင်းခြင်း"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "ကုဒ် \"%1$s\" အတွက် မိခင်နိုဒ် မတွေ့ပါ။"
 
 msgid "Password"
-msgstr ""
+msgstr "စကားဝှက်"
 
 msgid "Price"
 msgstr "ဈေးနှုန်း"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "အဆင့်လိုက်အပ်နှံချက်ပို့ဆောင်ရေးဝန်ဆောင်မှုများ"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "အစပိုင်းတွင် စာရင်းသွင်းမှုများကို ဆောင်ရွက်ပါ။"
 
 msgid "Product export"
-msgstr ""
+msgstr "ထုတ်ကုန်တင်ပို့ခြင်း"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "ထုတ်ကုန် တင်သွင်း CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "ထုတ်ကုန် တင်သွင်း XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "ထုတ်ကုန် အသိပေး အီးမေးလ်များ"
 
 msgid "Product site map"
-msgstr ""
+msgstr "ထုတ်ကုန်ဆိုက်မြေပုံ"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "အတူတကွ ဝယ်ယူထားသော ထုတ်ကုန်များ"
 
 msgid "Qty"
-msgstr ""
+msgstr "အရေအတွက်"
 
 msgid "Quantity"
 msgstr "အရေအတွက်"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "ထုတ်ကုန်ရှာဖွေရေးအတွက် အညွှန်းကို ပြန်လည်တည်ဆောက်သည်။"
 
 msgid "Reference"
-msgstr ""
+msgstr "ရည်ညွှန်းချက်"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "cache မှ သက်တမ်းကုန်ဆုံးသွားသော မှတ်တမ်းများကို ဖယ်ရှားသည်။"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "ဒေတာဘေ့စ်မှ အဟောင်းဘတ်စကက်များကို ဖယ်ရှားသည်။"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgid "Removes the old log entries from the database and archives them (optional)"
+msgstr "ဒေတာဘေ့စ်မှ အဟောင်း မှတ်တမ်းများအား ဖယ်ရှားကာ သိမ်းဆည်းထားသည် (လိုအပ်ပါက)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "မပြီးစီးသေးသော အော်ဒါများကို ဖယ်ရှားသည်။"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "ပေးချေမှုမပြုရသေးသော အမှာစာများကို ဖယ်ရှားသည်။"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "နောက်တစ်ကြိမ်ရက်တွင် စာရင်းသွင်းမှုများကို ပြန်လည်သက်တမ်းတိုးမည်။"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "လိုအပ်သော ကော်လံ \"%1$s\" ကို ကုဒ် \"%2$s\" အတွက် မတွေ့ပါ။"
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "\"%1$s\" အတွက် လိုအပ်သော ဖွဲ့စည်းမှု မတွေ့ပါ။"
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "လိုအပ်သော mapping key \"%1$s\" မတွေ့ပါ သို့မဟုတ် array မပါဝင်ပါ။"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Rescale ထုတ်ကုန်ဓာတ်ပုံများ"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "ထုတ်ကုန်ဓာတ်ပုံများကို အသစ်အရွယ်အစားများအတိုင်း ပြန်လည်ချိန်ညှိသည်။"
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "ပုံအရွယ်ချိန်ညှိခြင်း \"%1$s\" မအောင်မြင်ပါ: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "မီဒီယာအရာဝတ္ထု \"%1$s\" ကို စကေးလုပ်ရာတွင် မအောင်မြင်ပါ: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "အသစ်ဖောက်သည်အကောင့်များအတွက် အီးမေးလ်များ ပို့သည်။"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "ကြည့်ရှုနေသော ထုတ်ကုန်များအတွက် အီးမေးလ်များ ပို့သည်။"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "အော်ဒါအတည်ပြုခြင်း သို့မဟုတ် ငွေပေးချေမှုအခြေအနေ အပ်ဒိတ် အီးမေးလ်များ ပို့သည်။"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "အော်ဒါပို့ဆောင်မှုအခြေအနေ အပ်ဒိတ် အီးမေးလ်များ ပို့သည်။"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "ပေးချေပြီးသော အော်ဒါများကို ERP စနစ်သို့ သို့မဟုတ် လိုဂျစ်စတစ် မိတ်ဖက်ထံ ပို့သည်။"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "လက်မှတ်ပါ အီးမေးလ်ကို ဖောက်သည်ထံ ပို့သည်။"
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "ဖောက်သည်အကောင့်အီးမေးလ်ကို \"%1$s\" သို့ ပို့ခဲ့သည်။"
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "အော်ဒါ \"%1$s\" နှင့် အခြေအနေ \"%2$s\" အတွက် ပို့ဆောင်မှုအီးမေးလ် ပို့ခဲ့သည်။"
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "အော်ဒါ \"%1$s\" အတွက် ငွေပေးချေမှု အီးမေးလ် ပို့ပြီး အခြေအနေ \"%2$s\" ဖြစ်ပါသည်။"
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "ထုတ်ကုန် အသိပေး အီးမေးလ်ကို \"%1$s\" သို့ ပို့ခဲ့သည်။"
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "အော်ဒါ ID \"%1$s\" အတွက် ကူပုံအီးမေးလ်များ ပို့ခဲ့သည်။"
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ attribute import စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ attribute တင်သွင်းခြင်းကို စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ကက်တလော့ဂ် တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ကက်တလော့ဂ် တင်သွင်းခြင်း စတင်ပါပြီ။"
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ကူပွန်ကုဒ် တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ကူပွန်/ကုဒ် တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ဖောက်သည်များ တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ဖောက်သည်များအား တင်သွင်းခြင်း စတင်ပါပြီ။"
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ အုပ်စု တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ အုပ်စု တင်သွင်းခြင်း စတင်ပါပြီ။"
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ထုတ်ကုန် တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ထုတ်ကုန် တင်သွင်းခြင်း စတင်ပါပြီ။"
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ စတော့တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ စတော့တင်သွင်းခြင်း စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\" မှ ပေးသွင်းသူ တင်သွင်းခြင်းကို စတင်ခဲ့သည်။"
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "ဖိုင် \"%1$s\" မှ ထောက်ပံ့သူ တင်သွင်းခြင်း စတင်ပါပြီ။"
 
 msgid "Status"
-msgstr ""
+msgstr "အခြေအနေ"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "CSV ဖိုင်မှ အော်ဒါများအတွက် အခြေအနေ တင်သွင်းခြင်း"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "စတော့တင်သွင်း CSV"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "အပိုင်းစုစုပေါင်း"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "စာရင်းသွင်းမှု CSV ထုတ်ယူခြင်း"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "စာရင်းသွင်းခြင်းလုပ်ငန်းစဉ်ပြီးဆုံး"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "စာရင်းသွင်းခြင်းလုပ်ငန်းစဉ် ပြန်လည်အသစ်ဖြစ်ခြင်း"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "စာရင်းသွင်းခြင်းလုပ်ငန်းစဉ် စတင်ပါပြီ။"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "စာရင်းသွင်းထုတ်ကုန်"
 
 msgid "Sum"
-msgstr ""
+msgstr "စုစုပေါင်း"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "ပံ့ပိုးသူ တင်သွင်း CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "ပံ့ပိုးသူမှ XML တင်သွင်းခြင်း"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "သက်တမ်းကုန်ဆုံးသွားသော စာရင်းသွင်းမှုများကို ပယ်ဖျက်သည်။"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "%2$s မှ %1$s အော်ဒါပေးပို့ပေးမှုအတွက် ကျေးဇူးတင်ပါသည်။"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "သင့် %1$s မှ %2$s သို့ အော်ဒါပို့ဆောင်မှုအခြေအနေကို \"%3$s\" သို့ ပြောင်းလဲထားပါသည်။"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr ""
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgstr "အော်ဒါကို နောက်ဆုံးငွေပေးချေမှု မရရှိမီ ခေတ္တဆိုင်းငံ့ထားပါသည်။ ကြိုငွေပေးချေရန် ရွေးချယ်ထားပါက အော်ဒါ ID %1$s ကို ကိုးကား၍ ကျေးဇူးပြု၍ ငွေကို ကျွန်ုပ်တို့၏ ဘဏ်အကောင့်သို့ လွှဲပြောင်းပေးပို့ပါ။"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "သင့် %1$s မှ %2$s အော်ဒါအတွက် ပို့ဆောင်ထားသော ပက်ကေ့ဂျ်ကို ပို့ဆောင်၍ မရနိုင်ခဲ့ပါ။"
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "ငွေပေးချေမှုကို ပြန်လည်အသစ်မလုပ်နိုင်ခဲ့ပါ။"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "သင့်အော်ဒါ %1$s မှ %2$s အတွက် ပေးချေငွေကို ပြန်အမ်းပေးပြီးပါပြီ။"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "သင့်အော်ဒါ %1$s မှ %2$s သို့ ပေးချေမှုအခြေအနေကို \"%3$s\" သို့ ပြောင်းလဲထားပါသည်။"
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "ထုတ်ကုန်အတွက် စာရင်းသွင်းမှု သက်တမ်းကုန်ဆုံးသွားပါပြီ။"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
+msgstr[0] "သင့်လက်မှတ်၏တန်ဖိုးမှာ %1$s ဖြစ်ပါသည်။"
 
 msgid "Total"
-msgstr ""
+msgstr "စုစုပေါင်း"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "ရောင်းသူများထံ ငွေ လွှဲပြောင်းပေးခြင်း"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
-msgstr ""
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgstr "မှာယူထားသော ကုန်ပစ္စည်းများ၏ စျေးနှုန်းကို ကော်မရှင်နှင့် ကိုင်တွယ်ဆောင်ရွက်ခများအပါအဝင် ရောင်းသူများထံ လွှဲပြောင်းပေးသည်။"
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "ID \"%1$s\" ရှိ ဖောက်သည်အတွက် လက်ရှိလိပ်စာ ထည့်သွင်း၍ မရနိုင်ပါ။"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr ""
+msgstr "နည်းလမ်း \"%1$s\" ကို ခေါ်၍ မရနိုင်ပါ။"
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "ကုဒ် \"%1$s\" ဖြင့် ကက်တလော့ဂ်ကို တင်သွင်း၍ မရနိုင်ပါ: %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "ကုဒ် \"%1$s\" ဖြင့် ဖောက်သည်ကို တင်သွင်း၍ မရနိုင်ပါ: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "ကုဒ် \"%1$s\" ပါသော ထုတ်ကုန်ကို တင်သွင်း၍ မရနိုင်ပါ: %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "ကုဒ် \"%1$s\" ဖြင့် ပံ့ပိုးသူကို တင်သွင်း၍ မရနိုင်ပါ: %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "လျှော့စျေးလက်မှတ်"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "လျှော့စျေးကတ် %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "လက်မှတ်နှင့်ဆိုင်သော အီးမေးလ်များ"
 
 msgid "Watched products"
-msgstr ""
+msgstr "ကြည့်ရှုထားသော ထုတ်ကုန်များ"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr ""
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
+msgstr "ကျွန်ုပ်တို့ သင့်ငွေပေးချေမှုကို လက်ခံရရှိပြီး သင့်အော်ဒါကို ချက်ချင်း စီစဉ်ဆောင်ရွက်ပါမည်။"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "ကျွန်ုပ်တို့သည် %2$s မှ သင့်အော်ဒါ %1$s အတွက် ပြန်ပို့ထားသော ပက်ကေ့ဂျ်ကို လက်ခံရရှိပါသည်။"
 
 msgid "Y-m-d"
 msgstr "d/m/Y"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "သင်သည် ကျွန်ုပ်တို့၏ အွန်လိုင်းဆိုင်တွင် မည်သည့်အချိန်တွင်မဆို သင့်လက်မှတ်များကို အသုံးပြုနိုင်ပါသည်။"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "သင်သည် စာရင်းသွင်းမှုကို ဖျက်လိုက်ပါပြီ။"
 
 msgid "Your account"
-msgstr ""
+msgstr "သင့်အကောင့်"
 
 msgid "Your comment"
-msgstr ""
+msgstr "သင့်မှတ်ချက်"
 
 msgid "Your new account"
-msgstr ""
+msgstr "သင့်အကောင့်အသစ်"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "သင့်အော်ဒါ %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "သင့် %1$s မှ %2$s သို့ အော်ဒါ %1$s ကို ပို့ဆောင်ပြီးပါပြီ။"
 
 msgid "Your reference"
-msgstr ""
+msgstr "သင့်ရည်ညွှန်းချက်"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "သင့်ရည်ညွှန်းနံပါတ်"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "သင့်စာရင်းသွင်းမှု"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "သင့်လက်မှတ်"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "သင်ကြည့်ရှုထားသော ထုတ်ကုန်များ"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-catalog-sitemap-%d.xml"
 
 msgid "delivery"
-msgstr ""
+msgstr "ပို့ဆောင်ခြင်း"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "မှ %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "ဘီလ်လိပ်စာကဲ့သို့"
 
 msgid "payment"
-msgstr ""
+msgstr "ငွေပေးချေမှု"
 
 msgid "tax"
-msgstr ""
+msgstr "အခွန်"
 
 msgid "taxgst"
-msgstr ""
+msgstr "အခွန်(GST)"
 
 msgid "taxpst"
-msgstr ""
+msgstr "အခွန်ပေးဆောင်ခြင်း"

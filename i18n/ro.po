@@ -1,34 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# George Cojocaru, 2024
-# George Cojocaru, 2024
-# Yolo San, 2021
-# Yolo San, 2021
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
+"Last-Translator: Yolo San, 2021\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Yolo San, 2021\n"
-"Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -44,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -64,8 +66,7 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/item"
@@ -105,9 +106,7 @@ msgstr "Produs nr."
 msgid "Attribute import XML"
 msgstr "Importarea atributelor XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "Plățile autorizate ale comenzilor vor fi capturate după expediere sau după o perioadă de timp configurabilă"
 
 msgid "Batch update of payment/delivery status"
@@ -130,6 +129,14 @@ msgstr "Import de catalog XML"
 
 msgid "Catalog site map"
 msgstr "Catalog harta site-ului"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "Verificarea valorii „%1$s” („%2$s”) în raport cu „%3$s” a eșuat"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "S-au curățat %1$ clienți vechi"
 
 #, php-format
 msgid "Cleaned %1$s old products"
@@ -159,6 +166,9 @@ msgstr "Creează sugestii de produse cumpărate împreună"
 msgid "Customer account e-mails"
 msgstr "E-mailurile contului clientului"
 
+msgid "Customer import CSV"
+msgstr "Import clienți din fișier CSV"
+
 msgid "Customer import XML"
 msgstr "Import client XML"
 
@@ -180,9 +190,7 @@ msgstr "Stimata doamna %1$s %2$s"
 msgid "Dear customer"
 msgstr "Dragă client"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "Ștergeți comenzile neterminate și faceți din nou disponibile produsele și codurile de cupon ale acestora"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -245,6 +253,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr "Import finalizat de clienți de la \"%1$s\""
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Importul clienților din „%1$s” s-a finalizat (%2$d/%3$d)"
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr "S-a finalizat importul clienților din fișierul \"%1$s\""
 
@@ -291,6 +303,10 @@ msgstr "Import furnizor finalizat din fișierul \"%1$s\""
 msgid "Groups import XML"
 msgstr "Grupuri de import XML"
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "Etichetele HTML nu sunt permise în câmpul „%1$s”"
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Daca aveti intrebari, respundeti la acest e-mail"
 
@@ -305,6 +321,9 @@ msgstr "Importă categorii noi și actualizează categoriile existente din fiși
 
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "Importă coduri cupon noi și actualizează codurile cupon existente din fișiere CSV"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Importă clienți noi și actualizează clienții existenți din fișiere CSV"
 
 msgid "Imports new and updates existing customers from XML files"
 msgstr "Importă clienți noi și actualizează clienții existenți din fișiere XML"
@@ -370,6 +389,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr "Nume clasa nevalid \"%1$s\""
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Rânduri de clienți nevalide în timpul importului: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr "Mesaj invalid: %1$s"
 
@@ -413,6 +436,10 @@ msgstr "Nu s-a găsit coloana \"catalog.code\" în corespondența CSV"
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr "Nu s-a găsit coloana \"coupon.code.code\" în maparea CSV"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "Nu s-a găsit coloana „customer.code” în maparea CSV"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -506,8 +533,7 @@ msgstr "Elimină intrările expirate din cache"
 msgid "Removes the old baskets from the database"
 msgstr "Îndepărtează coșurile vechi din baza de date"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "Elimină înregistrările vechi din baza de date și le arhivează (opțional)"
 
 msgid "Removes unfinished orders"
@@ -686,31 +712,22 @@ msgstr "Import furnizor XML"
 msgid "Terminates expired subscriptions"
 msgstr "Termină abonamentele expirate"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Iti multumim pentru comanda %1$s de la %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Starea livrarii comenzii %1$s de la %2$s a fost modificata la “%3$s”."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "Comanda este in asteptare pana cand primim plata finala. Daca ati ales sa platiti in avans, va rugam sa transferati banii in contul nostru bancar cu ID-ul comenzii %1$s ca referinta."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Coletul pentru comanda %1$s de la %2$s nu a putut fi livrat."
@@ -723,12 +740,9 @@ msgstr "Plata nu a putut fi reînnoită"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Plata pentru comanda %1$s de la %2$s a fost rambursata."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Starea plății a comenzii dvs. %1$s din %2$s a fost schimbată în \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -747,9 +761,7 @@ msgstr "Total"
 msgid "Transfers money to vendors"
 msgstr "Transferă bani către vânzători"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr "Transferă prețul produselor comandate către vânzători incl. gestionarea comisiilor"
 
 #, php-format
@@ -763,6 +775,10 @@ msgstr "Imposibil de apelat metoda \"%1$s\""
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
 msgstr "Imposibilitatea de a importa catalogul cu codul \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Nu se poate importa clientul cu codul „%1$s”: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -785,14 +801,11 @@ msgstr "E-mailuri legate de vouchere"
 msgid "Watched products"
 msgstr "Produse urmarite"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "Am primit plata dvs. și ne vom ocupa imediat de comanda dvs."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Am primit coletul returnat pentru comanda dvs. %1$s din %2$s."
@@ -819,8 +832,7 @@ msgstr "Noul tau cont"
 msgid "Your order %1$s"
 msgstr "Comanda ta %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Comanda dvs. %1$s din %2$s a fost expediată."

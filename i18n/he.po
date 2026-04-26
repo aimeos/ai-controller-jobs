@@ -1,32 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# Aimeos, 2024
-# Aimeos, 2024
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: he\n"
+"Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
+"Last-Translator: Aimeos, 2024\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Aimeos, 2024\n"
-"Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: he\n"
-"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -42,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -62,8 +66,7 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "%1$s %2$s/פריט"
@@ -103,9 +106,7 @@ msgstr "סעיף מס."
 msgid "Attribute import XML"
 msgstr "ייבוא ​​תכונות XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "תשלומים מורשים של הזמנות ייקלטו לאחר שיגור או לאחר פרק זמן שניתן להגדרה"
 
 msgid "Batch update of payment/delivery status"
@@ -128,6 +129,14 @@ msgstr "ייבוא ​​קטלוג XML"
 
 msgid "Catalog site map"
 msgstr "מפת אתר קטלוג"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "השוואת הערך \"%1$s\" ל-\"%2$s\" מול \"%3$s\" נכשלה"
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "נוקו %1$s לקוחות ותיקים"
 
 #, php-format
 msgid "Cleaned %1$s old products"
@@ -157,6 +166,9 @@ msgstr "יוצר הצעות מוצרים שנרכשו ביחד"
 msgid "Customer account e-mails"
 msgstr "דואר אלקטרוני של חשבון לקוח"
 
+msgid "Customer import CSV"
+msgstr "ייבוא לקוחות מקובץ CSV"
+
 msgid "Customer import XML"
 msgstr "ייבוא ​​לקוח XML"
 
@@ -178,9 +190,7 @@ msgstr "גב' %1$s %2$s היקרה"
 msgid "Dear customer"
 msgstr "לקוח יקר"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "מוחק הזמנות שטרם הסתיימו והופך את המוצרים ואת קודי הקופון שלהן לזמינים שוב"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -243,6 +253,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr "ייבוא לקוחות הושלם מ-\"%1$s\""
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "הייבוא של לקוחות מ-\"%1$s\" הסתיים (%2$d מתוך %3$d)"
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr "ייבוא לקוחות הושלם מהקובץ \"%1$s\""
 
@@ -289,6 +303,10 @@ msgstr "סיום ייבוא ספקים מקובץ \"%1$s\""
 msgid "Groups import XML"
 msgstr "ייבוא קבוצות XML"
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "תגי HTML אינם מותרים בשדה \"%1$s\""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "אם יש לך שאלות, אנא השב לדוא\"ל זה"
 
@@ -303,6 +321,9 @@ msgstr "מייבא חדש ומעדכן קטגוריות קיימות מקובצ�
 
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "מייבא חדש ומעדכן קוד קופון קיים מקובצי CSV"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "מייבא לקוחות חדשים ומעדכן לקוחות קיימים מקבצי CSV"
 
 msgid "Imports new and updates existing customers from XML files"
 msgstr "מייבאת חדשים ומעדכנת לקוחות קיימים מקובצי XML"
@@ -368,6 +389,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr "שם מחלקה לא חוקי \"%1$s\""
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "שורות לקוחות לא חוקיות במהלך הייבוא: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr "הודעה לא חוקית: %1$s"
 
@@ -411,6 +436,10 @@ msgstr "לא נמצאה עמודת \"catalog.code\" במיפוי CSV"
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr "לא נמצא עמודה \"coupon.code.code\" במיפוי CSV"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "לא נמצא עמודה בשם \"customer.code\" במיפוי ה-CSV"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -504,8 +533,7 @@ msgstr "מסיר את הערכים שפג תוקפם מהמטמון"
 msgid "Removes the old baskets from the database"
 msgstr "מסיר את הסלים הישנים מהמאגר"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "מסיר את ערכי היומן הישנים ממסד הנתונים ומעביר אותם לארכיון (אופציונלי)"
 
 msgid "Removes unfinished orders"
@@ -684,31 +712,22 @@ msgstr "ייבוא ​​XML של ספקים"
 msgid "Terminates expired subscriptions"
 msgstr "מסיים מנויים שפג תוקפם"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "תודה על הזמנתך %1$s מ-%2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "סטטוס המשלוח של ההזמנה שלך %1$s מ-%2$s השתנה ל- \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "ההזמנה ממתינה עד שנקבל את התשלום הסופי. אם בחרת לשלם מראש, אנא העבר את הכסף לחשבון הבנק שלנו עם מזהה ההזמנה \"%1$s\" כעיון."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "לא ניתן היה לשלוח את החבילה עבור ההזמנה שלך %1$s מ-%2$s."
@@ -721,12 +740,9 @@ msgstr "לא ניתן היה לחדש את התשלום"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "התשלום עבור ההזמנה שלך %1$s מ-%2$s הוחזר."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "סטטוס התשלום של ההזמנה שלך %1$s מ-%2$s השתנה ל- \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -745,9 +761,7 @@ msgstr "סה\"כ"
 msgid "Transfers money to vendors"
 msgstr "מעביר כסף לספקים"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr "מעביר את מחיר המוצרים שהוזמנו לספקים כולל. "
 
 #, php-format
@@ -761,6 +775,10 @@ msgstr "לא ניתן לקרוא לשיטה \"%1$s\""
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
 msgstr "לא ניתן לייבא קטלוג עם הקוד \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "לא ניתן לייבא לקוח עם הקוד \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -783,14 +801,11 @@ msgstr "מיילים הקשורים לשוברים"
 msgid "Watched products"
 msgstr "מוצרים נצפו"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "קיבלנו את התשלום שלך, ונטפל בהזמנה שלך באופן מיידי."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "קיבלנו את החבילה שהוחזרה עבור ההזמנה שלך %1$s מ-%2$s."
@@ -817,8 +832,7 @@ msgstr "החשבון החדש שלך"
 msgid "Your order %1$s"
 msgstr "ההזמנה שלך %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "ההזמנה שלך %1$s מ-%2$s נשלחה."

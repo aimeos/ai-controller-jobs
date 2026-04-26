@@ -1,30 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: lb\n"
+"Language-Team: Luxembourgish (http://app.transifex.com/aimeos/aimeos-core/language/lb/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Luxembourgish (http://app.transifex.com/aimeos/aimeos-core/language/lb/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: lb\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -40,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s%3$s%4$s%5$s\n"
+"%6$s%7$s\n"
+"%8$s\n"
+"%9$s%10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -54,14 +60,13 @@ msgstr "%1$s%2$s Rabatt"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-Säitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-Säitemap-Index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/Stéck"
@@ -85,10 +90,10 @@ msgid "Account"
 msgstr "Benotzerkonto"
 
 msgid "All XML import"
-msgstr ""
+msgstr "All XML-Import"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "All Bestellungen ënnerleeën eise Bedéngungen a Konditiounen."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
@@ -99,745 +104,756 @@ msgid "Article no."
 msgstr "Artikel Nr."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Attribut import XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
-msgstr ""
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgstr "Genehmegt Bezuelungen vun Uerder ginn no der Verschéckung oder no enger konfiguréierbarer Zäit festgehalen."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Batch-Aktualiséierung vum Bezuelungs-/Liwwerstatus"
 
 msgid "Billing address"
 msgstr "Rechnungsadress"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Cachebotzung"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Erlaabt Bezuelungen festhalen"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Katalog-Import CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "Katalog-Import-XML"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Katalog-Säitemap"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "D'Prüfung vum Wäert \"%1$s\" géint \"%2$s\" mat \"%3$s\" ass gescheitert."
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "Gereinigt %1$s al Clienten"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Gereinigt %1$s al Produkter"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Reinigungsbassen"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Coupon-Code CSV importéieren"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Coupon-Coden"
 
 msgid "Coupons"
-msgstr ""
+msgstr "Kouponnen"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Erstellt eng Katalog-Sitemap fir Sichmotoren"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Erstellt eng Produktsitemap fir Sichmotoren"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Erstellt Produktvirschléi, déi zesumme kaaft ginn"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "E-Mailen vum Clientekonto"
+
+msgid "Customer import CSV"
+msgstr "Client-Import CSV"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Client-Import-XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Léif %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Léif Här %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Léif %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Léif Client"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
-msgstr ""
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgstr "Läscht onfäerdeg Uerder ewech a mécht hir Produkter an Couponcoden erëm zougänglech."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Läscht onbezuelte Uerder, fir d'Datenbank propper ze halen."
 
 msgid "Delivery address"
-msgstr ""
+msgstr "Liwwerungsadress"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Liwwerung bannent"
 
 msgid "Details"
-msgstr ""
+msgstr "Detailer"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Féiert all XML-Importer aus a baut den Index nei op."
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Zuelungs- oder Liwwerservicer, déi Batch-Updates benotzen"
 
 #, php-format
 msgid "Expanding \"%1$s\" node failed"
-msgstr ""
+msgstr "D'Erweiderung vum \"%1$s\"-Knoten ass gescheitert."
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Exportéiert all verfügbar Produkter"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Exportbestellungen an eng CSV-Datei"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Exportéiert Abonnemente an eng CSV-Datei"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Attribut-Import vun \"%1$s\" ofgeschloss"
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Attributimport aus der Datei \"%1$s\" fäerdeg"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "Katalogimport vun \"%1$s\" fäerdeg"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Katalogimport vun \"%1$s\" (%2$d/%3$d) ofgeschloss"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Katalogimport aus der Datei \"%1$s\" fäerdeg"
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Coupon-/Code-Import vun \"%1$s\" ofgeschloss"
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "Clientimport vun \"%1$s\" ofgeschloss"
+
+#, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Clientimport vun \"%1$s\" ofgeschloss (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Clientimport aus der Datei \"%1$s\" ofgeschloss"
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "Gruppimport vun \"%1$s\" fäerdeg"
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "Gruppimport aus der Datei \"%1$s\" fäerdeg"
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Import vum fäerdege Produkt aus \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Fäerdegt Produktimport aus \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Fäerdegt Produkt importéieren aus der Datei \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Import vun de Lagerbestänn aus \"%1$s\" fäerdeg"
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Stockimport aus der Datei \"%1$s\" fäerdeg"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "Import vun de Liwweranten aus \"%1$s\" ofgeschloss"
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Fäerdeg Import vum Liwwerant aus \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Lieferantenimport aus der Datei \"%1$s\" ofgeschloss"
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Gruppen XML importéieren"
+
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "HTML-Tags sinn am Feld \"%1$s\" net erlaabt."
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "Wann Dir Froen hutt, äntwert w.e.g. op dës E-Mail."
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Importéiert nei Attributer a aktualiséiert bestehend Attributer aus XML-Dateien."
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Importéiert nei Kategorien a aktualiséiert bestehend Kategorien aus CSV-Dateien."
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Importéiert nei Kategorien a aktualiséiert bestehend Kategorien aus XML-Dateien."
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Importéiert nei a aktualiséiert bestehend Couponcode aus CSV-Dateien."
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Importéiert nei a aktualiséiert bestehend Clienten aus CSV-Dateien."
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Importéiert nei a aktualiséiert bestehend Clienten aus XML-Dateien."
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Importéiert nei Gruppen a aktualiséiert bestehend Gruppen aus XML-Dateien."
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Importéiert nei Produkter a aktualiséiert bestehend Produkter aus CSV-Dateien."
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Importéiert nei Produkter a aktualiséiert bestehend Produkter aus XML-Dateien."
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Importéiert nei Lagerbestänn a aktualiséiert bestehend Lagerbestänn aus CSV-Dateien."
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Importéiert nei Liwweranten a aktualiséiert bestehend Liwweranten aus CSV-Dateien."
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Importéiert nei Liwweranten a aktualiséiert bestehend Liwweranten aus XML-Dateien."
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Inkl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Inkl. %1$s%% MwSt."
 
 msgid "Included rebates"
-msgstr ""
+msgstr "Abzuchräbater abegraff"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Indexoptimiséierung"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Index nei opbauen"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Onvalid JSON-kodéiert Noriicht: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Invalid Katalogzeilen während dem Import: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr ""
+msgstr "Onvalid Zeechen am Klassennumm \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Onvalid Zeechen am Prozessornumm \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Onvalidéiert Zeechen am Prozessortyp \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Onvalide Klassennumm \"%1$s\""
+
+#, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Onvalidé Clientelinnen bei der Importatioun: %1$d"
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Onvalidéiert Noriicht: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Onvalid Produktlinnen während dem Import: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Onvalidéiert Liwwerantenlinnen während dem Import: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Onvalide Typ \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
 msgid "Invoice"
-msgstr ""
+msgstr "Rechnung"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Rechnung %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Wéi vun Iech aginn"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Logbotzung"
 
 msgid "Login"
-msgstr ""
+msgstr "Aschreiwen"
 
 msgid "Name"
-msgstr ""
+msgstr "Numm"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Keng \"catalog.code\"-Kolonn an der CSV-Mapping fonnt"
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Keng \"coupon.code.code\"-Spalt an der CSV-Mapping fonnt"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "Keng \"customer.code\"-Kolonn an der CSV-Mapping fonnt."
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Keng \"product.code\"-Kolonn an der CSV-Mapping fonnt"
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "Keng \"supplier.code\"-Kolonn an der CSV-Mapping fonnt"
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
-msgstr ""
+msgstr "Keng XML-Datei \"%1$s\" fonnt"
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "Keng Adress mat E-Mail fonnt an der Bestellung mat der ID \"%1$s\""
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "Eent oder méi Produkter, déi Dir verfollegt, goufen aktualiséiert."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimiséiert den Index fir Produkter méi séier ze sichen."
 
 msgid "Order date"
-msgstr ""
+msgstr "Bestelldatum"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Bestellung vun Liwwerungs-E-Mailen"
 
 msgid "Order details"
-msgstr ""
+msgstr "Bestelldetailer"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Bestellung CSV exportéieren"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Bestellung bezunn E-Mailen iwwert d'Bezuelung"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Bestellungsstatus-Import CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "Elterknoten fir de Code \"%1$s\" net fonnt"
 
 msgid "Password"
-msgstr ""
+msgstr "Passwuert"
 
 msgid "Price"
 msgstr "Price"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Prozessbestellliwwerungsdéngschter"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Abonnemente initialiséieren"
 
 msgid "Product export"
-msgstr ""
+msgstr "Produkt-Export"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Produktimport CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "Produkt-Import-XML"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "Produkt-Notifikatiouns-E-Mailen"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Produkt-Säitemap"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Zesummen kaafte Produkter"
 
 msgid "Qty"
-msgstr ""
+msgstr "Quantitéit"
 
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitéit"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Baut den Index fir d'Sich no Produkter nei op."
 
 msgid "Reference"
-msgstr ""
+msgstr "Referenz"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Entfernt déi ofgelafene Einträg aus dem Cache"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Ewechhëlt déi al Kuerf aus der Datebank"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgid "Removes the old log entries from the database and archives them (optional)"
+msgstr "Entfernt déi al Log-Einträg aus der Datebank a archivéiert se (optional)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Ewechhëlt onofgeschloss Uerder"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Ewechhëlt onbezuelte Uerder"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Erneiert d'Abonnemente um nächsten Datum."
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "Erfuerderlech Spalt \"%1$s\" net fonnt fir de Code \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "D'néideg Konfiguratioun fir \"%1$s\" feelt."
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "De erfuerderleche Mapping-Schlëssel \"%1$s\" feelt oder enthält keng Arrays."
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Produktsbiller neeskaléieren"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Skalariséiert d'Produktbiller op déi nei Gréissten."
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "D'Skalariséieren vum Bild \"%1$s\" ass gescheitert: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "D'Skalen vum Medienelement \"%1$s\" ass gescheitert: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Schéckt E-Mailen fir nei Clientekonten"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Schéckt E-Mailen fir iwwerwaachte Produkter."
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Schéckt E-Mailen mat Bestellbestätegung oder Zuelungsstatus-Updates"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Schéckt E-Mailen mat Updates iwwer de Liwwerstatus vun der Bestellung"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Schéckt bezuelte Uerder un d'ERP-System oder un de Logistikpartner"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Schéckt d'E-Mail mam Gutschein un de Client."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "E-Mail vum Clientekonto un \"%1$s\" geschéckt"
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "E-Mail fir d'Liwwerung vun der Bestellung \"%1$s\" mam Status \"%2$s\" verschécken."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "E-Mail fir d'Bezuelung vun der Bestellung \"%1$s\" mam Status \"%2$s\" verschéckt."
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "E-Mail mat Produktnotifikatioun un \"%1$s\" geschéckt."
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "Gschéckt Gutschein-E-Mailen fir d'Bestellung ID \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaang Attribut-Import vun \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Ugefaang Attributimport aus der Datei \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen den Katalogimport vun \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen den Katalogimport aus der Datei \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaang den Import vum Coupon-Code aus \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaang de Coupon-/Code-Import vun \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaang de Client-Import vun \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen de Clientimport aus der Datei \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "Gruppimport vun \"%1$s\" ugefaangen"
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "Ugefaang Gruppimport aus der Datei \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen den Produktimport vun \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen den Produktimport aus der Datei \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen mat dem Import vum Lager aus \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "Ugefaang mat dem Import vum Lagerbestand aus der Datei \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen den Import vun de Liwweranten aus \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "Ugefaangen den Import vun de Liwweranten aus der Datei \"%1$s\""
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Status-Import fir Uerder aus enger CSV-Datei"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Aktien-Import CSV"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "Zwëschenzomm"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Abonnement-Export CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Enn vum Abonnements-Prozess"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Abonnementprozess erneieren"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Abo-Prozess ufänken"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Abonnementprodukt"
 
 msgid "Sum"
-msgstr ""
+msgstr "Zomm"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Liwweranten-Import CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Liwwerant-Import-XML"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Beendegt ofgelafene Abonnemente"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "Merci fir Är Bestellung %1$s bei %2$."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "De Liwwerstatus vun Ärer Bestellung %1$s bei %2$s gouf op \"%3$s\" geännert."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr ""
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgstr "D'Bestellung bleift ausstehend, bis mir d'endgülteg Bezuelung kréien. Wann Dir Iech fir eng Virbezuelung entscheet hutt, iwwerdréit w.e.g. d'Geld op eise Bankkont mat der Bestell-ID %1$s als Referenz."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "D'Päck fir Är Bestellung %1$s bei %2$s konnt net geliwwert ginn."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "D'Bezuelung konnt net erneiert ginn."
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "D'Bezuelung fir Är Bestellung %1$s vun %2$s gouf zréckbezuelt."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "De Bezuelungsstatus vun Ärer Bestellung %1$s vun %2$s gouf op \"%3$s\" geännert."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "D'Abonnement op de Produkt ass eriwwer."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "De Wäert vun Ärem Gutschein ass %1$s"
+msgstr[1] "De Wäert vun Ären Gutschäiner ass %1$s"
 
 msgid "Total"
-msgstr ""
+msgstr "Gesamt"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Iwwerweist Suen un d'Liwweranten"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
-msgstr ""
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgstr "Iwwerdréit de Präis vun de bestallten Produkter un d'Liwweranten, inklusiv Kommissiounsbearbechtung."
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "Keng aktuell Adress fir de Client mat der ID \"%1$s\" derbäisetzen."
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr ""
+msgstr "Kann d'Method \"%1$s\" net uruffen"
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Kënnt de Katalog mam Code \"%1$s\" net importéieren: %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Kënnt de Client mam Code \"%1$s\" net importéieren: %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Kann de Produkt mam Code \"%1$s\" net importéieren: %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Kann de Liwwerant mam Code \"%1$s\" net importéieren: %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Gutschein"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Gutschein %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "E-Mailen am Zesummenhang mat Gutscheiner"
 
 msgid "Watched products"
-msgstr ""
+msgstr "Ugekuckte Produkter"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr ""
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
+msgstr "Mir hu Är Bezuelung kritt a këmmeren eis direkt ëm Är Bestellung."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "Mir hu d'zréckgeschéckte Päck fir Är Bestellung %1$s bei %2$s kritt."
 
 msgid "Y-m-d"
 msgstr "d.m.Y"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Dir kënnt Är Gutscheiner zu all Moment an eisem Online-Shop benotzen."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Du hues d'Abonnement annuléiert."
 
 msgid "Your account"
-msgstr ""
+msgstr "Äre Kont"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Äre Kommentar"
 
 msgid "Your new account"
-msgstr ""
+msgstr "Äre neie Kont"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "Äre %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "Äre %1$s-Bestellung vum %2$s gouf verschéckt."
 
 msgid "Your reference"
-msgstr ""
+msgstr "Är Referenz"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Är Referenznummer"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Äre Abonnement"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Äre Gutschein"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "Är gekuckte Produkter"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-katalog-sitemap-d.xml"
 
 msgid "delivery"
 msgstr "Liwwerung"
@@ -854,10 +870,10 @@ msgid "payment"
 msgstr "Bezuelung"
 
 msgid "tax"
-msgstr ""
+msgstr "Steier"
 
 msgid "taxgst"
-msgstr ""
+msgstr "Steier/MwSt."
 
 msgid "taxpst"
-msgstr ""
+msgstr "Steierpst"

@@ -1,30 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ca\n"
+"Language-Team: Catalan (http://app.transifex.com/aimeos/aimeos-core/language/ca/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Catalan (http://app.transifex.com/aimeos/aimeos-core/language/ca/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -40,346 +31,382 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
+""
 msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s de descompte"
 
 #, php-format
 msgid "%s-sitemap-%d.xml"
-msgstr ""
+msgstr "%s-sitemap-%d.xml"
 
 #, php-format
 msgid "%s-sitemap-index.xml"
-msgstr ""
+msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr ""
+msgstr "+ %1$s %2$s per article"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+ Costos de pagament"
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "+ Enviament"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-1$s%%"
 
 msgid "Account"
 msgstr "Compte"
 
 msgid "All XML import"
-msgstr ""
+msgstr "Tota importació XML"
 
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "Totes les comandes estan subjectes als nostres termes i condicions."
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2025
 msgid "An account has been created for you."
-msgstr ""
+msgstr "S'ha creat un compte per a tu."
 
 msgid "Article no."
-msgstr ""
+msgstr "Article núm."
 
 msgid "Attribute import XML"
-msgstr ""
+msgstr "Atribut import XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
-msgstr ""
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgstr "Els pagaments autoritzats de les comandes es capturaran després de l'enviament o després d'un període de temps configurable."
 
 msgid "Batch update of payment/delivery status"
-msgstr ""
+msgstr "Actualització massiva de l'estat del pagament/lliurament"
 
 msgid "Billing address"
 msgstr "Adreça de facturació"
 
 msgid "Cache cleanup"
-msgstr ""
+msgstr "Neteja de la memòria cau"
 
 msgid "Capture authorized payments"
-msgstr ""
+msgstr "Registrar els pagaments autoritzats"
 
 msgid "Catalog import CSV"
-msgstr ""
+msgstr "Importació de catàleg CSV"
 
 msgid "Catalog import XML"
-msgstr ""
+msgstr "XML d'importació de catàleg"
 
 msgid "Catalog site map"
-msgstr ""
+msgstr "Mapa del lloc del catàleg"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "La comprovació del valor de \"%1$s\" amb \"%2$s\" contra \"%3$s\" ha fallat."
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "Netegat %1$s clients antics"
 
 #, php-format
 msgid "Cleaned %1$s old products"
-msgstr ""
+msgstr "Netejat %1$s productes antics"
 
 msgid "Cleanup baskets"
-msgstr ""
+msgstr "Cistelles de neteja"
 
 msgid "Coupon code import CSV"
-msgstr ""
+msgstr "Codi de cupó importació CSV"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Còdis de cupó"
 
 msgid "Coupons"
-msgstr ""
+msgstr "Cupons"
 
 msgid "Creates a catalog site map for search engines"
-msgstr ""
+msgstr "Crea un mapa del lloc per a motors de cerca"
 
 msgid "Creates a product site map for search engines"
-msgstr ""
+msgstr "Crea un mapa del lloc del producte per als motors de cerca"
 
 msgid "Creates bought together product suggestions"
-msgstr ""
+msgstr "Crea suggeriments de productes comprats junts"
 
 msgid "Customer account e-mails"
-msgstr ""
+msgstr "Correus electrònics del compte del client"
+
+msgid "Customer import CSV"
+msgstr "Importació de clients CSV"
 
 msgid "Customer import XML"
-msgstr ""
+msgstr "Importació de clients XML"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Benvolguts %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Benvolgut Sr. %1$s %2$s"
 
 #. / E-mail intro with first name (%1$s) and last name (%2$s)
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Benvolguda Sra. %1$s %2$s"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Benvolgut client"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
-msgstr ""
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgstr "Elimina les comandes inacabades i torna a posar a disposició els seus productes i codis de cupó."
 
 msgid "Deletes unpaid orders to keep the database clean"
-msgstr ""
+msgstr "Elimina les comandes pendents de pagament per mantenir la base de dades neta."
 
 msgid "Delivery address"
 msgstr "Adreça de lliurament"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Entrega en"
 
 msgid "Details"
-msgstr ""
+msgstr "Detalls"
 
 msgid "Executes all XML importers and rebuild the index"
-msgstr ""
+msgstr "Executa tots els importadors XML i reconstrueix l'índex"
 
 msgid "Executes payment or delivery service providers that uses batch updates"
-msgstr ""
+msgstr "Proveïdors de serveis de pagament o de lliurament que utilitzen actualitzacions per lots"
 
 #, php-format
 msgid "Expanding \"%1$s\" node failed"
-msgstr ""
+msgstr "L'expansió del node \"%1$s\" ha fallat"
 
 msgid "Exports all available products"
-msgstr ""
+msgstr "Exporta tots els productes disponibles"
 
 msgid "Exports orders to CSV file"
-msgstr ""
+msgstr "Comandes d'exportació a un fitxer CSV"
 
 msgid "Exports subscriptions to CSV file"
-msgstr ""
+msgstr "Exporta subscripcions a un fitxer CSV"
 
 #, php-format
 msgid "Finished attribute import from \"%1$s\""
-msgstr ""
+msgstr "Importació d'atributs completada des de \"%1$s\""
 
 #, php-format
 msgid "Finished attribute import from file \"%1$s\""
-msgstr ""
+msgstr "Importació d'atributs des del fitxer \"%1$s\" completada"
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\""
-msgstr ""
+msgstr "S'ha completat la importació del catàleg de \"%1$s\""
 
 #, php-format
 msgid "Finished catalog import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "S'ha completat la importació del catàleg de \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished catalog import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha completat la importació del catàleg del fitxer \"%1$s\""
 
 #, php-format
 msgid "Finished coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "Importació de cupons/còdis finalitzada des de \"%1$s\""
 
 #, php-format
 msgid "Finished customer import from \"%1$s\""
-msgstr ""
+msgstr "S'ha completat la importació de clients de \"%1$s\""
+
+#, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "S'ha completat la importació de clients de \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished customer import from file \"%1$s\""
-msgstr ""
+msgstr "Finalitzada la importació de clients des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Finished group import from \"%1$s\""
-msgstr ""
+msgstr "S'ha completat la importació del grup des de \"%1$s\""
 
 #, php-format
 msgid "Finished group import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha completat la importació de grups des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\""
-msgstr ""
+msgstr "Importació de producte acabat des de \"%1$s\""
 
 #, php-format
 msgid "Finished product import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "Importació de producte acabat des de \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished product import from file \"%1$s\""
-msgstr ""
+msgstr "Importació de producte acabat des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from \"%1$s\""
-msgstr ""
+msgstr "Importació de lot acabada des de \"%1$s\""
 
 #, php-format
 msgid "Finished stock import from file \"%1$s\""
-msgstr ""
+msgstr "Finalitzada la importació de l'inventari des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\""
-msgstr ""
+msgstr "S'ha completat la importació de proveïdors de \"%1$s\""
 
 #, php-format
 msgid "Finished supplier import from \"%1$s\" (%2$d/%3$d)"
-msgstr ""
+msgstr "S'ha completat la importació de proveïdors de \"%1$s\" (%2$d/%3$d)"
 
 #, php-format
 msgid "Finished supplier import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha completat la importació de proveïdors des del fitxer \"%1$s\""
 
 msgid "Groups import XML"
-msgstr ""
+msgstr "Grups importen XML"
+
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "No es permeten etiquetes HTML al camp \"%1$s\"."
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr ""
+msgstr "Si teniu cap pregunta, si us plau, responeu a aquest correu electrònic."
 
 msgid "Imports new and updates existing attributes from XML files"
-msgstr ""
+msgstr "Importa atributs nous i actualitza els existents des de fitxers XML."
 
 msgid "Imports new and updates existing categories from CSV files"
-msgstr ""
+msgstr "Importa categories noves i actualitza les existents des de fitxers CSV."
 
 msgid "Imports new and updates existing categories from XML files"
-msgstr ""
+msgstr "Importa categories noves i actualitza les existents des de fitxers XML."
 
 msgid "Imports new and updates existing coupon code from CSV files"
-msgstr ""
+msgstr "Importa codis de cupó nous i actualitza els existents des de fitxers CSV."
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Importa clients nous i actualitza els existents des de fitxers CSV"
 
 msgid "Imports new and updates existing customers from XML files"
-msgstr ""
+msgstr "Importa clients nous i actualitza els existents a partir de fitxers XML."
 
 msgid "Imports new and updates existing groups from XML files"
-msgstr ""
+msgstr "Importa grups nous i actualitza els existents des de fitxers XML."
 
 msgid "Imports new and updates existing products from CSV files"
-msgstr ""
+msgstr "Importa productes nous i actualitza els existents des de fitxers CSV."
 
 msgid "Imports new and updates existing products from XML files"
-msgstr ""
+msgstr "Importa productes nous i actualitza els existents a partir de fitxers XML."
 
 msgid "Imports new and updates existing stocks from CSV files"
-msgstr ""
+msgstr "Importa estocs nous i actualitza els existents a partir de fitxers CSV."
 
 msgid "Imports new and updates existing suppliers from CSV files"
-msgstr ""
+msgstr "Importa proveïdors nous i actualitza els existents des de fitxers CSV."
 
 msgid "Imports new and updates existing suppliers from XML files"
-msgstr ""
+msgstr "Importa proveïdors nous i actualitza els existents des de fitxers XML."
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Incl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Incl. %1$s%% IVA"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "Rebuts inclosos"
 
 msgid "Index optimization"
-msgstr ""
+msgstr "Optimització d'índexs"
 
 msgid "Index rebuild"
-msgstr ""
+msgstr "Reconstrucció d'índex"
 
 #, php-format
 msgid "Invalid JSON encode message: %1$s"
-msgstr ""
+msgstr "Missatge d'encodificació JSON invàlid: %1$s"
 
 #, php-format
 msgid "Invalid catalog lines during import: %1$d"
-msgstr ""
+msgstr "Línies de catàleg invàlides durant la importació: %1$d"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr ""
+msgstr "Caràcters invàlids en el nom de classe \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor name \"%1$s\""
-msgstr ""
+msgstr "Caràcters invàlids en el nom del processador \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in processor type \"%1$s\""
-msgstr ""
+msgstr "Caràcters invàlids en el tipus de processador \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Nom de classe invàlid \"%1$s\""
+
+#, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Línies de client invàlides durant la importació: %1$d"
 
 #, php-format
 msgid "Invalid message: %1$s"
-msgstr ""
+msgstr "Missatge invàlid: %1$s"
 
 #, php-format
 msgid "Invalid product lines during import: %1$d"
-msgstr ""
+msgstr "Línies de producte invàlides durant la importació: %1$d"
 
 #, php-format
 msgid "Invalid supplier lines during import: %1$d"
-msgstr ""
+msgstr "Línies de proveïdor invàlides durant la importació: %1$d"
 
 #, php-format
 msgid "Invalid type \"%1$s\" (%2$s)"
-msgstr ""
+msgstr "Tipus invàlid \"%1$s\" (%2$s)"
 
 #. //wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 #. ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
@@ -388,71 +415,75 @@ msgstr "Factura"
 
 #, php-format
 msgid "Invoice %1$s"
-msgstr ""
+msgstr "Factura %1$s"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Com introduït per tu"
 
 msgid "Log cleanup"
-msgstr ""
+msgstr "Neteja del registre"
 
 msgid "Login"
-msgstr ""
+msgstr "Inicieu la sessió"
 
 msgid "Name"
 msgstr "Nom"
 
 #, php-format
 msgid "No \"catalog.code\" column in CSV mapping found"
-msgstr ""
+msgstr "No s'ha trobat cap columna \"catalog.code\" en la correspondència CSV."
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
-msgstr ""
+msgstr "No s'ha trobat cap columna \"coupon.code.code\" en la correspondència CSV."
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "No s'ha trobat cap columna \"customer.code\" en la correspondència CSV."
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
-msgstr ""
+msgstr "No s'ha trobat cap columna \"product.code\" en la correspondència CSV."
 
 #, php-format
 msgid "No \"supplier.code\" column in CSV mapping found"
-msgstr ""
+msgstr "No s'ha trobat cap columna \"supplier.code\" en la correspondència CSV."
 
 #, php-format
 msgid "No XML file \"%1$s\" found"
-msgstr ""
+msgstr "No s'ha trobat cap fitxer XML \"%1$s\""
 
 #, php-format
 msgid "No address with e-mail found in order with ID \"%1$s\""
-msgstr ""
+msgstr "No s'ha trobat cap adreça de correu electrònic a la comanda amb ID \"%1$s\""
 
 msgid "One or more products you are watching have been updated."
-msgstr ""
+msgstr "Un o més productes que estàs consultant s'han actualitzat."
 
 msgid "Optimizes the index for searching products faster"
-msgstr ""
+msgstr "Optimitza l'índex per a cercar productes més ràpidament."
 
 msgid "Order date"
-msgstr ""
+msgstr "Data de la comanda"
 
 msgid "Order delivery related e-mails"
-msgstr ""
+msgstr "Ordre de correus electrònics relacionats amb la lliuració"
 
 msgid "Order details"
-msgstr ""
+msgstr "Detalls de la comanda"
 
 msgid "Order export CSV"
-msgstr ""
+msgstr "Exporta com a CSV"
 
 msgid "Order payment related e-mails"
-msgstr ""
+msgstr "Sol·licitar els correus electrònics relacionats amb el pagament"
 
 msgid "Order status import CSV"
-msgstr ""
+msgstr "Estat de la comanda importació CSV"
 
 #, php-format
 msgid "Parent node for code \"%1$s\" not found"
-msgstr ""
+msgstr "No s'ha trobat el node pare del codi \"%1$s\""
 
 msgid "Password"
 msgstr "Contrasenya"
@@ -461,403 +492,388 @@ msgid "Price"
 msgstr "Preu"
 
 msgid "Process order delivery services"
-msgstr ""
+msgstr "Serveis de lliurament d'ordres de procés"
 
 msgid "Process subscriptions initially"
-msgstr ""
+msgstr "Processar subscripcions inicialment"
 
 msgid "Product export"
-msgstr ""
+msgstr "Exportació de producte"
 
 msgid "Product import CSV"
-msgstr ""
+msgstr "Importació de producte CSV"
 
 msgid "Product import XML"
-msgstr ""
+msgstr "XML d'importació de producte"
 
 msgid "Product notification e-mails"
-msgstr ""
+msgstr "Correus electrònics de notificació de producte"
 
 msgid "Product site map"
-msgstr ""
+msgstr "Mapa del lloc del producte"
 
 msgid "Products bought together"
-msgstr ""
+msgstr "Productes comprats junts"
 
 msgid "Qty"
-msgstr ""
+msgstr "Quantitat"
 
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitat"
 
 msgid "Rebuilds the index for searching products"
-msgstr ""
+msgstr "Reconstrueix l'índex per a la cerca de productes"
 
 msgid "Reference"
-msgstr ""
+msgstr "Referència"
 
 msgid "Removes the expired entries from the cache"
-msgstr ""
+msgstr "Elimina les entrades caducades de la memòria cau"
 
 msgid "Removes the old baskets from the database"
-msgstr ""
+msgstr "Elimina les cistelles antigues de la base de dades"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
-msgstr ""
+msgid "Removes the old log entries from the database and archives them (optional)"
+msgstr "Elimina les entrades antigues del registre de la base de dades i les arxiva (opcional)"
 
 msgid "Removes unfinished orders"
-msgstr ""
+msgstr "Elimina les comandes pendents"
 
 msgid "Removes unpaid orders"
-msgstr ""
+msgstr "Elimina les ordres no pagades"
 
 msgid "Renews subscriptions at next date"
-msgstr ""
+msgstr "Renova les subscripcions a la propera data"
 
 #, php-format
 msgid "Required column \"%1$s\" not found for code \"%2$s\""
-msgstr ""
+msgstr "No s'ha trobat la columna requerida \"%1$s\" per al codi \"%2$s\""
 
 #, php-format
 msgid "Required configuration for \"%1$s\" is missing"
-msgstr ""
+msgstr "Falta la configuració requerida per a \"%1$s\"."
 
 #, php-format
 msgid "Required mapping key \"%1$s\" is missing or contains no array"
-msgstr ""
+msgstr "La clau de mapeig requerida \"%1$s\" falta o no conté cap matriu"
 
 msgid "Rescale product images"
-msgstr ""
+msgstr "Redimensionar imatges de producte"
 
 msgid "Rescales product images to the new sizes"
-msgstr ""
+msgstr "Escala les imatges dels productes a les noves mides."
 
 #, php-format
 msgid "Scaling image \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "Escalament de la imatge \"%1$s\" fallat: %2$s"
 
 #, php-format
 msgid "Scaling media item \"%1$s\" failed: %2$s"
-msgstr ""
+msgstr "L'escala de l'element de mitjà \"%1$s\" ha fallat: %2$s"
 
 msgid "Sends e-mails for new customer accounts"
-msgstr ""
+msgstr "Envia correus electrònics per a nous comptes de client"
 
 msgid "Sends e-mails for watched products"
-msgstr ""
+msgstr "Envia correus electrònics dels productes vigilats"
 
 msgid "Sends order confirmation or payment status update e-mails"
-msgstr ""
+msgstr "Envia correus electrònics de confirmació de comanda o d'actualització de l'estat del pagament"
 
 msgid "Sends order delivery status update e-mails"
-msgstr ""
+msgstr "Envia correus electrònics amb actualitzacions de l'estat de l'enviament de la comanda"
 
 msgid "Sends paid orders to the ERP system or logistic partner"
-msgstr ""
+msgstr "Envia les comandes pagades al sistema ERP o al soci logístic"
 
 msgid "Sends the e-mail with the voucher to the customer"
-msgstr ""
+msgstr "Envia el correu electrònic amb el cupó al client."
 
 #, php-format
 msgid "Sent customer account e-mail to \"%1$s\""
-msgstr ""
+msgstr "S'ha enviat un correu electrònic al compte del client a \"%1$s\""
 
 #, php-format
 msgid "Sent order delivery e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "S'ha enviat un correu electrònic d'entrega per a la comanda \"%1$s\" i l'estat \"%2$s\"."
 
 #, php-format
 msgid "Sent order payment e-mail for order \"%1$s\" and status \"%2$s\""
-msgstr ""
+msgstr "S'ha enviat un correu electrònic de pagament de comanda per a la comanda \"%1$s\" i l'estat \"%2$s\""
 
 #, php-format
 msgid "Sent product notification e-mail to \"%1$s\""
-msgstr ""
+msgstr "S'ha enviat un correu electrònic de notificació de producte a \"%1$s\""
 
 #, php-format
 msgid "Sent voucher e-mails for order ID \"%1$s\""
-msgstr ""
+msgstr "S'han enviat correus electrònics amb vals per a la comanda amb ID \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de l'atribut des de \"%1$s\""
 
 #, php-format
 msgid "Started attribute import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de l'atribut des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació del catàleg de \"%1$s\""
 
 #, php-format
 msgid "Started catalog import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació del catàleg des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Started coupon code import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació del codi de cupó des de \"%1$s\""
 
 #, php-format
 msgid "Started coupon/code import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de cupons/còdigs des de \"%1$s\""
 
 #, php-format
 msgid "Started customer import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de clients de \"%1$s\""
 
 #, php-format
 msgid "Started customer import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de clients des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Started group import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de grups des de \"%1$s\""
 
 #, php-format
 msgid "Started group import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de grups des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Started product import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació del producte des de \"%1$s\""
 
 #, php-format
 msgid "Started product import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de producte des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Started stock import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació d'estoc des de \"%1$s\""
 
 #, php-format
 msgid "Started stock import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació d'accions des del fitxer \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de proveïdors des de \"%1$s\""
 
 #, php-format
 msgid "Started supplier import from file \"%1$s\""
-msgstr ""
+msgstr "S'ha iniciat la importació de proveïdors des del fitxer \"%1$s\""
 
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 msgid "Status import for orders from CSV file"
-msgstr ""
+msgstr "Importació d'estatus per a comandes des d'un fitxer CSV"
 
 msgid "Stock import CSV"
-msgstr ""
+msgstr "Importació d'accions CSV"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "Subtotal"
 
 msgid "Subscription export CSV"
-msgstr ""
+msgstr "Exportació de subscripcions CSV"
 
 msgid "Subscription process end"
-msgstr ""
+msgstr "Fi del procés de subscripció"
 
 msgid "Subscription process renew"
-msgstr ""
+msgstr "Renovar el procés de subscripció"
 
 msgid "Subscription process start"
-msgstr ""
+msgstr "Inici del procés de subscripció"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Producte de subscripció"
 
 msgid "Sum"
-msgstr ""
+msgstr "Suma"
 
 msgid "Supplier import CSV"
-msgstr ""
+msgstr "Importació de proveïdors CSV"
 
 msgid "Supplier import XML"
-msgstr ""
+msgstr "Importació de XML de proveïdor"
 
 msgid "Terminates expired subscriptions"
-msgstr ""
+msgstr "Finalitza les subscripcions caducades"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr ""
+msgstr "Gràcies per la vostra comanda %1$s de %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "L'estat de lliurament de la teva comanda %1$s de %2$s s'ha canviat a \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr ""
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgstr "La comanda està pendent fins que rebem el pagament final. Si heu optat per pagar per avançat, si us plau, transferiu els diners al nostre compte bancari amb l'ID de comanda %1$s com a referència."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "El paquet de la vostra comanda %1$s de %2$s no s'ha pogut lliurar."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "El pagament no es va poder renovar"
 
 #. / Payment e-mail intro with order ID (%1$s) and order date (%2$s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "El pagament de la teva comanda %1$s de %2$s s'ha reemborsat."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr ""
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgstr "L'estat del pagament de la teva comanda %1$s de %2$s s'ha canviat a \"%3$s\"."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "La subscripció al producte ha finalitzat"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El valor del teu cupó és %1$s"
+msgstr[1] "El valor dels teus cupons és %1$s"
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Transfers money to vendors"
-msgstr ""
+msgstr "Transferència de diners als proveïdors"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
-msgstr ""
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgstr "Transfereix el preu dels productes demanats als proveïdors, incloent-hi la comissió de gestió."
 
 #, php-format
 msgid "Unable to add current address for customer with ID \"%1$s\""
-msgstr ""
+msgstr "No es pot afegir l'adreça actual del client amb ID \"%1$s\""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr ""
+msgstr "No es pot cridar el mètode \"%1$s\""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Impossible d'importar el catàleg amb el codi \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Impossible d'importar el client amb el codi \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Impossible d'importar el producte amb el codi \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import supplier with code \"%1$s\": %2$s"
-msgstr ""
+msgstr "Impossible d'importar el proveïdor amb el codi \"%1$s\": %2$s"
 
 msgid "Voucher"
-msgstr ""
+msgstr "Valen"
 
 #, php-format
 msgid "Voucher %1$s"
-msgstr ""
+msgstr "Valen %1$s"
 
 msgid "Voucher related e-mails"
-msgstr ""
+msgstr "Correus electrònics relacionats amb vals"
 
 msgid "Watched products"
-msgstr ""
+msgstr "Productes vistos"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr ""
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
+msgstr "Hem rebut el seu pagament i ens encarregarem del seu encàrrec immediatament."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "Hem rebut el paquet retornat de la vostra comanda %1$s de %2$s."
 
 msgid "Y-m-d"
 msgstr "d/m/Y"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Podeu utilitzar els vostres vals en qualsevol moment a la nostra botiga en línia."
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Has cancel·lat la subscripció"
 
 msgid "Your account"
-msgstr ""
+msgstr "El vostre compte"
 
 msgid "Your comment"
-msgstr ""
+msgstr "El teu comentari"
 
 msgid "Your new account"
-msgstr ""
+msgstr "El vostre nou compte"
 
 #, php-format
 msgid "Your order %1$s"
-msgstr ""
+msgstr "La teva comanda %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "La seva comanda %1$s de %2$s ha estat enviada."
 
 msgid "Your reference"
-msgstr ""
+msgstr "La vostra referència"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "El seu número de referència"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "La vostra subscripció"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "El teu val"
 
 msgid "Your watched products"
-msgstr ""
+msgstr "Els productes que has vist"
 
 #, php-format
 msgid "aimeos-catalog-sitemap-%d.xml"
-msgstr ""
+msgstr "aimeos-catàleg-plànol-del-lloc-web-%d.xml"
 
 msgid "delivery"
-msgstr ""
+msgstr "Lliurament"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "de %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "com l'adreça de facturació"
 
 msgid "payment"
-msgstr ""
+msgstr "pagament"
 
 msgid "tax"
-msgstr ""
+msgstr "impost"
 
 msgid "taxgst"
-msgstr ""
+msgstr "impost sobre els béns i serveis"
 
 msgid "taxpst"
-msgstr ""
+msgstr "impost"

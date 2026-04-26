@@ -1,32 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: vi\n"
+"Language-Team: Vietnamese (http://app.transifex.com/aimeos/aimeos-core/language/vi/)\n"
+"Last-Translator: Aimeos, 2025\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: Aimeos, 2025\n"
-"Language-Team: Vietnamese (http://app.transifex.com/aimeos/aimeos-core/language/vi/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: vi\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -42,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -62,8 +66,7 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/món"
@@ -103,9 +106,7 @@ msgstr "Số bài viết"
 msgid "Attribute import XML"
 msgstr "Nhập thuộc tính XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "Thanh toán được ủy quyền cho các đơn hàng sẽ được ghi nhận sau khi đơn hàng được giao hoặc sau một khoảng thời gian có thể cấu hình."
 
 msgid "Batch update of payment/delivery status"
@@ -128,6 +129,14 @@ msgstr "Nhập tệp XML vào danh mục"
 
 msgid "Catalog site map"
 msgstr "Bản đồ trang web"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "Không thể so sánh giá trị \"%1$s\" là \"%2$s\" với \"%3$s\""
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "Đã xóa %1$s khách hàng cũ"
 
 #, php-format
 msgid "Cleaned %1$s old products"
@@ -157,6 +166,9 @@ msgstr "Tạo đề xuất sản phẩm được mua cùng nhau"
 msgid "Customer account e-mails"
 msgstr "Email tài khoản khách hàng"
 
+msgid "Customer import CSV"
+msgstr "Nhập dữ liệu khách hàng từ tệp CSV"
+
 msgid "Customer import XML"
 msgstr "Nhập tệp XML của khách hàng"
 
@@ -178,9 +190,7 @@ msgstr "Kính gửi Bà %1$s %2$s,"
 msgid "Dear customer"
 msgstr "Kính gửi quý khách hàng,"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "Xóa các đơn hàng chưa hoàn tất và làm cho sản phẩm và mã giảm giá của chúng có sẵn lại."
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -243,6 +253,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr "Hoàn tất việc nhập dữ liệu khách hàng từ \"%1$s\""
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Đã hoàn tất việc nhập dữ liệu khách hàng từ \"%1$s\" (%2$d/%3$d)"
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr "Hoàn tất việc nhập dữ liệu khách hàng từ tệp \"%1$s\""
 
@@ -289,6 +303,10 @@ msgstr "Hoàn tất việc nhập dữ liệu nhà cung cấp từ tệp \"%1$s\
 msgid "Groups import XML"
 msgstr "Nhập tệp XML theo nhóm"
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "Không được phép sử dụng thẻ HTML trong trường \"%1$s\""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Nếu bạn có bất kỳ câu hỏi nào, vui lòng trả lời email này."
 
@@ -303,6 +321,9 @@ msgstr "Nhập các danh mục mới và cập nhật các danh mục hiện có
 
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "Nhập mã giảm giá mới và cập nhật mã giảm giá hiện có từ các tệp CSV."
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Nhập dữ liệu khách hàng mới và cập nhật thông tin khách hàng hiện có từ tệp CSV"
 
 msgid "Imports new and updates existing customers from XML files"
 msgstr "Nhập khẩu khách hàng mới và cập nhật thông tin khách hàng hiện có từ các tệp XML."
@@ -368,6 +389,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr "Tên lớp không hợp lệ \"%1$s\""
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Các dòng dữ liệu khách hàng không hợp lệ trong quá trình nhập: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr "Thông báo không hợp lệ: %1$s"
 
@@ -411,6 +436,10 @@ msgstr "Không tìm thấy cột \"catalog.code\" trong bản ánh xạ CSV."
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr "Không tìm thấy cột \"coupon.code.code\" trong bản ánh xạ CSV."
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "Không tìm thấy cột \"customer.code\" trong bản đồ CSV"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -504,8 +533,7 @@ msgstr "Xóa các mục đã hết hạn khỏi bộ nhớ cache."
 msgid "Removes the old baskets from the database"
 msgstr "Xóa các giỏ hàng cũ khỏi cơ sở dữ liệu"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "Xóa các mục nhật ký cũ khỏi cơ sở dữ liệu và lưu trữ chúng (tùy chọn)"
 
 msgid "Removes unfinished orders"
@@ -684,31 +712,22 @@ msgstr "Nhà cung cấp nhập XML"
 msgid "Terminates expired subscriptions"
 msgstr "Kết thúc các gói đăng ký đã hết hạn"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Cảm ơn quý khách đã đặt hàng %1$s từ %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Trạng thái giao hàng của đơn hàng %1$s từ %2$s đã được thay đổi thành \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "Đơn hàng đang chờ xử lý cho đến khi chúng tôi nhận được thanh toán cuối cùng. Nếu quý khách đã chọn thanh toán trước, vui lòng chuyển khoản vào tài khoản ngân hàng của chúng tôi với mã đơn hàng %1$s làm tham chiếu."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Gói hàng cho đơn hàng %1$s của bạn từ %2$s không thể được giao."
@@ -721,12 +740,9 @@ msgstr "Thanh toán không thể được gia hạn."
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Số tiền thanh toán cho đơn hàng %1$s từ %2$s đã được hoàn lại."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Trạng thái thanh toán của đơn hàng %1$s từ %2$s đã được thay đổi thành \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -743,9 +759,7 @@ msgstr "Tổng cộng"
 msgid "Transfers money to vendors"
 msgstr "Chuyển tiền cho nhà cung cấp"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr "Chuyển giá sản phẩm đã đặt hàng cho nhà cung cấp, bao gồm phí hoa hồng."
 
 #, php-format
@@ -759,6 +773,10 @@ msgstr "Không thể gọi phương thức \"%1$s\""
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
 msgstr "Không thể nhập danh mục với mã \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Không thể nhập khách hàng có mã \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -781,14 +799,11 @@ msgstr "Thư điện tử liên quan đến voucher"
 msgid "Watched products"
 msgstr "Sản phẩm đã xem"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "Chúng tôi đã nhận được thanh toán của quý khách và sẽ xử lý đơn hàng của quý khách ngay lập tức."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Chúng tôi đã nhận được gói hàng trả lại cho đơn hàng %1$s của quý khách từ %2$s."
@@ -815,8 +830,7 @@ msgstr "Tài khoản mới của bạn"
 msgid "Your order %1$s"
 msgstr "Đơn hàng của bạn %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Đơn hàng của quý khách %1$s từ %2$s đã được gửi đi."

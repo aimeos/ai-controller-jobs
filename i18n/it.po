@@ -1,30 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: it\n"
+"Language-Team: Italian (http://app.transifex.com/aimeos/aimeos-core/language/it/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-16 11:58+0200\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Italian (http://app.transifex.com/aimeos/aimeos-core/language/it/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -40,7 +31,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -60,8 +66,7 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/unità"
@@ -101,9 +106,7 @@ msgstr "Articolo n°"
 msgid "Attribute import XML"
 msgstr "Importazione di attributi XML"
 
-msgid ""
-"Authorized payments of orders will be captured after dispatching or after a "
-"configurable amount of time"
+msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
 msgstr "I pagamenti autorizzati degli ordini vengono acquisiti dopo la spedizione o dopo un periodo di tempo configurabile."
 
 msgid "Batch update of payment/delivery status"
@@ -126,6 +129,14 @@ msgstr "Importazione catalogo XML"
 
 msgid "Catalog site map"
 msgstr "Mappa del sito del catalogo"
+
+#, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr "Impossibile verificare la corrispondenza tra il valore \"%1$s\" e \"%2$s\" rispetto a \"%3$s\""
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr "Pulizia dei clienti preesistenti %1$s"
 
 #, php-format
 msgid "Cleaned %1$s old products"
@@ -155,6 +166,9 @@ msgstr "Crea proposte di prodotti acquistati insieme"
 msgid "Customer account e-mails"
 msgstr "E-mail dell'account cliente"
 
+msgid "Customer import CSV"
+msgstr "Importazione clienti da file CSV"
+
 msgid "Customer import XML"
 msgstr "Importazione clienti XML"
 
@@ -176,9 +190,7 @@ msgstr "Cara Sig.ra %1$s %2$s"
 msgid "Dear customer"
 msgstr "Caro cliente"
 
-msgid ""
-"Deletes unfinished orders an makes their products and coupon codes available"
-" again"
+msgid "Deletes unfinished orders an makes their products and coupon codes available again"
 msgstr "Cancella gli ordini non conclusi e rende nuovamente disponibili i prodotti e i codici coupon."
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -241,6 +253,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr "Importazione cliente conclusa da \"%1$s\"."
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr "Importazione dei clienti completata da \"%1$s\" (%2$d su %3$d)"
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr "Finita l'importazione dei clienti dal file \"%1$s\"."
 
@@ -287,6 +303,10 @@ msgstr "Finita l'importazione dei fornitori dal file \"%1$s\"."
 msgid "Groups import XML"
 msgstr "Importazione di gruppi in XML"
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr "I tag HTML non sono consentiti nel campo \"%1$s\""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Se hai domande, rispondi a questa email"
 
@@ -301,6 +321,9 @@ msgstr "Importa nuove categorie e aggiorna quelle esistenti da file XML."
 
 msgid "Imports new and updates existing coupon code from CSV files"
 msgstr "Importazione di nuovi codici coupon e aggiornamento di quelli esistenti da file CSV"
+
+msgid "Imports new and updates existing customers from CSV files"
+msgstr "Importa nuovi clienti e aggiorna quelli esistenti da file CSV"
 
 msgid "Imports new and updates existing customers from XML files"
 msgstr "Importazione di nuovi clienti e aggiornamento di quelli esistenti da file XML"
@@ -366,6 +389,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr "Il nome della classe \" 1 %1$s \" non è valido"
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr "Righe cliente non valide durante l'importazione: %1$d"
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr "Messaggio non valido: %1$s"
 
@@ -409,6 +436,10 @@ msgstr "Nessuna colonna \"catalog.code\" trovata nella mappatura CSV"
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
 msgstr "Nessuna colonna \"coupon.code.code\" trovata nella mappatura CSV"
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
+msgstr "Non è stata trovata alcuna colonna \"customer.code\" nella mappatura CSV"
 
 #, php-format
 msgid "No \"product.code\" column in CSV mapping found"
@@ -502,8 +533,7 @@ msgstr "Rimuove le voci scadute dalla cache"
 msgid "Removes the old baskets from the database"
 msgstr "Rimuove i vecchi cestini dal database"
 
-msgid ""
-"Removes the old log entries from the database and archives them (optional)"
+msgid "Removes the old log entries from the database and archives them (optional)"
 msgstr "Rimuove le vecchie voci di registro dal database e le archivia (facoltativo)"
 
 msgid "Removes unfinished orders"
@@ -682,31 +712,22 @@ msgstr "Importazione fornitori XML"
 msgid "Terminates expired subscriptions"
 msgstr "Termina gli abbonamenti scaduti"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Grazie per il tuo ordine %1$s del %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Lo stato della consegna del tuo ordine %1$s del %2$s è cambiato a \"%3$s\""
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
 msgstr "L'ordine rimarrà in sospeso finché non riceveremo il pagamento. Se hai scelto di pagare in anticipo, per favore trasferisci il denaro nel nostro conto bancario indicando Ordine n.%1$s come causale."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Il pacco relativo al tuo ordine %1$s del %2$s non può essere consegnato."
@@ -719,12 +740,9 @@ msgstr "Il pagamento non può essere rinnovato"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Il pagamento per il tuo ordine %1$s del %2$s è stato rimborsato."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
 #, php-format
-msgid ""
-"The payment status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "Lo stato di pagamento del vostro ordine %1$s da %2$s è stato modificato in \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -743,9 +761,7 @@ msgstr "Totale"
 msgid "Transfers money to vendors"
 msgstr "Trasferimento di denaro ai fornitori"
 
-msgid ""
-"Transfers the price of ordered products to the vendors incl. commission "
-"handling"
+msgid "Transfers the price of ordered products to the vendors incl. commission handling"
 msgstr "Trasferire il prezzo dei prodotti ordinati ai fornitori, compresa la gestione delle commissioni."
 
 #, php-format
@@ -759,6 +775,10 @@ msgstr "Impossibile chiamare il metodo \" 1 %1$s \""
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
 msgstr "Impossibile importare il catalogo con il codice \"%1$s\": %2$s"
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
+msgstr "Impossibile importare il cliente con il codice \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to import product with code \"%1$s\": %2$s"
@@ -781,14 +801,11 @@ msgstr "E-mail relative ai voucher"
 msgid "Watched products"
 msgstr "Osservati"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3$s)
-msgid ""
-"We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr "Abbiamo ricevuto il tuo pagamento e procederemo immediatamente con l'elaborazione del tuo ordine."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Abbiamo ricevuto il pacco reso per l'ordine %1$s del %2$s. "
@@ -815,8 +832,7 @@ msgstr "Il tuo nuovo account"
 msgid "Your order %1$s"
 msgstr "Il tuo ordine %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Il tuo ordine %1$s del %2$sè stato spedito."

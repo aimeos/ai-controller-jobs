@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-18 18:11+0100\n"
+"POT-Creation-Date: 2026-04-24 09:25+0200\n"
 "PO-Revision-Date: 2013-09-24 16:22+0000\n"
 "Last-Translator: dhoffmann <d.hoffmann@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/"
@@ -17,6 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 #. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
@@ -125,6 +126,14 @@ msgid "Catalog site map"
 msgstr ""
 
 #, php-format
+msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
+msgstr ""
+
+#, php-format
+msgid "Cleaned %1$s old customers"
+msgstr ""
+
+#, php-format
 msgid "Cleaned %1$s old products"
 msgstr ""
 
@@ -150,6 +159,9 @@ msgid "Creates bought together product suggestions"
 msgstr ""
 
 msgid "Customer account e-mails"
+msgstr ""
+
+msgid "Customer import CSV"
 msgstr ""
 
 msgid "Customer import XML"
@@ -238,6 +250,10 @@ msgid "Finished customer import from \"%1$s\""
 msgstr ""
 
 #, php-format
+msgid "Finished customer import from \"%1$s\" (%2$d/%3$d)"
+msgstr ""
+
+#, php-format
 msgid "Finished customer import from file \"%1$s\""
 msgstr ""
 
@@ -284,6 +300,10 @@ msgstr ""
 msgid "Groups import XML"
 msgstr ""
 
+#, php-format
+msgid "HTML tags are not allowed in field \"%1$s\""
+msgstr ""
+
 msgid "If you have any questions, please reply to this e-mail"
 msgstr ""
 
@@ -297,6 +317,9 @@ msgid "Imports new and updates existing categories from XML files"
 msgstr ""
 
 msgid "Imports new and updates existing coupon code from CSV files"
+msgstr ""
+
+msgid "Imports new and updates existing customers from CSV files"
 msgstr ""
 
 msgid "Imports new and updates existing customers from XML files"
@@ -363,6 +386,10 @@ msgid "Invalid class name \"%1$s\""
 msgstr ""
 
 #, php-format
+msgid "Invalid customer lines during import: %1$d"
+msgstr ""
+
+#, php-format
 msgid "Invalid message: %1$s"
 msgstr ""
 
@@ -405,6 +432,10 @@ msgstr ""
 
 #, php-format
 msgid "No \"coupon.code.code\" column in CSV mapping found"
+msgstr ""
+
+#, php-format
+msgid "No \"customer.code\" column in CSV mapping found"
 msgstr ""
 
 #, php-format
@@ -748,6 +779,10 @@ msgstr ""
 
 #, php-format
 msgid "Unable to import catalog with code \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
+msgid "Unable to import customer with code \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format
