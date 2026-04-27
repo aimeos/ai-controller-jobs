@@ -1,21 +1,31 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Martin Vyšohlíd <vysohlidm@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: cs\n"
-"Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
-"Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"POT-Creation-Date: 2026-04-25 11:23+0200\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
+"Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -31,22 +41,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -66,7 +61,8 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/položka"
@@ -106,7 +102,9 @@ msgstr "Článek č."
 msgid "Attribute import XML"
 msgstr "Import atributů XML"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr "Potvrzené platby objednávek budou získány po odeslání nebo nastavitelném časovém intervalu"
 
 msgid "Batch update of payment/delivery status"
@@ -190,7 +188,9 @@ msgstr "Vážená paní %1$s %2$s"
 msgid "Dear customer"
 msgstr "Vážený zákazníku"
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr "Odstraní nedokončené objednávky a znovu zpřístupní jejich produkty a kupónové kódy."
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -533,7 +533,8 @@ msgstr "Odstraní z mezipaměti záznamy, jejichž platnost vypršela."
 msgid "Removes the old baskets from the database"
 msgstr "Odstraní staré koše z databáze."
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr "Odstraní staré záznamy protokolu z databáze a archivuje je (nepovinné)."
 
 msgid "Removes unfinished orders"
@@ -712,22 +713,31 @@ msgstr "Import XML dodavatele"
 msgid "Terminates expired subscriptions"
 msgstr "Ukončuje předplatné, kterému vypršela platnost"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Děkujeme za vaši objednávku %1$s z %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
-msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "Stav doručení vaší objednávky %1$s z %2$s byl změněn na \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
 msgstr "Objednávka je nevyřízená, dokud neobdržíme konečnou platbu. Pokud jste se rozhodli zaplatit předem, převeďte prosím peníze na náš bankovní účet, jako referenční číslo uveďte ID objednávky %1$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Balík vaší objednávky %1$s z %2$s nemohl být doručen."
@@ -740,9 +750,12 @@ msgstr "Platba nemohla být obnovena"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Platba vaší objednávky %1$s z %2$s byla vrácena."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The payment status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "Stav platby vaší objednávky %1$s z %2$s byl změněn na \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -762,7 +775,9 @@ msgstr "Celkem"
 msgid "Transfers money to vendors"
 msgstr "Převody peněz prodejcům"
 
-msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgid ""
+"Transfers the price of ordered products to the vendors incl. commission "
+"handling"
 msgstr "Převádí cenu objednaných produktů prodejcům včetně manipulační provize."
 
 #, php-format
@@ -802,11 +817,14 @@ msgstr "E-maily související s vouchery"
 msgid "Watched products"
 msgstr "Sledované produkty"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
-msgid "We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+msgid ""
+"We have received your payment, and will take care of your order immediately."
 msgstr "Obdrželi jsme vaši platbu a okamžitě se postaráme o vaši objednávku."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Obdrželi jsme vrácenou zásilku vaší objednávky %1$s z %2$s."
@@ -833,7 +851,8 @@ msgstr "Váš nový účet"
 msgid "Your order %1$s"
 msgstr "Vaše objednávka %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Vaše objednávka %1$s z %2$s byla odeslána."

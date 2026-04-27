@@ -1,21 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: da\n"
-"Language-Team: Danish (http://app.transifex.com/aimeos/aimeos-core/language/da/)\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"POT-Creation-Date: 2026-04-25 11:23+0200\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-27 14:53+0200\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish (http://app.transifex.com/aimeos/aimeos-core/language/da/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -31,22 +40,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -66,7 +60,8 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/vare"
@@ -106,7 +101,9 @@ msgstr "Varenr."
 msgid "Attribute import XML"
 msgstr "Attribut-import XML"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr "Autoriserede betalinger af ordrer registreres efter afsendelse eller efter en konfigurerbar tidsperiode."
 
 msgid "Batch update of payment/delivery status"
@@ -132,7 +129,7 @@ msgstr "Kort over kataloget"
 
 #, php-format
 msgid "Checking \"%1$s\" value \"%2$s\" against \"%3$s\" failed"
-msgstr "Det lykkedes ikke at sammenligne værdien \"%1$s\" med \"%3$s\""
+msgstr "Det lykkedes ikke at sammenligne værdien \"%1$s\" \"%2$s\" med \"%3$s\""
 
 #, php-format
 msgid "Cleaned %1$s old customers"
@@ -190,7 +187,9 @@ msgstr "Kære fru %1$s %2$s"
 msgid "Dear customer"
 msgstr "Kære kunde"
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr "Sletter uafsluttede ordrer og gør deres produkter og kuponkoder tilgængelige igen"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -533,7 +532,8 @@ msgstr "Fjerner de udløbne poster fra cachen"
 msgid "Removes the old baskets from the database"
 msgstr "Fjerner de gamle kurve fra databasen"
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr "Fjerner de gamle logposter fra databasen og arkiverer dem (valgfrit)"
 
 msgid "Removes unfinished orders"
@@ -712,22 +712,31 @@ msgstr "Import af leverandør XML"
 msgid "Terminates expired subscriptions"
 msgstr "Opsiger udløbne abonnementer"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Tak for din ordre %1$s fra %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
-msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "Leveringsstatus for din ordre %1$s fra %2$s har ændret sig til \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
 msgstr "Ordren er afventende, indtil vi modtager den endelige betaling. Hvis du har valgt at betale på forhånd, bedes du overføre pengene til vores bankkonto med ordre-ID %1$s som reference."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Pakken til din ordre %1$s fra %2$s kunne ikke leveres."
@@ -740,9 +749,12 @@ msgstr "Betalingen kunne ikke fornyes"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Betalingen for din ordre %1$s fra %2$s er blevet refunderet."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The payment status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "Betalingsstatus for din ordre %1$s fra %2$s er blevet ændret til \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -760,7 +772,9 @@ msgstr "Total"
 msgid "Transfers money to vendors"
 msgstr "Overfører penge til leverandører"
 
-msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgid ""
+"Transfers the price of ordered products to the vendors incl. commission "
+"handling"
 msgstr "Overfører prisen på bestilte produkter til leverandørerne inkl. provisionshåndtering"
 
 #, php-format
@@ -800,11 +814,14 @@ msgstr "Voucher-relaterede e-mails"
 msgid "Watched products"
 msgstr "Sete produkter"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
-msgid "We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+msgid ""
+"We have received your payment, and will take care of your order immediately."
 msgstr "Vi har modtaget din betaling og vil håndtere din ordre med det samme."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Vi har modtaget den returnerede pakke for din ordre %1$s fra %2$s."
@@ -831,7 +848,8 @@ msgstr "Din nye konto"
 msgid "Your order %1$s"
 msgstr "Din ordre %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Din ordre %1$s fra %2$s er blevet afsendt."

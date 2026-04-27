@@ -1,21 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ca\n"
-"Language-Team: Catalan (http://app.transifex.com/aimeos/aimeos-core/language/ca/)\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"POT-Creation-Date: 2026-04-25 11:23+0200\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-27 14:53+0200\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Catalan (http://app.transifex.com/aimeos/aimeos-core/language/ca/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -31,22 +40,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -66,7 +60,8 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s per article"
@@ -84,7 +79,7 @@ msgstr "+ Enviament"
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr "-1$s%%"
+msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "Compte"
@@ -106,7 +101,9 @@ msgstr "Article núm."
 msgid "Attribute import XML"
 msgstr "Atribut import XML"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr "Els pagaments autoritzats de les comandes es capturaran després de l'enviament o després d'un període de temps configurable."
 
 msgid "Batch update of payment/delivery status"
@@ -190,7 +187,9 @@ msgstr "Benvolguda Sra. %1$s %2$s"
 msgid "Dear customer"
 msgstr "Benvolgut client"
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr "Elimina les comandes inacabades i torna a posar a disposició els seus productes i codis de cupó."
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -533,7 +532,8 @@ msgstr "Elimina les entrades caducades de la memòria cau"
 msgid "Removes the old baskets from the database"
 msgstr "Elimina les cistelles antigues de la base de dades"
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr "Elimina les entrades antigues del registre de la base de dades i les arxiva (opcional)"
 
 msgid "Removes unfinished orders"
@@ -712,22 +712,31 @@ msgstr "Importació de XML de proveïdor"
 msgid "Terminates expired subscriptions"
 msgstr "Finalitza les subscripcions caducades"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Gràcies per la vostra comanda %1$s de %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
-msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "L'estat de lliurament de la teva comanda %1$s de %2$s s'ha canviat a \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
 msgstr "La comanda està pendent fins que rebem el pagament final. Si heu optat per pagar per avançat, si us plau, transferiu els diners al nostre compte bancari amb l'ID de comanda %1$s com a referència."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "El paquet de la vostra comanda %1$s de %2$s no s'ha pogut lliurar."
@@ -740,9 +749,12 @@ msgstr "El pagament no es va poder renovar"
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "El pagament de la teva comanda %1$s de %2$s s'ha reemborsat."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The payment status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "L'estat del pagament de la teva comanda %1$s de %2$s s'ha canviat a \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -760,7 +772,9 @@ msgstr "Total"
 msgid "Transfers money to vendors"
 msgstr "Transferència de diners als proveïdors"
 
-msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgid ""
+"Transfers the price of ordered products to the vendors incl. commission "
+"handling"
 msgstr "Transfereix el preu dels productes demanats als proveïdors, incloent-hi la comissió de gestió."
 
 #, php-format
@@ -800,11 +814,14 @@ msgstr "Correus electrònics relacionats amb vals"
 msgid "Watched products"
 msgstr "Productes vistos"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
-msgid "We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+msgid ""
+"We have received your payment, and will take care of your order immediately."
 msgstr "Hem rebut el seu pagament i ens encarregarem del seu encàrrec immediatament."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Hem rebut el paquet retornat de la vostra comanda %1$s de %2$s."
@@ -831,7 +848,8 @@ msgstr "El vostre nou compte"
 msgid "Your order %1$s"
 msgstr "La teva comanda %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "La seva comanda %1$s de %2$s ha estat enviada."

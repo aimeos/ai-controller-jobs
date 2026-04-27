@@ -1,21 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Aimeos, 2025
+# Aimeos, 2025
+# Dimitri <doleiynyk@metaways.de>, 2013
+# Irina Fedulova <istartlin@gmail.com>, 2020
+# Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ru\n"
-"Language-Team: Russian (http://app.transifex.com/aimeos/aimeos-core/language/ru/)\n"
-"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:36+0000\n"
-"POT-Creation-Date: 2026-04-25 11:23+0200\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-25 11:23+0200\n"
+"PO-Revision-Date: 2015-07-09 20:36+0000\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
+"Language-Team: Russian (http://app.transifex.com/aimeos/aimeos-core/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -31,22 +45,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%12$s\n"
-"%11$s\n"
-"%9$s %10$s\n"
-"%8$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%12$s\n%11$s\n%9$s %10$s\n%8$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -66,7 +65,8 @@ msgstr "%s-sitemap-%d.xml"
 msgid "%s-sitemap-index.xml"
 msgstr "%s-sitemap-index.xml"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/штуку"
@@ -106,7 +106,9 @@ msgstr "Артикул нет."
 msgid "Attribute import XML"
 msgstr "Импорт атрибутов XML"
 
-msgid "Authorized payments of orders will be captured after dispatching or after a configurable amount of time"
+msgid ""
+"Authorized payments of orders will be captured after dispatching or after a "
+"configurable amount of time"
 msgstr "Авторизация платежей по заказам будет получена после отправки, либо после определённого промежутка времени"
 
 msgid "Batch update of payment/delivery status"
@@ -190,7 +192,9 @@ msgstr "Дорогая госпожа %1$s %2$s"
 msgid "Dear customer"
 msgstr "Уважаемый клиент"
 
-msgid "Deletes unfinished orders an makes their products and coupon codes available again"
+msgid ""
+"Deletes unfinished orders an makes their products and coupon codes available"
+" again"
 msgstr "Удаление незавершённых заказов делает снова доступными товары и коды купонов из них"
 
 msgid "Deletes unpaid orders to keep the database clean"
@@ -533,7 +537,8 @@ msgstr "Удаление устаревших записей из кеша"
 msgid "Removes the old baskets from the database"
 msgstr "Удаляет старые корзины из базы данных"
 
-msgid "Removes the old log entries from the database and archives them (optional)"
+msgid ""
+"Removes the old log entries from the database and archives them (optional)"
 msgstr "Удаление старых записей журнала из базы данных и их архивирование (по выбору)"
 
 msgid "Removes unfinished orders"
@@ -712,22 +717,31 @@ msgstr "Импорт поставщика XML"
 msgid "Terminates expired subscriptions"
 msgstr "Прекращает подписки с истекшим сроком действия"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Благодарим за Ваш заказ %1$s от %2$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
-msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "Изменился статус Вашего заказа %1$s от %2$s на \"%3$s\"."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
 msgstr "Заказ находится на рассмотрении до тех пор, пока мы не получим окончательный платеж. Если вы решили оплатить заказ заранее, пожалуйста, переведите деньги на наш банковский счет, указав в качестве ссылки ID заказа %1$s."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Невозможно переслать Ваш заказ %1$s от %2$s."
@@ -740,9 +754,12 @@ msgstr "Платеж не обновился "
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Оплата за заказ %1$s от %2$s была возвращена."
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
 #, php-format
-msgid "The payment status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The payment status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "Статус оплаты вашего заказа %1$s с %2$s был изменен на \"%3$s\"."
 
 msgid "The subscription for the product has ended"
@@ -762,7 +779,9 @@ msgstr "Всего"
 msgid "Transfers money to vendors"
 msgstr "Переводит деньги продавцам"
 
-msgid "Transfers the price of ordered products to the vendors incl. commission handling"
+msgid ""
+"Transfers the price of ordered products to the vendors incl. commission "
+"handling"
 msgstr "Передача стоимости заказанных продуктов продавцам, включая комиссионные."
 
 #, php-format
@@ -802,11 +821,14 @@ msgstr "Электронные письма, связанные с ваучер�
 msgid "Watched products"
 msgstr "Просмотренные товары"
 
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3$s)
-msgid "We have received your payment, and will take care of your order immediately."
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3$s)
+msgid ""
+"We have received your payment, and will take care of your order immediately."
 msgstr "Мы получили ваш платеж и немедленно займемся вашим заказом."
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Посылка с Вашим заказом %1$s от %2$s была нам возвращена."
@@ -833,7 +855,8 @@ msgstr "Ваша новая учётная запись"
 msgid "Your order %1$s"
 msgstr "Ваш заказ %1$s"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Отослан Ваш заказ %1$s от %2$s."
