@@ -45,14 +45,16 @@ class Base
 	 * @param array $entry Associative list of key/value pairs from the mapping
 	 * @throws \Aimeos\Controller\Jobs\Exception If the check fails
 	 */
-	protected function check( array $entry )
+	protected function check( array $entry ) : void
 	{
 		foreach( $this->checks as $code => $regex )
 		{
 			$value = $this->val( $entry, $code );
 
+			// @phpstan-ignore argument.type
 			if( preg_match( $regex, (string) $value ) !== 1 )
 			{
+				// @phpstan-ignore argument.type, argument.type
 				$msg = sprintf( 'Checking "%1$s" value "%2$s" against "%3$s" failed', $code, $value, $regex );
 				throw new \Aimeos\Controller\Jobs\Exception( $msg );
 			}
@@ -287,6 +289,7 @@ class Base
 			$name = $config->get( 'controller/jobs/customer/import/csv/processor/' . $type . '/name', 'Standard' );
 
 			if( ctype_alnum( $name ) === false ) {
+				// @phpstan-ignore argument.type
 				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 			}
 
@@ -295,6 +298,7 @@ class Base
 			$object = \Aimeos\Utils::create( $classname, [$context, $mapping, $object], $interface );
 		}
 
+		// @phpstan-ignore return.type
 		return $object;
 	}
 }

@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Lists\Media\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -72,12 +72,14 @@ class Standard
 			foreach( $refNode->childNodes as $tag )
 			{
 				if( in_array( $tag->nodeName, ['lists', 'property'] ) ) {
+					// @phpstan-ignore argument.type
 					$refItem = $this->getProcessor( $tag->nodeName )->process( $refItem, $tag );
 				} else {
 					$list[$tag->nodeName] = \Aimeos\Base\Str::decode( $tag->nodeValue );
 				}
 			}
 
+			// @phpstan-ignore argument.type
 			$refItem = $this->update( $refItem, $list );
 
 			foreach( $refNode->attributes as $attrName => $attrNode ) {
@@ -85,16 +87,19 @@ class Standard
 			}
 
 			$name = $resource . '.lists.config';
+			// @phpstan-ignore argument.type
 			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
 			$name = $resource . '.lists.type';
 			$list[$name] = $list[$name] ?? 'default';
 
+			// @phpstan-ignore argument.type
 			$this->addType( $resource . '/lists/type', 'media', $list[$resource . '.lists.type'] );
 
 			$listItem = $listItem->fromArray( $list );
 			$item->addListItem( 'media', $listItem, $refItem );
 		}
 
+		// @phpstan-ignore return.type
 		return $item->deleteListItems( $listItems->toArray() );
 	}
 
@@ -103,7 +108,7 @@ class Standard
 	 * Updates the media item with the given key/value pairs
 	 *
 	 * @param \Aimeos\MShop\Media\Item\Iface $refItem Media item to update
-	 * @param array &$list Associative list of key/value pairs, matching pairs are removed
+	 * @type array &$list Associative list of key/value pairs, matching pairs are removed
 	 * @return \Aimeos\MShop\Media\Item\Iface Updated media item
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list )
@@ -112,11 +117,15 @@ class Standard
 
 		try
 		{
+			// @phpstan-ignore argument.type
 			if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
+				// @phpstan-ignore argument.type, argument.type
 				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
+				// @phpstan-ignore argument.type, argument.type
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
 			} elseif( $refItem->getUrl() !== $url ) {
+				// @phpstan-ignore argument.type
 				$refItem = \Aimeos\MShop::create( $this->context(), 'media' )->scale( $refItem->setUrl( $url ), true );
 			} else {
 				$refItem = \Aimeos\MShop::create( $this->context(), 'media' )->scale( $refItem->setUrl( $url ) );
@@ -126,10 +135,12 @@ class Standard
 		}
 		catch( \Aimeos\Controller\Jobs\Exception $e )
 		{
+			// @phpstan-ignore argument.type
 			$msg = sprintf( 'Scaling image "%1$s" failed: %2$s', $url, $e->getMessage() );
 			$this->context()->logger()->error( $msg, 'import/xml/product' );
 		}
 
+		// @phpstan-ignore return.type
 		return $refItem->fromArray( $list );
 	}
 }

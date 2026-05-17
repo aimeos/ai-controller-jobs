@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Stock\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2015.10
 	 */
 
@@ -53,6 +53,7 @@ class Standard
 
 			foreach( $map as $pos => $list )
 			{
+				// @phpstan-ignore argument.type
 				if( !array_key_exists( 'stock.stocklevel', $list ) ) {
 					continue;
 				}
@@ -60,9 +61,12 @@ class Standard
 				$list['stock.productid'] = $product->getId();
 				$list['stock.type'] = $this->val( $list, 'stock.type', 'default' );
 
+				// @phpstan-ignore argument.type
 				$this->addType( 'stock/type', 'stock', $list['stock.type'] );
 
+				// @phpstan-ignore argument.type
 				$item = $items->pull( $list['stock.type'] ) ?: $manager->create();
+				// @phpstan-ignore argument.type
 				$manager->save( $item->fromArray( $list ), false );
 
 				if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {

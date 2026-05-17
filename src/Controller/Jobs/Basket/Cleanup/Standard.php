@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyLog"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2023.10
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2023.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/basket/cleanup/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2023.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/basket/cleanup/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Basket\Cleanup\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2023.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/basket/cleanup/decorators/excludes
@@ -180,7 +180,7 @@ class Standard
 		 * This option specifies the number of days log entries will be kept in
 		 * the database. Afterwards, they will be removed and archived.
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2023.10
 		 * @see controller/jobs/basket/cleanup/path
 		 */

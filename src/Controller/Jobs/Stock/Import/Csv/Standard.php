@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2019.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Stock\Import\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/excludes
@@ -229,7 +229,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/location
 		 * @see controller/jobs/stock/import/csv/max-size
@@ -246,7 +246,7 @@ class Standard
 	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param string $path Relative path to the CSV file in the file system
 	 */
-	protected function import( \Aimeos\MShop\ContextIface $context, string $path )
+	protected function import( \Aimeos\MShop\ContextIface $context, string $path ) : void
 	{
 		$context = $this->context();
 		$logger = $context->logger();
@@ -320,6 +320,7 @@ class Standard
 					continue;
 				}
 
+				// @phpstan-ignore argument.type
 				$type = $this->val( $row, 2, 'default' );
 				$types[$type] = null;
 				$codes[] = $row[0];
@@ -357,7 +358,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @param string Relative path to the CSV files
+		 * @type string Relative path to the CSV files
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/backup
 		 * @see controller/jobs/stock/import/csv/max-size
@@ -384,7 +385,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * import speed.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/backup
 		 * @see controller/jobs/stock/import/csv/location
@@ -410,7 +411,7 @@ class Standard
 		 * define the number of lines that should be left out before the import
 		 * begins.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/backup
 		 * @see controller/jobs/stock/import/csv/location
@@ -427,7 +428,7 @@ class Standard
 	 * @param array $codes List of product codes the stock items are associated to
 	 * @param array $types List of stock types which should be updated
 	 */
-	protected function update( array $data, array $codes, array $types )
+	protected function update( array $data, array $codes, array $types ) : void
 	{
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'stock' );
@@ -447,6 +448,7 @@ class Standard
 			$code = $entry[0];
 			$type = $entry[2];
 
+			// @phpstan-ignore argument.type
 			if( ( $product = $prodMap->get( $code ) ) === null ) {
 				continue;
 			}
@@ -454,19 +456,24 @@ class Standard
 			$item = $map[$product->getId()][$type] ?? $manager->create();
 
 			$items[] = $item->setProductId( $product->getId() )->setType( $type )
+				// @phpstan-ignore argument.type, argument.type
 				->setStocklevel( $this->val( $entry, 1 ) )
+				// @phpstan-ignore argument.type, argument.type
 				->setDateBack( $this->val( $entry, 3 ) )
+				// @phpstan-ignore argument.type, argument.type
 				->setTimeframe( $this->val( $entry, 4, '' ) );
 
 			if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
 				$prodManager->stock( $product->getId(), 1 );
 			}
 
+			// @phpstan-ignore argument.type
 			$this->addType( 'stock/type', 'product', $type );
 			unset( $map[$code][$type] );
 		}
 
 		$manager->begin();
+		// @phpstan-ignore argument.type
 		$manager->save( $items );
 		$manager->commit();
 

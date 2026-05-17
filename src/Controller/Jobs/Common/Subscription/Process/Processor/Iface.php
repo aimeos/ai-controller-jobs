@@ -31,18 +31,18 @@ interface Iface
 	 * Processes the initial subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
+	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void;
 
 
 	/**
 	 * Executed before the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function renewBefore( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
+	public function renewBefore( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void;
 
 
 	/**
@@ -51,14 +51,14 @@ interface Iface
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
 	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
+	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void;
 
 
 	/**
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order );
+	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void;
 }

@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyPayment"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.07
 	 */
 
@@ -73,7 +73,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/global
@@ -96,7 +96,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Service\Payment\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/excludes
@@ -172,12 +172,14 @@ class Standard
 					$provider = $manager->getProvider( $item, $item->getType() );
 
 					if( $provider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_CAPTURE ) ) {
+						// @phpstan-ignore argument.type
 						$this->orders( $provider );
 					}
 				}
 				catch( \Exception $e )
 				{
 					$str = 'Error while capturing payments for service with ID "%1$s": %2$s';
+					// @phpstan-ignore argument.type
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'order/service/payment' );
 				}
@@ -201,7 +203,7 @@ class Standard
 		 * for payment methods like credit cards where autorizations are revoked
 		 * by the aquirers after some time (usually seven days).
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2014.07
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/capture-days', null );
@@ -230,13 +232,13 @@ class Standard
 		 * - order/product
 		 * - order/service
 		 *
-		 * @param array Referenced domain names
+		 * @type array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/payment/limit-days
 		 * @see controller/jobs/order/service/payment/capture-days
 		 */
 		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
-		return $config->get( 'controller/jobs/order/service/delivery/domains', $ref );
+		return (array) $config->get( 'controller/jobs/order/service/delivery/domains', $ref );
 	}
 
 
@@ -255,7 +257,7 @@ class Standard
 		 * payments from being captured in case anything went wrong and payments
 		 * of old orders would be captured now.
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2014.07
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/limit-days', 90 );
@@ -278,12 +280,12 @@ class Standard
 		 * the delivery service provider at once. Bigger batches an improve the
 		 * performance but requires more memory.
 		 *
-		 * @param integer Number of orders
+		 * @type integer Number of orders
 		 * @since 2018.07
 		 * @see controller/jobs/order/service/delivery/domains
 		 * @see controller/jobs/order/service/delivery/limit-days
 		 */
-		return $this->context()->config()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
+		return (int) $this->context()->config()->get( 'controller/jobs/order/service/delivery/batch-max', 100 );
 	}
 
 
@@ -292,7 +294,7 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Service\Provider\Iface $provider Service provider for processing the orders
 	 */
-	protected function orders( \Aimeos\MShop\Service\Provider\Iface $provider )
+	protected function orders( \Aimeos\MShop\Service\Provider\Iface $provider ) : void
 	{
 		$context = $this->context();
 		$domains = $this->domains();
@@ -317,17 +319,20 @@ class Standard
 
 		$cursor = $manager->cursor( $filter );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
 			foreach( $items as $item )
 			{
 				try
 				{
+					// @phpstan-ignore argument.type
 					$manager->save( $provider->capture( $item ) );
 				}
 				catch( \Exception $e )
 				{
 					$str = 'Error while capturing payment for order with ID "%1$s": %2$s';
+					// @phpstan-ignore argument.type
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'order/service/payment' );
 				}

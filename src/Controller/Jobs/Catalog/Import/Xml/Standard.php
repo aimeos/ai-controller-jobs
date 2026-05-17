@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyXml"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2019.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Catalog\Import\Xml\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/excludes
@@ -223,7 +223,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/domains
 		 * @see controller/jobs/catalog/import/xml/location
@@ -250,13 +250,13 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @param array Associative list of MShop item domain names
+		 * @type array Associative list of MShop item domain names
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/backup
 		 * @see controller/jobs/catalog/import/xml/location
 		 * @see controller/jobs/catalog/import/xml/max-query
 		 */
-		return $this->context()->config()->get( 'controller/jobs/catalog/import/xml/domains', ['media', 'text'] );
+		return (array) $this->context()->config()->get( 'controller/jobs/catalog/import/xml/domains', ['media', 'text'] );
 	}
 
 
@@ -265,7 +265,7 @@ class Standard
 	 *
 	 * @param string $path Relative path to the XML file in the file system
 	 */
-	protected function import( string $path )
+	protected function import( string $path ) : void
 	{
 		$xml = new \XMLReader();
 		$context = $this->context();
@@ -280,6 +280,7 @@ class Standard
 
 		$logger->info( sprintf( 'Started catalog import from file "%1$s"', $path ), 'import/xml/catalog' );
 
+		// @phpstan-ignore argument.type
 		$this->importTree( $xml, $this->domains() );
 		$this->saveTypes();
 
@@ -305,7 +306,7 @@ class Standard
 	 * @param \DomElement $node DOM node of "catalogitem" element
 	 * @param string[] $domains List of domain names whose referenced items will be updated in the catalog items
 	 * @param string|null $parentid ID of the parent catalog node
-	 * @param array &$map Will contain the associative list of code/ID pairs of the child categories
+	 * @type array &$map Will contain the associative list of code/ID pairs of the child categories
 	 * @return string Catalog ID of the imported category
 	 */
 	protected function importNode( \DomElement $node, array $domains, ?string $parentid, array &$map ) : string
@@ -319,6 +320,7 @@ class Standard
 				$item = $manager->find( $attr->nodeValue, $domains );
 				$manager->move( $item->getId(), $item->getParentId(), $parentid );
 
+				// @phpstan-ignore argument.type
 				$item = $this->process( $item, $node );
 				$currentid = $manager->save( $item )->getId();
 				unset( $item );
@@ -329,13 +331,14 @@ class Standard
 					$map[$child->getCode()] = $child->getId();
 				}
 
-				return $currentid;
+				return (string) $currentid;
 			}
 			catch( \Aimeos\MShop\Exception $e ) {} // not found, create new
 		}
 
+		// @phpstan-ignore argument.type
 		$item = $this->process( $manager->create(), $node );
-		return $manager->insert( $item, $parentid )->getId();
+		return (string) $manager->insert( $item, $parentid )->getId();
 	}
 
 
@@ -347,7 +350,7 @@ class Standard
 	 * @param string|null $parentid ID of the parent catalog node
 	 * @param array $map Associative list of catalog code as keys and category ID as values
 	 */
-	protected function importTree( \XMLReader $xml, array $domains, ?string $parentid = null, array $map = [] )
+	protected function importTree( \XMLReader $xml, array $domains, ?string $parentid = null, array $map = [] ) : void
 	{
 		$total = 0;
 		$childMap = [];
@@ -367,6 +370,7 @@ class Standard
 					unset( $map[$attr->nodeValue] );
 				}
 
+				// @phpstan-ignore argument.type
 				$currentid = $this->importNode( $node, $domains, $parentid, $childMap );
 				$total++;
 			}
@@ -400,7 +404,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @param string Relative path to the XML files
+		 * @type string Relative path to the XML files
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/backup
 		 * @see controller/jobs/catalog/import/xml/domains
@@ -445,6 +449,6 @@ class Standard
 			$this->context()->logger()->error( $msg, 'import/xml/catalog' );
 		}
 
-		return $item;
+		return $item; // @phpstan-ignore return.type
 	}
 }

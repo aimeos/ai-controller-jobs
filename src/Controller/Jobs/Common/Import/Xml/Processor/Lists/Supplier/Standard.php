@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Lists\Supplier\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -88,12 +88,14 @@ class Standard
 			$list[$name] = ( isset( $list[$name] ) ? (array) json_decode( $list[$name] ) : [] );
 			$list[$resource . '.lists.type'] = $type;
 
+			// @phpstan-ignore argument.type
 			$this->addType( $resource . '/lists/type', 'supplier', $type );
 
 			$listItem = $listItem->fromArray( $list );
 			$item = $item->addListItem( 'supplier', $listItem, $refItem );
 		}
 
+		// @phpstan-ignore return.type
 		return $item->deleteListItems( $listItems->toArray() );
 	}
 
@@ -101,8 +103,8 @@ class Standard
 	/**
 	 * Returns the supplier items for the given nodes
 	 *
-	 * @param \DomNodeList $nodes List of XML supplier item nodes
-	 * @return \Aimeos\MShop\Supplier\Item\Iface[] Associative list of supplier items with codes as keys
+	 * @param \DOMNodeList<\DOMNode> $nodes List of XML supplier item nodes
+	 * @return array Associative list of supplier items with codes as keys
 	 */
 	protected function getItems( \DomNodeList $nodes ) : array
 	{
@@ -111,6 +113,7 @@ class Standard
 
 		foreach( $nodes as $node )
 		{
+			// @phpstan-ignore property.notFound
 			if( $node->nodeName === 'supplieritem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
 				$codes[\Aimeos\Base\Str::decode( $attr->nodeValue )] = null;
 			}

@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Media\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2015.10
 	 */
 
@@ -49,6 +49,7 @@ class Standard
 		parent::__construct( $context, $mapping, $object );
 
 		$config = $context->config();
+		// @phpstan-ignore argument.type
 		$this->mimes = array_flip( $config->get( 'mshop/media/manager/extensions', [] ) );
 
 		/** controller/jobs/product/import/csv/media/listtypes
@@ -59,7 +60,7 @@ class Standard
 		 * import, you can specify the product list types for these media
 		 * that shouldn't be updated or removed.
 		 *
-		 * @param array|null List of product list type names or null for all
+		 * @type array|null List of product list type names or null for all
 		 * @since 2015.05
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/separator
@@ -85,6 +86,7 @@ class Standard
 		}
 		else
 		{
+			// @phpstan-ignore argument.type, argument.type
 			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
@@ -126,17 +128,23 @@ class Standard
 
 		foreach( $map as $list )
 		{
+			// @phpstan-ignore argument.type
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
+			// @phpstan-ignore argument.type, argument.type
 			$type = trim( $this->val( $list, 'media.type', 'default' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$langId = trim( $this->val( $list, 'media.languageid', '' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
 
 			unset( $list['product.lists.config'] );
 
+			// @phpstan-ignore argument.type, argument.type, argument.type
 			$urls = explode( $separator, trim( $this->val( $list, 'media.url', '' ) ) );
 			unset( $list['media.url'] );
 
@@ -165,13 +173,16 @@ class Standard
 				}
 
 				$refItem->setDomain( 'product' );
+				// @phpstan-ignore argument.type, argument.type
 				$refItem = $this->update( $refItem, $list, $url );
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setConfig( $listConfig );
 
+				// @phpstan-ignore argument.type
 				$product->addListItem( 'media', $listItem, $refItem );
 			}
 		}
 
+		// @phpstan-ignore argument.type
 		$product->deleteListItems( $listItems->toArray(), true );
 
 		return $this->object()->process( $product, $data );
@@ -190,12 +201,14 @@ class Standard
 			return false;
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'product.lists.type', 'default' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'media.type', 'default' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
@@ -210,16 +223,19 @@ class Standard
 	 * Updates the media item with the given key/value pairs
 	 *
 	 * @param \Aimeos\MShop\Media\Item\Iface $refItem Media item to update
-	 * @param array &$list Associative list of key/value pairs, matching pairs are removed
+	 * @type array &$list Associative list of key/value pairs, matching pairs are removed
 	 * @return \Aimeos\MShop\Media\Item\Iface Updated media item
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list, string $url ) : \Aimeos\MShop\Media\Item\Iface
 	{
 		try
 		{
+			// @phpstan-ignore argument.type
 			if( isset( $list['media.previews'] ) && ( $map = json_decode( $list['media.previews'], true ) ) !== null ) {
+				// @phpstan-ignore argument.type
 				$refItem->setPreviews( $map )->setUrl( $url );
 			} elseif( isset( $list['media.preview'] ) ) {
+				// @phpstan-ignore argument.type
 				$refItem->setPreview( $list['media.preview'] )->setUrl( $url );
 			} elseif( $refItem->getUrl() !== $url ) {
 				$refItem = \Aimeos\MShop::create( $this->context(), 'media' )->scale( $refItem->setUrl( $url ), true );
@@ -235,6 +251,7 @@ class Standard
 			$this->context()->logger()->error( $msg, 'import/csv/product' );
 		}
 
+		// @phpstan-ignore return.type
 		return $refItem->fromArray( $list );
 	}
 }

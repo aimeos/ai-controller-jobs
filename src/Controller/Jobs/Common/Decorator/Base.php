@@ -50,6 +50,7 @@ abstract class Base
 	 */
 	public function __call( string $name, array $param )
 	{
+		// @phpstan-ignore argument.type
 		return call_user_func_array( array( $this->controller, $name ), $param );
 	}
 

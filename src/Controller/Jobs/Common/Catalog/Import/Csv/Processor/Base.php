@@ -23,7 +23,7 @@ class Base
 	use \Aimeos\Controller\Jobs\Common\Types;
 
 
-	private \Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $object;
+	private ?\Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Iface $object;
 	private \Aimeos\MShop\ContextIface $context;
 	private array $mapping;
 
@@ -47,7 +47,7 @@ class Base
 	/**
 	 * Stores all types for which no type items exist yet
 	 */
-	public function finish()
+	public function finish() : void
 	{
 		if( $this->object ) {
 			$this->object->finish();

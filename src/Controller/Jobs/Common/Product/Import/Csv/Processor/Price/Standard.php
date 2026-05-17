@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Price\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2015.10
 	 */
 
@@ -57,7 +57,7 @@ class Standard
 		 * import, you can specify the product list types for these prices
 		 * that shouldn't be updated or removed.
 		 *
-		 * @param array|null List of product list type names or null for all
+		 * @type array|null List of product list type names or null for all
 		 * @since 2015.05
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/separator
@@ -83,6 +83,7 @@ class Standard
 		}
 		else
 		{
+			// @phpstan-ignore argument.type, argument.type
 			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
@@ -121,12 +122,16 @@ class Standard
 
 		foreach( $map as $pos => $list )
 		{
+			// @phpstan-ignore argument.type
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
+			// @phpstan-ignore argument.type, argument.type
 			$type = trim( $this->val( $list, 'price.type', 'default' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
 
 			unset( $list['product.lists.config'] );
@@ -146,14 +151,17 @@ class Standard
 
 			$listItem = $listItem->setType( $listtype )->setPosition( $pos )->fromArray( $list )->setConfig( $listConfig );
 
+			// @phpstan-ignore argument.type, argument.type
 			$label = $this->val( $list, 'price.currencyid', '' ) . ' ' . $this->val( $list, 'price.value', '' );
 			$refItem = $refItem->setType( $type )->setLabel( $label )->fromArray( $list );
 
+			// @phpstan-ignore argument.type, argument.type
 			$product->addListItem( 'price', $listItem, $refItem );
 
 			unset( $listItems[$listItem->getId()] );
 		}
 
+		// @phpstan-ignore argument.type
 		$product->deleteListItems( $listItems->toArray(), true );
 
 		return $this->object()->process( $product, $data );
@@ -172,12 +180,14 @@ class Standard
 			return false;
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'product.lists.type', 'default' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'price.type', 'default' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'price' );

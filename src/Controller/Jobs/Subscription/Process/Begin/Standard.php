@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyBegin"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2018.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/begin/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/begin/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Subscription\Process\Begin\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/begin/decorators/excludes
@@ -166,6 +166,7 @@ class Standard
 		$filter = $manager->filter( true )->add( 'subscription.datenext', '==', null )->slice( 0, $this->max() );
 		$cursor = $manager->cursor( $filter );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
 			foreach( $items as $item )
@@ -174,6 +175,7 @@ class Standard
 
 				try
 				{
+					// @phpstan-ignore argument.type
 					$manager->save( $this->process( $item, $processors ) );
 					$manager->commit();
 				}
@@ -182,6 +184,7 @@ class Standard
 					$manager->rollback();
 
 					$str = 'Unable to begin subscription with ID "%1$s": %2$s';
+					// @phpstan-ignore argument.type
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'subscription/process/begin' );
 				}
@@ -212,14 +215,14 @@ class Standard
 		 * - order/product
 		 * - order/service
 		 *
-		 * @param array Referenced domain names
+		 * @type array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/subscription/process/processors
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */
 		$ref = ['order'] + $config->get( 'mshop/order/manager/subdomains', [] );
-		return $config->get( 'controller/jobs/subscription/process/domains', $ref );
+		return (array) $config->get( 'controller/jobs/subscription/process/domains', $ref );
 	}
 
 
@@ -239,7 +242,7 @@ class Standard
 		 * Otherwise, the subscription is removed from the list of subscriptions that
 		 * will be checked for activation.
 		 *
-		 * @param float Number of days
+		 * @type float Number of days
 		 * @since 2018.07
 		 * @see controller/jobs/subscription/process/processors
 		 * @see controller/jobs/subscription/process/payment-status
@@ -263,14 +266,14 @@ class Standard
 		 * orders that will be processed at once. Bigger batches an improve the
 		 * performance but requires more memory.
 		 *
-		 * @param integer Number of subscriptions
+		 * @type integer Number of subscriptions
 		 * @since 2023.04
 		 * @see controller/jobs/subscription/process/domains
 		 * @see controller/jobs/subscription/process/names
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */
-		return $this->context()->config()->get( 'controller/jobs/subscription/process/batch-max', 100 );
+		return (int) $this->context()->config()->get( 'controller/jobs/subscription/process/batch-max', 100 );
 	}
 
 
@@ -288,7 +291,7 @@ class Standard
 		 * They can for example add a group to the customers' account during the customer
 		 * has an active subscribtion.
 		 *
-		 * @param array List of processor names
+		 * @type array List of processor names
 		 * @since 2018.04
 		 * @see controller/jobs/subscription/process/domains
 		 * @see controller/jobs/subscription/process/max
@@ -315,6 +318,7 @@ class Standard
 			}
 
 			$interval = new \DateInterval( $item->getInterval() );
+			// @phpstan-ignore argument.type
 			$dateNext = date_create( $item->getTimeCreated() )->add( $interval )->format( 'Y-m-d H:i:s' );
 
 			return $item->setDateNext( $dateNext )->setPeriod( 1 );
@@ -344,7 +348,7 @@ class Standard
 		 * "received" (6) will cause the subscription to be activated. Lower
 		 * payment status values, e.g. "pending" (4) won't activate the subscription.
 		 *
-		 * @param integer Payment status constant
+		 * @type integer Payment status constant
 		 * @since 2018.07
 		 * @see controller/jobs/subscription/process/begin/domains
 		 * @see controller/jobs/subscription/process/begin/max
@@ -352,6 +356,6 @@ class Standard
 		 * @see controller/jobs/subscription/process/payment-days
 		 */
 		$status = \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;
-		return $this->context()->config()->get( 'controller/jobs/subscription/process/payment-status', $status );
+		return (int) $this->context()->config()->get( 'controller/jobs/subscription/process/payment-status', $status );
 	}
 }

@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyOptimizer"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -73,7 +73,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2014.03
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/global
@@ -96,7 +96,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2014.03
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/excludes
@@ -121,7 +121,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Product\Bought\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2014.03
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/excludes
@@ -197,14 +197,14 @@ class Standard
 		 * the value to get more suggestions per product if you have only a few
 		 * ones in total.
 		 *
-		 * @param float Minimum confidence value from 0 to 1
+		 * @type float Minimum confidence value from 0 to 1
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/limit-days
 		 * @see controller/jobs/product/bought/size
 		 */
-		return $this->context()->config()->get( 'controller/jobs/product/bought/min-confidence', 0.66 );
+		return (float) $this->context()->config()->get( 'controller/jobs/product/bought/min-confidence', 0.66 );
 	}
 
 
@@ -218,6 +218,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'order/product' );
 		$filter = $manager->filter()->add( 'order.product.ctime', '>', $this->ctime() )->slice( 0, 0x7fffffff );
 
+		// @phpstan-ignore return.type
 		return $manager->aggregate( $filter, 'order.product.productid' );
 	}
 
@@ -243,7 +244,7 @@ class Standard
 		 * that the more orders are evaluated, the longer the it takes to
 		 * calculate the product combinations.
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
@@ -282,14 +283,14 @@ class Standard
 		 * Usually, you don't need more products than shown in the product
 		 * detail view as suggested products.
 		 *
-		 * @param integer Number of suggested products
+		 * @type integer Number of suggested products
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days
 		 * @see controller/jobs/product/bought/size
 		 */
-		return $this->context()->config()->get( 'controller/jobs/product/bought/max-items', 5 );
+		return (int) $this->context()->config()->get( 'controller/jobs/product/bought/max-items', 5 );
 	}
 
 
@@ -311,6 +312,7 @@ class Standard
 			$search->is( $search->make( 'agg:order.product:count', [$id] ), '==', 1 ),
 		] ) );
 
+		// @phpstan-ignore return.type
 		return $manager->aggregate( $search, 'order.product.productid' )->remove( $id );
 	}
 
@@ -329,14 +331,14 @@ class Standard
 		 * the time needed for associating all items. Higher numbers can improve
 		 * the speed while requiring more memory.
 		 *
-		 * @param integer Number of items processed at once
+		 * @type integer Number of items processed at once
 		 * @since 2023.01
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days
 		 */
-		return $this->context()->config()->get( 'controller/jobs/product/bought/size', 100 );
+		return (int) $this->context()->config()->get( 'controller/jobs/product/bought/size', 100 );
 	}
 
 
@@ -396,14 +398,14 @@ class Standard
 		 * contains a lot of orders, the time to complete the job may rise from
 		 * hours to days!
 		 *
-		 * @param float Minimum support value from 0 to 1
+		 * @type float Minimum support value from 0 to 1
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-confidence
 		 * @see controller/jobs/product/bought/limit-days
 		 * @see controller/jobs/product/bought/size
 		 */
-		return $this->context()->config()->get( 'controller/jobs/product/bought/min-support', 0.02 );
+		return (float) $this->context()->config()->get( 'controller/jobs/product/bought/min-support', 0.02 );
 	}
 
 
@@ -420,7 +422,7 @@ class Standard
 		$filter = $manager->filter()->add( 'order.ctime', '>', $this->ctime() )->slice( 0, 0 );
 		$manager->search( $filter, [], $total )->all();
 
-		return $total;
+		return (int) $total;
 	}
 
 
@@ -431,10 +433,11 @@ class Standard
 	 * @param iterable $prodIds List of product IDs to create suggestions for
 	 * @param int $total Total number of orders
 	 */
-	protected function update( iterable $counts, iterable $prodIds, int $total )
+	protected function update( iterable $counts, iterable $prodIds, int $total ) : void
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'product' );
 		$filter = $manager->filter()->add( 'product.id', '==', $prodIds )->slice( 0, 0x7fffffff );
+		// @phpstan-ignore argument.type
 		$products = $manager->search( $filter, $this->domains() );
 
 		foreach( $counts as $id => $count )
@@ -445,6 +448,7 @@ class Standard
 
 				if( $count / $total > $this->support() )
 				{
+					// @phpstan-ignore argument.type, argument.type
 					$productIds = $this->suggest( $id, $prodIds, $count, $total )->slice( 0, $this->max() );
 
 					foreach( $productIds as $pid )

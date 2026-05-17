@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2017.10
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2017.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/coupon/import/csv/code/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2017.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/coupon/import/csv/code/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Coupon\Import\Csv\Code\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2017.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/coupon/import/csv/code/decorators/excludes
@@ -174,6 +174,7 @@ class Standard
 			$logger->info( sprintf( 'Started coupon/code import from "%1$s"', $location ), 'import/csv/coupon/code' );
 
 			$fcn = function( \Aimeos\MShop\ContextIface $context, $couponId, $fhandle, $path ) {
+				// @phpstan-ignore argument.type, argument.type, argument.type
 				$this->process( $context, $couponId, $fhandle, $path );
 			};
 
@@ -185,6 +186,7 @@ class Standard
 					continue;
 				}
 
+				// @phpstan-ignore argument.type
 				list( $couponId,) = explode( '.', $filename );
 
 				$process->start( $fcn, [$context, $couponId, $fs->reads( $path ), $path] );
@@ -253,6 +255,7 @@ class Standard
 				}
 
 				$item->setParentId( $couponId );
+				// @phpstan-ignore argument.type, argument.type
 				$list = $processor->process( $item, $list );
 
 				$manager->commit();
@@ -281,7 +284,7 @@ class Standard
 	 * @param resource $fhandle File handle of file to import
 	 * @param string $path Path to the container file
 	 */
-	protected function process( \Aimeos\MShop\ContextIface $context, string $couponId, $fhandle, string $path )
+	protected function process( \Aimeos\MShop\ContextIface $context, string $couponId, $fhandle, string $path ) : void
 	{
 		$total = $errors = 0;
 		$logger = $context->logger();
@@ -294,6 +297,7 @@ class Standard
 		$logger->info( sprintf( 'Started coupon code import from "%1$s"', $path ), 'import/csv/couponcode' );
 
 		$processor = $this->getProcessors( $mappings );
+		// @phpstan-ignore argument.type
 		$codePos = $this->getCodePosition( $mappings['code'] );
 
 		for( $i = 0; $i < $skiplines; $i++ ) {
@@ -303,6 +307,7 @@ class Standard
 		while( ( $data = $this->getData( $fhandle, $maxcnt, $codePos ) ) !== [] )
 		{
 			$items = $this->getCouponCodeItems( array_keys( $data ) );
+			// @phpstan-ignore argument.type
 			$errors += $this->import( $items, $data, $couponId, $processor );
 
 			$total += count( $data );
@@ -333,7 +338,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @param string Relative path to the CSV files
+		 * @type string Relative path to the CSV files
 		 * @since 2024.04
 		 * @see controller/jobs/coupon/import/csv/code/mapping
 		 * @see controller/jobs/coupon/import/csv/code/max-size
@@ -358,13 +363,13 @@ class Standard
 		 * specific setting for the job controller. Otherwise, you should
 		 * use the shared option for consistency.
 		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
+		 * @type array Associative list of processor names and lists of key/position pairs
 		 * @since 2017.10
 		 * @see controller/jobs/coupon/import/csv/code/location
 		 * @see controller/jobs/coupon/import/csv/code/max-size
 		 * @see controller/jobs/coupon/import/csv/code/skip-lines
 		 */
-		return $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/mapping', $this->getDefaultMapping() );
+		return (array) $this->context()->config()->get( 'controller/jobs/coupon/import/csv/code/mapping', $this->getDefaultMapping() );
 	}
 
 
@@ -385,7 +390,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * import speed.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2017.10
 		 * @see controller/jobs/coupon/import/csv/code/location
 		 * @see controller/jobs/coupon/import/csv/code/mapping
@@ -411,7 +416,7 @@ class Standard
 		 * define the number of lines that should be left out before the import
 		 * begins.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/coupon/import/csv/code/location
 		 * @see controller/jobs/coupon/import/csv/code/mapping

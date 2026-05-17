@@ -40,12 +40,14 @@ class Base
 		$name = $name ?: $config->get( 'controller/jobs/supplier/import/csv/cache/' . $type . '/name', 'Standard' );
 
 		if( ctype_alnum( $name ) === false ) {
+			// @phpstan-ignore argument.type
 			throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 		}
 
 		$classname = '\\Aimeos\\Controller\\Jobs\\Common\\Supplier\\Import\\Csv\\Cache\\' . ucfirst( $type ) . '\\' . $name;
 		$interface = \Aimeos\Controller\Jobs\Common\Supplier\Import\Csv\Cache\Iface::class;
 
+		// @phpstan-ignore return.type
 		return \Aimeos\Utils::create( $classname, [$context], $interface );
 	}
 
@@ -185,6 +187,7 @@ class Base
 			$name = $config->get( 'controller/jobs/supplier/import/csv/processor/' . $type . '/name', 'Standard' );
 
 			if( ctype_alnum( $name ) === false ) {
+				// @phpstan-ignore argument.type
 				throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 			}
 
@@ -194,6 +197,7 @@ class Base
 			$object = \Aimeos\Utils::create( $classname, [$context, $mapping, $object], $interface );
 		}
 
+		// @phpstan-ignore return.type
 		return $object;
 	}
 }

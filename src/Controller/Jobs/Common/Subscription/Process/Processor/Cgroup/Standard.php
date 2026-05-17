@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Cgroup\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2018.04
 	 */
 
@@ -52,7 +52,7 @@ class Standard
 		 * added to their accounts. When the subscription period ends, they will
 		 * be removed from the customer accounts again.
 		 *
-		 * @param array List of customer group IDs
+		 * @type array List of customer group IDs
 		 * @since 2018.04
 		 */
 		$this->groupIds = (array) $config->get( 'controller/jobs/subscription/process/processor/cgroup/groupids', [] );
@@ -63,15 +63,16 @@ class Standard
 	 * Processes the initial subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
+	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void
 	{
 		$context = $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
 		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
 
+		// @phpstan-ignore argument.type
 		$productItem = $productManager->get( $subscription->getOrderProductId() );
 		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
 
@@ -79,6 +80,7 @@ class Standard
 			$groupIds = $this->groupIds;
 		}
 
+		// @phpstan-ignore argument.type, argument.type
 		$item->setGroups( array_unique( array_merge( $item->getGroups(), $groupIds ) ) );
 		$manager->save( $item );
 	}
@@ -88,15 +90,16 @@ class Standard
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
+	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void
 	{
 		$context = $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
 		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
 
+		// @phpstan-ignore argument.type
 		$productItem = $productManager->get( $subscription->getOrderProductId() );
 		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
 
@@ -104,6 +107,7 @@ class Standard
 			$groupIds = $this->groupIds;
 		}
 
+		// @phpstan-ignore argument.type, argument.type
 		$item->setGroups( array_diff( $item->getGroups(), $groupIds ) );
 		$manager->save( $item );
 	}

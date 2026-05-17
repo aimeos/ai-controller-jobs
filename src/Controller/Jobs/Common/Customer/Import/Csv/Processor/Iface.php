@@ -33,7 +33,7 @@ interface Iface
 	/**
 	 * Stores all types for which no type items exist yet
 	 */
-	public function finish();
+	public function finish() : void;
 
 
 	/**

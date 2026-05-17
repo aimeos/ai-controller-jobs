@@ -22,7 +22,7 @@ interface Iface
 	/**
 	 * Clean up and store data.
 	 */
-	public function finish();
+	public function finish() : void;
 
 
 	/**

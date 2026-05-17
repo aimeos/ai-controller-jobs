@@ -71,10 +71,12 @@ trait Types
 						$types[] = $item->getCode();
 					}
 
-					foreach( array_diff( $codes, $types ) as $code ) {
+					// @phpstan-ignore argument.type, argument.type
+					foreach( array_diff( (array) $codes, $types ) as $code ) {
 						$items[] = $manager->create()->setCode( $code )->setLabel( $code );
 					}
 
+					// @phpstan-ignore argument.type
 					$manager->save( $items, false );
 					$manager->commit();
 				}

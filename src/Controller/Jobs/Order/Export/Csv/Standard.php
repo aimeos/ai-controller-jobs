@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2015.01
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Export\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/excludes
@@ -172,6 +172,7 @@ class Standard
 					throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Invalid message: %1$s', $body ) );
 				}
 
+				// @phpstan-ignore argument.type
 				$this->export( $data );
 			}
 			catch( \Exception $e )
@@ -204,11 +205,12 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * export speed.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2023.04
 		 */
 		$size = (int) $this->context()->config()->get( 'controller/jobs/order/export/csv/max-size', 1000 );
 
+		// @phpstan-ignore argument.type, argument.type
 		return $criteria->add( $criteria->parse( $msg['filter'] ?? [] ) )->order( $msg['sort'] ?? [] )->slice( 0, $size );
 	}
 
@@ -218,7 +220,7 @@ class Standard
 	 *
 	 * @param array $msg Message data passed from the frontend
 	 */
-	protected function export( array $msg )
+	protected function export( array $msg ) : void
 	{
 		if( ( $fh = tmpfile() ) === false ) {
 			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to create temporary file' );
@@ -231,10 +233,12 @@ class Standard
 		$cursor = $manager->cursor( $this->criteria( $manager->filter( false, true ), $msg ) );
 		$ref = $lcontext->config()->get( 'mshop/order/manager/subdomains', [] );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, $ref ) )
 		{
 			$items = $this->call( 'hydrate', $items );
 
+			// @phpstan-ignore argument.type
 			if( fwrite( $fh, $this->render( $items ) ) === false ) {
 				throw new \Aimeos\Controller\Jobs\Exception( 'Unable to add data to temporary file' );
 			}
@@ -245,6 +249,7 @@ class Standard
 		fclose( $fh );
 
 		$manager = \Aimeos\MAdmin::create( $lcontext, 'job' );
+		// @phpstan-ignore argument.type
 		$manager->save( $manager->create()->setPath( $path )->setLabel( $path ), false );
 	}
 
@@ -275,6 +280,7 @@ class Standard
 		$sitecode = ( isset( $msg['sitecode'] ) ? $msg['sitecode'] : 'default' );
 		$localeItem = $manager->bootstrap( $sitecode, '', '', false, \Aimeos\MShop\Locale\Manager\Base::SITE_ALL );
 
+		// @phpstan-ignore argument.type
 		return $lcontext->setLocale( $localeItem );
 	}
 
@@ -296,10 +302,11 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * export speed.
 		 *
-		 * @param string Relativ path with placeholders
+		 * @type string Relativ path with placeholders
 		 * @since 2023.04
 		 */
 		$path = $this->context()->config()->get( 'controller/jobs/order/export/csv/path', 'order-export_%Y-%m-%d_%H-%i-%s.csv' );
+		// @phpstan-ignore argument.type
 		return \Aimeos\Base\Str::strtime( $path );
 	}
 
@@ -324,7 +331,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2023.04
 		 */
 		$template = $context->config()->get( 'controller/jobs/order/export/csv/template', 'order/export/csv/body' );

@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyXml"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2019.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Supplier\Import\Xml\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/excludes
@@ -230,7 +230,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/domains
 		 * @see controller/jobs/supplier/import/xml/location
@@ -257,14 +257,14 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @param array Associative list of MShop item domain names
+		 * @type array Associative list of MShop item domain names
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/backup
 		 * @see controller/jobs/supplier/import/xml/location
 		 * @see controller/jobs/supplier/import/xml/max-query
 		 */
 		$domains = ['supplier/address', 'media', 'text'];
-		return $this->context()->config()->get( 'controller/jobs/supplier/import/xml/domains', $domains );
+		return (array) $this->context()->config()->get( 'controller/jobs/supplier/import/xml/domains', $domains );
 	}
 
 
@@ -274,7 +274,7 @@ class Standard
 	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param string $path Relative path to the XML file in the file system
 	 */
-	protected function import( \Aimeos\MShop\ContextIface $context, string $path )
+	protected function import( \Aimeos\MShop\ContextIface $context, string $path ) : void
 	{
 		$slice = 0;
 		$nodes = [];
@@ -306,6 +306,7 @@ class Standard
 
 				if( $slice++ >= $maxquery )
 				{
+					// @phpstan-ignore argument.type
 					$this->importNodes( $nodes );
 					unset( $nodes );
 					$nodes = [];
@@ -314,6 +315,7 @@ class Standard
 			}
 		}
 
+		// @phpstan-ignore argument.type
 		$this->importNodes( $nodes );
 		unset( $nodes );
 
@@ -340,7 +342,7 @@ class Standard
 	 *
 	 * @param \DomElement[] $nodes List of nodes to import
 	 */
-	protected function importNodes( array $nodes )
+	protected function importNodes( array $nodes ) : void
 	{
 		$codes = [];
 
@@ -353,13 +355,16 @@ class Standard
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'supplier' );
 		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['supplier.code' => array_keys( $codes )] );
+		// @phpstan-ignore argument.type
 		$map = $manager->search( $search, $this->domains() )->col( null, 'supplier.code' );
 
 		foreach( $nodes as $node )
 		{
 			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[$attr->nodeValue] ) ) {
+				// @phpstan-ignore argument.type
 				$item = $this->process( $map[$attr->nodeValue], $node );
 			} else {
+				// @phpstan-ignore argument.type
 				$item = $this->process( $manager->create(), $node );
 			}
 
@@ -384,7 +389,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @param string Relative path to the XML files
+		 * @type string Relative path to the XML files
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/backup
 		 * @see controller/jobs/supplier/import/xml/domains
@@ -410,13 +415,13 @@ class Standard
 		 * thus, this parameter should be low enough to avoid reaching the memory
 		 * limit of the PHP process.
 		 *
-		 * @param integer Number of XML nodes
+		 * @type integer Number of XML nodes
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/domains
 		 * @see controller/jobs/supplier/import/xml/location
 		 * @see controller/jobs/supplier/import/xml/backup
 		 */
-		return $this->context()->config()->get( 'controller/jobs/supplier/import/xml/max-query', 100 );
+		return (int) $this->context()->config()->get( 'controller/jobs/supplier/import/xml/max-query', 100 );
 	}
 
 
@@ -454,6 +459,6 @@ class Standard
 			$this->context()->logger()->error( $msg, 'import/xml/supplier' );
 		}
 
-		return $item;
+		return $item; // @phpstan-ignore return.type
 	}
 }

@@ -20,7 +20,7 @@ namespace Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor;
 class Base
 	extends \Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Base
 {
-	private \Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Iface $object;
+	private ?\Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Iface $object;
 	private \Aimeos\MShop\ContextIface $context;
 	private array $mapping;
 

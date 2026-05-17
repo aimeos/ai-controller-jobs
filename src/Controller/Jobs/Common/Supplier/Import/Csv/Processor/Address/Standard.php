@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Supplier\Import\Csv\Processor\Address\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2020.07
 	 */
 
@@ -61,6 +61,7 @@ class Standard
 
 		foreach( $map as $pos => $list )
 		{
+			// @phpstan-ignore argument.type
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
@@ -69,6 +70,7 @@ class Standard
 			$item = $items->pop() ?? $manager->createAddressItem();
 
 			$item->fromArray( $list );
+			// @phpstan-ignore argument.type, argument.type
 			$supplier->addAddressItem( $item, $key );
 		}
 

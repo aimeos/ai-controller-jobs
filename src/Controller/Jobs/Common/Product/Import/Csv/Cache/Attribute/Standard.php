@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Cache\Attribute\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the cache class name
+	 * @type string Last part of the cache class name
 	 * @since 2015.10
 	 */
 
@@ -62,6 +62,7 @@ class Standard
 	public function get( string $code, ?string $type = null )
 	{
 		if( isset( $this->attributes[$code][$type] ) ) {
+			// @phpstan-ignore return.type
 			return $this->attributes[$code][$type];
 		}
 
@@ -72,6 +73,7 @@ class Standard
 			$this->attributes[$code][$type] = $item;
 		}
 
+		// @phpstan-ignore return.type
 		return $item;
 	}
 
@@ -81,7 +83,7 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Attribute object
 	 */
-	public function set( \Aimeos\MShop\Common\Item\Iface $item )
+	public function set( \Aimeos\MShop\Common\Item\Iface $item ) : void
 	{
 		$this->attributes[$item->getCode()][$item->getType()] = $item;
 	}

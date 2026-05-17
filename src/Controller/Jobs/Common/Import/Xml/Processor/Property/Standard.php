@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Property\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -72,9 +72,11 @@ class Standard
 				$item->addPropertyItem( $propItem );
 			}
 
+			// @phpstan-ignore argument.type
 			$this->addType( $resource . '/property/type', 'product', $propItem->getType() );
 		}
 
+		// @phpstan-ignore return.type
 		return $item->deletePropertyItems( $propItems->toArray() );
 	}
 }

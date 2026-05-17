@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyAccount"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2016.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2016.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/account/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2016.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/account/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Customer\Email\Account\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2016.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/account/decorators/excludes
@@ -177,18 +177,23 @@ class Standard
 				}
 
 				$pass = $list['customer.password'] ?? null;
+				// @phpstan-ignore argument.type
 				$item = $custManager->create()->fromArray( $list, true );
 				$sites = $this->sites( $item->getSiteId() );
 
 				$address = $item->getPaymentAddress();
+				// @phpstan-ignore argument.type
 				$context->locale()->setLanguageId( $address->getLanguageId() ); // for translation
 
+				// @phpstan-ignore argument.type, argument.type
 				$view = $this->view( $address, $sites->getTheme()->filter()->last() );
 				$view->account = $item->getCode();
 				$view->password = $pass;
 
+				// @phpstan-ignore argument.type, argument.type
 				$this->send( $view, $address, $sites->getLogo()->filter()->last() );
 
+				// @phpstan-ignore argument.type
 				$str = sprintf( 'Sent customer account e-mail to "%1$s"', $address->getEmail() );
 				$context->logger()->debug( $str, 'email/customer/account' );
 			}
@@ -210,7 +215,7 @@ class Standard
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
 	 * @param string|null $logoPath Path to the logo
 	 */
-	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $address, ?string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $address, ?string $logoPath = null ) : void
 	{
 		/** controller/jobs/customer/email/account/template-html
 		 * Relative path to the template for the HTML part of the account emails.
@@ -222,7 +227,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/customer/email/account/template-text
 		 */
@@ -237,7 +242,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/customer/email/account/template-html
 		 */
@@ -275,6 +280,7 @@ class Standard
 			$this->sites[$siteId] = $manager->getPath( end( $siteIds ) );
 		}
 
+		// @phpstan-ignore return.type
 		return $this->sites[$siteId];
 	}
 
@@ -297,6 +303,7 @@ class Standard
 			'locale' => $address->getLanguageId(),
 		];
 
+		// @phpstan-ignore return.type
 		return $view;
 	}
 }

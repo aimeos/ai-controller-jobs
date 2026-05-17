@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Group\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -68,6 +68,7 @@ class Standard
 			$list[] = $map[$attrValue]->getId();
 		}
 
+		// @phpstan-ignore return.type
 		return $item->setGroups( $list );
 	}
 
@@ -75,7 +76,7 @@ class Standard
 	/**
 	 * Returns the attribute items for the given nodes
 	 *
-	 * @param \DomNodeList $nodes List of XML attribute item nodes
+	 * @param \DOMNodeList<\DOMNode> $nodes List of XML attribute item nodes
 	 * @return \Aimeos\MShop\Customer\Item\Group\Iface[] Associative list of customer group items with codes as keys
 	 */
 	protected function getItems( \DomNodeList $nodes ) : array
@@ -85,6 +86,7 @@ class Standard
 
 		foreach( $nodes as $node )
 		{
+			// @phpstan-ignore property.notFound
 			if( $node->nodeName === 'groupitem' && ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
 				$keys[\Aimeos\Base\Str::decode( $attr->nodeValue )] = null;
 			}

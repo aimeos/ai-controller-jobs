@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyPayment"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/payment/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/payment/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Email\Payment\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/payment/decorators/excludes
@@ -165,10 +165,13 @@ class Standard
 		foreach( $this->status() as $status )
 		{
 			$ref = ['order'] + $context->config()->get( 'mshop/order/manager/subdomains', [] );
+			// @phpstan-ignore argument.type
 			$filter = $this->filter( $manager->filter(), $status );
 			$cursor = $manager->cursor( $filter );
 
+			// @phpstan-ignore argument.type
 			while( $items = $manager->iterate( $cursor, $ref ) ) {
+				// @phpstan-ignore argument.type
 				$this->notify( $items, $status );
 			}
 		}
@@ -185,6 +188,7 @@ class Standard
 	protected function address( \Aimeos\MShop\Order\Item\Iface $basket ) : \Aimeos\MShop\Common\Item\Address\Iface
 	{
 		if( ( $addr = current( $basket->getAddress( 'payment' ) ) ) !== false && $addr->getEmail() ) {
+			// @phpstan-ignore return.type
 			return $addr;
 		};
 
@@ -197,7 +201,6 @@ class Standard
 	 * Adds the given list of files as attachments to the mail message object
 	 *
 	 * @param \Aimeos\Base\Mail\Message\Iface $msg Mail message
-	 * @param array $files List of absolute file paths
 	 */
 	protected function attachments( \Aimeos\Base\Mail\Message\Iface $msg ) : \Aimeos\Base\Mail\Message\Iface
 	{
@@ -211,7 +214,7 @@ class Standard
 		 * sent to the customer when the payment status changes, e.g. for the order
 		 * confirmation e-mail. These files can't be customer specific.
 		 *
-		 * @param array List of absolute file paths
+		 * @type array List of absolute file paths
 		 * @since 2016.10
 		 * @see controller/jobs/order/email/delivery/attachments
 		 */
@@ -219,7 +222,9 @@ class Standard
 
 		foreach( $files as $filepath )
 		{
+			// @phpstan-ignore argument.type
 			if( $fs->has( $filepath ) ) {
+				// @phpstan-ignore argument.type, argument.type
 				$msg->attach( $fs->read( $filepath ), basename( $filepath ) );
 			}
 		}
@@ -277,7 +282,7 @@ class Standard
 		 * being send in case anything went wrong or an update failed to avoid
 		 * confusion of customers.
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2014.03
 		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/service/delivery/process/limit-days
@@ -292,26 +297,32 @@ class Standard
 	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
 	 * @param int $status Delivery status value
 	 */
-	protected function notify( \Aimeos\Map $items, int $status )
+	protected function notify( \Aimeos\Map $items, int $status ) : void
 	{
 		$context = $this->context();
+		// @phpstan-ignore argument.type
 		$sites = $this->sites( $items->getSiteId()->unique() );
 
 		foreach( $items as $id => $item )
 		{
 			try
 			{
+				// @phpstan-ignore argument.type
 				$list = $sites->get( $item->getSiteId(), map() );
 
+				// @phpstan-ignore argument.type, argument.type, argument.type
 				$this->send( $item, $list->getTheme()->filter()->last(), $list->getLogo()->filter()->last() );
+				// @phpstan-ignore argument.type
 				$this->update( $id, $status );
 
+				// @phpstan-ignore argument.type
 				$str = sprintf( 'Sent order payment e-mail for order "%1$s" and status "%2$s"', $item->getId(), $status );
 				$context->logger()->info( $str, 'email/order/payment' );
 			}
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send payment e-mail for order ID "%1$s" and status "%2$s": %3$s';
+				// @phpstan-ignore argument.type, argument.type
 				$msg = sprintf( $str, $item->getId(), $item->getStatusPayment(), $e->getMessage() );
 				$context->logger()->error( $msg . PHP_EOL . $e->getTraceAsString(), 'email/order/payment' );
 			}
@@ -335,7 +346,7 @@ class Standard
 		 * The order confirmation PDF contains the same information like the
 		 * HTML e-mail and can be also used as invoice if possible.
 		 *
-		 * @param bool TRUE to enable attaching the PDF, FALSE to skip the PDF
+		 * @type bool TRUE to enable attaching the PDF, FALSE to skip the PDF
 		 * @since 2022.04
 		 */
 		if( !$config->get( 'controller/jobs/order/email/payment/pdf', true ) ) {
@@ -346,10 +357,10 @@ class Standard
 			private ?\Closure $headerFcn = null;
 			private ?\Closure $footerFcn = null;
 
-			public function Footer() { return ( $fcn = $this->footerFcn ) ? $fcn( $this ) : null; }
-			public function Header() { return ( $fcn = $this->headerFcn ) ? $fcn( $this ) : null; }
-			public function setFooterFunction( \Closure $fcn ) { $this->footerFcn = $fcn; }
-			public function setHeaderFunction( \Closure $fcn ) { $this->headerFcn = $fcn; }
+			public function Footer() : mixed { return ( $fcn = $this->footerFcn ) ? $fcn( $this ) : null; }
+			public function Header() : mixed { return ( $fcn = $this->headerFcn ) ? $fcn( $this ) : null; }
+			public function setFooterFunction( \Closure $fcn ) : void { $this->footerFcn = $fcn; }
+			public function setHeaderFunction( \Closure $fcn ) : void { $this->headerFcn = $fcn; }
 		};
 		$pdf->setCreator( PDF_CREATOR );
 		$pdf->setAuthor( 'Aimeos' );
@@ -364,7 +375,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.10
 		 * @see controller/jobs/order/email/payment/template-html
 		 * @see controller/jobs/order/email/payment/template-text
@@ -389,7 +400,7 @@ class Standard
 	 * @param string|null $theme Theme name or NULL for default theme
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\MShop\Order\Item\Iface $order, ?string $theme = null, ?string $logoPath = null )
+	protected function send( \Aimeos\MShop\Order\Item\Iface $order, ?string $theme = null, ?string $logoPath = null ) : void
 	{
 		/** controller/jobs/order/email/payment/template-html
 		 * Relative path to the template for the HTML part of the payment emails.
@@ -401,7 +412,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/payment/template-text
 		 */
@@ -416,7 +427,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/payment/template-html
 		 */
@@ -428,9 +439,11 @@ class Standard
 
 		$logo = $this->call( 'mailLogo', $logoPath );
 		$msg = $this->call( 'mailTo', $address );
+		// @phpstan-ignore argument.type
 		$msg = $this->attachments( $msg );
 
 		$view = $this->view( $order, $theme );
+		// @phpstan-ignore argument.type
 		$view->logo = $msg->embed( $logo, basename( (string) $logoPath ) );
 		$view->summaryBasket = $order;
 		$view->addressItem = $address;
@@ -450,9 +463,10 @@ class Standard
 		 * notified about payment changes. Be aware that this isn't useful if the
 		 * order volumne is high or has peeks!
 		 *
-		 * @param string E-mail address or list of e-mail addresses
+		 * @type string E-mail address or list of e-mail addresses
 		 * @since 2023.10
 		 */
+		// @phpstan-ignore argument.type
 		$msg->cc( $config->get( 'controller/jobs/order/email/payment/cc-email', '' ) );
 
 		/** controller/jobs/order/email/payment/bcc-email
@@ -466,14 +480,16 @@ class Standard
 		 * notified about payment changes. Be aware that this isn't useful if the
 		 * order volumne is high or has peeks!
 		 *
-		 * @param string|array E-mail address or list of e-mail addresses
+		 * @type string|array E-mail address or list of e-mail addresses
 		 * @since 2014.03
 		 */
+		// @phpstan-ignore argument.type
 		$msg->bcc( $config->get( 'controller/jobs/order/email/payment/bcc-email', [] ) );
 
 		$msg->subject( sprintf( $context->translate( 'controller/jobs', 'Your order %1$s' ), $order->getInvoiceNumber() ) )
 			->html( $view->render( $config->get( 'controller/jobs/order/email/payment/template-html', 'order/email/payment/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/order/email/payment/template-text', 'order/email/payment/text' ) ) )
+			// @phpstan-ignore argument.type
 			->attach( $this->pdf( $view ), $this->call( 'filename', $order ), 'application/pdf' )
 			->send();
 	}
@@ -492,6 +508,7 @@ class Standard
 
 		foreach( $siteIds as $siteId )
 		{
+			// @phpstan-ignore argument.type
 			$list = explode( '.', trim( $siteId, '.' ) );
 			$map[$siteId] = $manager->getPath( end( $list ) );
 		}
@@ -531,7 +548,7 @@ class Standard
 		 * User-defined status values are possible but should be in the private
 		 * block of values between 30000 and 32767.
 		 *
-		 * @param integer Payment status constant
+		 * @type integer Payment status constant
 		 * @since 2014.03
 		 * @see controller/jobs/order/email/delivery/status
 		 * @see controller/jobs/order/email/payment/limit-days
@@ -557,7 +574,7 @@ class Standard
 	 * @param string $orderId Unique order ID
 	 * @param int $value Status value
 	 */
-	protected function update( string $orderId, int $value )
+	protected function update( string $orderId, int $value ) : void
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 
@@ -566,6 +583,7 @@ class Standard
 			->setType( $this->type() )
 			->setValue( $value );
 
+		// @phpstan-ignore argument.type
 		$manager->save( $item );
 	}
 
@@ -592,6 +610,7 @@ class Standard
 			'locale' => $langId,
 		];
 
+		// @phpstan-ignore return.type
 		return $view;
 	}
 }

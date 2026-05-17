@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2025.10
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2025.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/import/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2025.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/import/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Customer\Import\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2025.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/import/csv/decorators/excludes
@@ -196,7 +196,7 @@ class Standard
 			 * are not assigned to any category but keep the ones without categories,
 			 * e.g. rebate customers.
 			 *
-			 * @param bool TRUE to delete all untouched customers, FALSE to keep them
+			 * @type bool TRUE to delete all untouched customers, FALSE to keep them
 			 * @since 2025.10
 			 * @see controller/jobs/customer/import/csv/backup
 			 * @see controller/jobs/customer/import/csv/domains
@@ -251,7 +251,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2025.10
 		 * @see controller/jobs/customer/import/csv/cleanup
 		 * @see controller/jobs/customer/import/csv/domains
@@ -270,11 +270,12 @@ class Standard
 	 *
 	 * @param \Aimeos\Map $customers List of customer items implementing \Aimeos\MShop\Customer\Item\Iface
 	 */
-	protected function clean( \Aimeos\Map $customers )
+	protected function clean( \Aimeos\Map $customers ) : void
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
 
 		$manager->begin();
+		// @phpstan-ignore argument.type
 		$manager->save( $customers->setStatus( -2 ) );
 		$manager->commit();
 	}
@@ -305,8 +306,10 @@ class Standard
 
 		$filter = $manager->filter();
 		$filter->add( 'customer.mtime', '<', $datetime );
+		// @phpstan-ignore argument.type
 		$cursor = $manager->cursor( $this->call( 'cleaner', $filter ) );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, ['customer' => ['default']] ) )
 		{
 			$this->call( 'clean', $items );
@@ -335,7 +338,7 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @param array Associative list of MShop item domain names
+		 * @type array Associative list of MShop item domain names
 		 * @since 2025.10
 		 * @see controller/jobs/customer/import/csv/backup
 		 * @see controller/jobs/customer/import/csv/cleanup
@@ -344,7 +347,7 @@ class Standard
 		 * @see controller/jobs/customer/import/csv/max-size
 		 * @see controller/jobs/customer/import/csv/skip-lines
 		 */
-		return $this->context()->config()->get( 'controller/jobs/customer/import/csv/domains', $default );
+		return (array) $this->context()->config()->get( 'controller/jobs/customer/import/csv/domains', $default );
 	}
 
 
@@ -380,6 +383,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
 		$search = $manager->filter()->add( ['customer.code' => $codes] )->slice( 0, count( $codes ) );
 
+		// @phpstan-ignore argument.type
 		return $manager->search( $search, $domains )->col( null, 'customer.code' );
 	}
 
@@ -403,6 +407,7 @@ class Standard
 
 		$mappings = $this->mapping();
 		$processor = $this->getProcessors( $mappings );
+		// @phpstan-ignore argument.type
 		$codePos = $this->getCodePosition( $mappings['item'] );
 
 		$fs = $context->fs( 'fs-import' );
@@ -416,6 +421,7 @@ class Standard
 		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
 		{
 			$customers = $this->getCustomers( array_keys( $data ), $domains );
+			// @phpstan-ignore argument.type
 			$errors += $this->importCustomers( $customers, $data, $mappings['item'], [], $processor );
 
 			$total += count( $data );
@@ -464,13 +470,17 @@ class Standard
 			{
 				$code = trim( $code );
 				$customer = $customers[$code] ?? $manager->create();
+				// @phpstan-ignore argument.type
 				$map = current( $this->getMappedChunk( $list, $mapping ) ); // there can only be one chunk for the base customer data
 
 				if( $map )
 				{
+					// @phpstan-ignore argument.type
 					$this->check( $map );
+					// @phpstan-ignore argument.type
 					$customer = $manager->save( $customer->fromArray( $map, true ) );
 
+					// @phpstan-ignore argument.type
 					$processor->process( $customer, $list );
 
 					$manager->save( $customer );
@@ -509,7 +519,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @param string Relative path to the CSV files
+		 * @type string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/customer/import/csv/backup
 		 * @see controller/jobs/customer/import/csv/cleanup
@@ -545,7 +555,7 @@ class Standard
 		 * will be processed by the base customer importer while the mappings in
 		 * "text" will be imported by the text processor.
 		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
+		 * @type array Associative list of processor names and lists of key/position pairs
 		 * @since 2025.10
 		 * @see controller/jobs/customer/import/csv/backup
 		 * @see controller/jobs/customer/import/csv/cleanup
@@ -583,7 +593,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * import speed.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2025.10
 		 * @see controller/jobs/customer/import/csv/backup
 		 * @see controller/jobs/customer/import/csv/cleanup
@@ -612,7 +622,7 @@ class Standard
 		 * define the number of lines that should be left out before the import
 		 * begins.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/customer/import/csv/backup
 		 * @see controller/jobs/customer/import/csv/cleanup

@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Lists\Price\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -72,6 +72,7 @@ class Standard
 			foreach( $refNode->childNodes as $tag )
 			{
 				if( in_array( $tag->nodeName, ['lists'] ) ) {
+					// @phpstan-ignore argument.type
 					$refItem = $this->getProcessor( $tag->nodeName )->process( $refItem, $tag );
 				} else {
 					$list[$tag->nodeName] = \Aimeos\Base\Str::decode( $tag->nodeValue );
@@ -89,12 +90,14 @@ class Standard
 			$name = $resource . '.lists.type';
 			$list[$name] = $list[$name] ?? 'default';
 
+			// @phpstan-ignore argument.type
 			$this->addType( $resource . '/lists/type', 'price', $list[$resource . '.lists.type'] );
 
 			$listItem = $listItem->fromArray( $list );
 			$item->addListItem( 'price', $listItem, $refItem );
 		}
 
+		// @phpstan-ignore return.type
 		return $item->deleteListItems( $listItems->toArray() );
 	}
 }

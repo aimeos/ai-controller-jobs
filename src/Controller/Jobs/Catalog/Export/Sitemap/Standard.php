@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MySitemap"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2019.02
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.02
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/export/sitemap/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.02
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/export/sitemap/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Catalog\Export\Sitemap\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2019.02
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/export/sitemap/export/sitemap/decorators/excludes
@@ -166,7 +166,7 @@ class Standard
 		 * The catalog site map contains no hidden categories by default. If they
 		 * should be part of the export, set this configuration option to TRUE.
 		 *
-		 * @param bool TRUE to export hidden categories, FALSE if not
+		 * @type bool TRUE to export hidden categories, FALSE if not
 		 * @since 2022.01
 		 * @see controller/jobs/catalog/export/sitemap/container/options
 		 * @see controller/jobs/catalog/export/sitemap/location
@@ -185,7 +185,7 @@ class Standard
 	 *
 	 * @param array $files List of generated site map file names
 	 */
-	protected function createIndex( array $files )
+	protected function createIndex( array $files ) : void
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -206,12 +206,13 @@ class Standard
 		 * you've implemented an alternative client class as well, "standard"
 		 * should be replaced by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating XML code for the site map index
+		 * @type string Relative path to the template creating XML code for the site map index
 		 * @since 2015.01
 		 * @see controller/jobs/catalog/export/sitemap/template-items
 		 */
 		$tplconf = 'controller/jobs/catalog/export/sitemap/template-index';
 
+		// @phpstan-ignore argument.type
 		if( empty( $baseUrl = rtrim( $config->get( 'resource/fs/baseurl', '' ), '/' ) ) )
 		{
 			$msg = sprintf( 'Required configuration for "%1$s" is missing', 'resource/fs/baseurl' );
@@ -222,6 +223,7 @@ class Standard
 		$view->baseUrl = $baseUrl . '/';
 
 		$content = $view->render( $config->get( $tplconf, 'catalog/export/sitemap-index' ) );
+		// @phpstan-ignore argument.type
 		$context->fs()->write( $this->call( 'indexFilename' ), $content );
 	}
 
@@ -245,9 +247,11 @@ class Standard
 		$filenum = 1;
 		$files = [];
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
 			$filename = $this->call( 'filename', $filenum++ );
+			// @phpstan-ignore argument.type
 			$fs->write( $filename, $this->render( $items ) );
 			$files[] = $filename;
 		}
@@ -271,11 +275,11 @@ class Standard
 		 * Using the "domains" option you can make more or less associated items available
 		 * in the template.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2019.02
 		 * @see controller/jobs/catalog/export/sitemap/max-items
 		 */
-		return $this->context()->config()->get( 'controller/jobs/catalog/export/sitemap/domains', ['text'] );
+		return (array) $this->context()->config()->get( 'controller/jobs/catalog/export/sitemap/domains', ['text'] );
 	}
 
 
@@ -351,11 +355,11 @@ class Standard
 		 * More details about site maps can be found at
 		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
 		 *
-		 * @param integer Number of categories per file
+		 * @type integer Number of categories per file
 		 * @since 2019.02
 		 * @see controller/jobs/catalog/export/sitemap/domains
 		 */
-		return $this->context()->config()->get( 'controller/jobs/catalog/export/sitemap/max-items', 10000 );
+		return (int) $this->context()->config()->get( 'controller/jobs/catalog/export/sitemap/max-items', 10000 );
 	}
 
 
@@ -382,7 +386,7 @@ class Standard
 		 * you've implemented an alternative client class as well, "standard"
 		 * should be replaced by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating XML code for the site map
+		 * @type string Relative path to the template creating XML code for the site map
 		 * @since 2022.10
 		 */
 		$tplconf = 'controller/jobs/catalog/export/sitemap/template';

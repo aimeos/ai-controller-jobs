@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Lists\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -38,7 +38,7 @@ class Standard
 	/**
 	 * Clean up and store data.
 	 */
-	public function finish()
+	public function finish() : void
 	{
 		foreach( $this->getProcessors() as $proc ) {
 			$proc->finish();

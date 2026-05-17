@@ -19,6 +19,7 @@ namespace Aimeos\Controller\Jobs\Common\Import\Xml;
  */
 trait Traits
 {
+	/** @var \Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Iface[] */
 	private array $processors = [];
 
 
@@ -80,6 +81,7 @@ trait Traits
 		$name = $config->get( 'controller/jobs/common/import/xml/processor/' . $type . '/name', 'Standard' );
 
 		if( ctype_alnum( $name ) === false ) {
+			// @phpstan-ignore argument.type
 			throw new \LogicException( sprintf( 'Invalid characters in processor name "%1$s"', $name ), 400 );
 		}
 
@@ -87,6 +89,7 @@ trait Traits
 		$classname = '\\Aimeos\\Controller\\Jobs\\Common\\Import\\Xml\\Processor\\' . $segment;
 		$interface = \Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Iface::class;
 
+		// @phpstan-ignore return.type
 		return \Aimeos\Utils::create( $classname, [$context], $interface );
 	}
 }

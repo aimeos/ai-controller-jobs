@@ -19,7 +19,7 @@ namespace Aimeos\Controller;
  */
 class Jobs
 {
-	private static $objects = [];
+	private static array $objects = [];
 
 
 	/**
@@ -97,7 +97,7 @@ class Jobs
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Controller\Jobs\Iface|null $controller Frontend controller object
 	 */
-	public static function inject( string $classname, ?\Aimeos\Controller\Jobs\Iface $controller = null )
+	public static function inject( string $classname, ?\Aimeos\Controller\Jobs\Iface $controller = null ) : void
 	{
 		self::$objects['\\' . ltrim( $classname, '\\' )] = $controller;
 	}
@@ -119,10 +119,12 @@ class Jobs
 		$localClass = str_replace( '/', '\\', ucwords( $domain, '/' ) );
 
 		$classprefix = '\Aimeos\Controller\Jobs\\' . ucfirst( $localClass ) . '\Decorator\\';
+		// @phpstan-ignore argument.type
 		$decorators = array_reverse( $config->get( 'controller/jobs/' . $domain . '/decorators/local', [] ) );
 		$controller = self::addDecorators( $context, $aimeos, $controller, $decorators, $classprefix );
 
 		$classprefix = '\Aimeos\Controller\Jobs\Common\Decorator\\';
+		// @phpstan-ignore argument.type
 		$decorators = array_reverse( $config->get( 'controller/jobs/' . $domain . '/decorators/global', [] ) );
 		$controller = self::addDecorators( $context, $aimeos, $controller, $decorators, $classprefix );
 
@@ -144,14 +146,16 @@ class Jobs
 		 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" and
 		 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator2".
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2014.03
 		 */
+		// @phpstan-ignore argument.type
 		$decorators = array_reverse( $config->get( 'controller/jobs/common/decorators/default', [] ) );
 		$excludes = $config->get( 'controller/jobs/' . $domain . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
 		{
+			// @phpstan-ignore argument.type
 			if( in_array( $name, $excludes ) ) {
 				unset( $decorators[$key] );
 			}
@@ -183,12 +187,14 @@ class Jobs
 		foreach( $decorators as $name )
 		{
 			if( ctype_alnum( $name ) === false ) {
+				// @phpstan-ignore argument.type
 				throw new \LogicException( sprintf( 'Invalid class name "%1$s"', $name ), 400 );
 			}
 
 			$controller = \Aimeos\Utils::create( $classprefix . $name, [$controller, $context, $aimeos], $interface );
 		}
 
+		// @phpstan-ignore return.type
 		return $controller;
 	}
 
@@ -207,11 +213,13 @@ class Jobs
 		string $classname, string $interface, string $path ) : \Aimeos\Controller\Jobs\Iface
 	{
 		if( isset( self::$objects[$classname] ) ) {
+			// @phpstan-ignore return.type
 			return self::$objects[$classname];
 		}
 
 		$cntl = \Aimeos\Utils::create( $classname, [$context, $aimeos], $interface );
 
+		// @phpstan-ignore argument.type
 		return self::addControllerDecorators( $context, $aimeos, $cntl, $path );
 	}
 

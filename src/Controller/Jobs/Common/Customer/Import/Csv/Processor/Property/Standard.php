@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Customer\Import\Csv\Processor\Property\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2025.10
 	 */
 
@@ -53,16 +53,20 @@ class Standard
 
 		foreach( $map as $list )
 		{
+			// @phpstan-ignore argument.type
 			if( ( $value = $this->val( $list, 'customer.property.value' ) ) === null ) {
 				continue;
 			}
 
+			// @phpstan-ignore argument.type
 			$type = $this->val( $list, 'customer.property.type' );
+			// @phpstan-ignore argument.type
 			$this->addType( 'customer/property/type', 'customer', $type );
 
 			if( isset( $propMap[$value][$type] ) )
 			{
 				$item = $propMap[$value][$type];
+				// @phpstan-ignore argument.type
 				$items->remove( $item->getId() );
 			}
 			else
@@ -70,6 +74,7 @@ class Standard
 				$item = $manager->createPropertyItem()->setType( $type );
 			}
 
+			// @phpstan-ignore argument.type
 			$customer->addPropertyItem( $item->fromArray( $list ) );
 		}
 

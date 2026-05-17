@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2021.10
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2021.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2021.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Status\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2021.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/excludes
@@ -165,7 +165,7 @@ class Standard
 		 * empty string in case the files are located in the root directory of
 		 * the virtual file system.
 		 *
-		 * @param string Relative sub-directory name, path or empty string
+		 * @type string Relative sub-directory name, path or empty string
 		 * @since 2021.10
 		 */
 		$dirname = $context->config()->get( 'controller/jobs/order/status/csv/directory', 'orderstatus' );
@@ -173,6 +173,7 @@ class Standard
 		$fs = $context->fs( 'fs-import' );
 		$fs->has( $dirname . '/_done' ) ?: $fs->mkDir( $dirname . '/_done' );
 
+		// @phpstan-ignore argument.type
 		foreach( $fs->scan( $dirname ) as $name )
 		{
 			if( in_array( $name, ['.', '..'] ) || $fs->isDir( $dirname . '/' . $name ) ) {
@@ -206,7 +207,7 @@ class Standard
 	 * @param resource $handle File resource handle
 	 * @param int $maxcnt Maximum number of rows to read
 	 * @param string $sep Single byte character for separating the values
-	 * @return array<int,array<string,array<int,int|string>>>|null Array of order and product status rows or NULL for no more rows
+	 * @return array|null Array of order and product status rows or NULL for no more rows
 	 */
 	protected function getData( $handle, int $maxcnt, string $sep ) : ?array
 	{
@@ -239,7 +240,7 @@ class Standard
 	 *
 	 * @param resource $handle File handle to read content from
 	 */
-	protected function import( $handle )
+	protected function import( $handle ) : void
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -254,7 +255,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * status speed.
 		 *
-		 * @param int Number of rows
+		 * @type int Number of rows
 		 * @since 2021.10
 		 */
 		$maxcnt = (int) $config->get( 'controller/jobs/order/status/csv/max-size', 1000 );
@@ -265,7 +266,7 @@ class Standard
 		 * By default, a comma (",") is used but it can be changed to e.g. a
 		 * semicolon (";") if neccesary.
 		 *
-		 * @param string Single byte separator character
+		 * @type string Single byte separator character
 		 * @since 2021.10
 		 */
 		$sep = $config->get( 'controller/jobs/order/status/csv/separator', ',' );
@@ -276,21 +277,23 @@ class Standard
 		 * If the CSV file contains a header that shouldn't be imported, set
 		 * this option to "1" or any number of rows that should be ignored.
 		 *
-		 * @param int Number of header rows to skip
+		 * @type int Number of header rows to skip
 		 * @since 2021.10
 		 */
 		$skip = (int) $config->get( 'controller/jobs/order/status/csv/skip', 0 );
 
 		for( $i = 0; $i < $skip; $i++ ) {
+			// @phpstan-ignore argument.type
 			fgetcsv( $handle, 0, $sep, '"', '' );
 		}
 
 		$pmanager = \Aimeos\MShop::create( $context, 'order/product' );
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 
+		// @phpstan-ignore argument.type
 		while( $data = $this->getData( $handle, $maxcnt, $sep ) )
 		{
-			if( !empty( $orders = $data[0] ) )
+			if( !empty( $orders = $data[0] ) && is_array( $orders ) )
 			{
 				$filter = $manager->filter()->slice( 0, count( $orders ) )
 					->add( ['order.id' => array_keys( $orders )] );
@@ -304,7 +307,7 @@ class Standard
 			}
 
 
-			if( !empty( $products = $data[1] ) )
+			if( !empty( $products = $data[1] ) && is_array( $products ) )
 			{
 				$filter = $pmanager->filter()->slice( 0, count( $products ) )
 					->add( ['order.product.id' => array_keys( $products )] );

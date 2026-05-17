@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyVoucher"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Email\Voucher\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/excludes
@@ -185,11 +185,13 @@ class Standard
 	{
 		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY;
 		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
+			// @phpstan-ignore return.type
 			return $addr;
 		}
 
 		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
+			// @phpstan-ignore return.type
 			return $addr;
 		}
 
@@ -203,7 +205,7 @@ class Standard
 	 *
 	 * @param \Aimeos\Map $orderProdItems Complete order including addresses, products, services
 	 */
-	protected function createCoupons( \Aimeos\Map $orderProdItems )
+	protected function createCoupons( \Aimeos\Map $orderProdItems ) : \Aimeos\Map
 	{
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context(), 'order' );
@@ -252,7 +254,7 @@ class Standard
 			$this->couponId = $item->getId();
 		}
 
-		return $this->couponId;
+		return (string) $this->couponId;
 	}
 
 
@@ -305,7 +307,7 @@ class Standard
 		 * being send in case anything went wrong or an update failed to avoid
 		 * confusion of customers.
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2014.03
 		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/service/delivery/process/limit-days
@@ -319,9 +321,10 @@ class Standard
 	 *
 	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
 	 */
-	protected function notify( \Aimeos\Map $items )
+	protected function notify( \Aimeos\Map $items ) : void
 	{
 		$context = $this->context();
+		// @phpstan-ignore argument.type
 		$sites = $this->sites( $items->getSiteId()->unique() );
 
 		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
@@ -334,21 +337,28 @@ class Standard
 
 			try
 			{
+				// @phpstan-ignore argument.type
 				$products = $this->products( $item );
 				$orderProdManager->save( $this->createCoupons( $products ) );
 
+				// @phpstan-ignore argument.type
 				$addr = $this->address( $item );
 				$context->locale()->setLanguageId( $addr->getLanguageId() );
 
+				// @phpstan-ignore argument.type
 				$list = $sites->get( $item->getSiteId(), map() );
+				// @phpstan-ignore argument.type, argument.type
 				$view = $this->view( $item, $list->getTheme()->filter()->last() );
 
+				// @phpstan-ignore argument.type
 				$this->send( $view, $products, $addr, $list->getLogo()->filter()->last() );
+				// @phpstan-ignore argument.type
 				$this->update( $id );
 
 				$orderProdManager->commit();
 				$couponManager->commit();
 
+				// @phpstan-ignore argument.type
 				$str = sprintf( 'Sent voucher e-mails for order ID "%1$s"', $item->getId() );
 				$context->logger()->info( $str, 'email/order/voucher' );
 			}
@@ -358,6 +368,7 @@ class Standard
 				$couponManager->rollback();
 
 				$str = 'Error while trying to send voucher e-mails for order ID "%1$s": %2$s';
+				// @phpstan-ignore argument.type
 				$msg = sprintf( $str, $item->getId(), $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 				$context->logger()->info( $msg, 'email/order/voucher' );
 			}
@@ -380,7 +391,7 @@ class Standard
 		 *
 		 * The voucher PDF contains the same information like the HTML e-mail.
 		 *
-		 * @param bool TRUE to enable attaching the PDF, FALSE to skip the PDF
+		 * @type bool TRUE to enable attaching the PDF, FALSE to skip the PDF
 		 * @since 2022.10
 		 */
 		if( !$config->get( 'controller/jobs/order/email/voucher/pdf', true ) ) {
@@ -391,10 +402,10 @@ class Standard
 			private ?\Closure $headerFcn = null;
 			private ?\Closure $footerFcn = null;
 
-			public function Footer() { return ( $fcn = $this->footerFcn ) ? $fcn( $this ) : null; }
-			public function Header() { return ( $fcn = $this->headerFcn ) ? $fcn( $this ) : null; }
-			public function setFooterFunction( \Closure $fcn ) { $this->footerFcn = $fcn; }
-			public function setHeaderFunction( \Closure $fcn ) { $this->headerFcn = $fcn; }
+			public function Footer() : mixed { return ( $fcn = $this->footerFcn ) ? $fcn( $this ) : null; }
+			public function Header() : mixed { return ( $fcn = $this->headerFcn ) ? $fcn( $this ) : null; }
+			public function setFooterFunction( \Closure $fcn ) : void { $this->footerFcn = $fcn; }
+			public function setHeaderFunction( \Closure $fcn ) : void { $this->headerFcn = $fcn; }
 		};
 		$pdf->setCreator( PDF_CREATOR );
 		$pdf->setAuthor( 'Aimeos' );
@@ -409,7 +420,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.10
 		 * @see controller/jobs/order/email/voucher/template-html
 		 * @see controller/jobs/order/email/voucher/template-text
@@ -460,7 +471,7 @@ class Standard
 	 *
 	 * @param array $map Associative list of coupon codes as keys and reference Ids as values
 	 */
-	protected function saveCoupons( array $map )
+	protected function saveCoupons( array $map ) : void
 	{
 		$couponId = $this->couponId();
 		$manager = \Aimeos\MShop::create( $this->context(), 'coupon/code' );
@@ -470,6 +481,7 @@ class Standard
 			$item = $manager->create()->setParentId( $couponId )
 				->setCode( $code )->setRef( $ref )->setCount( null ); // unlimited
 
+			// @phpstan-ignore argument.type
 			$manager->save( $item );
 		}
 	}
@@ -484,7 +496,7 @@ class Standard
 	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
 	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\Map $orderProducts,
-		\Aimeos\MShop\Common\Item\Address\Iface $address, ?string $logoPath = null )
+		\Aimeos\MShop\Common\Item\Address\Iface $address, ?string $logoPath = null ) : void
 	{
 		/** controller/jobs/order/email/voucher/template-html
 		 * Relative path to the template for the HTML part of the voucher emails.
@@ -496,7 +508,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/voucher/template-text
 		 */
@@ -511,7 +523,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/voucher/template-html
 		 */
@@ -558,6 +570,7 @@ class Standard
 
 		foreach( $siteIds as $siteId )
 		{
+			// @phpstan-ignore argument.type
 			$list = explode( '.', trim( $siteId, '.' ) );
 			$map[$siteId] = $manager->getPath( end( $list ) );
 		}
@@ -586,7 +599,7 @@ class Standard
 		 * * 5: authorized
 		 * * 6: received
 		 *
-		 * @param integer Payment status constant
+		 * @type integer Payment status constant
 		 * @since 2018.07
 		 * @see controller/jobs/order/email/voucher/limit-days
 		 */
@@ -610,13 +623,14 @@ class Standard
 	 *
 	 * @param string $orderId Unique order ID
 	 */
-	protected function update( string $orderId )
+	protected function update( string $orderId ) : void
 	{
 		$orderStatusManager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 
 		$statusItem = $orderStatusManager->create()->setParentId( $orderId )->setValue( 1 )
 			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER );
 
+		// @phpstan-ignore argument.type
 		$orderStatusManager->save( $statusItem );
 	}
 
@@ -643,6 +657,7 @@ class Standard
 			'locale' => $langId,
 		];
 
+		// @phpstan-ignore return.type
 		return $view;
 	}
 }

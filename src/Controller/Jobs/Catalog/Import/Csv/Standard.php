@@ -52,7 +52,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2018.04
 	 */
 
@@ -74,7 +74,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/csv/decorators/global
@@ -97,7 +97,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/csv/decorators/excludes
@@ -122,7 +122,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Catalog\Import\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/csv/decorators/excludes
@@ -226,7 +226,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/converter
 		 * @see controller/jobs/catalog/import/csv/domains
@@ -256,7 +256,7 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @param array Associative list of MShop item domain names
+		 * @type array Associative list of MShop item domain names
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/converter
@@ -265,7 +265,7 @@ class Standard
 		 * @see controller/jobs/catalog/import/csv/max-size
 		 * @see controller/jobs/catalog/import/csv/skip-lines
 		 */
-		return $this->context()->config()->get( 'controller/jobs/catalog/import/csv/domains', ['media', 'text'] );
+		return (array) $this->context()->config()->get( 'controller/jobs/catalog/import/csv/domains', ['media', 'text'] );
 	}
 
 
@@ -302,6 +302,7 @@ class Standard
 		$search = $manager->filter()->add( ['catalog.code' => $codes] )->slice( 0, count( $codes ) );
 
 		$map = [];
+		// @phpstan-ignore argument.type
 		foreach( $manager->search( $search, $domains ) as $item ) {
 			$map[$item->getCode()] = $item;
 		}
@@ -326,6 +327,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		// @phpstan-ignore argument.type
 		$parent = trim( $map['catalog.parent'] );
 
 		if( $parent != '' && !isset( $catalogItems[$parent] ) )
@@ -334,6 +336,7 @@ class Standard
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		// @phpstan-ignore return.type
 		return ( $parent != '' ? $catalogItems[$parent]->getId() : null );
 	}
 
@@ -357,6 +360,7 @@ class Standard
 
 		$mappings = $this->mapping();
 		$processor = $this->getProcessors( $mappings );
+		// @phpstan-ignore argument.type
 		$codePos = $this->getCodePosition( $mappings['item'] );
 
 		$fs = $context->fs( 'fs-import' );
@@ -370,6 +374,7 @@ class Standard
 		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
 		{
 			$catalogItems = $this->getCategories( array_keys( $data ), $domains );
+			// @phpstan-ignore argument.type
 			$errors += $this->importCategories( $catalogItems, $data, $mappings['item'], $processor );
 
 			$total += count( $data );
@@ -417,17 +422,21 @@ class Standard
 			{
 				$code = trim( $code );
 				$item = $catalogItems[$code] ?? $manager->create();
+				// @phpstan-ignore argument.type
 				$map = current( $this->getMappedChunk( $list, $mapping ) ); // there can only be one chunk for the base catalog data
 
 				if( $map )
 				{
+					// @phpstan-ignore argument.type
 					$map['catalog.config'] = json_decode( $map['catalog.config'] ?? '[]', true ) ?: [];
+					// @phpstan-ignore argument.type
 					$parentid = $this->getParentId( $catalogItems, $map, $code );
 					$item->fromArray( $map, true );
 
 					if( isset( $catalogItems[$code] ) )
 					{
 						$manager->move( $item->getId(), $item->getParentId(), $parentid );
+						// @phpstan-ignore argument.type
 						$item = $manager->save( $item );
 					}
 					else
@@ -435,9 +444,11 @@ class Standard
 						$item = $manager->insert( $item, $parentid );
 					}
 
+					// @phpstan-ignore argument.type
 					$processor->process( $item, $list );
 					$catalogItems[$code] = $item;
 
+					// @phpstan-ignore argument.type
 					$manager->save( $item );
 				}
 
@@ -474,7 +485,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @param string Relative path to the CSV files
+		 * @type string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/converter
@@ -510,7 +521,7 @@ class Standard
 		 * will be processed by the base catalog importer while the mappings in
 		 * "text" will be imported by the text processor.
 		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
+		 * @type array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/converter
@@ -548,7 +559,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * import speed.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/converter
@@ -577,7 +588,7 @@ class Standard
 		 * define the number of lines that should be left out before the import
 		 * begins.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/converter

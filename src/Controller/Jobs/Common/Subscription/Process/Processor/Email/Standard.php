@@ -28,9 +28,9 @@ class Standard
 	 * Executed after the subscription renewal
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
+	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void
 	{
 		if( $subscription->getReason() === \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT ) {
 			$this->notify( $subscription, $order );
@@ -42,9 +42,9 @@ class Standard
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
+	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void
 	{
 		$this->notify( $subscription, $order );
 	}
@@ -54,15 +54,16 @@ class Standard
 	 * Sends e-mails for the given subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item object
-	 * @param \Aimeos\MShop\Order\Item\Iface $subscription Order item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order item
 	 */
-	protected function notify( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
+	protected function notify( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void
 	{
 		$address = current( $order->getAddress( 'payment' ) );
 
 		$siteIds = explode( '.', trim( $order->getSiteId(), '.' ) );
 		$sites = \Aimeos\MShop::create( $this->context(), 'locale/site' )->getPath( end( $siteIds ) );
 
+		// @phpstan-ignore argument.type
 		$view = $this->view( $order, $sites->getTheme()->filter()->last() );
 		$view->subscriptionItem = $subscription;
 		$view->addressItem = $address;
@@ -70,6 +71,7 @@ class Standard
 		foreach( $order->getProducts() as $orderProduct )
 		{
 			if( $orderProduct->getId() == $subscription->getOrderProductId() ) {
+				// @phpstan-ignore argument.type, argument.type
 				$this->send( $view->set( 'orderProductItem', $orderProduct ), $address, $sites->getLogo()->filter()->last() );
 			}
 		}
@@ -83,7 +85,7 @@ class Standard
 	 * @param \Aimeos\MShop\Order\Item\Address\Iface $address Address item
 	 * @param string|null $logoPath Path to the logo
 	 */
-	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Address\Iface $address, ?string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Address\Iface $address, ?string $logoPath = null ) : void
 	{
 		/** controller/jobs/order/email/subscription/template-html
 		 * Relative path to the template for the HTML part of the subscription emails.
@@ -95,7 +97,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/subscription/template-text
 		 */
@@ -110,7 +112,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/subscription/template-html
 		 */
@@ -149,6 +151,7 @@ class Standard
 			'locale' => $langId,
 		];
 
+		// @phpstan-ignore return.type
 		return $view;
 	}
 }

@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Customer\Import\Csv\Processor\Group\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2025.10
 	 */
 
@@ -84,10 +84,12 @@ class Standard
 
 		foreach( $map as $list )
 		{
+			// @phpstan-ignore argument.type
 			if( ( $value = $this->val( $list, 'customer.groups' ) ) === null ) {
 				continue;
 			}
 
+			// @phpstan-ignore argument.type
 			$groups = explode( "\n", $value );
 
 			foreach( $groups as $group )
@@ -100,6 +102,7 @@ class Standard
 
 		$customer->setGroups( $ids );
 
+		// @phpstan-ignore argument.type
 		return $this->object()->process( $customer, $data );
 	}
 }

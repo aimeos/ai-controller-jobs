@@ -48,6 +48,7 @@ abstract class Base
 	 * @param array $param List of method parameter
 	 * @throws \Aimeos\Controller\Jobs\Exception If method call failed
 	 */
+	// @phpstan-ignore missingType.return
 	public function __call( string $name, array $param )
 	{
 		throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'Unable to call method "%1$s"', $name ) );
@@ -86,6 +87,7 @@ abstract class Base
 	 */
 	protected function val( array $list, string $key, $default = null )
 	{
+		// @phpstan-ignore argument.type
 		return isset( $list[$key] ) && ( $value = trim( $list[$key] ) ) !== '' ? $value : $default;
 	}
 
@@ -95,7 +97,7 @@ abstract class Base
 	 *
 	 * @param string $subject Subject of the e-mail
 	 * @param string $body Text body of the e-mail
-	 * @return \Aimeos\Controller\Jobs\Iface Same object for fluent interface
+	 * @return self Same object for fluent interface
 	 */
 	protected function mail( string $subject, string $body ) : self
 	{
@@ -106,7 +108,7 @@ abstract class Base
 		 *
 		 * Should be the company or web site name
 		 *
-		 * @param string Sender name
+		 * @type string Sender name
 		 * @see resource/email/from-email
 		 */
 		$name = $config->get( 'resource/email/from-name' );
@@ -116,7 +118,7 @@ abstract class Base
 		 *
 		 * Should be the e-mail address of the company or web site
 		 *
-		 * @param string E-Mail address
+		 * @type string E-Mail address
 		 * @see resource/email/from-name
 		 */
 		$email = $config->get( 'resource/email/from-email' );
@@ -128,7 +130,7 @@ abstract class Base
 		 * error occurred. This setting will be used as the recipient e-mail
 		 * address for these e-mails.
 		 *
-		 * @param string E-mail address
+		 * @type string E-mail address
 		 * @since 2020.04
 		 * @see controller/jobs/from-email
 		 */
@@ -139,6 +141,7 @@ abstract class Base
 		$message = $this->context->mail()->create();
 
 		foreach( (array) $to as $addr ) {
+			// @phpstan-ignore argument.type
 			$message->to( $addr );
 		}
 
@@ -149,11 +152,12 @@ abstract class Base
 		 * error occurred. This setting will be used as the sender e-mail
 		 * address in these e-mails.
 		 *
-		 * @param string E-mail address
+		 * @type string E-mail address
 		 * @since 2020.04
 		 * @see controller/jobs/to-email
 		 */
 		if( $from = $config->get( 'controller/jobs/from-email', $email ) ) {
+			// @phpstan-ignore argument.type, argument.type
 			$message->from( $from, $name );
 		}
 

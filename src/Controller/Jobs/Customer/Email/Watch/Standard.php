@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyWatch"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/watch/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/watch/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Customer\Email\Watch\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/watch/decorators/excludes
@@ -169,6 +169,7 @@ class Standard
 		$filter->add( $filter->is( $func, '!=', null ) )->order( 'customer.id' );
 		$cursor = $manager->cursor( $filter );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, ['product' => ['watch'], 'price'] ) ) {
 			$manager->save( $this->notify( $items ) );
 		}
@@ -190,27 +191,34 @@ class Standard
 		foreach( $customers as $customer )
 		{
 			$listItems = $customer->getListItems( 'product', null, null, false );
+			// @phpstan-ignore argument.type
 			$products = $this->products( $listItems );
 
 			try
 			{
 				if( !empty( $products ) )
 				{
+					// @phpstan-ignore argument.type
 					$sites = $this->sites( $customer->getSiteId() );
+					// @phpstan-ignore argument.type
 					$context->locale()->setLanguageId( $customer->getPaymentAddress()->getLanguageId() );
 
+					// @phpstan-ignore argument.type, argument.type
 					$view = $this->view( $customer->getPaymentAddress(), $sites->getTheme()->filter()->last() );
 					$view->products = $products;
 
+					// @phpstan-ignore argument.type, argument.type
 					$this->send( $view, $customer->getPaymentAddress(), $sites->getLogo()->filter()->last() );
 				}
 
+				// @phpstan-ignore argument.type
 				$str = sprintf( 'Sent product notification e-mail to "%1$s"', $customer->getPaymentAddress()->getEmail() );
 				$context->logger()->debug( $str, 'email/customer/watch' );
 			}
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send product notification e-mail for customer ID "%1$s": %2$s';
+				// @phpstan-ignore argument.type
 				$msg = sprintf( $str, $customer->getId(), $e->getMessage() ) . PHP_EOL . $e->getTraceAsString();
 				$context->logger()->error( $msg, 'email/customer/watch' );
 			}
@@ -268,7 +276,7 @@ class Standard
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
 	 * @param string|null $logoPath Path to the logo
 	 */
-	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $address, ?string $logoPath = null )
+	protected function send( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $address, ?string $logoPath = null ) : void
 	{
 		/** controller/jobs/customer/email/watch/template-html
 		 * Relative path to the template for the HTML part of the watch emails.
@@ -280,7 +288,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/customer/email/watch/template-text
 		 */
@@ -295,7 +303,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @param string Relative path to the template
+		 * @type string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/customer/email/watch/template-html
 		 */
@@ -337,6 +345,7 @@ class Standard
 			$this->sites[$siteId] = $manager->getPath( end( $siteIds ) );
 		}
 
+		// @phpstan-ignore return.type
 		return $this->sites[$siteId];
 	}
 
@@ -358,6 +367,7 @@ class Standard
 			'locale' => $address->getLanguageId(),
 		];
 
+		// @phpstan-ignore return.type
 		return $view;
 	}
 }

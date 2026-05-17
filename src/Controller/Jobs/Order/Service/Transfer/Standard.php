@@ -50,7 +50,7 @@ class Standard
 		 * name with an upper case character and continue only with lower case characters
 		 * or numbers. Avoid chamel case names like "MyTransfer"!
 		 *
-		 * @param string Last part of the class name
+		 * @type string Last part of the class name
 		 * @since 2021.10
 		 */
 
@@ -72,7 +72,7 @@ class Standard
 		 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 		 * "controller/jobs/common/decorators/default" to this job controller.
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2021.10
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/global
@@ -95,7 +95,7 @@ class Standard
 		 * This would add the decorator named "decorator1" defined by
 		 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2021.10
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 		 * "\Aimeos\Controller\Jobs\Order\Service\Transfer\Decorator\Decorator2" only to this job
 		 * controller.
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2021.10
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/excludes
@@ -169,12 +169,14 @@ class Standard
 					$provider = $manager->getProvider( $item, $item->getType() );
 
 					if( $provider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_TRANSFER ) ) {
+						// @phpstan-ignore argument.type
 						$this->orders( $provider );
 					}
 				}
 				catch( \Exception $e )
 				{
 					$str = 'Error while transferring payment for service with ID "%1$s": %2$s';
+					// @phpstan-ignore argument.type
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'order/service/transfer' );
 				}
@@ -196,7 +198,7 @@ class Standard
 		 * You can start transferring payments after the configured amount of days.
 		 * Before, the money is hold back and not available to vendors.
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2010.10
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/transfer/transfer-days', 0 );
@@ -225,11 +227,11 @@ class Standard
 		 * - order/product
 		 * - order/service
 		 *
-		 * @param array Referenced domain names
+		 * @type array Referenced domain names
 		 * @since 2022.04
 		 */
 		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
-		return $config->get( 'controller/jobs/order/service/transfer/domains', $ref );
+		return (array) $config->get( 'controller/jobs/order/service/transfer/domains', $ref );
 	}
 
 
@@ -248,12 +250,12 @@ class Standard
 		 * the payment service provider at once. Bigger batches an improve the
 		 * performance but requires more memory.
 		 *
-		 * @param integer Number of orders
+		 * @type integer Number of orders
 		 * @since 2023.04
 		 * @see controller/jobs/order/service/transfer/domains
 		 * @see controller/jobs/order/service/transfer/limit-days
 		 */
-		return $this->context()->config()->get( 'controller/jobs/order/service/transfer/batch-max', 100 );
+		return (int) $this->context()->config()->get( 'controller/jobs/order/service/transfer/batch-max', 100 );
 	}
 
 
@@ -262,7 +264,7 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Service\Provider\Iface $provider Service provider for processing the orders
 	 */
-	protected function orders( \Aimeos\MShop\Service\Provider\Iface $provider )
+	protected function orders( \Aimeos\MShop\Service\Provider\Iface $provider ) : void
 	{
 		$context = $this->context();
 		$domains = $this->domains();
@@ -279,17 +281,20 @@ class Standard
 		] ) );
 		$cursor = $manager->cursor( $filter );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
 			foreach( $items as $item )
 			{
 				try
 				{
+					// @phpstan-ignore argument.type
 					$manager->save( $provider->transfer( $item ) );
 				}
 				catch( \Exception $e )
 				{
 					$str = 'Error while transferring payment for order with ID "%1$s": %2$s';
+					// @phpstan-ignore argument.type
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'order/service/transfer' );
 				}

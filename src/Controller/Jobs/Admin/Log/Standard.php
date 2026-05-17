@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyLog"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.09
 	 */
 
@@ -73,7 +73,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/admin/log/decorators/global
@@ -96,7 +96,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/admin/log/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Admin\Log\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/admin/log/decorators/excludes
@@ -169,6 +169,7 @@ class Standard
 		{
 			foreach( $items as $id => $item )
 			{
+				// @phpstan-ignore argument.type
 				if( fputcsv( $fh, $item->toArray(), ',', '"', '' ) === false ) {
 					throw new \Aimeos\Controller\Jobs\Exception( 'Unable to write log data to temporary file' );
 				}
@@ -197,7 +198,7 @@ class Standard
 		 * removed. There's a job controller available that can delete old log
 		 * entries and save the old log entries to the given relative path.
 		 *
-		 * @param string Relative file system path in the fs-admin filesystem
+		 * @type string Relative file system path in the fs-admin filesystem
 		 * @since 2014.09
 		 * @see controller/jobs/admin/log/limit-days
 		 */
@@ -235,7 +236,7 @@ class Standard
 		 * This option specifies the number of days log entries will be kept in
 		 * the database. Afterwards, they will be removed and archived.
 		 *
-		 * @param integer Number of days
+		 * @type integer Number of days
 		 * @since 2014.09
 		 * @see controller/jobs/admin/log/path
 		 */

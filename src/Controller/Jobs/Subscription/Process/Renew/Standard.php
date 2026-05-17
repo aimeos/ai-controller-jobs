@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyRenew"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2018.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/renew/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/renew/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Subscription\Process\Renew\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/renew/decorators/excludes
@@ -171,6 +171,7 @@ class Standard
 		] ) );
 		$cursor = $manager->cursor( $search );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, $domains ) )
 		{
 			foreach( $items as $item )
@@ -179,6 +180,7 @@ class Standard
 
 				try
 				{
+					// @phpstan-ignore argument.type
 					$manager->save( $this->process( $item, $processors ) );
 					$manager->commit();
 				}
@@ -187,6 +189,7 @@ class Standard
 					$manager->rollback();
 
 					$str = 'Unable to renew subscription with ID "%1$s": %2$s';
+					// @phpstan-ignore argument.type
 					$msg = sprintf( $str, $item->getId(), $e->getMessage() . "\n" . $e->getTraceAsString() );
 					$context->logger()->error( $msg, 'subscription/process/renew' );
 				}
@@ -198,7 +201,7 @@ class Standard
 	/**
 	 * Adds the given addresses to the order
 	 *
-	 * @param \Aimeos\MShop\ContextIface Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param \Aimeos\MShop\Order\Item\Iface $newOrder Order object to add the addresses to
 	 * @param \Aimeos\Map $addresses List of type as key and address object implementing \Aimeos\MShop\Order\Item\Address\Iface as value
 	 * @return \Aimeos\MShop\Order\Item\Iface Order with addresses added
@@ -211,6 +214,7 @@ class Standard
 			$idx = 0;
 
 			foreach( $orderAddresses as $orderAddress ) {
+				// @phpstan-ignore argument.type, argument.type, method.notFound, clone.nonObject
 				$newOrder->addAddress( ( clone $orderAddress )->setId( null ), $type, $idx );
 			}
 		}
@@ -225,6 +229,7 @@ class Standard
 			$address = \Aimeos\MShop::create( $context, 'order' )->createAddress();
 
 			$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
+			// @phpstan-ignore argument.type
 			$newOrder->addAddress( $address->copyFrom( $customer->getPaymentAddress() ), $type, 0 );
 		}
 		catch( \Exception $e )
@@ -240,7 +245,7 @@ class Standard
 	/**
 	 * Adds the given coupon codes to the order if enabled
 	 *
-	 * @param \Aimeos\MShop\ContextIface Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param \Aimeos\MShop\Order\Item\Iface $newOrder Order including product and addresses
 	 * @param \Aimeos\Map $codes List of coupon codes that should be added to the given order
 	 * @return \Aimeos\MShop\Order\Item\Iface Basket, maybe with coupons added
@@ -256,7 +261,7 @@ class Standard
 		 * the codes still being active (status, time frame and count) and the
 		 * decorators added to the coupon providers in the admin interface.
 		 *
-		 * @param boolean True to reuse coupon codes, false to remove coupons
+		 * @type boolean True to reuse coupon codes, false to remove coupons
 		 * @since 2018.10
 		 */
 		if( $context->config()->get( 'controller/jobs/subscription/process/renew/use-coupons', false ) )
@@ -264,8 +269,10 @@ class Standard
 			foreach( $codes as $code )
 			{
 				try {
+					// @phpstan-ignore argument.type
 					$newOrder->addCoupon( $code );
 				} catch( \Aimeos\MShop\Plugin\Provider\Exception | \Aimeos\MShop\Coupon\Exception $e ) {
+					// @phpstan-ignore argument.type
 					$newOrder->deleteCoupon( $code );
 				}
 			}
@@ -278,8 +285,8 @@ class Standard
 	/**
 	 * Adds the given products to the order
 	 *
-	 * @param \Aimeos\MShop\ContextIface Context object
-	 * @param \Aimeos\MShop\Order\Item\Iface $order Order to add the products to
+	 * @param \Aimeos\MShop\ContextIface $context Context object
+	 * @param \Aimeos\MShop\Order\Item\Iface $newOrder Order to add the products to
 	 * @param \Aimeos\Map $orderProducts List of product items Implementing \Aimeos\MShop\Order\Item\Product\Iface
 	 * @param string $orderProductId Unique ID of the ordered subscription product
 	 * @return \Aimeos\MShop\Order\Item\Iface Order with products added
@@ -291,9 +298,11 @@ class Standard
 		{
 			if( $orderProduct->getId() == $orderProductId )
 			{
-				$orderProduct = clone $orderProduct;
+				$orderProduct = clone $orderProduct; // @phpstan-ignore clone.nonObject
+				// @phpstan-ignore method.notFound
 				$orderProduct->getAttributeItems()->setId( null );
 
+				// @phpstan-ignore argument.type, method.notFound
 				$newOrder->addProduct( $orderProduct->setId( null ) );
 			}
 		}
@@ -305,8 +314,8 @@ class Standard
 	/**
 	 * Adds a matching delivery and payment service to the order
 	 *
-	 * @param \Aimeos\MShop\ContextIface Context object
-	 * @param \Aimeos\MShop\Order\Item\Iface $order Order to add the services to
+	 * @param \Aimeos\MShop\ContextIface $context Context object
+	 * @param \Aimeos\MShop\Order\Item\Iface $newOrder Order to add the services to
 	 * @param \Aimeos\Map $services Associative list of type as key and list of service objects implementing \Aimeos\MShop\Order\Item\Service\Iface as values
 	 * @return \Aimeos\MShop\Order\Item\Iface Order with delivery and payment service added
 	 */
@@ -321,9 +330,11 @@ class Standard
 
 			foreach( $services[$type] as $orderService )
 			{
-				$orderService = clone $orderService;
+				$orderService = clone $orderService; // @phpstan-ignore clone.nonObject
+				// @phpstan-ignore method.notFound
 				$orderService->getAttributeItems()->setId( null );
 
+				// @phpstan-ignore argument.type, method.notFound
 				$newOrder->addService( $orderService->setId( null ), $type, $idx++ );
 			}
 		}
@@ -335,6 +346,7 @@ class Standard
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$search = $serviceManager->filter( true );
+		// @phpstan-ignore argument.type
 		$search->setSortations( [$search->sort( '+', 'service.position' )] );
 		$search->setConditions( $search->compare( '==', 'service.type', $type ) );
 
@@ -345,6 +357,7 @@ class Standard
 			if( $provider->isAvailable( $newOrder ) === true )
 			{
 				$orderServiceItem = $orderManager->createService()->copyFrom( $item );
+				// @phpstan-ignore argument.type
 				return $newOrder->addService( $orderServiceItem, $type, $idx++ );
 			}
 		}
@@ -356,7 +369,7 @@ class Standard
 	/**
 	 * Creates a new context based on the order and the customer the subscription belongs to
 	 *
-	 * @param \Aimeos\MShop\Subscription\Item\Iface $order Subscription item with associated order
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item with associated order
 	 * @return \Aimeos\MShop\ContextIface New context object
 	 */
 	protected function createContext( \Aimeos\MShop\Subscription\Item\Iface $subscription ) : \Aimeos\MShop\ContextIface
@@ -371,6 +384,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'locale' );
 		$locale = $manager->bootstrap( $sitecode, $locale->getLanguageId(), $locale->getCurrencyId(), false, $level );
 
+		// @phpstan-ignore argument.type
 		$context->setLocale( $locale );
 
 		try
@@ -381,6 +395,7 @@ class Standard
 
 			$manager = \Aimeos\MShop::create( $context, 'group' );
 			$filter = $manager->filter( true )->add( ['group.id' => $customerItem->getGroups()] );
+			// @phpstan-ignore argument.type
 			$groupItems = $manager->search( $filter->slice( 0, count( $customerItem->getGroups() ) ) )->all();
 			$context->setGroups( $groupItems );
 		}
@@ -393,7 +408,7 @@ class Standard
 	/**
 	 * Creates and stores a new order from the given subscription
 	 *
-	 * @param \Aimeos\MShop\ContextIface Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item with associated order
 	 * @return \Aimeos\MShop\Order\Item\Iface New order item including addresses, coupons, products and services
 	 */
@@ -405,7 +420,9 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order' );
 		$newOrder = $manager->create()->setCustomerId( $order->getCustomerId() )->setChannel( 'subscription' );
 
+		// @phpstan-ignore argument.type
 		$newOrder = $this->addBasketAddresses( $context, $newOrder, $order->getAddresses() );
+		// @phpstan-ignore argument.type
 		$newOrder = $this->addBasketProducts( $context, $newOrder, $order->getProducts(), $subscription->getOrderProductId() );
 		$newOrder = $this->addBasketServices( $context, $newOrder, $order->getServices() );
 		$newOrder = $this->addBasketCoupons( $context, $newOrder, $order->getCoupons()->keys() );
@@ -417,7 +434,7 @@ class Standard
 	/**
 	 * Creates a new payment for the given order and invoice
 	 *
-	 * @param \Aimeos\MShop\ContextIface Context object
+	 * @param \Aimeos\MShop\ContextIface $context Context object
 	 * @param \Aimeos\MShop\Order\Item\Iface $order Complete order with product, addresses and services
 	 * @return \Aimeos\MShop\Order\Item\Iface Updated order item
 	 */
@@ -453,14 +470,14 @@ class Standard
 		 * - order/product
 		 * - order/service
 		 *
-		 * @param array Referenced domain names
+		 * @type array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/subscription/process/processors
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */
 		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
-		return $this->context()->config()->get( 'controller/jobs/subscription/process/domains', $domains );
+		return (array) $this->context()->config()->get( 'controller/jobs/subscription/process/domains', $domains );
 	}
 
 
@@ -479,7 +496,7 @@ class Standard
 		 * controller will try to capture the payment at the next run again until the
 		 * subscription is deactivated manually.
 		 *
-		 * @param bool TRUE if payment failures ends the subscriptions, FALSE if not
+		 * @type bool TRUE if payment failures ends the subscriptions, FALSE if not
 		 * @since 2019.10
 		 * @see controller/jobs/subscription/process/processors
 		 * @see controller/jobs/subscription/process/payment-days
@@ -503,14 +520,14 @@ class Standard
 		 * orders that will be processed at once. Bigger batches an improve the
 		 * performance but requires more memory.
 		 *
-		 * @param integer Number of subscriptions
+		 * @type integer Number of subscriptions
 		 * @since 2023.04
 		 * @see controller/jobs/subscription/process/domains
 		 * @see controller/jobs/subscription/process/names
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */
-		return $this->context()->config()->get( 'controller/jobs/subscription/process/batch-max', 100 );
+		return (int) $this->context()->config()->get( 'controller/jobs/subscription/process/batch-max', 100 );
 	}
 
 
@@ -528,7 +545,7 @@ class Standard
 		 * They can for example add a group to the customers' account during the customer
 		 * has an active subscribtion.
 		 *
-		 * @param array List of processor names
+		 * @type array List of processor names
 		 * @since 2018.04
 		 * @see controller/jobs/subscription/process/domains
 		 * @see controller/jobs/subscription/process/max
@@ -563,6 +580,7 @@ class Standard
 
 		try
 		{
+			// @phpstan-ignore argument.type
 			$newOrder = $orderManager->save( $this->createPayment( $context, $newOrder ) );
 
 			$interval = new \DateInterval( $item->getInterval() );

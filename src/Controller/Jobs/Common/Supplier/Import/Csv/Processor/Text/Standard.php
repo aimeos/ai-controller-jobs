@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Supplier\Import\Csv\Processor\Text\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2020.07
 	 */
 
@@ -55,7 +55,7 @@ class Standard
 		 * import, you can specify the supplier list types for these texts
 		 * that shouldn't be updated or removed.
 		 *
-		 * @param array|null List of supplier list type names or null for all
+		 * @type array|null List of supplier list type names or null for all
 		 * @since 2020.07
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/processor/attribute/listtypes
@@ -79,6 +79,7 @@ class Standard
 		}
 		else
 		{
+			// @phpstan-ignore argument.type, argument.type
 			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
@@ -118,12 +119,16 @@ class Standard
 
 		foreach( $map as $pos => $list )
 		{
+			// @phpstan-ignore argument.type
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
+			// @phpstan-ignore argument.type, argument.type
 			$type = trim( $this->val( $list, 'text.type', 'name' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listtype = trim( $this->val( $list, 'supplier.lists.type', 'default' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$content = trim( $this->val( $list, 'text.content', '' ) );
 
 			if( isset( $listMap[$content][$type][$listtype] ) )
@@ -140,12 +145,15 @@ class Standard
 
 			$listItem = $listItem->setPosition( $pos )->fromArray( $list );
 
+			// @phpstan-ignore argument.type, argument.type
 			$label = mb_strcut( strip_tags( $this->val( $list, 'text.content', '' ) ), 0, 255 );
 			$refItem = $refItem->setLabel( $label )->fromArray( $list );
 
+			// @phpstan-ignore argument.type, argument.type
 			$supplier->addListItem( 'text', $listItem, $refItem );
 		}
 
+		// @phpstan-ignore argument.type
 		$supplier->deleteListItems( $listItems->toArray(), true );
 
 		return $this->object()->process( $supplier, $data );
@@ -164,12 +172,14 @@ class Standard
 			return false;
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'supplier.lists.type', '' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'supplier list' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'text.type', '' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'text' );

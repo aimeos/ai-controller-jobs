@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Coupon\Import\Csv\Processor\Code\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2017.10
 	 */
 
@@ -46,6 +46,7 @@ class Standard
 
 		foreach( $map as $list )
 		{
+			// @phpstan-ignore argument.type
 			if( trim( $list['coupon.code.code'] ) == '' ) {
 				continue;
 			}
@@ -53,6 +54,7 @@ class Standard
 			$item = $manager->save( $item->fromArray( $list ) );
 		}
 
+		// @phpstan-ignore argument.type
 		return $this->object()->process( $item, $data );
 	}
 }

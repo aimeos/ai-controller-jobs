@@ -27,11 +27,11 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Product\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2015.10
 	 */
 
-	private \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Cache\Product\Standard $cache;
+	private \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Cache\Iface $cache;
 	private ?array $listTypes = null;
 
 
@@ -63,7 +63,7 @@ class Standard
 		 * shop and want to import those relations too, you can set the option
 		 * to null to update all associated items.
 		 *
-		 * @param array|null List of product list type names or null for all
+		 * @type array|null List of product list type names or null for all
 		 * @since 2015.05
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/separator
@@ -89,6 +89,7 @@ class Standard
 		}
 		else
 		{
+			// @phpstan-ignore argument.type, argument.type
 			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
@@ -116,17 +117,21 @@ class Standard
 
 		foreach( $this->getMappedChunk( $data, $this->getMapping() ) as $list )
 		{
+			// @phpstan-ignore argument.type
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
+			// @phpstan-ignore argument.type, argument.type
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'product.lists.config', '' ) ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listtype = trim( $this->val( $list, 'product.lists.type', 'default' ) );
 
 			unset( $list['product.lists.config'] );
 
 			$this->addType( 'product/lists/type', 'product', $listtype );
 
+			// @phpstan-ignore argument.type, argument.type, argument.type
 			foreach( explode( $separator, trim( $this->val( $list, 'product.code', '' ) ) ) as $code )
 			{
 				$code = trim( $code );
@@ -145,10 +150,12 @@ class Standard
 				}
 
 				$listItem = $listItem->fromArray( $list )->setRefId( $prodid )->setConfig( $listConfig )->setPosition( $pos++ );
+				// @phpstan-ignore argument.type
 				$product->addListItem( 'product', $listItem );
 			}
 		}
 
+		// @phpstan-ignore argument.type
 		$product->deleteListItems( $listItems->toArray() );
 
 		return $this->object()->process( $product, $data );
@@ -167,6 +174,7 @@ class Standard
 			return false;
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'product.lists.type', 'default' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'product list' );

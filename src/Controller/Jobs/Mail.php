@@ -95,11 +95,14 @@ trait Mail
 
 		$mail = $context->mail()->create()
 			->header( 'X-MailGenerator', 'Aimeos' )
+			// @phpstan-ignore argument.type, argument.type
 			->from( $config->get( 'resource/email/from-email' ), $config->get( 'resource/email/from-name' ) )
 			->to( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() )
+			// @phpstan-ignore argument.type
 			->bcc( $config->get( 'resource/email/bcc-email' ) );
 
 		if( $replyTo = $config->get( 'resource/email/reply-email' ) ) {
+			// @phpstan-ignore argument.type
 			$mail->replyTo( $replyTo );
 		}
 

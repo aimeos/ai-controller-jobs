@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2015.01
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/import/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/import/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Product\Import\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/import/csv/decorators/excludes
@@ -199,7 +199,7 @@ class Standard
 			 * are not assigned to any category but keep the ones without categories,
 			 * e.g. rebate products.
 			 *
-			 * @param bool TRUE to delete all untouched products, FALSE to keep them
+			 * @type bool TRUE to delete all untouched products, FALSE to keep them
 			 * @since 2023.10
 			 * @see controller/jobs/product/import/csv/backup
 			 * @see controller/jobs/product/import/csv/domains
@@ -254,7 +254,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @param integer Name of the backup file, optionally with date/time placeholders
+		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/cleanup
 		 * @see controller/jobs/product/import/csv/domains
@@ -288,7 +288,7 @@ class Standard
 			}
 		}
 
-		return ( isset( $this->types[$type] ) ? $this->types[$type] : 'default' );
+		return (string) ( isset( $this->types[$type] ) ? $this->types[$type] : 'default' );
 	}
 
 
@@ -297,7 +297,7 @@ class Standard
 	 *
 	 * @param \Aimeos\Map $products List of product items implementing \Aimeos\MShop\Product\Item\Iface
 	 */
-	protected function clean( \Aimeos\Map $products )
+	protected function clean( \Aimeos\Map $products ) : void
 	{
 		$articles = $products->filter( fn( $item ) => $item->getType() === 'select' )
 			->getRefItems( 'product', null, 'default' )->flat( 1 );
@@ -305,6 +305,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 
 		$manager->begin();
+		// @phpstan-ignore argument.type, argument.type
 		$manager->save( $products->merge( $articles )->setStatus( -2 ) );
 		$manager->commit();
 	}
@@ -335,8 +336,10 @@ class Standard
 
 		$filter = $manager->filter();
 		$filter->add( 'product.mtime', '<', $datetime );
+		// @phpstan-ignore argument.type
 		$cursor = $manager->cursor( $this->call( 'cleaner', $filter ) );
 
+		// @phpstan-ignore argument.type
 		while( $items = $manager->iterate( $cursor, ['product' => ['default']] ) )
 		{
 			$this->call( 'clean', $items );
@@ -363,7 +366,7 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @param array Associative list of MShop item domain names
+		 * @type array Associative list of MShop item domain names
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
 		 * @see controller/jobs/product/import/csv/cleanup
@@ -372,7 +375,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/max-size
 		 * @see controller/jobs/product/import/csv/skip-lines
 		 */
-		return $this->context()->config()->get( 'controller/jobs/product/import/csv/domains', [] );
+		return (array) $this->context()->config()->get( 'controller/jobs/product/import/csv/domains', [] );
 	}
 
 
@@ -408,6 +411,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
 		$search = $manager->filter()->add( ['product.code' => $codes] )->slice( 0, count( $codes ) );
 
+		// @phpstan-ignore argument.type
 		return $manager->search( $search, $domains )->col( null, 'product.code' );
 	}
 
@@ -431,6 +435,7 @@ class Standard
 
 		$mappings = $this->mapping();
 		$processor = $this->getProcessors( $mappings );
+		// @phpstan-ignore argument.type
 		$codePos = $this->getCodePosition( $mappings['item'] );
 
 		$fs = $context->fs( 'fs-import' );
@@ -444,6 +449,7 @@ class Standard
 		while( ( $data = $this->getData( $fh, $maxcnt, $codePos ) ) !== [] )
 		{
 			$products = $this->getProducts( array_keys( $data ), $domains );
+			// @phpstan-ignore argument.type
 			$errors += $this->importProducts( $products, $data, $mappings['item'], [], $processor );
 
 			$total += count( $data );
@@ -492,18 +498,24 @@ class Standard
 			{
 				$code = trim( $code );
 				$product = $products[$code] ?? $manager->create();
+				// @phpstan-ignore argument.type
 				$map = current( $this->getMappedChunk( $list, $mapping ) ); // there can only be one chunk for the base product data
 
 				if( $map )
 				{
+					// @phpstan-ignore argument.type, argument.type
 					$type = $this->checkType( $this->val( $map, 'product.type', $product->getType() ) );
 
+					// @phpstan-ignore argument.type
 					if( $config = $this->val( $map, 'product.config' ) ) {
+						// @phpstan-ignore argument.type
 						$map['product.config'] = json_decode( $config ) ?: [];
 					}
 
+					// @phpstan-ignore argument.type
 					$product = $manager->save( $product->fromArray( $map, true )->setType( $type ) );
 
+					// @phpstan-ignore argument.type
 					$processor->process( $product, $list );
 
 					$manager->save( $product );
@@ -542,7 +554,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @param string Relative path to the CSV files
+		 * @type string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
 		 * @see controller/jobs/product/import/csv/cleanup
@@ -578,7 +590,7 @@ class Standard
 		 * will be processed by the base product importer while the mappings in
 		 * "text" will be imported by the text processor.
 		 *
-		 * @param array Associative list of processor names and lists of key/position pairs
+		 * @type array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
 		 * @see controller/jobs/product/import/csv/cleanup
@@ -616,7 +628,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * import speed.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2018.04
 		 * @see controller/jobs/product/import/csv/backup
 		 * @see controller/jobs/product/import/csv/cleanup
@@ -645,7 +657,7 @@ class Standard
 		 * define the number of lines that should be left out before the import
 		 * begins.
 		 *
-		 * @param integer Number of rows
+		 * @type integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/product/import/csv/backup
 		 * @see controller/jobs/product/import/csv/cleanup

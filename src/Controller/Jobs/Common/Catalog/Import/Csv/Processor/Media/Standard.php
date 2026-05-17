@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Media\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the processor class name
+	 * @type string Last part of the processor class name
 	 * @since 2018.04
 	 */
 
@@ -55,7 +55,7 @@ class Standard
 		 * import, you can specify the catalog list types for these media
 		 * that shouldn't be updated or removed.
 		 *
-		 * @param array|null List of catalog list type names or null for all
+		 * @type array|null List of catalog list type names or null for all
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/processor/attribute/listtypes
@@ -79,6 +79,7 @@ class Standard
 		}
 		else
 		{
+			// @phpstan-ignore argument.type, argument.type
 			$this->listTypes = array_combine( $this->listTypes, $this->listTypes );
 		}
 
@@ -117,7 +118,7 @@ class Standard
 		 * in the field. Otherwise, you will get invalid entries and the importer
 		 * may fail!
 		 *
-		 * @param string Single separator character
+		 * @type string Single separator character
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/domains
@@ -137,13 +138,18 @@ class Standard
 
 		foreach( $map as $pos => $list )
 		{
+			// @phpstan-ignore argument.type
 			if( $this->checkEntry( $list ) === false ) {
 				continue;
 			}
 
+			// @phpstan-ignore argument.type, argument.type
 			$type = trim( $this->val( $list, 'media.type', 'default' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listtype = trim( $this->val( $list, 'catalog.lists.type', 'default' ) );
+			// @phpstan-ignore argument.type, argument.type
 			$listConfig = $this->getListConfig( trim( $this->val( $list, 'catalog.lists.config', '' ) ) );
+			// @phpstan-ignore argument.type, argument.type, argument.type
 			$urls = explode( $separator, $this->val( $list, 'media.url', '' ) );
 
 			unset( $list['catalog.lists.config'] );
@@ -168,10 +174,12 @@ class Standard
 				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setConfig( $listConfig );
 				$refItem = $refItem->setLabel( $url )->setPreview( $url )->fromArray( $list )->setUrl( $url );
 
+				// @phpstan-ignore argument.type, argument.type
 				$catalog->addListItem( 'media', $listItem, $refItem );
 			}
 		}
 
+		// @phpstan-ignore argument.type
 		$catalog->deleteListItems( $listItems->toArray(), true );
 
 		return $this->object()->process( $catalog, $data );
@@ -190,12 +198,14 @@ class Standard
 			return false;
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'catalog.lists.type', 'default' ) ) ) && !isset( $this->listTypes[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'catalog list' );
 			throw new \Aimeos\Controller\Jobs\Exception( $msg );
 		}
 
+		// @phpstan-ignore argument.type
 		if( ( $type = trim( $this->val( $list, 'media.type', 'default' ) ) ) && !isset( $this->types[$type] ) )
 		{
 			$msg = sprintf( 'Invalid type "%1$s" (%2$s)', $type, 'media' );
