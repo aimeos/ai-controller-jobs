@@ -220,8 +220,7 @@ class Standard
 
 			for( $i = 0; $i < $orderProductItem->getQuantity(); $i++ )
 			{
-				$str = $i . getmypid() . microtime( true ) . $orderProductItem->getId();
-				$code = substr( strtoupper( sha1( $str ) ), -8 );
+				$code = strtoupper( bin2hex( random_bytes( 8 ) ) );
 				$map[$code] = $orderProductItem->getId();
 				$codes[] = $code;
 			}
