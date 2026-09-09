@@ -67,7 +67,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'co
 							<td class="name">
 								<?php $params = array_merge( $this->param(), ['currency' => $this->orderProductItem->getPrice()->getCurrencyId(), 'd_name' => $this->orderProductItem->getName( 'url' ), 'd_prodid' => $this->orderProductItem->getParentProductId() ?: $this->orderProductItem->getProductId(), 'd_pos' => ''] ) ?>
 								<a class="product-name" href="<?= $enc->attr( $this->url( ( $this->orderProductItem->getTarget() ?: $target ), $cntl, $action, $params, [], $config ) ) ?>">
-									<?= $enc->html( $this->orderProductItem->getName(), $enc::TRUST ) ?>
+									<?= $enc->html( $this->orderProductItem->getName() ) ?>
 								</a>
 							</td>
 							<td class="price">
