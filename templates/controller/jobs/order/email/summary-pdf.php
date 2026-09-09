@@ -40,7 +40,7 @@ $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'controller/jobs
 	<?php foreach( $this->summaryBasket->getProducts() as $product ) : $totalQty += $product->getQuantity() ?>
 		<tr class="body product">
 			<td class="label">
-				<?= $enc->html( $product->getName(), $enc::TRUST ) ?>
+				<?= $enc->html( $product->getName() ) ?>
 				<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
 					<p class="product-description"><?= $enc->html( $desc ) ?></p>
 				<?php endif ?>
@@ -63,7 +63,7 @@ $pricefmt = ( $pricefmt === 'price:default' ? $this->translate( 'controller/jobs
 				<?php endforeach ?>
 			</td>
 			<td class="code">
-				<?= $product->getProductCode() ?>
+				<?= $enc->html( $product->getProductCode() ) ?>
 			</td>
 			<td class="quantity">
 				<?= $enc->html( $product->getQuantity() ) ?>
