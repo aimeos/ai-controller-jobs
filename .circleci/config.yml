@@ -116,7 +116,7 @@ jobs:
       - restore_cache:
           keys:
             - php80-{{ checksum "composer.json" }}
-      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:dev-main"
+      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:^6.4.1"
       - save_cache:
           key: php80-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -140,7 +140,7 @@ jobs:
       - restore_cache:
           keys:
             - php81-{{ checksum "composer.json" }}
-      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:dev-main"
+      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:^6.4.1"
       - save_cache:
           key: php81-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -164,7 +164,7 @@ jobs:
       - restore_cache:
           keys:
             - php82-{{ checksum "composer.json" }}
-      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:dev-main"
+      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:^6.4.1"
       - save_cache:
           key: php82-{{ checksum "composer.json" }}
           paths: [./vendor]
