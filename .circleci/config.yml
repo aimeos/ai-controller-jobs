@@ -21,7 +21,7 @@ jobs:
       - restore_cache:
           keys:
             - php71-{{ checksum "composer.json" }}
-      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:dev-main"
+      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:^6.4.1"
       - save_cache:
           key: php71-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -45,7 +45,7 @@ jobs:
       - restore_cache:
           keys:
             - php72-{{ checksum "composer.json" }}
-      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:dev-main"
+      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:^6.4.1"
       - save_cache:
           key: php72-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -68,7 +68,7 @@ jobs:
       - restore_cache:
           keys:
             - php73-{{ checksum "composer.json" }}
-      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:dev-main"
+      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:^6.4.1"
       - save_cache:
           key: php73-{{ checksum "composer.json" }}
           paths: [./vendor]
@@ -92,7 +92,7 @@ jobs:
       - restore_cache:
           keys:
             - php74-{{ checksum "composer.json" }}
-      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:dev-main"
+      - run: composer req -n --prefer-dist "tecnickcom/tcpdf:^6.4.1"
       - save_cache:
           key: php74-{{ checksum "composer.json" }}
           paths: [./vendor]
