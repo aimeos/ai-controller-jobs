@@ -34,6 +34,9 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	/**
+	 * @dataProvider templates
+	 */
 	#[DataProvider('templates')]
 	public function testProductCodeIsHtmlEncoded( string $file )
 	{
@@ -45,6 +48,9 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	/**
+	 * @dataProvider invoiceTemplates
+	 */
 	#[DataProvider('invoiceTemplates')]
 	public function testInvoiceNumberIsHtmlEncoded( string $file )
 	{
