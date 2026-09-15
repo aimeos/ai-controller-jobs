@@ -34,10 +34,13 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	/**
+	 * @dataProvider templates
+	 */
 	#[DataProvider('templates')]
 	public function testProductCodeIsHtmlEncoded( string $file )
 	{
-		$path = dirname( __DIR__, 5 ) . '/templates/controller/jobs/order/email/' . $file;
+		$path = dirname( __DIR__, 5 ) . '/templates/order/email/' . $file;
 		$template = file_get_contents( $path );
 
 		$this->assertStringContainsString( '<?= $enc->html( $product->getProductCode() ) ?>', $template );
@@ -45,10 +48,13 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	/**
+	 * @dataProvider invoiceTemplates
+	 */
 	#[DataProvider('invoiceTemplates')]
 	public function testInvoiceNumberIsHtmlEncoded( string $file )
 	{
-		$path = dirname( __DIR__, 5 ) . '/templates/controller/jobs/order/email/' . $file;
+		$path = dirname( __DIR__, 5 ) . '/templates/order/email/' . $file;
 		$template = file_get_contents( $path );
 
 		$this->assertStringContainsString( '<?= $enc->html( sprintf(', $template );
