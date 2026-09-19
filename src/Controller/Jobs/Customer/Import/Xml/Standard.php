@@ -188,7 +188,9 @@ class Standard
 
 				$path = $location . '/' . $filename;
 
-				if( $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path ) ) {
+				if( !str_ends_with( strtolower( $filename ), '.xml' )
+					|| $fs instanceof \Aimeos\Base\Filesystem\DirIface && $fs->isDir( $path )
+				) {
 					continue;
 				}
 
