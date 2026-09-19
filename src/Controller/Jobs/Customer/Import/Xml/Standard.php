@@ -449,6 +449,9 @@ class Standard
 				}
 			}
 
+			// Group memberships must only be assigned through the "group" processor,
+			unset( $list['customer.groups'] );
+
 			$item->fromArray( $list, true );
 		}
 		catch( \Exception $e )
