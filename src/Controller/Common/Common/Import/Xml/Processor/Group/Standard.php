@@ -35,6 +35,28 @@ class Standard
 	 * @category Developer
 	 */
 
+	/** controller/common/common/import/xml/processor/group/allowed
+	 * List of group codes that are allowed to be assigned to customers by imports
+	 *
+	 * Assigning privileged groups like "admin" or "editor" via imports would allow
+	 * escalating privileges. If set, only the listed group codes can be assigned.
+	 *
+	 * @type array List of group codes
+	 * @since 2023.10
+	 * @see controller/common/common/import/xml/processor/group/denied
+	 */
+
+	/** controller/common/common/import/xml/processor/group/denied
+	 * List of group codes that must not be assigned to customers by imports
+	 *
+	 * Prevents privilege escalation by disallowing privileged groups like "admin"
+	 * and "editor" from being assigned to customers through XML imports.
+	 *
+	 * @type array List of group codes
+	 * @since 2023.10
+	 * @see controller/common/common/import/xml/processor/group/allowed
+	 */
+
 
 	/**
 	 * Updates the given item using the data from the DOM node
@@ -76,7 +98,9 @@ class Standard
 	protected function getItems( \DomNodeList $nodes ) : array
 	{
 		$keys = $map = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'customer/group' );
+		$context = $this->context();
+		$config = $context->config();
+		$manager = \Aimeos\MShop::create( $context, 'customer/group' );
 
 		foreach( $nodes as $node )
 		{
@@ -87,6 +111,16 @@ class Standard
 
 		$search = $manager->filter()->slice( 0, count( $keys ) );
 		$search->setConditions( $search->compare( '==', 'customer.group.code', array_keys( $keys ) ) );
+
+		// Only allow assigning group codes that are explicitly permitted (if configured)
+		if( $allowed = $config->get( 'controller/common/common/import/xml/processor/group/allowed' ) ) {
+			$search->add( $search->compare( '==', 'customer.group.code', (array) $allowed ) );
+		}
+
+		// Never allow assigning privileged groups like "admin" or "editor" via imports
+		if( $denied = $config->get( 'controller/common/common/import/xml/processor/group/denied', ['admin', 'editor'] ) ) {
+			$search->add( $search->compare( '!=', 'customer.group.code', (array) $denied ) );
+		}
 
 		foreach( $manager->search( $search, [] ) as $item ) {
 			$map[$item->getCode()] = $item;
