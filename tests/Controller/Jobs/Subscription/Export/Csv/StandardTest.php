@@ -112,4 +112,29 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'address', $address2[0] );
 		$this->assertEquals( 'product', $product1[0] );
 	}
+
+	public function testRenderEscaping()
+	{
+		$address = \Aimeos\MShop::create( $this->context, 'order/address' )->create()
+			->setCompany( '=1+1' )->setAddress1( "a\"b\nc" );
+
+		$order = \Aimeos\MShop::create( $this->context, 'order' )->create()->addAddress( $address, 'payment' );
+		$item = \Aimeos\MShop::create( $this->context, 'subscription' )->create()->set( '.orderitem', $order );
+
+		$method = new \ReflectionMethod( $this->object, 'render' );
+		$fp = fopen( 'php://memory', 'w+' );
+		fwrite( $fp, $method->invoke( $this->object, [$item] ) );
+		rewind( $fp );
+
+		$subscription = fgetcsv( $fp, null, ',', '"', '' );
+		$address = fgetcsv( $fp, null, ',', '"', '' );
+		$end = fgetcsv( $fp, null, ',', '"', '' );
+		fclose( $fp );
+
+		$this->assertEquals( 'subscription', $subscription[0] );
+		$this->assertEquals( 23, count( $address ) );
+		$this->assertEquals( "'=1+1", $address[4] );
+		$this->assertEquals( "a\"b\nc", $address[9] );
+		$this->assertFalse( $end );
+	}
 }

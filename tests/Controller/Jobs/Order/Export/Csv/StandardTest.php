@@ -125,4 +125,35 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'product', $product3[0] );
 		$this->assertEquals( 'product', $product4[0] );
 	}
+
+	public function testRenderEscaping()
+	{
+		$address = \Aimeos\MShop::create( $this->context, 'order/address' )->create()
+			->setCompany( '=1+1' )->setFirstName( '@SUM(A1)' )->setLastName( '-2+3' )
+			->setAddress1( "a\"b\nc" )->setCity( '+A1*2' )->setLongitude( -5.5 );
+
+		$item = \Aimeos\MShop::create( $this->context, 'order' )->create()
+			->setComment( '"injected","row"' )->addAddress( $address, 'payment' );
+
+		$method = new \ReflectionMethod( $this->object, 'render' );
+		$fp = fopen( 'php://memory', 'w+' );
+		fwrite( $fp, $method->invoke( $this->object, [$item] ) );
+		rewind( $fp );
+
+		$invoice = fgetcsv( $fp, null, ',', '"', '' );
+		$address = fgetcsv( $fp, null, ',', '"', '' );
+		$end = fgetcsv( $fp, null, ',', '"', '' );
+		fclose( $fp );
+
+		$this->assertEquals( 18, count( $invoice ) );
+		$this->assertEquals( '"injected","row"', $invoice[17] );
+		$this->assertEquals( 23, count( $address ) );
+		$this->assertEquals( "'=1+1", $address[4] );
+		$this->assertEquals( "'@SUM(A1)", $address[7] );
+		$this->assertEquals( "'-2+3", $address[8] );
+		$this->assertEquals( "a\"b\nc", $address[9] );
+		$this->assertEquals( "'+A1*2", $address[13] );
+		$this->assertEquals( '-5.5', $address[21] );
+		$this->assertFalse( $end );
+	}
 }
