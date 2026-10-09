@@ -56,6 +56,40 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->run();
 
+		$this->assertImported();
+	}
+
+
+	public function testRunDelimiter()
+	{
+		$this->context->config()->set( 'controller/jobs/stock/import/csv/delimiter', ';' );
+
+		$fs = $this->context->fs( 'fs-import' );
+		$fs->has( 'stock/unittest' ) ?: $fs->mkdir( 'stock/unittest' );
+		$fs->writef( 'stock/unittest/stock_3.csv', __DIR__ . '/_testfiles/stock_3.csv' );
+
+		$this->object->run();
+
+		$this->assertImported();
+	}
+
+
+	public function testRunMaxSize()
+	{
+		$this->context->config()->set( 'controller/jobs/stock/import/csv/max-size', 1 );
+
+		$fs = $this->context->fs( 'fs-import' );
+		$fs->has( 'stock/unittest' ) ?: $fs->mkdir( 'stock/unittest' );
+		$fs->writef( 'stock/unittest/stock_2.csv', __DIR__ . '/_testfiles/stock_2.csv' );
+
+		$this->object->run();
+
+		$this->assertImported();
+	}
+
+
+	protected function assertImported()
+	{
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context, 'stock' );
 		$prodManager = \Aimeos\MShop::create( $this->context, 'product' );
