@@ -153,7 +153,7 @@ class Standard
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem = $listItem->fromArray( $list )->setConfig( $listConfig )->setPosition( $pos++ );
+				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setConfig( $listConfig );
 				// @phpstan-ignore argument.type
 				$supItem = $supItem->fromArray( $list )->setCode( $code );
 				// @phpstan-ignore argument.type, argument.type

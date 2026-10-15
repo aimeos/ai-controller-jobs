@@ -150,7 +150,7 @@ class Standard
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem = $listItem->fromArray( $list )->setConfig( $listConfig )->setPosition( $pos++ );
+				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setConfig( $listConfig );
 				// @phpstan-ignore argument.type, argument.type
 				$product->addListItem( 'catalog', $listItem, $catItem );
 			}

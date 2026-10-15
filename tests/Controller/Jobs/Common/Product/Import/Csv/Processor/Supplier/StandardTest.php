@@ -105,6 +105,35 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testProcessPosition()
+	{
+		$mapping = array(
+			0 => 'product.lists.type',
+			1 => 'supplier.code',
+			2 => 'product.lists.position',
+			3 => 'product.lists.type',
+			4 => 'supplier.code',
+		);
+
+		$data = array(
+			0 => 'default',
+			1 => 'unitSupplier001',
+			2 => '1500',
+			3 => 'promotion',
+			4 => 'unitSupplier002',
+		);
+
+		$object = new \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Supplier\Standard( $this->context, $mapping, $this->endpoint );
+		$object->process( $this->product, $data );
+
+		$listItems = $this->product->getListItems( 'supplier' );
+
+		$this->assertEquals( 2, count( $listItems ) );
+		$this->assertEquals( 1500, $listItems->find( fn( $item ) => $item->getType() === 'default' )->getPosition() );
+		$this->assertEquals( 1, $listItems->find( fn( $item ) => $item->getType() === 'promotion' )->getPosition() );
+	}
+
+
 	public function testProcessUpdate()
 	{
 		$mapping = array(
