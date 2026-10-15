@@ -149,7 +149,7 @@ class Standard
 					unset( $listItems[$listItem->getId()] );
 				}
 
-				$listItem = $listItem->fromArray( $list )->setRefId( $prodid )->setConfig( $listConfig )->setPosition( $pos++ );
+				$listItem = $listItem->setPosition( $pos++ )->fromArray( $list )->setRefId( $prodid )->setConfig( $listConfig );
 				// @phpstan-ignore argument.type
 				$product->addListItem( 'product', $listItem );
 			}
