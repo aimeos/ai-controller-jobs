@@ -488,12 +488,18 @@ class Standard
 			}
 
 			$item = $map[$product->getId()][$type] ?? $manager->create();
+			// @phpstan-ignore argument.type, argument.type
+			$dateback = $this->val( $entry, 3 );
+
+			if( is_string( $dateback ) && strlen( $dateback ) === 10 ) { // date only, time is optional
+				$dateback .= ' 00:00:00';
+			}
 
 			$items[] = $item->setProductId( $product->getId() )->setType( $type )
 				// @phpstan-ignore argument.type, argument.type
 				->setStocklevel( $this->val( $entry, 1 ) )
-				// @phpstan-ignore argument.type, argument.type
-				->setDateBack( $this->val( $entry, 3 ) )
+				// @phpstan-ignore argument.type
+				->setDateBack( $dateback )
 				// @phpstan-ignore argument.type, argument.type
 				->setTimeframe( $this->val( $entry, 4, '' ) );
 
