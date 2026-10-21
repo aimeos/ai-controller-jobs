@@ -452,10 +452,15 @@ class Standard
 			}
 
 			$item = $map[$product->getId()][$type] ?? $manager->create();
+			$dateback = $this->val( $entry, 3 );
+
+			if( $dateback && strlen( $dateback ) === 10 ) { // date only, time is optional
+				$dateback .= ' 00:00:00';
+			}
 
 			$items[] = $item->setProductId( $product->getId() )->setType( $type )
 				->setStocklevel( $this->val( $entry, 1 ) )
-				->setDateBack( $this->val( $entry, 3 ) )
+				->setDateBack( $dateback )
 				->setTimeframe( $this->val( $entry, 4, '' ) );
 
 			if( $item->getStockLevel() === null || $item->getStockLevel() > 0 ) {
