@@ -229,8 +229,6 @@ class Standard
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/mapping
 		 * @see controller/jobs/supplier/import/csv/skip-lines
-		 * @see controller/jobs/supplier/import/csv/converter
-		 * @see controller/jobs/supplier/import/csv/strict
 		 * @see controller/jobs/supplier/import/csv/max-size
 		 */
 		$backup = $this->context()->config()->get( 'controller/jobs/supplier/import/csv/backup' );
@@ -258,13 +256,11 @@ class Standard
 		 * @since 2020.07
 		 * @see controller/jobs/supplier/import/csv/mapping
 		 * @see controller/jobs/supplier/import/csv/skip-lines
-		 * @see controller/jobs/supplier/import/csv/converter
-		 * @see controller/jobs/supplier/import/csv/strict
 		 * @see controller/jobs/supplier/import/csv/backup
 		 * @see controller/jobs/supplier/import/csv/max-size
 		 */
 		$domains = ['media', 'text', 'supplier/address'];
-		return (array) $this->context()->config()->get( 'controller/jobs/supplier/import/xml/domains', $domains );
+		return (array) $this->context()->config()->get( 'controller/jobs/supplier/import/csv/domains', $domains );
 	}
 
 
@@ -472,8 +468,6 @@ class Standard
 		 * @since 2020.07
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/skip-lines
-		 * @see controller/jobs/supplier/import/csv/converter
-		 * @see controller/jobs/supplier/import/csv/strict
 		 * @see controller/jobs/supplier/import/csv/backup
 		 * @see controller/jobs/supplier/import/csv/max-size
 		 */
@@ -538,8 +532,6 @@ class Standard
 		 * @since 2020.07
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/mapping
-		 * @see controller/jobs/supplier/import/csv/converter
-		 * @see controller/jobs/supplier/import/csv/strict
 		 * @see controller/jobs/supplier/import/csv/backup
 		 * @see controller/jobs/supplier/import/csv/max-size
 		 */
