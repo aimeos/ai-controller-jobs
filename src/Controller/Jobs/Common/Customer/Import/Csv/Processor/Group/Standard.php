@@ -51,10 +51,33 @@ class Standard
 		$filter = $this->groupManager->filter();
 		$config = $context->config();
 
+		/** controller/jobs/customer/import/csv/processor/group/allowed
+		 * List of group codes that can be assigned to imported customers
+		 *
+		 * Only groups whose codes are part of this list are assigned to the
+		 * customers during the import. If the list is empty, all groups are
+		 * allowed except the ones from the "denied" setting.
+		 *
+		 * @type array List of group codes
+		 * @since 2026.04
+		 * @see controller/jobs/customer/import/csv/processor/group/denied
+		 */
 		if( $allowed = $config->get( 'controller/jobs/customer/import/csv/processor/group/allowed' ) ) {
 			$filter->add( 'group.code', '==', (array) $allowed );
 		}
 
+		/** controller/jobs/customer/import/csv/processor/group/denied
+		 * List of group codes that must not be assigned to imported customers
+		 *
+		 * Groups whose codes are part of this list are never assigned to the
+		 * customers during the import. By default, the "admin" and "editor"
+		 * groups are denied to prevent granting backend access by importing
+		 * customer data.
+		 *
+		 * @type array List of group codes
+		 * @since 2026.04
+		 * @see controller/jobs/customer/import/csv/processor/group/allowed
+		 */
 		if( $denied = $config->get( 'controller/jobs/customer/import/csv/processor/group/denied', ['admin', 'editor'] ) ) {
 			$filter->add( 'group.code', '!=', (array) $denied );
 		}
