@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyPayment"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.07
 	 */
 
@@ -73,7 +73,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/global
@@ -96,7 +96,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Service\Payment\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/service/payment/decorators/excludes
@@ -203,7 +203,7 @@ class Standard
 		 * for payment methods like credit cards where autorizations are revoked
 		 * by the aquirers after some time (usually seven days).
 		 *
-		 * @type integer Number of days
+		 * @param integer Number of days
 		 * @since 2014.07
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/capture-days', null );
@@ -232,7 +232,7 @@ class Standard
 		 * - order/product
 		 * - order/service
 		 *
-		 * @type array Referenced domain names
+		 * @param array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/payment/limit-days
 		 * @see controller/jobs/order/service/payment/capture-days
@@ -257,7 +257,7 @@ class Standard
 		 * payments from being captured in case anything went wrong and payments
 		 * of old orders would be captured now.
 		 *
-		 * @type integer Number of days
+		 * @param integer Number of days
 		 * @since 2014.07
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/payment/limit-days', 90 );
@@ -280,7 +280,7 @@ class Standard
 		 * the delivery service provider at once. Bigger batches an improve the
 		 * performance but requires more memory.
 		 *
-		 * @type integer Number of orders
+		 * @param integer Number of orders
 		 * @since 2018.07
 		 * @see controller/jobs/order/service/delivery/domains
 		 * @see controller/jobs/order/service/delivery/limit-days

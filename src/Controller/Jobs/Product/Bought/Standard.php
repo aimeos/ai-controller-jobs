@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyOptimizer"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -73,7 +73,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.03
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/global
@@ -96,7 +96,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.03
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/excludes
@@ -121,7 +121,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Product\Bought\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.03
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/bought/decorators/excludes
@@ -197,7 +197,7 @@ class Standard
 		 * the value to get more suggestions per product if you have only a few
 		 * ones in total.
 		 *
-		 * @type float Minimum confidence value from 0 to 1
+		 * @param float Minimum confidence value from 0 to 1
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
@@ -244,7 +244,7 @@ class Standard
 		 * that the more orders are evaluated, the longer the it takes to
 		 * calculate the product combinations.
 		 *
-		 * @type integer Number of days
+		 * @param integer Number of days
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
@@ -283,7 +283,7 @@ class Standard
 		 * Usually, you don't need more products than shown in the product
 		 * detail view as suggested products.
 		 *
-		 * @type integer Number of suggested products
+		 * @param integer Number of suggested products
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/min-support
 		 * @see controller/jobs/product/bought/min-confidence
@@ -331,7 +331,7 @@ class Standard
 		 * the time needed for associating all items. Higher numbers can improve
 		 * the speed while requiring more memory.
 		 *
-		 * @type integer Number of items processed at once
+		 * @param integer Number of items processed at once
 		 * @since 2023.01
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-support
@@ -398,7 +398,7 @@ class Standard
 		 * contains a lot of orders, the time to complete the job may rise from
 		 * hours to days!
 		 *
-		 * @type float Minimum support value from 0 to 1
+		 * @param float Minimum support value from 0 to 1
 		 * @since 2014.09
 		 * @see controller/jobs/product/bought/max-items
 		 * @see controller/jobs/product/bought/min-confidence

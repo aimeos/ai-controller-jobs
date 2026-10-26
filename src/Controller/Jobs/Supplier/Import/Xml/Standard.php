@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyXml"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2019.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Supplier\Import\Xml\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/supplier/import/xml/decorators/excludes
@@ -230,7 +230,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @type integer Name of the backup file, optionally with date/time placeholders
+		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/domains
 		 * @see controller/jobs/supplier/import/xml/location
@@ -257,7 +257,7 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @type array Associative list of MShop item domain names
+		 * @param array Associative list of MShop item domain names
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/backup
 		 * @see controller/jobs/supplier/import/xml/location
@@ -389,7 +389,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @type string Relative path to the XML files
+		 * @param string Relative path to the XML files
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/backup
 		 * @see controller/jobs/supplier/import/xml/domains
@@ -415,7 +415,7 @@ class Standard
 		 * thus, this parameter should be low enough to avoid reaching the memory
 		 * limit of the PHP process.
 		 *
-		 * @type integer Number of XML nodes
+		 * @param integer Number of XML nodes
 		 * @since 2019.04
 		 * @see controller/jobs/supplier/import/xml/domains
 		 * @see controller/jobs/supplier/import/xml/location

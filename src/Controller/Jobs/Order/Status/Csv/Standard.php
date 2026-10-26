@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2021.10
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2021.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2021.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Status\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2021.10
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/status/csv/decorators/excludes
@@ -165,7 +165,7 @@ class Standard
 		 * empty string in case the files are located in the root directory of
 		 * the virtual file system.
 		 *
-		 * @type string Relative sub-directory name, path or empty string
+		 * @param string Relative sub-directory name, path or empty string
 		 * @since 2021.10
 		 */
 		$dirname = $context->config()->get( 'controller/jobs/order/status/csv/directory', 'orderstatus' );
@@ -255,7 +255,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * status speed.
 		 *
-		 * @type int Number of rows
+		 * @param int Number of rows
 		 * @since 2021.10
 		 */
 		$maxcnt = (int) $config->get( 'controller/jobs/order/status/csv/max-size', 1000 );
@@ -266,7 +266,7 @@ class Standard
 		 * By default, a comma (",") is used but it can be changed to e.g. a
 		 * semicolon (";") if neccesary.
 		 *
-		 * @type string Single byte separator character
+		 * @param string Single byte separator character
 		 * @since 2021.10
 		 */
 		$sep = $config->get( 'controller/jobs/order/status/csv/separator', ',' );
@@ -277,7 +277,7 @@ class Standard
 		 * If the CSV file contains a header that shouldn't be imported, set
 		 * this option to "1" or any number of rows that should be ignored.
 		 *
-		 * @type int Number of header rows to skip
+		 * @param int Number of header rows to skip
 		 * @since 2021.10
 		 */
 		$skip = (int) $config->get( 'controller/jobs/order/status/csv/skip', 0 );

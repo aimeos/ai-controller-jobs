@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Supplier\Import\Csv\Processor\Media\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2020.07
 	 */
 
@@ -55,7 +55,7 @@ class Standard
 		 * import, you can specify the supplier list types for these media
 		 * that shouldn't be updated or removed.
 		 *
-		 * @type array|null List of supplier list type names or null for all
+		 * @param array|null List of supplier list type names or null for all
 		 * @since 2020.07
 		 * @see controller/jobs/supplier/import/csv/domains
 		 * @see controller/jobs/supplier/import/csv/processor/text/listtypes
@@ -115,7 +115,7 @@ class Standard
 		 * in the field. Otherwise, you will get invalid entries and the importer
 		 * may fail!
 		 *
-		 * @type string Single separator character
+		 * @param string Single separator character
 		 * @since 2015.07
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/product/import/csv/domains

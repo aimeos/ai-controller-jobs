@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Lists\Catalog\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2019.04
 	 */
 

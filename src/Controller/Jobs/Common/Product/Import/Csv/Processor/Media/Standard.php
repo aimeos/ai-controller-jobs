@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Media\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2015.10
 	 */
 
@@ -60,7 +60,7 @@ class Standard
 		 * import, you can specify the product list types for these media
 		 * that shouldn't be updated or removed.
 		 *
-		 * @type array|null List of product list type names or null for all
+		 * @param array|null List of product list type names or null for all
 		 * @since 2015.05
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/separator
@@ -222,7 +222,7 @@ class Standard
 	 * Updates the media item with the given key/value pairs
 	 *
 	 * @param \Aimeos\MShop\Media\Item\Iface $refItem Media item to update
-	 * @type array &$list Associative list of key/value pairs, matching pairs are removed
+	 * @param array &$list Associative list of key/value pairs, matching pairs are removed
 	 * @return \Aimeos\MShop\Media\Item\Iface Updated media item
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list, string $url ) : \Aimeos\MShop\Media\Item\Iface

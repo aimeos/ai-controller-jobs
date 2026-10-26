@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "Myscaler"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2017.01
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/media/scale/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/media/scale/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Media\Scale\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/media/scale/decorators/excludes
@@ -201,7 +201,7 @@ class Standard
 		 * than the mtime of the media record) by setting this configuration option
 		 * to false or 0
 		 *
-		 * @type bool True to rescale all images, false for new ones only
+		 * @param bool True to rescale all images, false for new ones only
 		 * @since 2019.10
 		 */
 		$force = $context->config()->get( 'controller/jobs/media/scale/force', true );

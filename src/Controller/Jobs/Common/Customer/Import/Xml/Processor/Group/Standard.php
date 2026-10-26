@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Customer\Import\Xml\Processor\Group\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -55,7 +55,7 @@ class Standard
 		 * customers during the import. If the list is empty, all groups are
 		 * allowed except the ones from the "denied" setting.
 		 *
-		 * @type array List of group codes
+		 * @param array List of group codes
 		 * @since 2026.04
 		 * @see controller/jobs/customer/import/xml/processor/group/denied
 		 */
@@ -71,7 +71,7 @@ class Standard
 		 * groups are denied to prevent granting backend access by importing
 		 * customer data.
 		 *
-		 * @type array List of group codes
+		 * @param array List of group codes
 		 * @since 2026.04
 		 * @see controller/jobs/customer/import/xml/processor/group/allowed
 		 */

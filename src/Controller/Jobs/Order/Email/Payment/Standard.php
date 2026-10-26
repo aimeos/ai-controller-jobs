@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyPayment"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/payment/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/payment/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Email\Payment\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/payment/decorators/excludes
@@ -214,7 +214,7 @@ class Standard
 		 * sent to the customer when the payment status changes, e.g. for the order
 		 * confirmation e-mail. These files can't be customer specific.
 		 *
-		 * @type array List of absolute file paths
+		 * @param array List of absolute file paths
 		 * @since 2016.10
 		 * @see controller/jobs/order/email/delivery/attachments
 		 */
@@ -282,7 +282,7 @@ class Standard
 		 * being send in case anything went wrong or an update failed to avoid
 		 * confusion of customers.
 		 *
-		 * @type integer Number of days
+		 * @param integer Number of days
 		 * @since 2014.03
 		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/order/service/delivery/limit-days
@@ -346,7 +346,7 @@ class Standard
 		 * The order confirmation PDF contains the same information like the
 		 * HTML e-mail and can be also used as invoice if possible.
 		 *
-		 * @type bool TRUE to enable attaching the PDF, FALSE to skip the PDF
+		 * @param bool TRUE to enable attaching the PDF, FALSE to skip the PDF
 		 * @since 2022.04
 		 */
 		if( !$config->get( 'controller/jobs/order/email/payment/pdf', true ) ) {
@@ -375,7 +375,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.10
 		 * @see controller/jobs/order/email/payment/template-html
 		 * @see controller/jobs/order/email/payment/template-text
@@ -412,7 +412,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/payment/template-text
 		 */
@@ -427,7 +427,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/payment/template-html
 		 */
@@ -463,7 +463,7 @@ class Standard
 		 * notified about payment changes. Be aware that this isn't useful if the
 		 * order volumne is high or has peeks!
 		 *
-		 * @type string E-mail address or list of e-mail addresses
+		 * @param string E-mail address or list of e-mail addresses
 		 * @since 2023.10
 		 */
 		// @phpstan-ignore argument.type
@@ -480,7 +480,7 @@ class Standard
 		 * notified about payment changes. Be aware that this isn't useful if the
 		 * order volumne is high or has peeks!
 		 *
-		 * @type string|array E-mail address or list of e-mail addresses
+		 * @param string|array E-mail address or list of e-mail addresses
 		 * @since 2014.03
 		 */
 		// @phpstan-ignore argument.type
@@ -548,7 +548,7 @@ class Standard
 		 * User-defined status values are possible but should be in the private
 		 * block of values between 30000 and 32767.
 		 *
-		 * @type integer Payment status constant
+		 * @param integer Payment status constant
 		 * @since 2014.03
 		 * @see controller/jobs/order/email/delivery/status
 		 * @see controller/jobs/order/email/payment/limit-days

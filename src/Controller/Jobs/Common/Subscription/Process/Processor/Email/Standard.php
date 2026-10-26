@@ -97,7 +97,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/subscription/template-text
 		 */
@@ -112,7 +112,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/subscription/template-html
 		 */

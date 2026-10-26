@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyAccount"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2016.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2016.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/account/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2016.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/account/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Customer\Email\Account\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2016.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/customer/email/account/decorators/excludes
@@ -227,7 +227,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/customer/email/account/template-text
 		 */
@@ -242,7 +242,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/customer/email/account/template-html
 		 */

@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2019.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Stock\Import\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/stock/import/csv/decorators/excludes
@@ -229,7 +229,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @type integer Name of the backup file, optionally with date/time placeholders
+		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/delimiter
 		 * @see controller/jobs/stock/import/csv/location
@@ -257,7 +257,7 @@ class Standard
 		 * locales, you can configure it here. Only one single byte character
 		 * is allowed.
 		 *
-		 * @type string Single field delimiter character
+		 * @param string Single field delimiter character
 		 * @since 2026.10
 		 * @see controller/jobs/stock/import/csv/backup
 		 * @see controller/jobs/stock/import/csv/location
@@ -389,7 +389,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @type string Relative path to the CSV files
+		 * @param string Relative path to the CSV files
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/delimiter
 		 * @see controller/jobs/stock/import/csv/backup
@@ -417,7 +417,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * import speed.
 		 *
-		 * @type integer Number of rows
+		 * @param integer Number of rows
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/delimiter
 		 * @see controller/jobs/stock/import/csv/backup
@@ -444,7 +444,7 @@ class Standard
 		 * define the number of lines that should be left out before the import
 		 * begins.
 		 *
-		 * @type integer Number of rows
+		 * @param integer Number of rows
 		 * @since 2019.04
 		 * @see controller/jobs/stock/import/csv/delimiter
 		 * @see controller/jobs/stock/import/csv/backup

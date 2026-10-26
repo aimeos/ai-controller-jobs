@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyXml"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2019.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Catalog\Import\Xml\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2019.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/xml/decorators/excludes
@@ -223,7 +223,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @type integer Name of the backup file, optionally with date/time placeholders
+		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/domains
 		 * @see controller/jobs/catalog/import/xml/location
@@ -249,7 +249,7 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @type array Associative list of MShop item domain names
+		 * @param array Associative list of MShop item domain names
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/backup
 		 * @see controller/jobs/catalog/import/xml/location
@@ -304,7 +304,7 @@ class Standard
 	 * @param \DomElement $node DOM node of "catalogitem" element
 	 * @param string[] $domains List of domain names whose referenced items will be updated in the catalog items
 	 * @param string|null $parentid ID of the parent catalog node
-	 * @type array &$map Will contain the associative list of code/ID pairs of the child categories
+	 * @param array &$map Will contain the associative list of code/ID pairs of the child categories
 	 * @return string Catalog ID of the imported category
 	 */
 	protected function importNode( \DomElement $node, array $domains, ?string $parentid, array &$map ) : string
@@ -402,7 +402,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @type string Relative path to the XML files
+		 * @param string Relative path to the XML files
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/backup
 		 * @see controller/jobs/catalog/import/xml/domains

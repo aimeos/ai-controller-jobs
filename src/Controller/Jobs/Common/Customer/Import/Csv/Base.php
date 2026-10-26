@@ -49,7 +49,7 @@ class Base
 		 *
 		 * If a value doesn't match, the import of that entry fails.
 		 *
-		 * @type array Associative list of field codes as keys and regular expressions as values
+		 * @param array Associative list of field codes as keys and regular expressions as values
 		 * @since 2026.01
 		 * @see controller/jobs/customer/import/csv/html
 		 * @see controller/jobs/customer/import/csv/mapping
@@ -64,7 +64,7 @@ class Base
 		 * option to true if the CSV file contains values with HTML tags that
 		 * should be imported.
 		 *
-		 * @type bool True to allow HTML tags, false to reject entries containing them
+		 * @param bool True to allow HTML tags, false to reject entries containing them
 		 * @since 2026.01
 		 * @see controller/jobs/customer/import/csv/checks
 		 */

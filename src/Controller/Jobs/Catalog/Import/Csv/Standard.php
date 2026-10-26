@@ -52,7 +52,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2018.04
 	 */
 
@@ -74,7 +74,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/csv/decorators/global
@@ -97,7 +97,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/csv/decorators/excludes
@@ -122,7 +122,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Catalog\Import\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/catalog/import/csv/decorators/excludes
@@ -226,7 +226,7 @@ class Standard
 		 *
 		 * **Note:** If no backup name is configured, the file will be removed!
 		 *
-		 * @type integer Name of the backup file, optionally with date/time placeholders
+		 * @param integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/location
@@ -255,7 +255,7 @@ class Standard
 		 * mapping configuration too, so the retrieved items will be used during
 		 * the import.
 		 *
-		 * @type array Associative list of MShop item domain names
+		 * @param array Associative list of MShop item domain names
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/location
@@ -483,7 +483,7 @@ class Standard
 		 * * Laravel: ./storage/import/
 		 * * TYPO3: /uploads/tx_aimeos/.secure/import/
 		 *
-		 * @type string Relative path to the CSV files
+		 * @param string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/domains
@@ -518,7 +518,7 @@ class Standard
 		 * will be processed by the base catalog importer while the mappings in
 		 * "text" will be imported by the text processor.
 		 *
-		 * @type array Associative list of processor names and lists of key/position pairs
+		 * @param array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/domains
@@ -555,7 +555,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * import speed.
 		 *
-		 * @type integer Number of rows
+		 * @param integer Number of rows
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/domains
@@ -583,7 +583,7 @@ class Standard
 		 * define the number of lines that should be left out before the import
 		 * begins.
 		 *
-		 * @type integer Number of rows
+		 * @param integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/catalog/import/csv/backup
 		 * @see controller/jobs/catalog/import/csv/domains

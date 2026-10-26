@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Group\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -40,7 +40,7 @@ class Standard
 	 * Assigning privileged groups like "admin" or "editor" via imports would allow
 	 * escalating privileges. If set, only the listed group codes can be assigned.
 	 *
-	 * @type array List of group codes
+	 * @param array List of group codes
 	 * @since 2025.10
 	 * @see controller/jobs/common/import/xml/processor/group/denied
 	 */
@@ -51,7 +51,7 @@ class Standard
 	 * Prevents privilege escalation by disallowing privileged groups like "admin"
 	 * and "editor" from being assigned to customers through XML imports.
 	 *
-	 * @type array List of group codes
+	 * @param array List of group codes
 	 * @since 2025.10
 	 * @see controller/jobs/common/import/xml/processor/group/allowed
 	 */

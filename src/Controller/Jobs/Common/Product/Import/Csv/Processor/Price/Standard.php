@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Price\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2015.10
 	 */
 
@@ -57,7 +57,7 @@ class Standard
 		 * import, you can specify the product list types for these prices
 		 * that shouldn't be updated or removed.
 		 *
-		 * @type array|null List of product list type names or null for all
+		 * @param array|null List of product list type names or null for all
 		 * @since 2015.05
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/separator

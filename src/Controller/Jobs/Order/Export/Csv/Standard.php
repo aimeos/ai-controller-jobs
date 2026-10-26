@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCsv"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2015.01
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Export\Csv\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/export/csv/decorators/excludes
@@ -205,7 +205,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * export speed.
 		 *
-		 * @type integer Number of rows
+		 * @param integer Number of rows
 		 * @since 2023.04
 		 */
 		$size = (int) $this->context()->config()->get( 'controller/jobs/order/export/csv/max-size', 1000 );
@@ -302,7 +302,7 @@ class Standard
 		 * well. Therefore, it's a trade-off between memory consumption and
 		 * export speed.
 		 *
-		 * @type string Relativ path with placeholders
+		 * @param string Relativ path with placeholders
 		 * @since 2023.04
 		 */
 		$path = $this->context()->config()->get( 'controller/jobs/order/export/csv/path', 'order-export_%Y-%m-%d_%H-%i-%s.csv' );
@@ -331,7 +331,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2023.04
 		 */
 		$template = $context->config()->get( 'controller/jobs/order/export/csv/template', 'order/export/csv/body' );

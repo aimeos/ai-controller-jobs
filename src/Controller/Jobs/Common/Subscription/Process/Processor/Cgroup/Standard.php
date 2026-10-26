@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Cgroup\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2018.04
 	 */
 
@@ -52,7 +52,7 @@ class Standard
 		 * added to their accounts. When the subscription period ends, they will
 		 * be removed from the customer accounts again.
 		 *
-		 * @type array List of customer group IDs
+		 * @param array List of customer group IDs
 		 * @since 2018.04
 		 */
 		$this->groupIds = (array) $config->get( 'controller/jobs/subscription/process/processor/cgroup/groupids', [] );

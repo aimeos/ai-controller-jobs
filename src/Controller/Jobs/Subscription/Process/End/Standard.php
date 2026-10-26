@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyEnd"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2018.04
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/end/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/end/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Subscription\Process\End\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2018.04
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/subscription/process/end/decorators/excludes
@@ -215,7 +215,7 @@ class Standard
 		 * - order/product
 		 * - order/service
 		 *
-		 * @type array Referenced domain names
+		 * @param array Referenced domain names
 		 * @since 2022.04
 		 * @see controller/jobs/subscription/process/processors
 		 * @see controller/jobs/subscription/process/payment-days
@@ -240,7 +240,7 @@ class Standard
 		 * orders that will be processed at once. Bigger batches an improve the
 		 * performance but requires more memory.
 		 *
-		 * @type integer Number of subscriptions
+		 * @param integer Number of subscriptions
 		 * @since 2023.04
 		 * @see controller/jobs/subscription/process/domains
 		 * @see controller/jobs/subscription/process/payment-days
@@ -264,7 +264,7 @@ class Standard
 		 * They can for example add a group to the customers' account during the customer
 		 * has an active subscribtion.
 		 *
-		 * @type array List of processor names
+		 * @param array List of processor names
 		 * @since 2018.04
 		 * @see controller/jobs/subscription/process/domains
 		 * @see controller/jobs/subscription/process/payment-days

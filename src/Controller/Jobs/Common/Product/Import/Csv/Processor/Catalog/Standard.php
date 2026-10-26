@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Catalog\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2015.10
 	 */
 
@@ -63,7 +63,7 @@ class Standard
 		 * shop and want to import those relations too, you can set the option
 		 * to null to update all associated items.
 		 *
-		 * @type array|null List of catalog list type names or null for all
+		 * @param array|null List of catalog list type names or null for all
 		 * @since 2015.05
 		 * @see controller/jobs/product/import/csv/domains
 		 * @see controller/jobs/product/import/csv/separator

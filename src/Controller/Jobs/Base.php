@@ -108,7 +108,7 @@ abstract class Base
 		 *
 		 * Should be the company or web site name
 		 *
-		 * @type string Sender name
+		 * @param string Sender name
 		 * @see resource/email/from-email
 		 */
 		$name = $config->get( 'resource/email/from-name' );
@@ -118,7 +118,7 @@ abstract class Base
 		 *
 		 * Should be the e-mail address of the company or web site
 		 *
-		 * @type string E-Mail address
+		 * @param string E-Mail address
 		 * @see resource/email/from-name
 		 */
 		$email = $config->get( 'resource/email/from-email' );
@@ -130,7 +130,7 @@ abstract class Base
 		 * error occurred. This setting will be used as the recipient e-mail
 		 * address for these e-mails.
 		 *
-		 * @type string E-mail address
+		 * @param string E-mail address
 		 * @since 2020.04
 		 * @see controller/jobs/from-email
 		 */
@@ -152,7 +152,7 @@ abstract class Base
 		 * error occurred. This setting will be used as the sender e-mail
 		 * address in these e-mails.
 		 *
-		 * @type string E-mail address
+		 * @param string E-mail address
 		 * @since 2020.04
 		 * @see controller/jobs/to-email
 		 */

@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyVoucher"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Order\Email\Voucher\Decorator\Decorator2" only to this job
 	 * controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.09
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/order/email/voucher/decorators/excludes
@@ -306,7 +306,7 @@ class Standard
 		 * being send in case anything went wrong or an update failed to avoid
 		 * confusion of customers.
 		 *
-		 * @type integer Number of days
+		 * @param integer Number of days
 		 * @since 2014.03
 		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/order/service/delivery/limit-days
@@ -390,7 +390,7 @@ class Standard
 		 *
 		 * The voucher PDF contains the same information like the HTML e-mail.
 		 *
-		 * @type bool TRUE to enable attaching the PDF, FALSE to skip the PDF
+		 * @param bool TRUE to enable attaching the PDF, FALSE to skip the PDF
 		 * @since 2022.10
 		 */
 		if( !$config->get( 'controller/jobs/order/email/voucher/pdf', true ) ) {
@@ -419,7 +419,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.10
 		 * @see controller/jobs/order/email/voucher/template-html
 		 * @see controller/jobs/order/email/voucher/template-text
@@ -507,7 +507,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/voucher/template-text
 		 */
@@ -522,7 +522,7 @@ class Standard
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates.
 		 *
-		 * @type string Relative path to the template
+		 * @param string Relative path to the template
 		 * @since 2022.04
 		 * @see controller/jobs/order/email/voucher/template-html
 		 */
@@ -598,7 +598,7 @@ class Standard
 		 * * 5: authorized
 		 * * 6: received
 		 *
-		 * @type integer Payment status constant
+		 * @param integer Payment status constant
 		 * @since 2018.07
 		 * @see controller/jobs/order/email/voucher/limit-days
 		 */

@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MySitemap"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2015.01
 	 */
 
@@ -72,7 +72,7 @@ class Standard
 	 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 	 * "controller/jobs/common/decorators/default" to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/export/sitemap/decorators/global
@@ -95,7 +95,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/export/sitemap/decorators/excludes
@@ -120,7 +120,7 @@ class Standard
 	 * "\Aimeos\Controller\Jobs\Product\Export\Sitemap\Decorator\Decorator2"
 	 * only to the job controller.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
 	 * @see controller/jobs/product/export/sitemap/decorators/excludes
@@ -166,7 +166,7 @@ class Standard
 		 * The product site map contains no hidden products by default. If they
 		 * should be part of the export, set this configuration option to TRUE.
 		 *
-		 * @type bool TRUE to export hidden products, FALSE if not
+		 * @param bool TRUE to export hidden products, FALSE if not
 		 * @since 2022.01
 		 * @see controller/jobs/product/export/sitemap/max-items
 		 */
@@ -202,7 +202,7 @@ class Standard
 		 * you've implemented an alternative client class as well, "standard"
 		 * should be replaced by the name of the new class.
 		 *
-		 * @type string Relative path to the template creating XML code for the site map index
+		 * @param string Relative path to the template creating XML code for the site map index
 		 * @since 2015.01
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/template-index';
@@ -271,7 +271,7 @@ class Standard
 		 * Using the "domains" option you can make more or less associated items available
 		 * in the template.
 		 *
-		 * @type array List of domain names
+		 * @param array List of domain names
 		 * @since 2019.02
 		 * @see controller/jobs/product/export/sitemap/max-items
 		 */
@@ -351,7 +351,7 @@ class Standard
 		 * More details about site maps can be found at
 		 * {@link http://www.sitemaps.org/protocol.html sitemaps.org}
 		 *
-		 * @type integer Number of categories per file
+		 * @param integer Number of categories per file
 		 * @since 2019.02
 		 * @see controller/jobs/product/export/sitemap/domains
 		 */
@@ -382,7 +382,7 @@ class Standard
 		 * you've implemented an alternative client class as well, "standard"
 		 * should be replaced by the name of the new class.
 		 *
-		 * @type string Relative path to the template creating XML code for the site map
+		 * @param string Relative path to the template creating XML code for the site map
 		 * @since 2022.10
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/template';

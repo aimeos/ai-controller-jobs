@@ -30,7 +30,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Lists\Media\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2019.04
 	 */
 
@@ -108,7 +108,7 @@ class Standard
 	 * Updates the media item with the given key/value pairs
 	 *
 	 * @param \Aimeos\MShop\Media\Item\Iface $refItem Media item to update
-	 * @type array &$list Associative list of key/value pairs, matching pairs are removed
+	 * @param array &$list Associative list of key/value pairs, matching pairs are removed
 	 * @return \Aimeos\MShop\Media\Item\Iface Updated media item
 	 */
 	protected function update( \Aimeos\MShop\Media\Item\Iface $refItem, array &$list )

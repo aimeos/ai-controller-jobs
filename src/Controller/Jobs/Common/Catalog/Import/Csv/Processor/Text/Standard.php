@@ -27,7 +27,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Controller\Jobs\Common\Catalog\Import\Csv\Processor\Text\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the processor class name
+	 * @param string Last part of the processor class name
 	 * @since 2018.04
 	 */
 
@@ -55,7 +55,7 @@ class Standard
 		 * import, you can specify the catalog list types for these texts
 		 * that shouldn't be updated or removed.
 		 *
-		 * @type array|null List of catalog list type names or null for all
+		 * @param array|null List of catalog list type names or null for all
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/processor/media/listtypes

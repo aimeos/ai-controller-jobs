@@ -50,7 +50,7 @@ class Standard
 		 * name with an upper case character and continue only with lower case characters
 		 * or numbers. Avoid chamel case names like "MyTransfer"!
 		 *
-		 * @type string Last part of the class name
+		 * @param string Last part of the class name
 		 * @since 2021.10
 		 */
 
@@ -72,7 +72,7 @@ class Standard
 		 * common decorators ("\Aimeos\Controller\Jobs\Common\Decorator\*") added via
 		 * "controller/jobs/common/decorators/default" to this job controller.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2021.10
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/global
@@ -95,7 +95,7 @@ class Standard
 		 * This would add the decorator named "decorator1" defined by
 		 * "\Aimeos\Controller\Jobs\Common\Decorator\Decorator1" only to this job controller.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2021.10
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/excludes
@@ -119,7 +119,7 @@ class Standard
 		 * "\Aimeos\Controller\Jobs\Order\Service\Transfer\Decorator\Decorator2" only to this job
 		 * controller.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2021.10
 		 * @see controller/jobs/common/decorators/default
 		 * @see controller/jobs/order/service/transfer/decorators/excludes
@@ -198,7 +198,7 @@ class Standard
 		 * You can start transferring payments after the configured amount of days.
 		 * Before, the money is hold back and not available to vendors.
 		 *
-		 * @type integer Number of days
+		 * @param integer Number of days
 		 * @since 2010.10
 		 */
 		$days = $this->context()->config()->get( 'controller/jobs/order/service/transfer/transfer-days', 0 );
@@ -227,7 +227,7 @@ class Standard
 		 * - order/product
 		 * - order/service
 		 *
-		 * @type array Referenced domain names
+		 * @param array Referenced domain names
 		 * @since 2022.04
 		 */
 		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
@@ -250,7 +250,7 @@ class Standard
 		 * the payment service provider at once. Bigger batches an improve the
 		 * performance but requires more memory.
 		 *
-		 * @type integer Number of orders
+		 * @param integer Number of orders
 		 * @since 2023.04
 		 * @see controller/jobs/order/service/transfer/domains
 		 * @see controller/jobs/order/service/transfer/transfer-days
