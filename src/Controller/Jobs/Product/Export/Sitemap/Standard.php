@@ -123,8 +123,8 @@ class Standard
 	 * @type array List of decorator names
 	 * @since 2015.01
 	 * @see controller/jobs/common/decorators/default
-	 * @see controller/jobs/product/export/sitemap/export/sitemap/decorators/excludes
-	 * @see controller/jobs/product/export/sitemap/export/sitemap/decorators/global
+	 * @see controller/jobs/product/export/sitemap/decorators/excludes
+	 * @see controller/jobs/product/export/sitemap/decorators/global
 	 */
 
 
@@ -168,11 +168,7 @@ class Standard
 		 *
 		 * @type bool TRUE to export hidden products, FALSE if not
 		 * @since 2022.01
-		 * @see controller/jobs/product/export/sitemap/container/options
-		 * @see controller/jobs/product/export/sitemap/location
 		 * @see controller/jobs/product/export/sitemap/max-items
-		 * @see controller/jobs/product/export/sitemap/max-query
-		 * @see controller/jobs/product/export/sitemap/changefreq
 		 */
 		$hidden = $this->context()->config()->get( 'controller/jobs/product/export/sitemap/hidden', false );
 
@@ -208,7 +204,6 @@ class Standard
 		 *
 		 * @type string Relative path to the template creating XML code for the site map index
 		 * @since 2015.01
-		 * @see controller/jobs/product/export/sitemap/template-items
 		 */
 		$tplconf = 'controller/jobs/product/export/sitemap/template-index';
 

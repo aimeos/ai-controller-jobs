@@ -269,7 +269,6 @@ class Standard
 		 * @type integer Number of subscriptions
 		 * @since 2023.04
 		 * @see controller/jobs/subscription/process/domains
-		 * @see controller/jobs/subscription/process/names
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */
@@ -294,7 +293,6 @@ class Standard
 		 * @type array List of processor names
 		 * @since 2018.04
 		 * @see controller/jobs/subscription/process/domains
-		 * @see controller/jobs/subscription/process/max
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */
@@ -350,9 +348,7 @@ class Standard
 		 *
 		 * @type integer Payment status constant
 		 * @since 2018.07
-		 * @see controller/jobs/subscription/process/begin/domains
-		 * @see controller/jobs/subscription/process/begin/max
-		 * @see controller/jobs/subscription/process/begin/names
+		 * @see controller/jobs/subscription/process/domains
 		 * @see controller/jobs/subscription/process/payment-days
 		 */
 		$status = \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;

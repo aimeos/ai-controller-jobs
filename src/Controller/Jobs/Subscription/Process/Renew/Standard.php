@@ -523,7 +523,6 @@ class Standard
 		 * @type integer Number of subscriptions
 		 * @since 2023.04
 		 * @see controller/jobs/subscription/process/domains
-		 * @see controller/jobs/subscription/process/names
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */
@@ -548,7 +547,6 @@ class Standard
 		 * @type array List of processor names
 		 * @since 2018.04
 		 * @see controller/jobs/subscription/process/domains
-		 * @see controller/jobs/subscription/process/max
 		 * @see controller/jobs/subscription/process/payment-days
 		 * @see controller/jobs/subscription/process/payment-status
 		 */

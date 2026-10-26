@@ -228,7 +228,6 @@ class Standard
 		 *
 		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2018.04
-		 * @see controller/jobs/catalog/import/csv/converter
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/mapping
@@ -259,7 +258,6 @@ class Standard
 		 * @type array Associative list of MShop item domain names
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
-		 * @see controller/jobs/catalog/import/csv/converter
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/mapping
 		 * @see controller/jobs/catalog/import/csv/max-size
@@ -488,7 +486,6 @@ class Standard
 		 * @type string Relative path to the CSV files
 		 * @since 2015.08
 		 * @see controller/jobs/catalog/import/csv/backup
-		 * @see controller/jobs/catalog/import/csv/converter
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/mapping
@@ -524,7 +521,6 @@ class Standard
 		 * @type array Associative list of processor names and lists of key/position pairs
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
-		 * @see controller/jobs/catalog/import/csv/converter
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/max-size
@@ -562,7 +558,6 @@ class Standard
 		 * @type integer Number of rows
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/backup
-		 * @see controller/jobs/catalog/import/csv/converter
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/mapping
@@ -591,7 +586,6 @@ class Standard
 		 * @type integer Number of rows
 		 * @since 2015.08
 		 * @see controller/jobs/catalog/import/csv/backup
-		 * @see controller/jobs/catalog/import/csv/converter
 		 * @see controller/jobs/catalog/import/csv/domains
 		 * @see controller/jobs/catalog/import/csv/location
 		 * @see controller/jobs/catalog/import/csv/mapping

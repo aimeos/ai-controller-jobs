@@ -309,7 +309,7 @@ class Standard
 		 * @type integer Number of days
 		 * @since 2014.03
 		 * @see controller/jobs/order/email/delivery/limit-days
-		 * @see controller/jobs/service/delivery/process/limit-days
+		 * @see controller/jobs/order/service/delivery/limit-days
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/order/email/voucher/limit-days', 30 );
 	}

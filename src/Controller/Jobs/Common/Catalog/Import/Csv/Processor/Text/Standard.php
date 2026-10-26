@@ -58,11 +58,7 @@ class Standard
 		 * @type array|null List of catalog list type names or null for all
 		 * @since 2018.04
 		 * @see controller/jobs/catalog/import/csv/domains
-		 * @see controller/jobs/catalog/import/csv/processor/attribute/listtypes
-		 * @see controller/jobs/catalog/import/csv/processor/catalog/listtypes
 		 * @see controller/jobs/catalog/import/csv/processor/media/listtypes
-		 * @see controller/jobs/catalog/import/csv/processor/price/listtypes
-		 * @see controller/jobs/catalog/import/csv/processor/catalog/listtypes
 		 */
 		$key = 'controller/jobs/catalog/import/csv/processor/text/listtypes';
 		$this->listTypes = $context->config()->get( $key );

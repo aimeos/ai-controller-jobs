@@ -231,7 +231,6 @@ class Standard
 		 *
 		 * @type integer Name of the backup file, optionally with date/time placeholders
 		 * @since 2019.04
-		 * @see controller/jobs/group/import/xml/domains
 		 * @see controller/jobs/group/import/xml/location
 		 * @see controller/jobs/group/import/xml/max-query
 		 */
@@ -363,7 +362,6 @@ class Standard
 		 * @type string Relative path to the XML files
 		 * @since 2019.04
 		 * @see controller/jobs/group/import/xml/backup
-		 * @see controller/jobs/group/import/xml/domains
 		 * @see controller/jobs/group/import/xml/max-query
 		 */
 		return (string) $this->context()->config()->get( 'controller/jobs/group/import/xml/location', 'group' );
@@ -388,7 +386,6 @@ class Standard
 		 *
 		 * @type integer Number of XML nodes
 		 * @since 2019.04
-		 * @see controller/jobs/group/import/xml/domains
 		 * @see controller/jobs/group/import/xml/location
 		 * @see controller/jobs/group/import/xml/backup
 		 */

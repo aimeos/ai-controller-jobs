@@ -182,7 +182,6 @@ class Standard
 		 *
 		 * @type integer Number of days
 		 * @since 2023.10
-		 * @see controller/jobs/basket/cleanup/path
 		 */
 		$limit = $this->context()->config()->get( 'controller/jobs/basket/cleanup/limit-days', 30 );
 		return date( 'Y-m-d H:i:s', time() - $limit * 86400 );

@@ -34,7 +34,40 @@ class Base
 	{
 		parent::__construct( $context, $aimeos );
 
+		/** controller/jobs/customer/import/csv/checks
+		 * Regular expressions for validating the imported field values
+		 *
+		 * Each customer entry from the CSV file is checked against the configured
+		 * regular expressions before it's imported. The keys are the field codes
+		 * from the mapping and the values are the regular expressions the field
+		 * values must match, e.g.
+		 *
+		 *  controller/jobs/customer/import/csv/checks = [
+		 *      'customer.email' => '/^.+@.+$/',
+		 *      'customer.address.countryid' => '/^[A-Z]{2}$/',
+		 *  ]
+		 *
+		 * If a value doesn't match, the import of that entry fails.
+		 *
+		 * @type array Associative list of field codes as keys and regular expressions as values
+		 * @since 2026.01
+		 * @see controller/jobs/customer/import/csv/html
+		 * @see controller/jobs/customer/import/csv/mapping
+		 */
 		$this->checks = (array) $context->config()->get( 'controller/jobs/customer/import/csv/checks', [] );
+
+		/** controller/jobs/customer/import/csv/html
+		 * Allows HTML tags in the imported field values
+		 *
+		 * By default, customer entries containing HTML tags in any field are
+		 * rejected to prevent stored cross-site scripting attacks. Set this
+		 * option to true if the CSV file contains values with HTML tags that
+		 * should be imported.
+		 *
+		 * @type bool True to allow HTML tags, false to reject entries containing them
+		 * @since 2026.01
+		 * @see controller/jobs/customer/import/csv/checks
+		 */
 		$this->html = (bool) $context->config()->get( 'controller/jobs/customer/import/csv/html', false );
 	}
 

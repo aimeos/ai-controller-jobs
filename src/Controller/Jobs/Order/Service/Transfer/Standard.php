@@ -253,7 +253,7 @@ class Standard
 		 * @type integer Number of orders
 		 * @since 2023.04
 		 * @see controller/jobs/order/service/transfer/domains
-		 * @see controller/jobs/order/service/transfer/limit-days
+		 * @see controller/jobs/order/service/transfer/transfer-days
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/order/service/transfer/batch-max', 100 );
 	}

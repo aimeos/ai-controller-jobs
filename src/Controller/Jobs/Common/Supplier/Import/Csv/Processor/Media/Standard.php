@@ -58,10 +58,6 @@ class Standard
 		 * @type array|null List of supplier list type names or null for all
 		 * @since 2020.07
 		 * @see controller/jobs/supplier/import/csv/domains
-		 * @see controller/jobs/supplier/import/csv/processor/attribute/listtypes
-		 * @see controller/jobs/supplier/import/csv/processor/supplier/listtypes
-		 * @see controller/jobs/supplier/import/csv/processor/supplier/listtypes
-		 * @see controller/jobs/supplier/import/csv/processor/price/listtypes
 		 * @see controller/jobs/supplier/import/csv/processor/text/listtypes
 		 */
 		$key = 'controller/jobs/supplier/import/csv/processor/media/listtypes';

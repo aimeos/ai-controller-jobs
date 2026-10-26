@@ -227,7 +227,6 @@ class Standard
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/domains
 		 * @see controller/jobs/catalog/import/xml/location
-		 * @see controller/jobs/catalog/import/xml/max-query
 		 */
 		$backup = $this->context()->config()->get( 'controller/jobs/catalog/import/xml/backup' );
 		return \Aimeos\Base\Str::strtime( (string) $backup );
@@ -254,7 +253,6 @@ class Standard
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/backup
 		 * @see controller/jobs/catalog/import/xml/location
-		 * @see controller/jobs/catalog/import/xml/max-query
 		 */
 		return (array) $this->context()->config()->get( 'controller/jobs/catalog/import/xml/domains', ['media', 'text'] );
 	}
@@ -408,7 +406,6 @@ class Standard
 		 * @since 2019.04
 		 * @see controller/jobs/catalog/import/xml/backup
 		 * @see controller/jobs/catalog/import/xml/domains
-		 * @see controller/jobs/catalog/import/xml/max-query
 		 */
 		return (string) $this->context()->config()->get( 'controller/jobs/catalog/import/xml/location', 'catalog' );
 	}
