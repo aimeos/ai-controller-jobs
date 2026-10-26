@@ -69,8 +69,7 @@ class Standard
 		 * @see controller/jobs/product/import/csv/supplier/listtypes
 		 * @see controller/jobs/product/import/csv/text/listtypes
 		 */
-		$default = $config->get( 'controller/jobs/product/import/csv/processor/attribute/listtypes' );
-		$this->listTypes = $config->get( 'controller/jobs/product/import/csv/attribute/listtypes', $default );
+		$this->listTypes = $config->get( 'controller/jobs/product/import/csv/attribute/listtypes' );
 
 		if( $this->listTypes === null )
 		{

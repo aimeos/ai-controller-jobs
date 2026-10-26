@@ -229,7 +229,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			3 => 'cafe',
 		);
 
-		$this->context->config()->set( 'controller/jobs/product/import/csv/processor/catalog/listtypes', array( 'default' ) );
+		$this->context->config()->set( 'controller/jobs/product/import/csv/catalog/listtypes', array( 'default' ) );
 
 		$object = new \Aimeos\Controller\Jobs\Common\Product\Import\Csv\Processor\Catalog\Standard( $this->context, $mapping, $this->endpoint );
 
