@@ -133,4 +133,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->run();
 	}
+
+
+	public function testViewIdn()
+	{
+		$address = \Aimeos\MShop::create( $this->context, 'customer/address' )->create()->setLanguageId( 'de' );
+
+		$method = new \ReflectionMethod( \Aimeos\Controller\Jobs\Customer\Email\Account\Standard::class, 'view' );
+		$view = $method->invokeArgs( $this->object, [$address] );
+		$view->account = 'test@xn--mller-kva.de';
+
+		$this->assertStringContainsString( "test@m\u{fc}ller.de", $view->render( 'customer/email/account/text' ) );
+		$this->assertStringContainsString( "test@m\u{fc}ller.de", $view->render( 'customer/email/account/html' ) );
+	}
 }
