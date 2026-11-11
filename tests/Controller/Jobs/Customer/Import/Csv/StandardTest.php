@@ -187,6 +187,58 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testRunPrivileged()
+	{
+		$this->context->config()->set( 'controller/jobs/customer/import/csv/processor/group/denied', ['unitgroup2'] );
+		$this->context->fs( 'fs-import' )->writef( 'customer/valid/unittest/customers.csv', __DIR__ . '/_testfiles/valid/customers.csv' );
+
+		$grpId = \Aimeos\MShop::create( $this->context, 'group' )->find( 'unitgroup2' )->getId();
+		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
+		$item = $manager->create()->setCode( 'job@csv.test' )->setLabel( 'privileged' )->setGroups( [$grpId] );
+		$manager->save( $item );
+
+		try
+		{
+			$this->object->run();
+			$result = $this->get( ['job@csv.test'], ['group'] );
+		}
+		finally
+		{
+			$this->delete( ['job@csv.test'] );
+		}
+
+		$this->assertEquals( 1, count( $result ) );
+		$this->assertEquals( 'privileged', current( $result )->getLabel() );
+		$this->assertEquals( [$grpId], array_values( current( $result )->getGroups() ) );
+	}
+
+
+	public function testPrivilegedRoles()
+	{
+		$item = new class( new \Aimeos\MShop\Common\Item\Address\Standard( 'customer.' ), 'customer.' ) extends \Aimeos\MShop\Customer\Item\Standard
+		{
+			public array $roles = ['ROLE_USER'];
+			public function getRoles() : array { return $this->roles; }
+		};
+		$method = new \ReflectionMethod( \Aimeos\Controller\Jobs\Customer\Import\Csv\Standard::class, 'privileged' );
+
+		$this->assertFalse( $method->invoke( $this->object, $item, [] ) );
+
+		$item->roles = ['ROLE_USER', 'ROLE_ADMIN'];
+		$this->assertTrue( $method->invoke( $this->object, $item, [] ) );
+	}
+
+
+	public function testPrivilegedSuper()
+	{
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->create()->set( '.super', true );
+		$method = new \ReflectionMethod( \Aimeos\Controller\Jobs\Customer\Import\Csv\Standard::class, 'privileged' );
+
+		$this->assertTrue( $method->invoke( $this->object, $item, [] ) );
+		$this->assertFalse( $method->invoke( $this->object, $item->set( '.super', false ), [] ) );
+	}
+
+
 	public function testRunBackup()
 	{
 		$config = $this->context->config();

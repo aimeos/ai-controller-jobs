@@ -374,13 +374,16 @@ class Standard
 	 * Returns the customer items for the given codes
 	 *
 	 * @param array $codes List of customer codes
-	 * @param array $domains List of domains whose items should be fetched too
+	 * @param array $domains List of domains whose items should be fetched too, groups are always fetched
 	 * @return \Aimeos\Map Associative list of customer codes as key and customer items as value
 	 */
 	protected function getCustomers( array $codes, array $domains ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
 		$search = $manager->filter()->add( ['customer.code' => $codes] )->slice( 0, count( $codes ) );
+
+		// groups are required to protect privileged accounts
+		$domains = array_unique( array_merge( $domains, ['group'] ) );
 
 		return $manager->search( $search, $domains )->col( null, 'customer.code' );
 	}
@@ -459,6 +462,8 @@ class Standard
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'customer' );
 
+		$denied = (array) $context->config()->get( 'controller/jobs/customer/import/csv/processor/group/denied', ['admin', 'editor', 'super'] );
+
 		foreach( $data as $code => $list )
 		{
 			$manager->begin();
@@ -467,6 +472,11 @@ class Standard
 			{
 				$code = trim( $code );
 				$customer = $customers[$code] ?? $manager->create();
+
+				if( $this->privileged( $customer, $denied ) ) {
+					throw new \Aimeos\Controller\Jobs\Exception( 'Privileged accounts can not be changed by imports' );
+				}
+
 				$map = current( $this->getMappedChunk( $list, $mapping ) ); // there can only be one chunk for the base customer data
 
 				if( $map )
@@ -597,6 +607,29 @@ class Standard
 		 * @see controller/jobs/customer/import/csv/skip-lines
 		 */
 		return (int) $this->context()->config()->get( 'controller/jobs/customer/import/csv/max-size', 1000 );
+	}
+
+
+	/**
+	 * Tests if the customer is a super user or a member of at least one of the denied groups
+	 *
+	 * Imports must not change privileged accounts like administrators, editors and super users,
+	 * otherwise everyone who can upload import files could take over these accounts. Super users
+	 * are flagged by the framework integrations, e.g. Laravel, and don't need to be group members.
+	 * Symfony users with roles besides "ROLE_USER" (e.g. "ROLE_ADMIN") are privileged accounts too.
+	 *
+	 * @param \Aimeos\MShop\Customer\Item\Iface $item Customer item including the referenced groups
+	 * @param array $denied Codes of the denied groups
+	 * @return bool TRUE if the customer is a privileged account, FALSE if not
+	 */
+	protected function privileged( \Aimeos\MShop\Customer\Item\Iface $item, array $denied ) : bool
+	{
+		// Symfony FOSUser items
+		if( method_exists( $item, 'getRoles' ) && array_diff( (array) $item->getRoles(), ['ROLE_USER'] ) !== [] ) {
+			return true;
+		}
+
+		return $item->isSuper() || array_intersect( $item->getRefItems( 'group', null, 'default' )->col( 'group.code' )->all(), $denied ) !== [];
 	}
 
 

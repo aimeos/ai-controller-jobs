@@ -91,4 +91,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 0, count( $customer->getGroups() ) );
 	}
+
+
+	public function testProcessDenied()
+	{
+		$this->context->config()->set( 'controller/jobs/customer/import/xml/processor/group/denied', ['unitgroup2'] );
+
+		$dom = new \DOMDocument();
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->create();
+		$grpId = \Aimeos\MShop::create( $this->context, 'group' )->find( 'unitgroup' )->getId();
+
+		$dom->loadXML( '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<group>
+	<groupitem ref="unitgroup" />
+	<groupitem ref="unitgroup2" />
+	<groupitem ref="unknown" />
+</group>' );
+
+		$object = new \Aimeos\Controller\Jobs\Common\Customer\Import\Xml\Processor\Group\Standard( $this->context );
+		$customer = $object->process( $customer, $dom->firstChild );
+
+		$this->assertEquals( [$grpId], $customer->getGroups() );
+	}
 }

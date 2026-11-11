@@ -129,7 +129,9 @@ class Standard
 
 
 	use \Aimeos\Controller\Jobs\Common\Types;
-	use \Aimeos\Controller\Jobs\Common\Import\Xml\Traits;
+	use \Aimeos\Controller\Jobs\Common\Import\Xml\Traits {
+		createProcessor as protected createCommonProcessor;
+	}
 
 
 	/**
@@ -353,19 +355,32 @@ class Standard
 			}
 		}
 
-		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
+		$context = $this->context();
+		$config = $context->config();
+
+		$manager = \Aimeos\MShop::create( $context, 'customer' );
 		$search = $manager->filter()->slice( 0, count( $codes ) )->add( ['customer.code'=> array_keys( $codes )] );
-		$map = $manager->search( $search, $this->domains() )->col( null, 'customer.code' );
+
+		// groups are required to protect privileged accounts
+		$domains = array_unique( array_merge( $this->domains(), ['group'] ) );
+		$map = $manager->search( $search, $domains )->col( null, 'customer.code' );
+
+		$denied = (array) $config->get( 'controller/jobs/customer/import/xml/processor/group/denied', $config->get( 'controller/jobs/common/import/xml/processor/group/denied',
+			$config->get( 'controller/jobs/customer/import/csv/processor/group/denied', ['admin', 'editor', 'super'] ) ) );
 
 		foreach( $nodes as $node )
 		{
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[$attr->nodeValue] ) ) {
-				$item = $this->process( $map[$attr->nodeValue], $node );
-			} else {
-				$item = $this->process( $manager->create(), $node );
+			$code = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
+			$item = $map[$code ?? ''] ?? null;
+
+			if( $item && $this->privileged( $item, $denied ) )
+			{
+				$msg = sprintf( 'Unable to import customer with code "%1$s": Privileged accounts can not be changed by imports', $code );
+				$context->logger()->error( $msg, 'import/xml/customer' );
+				continue;
 			}
 
-			$manager->save( $item );
+			$manager->save( $this->process( $item ?: $manager->create(), $node ) );
 		}
 	}
 
@@ -419,6 +434,58 @@ class Standard
 		 * @see controller/jobs/customer/import/xml/backup
 		 */
 		return $this->context()->config()->get( 'controller/jobs/customer/import/xml/max-query', 100 );
+	}
+
+
+	/**
+	 * Creates a new processor object of the given type
+	 *
+	 * The group processor for customers denies assigning privileged groups using the customer import settings.
+	 *
+	 * @param string $type Type of the processor
+	 * @return \Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Iface Processor object
+	 * @throws \LogicException If class can't be instantiated
+	 */
+	protected function createProcessor( string $type ) : \Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Iface
+	{
+		if( $type !== 'group' ) {
+			return $this->createCommonProcessor( $type );
+		}
+
+		$context = $this->context();
+		$name = $context->config()->get( 'controller/jobs/customer/import/xml/processor/group/name', 'Standard' );
+
+		if( ctype_alnum( $name ) === false ) {
+			throw new \LogicException( sprintf( 'Invalid characters in processor name "%1$s"', $name ), 400 );
+		}
+
+		$classname = '\\Aimeos\\Controller\\Jobs\\Common\\Customer\\Import\\Xml\\Processor\\Group\\' . $name;
+		$interface = \Aimeos\Controller\Jobs\Common\Import\Xml\Processor\Iface::class;
+
+		return \Aimeos\Utils::create( $classname, [$context], $interface );
+	}
+
+
+	/**
+	 * Tests if the customer is a super user or a member of at least one of the denied groups
+	 *
+	 * Imports must not change privileged accounts like administrators, editors and super users,
+	 * otherwise everyone who can upload import files could take over these accounts. Super users
+	 * are flagged by the framework integrations, e.g. Laravel, and don't need to be group members.
+	 * Symfony users with roles besides "ROLE_USER" (e.g. "ROLE_ADMIN") are privileged accounts too.
+	 *
+	 * @param \Aimeos\MShop\Customer\Item\Iface $item Customer item including the referenced groups
+	 * @param array $denied Codes of the denied groups
+	 * @return bool TRUE if the customer is a privileged account, FALSE if not
+	 */
+	protected function privileged( \Aimeos\MShop\Customer\Item\Iface $item, array $denied ) : bool
+	{
+		// Symfony FOSUser items
+		if( method_exists( $item, 'getRoles' ) && array_diff( (array) $item->getRoles(), ['ROLE_USER'] ) !== [] ) {
+			return true;
+		}
+
+		return $item->isSuper() || array_intersect( $item->getRefItems( 'group', null, 'default' )->col( 'group.code' )->all(), $denied ) !== [];
 	}
 
 
