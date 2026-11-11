@@ -31,7 +31,6 @@ class Standard
 	 * @since 2025.10
 	 */
 
-	 private \Aimeos\MShop\Common\Manager\Iface $groupManager;
 	 private array $map = [];
 
 
@@ -47,8 +46,8 @@ class Standard
 	{
 		parent::__construct( $context, $mapping, $object );
 
-		$this->groupManager = \Aimeos\MShop::create( $context, 'group' );
-		$filter = $this->groupManager->filter();
+		$manager = \Aimeos\MShop::create( $context, 'group' );
+		$filter = $manager->filter();
 		$config = $context->config();
 
 		/** controller/jobs/customer/import/csv/processor/group/allowed
@@ -70,21 +69,22 @@ class Standard
 		 * List of group codes that must not be assigned to imported customers
 		 *
 		 * Groups whose codes are part of this list are never assigned to the
-		 * customers during the import. By default, the "admin" and "editor"
-		 * groups are denied to prevent granting backend access by importing
-		 * customer data.
+		 * customers during the import. By default, the "admin", "editor" and
+		 * "super" groups are denied to prevent granting backend access by importing
+		 * customer data. Existing members of the denied groups aren't updated by
+		 * the import.
 		 *
 		 * @param array List of group codes
 		 * @since 2026.04
 		 * @see controller/jobs/customer/import/csv/processor/group/allowed
 		 */
-		if( $denied = $config->get( 'controller/jobs/customer/import/csv/processor/group/denied', ['admin', 'editor'] ) ) {
+		if( $denied = $config->get( 'controller/jobs/customer/import/csv/processor/group/denied', ['admin', 'editor', 'super'] ) ) {
 			$filter->add( 'group.code', '!=', (array) $denied );
 		}
 
-		$cursor = $this->groupManager->cursor( $filter );
+		$cursor = $manager->cursor( $filter );
 
-		while( $items = $this->groupManager->iterate( $cursor ) )
+		while( $items = $manager->iterate( $cursor ) )
 		{
 			foreach( $items as $item ) {
 				$this->map[$item->getCode()] = $item->getId();
