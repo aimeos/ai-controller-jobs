@@ -155,7 +155,7 @@ $barcode = new TCPDF2DBarcode( join( "\n", $data ), 'QRCODE,M' );
 					$addr->getState(),
 					$this->translate( 'country', $addr->getCountryId() ),
 					$this->translate( 'language', $addr->getLanguageId() ),
-					$addr->getEmail(),
+					$this->idn( $addr->getEmail() ),
 					$addr->getTelephone(),
 					$addr->getTelefax(),
 					$addr->getWebsite(),

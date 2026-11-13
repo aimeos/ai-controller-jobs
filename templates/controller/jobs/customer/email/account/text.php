@@ -14,7 +14,7 @@
 
 <?= strip_tags( $this->translate( 'controller/jobs', 'Your account' ) ) ?>
 
-<?= $this->translate( 'controller/jobs', 'Account' ) ?>: <?= $this->get( 'account' ) ?>
+<?= $this->translate( 'controller/jobs', 'Account' ) ?>: <?= $this->idn( $this->get( 'account' ) ) ?>
 
 <?= $this->translate( 'controller/jobs', 'Password' ) ?>: <?= $this->get( 'password' ) ?: $this->translate( 'controller/jobs', 'Like entered by you' ) ?>
 

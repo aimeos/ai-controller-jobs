@@ -176,6 +176,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testViewIdn()
+	{
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create( ['order.ctime' => '2000-01-01 00:00:00'] );
+		$addrItem = \Aimeos\MShop::create( $this->context, 'order/address' )->create()->setEmail( 'a@xn--mller-kva.de' );
+		$orderItem->addAddress( $addrItem, 'payment' );
+
+		$view = $this->access( 'view' )->invokeArgs( $this->object, [$orderItem] );
+		$view->summaryBasket = $view->orderItem = $orderItem;
+		$view->addressItem = $addrItem;
+
+		$this->assertStringContainsString( "a@m\u{fc}ller.de", $view->render( 'order/email/payment/text' ) );
+		$this->assertStringContainsString( "a@m\u{fc}ller.de", $view->render( 'order/email/payment/html' ) );
+	}
+
+
 	protected function access( $name )
 	{
 		$class = new \ReflectionClass( \Aimeos\Controller\Jobs\Order\Email\Payment\Standard::class );

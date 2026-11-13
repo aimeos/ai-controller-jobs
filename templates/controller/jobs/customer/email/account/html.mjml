@@ -37,7 +37,7 @@ $enc = $this->encoder();
 				</mj-column>
 				<mj-column>
 					<mj-text css-class="value">
-						<?= $enc->html( $this->get( 'account' ) ) ?>
+						<?= $enc->html( $this->idn( $this->get( 'account' ) ) ) ?>
 					</mj-text>
 				</mj-column>
 			</mj-section>
