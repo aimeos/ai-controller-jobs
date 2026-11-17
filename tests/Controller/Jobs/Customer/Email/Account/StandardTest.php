@@ -83,6 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$mqueueStub->expects( $this->once() )->method( 'getQueue' )
+			->with( 'customer/email/account/' . $this->context->locale()->getSiteId() )
 			->willReturn( $queueStub );
 
 
@@ -118,6 +119,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$mqueueStub->expects( $this->once() )->method( 'getQueue' )
+			->with( 'customer/email/account/' . $this->context->locale()->getSiteId() )
 			->willReturn( $queueStub );
 
 
