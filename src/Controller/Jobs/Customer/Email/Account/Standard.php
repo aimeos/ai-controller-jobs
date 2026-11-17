@@ -167,7 +167,8 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$queue = $context->queue( 'mq-email', 'customer/email/account' );
+		// per-site queue filled by the frontend customer controller, keep both queue names in sync
+		$queue = $context->queue( 'mq-email', 'customer/email/account/' . $context->locale()->getSiteId() );
 		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		while( ( $msg = $queue->get() ) !== null )
