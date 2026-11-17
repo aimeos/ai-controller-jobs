@@ -47,54 +47,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$mailerStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Manager\\None' )
+		$mailerMock = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Manager\\None' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
+		$mailMock = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
+		$mailMsgMock = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
 			->onlyMethods( ['send'] )
 			->getMock();
 
-		$mailerStub->expects( $this->once() )->method( 'get' )->willReturn( $mailStub );
-		$mailStub->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgStub );
-		$mailMsgStub->expects( $this->once() )->method( 'send' );
+		$mailerMock->expects( $this->once() )->method( 'get' )->willReturn( $mailMock );
+		$mailMock->expects( $this->once() )->method( 'create' )->willReturn( $mailMsgMock );
+		$mailMsgMock->expects( $this->once() )->method( 'send' );
 
-		$this->context->setMail( $mailerStub );
-
-
-		$queueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
-			->willReturn( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => '{"customer.languageid": "de"}' ) ), null );
-
-		$queueStub->expects( $this->once() )->method( 'del' );
-
-
-		$mqueueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Standard' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$mqueueStub->expects( $this->once() )->method( 'getQueue' )
-			->willReturn( $queueStub );
-
-
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$managerStub->expects( $this->once() )->method( 'get' )
-			->willReturn( $mqueueStub );
-
-		$this->context->setMessageQueueManager( $managerStub );
-
+		$this->context->setMail( $mailerMock );
+		$this->mockQueue( '{"customer.languageid": "de"}' );
 
 		$object = new \Aimeos\Controller\Jobs\Customer\Email\Account\Standard( $this->context, $this->aimeos );
 		$object->run();
@@ -103,34 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
-		$queueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
-			->willReturn( new \Aimeos\Base\MQueue\Message\Standard( array( 'message' => 'error' ) ), null );
-
-		$queueStub->expects( $this->once() )->method( 'del' );
-
-
-		$mqueueStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Standard' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$mqueueStub->expects( $this->once() )->method( 'getQueue' )
-			->willReturn( $queueStub );
-
-
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$managerStub->expects( $this->once() )->method( 'get' )
-			->willReturn( $mqueueStub );
-
-		$this->context->setMessageQueueManager( $managerStub );
-
-
+		$this->mockQueue( 'error' );
 		$this->object->run();
 	}
 
@@ -145,5 +90,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( "test@m\u{fc}ller.de", $view->render( 'customer/email/account/text' ) );
 		$this->assertStringContainsString( "test@m\u{fc}ller.de", $view->render( 'customer/email/account/html' ) );
+	}
+
+
+	protected function mockQueue( string $body )
+	{
+		$queueMock = $this->createMock( '\\Aimeos\\Base\\MQueue\\Queue\\Standard' );
+		$queueMock->expects( $this->exactly( 2 ) )->method( 'get' )
+			->willReturn( new \Aimeos\Base\MQueue\Message\Standard( ['message' => $body] ), null );
+		$queueMock->expects( $this->once() )->method( 'del' );
+
+		$mqueueMock = $this->createMock( '\\Aimeos\\Base\\MQueue\\Standard' );
+		$mqueueMock->expects( $this->once() )->method( 'getQueue' )
+			->with( 'customer/email/account/' . $this->context->locale()->getSiteId() )
+			->willReturn( $queueMock );
+
+		$managerStub = $this->createStub( '\\Aimeos\\Base\\MQueue\\Manager\\Standard' );
+		$managerStub->method( 'get' )->willReturn( $mqueueMock );
+
+		$this->context->setMessageQueueManager( $managerStub );
 	}
 }
