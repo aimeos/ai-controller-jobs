@@ -95,6 +95,69 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testRunAuthorizedOnly()
+	{
+		$context = \TestHelper::context();
+		$aimeos = \TestHelper::getAimeos();
+
+
+		$serviceManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Manager\\Standard' )
+			->onlyMethods( array( 'getProvider', 'iterate' ) )
+			->setConstructorArgs( array( $context ) )
+			->getMock();
+
+		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
+			->onlyMethods( array( 'cursor', 'iterate' ) )
+			->setConstructorArgs( array( $context ) )
+			->getMock();
+
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Service\\Manager\\Standard', $serviceManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Standard', $orderManagerStub );
+
+
+		$serviceItem = $serviceManagerStub->create()->setType( '' );
+
+		$serviceProviderStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Service\\Provider\\Payment\\PrePay' )
+			->onlyMethods( array( 'isImplemented', 'capture' ) )
+			->setConstructorArgs( array( $context, $serviceItem ) )
+			->getMock();
+
+		$serviceManagerStub->expects( $this->exactly( 2 ) )->method( 'iterate' )
+			->willReturn( map( [$serviceItem] ), null );
+
+		$serviceManagerStub->expects( $this->once() )->method( 'getProvider' )
+			->willReturn( $serviceProviderStub );
+
+		$serviceProviderStub->expects( $this->once() )->method( 'isImplemented' )
+			->willReturn( true );
+
+		$serviceProviderStub->expects( $this->never() )->method( 'capture' );
+
+		$orderManagerStub->expects( $this->once() )->method( 'iterate' )
+			->willReturn( null );
+
+		// already received payments must not be captured again
+		$orderManagerStub->expects( $this->once() )->method( 'cursor' )
+			->with( $this->callback( function( $filter ) {
+				$list = [$filter->getConditions()];
+				while( $expr = array_shift( $list ) )
+				{
+					if( $expr instanceof \Aimeos\Base\Criteria\Expression\Combine\Iface ) {
+						$list = array_merge( $list, $expr->getExpressions() );
+					} elseif( $expr instanceof \Aimeos\Base\Criteria\Expression\Compare\Iface && $expr->getName() === 'order.statuspayment' ) {
+						return $expr->getOperator() === '==' && $expr->getValue() === \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED;
+					}
+				}
+				return false;
+			} ) )
+			->willReturn( new \Aimeos\MShop\Common\Cursor\Standard( $orderManagerStub->filter() ) );
+
+
+		$object = new \Aimeos\Controller\Jobs\Order\Service\Payment\Standard( $context, $aimeos );
+		$object->run();
+	}
+
+
 	public function testRunExceptionProcess()
 	{
 		$context = \TestHelper::context();
