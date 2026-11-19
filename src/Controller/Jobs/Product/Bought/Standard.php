@@ -275,7 +275,7 @@ class Standard
 		$baseProductManager = \Aimeos\MShop::create( $context, 'order/base/product' );
 
 		$search = $baseProductManager->filter()->add( 'order.base.product.ctime', '>', $date );
-		$filter = $baseManager->filter()->add( 'order.base.ctime', '>', $date )->slice( 0, 0 );
+		$filter = $baseManager->filter()->add( 'order.base.ctime', '>', $date )->slice( 0, 1 );
 
 		$start = $total = 0;
 		$baseManager->search( $filter, [], $total )->all();
