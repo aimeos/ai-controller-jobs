@@ -305,7 +305,7 @@ class Standard
 		$filter = $manager->filter()->slice( 0, $this->max() );
 		$filter->add( $filter->and( [
 			$filter->compare( '>=', 'order.datepayment', $this->limit() ),
-			$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ),
+			$filter->compare( '==', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ),
 			$filter->compare( '==', 'order.service.code', $serviceItem->getCode() ),
 			$filter->compare( '==', 'order.service.type', 'payment' ),
 		] ) );
