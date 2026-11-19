@@ -419,7 +419,7 @@ class Standard
 		$total = 0;
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'order' );
-		$filter = $manager->filter()->add( 'order.ctime', '>', $this->ctime() )->slice( 0, 0 );
+		$filter = $manager->filter()->add( 'order.ctime', '>', $this->ctime() )->slice( 0, 1 );
 		$manager->search( $filter, [], $total )->all();
 
 		return (int) $total;
