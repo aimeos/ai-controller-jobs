@@ -324,19 +324,15 @@ class Standard
 	{
 		$type = \Aimeos\MShop\Order\Item\Service\Base::TYPE_PAYMENT;
 
-		if( isset( $services[$type] ) )
+		// only the first payment service is processed, so others would only add their rebates
+		if( $orderService = current( $services[$type] ?? [] ) )
 		{
-			$idx = 0;
+			$orderService = clone $orderService; // @phpstan-ignore clone.nonObject
+			// @phpstan-ignore method.notFound
+			$orderService->getAttributeItems()->setId( null );
 
-			foreach( $services[$type] as $orderService )
-			{
-				$orderService = clone $orderService; // @phpstan-ignore clone.nonObject
-				// @phpstan-ignore method.notFound
-				$orderService->getAttributeItems()->setId( null );
-
-				// @phpstan-ignore argument.type, method.notFound
-				$newOrder->addService( $orderService->setId( null ), $type, $idx++ );
-			}
+			// @phpstan-ignore argument.type, method.notFound
+			$newOrder->addService( $orderService->setId( null ), $type );
 		}
 
 		$idx = 0;

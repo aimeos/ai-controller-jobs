@@ -173,7 +173,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderServices = map( [
 			'delivery' => [$manager->create()->setCode( 'shiptest' )],
-			'payment' => [$manager->create()->setCode( 'paytest' )],
+			'payment' => [$manager->create()->setCode( 'paytest' ), $manager->create()->setCode( 'paytest2' )],
 		] );
 
 		$basket = $this->access( 'addBasketServices' )->invokeArgs( $this->object, [$this->context, $basket, $orderServices] );
@@ -185,6 +185,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertInstanceOf( $class, $basket->getService( 'delivery', 0 ) );
 		$this->assertEquals( 1, count( $basket->getService( 'payment' ) ) );
 		$this->assertInstanceOf( $class, $basket->getService( 'payment', 0 ) );
+		$this->assertEquals( 'paytest', $basket->getService( 'payment', 0 )->getCode() );
 	}
 
 
