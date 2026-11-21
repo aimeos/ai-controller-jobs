@@ -38,26 +38,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBegin()
 	{
-		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->onlyMethods( ['get', 'type'] )
-			->getMock();
-
-		$ordProdStub->method( 'type' )->willReturn( ['order', 'product'] );
-
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
-
+		$this->context->config()->set( 'controller/jobs/subscription/process/processor/cgroup/allowed', ['3', '4'] );
 		$subscription = $this->getSubscription();
-		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'group' );
-
-		$ordProdItem = $ordProdStub->create()->setAttributeItems( [
-			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),
-			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
-		] );
-
-		$ordProdStub->expects( $this->once() )->method( 'get' )
-			->willReturn( $ordProdItem );
+		$this->orderProduct( ['3', '4'] );
 
 		$this->custStub->expects( $this->once() )->method( 'get' )
 			->willReturn( $this->custStub->create() );
@@ -90,28 +73,30 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBeginNotAllowed()
+	{
+		$this->context->config()->set( 'controller/jobs/subscription/process/processor/cgroup/allowed', ['3'] );
+		$subscription = $this->getSubscription();
+		$this->orderProduct( ['3', '4'] );
+
+		$this->custStub->expects( $this->once() )->method( 'get' )
+			->willReturn( $this->custStub->create() );
+
+		$this->custStub->expects( $this->once() )->method( 'save' )
+			->with( $this->callback( function( $subject ) {
+				return $subject->getGroups() === ['3'];
+			} ) );
+
+		$object = new \Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
+		$object->begin( $subscription, $subscription->getOrderItem() );
+	}
+
+
 	public function testEnd()
 	{
-		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->onlyMethods( ['get', 'type'] )
-			->getMock();
-
-		$ordProdStub->method( 'type' )->willReturn( ['order', 'product'] );
-
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
-
+		$this->context->config()->set( 'controller/jobs/subscription/process/processor/cgroup/allowed', ['3', '4'] );
 		$subscription = $this->getSubscription();
-		$ordProdAttrManager = $ordProdStub->getSubManager( 'attribute' );
-		$ordProdAttrItem = $ordProdAttrManager->create()->setType( 'hidden' )->setCode( 'group' );
-
-		$ordProdItem = $ordProdStub->create()->setAttributeItems( [
-			( clone $ordProdAttrItem )->setAttributeId( 10 )->setValue( '3' ),
-			( clone $ordProdAttrItem )->setAttributeId( 11 )->setValue( '4' ),
-		] );
-
-		$ordProdStub->expects( $this->once() )->method( 'get' )
-			->willReturn( $ordProdItem );
+		$this->orderProduct( ['3', '4'] );
 
 		$this->custStub->expects( $this->once() )->method( 'get' )
 			->willReturn( $this->custStub->create() );
@@ -119,6 +104,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->custStub->expects( $this->once() )->method( 'save' )
 			->with( $this->callback( function( $subject ) {
 				return $subject->getGroups() === [];
+			} ) );
+
+		$object = new \Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
+		$object->end( $subscription, $subscription->getOrderItem() );
+	}
+
+
+	public function testEndNotAllowed()
+	{
+		$this->context->config()->set( 'controller/jobs/subscription/process/processor/cgroup/allowed', ['3'] );
+		$subscription = $this->getSubscription();
+		$this->orderProduct( ['3', '4'] );
+
+		$this->custStub->expects( $this->once() )->method( 'get' )
+			->willReturn( $this->custStub->create()->setGroups( ['1', '3', '4'] ) );
+
+		$this->custStub->expects( $this->once() )->method( 'save' )
+			->with( $this->callback( function( $subject ) {
+				return array_values( $subject->getGroups() ) === ['1', '4'];
 			} ) );
 
 		$object = new \Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
@@ -140,6 +144,29 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = new \Aimeos\Controller\Jobs\Common\Subscription\Process\Processor\Cgroup\Standard( $this->context );
 		$object->end( $subscription, $subscription->getOrderItem() );
+	}
+
+
+	protected function orderProduct( array $groupIds )
+	{
+		$ordProdStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['get', 'type'] )
+			->getMock();
+
+		$ordProdStub->method( 'type' )->willReturn( ['order', 'product'] );
+
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Standard', $ordProdStub );
+
+		$ordProdAttrItem = $ordProdStub->getSubManager( 'attribute' )->create()->setType( 'hidden' )->setCode( 'group' );
+		$attrItems = [];
+
+		foreach( $groupIds as $idx => $groupId ) {
+			$attrItems[] = ( clone $ordProdAttrItem )->setAttributeId( 10 + $idx )->setValue( $groupId );
+		}
+
+		$ordProdStub->expects( $this->once() )->method( 'get' )
+			->willReturn( $ordProdStub->create()->setAttributeItems( $attrItems ) );
 	}
 
 

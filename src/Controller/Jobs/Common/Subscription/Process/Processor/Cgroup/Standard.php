@@ -31,6 +31,7 @@ class Standard
 	 * @since 2018.04
 	 */
 
+	private array $allowed;
 	private array $groupIds;
 
 
@@ -52,10 +53,30 @@ class Standard
 		 * added to their accounts. When the subscription period ends, they will
 		 * be removed from the customer accounts again.
 		 *
+		 * The configured groups are used if the ordered subscription product
+		 * has no hidden "group" attribute.
+		 *
 		 * @param array List of customer group IDs
 		 * @since 2018.04
+		 * @see controller/jobs/subscription/process/processor/cgroup/allowed
 		 */
 		$this->groupIds = (array) $config->get( 'controller/jobs/subscription/process/processor/cgroup/groupids', [] );
+
+		/** controller/jobs/subscription/process/processor/cgroup/allowed
+		 * List of group IDs that subscription products are allowed to grant
+		 *
+		 * Subscription products can contain hidden attributes of type "group"
+		 * whose codes are the IDs of the customer groups that should be added
+		 * to the customer account. Only the group IDs listed in this setting
+		 * are granted or removed, all others are ignored and logged. Editors
+		 * can change products and attributes, so privileged groups like "admin"
+		 * must never be part of this list.
+		 *
+		 * @param array List of customer group IDs
+		 * @since 2026.10
+		 * @see controller/jobs/subscription/process/processor/cgroup/groupids
+		 */
+		$this->allowed = (array) $config->get( 'controller/jobs/subscription/process/processor/cgroup/allowed', [] );
 	}
 
 
@@ -67,20 +88,11 @@ class Standard
 	 */
 	public function begin( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void
 	{
-		$context = $this->context();
-
-		$manager = \Aimeos\MShop::create( $context, 'customer' );
-		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
+		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
+		$groupIds = $this->grants( $subscription );
 
 		// @phpstan-ignore argument.type
-		$productItem = $productManager->get( $subscription->getOrderProductId() );
-		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
-
-		if( ( $groupIds = (array) $productItem->getAttribute( 'group', 'hidden' ) ) === [] ) {
-			$groupIds = $this->groupIds;
-		}
-
-		// @phpstan-ignore argument.type, argument.type
 		$item->setGroups( array_unique( array_merge( $item->getGroups(), $groupIds ) ) );
 		$manager->save( $item );
 	}
@@ -94,21 +106,40 @@ class Standard
 	 */
 	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order ) : void
 	{
-		$context = $this->context();
+		$manager = \Aimeos\MShop::create( $this->context(), 'customer' );
+		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
+		$groupIds = $this->grants( $subscription );
 
-		$manager = \Aimeos\MShop::create( $context, 'customer' );
+		// @phpstan-ignore argument.type
+		$item->setGroups( array_diff( $item->getGroups(), $groupIds ) );
+		$manager->save( $item );
+	}
+
+
+	/**
+	 * Returns the customer group IDs granted by the ordered subscription product
+	 *
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @return array List of customer group IDs
+	 */
+	protected function grants( \Aimeos\MShop\Subscription\Item\Iface $subscription ) : array
+	{
+		$context = $this->context();
 		$productManager = \Aimeos\MShop::create( $context, 'order/product' );
 
 		// @phpstan-ignore argument.type
 		$productItem = $productManager->get( $subscription->getOrderProductId() );
-		$item = $manager->get( $subscription->getOrderItem()->getCustomerId(), ['group'] );
 
 		if( ( $groupIds = (array) $productItem->getAttribute( 'group', 'hidden' ) ) === [] ) {
-			$groupIds = $this->groupIds;
+			return $this->groupIds;
 		}
 
-		// @phpstan-ignore argument.type, argument.type
-		$item->setGroups( array_diff( $item->getGroups(), $groupIds ) );
-		$manager->save( $item );
+		if( $denied = array_diff( $groupIds, $this->allowed ) )
+		{
+			$msg = sprintf( 'Group IDs "%1$s" of subscription ID "%2$s" are not allowed', join( '", "', $denied ), $subscription->getId() );
+			$context->logger()->warning( $msg, 'subscription' );
+		}
+
+		return array_intersect( $groupIds, $this->allowed );
 	}
 }
