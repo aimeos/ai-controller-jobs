@@ -13,7 +13,7 @@ namespace Aimeos\Controller\Jobs\Order\Service\Delivery;
 
 
 /**
- * Sends paid orders to the ERP system or logistic partner.
+ * Sends paid and pending orders to the ERP system or logistic partner.
  *
  * @package Controller
  * @subpackage Jobs
@@ -146,7 +146,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->context()->translate( 'controller/jobs', 'Sends paid orders to the ERP system or logistic partner' );
+		return $this->context()->translate( 'controller/jobs', 'Sends paid and pending orders to the ERP system or logistic partner' );
 	}
 
 

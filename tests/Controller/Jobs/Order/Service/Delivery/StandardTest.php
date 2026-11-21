@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetDescription()
 	{
-		$text = 'Sends paid orders to the ERP system or logistic partner';
+		$text = 'Sends paid and pending orders to the ERP system or logistic partner';
 		$this->assertEquals( $text, $this->object->getDescription() );
 	}
 
