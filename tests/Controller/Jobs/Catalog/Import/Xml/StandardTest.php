@@ -82,4 +82,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 2, count( $tree->getChild( 0 )->getRefItems( 'product' ) ) );
 		$this->assertEquals( 'Test sub-category 3-1', $tree->getChild( 0 )->getChild( 0 )->getLabel() );
 	}
+
+
+	public function testRunDuplicate()
+	{
+		$this->context->fs( 'fs-import' )->writef( 'catalog/unittest/catalog_duplicate.xml', __DIR__ . '/_testfiles/catalog_duplicate.xml' );
+
+		$this->object->run();
+
+		$manager = \Aimeos\MShop::create( $this->context, 'catalog' );
+		$tree = $manager->getTree( $manager->find( 'unittest-xml-dup' )->getId() );
+		$manager->delete( $tree->getId() );
+
+		$this->assertEquals( 1, count( $tree->getChildren() ) );
+		$this->assertEquals( 'unittest-xml-dup-1', $tree->getChild( 0 )->getCode() );
+		$this->assertEquals( 'Kaffee', $manager->find( 'cafe' )->getLabel() );
+
+		$this->expectException( \Aimeos\MShop\Exception::class );
+		$manager->find( 'unittest-xml-dup-skipped' );
+	}
 }

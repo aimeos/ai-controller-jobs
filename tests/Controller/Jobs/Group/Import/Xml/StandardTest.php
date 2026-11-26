@@ -69,4 +69,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'Test group', $item->getLabel() );
 		$this->assertEquals( 'test', $item->getCode() );
 	}
+
+
+	public function testRunDuplicate()
+	{
+		$this->context->fs( 'fs-import' )->writef( 'group/unittest/group_duplicate.xml', __DIR__ . '/_testfiles/group_duplicate.xml' );
+
+		$this->object->run();
+
+		$manager = \Aimeos\MShop::create( $this->context, 'group' );
+		$item = $manager->find( 'unittest-xml-dup' );
+		$manager->delete( $item );
+
+		$this->assertEquals( 'Test group', $item->getLabel() );
+		$this->assertEquals( 'Unitgroup', $manager->find( 'unitgroup' )->getLabel() );
+	}
 }

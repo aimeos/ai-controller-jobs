@@ -147,4 +147,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertTrue( $method->invoke( $this->object, $item, [] ) );
 		$this->assertFalse( $method->invoke( $this->object, $item->set( '.super', false ), [] ) );
 	}
+
+
+	public function testRunDuplicate()
+	{
+		$this->context->fs( 'fs-import' )->writef( 'customer/unittest/customer_duplicate.xml', __DIR__ . '/_testfiles/customer_duplicate.xml' );
+
+		$this->object->run();
+
+		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
+		$item = $manager->find( 'unittest-xml-dup@example.com' );
+		$manager->delete( $item );
+
+		$this->assertEquals( 'Test user', $item->getLabel() );
+		$this->assertEquals( 'unitCustomer001', $manager->find( 'test@example.com' )->getLabel() );
+	}
 }

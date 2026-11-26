@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<catalog>
+	<catalogitem ref="unittest-xml-dup">
+		<catalog.code><![CDATA[unittest-xml-dup]]></catalog.code>
+		<catalog.label><![CDATA[Test catalog]]></catalog.label>
+	</catalogitem>
+	<catalog>
+		<catalogitem>
+			<catalog.code><![CDATA[cafe]]></catalog.code>
+			<catalog.label><![CDATA[Duplicate]]></catalog.label>
+		</catalogitem>
+		<catalog>
+			<catalogitem ref="unittest-xml-dup-skipped">
+				<catalog.code><![CDATA[unittest-xml-dup-skipped]]></catalog.code>
+				<catalog.label><![CDATA[Skipped]]></catalog.label>
+			</catalogitem>
+		</catalog>
+		<catalogitem ref="unittest-xml-dup-1">
+			<catalog.code><![CDATA[unittest-xml-dup-1]]></catalog.code>
+			<catalog.label><![CDATA[Test sub-category]]></catalog.label>
+		</catalogitem>
+	</catalog>
+</catalog>

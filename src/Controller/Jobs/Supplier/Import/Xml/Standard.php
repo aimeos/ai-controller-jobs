@@ -360,15 +360,30 @@ class Standard
 
 		foreach( $nodes as $node )
 		{
-			if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null && isset( $map[$attr->nodeValue] ) ) {
-				// @phpstan-ignore argument.type
-				$item = $this->process( $map[$attr->nodeValue], $node );
-			} else {
-				// @phpstan-ignore argument.type
-				$item = $this->process( $manager->create(), $node );
-			}
+			$ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
 
-			$manager->save( $item );
+			try
+			{
+				$manager->begin();
+
+				if( $ref !== null && isset( $map[$ref] ) ) {
+					// @phpstan-ignore argument.type
+					$item = $this->process( $map[$ref], $node );
+				} else {
+					// @phpstan-ignore argument.type
+					$item = $this->process( $manager->create(), $node );
+				}
+
+				$manager->save( $item );
+				$manager->commit();
+			}
+			catch( \Throwable $t )
+			{
+				$manager->rollback();
+
+				$msg = sprintf( 'Unable to import supplier with code "%1$s": %2$s', $ref, $t->getMessage() );
+				$this->context()->logger()->error( $msg, 'import/xml/supplier' );
+			}
 		}
 	}
 

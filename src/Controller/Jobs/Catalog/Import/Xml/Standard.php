@@ -351,8 +351,10 @@ class Standard
 	protected function importTree( \XMLReader $xml, array $domains, ?string $parentid = null, array $map = [] ) : void
 	{
 		$total = 0;
+		$failed = false;
 		$childMap = [];
 		$currentid = $parentid;
+		$manager = \Aimeos\MShop::create( $this->context(), 'catalog' );
 
 		while( $xml->read() === true )
 		{
@@ -364,22 +366,46 @@ class Standard
 					throw new \Aimeos\Controller\Jobs\Exception( $msg );
 				}
 
-				if( ( $attr = $node->attributes->getNamedItem( 'ref' ) ) !== null ) {
-					unset( $map[$attr->nodeValue] );
+				if( ( $ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue ) !== null ) {
+					unset( $map[$ref] );
 				}
 
-				// @phpstan-ignore argument.type
-				$currentid = $this->importNode( $node, $domains, $parentid, $childMap );
-				$total++;
+				try
+				{
+					$manager->begin();
+					// @phpstan-ignore argument.type
+					$currentid = $this->importNode( $node, $domains, $parentid, $childMap );
+					$manager->commit();
+
+					$failed = false;
+					$total++;
+				}
+				catch( \Throwable $t )
+				{
+					$manager->rollback();
+
+					$msg = sprintf( 'Unable to import category with code "%1$s": %2$s', $ref, $t->getMessage() );
+					$this->context()->logger()->error( $msg, 'import/xml/catalog' );
+
+					$childMap = [];
+					$failed = true;
+				}
 			}
 			elseif( $xml->nodeType === \XMLReader::ELEMENT && $xml->name === 'catalog' )
 			{
+				if( $failed ) // skip sub-categories of the category that couldn't be imported
+				{
+					$depth = $xml->depth;
+					while( $xml->read() && !( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' && $xml->depth === $depth ) );
+					continue;
+				}
+
 				$this->importTree( $xml, $domains, $currentid, $childMap );
 				$childMap = [];
 			}
 			elseif( $xml->nodeType === \XMLReader::END_ELEMENT && $xml->name === 'catalog' )
 			{
-				\Aimeos\MShop::create( $this->context(), 'catalog' )->delete( $map );
+				$manager->delete( $map );
 				break;
 			}
 		}
