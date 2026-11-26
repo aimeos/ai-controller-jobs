@@ -382,8 +382,20 @@ class Standard
 				continue;
 			}
 
-			// @phpstan-ignore argument.type, argument.type
-			$manager->save( $this->process( $item ?: $manager->create(), $node ) );
+			try
+			{
+				$manager->begin();
+				// @phpstan-ignore argument.type, argument.type
+				$manager->save( $this->process( $item ?: $manager->create(), $node ) );
+				$manager->commit();
+			}
+			catch( \Throwable $t )
+			{
+				$manager->rollback();
+
+				$msg = sprintf( 'Unable to import customer with code "%1$s": %2$s', $code, $t->getMessage() );
+				$context->logger()->error( $msg, 'import/xml/customer' );
+			}
 		}
 	}
 

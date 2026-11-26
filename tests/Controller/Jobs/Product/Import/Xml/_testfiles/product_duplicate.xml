@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<products>
+	<productitem>
+		<product.type><![CDATA[default]]></product.type>
+		<product.code><![CDATA[CNC]]></product.code>
+		<product.label><![CDATA[Duplicate]]></product.label>
+	</productitem>
+	<productitem ref="unittest-xml-dup">
+		<product.type><![CDATA[default]]></product.type>
+		<product.code><![CDATA[unittest-xml-dup]]></product.code>
+		<product.label><![CDATA[Test product]]></product.label>
+	</productitem>
+</products>

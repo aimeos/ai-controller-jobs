@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<groups>
+	<groupitem>
+		<group.code><![CDATA[unitgroup]]></group.code>
+		<group.label><![CDATA[Duplicate]]></group.label>
+	</groupitem>
+	<groupitem ref="unittest-xml-dup">
+		<group.code><![CDATA[unittest-xml-dup]]></group.code>
+		<group.label><![CDATA[Test group]]></group.label>
+	</groupitem>
+</groups>

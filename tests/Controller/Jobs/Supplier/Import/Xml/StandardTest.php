@@ -81,4 +81,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $item->getAddressItems() ) );
 		$this->assertEquals( 'ms', $item->getAddressItems()->first()->getSalutation() );
 	}
+
+
+	public function testRunDuplicate()
+	{
+		$this->context->fs( 'fs-import' )->writef( 'supplier/unittest/supplier_duplicate.xml', __DIR__ . '/_testfiles/supplier_duplicate.xml' );
+
+		$this->object->run();
+
+		$manager = \Aimeos\MShop::create( $this->context, 'supplier' );
+		$item = $manager->find( 'unittest-xml-dup' );
+		$manager->delete( $item );
+
+		$this->assertEquals( 'Test supplier', $item->getLabel() );
+		$this->assertNotEquals( 'Duplicate', $manager->find( 'unitSupplier001' )->getLabel() );
+	}
 }

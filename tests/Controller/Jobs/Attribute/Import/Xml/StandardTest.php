@@ -77,4 +77,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $item->getRefItems( 'text' ) ) );
 		$this->assertEquals( 1, count( $item->getPropertyItems() ) );
 	}
+
+
+	public function testRunDuplicate()
+	{
+		$this->context->fs( 'fs-import' )->writef( 'attribute/unittest/attribute_duplicate.xml', __DIR__ . '/_testfiles/attribute_duplicate.xml' );
+
+		$this->object->run();
+
+		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
+		$item = $manager->find( 'unittest-xml-dup', [], 'product', 'color' );
+		$manager->delete( $item );
+
+		$this->assertEquals( 'Test attribute', $item->getLabel() );
+		$this->assertNotEquals( 'Duplicate', $manager->find( 'red', [], 'product', 'color' )->getLabel() );
+	}
 }

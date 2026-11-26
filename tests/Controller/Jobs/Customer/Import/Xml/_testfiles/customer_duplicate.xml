@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<customers>
+	<customeritem>
+		<customer.code><![CDATA[test@example.com]]></customer.code>
+		<customer.label><![CDATA[Duplicate]]></customer.label>
+	</customeritem>
+	<customeritem ref="unittest-xml-dup@example.com">
+		<customer.code><![CDATA[unittest-xml-dup@example.com]]></customer.code>
+		<customer.label><![CDATA[Test user]]></customer.label>
+	</customeritem>
+</customers>

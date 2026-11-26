@@ -343,24 +343,40 @@ class Standard
 	 */
 	protected function importNodes( array $nodes ) : void
 	{
+		$context = $this->context();
 		$replace = $this->replace();
 		$map = $replace ? map() : $this->products( $nodes );
-		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
+		$manager = \Aimeos\MShop::create( $context, 'index' );
 
 		foreach( $nodes as $node )
 		{
 			$ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
-			// @phpstan-ignore argument.type
-			$item = $map->get( $ref ) ?: $manager->create();
 
-			if( $ref && $replace ) {
-				$item->setId( $ref );
+			try
+			{
+				$manager->begin();
+
+				// @phpstan-ignore argument.type
+				$item = $map->get( $ref ?? '' ) ?: $manager->create();
+
+				if( $ref && $replace ) {
+					$item->setId( $ref );
+				}
+
+				// @phpstan-ignore argument.type
+				$manager->save( $this->process( $item, $node ) );
+				// @phpstan-ignore argument.type
+				$this->addType( 'product/type', 'product', $item->getType() );
+
+				$manager->commit();
 			}
+			catch( \Throwable $t )
+			{
+				$manager->rollback();
 
-			// @phpstan-ignore argument.type
-			$manager->save( $this->process( $item, $node ) );
-			// @phpstan-ignore argument.type
-			$this->addType( 'product/type', 'product', $item->getType() );
+				$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $ref, $t->getMessage() );
+				$context->logger()->error( $msg, 'import/xml/product' );
+			}
 		}
 	}
 

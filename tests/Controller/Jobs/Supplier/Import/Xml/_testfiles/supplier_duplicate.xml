@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<suppliers>
+	<supplieritem>
+		<supplier.code><![CDATA[unitSupplier001]]></supplier.code>
+		<supplier.label><![CDATA[Duplicate]]></supplier.label>
+	</supplieritem>
+	<supplieritem ref="unittest-xml-dup">
+		<supplier.code><![CDATA[unittest-xml-dup]]></supplier.code>
+		<supplier.label><![CDATA[Test supplier]]></supplier.label>
+	</supplieritem>
+</suppliers>

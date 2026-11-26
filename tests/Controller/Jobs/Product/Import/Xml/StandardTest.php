@@ -90,4 +90,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 1, count( $item->getRefItems( 'price' )->first()->getListItems( 'attribute' ) ) );
 		$this->assertEquals( 1, count( $item->getRefItems( 'text' )->first()->getListItems( 'attribute' ) ) );
 	}
+
+
+	public function testRunDuplicate()
+	{
+		$this->context->fs( 'fs-import' )->writef( 'product/unittest/product_duplicate.xml', __DIR__ . '/_testfiles/product_duplicate.xml' );
+
+		$this->object->run();
+
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
+		$item = $manager->find( 'unittest-xml-dup' );
+		$manager->delete( $item );
+
+		$this->assertEquals( 'Test product', $item->getLabel() );
+		$this->assertEquals( 'Cafe Noire Cappuccino', $manager->find( 'CNC' )->getLabel() );
+	}
 }
