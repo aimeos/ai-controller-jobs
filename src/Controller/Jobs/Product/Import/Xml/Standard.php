@@ -344,38 +344,36 @@ class Standard
 	protected function importNodes( array $nodes ) : void
 	{
 		$context = $this->context();
-		$replace = $this->replace();
-		$map = $replace ? map() : $this->products( $nodes );
 		$manager = \Aimeos\MShop::create( $context, 'index' );
 
-		foreach( $nodes as $node )
+		try
 		{
-			$ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
+			// import all products at once to avoid committing each product separately
+			$manager->begin();
+			$this->save( $nodes );
+			$manager->commit();
+		}
+		catch( \Throwable $t )
+		{
+			$manager->rollback();
 
-			try
+			// import each product separately so only invalid products are skipped
+			foreach( $nodes as $node )
 			{
-				$manager->begin();
-
-				// @phpstan-ignore argument.type
-				$item = $map->get( $ref ?? '' ) ?: $manager->create();
-
-				if( $ref && $replace ) {
-					$item->setId( $ref );
+				try
+				{
+					$manager->begin();
+					$this->save( [$node] );
+					$manager->commit();
 				}
+				catch( \Throwable $t )
+				{
+					$manager->rollback();
 
-				// @phpstan-ignore argument.type
-				$manager->save( $this->process( $item, $node ) );
-				// @phpstan-ignore argument.type
-				$this->addType( 'product/type', 'product', $item->getType() );
-
-				$manager->commit();
-			}
-			catch( \Throwable $t )
-			{
-				$manager->rollback();
-
-				$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $ref, $t->getMessage() );
-				$context->logger()->error( $msg, 'import/xml/product' );
+					$ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
+					$msg = sprintf( 'Unable to import product with code "%1$s": %2$s', $ref, $t->getMessage() );
+					$context->logger()->error( $msg, 'import/xml/product' );
+				}
 			}
 		}
 	}
@@ -518,5 +516,35 @@ class Standard
 		 * @see controller/jobs/product/import/xml/max-query
 		 */
 		return (bool) $this->context()->config()->get( 'controller/jobs/product/import/xml/replace', false );
+	}
+
+
+	/**
+	 * Saves the products from the given DOM nodes
+	 *
+	 * @param \DomElement[] $nodes List of nodes to import
+	 */
+	protected function save( array $nodes ) : void
+	{
+		$replace = $this->replace();
+		$map = $replace ? map() : $this->products( $nodes );
+		$manager = \Aimeos\MShop::create( $this->context(), 'index' );
+
+		foreach( $nodes as $node )
+		{
+			$ref = $node->attributes->getNamedItem( 'ref' )?->nodeValue;
+
+			// @phpstan-ignore argument.type
+			$item = $map->get( $ref ?? '' ) ?: $manager->create();
+
+			if( $ref && $replace ) {
+				$item->setId( $ref );
+			}
+
+			// @phpstan-ignore argument.type
+			$manager->save( $this->process( $item, $node ) );
+			// @phpstan-ignore argument.type
+			$this->addType( 'product/type', 'product', $item->getType() );
+		}
 	}
 }
